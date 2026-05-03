@@ -1,0 +1,693 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { usePoliticsStore } from '@/stores/politics'
+import { ElMessage } from 'element-plus'
+
+const politicsStore = usePoliticsStore()
+
+const activeTab = ref('latest')
+const selectedAffair = ref<any>(null)
+const searchTerm = ref('')
+const selectedCategories = ref<string[]>([])
+
+// 计算属�?
+const affairs = computed(() => politicsStore.currentAffairs)
+const unreadCount = computed(() => politicsStore.unreadAffairs.length)
+const bookmarkedCount = computed(() => politicsStore.bookmarkedAffairs.length)
+
+const filteredAffairs = computed(() => {
+  let filtered = affairs.value
+  
+  // 搜索过滤
+  if (searchTerm.value) {
+    const term = searchTerm.value.toLowerCase()
+    filtered = filtered.filter(affair => 
+      affair.title.toLowerCase().includes(term) ||
+      affair.content.toLowerCase().includes(term) ||
+      affair.keywords.some(keyword => keyword.toLowerCase().includes(term))
+    )
+  }
+  
+  // 分类过滤
+  if (selectedCategories.value.length > 0) {
+    filtered = filtered.filter(affair => 
+      selectedCategories.value.includes(affair.category)
+    )
+  }
+  
+  return filtered
+})
+
+const categories = computed(() => {
+  const cats: Record<string, number> = {}
+  affairs.value.forEach(affair => {
+    cats[affair.category] = (cats[affair.category] || 0) + 1
+  })
+  return cats
+})
+
+const getStatusTag = (status: string) => {
+  const tags: Record<string, any> = {
+    'unread': { type: 'info', text: '未读' },
+    'reading': { type: 'warning', text: '阅读�? },
+    'read': { type: 'success', text: '已读' }
+  }
+  return tags[status] || { type: 'info', text: status }
+}
+
+const getCategoryTag = (category: string) => {
+  const tags: Record<string, string> = {
+    '时政要闻': 'danger',
+    '政策解读': 'warning',
+    '经济动�?: 'success',
+    '社会民生': 'primary',
+    '国际形势': 'info'
+  }
+  return tags[category] || 'default'
+}
+
+const getImportanceTag = (importance: string) => {
+  const tags: Record<string, any> = {
+    'high': { type: 'danger', text: '重要' },
+    'medium': { type: 'warning', text: '中等' },
+    'low': { type: 'info', text: '一�? }
+  }
+  return tags[importance] || { type: 'info', text: importance }
+}
+
+const selectAffair = (affair: any) => {
+  selectedAffair.value = affair
+  if (affair.readStatus === 'unread') {
+    politicsStore.updateAffairStatus(affair.id, 'reading')
+  }
+}
+
+const markAsRead = async (affairId: string) => {
+  try {
+    await politicsStore.updateAffairStatus(affairId, 'read')
+    ElMessage.success('标记为已�?)
+  } catch (error) {
+    ElMessage.error('操作失败')
+  }
+}
+
+const toggleBookmarkStatus = async (affairId: string) => {
+  try {
+    const isBookmarked = await politicsStore.toggleBookmark(affairId)
+    ElMessage.success(isBookmarked ? '已收�? : '取消收藏')
+  } catch (error) {
+    ElMessage.error('操作失败')
+  }
+}
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diffTime = Math.abs(now.getTime() - date.getTime())
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  
+  if (diffDays === 1) return '今天'
+  if (diffDays === 2) return '昨天'
+  if (diffDays <= 7) return `${diffDays - 1}天前`
+  return date.toLocaleDateString()
+}
+
+const addNewAffair = async () => {
+  // 简单的添加功能（实际应用中应该有表单）
+  const newAffair = {
+    title: '示例时政新闻',
+    content: '这是示例时政内容...',
+    date: new Date().toISOString().split('T')[0],
+    category: '时政要闻' as const,
+    importance: 'medium' as const,
+    keywords: ['示例', '新闻'],
+    relatedPoints: []
+  }
+  
+  try {
+    await politicsStore.addCurrentAffair(newAffair)
+    ElMessage.success('时政添加成功�?)
+  } catch (error) {
+    ElMessage.error('添加失败')
+  }
+}
+
+onMounted(() => {
+  politicsStore.initializePoliticsData()
+})
+</script>
+
+<template>
+  <div class="current-affairs-container">
+    <!-- 顶部统计 -->
+    <div class="stats-section">
+      <h2 class="section-title">时政热点收集系统</h2>
+      <p class="section-description">及时掌握最新时政动态，把握考试方向</p>
+      
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ affairs.length }}</div>
+          <div class="stat-label">总时�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ unreadCount }}</div>
+          <div class="stat-label">未读</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ bookmarkedCount }}</div>
+          <div class="stat-label">收藏</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ Object.keys(categories).length }}</div>
+          <div class="stat-label">分类</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 搜索和筛�?-->
+    <div class="filter-section">
+      <el-card>
+        <div class="filter-controls">
+          <el-input
+            v-model="searchTerm"
+            placeholder="搜索时政标题、内容或关键�?.."
+            clearable
+            style="width: 300px; margin-right: 20px;"
+          >
+            <template #prefix>
+              <el-icon><Search /></el-icon>
+            </template>
+          </el-input>
+          
+          <el-checkbox-group v-model="selectedCategories">
+            <el-checkbox 
+              v-for="(count, category) in categories" 
+              :key="category"
+              :label="category"
+            >
+              {{ category }} ({{ count }})
+            </el-checkbox>
+          </el-checkbox-group>
+          
+          <el-button 
+            type="primary" 
+            @click="addNewAffair"
+            style="margin-left: auto;"
+          >
+            <el-icon><Plus /></el-icon>
+            添加时政
+          </el-button>
+        </div>
+      </el-card>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="affairs-content">
+      <el-tabs v-model="activeTab" class="affairs-tabs">
+        <el-tab-pane label="最新时�? name="latest">
+          <div class="affairs-grid">
+            <el-card 
+              v-for="affair in filteredAffairs" 
+              :key="affair.id"
+              class="affair-card"
+              :class="{ 'selected': selectedAffair?.id === affair.id }"
+              @click="selectAffair(affair)"
+            >
+              <div class="affair-header">
+                <div class="affair-meta">
+                  <el-tag :type="getCategoryTag(affair.category)" size="small">
+                    {{ affair.category }}
+                  </el-tag>
+                  <el-tag :type="getImportanceTag(affair.importance).type" size="small">
+                    {{ getImportanceTag(affair.importance).text }}
+                  </el-tag>
+                  <span class="affair-date">{{ formatDate(affair.date) }}</span>
+                </div>
+                
+                <div class="affair-actions">
+                  <el-button 
+                    :type="affair.bookmarked ? 'warning' : 'info'" 
+                    size="small"
+                    circle
+                    @click.stop="toggleBookmarkStatus(affair.id)"
+                  >
+                    <el-icon>
+                      <StarFilled v-if="affair.bookmarked" />
+                      <Star v-else />
+                    </el-icon>
+                  </el-button>
+                </div>
+              </div>
+              
+              <div class="affair-title">
+                <h3>{{ affair.title }}</h3>
+              </div>
+              
+              <div class="affair-preview">
+                {{ affair.content.substring(0, 100) }}...
+              </div>
+              
+              <div class="affair-keywords">
+                <el-tag 
+                  v-for="keyword in affair.keywords" 
+                  :key="keyword"
+                  size="small"
+                  type="info"
+                >
+                  {{ keyword }}
+                </el-tag>
+              </div>
+              
+              <div class="affair-footer">
+                <el-tag :type="getStatusTag(affair.readStatus).type" size="small">
+                  {{ getStatusTag(affair.readStatus).text }}
+                </el-tag>
+                
+                <div class="footer-actions">
+                  <el-button 
+                    v-if="affair.readStatus !== 'read'"
+                    size="small" 
+                    type="primary"
+                    @click.stop="markAsRead(affair.id)"
+                  >
+                    标记已读
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="收藏�? name="bookmarks">
+          <div class="bookmarks-section">
+            <div 
+              v-if="bookmarkedCount > 0"
+              class="affairs-grid"
+            >
+              <el-card 
+                v-for="affair in politicsStore.bookmarkedAffairs" 
+                :key="affair.id"
+                class="affair-card"
+                :class="{ 'selected': selectedAffair?.id === affair.id }"
+                @click="selectAffair(affair)"
+              >
+                <div class="affair-header">
+                  <div class="affair-meta">
+                    <el-tag :type="getCategoryTag(affair.category)" size="small">
+                      {{ affair.category }}
+                    </el-tag>
+                    <span class="affair-date">{{ formatDate(affair.date) }}</span>
+                  </div>
+                  <el-button 
+                    type="warning" 
+                    size="small"
+                    circle
+                    @click.stop="toggleBookmarkStatus(affair.id)"
+                  >
+                    <el-icon><StarFilled /></el-icon>
+                  </el-button>
+                </div>
+                
+                <div class="affair-title">
+                  <h3>{{ affair.title }}</h3>
+                </div>
+                
+                <div class="affair-preview">
+                  {{ affair.content.substring(0, 100) }}...
+                </div>
+              </el-card>
+            </div>
+            
+            <div v-else class="no-bookmarks">
+              <el-icon size="80" color="#999999"><Star /></el-icon>
+              <p>暂无收藏的时政内�?/p>
+            </div>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="时政详情" name="detail" :disabled="!selectedAffair">
+          <div v-if="selectedAffair" class="detail-section">
+            <el-card>
+              <template #header>
+                <div class="detail-header">
+                  <h2>{{ selectedAffair.title }}</h2>
+                  <div class="header-meta">
+                    <el-tag :type="getCategoryTag(selectedAffair.category)">
+                      {{ selectedAffair.category }}
+                    </el-tag>
+                    <el-tag :type="getImportanceTag(selectedAffair.importance).type">
+                      {{ getImportanceTag(selectedAffair.importance).text }}
+                    </el-tag>
+                    <span class="publish-date">{{ new Date(selectedAffair.date).toLocaleDateString() }}</span>
+                  </div>
+                </div>
+              </template>
+              
+              <div class="detail-content">
+                <div class="affair-full-content">
+                  <p>{{ selectedAffair.content }}</p>
+                </div>
+                
+                <div class="detail-keywords">
+                  <h4>关键词：</h4>
+                  <div class="keyword-tags">
+                    <el-tag 
+                      v-for="keyword in selectedAffair.keywords" 
+                      :key="keyword"
+                      type="info"
+                      size="large"
+                    >
+                      {{ keyword }}
+                    </el-tag>
+                  </div>
+                </div>
+                
+                <div class="detail-actions">
+                  <el-button 
+                    v-if="selectedAffair.readStatus !== 'read'"
+                    type="primary"
+                    size="large"
+                    @click="markAsRead(selectedAffair.id)"
+                  >
+                    <el-icon><Check /></el-icon>
+                    标记为已�?
+                  </el-button>
+                  
+                  <el-button 
+                    :type="selectedAffair.bookmarked ? 'warning' : 'info'"
+                    size="large"
+                    @click="toggleBookmarkStatus(selectedAffair.id)"
+                  >
+                    <el-icon>
+                      <StarFilled v-if="selectedAffair.bookmarked" />
+                      <Star v-else />
+                    </el-icon>
+                    {{ selectedAffair.bookmarked ? '取消收藏' : '收藏' }}
+                  </el-button>
+                  
+                  <el-button 
+                    size="large"
+                    @click="selectedAffair = null"
+                  >
+                    返回列表
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </div>
+          
+          <div v-else class="no-selection">
+            <el-icon size="60" color="#999999"><Document /></el-icon>
+            <p>请先从时政列表中选择一条内�?/p>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.current-affairs-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.stats-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #9C27B0 0%, #FF9800 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.filter-section {
+  margin-bottom: 30px;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.affairs-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.affairs-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.affairs-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.affairs-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.affairs-tabs :deep(.el-tabs__item.is-active) {
+  color: #9C27B0;
+  font-weight: 600;
+}
+
+.affairs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.affair-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.affair-card.selected {
+  border-color: #9C27B0;
+  box-shadow: 0 10px 25px rgba(156, 39, 176, 0.2);
+}
+
+.affair-card:hover:not(.selected) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.affair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.affair-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.affair-date {
+  color: #999999;
+  font-size: 0.9em;
+}
+
+.affair-title h3 {
+  color: #333333;
+  margin: 0 0 15px 0;
+  font-size: 1.3em;
+  line-height: 1.4;
+}
+
+.affair-preview {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.affair-keywords {
+  margin-bottom: 15px;
+}
+
+.affair-keywords .el-tag {
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.affair-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bookmarks-section {
+  min-height: 400px;
+}
+
+.no-bookmarks, .no-selection {
+  text-align: center;
+  padding: 80px 20px;
+  color: #999999;
+}
+
+.no-bookmarks p, .no-selection p {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.detail-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-header h2 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.header-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.publish-date {
+  color: #666666;
+  font-size: 1.1em;
+}
+
+.detail-content {
+  line-height: 1.8;
+}
+
+.affair-full-content p {
+  color: #444444;
+  font-size: 1.1em;
+  margin-bottom: 30px;
+}
+
+.detail-keywords h4 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .current-affairs-container {
+    padding: 20px 15px;
+  }
+  
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-controls > * {
+    width: 100%;
+  }
+  
+  .affairs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .affair-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .detail-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .detail-actions .el-button {
+    width: 200px;
+  }
+}
+</style>

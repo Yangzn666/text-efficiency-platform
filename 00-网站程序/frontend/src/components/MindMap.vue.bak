@@ -1,0 +1,569 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useCS408Store } from '@/stores/cs408'
+import { ElMessage } from 'element-plus'
+
+const cs408Store = useCS408Store()
+
+const activeTab = ref('create')
+const rootNode = ref({ title: '', content: '' })
+const selectedNode = ref<any>(null)
+const newNode = ref({ title: '', content: '' })
+const isEditing = ref(false)
+
+// 计算属�?
+const mindMaps = computed(() => cs408Store.mindMapNodes)
+
+const subjectColors: Record<string, string> = {
+  '数据结构': '#FF6B6B',
+  '计算机组成原�?: '#4CAF50',
+  '操作系统': '#2196F3',
+  '计算机网�?: '#FF9800'
+}
+
+const createMindMap = async () => {
+  if (!rootNode.value.title.trim()) {
+    ElMessage.warning('请输入思维导图标题')
+    return
+  }
+
+  try {
+    await cs408Store.createMindMap({
+      title: rootNode.value.title,
+      content: rootNode.value.content,
+      x: 0,
+      y: 0
+    })
+    
+    ElMessage.success('思维导图创建成功�?)
+    rootNode.value = { title: '', content: '' }
+    activeTab.value = 'manage'
+  } catch (error) {
+    ElMessage.error('创建失败')
+  }
+}
+
+const addNode = async () => {
+  if (!selectedNode.value || !newNode.value.title.trim()) {
+    ElMessage.warning('请选择父节点并输入节点内容')
+    return
+  }
+
+  try {
+    await cs408Store.addMindMapNode(selectedNode.value.id, {
+      title: newNode.value.title,
+      content: newNode.value.content
+    })
+    
+    ElMessage.success('节点添加成功�?)
+    newNode.value = { title: '', content: '' }
+  } catch (error) {
+    ElMessage.error('添加节点失败')
+  }
+}
+
+const selectNode = (node: any) => {
+  selectedNode.value = node
+  newNode.value = { title: '', content: '' }
+}
+
+const getNodeStyle = (node: any) => {
+  const subject = getSubjectFromNode(node)
+  return {
+    borderColor: subjectColors[subject] || '#999999',
+    '--node-color': subjectColors[subject] || '#999999'
+  }
+}
+
+const getSubjectFromNode = (node: any): string => {
+  // 简单的科目识别逻辑
+  if (node.title.includes('数据') || node.title.includes('结构')) return '数据结构'
+  if (node.title.includes('组成') || node.title.includes('CPU')) return '计算机组成原�?
+  if (node.title.includes('操作') || node.title.includes('进程')) return '操作系统'
+  if (node.title.includes('网络') || node.title.includes('协议')) return '计算机网�?
+  return '数据结构' // 默认
+}
+
+const exportMindMap = () => {
+  // 简单的文本导出功能
+  const exportData = JSON.stringify(mindMaps.value, null, 2)
+  const blob = new Blob([exportData], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `思维导图_${new Date().toISOString().split('T')[0]}.json`
+  a.click()
+  
+  URL.revokeObjectURL(url)
+  ElMessage.success('导出成功�?)
+}
+
+onMounted(() => {
+  cs408Store.initializeCS408Data()
+})
+</script>
+
+<template>
+  <div class="mindmap-container">
+    <!-- 顶部介绍 -->
+    <div class="intro-section">
+      <h2 class="section-title">408思维导图工具</h2>
+      <p class="section-description">构建知识体系，理清概念关�?/p>
+    </div>
+
+    <!-- 主要功能区域 -->
+    <div class="mindmap-content">
+      <el-tabs v-model="activeTab" class="mindmap-tabs">
+        <el-tab-pane label="创建导图" name="create">
+          <div class="create-section">
+            <el-card>
+              <template #header>
+                <div class="card-header">
+                  <h3>创建新的思维导图</h3>
+                </div>
+              </template>
+              
+              <el-form :model="rootNode" label-position="top">
+                <el-form-item label="导图标题">
+                  <el-input
+                    v-model="rootNode.title"
+                    placeholder="如：数据结构知识体系"
+                  />
+                </el-form-item>
+                
+                <el-form-item label="中心内容">
+                  <el-input
+                    v-model="rootNode.content"
+                    type="textarea"
+                    :rows="4"
+                    placeholder="描述这个知识领域的核心内�?.."
+                  />
+                </el-form-item>
+                
+                <el-form-item>
+                  <el-button 
+                    type="primary" 
+                    size="large"
+                    @click="createMindMap"
+                  >
+                    <el-icon><Plus /></el-icon>
+                    创建思维导图
+                  </el-button>
+                </el-form-item>
+              </el-form>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="管理导图" name="manage">
+          <div class="manage-section">
+            <div class="mindmaps-list">
+              <el-card 
+                v-for="mindmap in mindMaps" 
+                :key="mindmap.id"
+                class="mindmap-card"
+              >
+                <template #header>
+                  <div class="mindmap-header">
+                    <h3>{{ mindmap.title }}</h3>
+                    <el-tag type="success">中心节点</el-tag>
+                  </div>
+                </template>
+                
+                <div class="mindmap-content-preview">
+                  <p>{{ mindmap.content }}</p>
+                  <div class="node-stats">
+                    <span>子节�? {{ mindmap.children.length }}</span>
+                  </div>
+                </div>
+                
+                <div class="mindmap-actions">
+                  <el-button 
+                    type="primary" 
+                    size="small"
+                    @click="selectNode(mindmap)"
+                  >
+                    编辑
+                  </el-button>
+                  <el-button size="small">查看详情</el-button>
+                </div>
+              </el-card>
+            </div>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="编辑节点" name="edit" :disabled="!selectedNode">
+          <div v-if="selectedNode" class="edit-section">
+            <el-card>
+              <template #header>
+                <div class="card-header">
+                  <h3>编辑节点: {{ selectedNode.title }}</h3>
+                </div>
+              </template>
+              
+              <div class="node-info">
+                <div class="current-node">
+                  <h4>当前节点信息</h4>
+                  <div class="node-details">
+                    <p><strong>标题:</strong> {{ selectedNode.title }}</p>
+                    <p><strong>内容:</strong> {{ selectedNode.content }}</p>
+                    <p><strong>子节点数:</strong> {{ selectedNode.children.length }}</p>
+                  </div>
+                </div>
+                
+                <div class="add-child">
+                  <h4>添加子节�?/h4>
+                  <el-form :model="newNode" label-position="top">
+                    <el-form-item label="节点标题">
+                      <el-input
+                        v-model="newNode.title"
+                        placeholder="子节点标�?
+                      />
+                    </el-form-item>
+                    
+                    <el-form-item label="节点内容">
+                      <el-input
+                        v-model="newNode.content"
+                        type="textarea"
+                        :rows="3"
+                        placeholder="节点详细内容..."
+                      />
+                    </el-form-item>
+                    
+                    <el-form-item>
+                      <el-button 
+                        type="primary" 
+                        @click="addNode"
+                      >
+                        <el-icon><Plus /></el-icon>
+                        添加子节�?
+                      </el-button>
+                      <el-button @click="selectedNode = null">取消选择</el-button>
+                    </el-form-item>
+                  </el-form>
+                </div>
+              </div>
+            </el-card>
+          </div>
+          
+          <div v-else class="no-selection">
+            <el-icon size="60" color="#999999"><Connection /></el-icon>
+            <p>请先从管理导图中选择一个节点进行编�?/p>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="可视化展�? name="visualize">
+          <div class="visualization-section">
+            <div class="viz-controls">
+              <el-button @click="exportMindMap">
+                <el-icon><Download /></el-icon>
+                导出导图
+              </el-button>
+            </div>
+            
+            <div class="mindmap-visualization">
+              <div 
+                v-for="mindmap in mindMaps" 
+                :key="mindmap.id"
+                class="viz-mindmap"
+              >
+                <div class="viz-root" :style="getNodeStyle(mindmap)">
+                  <div class="viz-title">{{ mindmap.title }}</div>
+                  <div class="viz-content">{{ mindmap.content }}</div>
+                  
+                  <div class="viz-children">
+                    <div 
+                      v-for="child in mindmap.children" 
+                      :key="child.id"
+                      class="viz-child"
+                      :style="getNodeStyle(child)"
+                    >
+                      <div class="viz-title">{{ child.title }}</div>
+                      <div class="viz-content">{{ child.content }}</div>
+                      
+                      <div v-if="child.children.length > 0" class="viz-grandchildren">
+                        <div 
+                          v-for="grandchild in child.children" 
+                          :key="grandchild.id"
+                          class="viz-grandchild"
+                          :style="getNodeStyle(grandchild)"
+                        >
+                          <div class="viz-title">{{ grandchild.title }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div v-if="mindMaps.length === 0" class="no-mindmaps">
+                <el-icon size="80" color="#999999"><Help /></el-icon>
+                <p>暂无思维导图，请先创建一�?/p>
+              </div>
+            </div>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.mindmap-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.intro-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.mindmap-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.mindmap-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.mindmap-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.mindmap-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.mindmap-tabs :deep(.el-tabs__item.is-active) {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.create-section .el-button {
+  padding: 20px 40px;
+  font-size: 1.1em;
+  border-radius: 12px;
+}
+
+.manage-section {
+  min-height: 400px;
+}
+
+.mindmaps-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.mindmap-card {
+  transition: all 0.3s ease;
+  border: 2px solid #eeeeee;
+}
+
+.mindmap-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-color: #4CAF50;
+}
+
+.mindmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mindmap-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.mindmap-content-preview p {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.node-stats {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: #666666;
+}
+
+.mindmap-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.edit-section {
+  min-height: 400px;
+}
+
+.node-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.current-node, .add-child {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.current-node h4, .add-child h4 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.node-details p {
+  margin: 10px 0;
+  color: #666666;
+}
+
+.visualization-section {
+  min-height: 500px;
+}
+
+.viz-controls {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.mindmap-visualization {
+  min-height: 400px;
+}
+
+.viz-mindmap {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.viz-root {
+  display: inline-block;
+  background: white;
+  border: 3px solid var(--node-color);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0 auto 30px;
+  min-width: 200px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.viz-title {
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.viz-content {
+  color: #666666;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.viz-children {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.viz-child {
+  background: white;
+  border: 2px solid var(--node-color);
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 150px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.viz-grandchildren {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.viz-grandchild {
+  background: white;
+  border: 1px solid var(--node-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.85em;
+}
+
+.no-mindmaps, .no-selection {
+  text-align: center;
+  padding: 80px 20px;
+  color: #999999;
+}
+
+.no-mindmaps p, .no-selection p {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.card-header h3 {
+  color: #333333;
+  margin: 0;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .mindmap-container {
+    padding: 20px 15px;
+  }
+  
+  .node-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .mindmaps-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .viz-children {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

@@ -1,0 +1,614 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useCS408Store } from '@/stores/cs408'
+import { ElMessage } from 'element-plus'
+
+const cs408Store = useCS408Store()
+
+const activeTab = ref('problems')
+const selectedProblem = ref<any>(null)
+const userCode = ref('')
+const testResults = ref<any>(null)
+const isRunning = ref(false)
+
+// 计算属�?
+const filteredProblems = computed(() => {
+  return cs408Store.codeProblems
+})
+
+const problemStats = computed(() => cs408Store.problemStats)
+
+const renderMarkdown = (text: string) => {
+  // 简单的markdown渲染（实际应用中应该使用专门的markdown库）
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`(.*?)`/g, '<code>$1</code>')
+}
+
+const selectProblem = (problem: any) => {
+  selectedProblem.value = problem
+  userCode.value = problem.template || ''
+  testResults.value = null
+}
+
+const runCode = async () => {
+  if (!selectedProblem.value || !userCode.value.trim()) {
+    ElMessage.warning('请先选择题目并编写代�?)
+    return
+  }
+
+  isRunning.value = true
+  try {
+    // 保存用户代码
+    await cs408Store.updateProblemSolution(selectedProblem.value.id, userCode.value)
+    
+    // 运行测试
+    testResults.value = cs408Store.runTestCase(selectedProblem.value.id, userCode.value)
+    
+    if (testResults.value.passed === testResults.value.total) {
+      ElMessage.success('所有测试通过�?)
+    } else {
+      ElMessage.warning(`通过 ${testResults.value.passed}/${testResults.value.total} 个测试`)
+    }
+  } catch (error) {
+    ElMessage.error('代码执行出错')
+    console.error('代码执行错误:', error)
+  } finally {
+    isRunning.value = false
+  }
+}
+
+const submitSolution = async () => {
+  if (!selectedProblem.value || !userCode.value.trim()) {
+    ElMessage.warning('请先编写解决方案')
+    return
+  }
+
+  try {
+    const completed = await cs408Store.completeProblem(selectedProblem.value.id, userCode.value)
+    
+    if (completed) {
+      ElMessage.success('题目完成！获得积分奖�?)
+    } else {
+      ElMessage.info('继续努力，还有测试未通过')
+    }
+  } catch (error) {
+    ElMessage.error('提交失败')
+  }
+}
+
+const getDifficultyTag = (difficulty: string) => {
+  const tags: Record<string, any> = {
+    easy: { type: 'success', text: '简�? },
+    medium: { type: 'warning', text: '中等' },
+    hard: { type: 'danger', text: '困难' }
+  }
+  return tags[difficulty] || { type: 'info', text: difficulty }
+}
+
+onMounted(() => {
+  cs408Store.initializeCS408Data()
+})
+</script>
+
+<template>
+  <div class="code-training-container">
+    <!-- 顶部统计 -->
+    <div class="stats-section">
+      <h2 class="section-title">408代码实战训练</h2>
+      <p class="section-description">通过编程练习提升算法和数据结构能�?/p>
+      
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ problemStats.solved }}</div>
+          <div class="stat-label">已解�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ problemStats.total }}</div>
+          <div class="stat-label">总题�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ problemStats.hard }}</div>
+          <div class="stat-label">困难�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ Math.round((problemStats.solved / Math.max(1, problemStats.total)) * 100) }}%</div>
+          <div class="stat-label">解决�?/div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 题目列表和编辑器 -->
+    <div class="training-content">
+      <el-tabs v-model="activeTab" class="training-tabs">
+        <el-tab-pane label="题目列表" name="problems">
+          <div class="problems-grid">
+            <el-card 
+              v-for="problem in filteredProblems" 
+              :key="problem.id"
+              class="problem-card"
+              :class="{ 'selected': selectedProblem?.id === problem.id }"
+              @click="selectProblem(problem)"
+            >
+              <div class="problem-header">
+                <h3>{{ problem.title }}</h3>
+                <el-tag :type="getDifficultyTag(problem.difficulty).type" size="small">
+                  {{ getDifficultyTag(problem.difficulty).text }}
+                </el-tag>
+              </div>
+              
+              <div class="problem-description" v-html="renderMarkdown(problem.description)"></div>
+              
+              <div class="problem-tags">
+                <el-tag 
+                  v-for="tag in problem.tags" 
+                  :key="tag"
+                  size="small"
+                  type="info"
+                >
+                  {{ tag }}
+                </el-tag>
+              </div>
+              
+              <div class="problem-status">
+                <el-tag v-if="problem.completed" type="success" size="small">
+                  已完�?
+                </el-tag>
+                <el-tag v-else type="warning" size="small">
+                  未完�?
+                </el-tag>
+                
+                <span v-if="problem.passedTests !== undefined" class="test-stats">
+                  {{ problem.passedTests }}/{{ problem.totalTests }} 通过
+                </span>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="在线编程" name="editor" :disabled="!selectedProblem">
+          <div v-if="selectedProblem" class="editor-section">
+            <div class="editor-header">
+              <h3>{{ selectedProblem.title }}</h3>
+              <div class="problem-meta">
+                <el-tag :type="getDifficultyTag(selectedProblem.difficulty).type">
+                  {{ getDifficultyTag(selectedProblem.difficulty).text }}
+                </el-tag>
+                <span class="tags-list">
+                  <el-tag 
+                    v-for="tag in selectedProblem.tags" 
+                    :key="tag"
+                    size="small"
+                    type="info"
+                  >
+                    {{ tag }}
+                  </el-tag>
+                </span>
+              </div>
+            </div>
+            
+            <div class="problem-desc">
+              <h4>题目描述</h4>
+              <div v-html="renderMarkdown(selectedProblem.description)"></div>
+            </div>
+            
+            <div class="code-editor">
+              <div class="editor-toolbar">
+                <span>JavaScript 编辑器</span>
+                <div class="toolbar-actions">
+                  <el-button 
+                    type="primary" 
+                    size="small"
+                    :loading="isRunning"
+                    @click="runCode"
+                  >
+                    <el-icon><CaretRight /></el-icon>
+                    运行代码
+                  </el-button>
+                  <el-button 
+                    type="success" 
+                    size="small"
+                    @click="submitSolution"
+                    :disabled="!testResults || testResults.passed !== testResults.total"
+                  >
+                    <el-icon><Upload /></el-icon>
+                    提交解答
+                  </el-button>
+                </div>
+              </div>
+              
+              <el-input
+                v-model="userCode"
+                type="textarea"
+                :rows="15"
+                placeholder="在这里编写你的代�?.."
+                class="code-input"
+                resize="none"
+              />
+            </div>
+            
+            <div v-if="testResults" class="test-results">
+              <h4>测试结果</h4>
+              <div class="results-summary">
+                <el-tag :type="testResults.passed === testResults.total ? 'success' : 'warning'">
+                  通过: {{ testResults.passed }}/{{ testResults.total }}
+                </el-tag>
+              </div>
+              
+              <div class="test-cases">
+                <div 
+                  v-for="(result, index) in testResults.results" 
+                  :key="index"
+                  class="test-case"
+                  :class="{ 'passed': result.passed, 'failed': !result.passed }"
+                >
+                  <div class="case-header">
+                    <el-icon :color="result.passed ? '#67C23A' : '#F56C6C'">
+                      <Check v-if="result.passed" />
+                      <Close v-else />
+                    </el-icon>
+                    <span>测试用例 {{ index + 1 }}</span>
+                  </div>
+                  
+                  <div class="case-details">
+                    <div class="input-output">
+                      <div>
+                        <strong>输入:</strong>
+                        <pre>{{ result.input }}</pre>
+                      </div>
+                      <div>
+                        <strong>期望输出:</strong>
+                        <pre>{{ result.expected }}</pre>
+                      </div>
+                      <div v-if="result.error">
+                        <strong>错误信息:</strong>
+                        <pre class="error">{{ result.error }}</pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div v-else class="no-selection">
+            <el-icon size="60" color="#999999"><Document /></el-icon>
+            <p>请先从题目列表中选择一道题�?/p>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.code-training-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.stats-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #FF6B6B 0%, #4CAF50 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.training-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.training-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.training-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.training-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.training-tabs :deep(.el-tabs__item.is-active) {
+  color: #FF6B6B;
+  font-weight: 600;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.problem-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.problem-card.selected {
+  border-color: #FF6B6B;
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
+}
+
+.problem-card:hover:not(.selected) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.problem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.problem-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.problem-description {
+  color: #666666;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.problem-tags {
+  margin-bottom: 15px;
+}
+
+.problem-tags .el-tag {
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.problem-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.test-stats {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.editor-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  height: 600px;
+}
+
+.editor-header {
+  grid-column: 1 / -1;
+  margin-bottom: 20px;
+}
+
+.editor-header h3 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.problem-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tags-list .el-tag {
+  margin-right: 8px;
+}
+
+.problem-desc {
+  grid-column: 1 / -1;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.problem-desc h4 {
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.code-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.code-input :deep(.el-textarea__inner) {
+  height: 100%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 0 0 8px 8px;
+}
+
+.test-results {
+  overflow-y: auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.results-summary {
+  margin-bottom: 20px;
+}
+
+.test-cases {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.test-case {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  border-left: 4px solid #999999;
+}
+
+.test-case.passed {
+  border-left-color: #67C23A;
+}
+
+.test-case.failed {
+  border-left-color: #F56C6C;
+}
+
+.case-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.input-output {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.input-output > div {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.input-output pre {
+  margin: 5px 0 0 0;
+  white-space: pre-wrap;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 12px;
+  background: none;
+  padding: 0;
+}
+
+.input-output .error pre {
+  color: #f44336;
+}
+
+.no-selection {
+  text-align: center;
+  padding: 100px 20px;
+  color: #999999;
+}
+
+.no-selection p {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+/* 响应式设�?*/
+@media (max-width: 1024px) {
+  .editor-section {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .input-output {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .code-training-container {
+    padding: 20px 15px;
+  }
+  
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .problems-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .editor-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+</style>

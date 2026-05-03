@@ -1,0 +1,723 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { ElMessage } from 'element-plus'
+
+const activeStep = ref(0)
+const deploymentSteps = ref([
+  {
+    id: 'environment_check',
+    name: '环境检�?,
+    description: '检查系统环境和依赖',
+    status: 'pending',
+    completed: false
+  },
+  {
+    id: 'configuration',
+    name: '配置设置',
+    description: '配置部署参数和选项',
+    status: 'pending',
+    completed: false
+  },
+  {
+    id: 'build_process',
+    name: '构建打包',
+    description: '编译和打包应用程�?,
+    status: 'pending',
+    completed: false
+  },
+  {
+    id: 'deployment',
+    name: '部署发布',
+    description: '部署到目标环�?,
+    status: 'pending',
+    completed: false
+  }
+])
+
+const environmentChecks = ref([
+  { name: 'Node.js 版本', status: 'checking', required: '>= 16.0.0', current: '' },
+  { name: 'npm/yarn', status: 'checking', required: '可用', current: '' },
+  { name: '磁盘空间', status: 'checking', required: '> 100MB', current: '' },
+  { name: '网络连接', status: 'checking', required: '稳定', current: '' }
+])
+
+const deploymentConfig = ref({
+  target: 'local',
+  port: 3000,
+  autoStart: true,
+  backupExisting: true
+})
+
+const buildLogs = ref<string[]>([])
+const isDeploying = ref(false)
+
+// 计算属�?
+const currentStep = computed(() => deploymentSteps.value[activeStep.value])
+const progressPercentage = computed(() => (activeStep.value / (deploymentSteps.value.length - 1)) * 100)
+
+const getStatusIcon = (status: string) => {
+  const icons: Record<string, string> = {
+    'pending': '�?,
+    'checking': '🔍',
+    'success': '�?,
+    'failed': '�?,
+    'running': '🔄'
+  }
+  return icons[status] || '�?
+}
+
+const nextStep = async () => {
+  if (activeStep.value < deploymentSteps.value.length - 1) {
+    await executeStep(activeStep.value)
+    if (deploymentSteps.value[activeStep.value].status === 'success') {
+      activeStep.value++
+    }
+  }
+}
+
+const previousStep = () => {
+  if (activeStep.value > 0) {
+    activeStep.value--
+  }
+}
+
+const executeStep = async (stepIndex: number) => {
+  const step = deploymentSteps.value[stepIndex]
+  step.status = 'running'
+  
+  try {
+    switch (step.id) {
+      case 'environment_check':
+        await checkEnvironment()
+        break
+      case 'configuration':
+        await configureDeployment()
+        break
+      case 'build_process':
+        await buildApplication()
+        break
+      case 'deployment':
+        await deployApplication()
+        break
+    }
+    
+    step.status = 'success'
+    step.completed = true
+    
+  } catch (error) {
+    step.status = 'failed'
+    ElMessage.error(`${step.name} 执行失败`)
+  }
+}
+
+const checkEnvironment = async () => {
+  addBuildLog('开始环境检�?..')
+  
+  // 模拟环境检查过�?
+  for (const check of environmentChecks.value) {
+    await new Promise(resolve => setTimeout(resolve, 800))
+    check.status = Math.random() > 0.1 ? 'success' : 'failed'
+    check.current = check.status === 'success' ? '符合要求' : '不符合要�?
+    addBuildLog(`${check.name}: ${check.status === 'success' ? '通过' : '失败'}`)
+  }
+  
+  const allPassed = environmentChecks.value.every(check => check.status === 'success')
+  if (!allPassed) {
+    throw new Error('环境检查未通过')
+  }
+  
+  addBuildLog('环境检查完�?�?)
+}
+
+const configureDeployment = async () => {
+  addBuildLog('开始配置部署参�?..')
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  addBuildLog('部署配置完成 �?)
+}
+
+const buildApplication = async () => {
+  addBuildLog('开始构建应用程�?..')
+  
+  // 模拟构建过程
+  const buildSteps = ['清理旧文�?, '编译源代�?, '优化资源', '生成构建产物']
+  
+  for (const buildStep of buildSteps) {
+    await new Promise(resolve => setTimeout(resolve, 1200))
+    addBuildLog(`${buildStep} ✓`)
+  }
+  
+  addBuildLog('应用程序构建完成 �?)
+}
+
+const deployApplication = async () => {
+  addBuildLog('开始部署应用程�?..')
+  await new Promise(resolve => setTimeout(resolve, 1500))
+  addBuildLog('应用程序部署成功 �?)
+  addBuildLog('部署地址: http://localhost:3000')
+}
+
+const addBuildLog = (message: string) => {
+  buildLogs.value.push(`[${new Date().toLocaleTimeString()}] ${message}`)
+}
+
+const startDeployment = async () => {
+  isDeploying.value = true
+  buildLogs.value = []
+  activeStep.value = 0
+  
+  // 重置所有步骤状�?
+  deploymentSteps.value.forEach(step => {
+    step.status = 'pending'
+    step.completed = false
+  })
+  
+  try {
+    for (let i = 0; i < deploymentSteps.value.length; i++) {
+      await executeStep(i)
+      if (deploymentSteps.value[i].status !== 'success') {
+        throw new Error(`步骤 ${i + 1} 执行失败`)
+      }
+    }
+    
+    ElMessage.success('部署成功完成�?)
+    
+  } catch (error) {
+    ElMessage.error('部署过程中出现错�?)
+  } finally {
+    isDeploying.value = false
+  }
+}
+
+const resetDeployment = () => {
+  activeStep.value = 0
+  buildLogs.value = []
+  isDeploying.value = false
+  
+  deploymentSteps.value.forEach(step => {
+    step.status = 'pending'
+    step.completed = false
+  })
+  
+  environmentChecks.value.forEach(check => {
+    check.status = 'checking'
+    check.current = ''
+  })
+  
+  ElMessage.info('部署流程已重�?)
+}
+</script>
+
+<template>
+  <div class="deployment-assistant-container">
+    <div class="page-header">
+      <h1 class="page-title">部署助手</h1>
+      <p class="page-subtitle">一键完成本地部署和环境配置</p>
+    </div>
+
+    <div class="assistant-content">
+      <el-card>
+        <template #header>
+          <h2>部署向导</h2>
+        </template>
+        
+        <!-- 进度指示�?-->
+        <div class="progress-section">
+          <el-steps :active="activeStep" finish-status="success" simple>
+            <el-step 
+              v-for="(step, index) in deploymentSteps" 
+              :key="step.id"
+              :title="step.name"
+              :description="step.description"
+              :status="step.status === 'failed' ? 'error' : step.status"
+            />
+          </el-steps>
+          
+          <div class="progress-bar">
+            <el-progress 
+              :percentage="progressPercentage" 
+              :stroke-width="12"
+              :show-text="false"
+            />
+            <div class="progress-text">
+              {{ Math.round(progressPercentage) }}% 完成
+            </div>
+          </div>
+        </div>
+
+        <!-- 步骤内容 -->
+        <div class="step-content">
+          <!-- 环境检查步�?-->
+          <div v-if="currentStep.id === 'environment_check'" class="step-details">
+            <h3>环境检�?/h3>
+            <p>检查系统环境和必要依赖是否满足要求</p>
+            
+            <div class="checks-list">
+              <div 
+                v-for="check in environmentChecks" 
+                :key="check.name"
+                class="check-item"
+                :class="check.status"
+              >
+                <div class="check-icon">{{ getStatusIcon(check.status) }}</div>
+                <div class="check-info">
+                  <div class="check-name">{{ check.name }}</div>
+                  <div class="check-details">
+                    <span class="required">要求: {{ check.required }}</span>
+                    <span class="current" v-if="check.current">当前: {{ check.current }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 配置设置步骤 -->
+          <div v-else-if="currentStep.id === 'configuration'" class="step-details">
+            <h3>配置设置</h3>
+            <p>配置部署参数和运行选项</p>
+            
+            <el-form :model="deploymentConfig" label-width="120px" class="config-form">
+              <el-form-item label="部署目标">
+                <el-radio-group v-model="deploymentConfig.target">
+                  <el-radio-button label="local">本地部署</el-radio-button>
+                  <el-radio-button label="server" disabled>服务器部�?/el-radio-button>
+                </el-radio-group>
+              </el-form-item>
+              
+              <el-form-item label="端口�?>
+                <el-input-number 
+                  v-model="deploymentConfig.port" 
+                  :min="1000" 
+                  :max="9999" 
+                />
+              </el-form-item>
+              
+              <el-form-item label="自动启动">
+                <el-switch v-model="deploymentConfig.autoStart" />
+                <span class="form-tip">部署完成后自动启动服�?/span>
+              </el-form-item>
+              
+              <el-form-item label="备份现有">
+                <el-switch v-model="deploymentConfig.backupExisting" />
+                <span class="form-tip">备份现有的部署文�?/span>
+              </el-form-item>
+            </el-form>
+          </div>
+
+          <!-- 构建打包步骤 -->
+          <div v-else-if="currentStep.id === 'build_process'" class="step-details">
+            <h3>构建打包</h3>
+            <p>编译源代码并生成可部署的应用程序</p>
+            
+            <div class="build-output">
+              <div class="log-header">
+                <span>构建日志</span>
+                <el-button size="small" @click="buildLogs = []">
+                  <el-icon><Delete /></el-icon>
+                  清空日志
+                </el-button>
+              </div>
+              
+              <div class="log-content">
+                <div 
+                  v-for="(log, index) in buildLogs" 
+                  :key="index"
+                  class="log-entry"
+                >
+                  {{ log }}
+                </div>
+                
+                <div v-if="buildLogs.length === 0" class="empty-logs">
+                  等待构建开�?..
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 部署发布步骤 -->
+          <div v-else-if="currentStep.id === 'deployment'" class="step-details">
+            <h3>部署发布</h3>
+            <p>将应用程序部署到目标环境</p>
+            
+            <div class="deployment-info">
+              <el-alert
+                title="部署准备就绪"
+                type="success"
+                description="所有前置步骤已完成，可以开始部�?
+                show-icon
+              />
+              
+              <div class="deployment-details">
+                <div class="detail-item">
+                  <span class="label">部署地址:</span>
+                  <span class="value">http://localhost:{{ deploymentConfig.port }}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">自动启动:</span>
+                  <span class="value">{{ deploymentConfig.autoStart ? '�? : '�? }}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">备份现有:</span>
+                  <span class="value">{{ deploymentConfig.backupExisting ? '�? : '�? }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="step-actions">
+          <div class="navigation-buttons">
+            <el-button 
+              v-if="activeStep > 0" 
+              @click="previousStep"
+              :disabled="isDeploying"
+            >
+              <el-icon><ArrowLeft /></el-icon>
+              上一�?
+            </el-button>
+            
+            <el-button 
+              v-if="activeStep < deploymentSteps.length - 1"
+              type="primary"
+              @click="nextStep"
+              :disabled="isDeploying || currentStep.status === 'running'"
+            >
+              下一�?
+              <el-icon><ArrowRight /></el-icon>
+            </el-button>
+            
+            <el-button 
+              v-if="activeStep === deploymentSteps.length - 1"
+              type="success"
+              @click="startDeployment"
+              :loading="isDeploying"
+            >
+              <el-icon><UploadFilled v-if="!isDeploying" /><Loading v-else /></el-icon>
+              {{ isDeploying ? '部署�?..' : '开始部�? }}
+            </el-button>
+          </div>
+          
+          <div class="utility-buttons">
+            <el-button @click="resetDeployment" :disabled="isDeploying">
+              <el-icon><RefreshLeft /></el-icon>
+              重置流程
+            </el-button>
+          </div>
+        </div>
+      </el-card>
+
+      <!-- 快速部署卡�?-->
+      <div class="quick-deploy">
+        <el-card>
+          <template #header>
+            <h3>快速部�?/h3>
+          </template>
+          
+          <div class="quick-options">
+            <el-button type="primary" size="large" disabled>
+              <el-icon><Rocket /></el-icon>
+              一键本地部�?
+            </el-button>
+            
+            <el-button size="large" disabled>
+              <el-icon><Setting /></el-icon>
+              高级配置
+            </el-button>
+          </div>
+          
+          <div class="quick-info">
+            <el-alert
+              title="快速部署功�?
+              type="info"
+              description="一键完成所有部署步骤，适用于快速本地测试和开�?
+              show-icon
+            />
+          </div>
+        </el-card>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.deployment-assistant-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+}
+
+.page-title {
+  font-size: 2.8em;
+  color: white;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-weight: 700;
+}
+
+.page-subtitle {
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.assistant-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.progress-section {
+  margin-bottom: 40px;
+}
+
+.progress-bar {
+  margin-top: 20px;
+}
+
+.progress-text {
+  text-align: center;
+  color: #666666;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
+
+.step-content {
+  min-height: 300px;
+  margin-bottom: 40px;
+}
+
+.step-details h3 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.step-details p {
+  color: #666666;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+}
+
+.checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.check-item:hover {
+  background: #f0f0f0;
+}
+
+.check-item.success {
+  border-left: 4px solid #67C23A;
+  background: #f8fff8;
+}
+
+.check-item.failed {
+  border-left: 4px solid #F56C6C;
+  background: #fff8f8;
+}
+
+.check-icon {
+  font-size: 1.5em;
+  min-width: 40px;
+  text-align: center;
+}
+
+.check-info {
+  flex: 1;
+}
+
+.check-name {
+  color: #333333;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.check-details {
+  display: flex;
+  gap: 20px;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.config-form {
+  max-width: 500px;
+}
+
+.form-tip {
+  color: #999999;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.build-output {
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #2d2d2d;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.log-content {
+  height: 300px;
+  overflow-y: auto;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.log-entry {
+  color: #d4d4d4;
+  margin-bottom: 8px;
+}
+
+.empty-logs {
+  color: #888888;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.deployment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.deployment-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.detail-item .label {
+  color: #666666;
+  font-weight: 500;
+}
+
+.detail-item .value {
+  color: #333333;
+  font-weight: 600;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.utility-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.quick-deploy {
+  margin-top: 20px;
+}
+
+.quick-options {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.quick-info {
+  margin-top: 20px;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .deployment-assistant-container {
+    padding: 20px 15px;
+  }
+  
+  .page-title {
+    font-size: 2.2em;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1em;
+  }
+  
+  .check-item {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .check-details {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .step-actions {
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .navigation-buttons, .utility-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .quick-options {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .detail-item {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .deployment-details {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,0 +1,809 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useEnglishStore } from '@/stores/english'
+import { ElMessage } from 'element-plus'
+
+const englishStore = useEnglishStore()
+
+const activeTab = ref('review')
+const currentWord = ref<any>(null)
+const masteryLevel = ref(50)
+const showDefinition = ref(false)
+const studyMode = ref<'flashcard' | 'quiz' | 'list'>('flashcard')
+const selectedTags = ref<string[]>([])
+
+// 计算属�?
+const vocabulary = computed(() => englishStore.vocabularyWords)
+const vocabularyStats = computed(() => englishStore.vocabularyStats)
+const dueForReview = computed(() => englishStore.dueForReview)
+const weakWords = computed(() => englishStore.weakVocabulary)
+
+const filteredVocabulary = computed(() => {
+  let filtered = vocabulary.value
+  
+  if (selectedTags.value.length > 0) {
+    filtered = filtered.filter(word => 
+      word.tags.some(tag => selectedTags.value.includes(tag))
+    )
+  }
+  
+  return filtered
+})
+
+const allTags = computed(() => {
+  const tags = new Set<string>()
+  vocabulary.value.forEach(word => {
+    word.tags.forEach(tag => tags.add(tag))
+  })
+  return Array.from(tags).sort()
+})
+
+const getNextWord = () => {
+  const availableWords = studyMode.value === 'review' 
+    ? dueForReview.value 
+    : filteredVocabulary.value.filter(w => !w.userAnswer)
+    
+  if (availableWords.length > 0) {
+    currentWord.value = availableWords[Math.floor(Math.random() * availableWords.length)]
+    masteryLevel.value = currentWord.value.masteryLevel
+    showDefinition.value = false
+  } else {
+    currentWord.value = null
+    ElMessage.info('没有更多单词�?)
+  }
+}
+
+const markMastery = async (level: number) => {
+  if (!currentWord.value) return
+
+  try {
+    await englishStore.updateVocabularyMastery(currentWord.value.id, level)
+    
+    const levelText = level >= 90 ? '完全掌握' : 
+                     level >= 70 ? '熟练掌握' : 
+                     level >= 50 ? '基本掌握' : '还需练习'
+    
+    ElMessage.success(`标记�?{levelText} (${level}%)`)
+    
+    // 自动获取下一个单�?
+    setTimeout(getNextWord, 1000)
+  } catch (error) {
+    ElMessage.error('更新失败')
+  }
+}
+
+const toggleDefinition = () => {
+  showDefinition.value = !showDefinition.value
+}
+
+const addNewWord = async () => {
+  // 简单的添加单词功能（实际应用中应该有表单）
+  const newWord = {
+    word: 'example',
+    phonetic: '/ɪɡˈzæmpəl/',
+    definition: '例子，样�?,
+    example: 'This is an example sentence.',
+    frequency: 10,
+    tags: ['基础词汇']
+  }
+  
+  try {
+    await englishStore.addVocabularyWord(newWord)
+    ElMessage.success('单词添加成功�?)
+  } catch (error) {
+    ElMessage.error('添加失败')
+  }
+}
+
+const exportVocabulary = () => {
+  const exportData = {
+    words: vocabulary.value,
+    stats: vocabularyStats.value,
+    exportTime: new Date().toISOString()
+  }
+  
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `词汇表_${new Date().toISOString().split('T')[0]}.json`
+  a.click()
+  
+  URL.revokeObjectURL(url)
+  ElMessage.success('导出成功�?)
+}
+
+onMounted(() => {
+  englishStore.initializeEnglishData()
+  getNextWord()
+})
+</script>
+
+<template>
+  <div class="vocabulary-container">
+    <!-- 顶部统计 -->
+    <div class="stats-section">
+      <h2 class="section-title">英语词汇记忆系统</h2>
+      <p class="section-description">科学记忆，高效掌握考研核心词汇</p>
+      
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ vocabularyStats.total }}</div>
+          <div class="stat-label">总词�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ vocabularyStats.mastered }}</div>
+          <div class="stat-label">已掌�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ vocabularyStats.learning }}</div>
+          <div class="stat-label">学习�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ dueForReview.length }}</div>
+          <div class="stat-label">待复�?/div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 学习模式选择 -->
+    <div class="mode-section">
+      <el-card>
+        <template #header>
+          <h3>学习模式</h3>
+        </template>
+        
+        <div class="mode-selector">
+          <el-radio-group v-model="studyMode" @change="getNextWord">
+            <el-radio-button label="flashcard">闪卡模式</el-radio-button>
+            <el-radio-button label="quiz">测验模式</el-radio-button>
+            <el-radio-button label="list">列表模式</el-radio-button>
+          </el-radio-group>
+          
+          <div class="tag-filter">
+            <span>标签筛�?</span>
+            <el-checkbox-group v-model="selectedTags">
+              <el-checkbox 
+                v-for="tag in allTags" 
+                :key="tag"
+                :label="tag"
+              >
+                {{ tag }}
+              </el-checkbox>
+            </el-checkbox-group>
+          </div>
+        </div>
+      </el-card>
+    </div>
+
+    <!-- 主要学习区域 -->
+    <div class="learning-content">
+      <el-tabs v-model="activeTab" class="vocabulary-tabs">
+        <el-tab-pane label="单词学习" name="review">
+          <div v-if="currentWord" class="flashcard-mode">
+            <div class="word-card" :class="{ 'show-definition': showDefinition }">
+              <div class="word-front">
+                <div class="word-main">{{ currentWord.word }}</div>
+                <div class="word-phonetic">{{ currentWord.phonetic }}</div>
+                <el-button 
+                  type="primary" 
+                  plain
+                  @click="toggleDefinition"
+                >
+                  {{ showDefinition ? '隐藏释义' : '显示释义' }}
+                </el-button>
+              </div>
+              
+              <div v-show="showDefinition" class="word-back">
+                <div class="word-definition">
+                  <h3>释义</h3>
+                  <p>{{ currentWord.definition }}</p>
+                </div>
+                
+                <div class="word-example">
+                  <h3>例句</h3>
+                  <p>{{ currentWord.example }}</p>
+                </div>
+                
+                <div class="word-info">
+                  <div class="info-item">
+                    <span class="label">出现频次:</span>
+                    <span class="value">{{ currentWord.frequency }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">掌握程度:</span>
+                    <span class="value">{{ currentWord.masteryLevel }}%</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">标签:</span>
+                    <div class="tags">
+                      <el-tag 
+                        v-for="tag in currentWord.tags" 
+                        :key="tag"
+                        size="small"
+                        type="info"
+                      >
+                        {{ tag }}
+                      </el-tag>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mastery-controls">
+              <h4>掌握程度评估</h4>
+              <div class="mastery-slider">
+                <el-slider
+                  v-model="masteryLevel"
+                  :min="0"
+                  :max="100"
+                  show-input
+                  :marks="{
+                    0: '完全不会',
+                    25: '模糊认识',
+                    50: '基本掌握',
+                    75: '熟练掌握',
+                    100: '完全掌握'
+                  }"
+                />
+              </div>
+              
+              <div class="mastery-buttons">
+                <el-button @click="markMastery(0)">不会</el-button>
+                <el-button @click="markMastery(25)">模糊</el-button>
+                <el-button @click="markMastery(50)">一�?/el-button>
+                <el-button @click="markMastery(75)">熟练</el-button>
+                <el-button @click="markMastery(100)">掌握</el-button>
+              </div>
+              
+              <div class="navigation-buttons">
+                <el-button 
+                  type="primary" 
+                  size="large"
+                  @click="getNextWord"
+                >
+                  <el-icon><Refresh /></el-icon>
+                  下一个单�?
+                </el-button>
+              </div>
+            </div>
+          </div>
+          
+          <div v-else class="no-words">
+            <el-icon size="80" color="#999999"><Collection /></el-icon>
+            <p>暂无可学习的单词</p>
+            <el-button @click="addNewWord">添加新单�?/el-button>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="词汇列表" name="list">
+          <div class="vocabulary-list">
+            <div class="list-controls">
+              <el-button @click="exportVocabulary">
+                <el-icon><Download /></el-icon>
+                导出词汇�?
+              </el-button>
+            </div>
+            
+            <div class="words-grid">
+              <el-card 
+                v-for="word in filteredVocabulary" 
+                :key="word.id"
+                class="word-item"
+              >
+                <div class="word-header">
+                  <h4>{{ word.word }}</h4>
+                  <el-tag 
+                    :type="word.masteryLevel >= 80 ? 'success' : 
+                           word.masteryLevel >= 50 ? 'warning' : 'danger'"
+                    size="small"
+                  >
+                    {{ word.masteryLevel }}%
+                  </el-tag>
+                </div>
+                
+                <div class="word-details">
+                  <p class="phonetic">{{ word.phonetic }}</p>
+                  <p class="definition">{{ word.definition }}</p>
+                  <p class="example">{{ word.example }}</p>
+                  
+                  <div class="word-tags">
+                    <el-tag 
+                      v-for="tag in word.tags" 
+                      :key="tag"
+                      size="small"
+                      type="info"
+                    >
+                      {{ tag }}
+                    </el-tag>
+                  </div>
+                  
+                  <div class="word-stats">
+                    <span>频次: {{ word.frequency }}</span>
+                    <span>上次复习: {{ new Date(word.lastReviewed).toLocaleDateString() }}</span>
+                  </div>
+                </div>
+              </el-card>
+            </div>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="复习计划" name="schedule">
+          <div class="schedule-content">
+            <div class="schedule-header">
+              <h3>今日复习计划</h3>
+              <p>根据艾宾浩斯遗忘曲线制定的科学复习计�?/p>
+            </div>
+            
+            <div class="review-today">
+              <el-card>
+                <template #header>
+                  <div class="card-header">
+                    <h4>今日待复习词�?/h4>
+                    <el-tag type="warning">{{ dueForReview.length }}�?/el-tag>
+                  </div>
+                </template>
+                
+                <div v-if="dueForReview.length > 0" class="review-list">
+                  <div 
+                    v-for="word in dueForReview.slice(0, 10)" 
+                    :key="word.id"
+                    class="review-item"
+                  >
+                    <span class="word-name">{{ word.word }}</span>
+                    <span class="mastery-level">{{ word.masteryLevel }}%</span>
+                    <el-button 
+                      size="small" 
+                      type="primary"
+                      @click="currentWord = word; showDefinition = false; activeTab = 'review'"
+                    >
+                      立即复习
+                    </el-button>
+                  </div>
+                </div>
+                
+                <div v-else class="no-review">
+                  <el-icon size="40" color="#67C23A"><Check /></el-icon>
+                  <p>今日复习任务已完成！</p>
+                </div>
+              </el-card>
+            </div>
+            
+            <div class="weak-words">
+              <el-card>
+                <template #header>
+                  <div class="card-header">
+                    <h4>薄弱词汇</h4>
+                    <el-tag type="danger">{{ weakWords.length }}�?/el-tag>
+                  </div>
+                </template>
+                
+                <div v-if="weakWords.length > 0" class="weak-list">
+                  <div 
+                    v-for="word in weakWords.slice(0, 8)" 
+                    :key="word.id"
+                    class="weak-item"
+                  >
+                    <div class="word-info">
+                      <span class="word-name">{{ word.word }}</span>
+                      <span class="mastery-level">{{ word.masteryLevel }}%</span>
+                    </div>
+                    <el-button 
+                      size="small" 
+                      type="warning"
+                      @click="currentWord = word; showDefinition = false; activeTab = 'review'"
+                    >
+                      重点复习
+                    </el-button>
+                  </div>
+                </div>
+                
+                <div v-else class="no-weak">
+                  <el-icon size="40" color="#67C23A"><Star /></el-icon>
+                  <p>暂无薄弱词汇�?/p>
+                </div>
+              </el-card>
+            </div>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.vocabulary-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.stats-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #2196F3 0%, #9C27B0 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.mode-section {
+  margin-bottom: 30px;
+}
+
+.mode-section h3 {
+  color: #333333;
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+}
+
+.mode-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.tag-filter > span {
+  font-weight: 500;
+  color: #666666;
+}
+
+.learning-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.vocabulary-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.vocabulary-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.vocabulary-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.flashcard-mode {
+  text-align: center;
+  padding: 20px;
+}
+
+.word-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 0 auto 30px;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.word-front {
+  text-align: center;
+}
+
+.word-main {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.word-phonetic {
+  font-size: 1.2em;
+  color: #666666;
+  margin-bottom: 25px;
+  font-family: monospace;
+}
+
+.word-back {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+  text-align: left;
+}
+
+.word-definition h3, .word-example h3 {
+  color: #333333;
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+.word-definition p, .word-example p {
+  color: #666666;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.word-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 500;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.value {
+  color: #333333;
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.mastery-controls {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.mastery-controls h4 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+}
+
+.mastery-slider {
+  margin-bottom: 30px;
+}
+
+.mastery-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.navigation-buttons {
+  text-align: center;
+}
+
+.words-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.word-item {
+  transition: all 0.3s ease;
+}
+
+.word-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.word-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.word-header h4 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.word-details .phonetic {
+  color: #2196F3;
+  font-family: monospace;
+  margin-bottom: 10px;
+}
+
+.word-details .definition {
+  color: #444444;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.word-details .example {
+  color: #666666;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.word-tags {
+  margin-bottom: 15px;
+}
+
+.word-stats {
+  display: flex;
+  justify-content: space-between;
+  color: #999999;
+  font-size: 0.9em;
+}
+
+.schedule-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.schedule-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.schedule-header h3 {
+  color: #333333;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.schedule-header p {
+  color: #666666;
+  font-size: 1.1em;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-list, .weak-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-item, .weak-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover, .weak-item:hover {
+  background: #e3f2fd;
+  transform: translateX(5px);
+}
+
+.word-name {
+  font-weight: 500;
+  color: #333333;
+}
+
+.mastery-level {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.no-words, .no-review, .no-weak {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999999;
+}
+
+.no-words p, .no-review p, .no-weak p {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .vocabulary-container {
+    padding: 20px 15px;
+  }
+  
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .mode-selector {
+    align-items: flex-start;
+  }
+  
+  .tag-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .word-card {
+    padding: 30px 20px;
+  }
+  
+  .word-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .mastery-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .words-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .schedule-content {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

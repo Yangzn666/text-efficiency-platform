@@ -1,0 +1,44 @@
+// 主题颜色变量
+$primary-color: #FF6B6B; // 活力橙
+$secondary-color: #4CAF50; // 冷静蓝
+$accent-color: #FFD700; // 活力黄
+
+// 文字颜色
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-light: #999999;
+
+// 背景颜色
+$bg-primary: #ffffff;
+$bg-secondary: #f5f5f5;
+$bg-gradient: linear-gradient(135deg, $secondary-color 0%, $primary-color 100%);
+
+// 阴影效果
+$shadow-light: 0 2px 12px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+// 圆角
+$border-radius-small: 4px;
+$border-radius-medium: 8px;
+$border-radius-large: 12px;
+
+// 间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 字体大小
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+
+// 断点
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;

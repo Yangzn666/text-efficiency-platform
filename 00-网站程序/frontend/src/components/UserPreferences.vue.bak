@@ -1,0 +1,711 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useUXStore } from '@/stores/ux'
+import { ElMessage } from 'element-plus'
+
+const uxStore = useUXStore()
+
+const activeTab = ref('appearance')
+const isSaving = ref(false)
+
+// 计算属�?
+const preferences = computed(() => uxStore.preferences)
+const shortcuts = computed(() => uxStore.shortcuts)
+
+const savePreferences = async () => {
+  isSaving.value = true
+  try {
+    await uxStore.saveUXData()
+    ElMessage.success('设置保存成功�?)
+  } catch (error) {
+    ElMessage.error('保存失败')
+  } finally {
+    isSaving.value = false
+  }
+}
+
+const handleThemeChange = async (theme: string) => {
+  try {
+    await uxStore.updatePreference('theme', theme as any)
+    ElMessage.success('主题切换成功�?)
+  } catch (error) {
+    ElMessage.error('主题切换失败')
+  }
+}
+
+const handleFontSizeChange = async (size: string) => {
+  try {
+    await uxStore.updatePreference('fontSize', size as any)
+    ElMessage.success('字体大小调整成功�?)
+  } catch (error) {
+    ElMessage.error('字体调整失败')
+  }
+}
+
+const toggleAnimation = async () => {
+  try {
+    await uxStore.updatePreference('animation', !preferences.value.animation)
+    ElMessage.success(preferences.value.animation ? '动画已启�? : '动画已禁�?)
+  } catch (error) {
+    ElMessage.error('设置失败')
+  }
+}
+
+const toggleNotifications = async () => {
+  try {
+    await uxStore.updatePreference('notifications', !preferences.value.notifications)
+    ElMessage.success(preferences.value.notifications ? '通知已启�? : '通知已禁�?)
+  } catch (error) {
+    ElMessage.error('设置失败')
+  }
+}
+
+const toggleSoundEffects = async () => {
+  try {
+    await uxStore.updatePreference('soundEffects', !preferences.value.soundEffects)
+    ElMessage.success(preferences.value.soundEffects ? '音效已启�? : '音效已禁�?)
+  } catch (error) {
+    ElMessage.error('设置失败')
+  }
+}
+
+const toggleShortcut = async (shortcutId: string) => {
+  try {
+    const isEnabled = await uxStore.toggleShortcut(shortcutId)
+    ElMessage.success(isEnabled ? '快捷键已启用' : '快捷键已禁用')
+  } catch (error) {
+    ElMessage.error('设置失败')
+  }
+}
+
+const testNotification = () => {
+  uxStore.showNotification('测试通知', '这是一个测试通知消息', 'info')
+}
+
+const testSound = () => {
+  uxStore.playSound('notification')
+}
+
+onMounted(() => {
+  uxStore.initializeUXData()
+})
+</script>
+
+<template>
+  <div class="preferences-container">
+    <div class="page-header">
+      <h1 class="page-title">用户偏好设置</h1>
+      <p class="page-subtitle">个性化定制您的学习体验</p>
+    </div>
+
+    <div class="preferences-content">
+      <el-tabs v-model="activeTab" class="preferences-tabs">
+        <el-tab-pane label="外观设置" name="appearance">
+          <div class="settings-section">
+            <el-card>
+              <template #header>
+                <h3>主题设置</h3>
+              </template>
+              
+              <div class="setting-group">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>界面主题</h4>
+                    <p>选择您喜欢的界面主题风格</p>
+                  </div>
+                  <div class="theme-selector">
+                    <el-radio-group 
+                      v-model="preferences.theme" 
+                      @change="handleThemeChange"
+                    >
+                      <el-radio-button label="light">明亮</el-radio-button>
+                      <el-radio-button label="dark">暗黑</el-radio-button>
+                      <el-radio-button label="auto">自动</el-radio-button>
+                    </el-radio-group>
+                  </div>
+                </div>
+                
+                <div class="theme-previews">
+                  <div class="preview-item" :class="{ 'active': preferences.theme === 'light' }">
+                    <div class="preview-content light-theme">
+                      <div class="preview-header">明亮主题</div>
+                      <div class="preview-body"></div>
+                    </div>
+                    <span>明亮清新</span>
+                  </div>
+                  
+                  <div class="preview-item" :class="{ 'active': preferences.theme === 'dark' }">
+                    <div class="preview-content dark-theme">
+                      <div class="preview-header">暗黑主题</div>
+                      <div class="preview-body"></div>
+                    </div>
+                    <span>护眼舒�?/span>
+                  </div>
+                  
+                  <div class="preview-item" :class="{ 'active': preferences.theme === 'auto' }">
+                    <div class="preview-content auto-theme">
+                      <div class="preview-header">自动主题</div>
+                      <div class="preview-body"></div>
+                    </div>
+                    <span>智能切换</span>
+                  </div>
+                </div>
+              </div>
+            </el-card>
+
+            <el-card>
+              <template #header>
+                <h3>字体大小</h3>
+              </template>
+              
+              <div class="setting-group">
+                <div class="setting-item">
+                  <div class="setting-info">
+                    <h4>界面字体</h4>
+                    <p>调整界面文字大小以获得最佳阅读体�?/p>
+                  </div>
+                  <div class="font-selector">
+                    <el-radio-group 
+                      v-model="preferences.fontSize" 
+                      @change="handleFontSizeChange"
+                    >
+                      <el-radio-button label="small">小号</el-radio-button>
+                      <el-radio-button label="medium">中号</el-radio-button>
+                      <el-radio-button label="large">大号</el-radio-button>
+                    </el-radio-group>
+                  </div>
+                </div>
+                
+                <div class="font-preview">
+                  <div :class="`preview-text font-${preferences.fontSize}`">
+                    这是字体大小预览文本，用于展示不同字号的效果�?
+                  </div>
+                </div>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="功能设置" name="functionality">
+          <div class="settings-section">
+            <el-card>
+              <template #header>
+                <h3>交互体验</h3>
+              </template>
+              
+              <div class="setting-group">
+                <div class="setting-item toggle-setting">
+                  <div class="setting-info">
+                    <h4>动画效果</h4>
+                    <p>启用或禁用界面动画过渡效�?/p>
+                  </div>
+                  <el-switch
+                    v-model="preferences.animation"
+                    @change="toggleAnimation"
+                  />
+                </div>
+                
+                <div class="setting-item toggle-setting">
+                  <div class="setting-info">
+                    <h4>桌面通知</h4>
+                    <p>接收重要的学习提醒和进度通知</p>
+                  </div>
+                  <el-switch
+                    v-model="preferences.notifications"
+                    @change="toggleNotifications"
+                  />
+                </div>
+                
+                <div class="setting-item toggle-setting">
+                  <div class="setting-info">
+                    <h4>音效提示</h4>
+                    <p>启用操作音效和提醒音</p>
+                  </div>
+                  <el-switch
+                    v-model="preferences.soundEffects"
+                    @change="toggleSoundEffects"
+                  />
+                </div>
+              </div>
+            </el-card>
+
+            <div class="test-section">
+              <el-card>
+                <template #header>
+                  <h3>效果测试</h3>
+                </template>
+                
+                <div class="test-buttons">
+                  <el-button @click="testNotification">
+                    <el-icon><Bell /></el-icon>
+                    测试通知
+                  </el-button>
+                  
+                  <el-button @click="testSound">
+                    <el-icon><Volume /></el-icon>
+                    测试音效
+                  </el-button>
+                </div>
+              </el-card>
+            </div>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="快捷�? name="shortcuts">
+          <div class="settings-section">
+            <el-card>
+              <template #header>
+                <div class="card-header">
+                  <h3>键盘快捷�?/h3>
+                  <el-button size="small" type="primary" disabled>
+                    自定义快捷键
+                  </el-button>
+                </div>
+              </template>
+              
+              <div class="shortcuts-list">
+                <div 
+                  v-for="shortcut in shortcuts" 
+                  :key="shortcut.id"
+                  class="shortcut-item"
+                >
+                  <div class="shortcut-info">
+                    <h4>{{ shortcut.name }}</h4>
+                    <p>{{ getActionDescription(shortcut.action) }}</p>
+                  </div>
+                  
+                  <div class="shortcut-key">
+                    <kbd>{{ shortcut.key }}</kbd>
+                  </div>
+                  
+                  <div class="shortcut-toggle">
+                    <el-switch
+                      v-model="shortcut.enabled"
+                      @change="toggleShortcut(shortcut.id)"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="shortcuts-help">
+                <el-alert
+                  title="快捷键说�?
+                  type="info"
+                  description="快捷键可以帮助您更快地操作系统，提高学习效率�?
+                  show-icon
+                />
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="导入导出" name="import-export">
+          <div class="settings-section">
+            <el-card>
+              <template #header>
+                <h3>数据管理</h3>
+              </template>
+              
+              <div class="data-management">
+                <div class="management-item">
+                  <div class="item-info">
+                    <h4>导出设置</h4>
+                    <p>将当前的偏好设置导出为配置文�?/p>
+                  </div>
+                  <el-button type="primary">
+                    <el-icon><Download /></el-icon>
+                    导出配置
+                  </el-button>
+                </div>
+                
+                <div class="management-item">
+                  <div class="item-info">
+                    <h4>导入设置</h4>
+                    <p>从配置文件导入偏好设�?/p>
+                  </div>
+                  <el-button>
+                    <el-icon><Upload /></el-icon>
+                    导入配置
+                  </el-button>
+                </div>
+                
+                <div class="management-item">
+                  <div class="item-info">
+                    <h4>恢复默认</h4>
+                    <p>将所有设置恢复为系统默认�?/p>
+                  </div>
+                  <el-button type="danger">
+                    <el-icon><RefreshLeft /></el-icon>
+                    恢复默认
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+
+      <div class="save-section">
+        <el-button 
+          type="primary" 
+          size="large"
+          :loading="isSaving"
+          @click="savePreferences"
+        >
+          <el-icon><Check /></el-icon>
+          {{ isSaving ? '保存�?..' : '保存所有设�? }}
+        </el-button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.preferences-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+}
+
+.page-title {
+  font-size: 2.8em;
+  color: white;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-weight: 700;
+}
+
+.page-subtitle {
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.preferences-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.preferences-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.preferences-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.preferences-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.preferences-tabs :deep(.el-tabs__item.is-active) {
+  color: #FF6B6B;
+  font-weight: 600;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.setting-item.toggle-setting {
+  padding: 25px;
+}
+
+.setting-info {
+  flex: 1;
+}
+
+.setting-info h4 {
+  color: #333333;
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+.setting-info p {
+  color: #666666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.theme-selector, .font-selector {
+  min-width: 200px;
+}
+
+.theme-previews {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.preview-item {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.preview-item.active {
+  border-color: #FF6B6B;
+  background: #fff8f8;
+}
+
+.preview-content {
+  height: 120px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.light-theme {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+.light-theme .preview-header {
+  height: 30px;
+  background: #4CAF50;
+}
+
+.light-theme .preview-body {
+  height: 90px;
+  background: #ffffff;
+  border-top: 1px solid #eeeeee;
+}
+
+.dark-theme {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .preview-header {
+  height: 30px;
+  background: #4CAF50;
+}
+
+.dark-theme .preview-body {
+  height: 90px;
+  background: #1a1a1a;
+  border-top: 1px solid #333333;
+}
+
+.auto-theme {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.auto-theme .preview-header {
+  height: 30px;
+  background: #ffffff;
+}
+
+.auto-theme .preview-body {
+  height: 90px;
+  background: rgba(255,255,255,0.2);
+}
+
+.font-preview {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.preview-text {
+  color: #333333;
+  line-height: 1.6;
+}
+
+.font-small {
+  font-size: 14px;
+}
+
+.font-medium {
+  font-size: 16px;
+}
+
+.font-large {
+  font-size: 18px;
+}
+
+.test-section {
+  margin-top: 20px;
+}
+
+.test-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.shortcut-info {
+  flex: 1;
+}
+
+.shortcut-info h4 {
+  color: #333333;
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+}
+
+.shortcut-info p {
+  color: #666666;
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.shortcut-key kbd {
+  display: inline-block;
+  padding: 6px 12px;
+  font: 12px monospace;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.shortcuts-help {
+  margin-top: 25px;
+}
+
+.data-management {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.management-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.management-item .item-info h4 {
+  color: #333333;
+  margin: 0 0 8px 0;
+  font-size: 1.1em;
+}
+
+.management-item .item-info p {
+  color: #666666;
+  margin: 0;
+}
+
+.save-section {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.4em;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .preferences-container {
+    padding: 20px 15px;
+  }
+  
+  .page-title {
+    font-size: 2.2em;
+  }
+  
+  .page-subtitle {
+    font-size: 1.1em;
+  }
+  
+  .preferences-content {
+    padding: 20px;
+  }
+  
+  .setting-item {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .theme-previews {
+    flex-direction: column;
+  }
+  
+  .shortcut-item {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .management-item {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .test-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .test-buttons .el-button {
+    width: 200px;
+  }
+}
+</style>

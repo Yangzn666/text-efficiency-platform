@@ -1,0 +1,18 @@
+﻿# Node modules
+**/node_modules/
+
+# Build outputs
+**/dist/
+**/.vite/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

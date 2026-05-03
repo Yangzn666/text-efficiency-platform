@@ -1,0 +1,17 @@
+{
+  "name": "study-platform-dev",
+  "version": "1.0.0",
+  "description": "个人考研效率平台开发启动脚本",
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install",
+    "start": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "localforage": "^1.10.0",
+    "sass": "^1.97.3"
+  }
+}

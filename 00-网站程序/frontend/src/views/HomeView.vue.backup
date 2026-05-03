@@ -1,0 +1,630 @@
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
+import { useStudyStore } from '@/stores/study'
+import { useTodoStore } from '@/stores/todos'
+import StatCard from '@/components/StatCard.vue'
+import SubjectProgress from '@/components/SubjectProgress.vue'
+import MonthlyCalendar from '@/components/MonthlyCalendar.vue'
+
+const router = useRouter()
+const studyStore = useStudyStore()
+const todoStore = useTodoStore()
+
+// 状态管理
+const showAddDialog = ref(false)
+const editingTodo = ref(false)
+const todoForm = ref({
+  title: '',
+  description: '',
+  priority: 'medium' as 'high' | 'medium' | 'low',
+  dueDate: '',
+  category: ''
+})
+
+const handleStartStudy = () => {
+  ElMessage.success('开始今日学习计划')
+}
+
+const addTodo = () => {
+  if (!todoForm.value.title) {
+    ElMessage.warning('请输入任务标题')
+    return
+  }
+  
+  const newTodo = {
+    ...todoForm.value,
+    id: Date.now().toString(),
+    createdAt: new Date().toISOString(),
+    completed: false
+  }
+  
+  todoStore.addTodo(newTodo)
+  resetForm()
+  showAddDialog.value = false
+}
+
+const editTodo = (todo: any) => {
+  editingTodo.value = true
+  todoForm.value = { ...todo }
+  showAddDialog.value = true
+}
+
+const deleteTodo = (id: string) => {
+  todoStore.deleteTodo(id)
+}
+
+const resetForm = () => {
+  todoForm.value = {
+    title: '',
+    description: '',
+    priority: 'medium',
+    dueDate: '',
+    category: ''
+  }
+  editingTodo.value = false
+}
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr)
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+}
+
+// 科目进度数据
+const subjectProgressData = ref([
+  {
+    subject: '408计算机科学综合',
+    progress: 75,
+    timeSpent: 450,
+    goalTime: 600,
+    color: '#FF6B6B'
+  },
+  {
+    subject: '数学一',
+    progress: 68,
+    timeSpent: 340,
+    goalTime: 500,
+    color: '#4CAF50'
+  },
+  {
+    subject: '英语一',
+    progress: 82,
+    timeSpent: 246,
+    goalTime: 300,
+    color: '#2196F3'
+  },
+  {
+    subject: '政治',
+    progress: 55,
+    timeSpent: 220,
+    goalTime: 400,
+    color: '#FF9800'
+  }
+])
+
+onMounted(() => {
+  console.log('HomeView mounted - 初始化日历数据')
+  // 初始化学习数据
+  studyStore.initializeStudyData()
+  
+  // 初始化示例待办事项
+  initializeSampleTodos()
+  
+  // 确保日历组件能正确渲染
+  setTimeout(() => {
+    console.log('日历组件应该已加载')
+  }, 1000)
+})
+
+const initializeSampleTodos = () => {
+  // 如果没有待办事项，添加一些示例数据
+  if (todoStore.todos.length === 0) {
+    const today = new Date().toISOString().split('T')[0]
+    const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+    const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0]
+    
+    // 今天的待办事项
+    todoStore.addTodo({
+      title: '完成数据结构第一章复习',
+      description: '复习线性表的基本操作和应用场景',
+      completed: false,
+      priority: 'high',
+      dueDate: today,
+      category: '408计算机科学综合',
+      estimatedDuration: 90
+    })
+    
+    todoStore.addTodo({
+      title: '做高等数学极限练习题',
+      description: '完成课后习题1-10题',
+      completed: false,
+      priority: 'medium',
+      dueDate: today,
+      category: '数学一',
+      estimatedDuration: 60
+    })
+    
+    // 明天的待办事项
+    todoStore.addTodo({
+      title: '背诵英语单词50个',
+      description: '重点记忆高频词汇',
+      completed: false,
+      priority: 'medium',
+      dueDate: tomorrow,
+      category: '英语一',
+      estimatedDuration: 45
+    })
+    
+    // 昨天的已完成事项
+    todoStore.addTodo({
+      title: '完成政治马原第一章学习',
+      description: '学习马克思主义哲学基本原理',
+      completed: true,
+      priority: 'high',
+      dueDate: yesterday,
+      category: '政治',
+      estimatedDuration: 120
+    })
+  }
+}
+</script>
+
+<template>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="page-title">考研效率平台</h1>
+        <p class="card-subtitle">专注学习，高效备考</p>
+      </div>
+      <div class="card-content">
+        <!-- 欢迎区域 -->
+        <div class="welcome-section">
+          <h1 class="welcome-title">欢迎回来，继续加油！</h1>
+          <p class="welcome-subtitle">今日学习时间 {{ studyStore.todayStudyTime }} 分钟</p>
+        </div>
+
+    <!-- 统计卡片区域 -->
+    <div class="stats-section">
+      <div class="stats-grid">
+        <StatCard
+          title="今日学习"
+          :value="`${studyStore.todayStudyTime}分钟`"
+          subtitle="比昨日 +15%"
+          icon="Timer"
+          trend="up"
+          :trend-value="15"
+          color="primary"
+        />
+        
+        <StatCard
+          title="本周进度"
+          :value="studyStore.currentStreak"
+          subtitle="连续学习天数"
+          icon="Calendar"
+          trend="stable"
+          color="success"
+        />
+        
+        <StatCard
+          title="总任务数"
+          :value="`${studyStore.studyRecords.length}个`"
+          subtitle="已完成学习记录"
+          icon="Document"
+          trend="up"
+          :trend-value="8"
+          color="warning"
+        />
+      </div>
+    </div>
+
+    <!-- 本月日历区域 -->
+    <div class="calendar-section">
+      <h2 class="section-title">📅 本月学习日历</h2>
+      <MonthlyCalendar />
+    </div>
+
+    <!-- 今日待办区域 -->
+    <div class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">📅 今日待办</h2>
+        <el-button type="primary" @click="showAddDialog = true">
+          <el-icon><Plus /></el-icon>
+          添加任务
+        </el-button>
+      </div>
+      
+      <div class="today-todos">
+        <div 
+          v-if="todoStore.todayTodos.length === 0" 
+          class="empty-state"
+        >
+          <el-icon size="60" color="#999"><Check /></el-icon>
+          <h3>今日无待办事项</h3>
+          <p>做得好！可以添加新的学习任务</p>
+        </div>
+        
+        <div 
+          v-else 
+          class="todo-list"
+        >
+          <div 
+            v-for="todo in todoStore.todayTodos" 
+            :key="todo.id"
+            class="todo-item"
+            :class="{ completed: todo.completed }"
+          >
+            <div class="todo-content">
+              <el-checkbox 
+                :model-value="todo.completed"
+                @change="todoStore.toggleTodo(todo.id)"
+                size="large"
+              />
+              
+              <div class="todo-info">
+                <h4 class="todo-title">{{ todo.title }}</h4>
+                <p v-if="todo.description" class="todo-desc">{{ todo.description }}</p>
+                
+                <div class="todo-meta">
+                  <el-tag 
+                    :color="todoStore.getPriorityColor(todo.priority)"
+                    effect="dark"
+                    size="small"
+                  >
+                    {{ todoStore.getPriorityText(todo.priority) }}
+                  </el-tag>
+                  
+                  <span v-if="todo.category" class="todo-category">
+                    {{ todo.category }}
+                  </span>
+                  
+                  <span class="todo-date">
+                    {{ formatDate(todo.createdAt) }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="todo-actions">
+              <el-button 
+                size="small" 
+                @click="editTodo(todo)"
+              >
+                <el-icon><Edit /></el-icon>
+              </el-button>
+              <el-button 
+                size="small" 
+                type="danger"
+                @click="deleteTodo(todo.id)"
+              >
+                <el-icon><Delete /></el-icon>
+              </el-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 科目进度区域 -->
+    <div class="subjects-section">
+      <h2 class="section-title">各科目学习进度</h2>
+      <div class="subjects-grid">
+        <SubjectProgress
+          v-for="subject in subjectProgressData"
+          :key="subject.subject"
+          :subject="subject.subject"
+          :progress="subject.progress"
+          :time-spent="subject.timeSpent"
+          :goal-time="subject.goalTime"
+          :color="subject.color"
+        />
+      </div>
+    </div>
+
+    <!-- 快捷操作区域 -->
+    <div class="actions-section">
+      <h2 class="section-title">快捷操作</h2>
+      <div class="actions-grid">
+        <el-card class="action-card" @click="router.push('/attention')">
+          <div class="action-content">
+            <el-icon size="32" color="#FF6B6B"><Timer /></el-icon>
+            <h3>注意力管理</h3>
+            <p>番茄钟专注 + 诱惑对抗</p>
+          </div>
+        </el-card>
+        
+        <el-card class="action-card" @click="router.push('/learning-path')">
+          <div class="action-content">
+            <el-icon size="32" color="#4CAF50"><Document /></el-icon>
+            <h3>学习计划</h3>
+            <p>查看和管理学习任务</p>
+          </div>
+        </el-card>
+        
+        <el-card class="action-card" @click="router.push('/stats')">
+          <div class="action-content">
+            <el-icon size="32" color="#2196F3"><DataAnalysis /></el-icon>
+            <h3>学习统计</h3>
+            <p>查看学习数据分析</p>
+          </div>
+        </el-card>
+        
+        <el-card class="action-card" @click="router.push('/settings')">
+          <div class="action-content">
+            <el-icon size="32" color="#FF9800"><Setting /></el-icon>
+            <h3>系统设置</h3>
+            <p>个性化配置选项</p>
+          </div>
+        </el-card>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<style scoped>
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.welcome-title {
+  font-size: 2.5em;
+  color: white;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-weight: 600;
+}
+
+.welcome-subtitle {
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.9;
+}
+
+.stats-section {
+  margin-bottom: 40px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 10px;
+}
+
+.section-title {
+  font-size: 1.8em;
+  color: #333333;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-shadow: none;
+  position: relative;
+  padding-bottom: 12px;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.calendar-section {
+  margin-bottom: 40px;
+}
+
+.subjects-section {
+  margin-bottom: 40px;
+}
+
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 24px;
+}
+
+.actions-section {
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  overflow: hidden;
+  align-content: start;
+}
+
+.action-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  border: none;
+  min-height: 180px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.action-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.action-content h3 {
+  margin: 15px 0 10px;
+  color: #333333;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.action-content p {
+  color: #666666;
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* 待办事项区域样式 */
+.todo-dashboard {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.dashboard-section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.today-todos {
+  margin-top: 20px;
+}
+
+.todo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.todo-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.todo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #e0e0e0;
+}
+
+.todo-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.todo-info {
+  flex: 1;
+}
+
+.todo-title {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.todo-desc {
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.todo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.todo-category {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.todo-date {
+  color: #999;
+  font-size: 0.85em;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0 15px;
+  }
+  
+  .welcome-title {
+    font-size: 2em;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .subjects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .action-card {
+    min-height: 150px;
+    height: auto;
+  }
+  
+  .section-title {
+    font-size: 1.5em;
+  }
+}
+</style>

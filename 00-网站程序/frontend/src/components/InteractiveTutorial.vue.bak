@@ -1,0 +1,618 @@
+<script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useUXStore } from '@/stores/ux'
+import { ElMessage } from 'element-plus'
+
+const uxStore = useUXStore()
+
+const isVisible = ref(false)
+const currentStep = ref(0)
+const overlayVisible = ref(false)
+
+// 计算属�?
+const tutorialSteps = computed(() => uxStore.tutorialSteps)
+const currentTutorialStep = computed(() => uxStore.currentTutorialStep)
+const isTutorialActive = computed(() => uxStore.isTutorialActive)
+const tutorialProgress = computed(() => uxStore.tutorialProgress)
+
+const currentStepData = computed(() => {
+  return tutorialSteps.value[currentTutorialStep.value] || null
+})
+
+const hasNextStep = computed(() => {
+  return currentTutorialStep.value < tutorialSteps.value.length - 1
+})
+
+const hasPrevStep = computed(() => {
+  return currentTutorialStep.value > 0
+})
+
+// 方法
+const startTutorial = () => {
+  uxStore.startTutorial()
+  isVisible.value = true
+  overlayVisible.value = true
+  highlightTargetElement()
+}
+
+const nextStep = () => {
+  if (hasNextStep.value) {
+    uxStore.nextTutorialStep()
+    highlightTargetElement()
+  }
+}
+
+const prevStep = () => {
+  if (hasPrevStep.value) {
+    uxStore.prevTutorialStep()
+    highlightTargetElement()
+  }
+}
+
+const finishTutorial = () => {
+  uxStore.finishTutorial()
+  hideTutorial()
+  ElMessage.success('恭喜完成新手引导�?)
+}
+
+const skipTutorial = () => {
+  hideTutorial()
+  ElMessage.info('已跳过新手引�?)
+}
+
+const hideTutorial = () => {
+  isVisible.value = false
+  overlayVisible.value = false
+  removeHighlight()
+}
+
+const highlightTargetElement = () => {
+  removeHighlight()
+  
+  if (currentStepData.value?.targetElement) {
+    const target = document.querySelector(currentStepData.value.targetElement)
+    if (target) {
+      target.classList.add('tutorial-highlight')
+      
+      // 滚动到目标元�?
+      target.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      })
+    }
+  }
+}
+
+const removeHighlight = () => {
+  const highlighted = document.querySelector('.tutorial-highlight')
+  if (highlighted) {
+    highlighted.classList.remove('tutorial-highlight')
+  }
+}
+
+const completeCurrentStep = async () => {
+  if (currentStepData.value) {
+    await uxStore.completeTutorialStep(currentStepData.value.id)
+    
+    if (!hasNextStep.value) {
+      finishTutorial()
+    } else {
+      nextStep()
+    }
+  }
+}
+
+const getStepPosition = () => {
+  if (!currentStepData.value?.targetElement) {
+    return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+  }
+  
+  const target = document.querySelector(currentStepData.value.targetElement)
+  if (target) {
+    const rect = target.getBoundingClientRect()
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+    
+    return {
+      top: `${rect.top + scrollTop + rect.height + 20}px`,
+      left: `${rect.left + scrollLeft + rect.width / 2}px`,
+      transform: 'translateX(-50%)'
+    }
+  }
+  
+  return { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }
+}
+
+// 键盘事件处理
+const handleKeyDown = (event: KeyboardEvent) => {
+  if (!isVisible.value) return
+  
+  switch (event.key) {
+    case 'ArrowRight':
+      event.preventDefault()
+      if (hasNextStep.value) nextStep()
+      break
+    case 'ArrowLeft':
+      event.preventDefault()
+      if (hasPrevStep.value) prevStep()
+      break
+    case 'Escape':
+      event.preventDefault()
+      skipTutorial()
+      break
+  }
+}
+
+// 生命周期
+onMounted(() => {
+  document.addEventListener('keydown', handleKeyDown)
+  
+  // 如果是第一次使用，自动开始教�?
+  if (uxStore.completedTutorialSteps === 0) {
+    setTimeout(startTutorial, 1000)
+  }
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeyDown)
+  removeHighlight()
+})
+</script>
+
+<template>
+  <div class="tutorial-container">
+    <!-- 教程触发按钮 -->
+    <div class="tutorial-trigger" v-if="!isTutorialActive && uxStore.completedTutorialSteps < tutorialSteps.length">
+      <el-button 
+        type="primary" 
+        circle
+        size="large"
+        @click="startTutorial"
+        class="trigger-button"
+      >
+        <el-icon size="24"><Guide /></el-icon>
+      </el-button>
+      <span class="trigger-text">新手引导</span>
+    </div>
+
+    <!-- 遮罩�?-->
+    <div 
+      v-if="overlayVisible" 
+      class="tutorial-overlay"
+      @click="skipTutorial"
+    ></div>
+
+    <!-- 教程弹窗 -->
+    <div 
+      v-if="isVisible && currentStepData" 
+      class="tutorial-popup"
+      :style="getStepPosition()"
+    >
+      <div class="popup-content">
+        <!-- 进度指示�?-->
+        <div class="progress-indicator">
+          <div class="progress-bar">
+            <div 
+              class="progress-fill" 
+              :style="{ width: tutorialProgress + '%' }"
+            ></div>
+          </div>
+          <span class="progress-text">{{ tutorialProgress }}% 完成</span>
+        </div>
+
+        <!-- 步骤标题 -->
+        <h3 class="step-title">{{ currentStepData.title }}</h3>
+
+        <!-- 步骤内容 -->
+        <div class="step-content">
+          <p>{{ currentStepData.content }}</p>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="tutorial-actions">
+          <div class="navigation-buttons">
+            <el-button 
+              v-if="hasPrevStep" 
+              @click="prevStep"
+              size="small"
+            >
+              <el-icon><ArrowLeft /></el-icon>
+              上一�?
+            </el-button>
+            
+            <el-button 
+              v-if="hasNextStep" 
+              type="primary"
+              @click="nextStep"
+              size="small"
+            >
+              下一�?
+              <el-icon><ArrowRight /></el-icon>
+            </el-button>
+            
+            <el-button 
+              v-else
+              type="success"
+              @click="finishTutorial"
+              size="small"
+            >
+              <el-icon><Check /></el-icon>
+              完成教程
+            </el-button>
+          </div>
+
+          <div class="utility-buttons">
+            <el-button 
+              @click="completeCurrentStep"
+              size="small"
+              type="primary"
+              plain
+            >
+              标记完成
+            </el-button>
+            
+            <el-button 
+              @click="skipTutorial"
+              size="small"
+              type="danger"
+              plain
+            >
+              跳过
+            </el-button>
+          </div>
+        </div>
+
+        <!-- 键盘提示 -->
+        <div class="keyboard-hints">
+          <kbd>�?/kbd> 上一�?
+          <kbd>�?/kbd> 下一�?
+          <kbd>ESC</kbd> 跳过
+        </div>
+      </div>
+
+      <!-- 指示箭头 -->
+      <div class="popup-arrow"></div>
+    </div>
+
+    <!-- 教程进度概览 -->
+    <div 
+      v-if="uxStore.completedTutorialSteps > 0 && uxStore.completedTutorialSteps < tutorialSteps.length" 
+      class="tutorial-progress"
+    >
+      <el-popover
+        placement="top"
+        trigger="hover"
+        width="300"
+      >
+        <template #reference>
+          <div class="progress-summary">
+            <el-progress
+              type="circle"
+              :percentage="tutorialProgress"
+              :width="50"
+              :stroke-width="4"
+            />
+            <span class="progress-label">新手引导</span>
+          </div>
+        </template>
+        
+        <div class="progress-detail">
+          <h4>学习进度</h4>
+          <p>已完�?{{ uxStore.completedTutorialSteps }}/{{ tutorialSteps.length }} 个步�?/p>
+          
+          <div class="steps-overview">
+            <div 
+              v-for="(step, index) in tutorialSteps" 
+              :key="step.id"
+              class="step-indicator"
+              :class="{ 'completed': step.completed, 'current': index === currentTutorialStep }"
+            >
+              <div class="step-dot"></div>
+              <span class="step-title">{{ step.title }}</span>
+            </div>
+          </div>
+          
+          <el-button 
+            v-if="uxStore.completedTutorialSteps < tutorialSteps.length"
+            size="small" 
+            type="primary"
+            @click="startTutorial"
+          >
+            继续学习
+          </el-button>
+        </div>
+      </el-popover>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.tutorial-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 10000;
+}
+
+.tutorial-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.trigger-button {
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s ease;
+}
+
+.trigger-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+}
+
+.trigger-text {
+  color: #666666;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.tutorial-popup {
+  position: absolute;
+  z-index: 10001;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  min-width: 300px;
+  animation: popupAppear 0.3s ease;
+}
+
+@keyframes popupAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.popup-content {
+  padding: 25px;
+}
+
+.progress-indicator {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B6B 0%, #4CAF50 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.9em;
+  color: #666666;
+  font-weight: 500;
+  min-width: 70px;
+}
+
+.step-title {
+  color: #333333;
+  margin: 0 0 15px 0;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+.step-content p {
+  color: #666666;
+  line-height: 1.6;
+  margin: 0 0 25px 0;
+}
+
+.tutorial-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.utility-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.keyboard-hints {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  color: #999999;
+  font-size: 0.85em;
+}
+
+.keyboard-hints kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #f0f0f0;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.popup-arrow {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.tutorial-progress {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9998;
+}
+
+.progress-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.progress-label {
+  color: #666666;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.progress-detail h4 {
+  color: #333333;
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+}
+
+.progress-detail p {
+  color: #666666;
+  margin: 0 0 15px 0;
+  font-size: 0.95em;
+}
+
+.steps-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.step-indicator.completed {
+  background: #f8fff8;
+}
+
+.step-indicator.current {
+  background: #fff8f8;
+  border: 1px solid #FF6B6B;
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+}
+
+.step-indicator.completed .step-dot {
+  background: #4CAF50;
+}
+
+.step-indicator.current .step-dot {
+  background: #FF6B6B;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.step-title {
+  color: #333333;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* 高亮样式 */
+.tutorial-highlight {
+  position: relative;
+  z-index: 10002;
+  box-shadow: 0 0 0 4px #FF6B6B, 0 0 20px rgba(255, 107, 107, 0.5);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* 响应式设�?*/
+@media (max-width: 768px) {
+  .tutorial-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .tutorial-progress {
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .tutorial-popup {
+    max-width: 90vw;
+    left: 50% !important;
+    right: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  
+  .popup-content {
+    padding: 20px;
+  }
+  
+  .tutorial-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .navigation-buttons, .utility-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

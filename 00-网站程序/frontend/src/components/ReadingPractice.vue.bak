@@ -1,0 +1,690 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { useEnglishStore } from '@/stores/english'
+import { ElMessage } from 'element-plus'
+
+const englishStore = useEnglishStore()
+
+const activeTab = ref('passages')
+const selectedPassage = ref<any>(null)
+const userAnswers = ref<Record<string, string>>({})
+const showResults = ref(false)
+const startTime = ref<number>(0)
+
+// 计算属�?
+const passages = computed(() => englishStore.readingPassages)
+const readingStats = computed(() => englishStore.getReadingStatsByType())
+
+const passageStats = computed(() => {
+  const completed = passages.value.filter(p => p.accuracy !== undefined).length
+  const total = passages.value.length
+  return { completed, total, accuracy: englishStore.overallReadingAccuracy }
+})
+
+const formatTime = (seconds: number) => {
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return `${mins}:${secs.toString().padStart(2, '0')}`
+}
+
+const selectPassage = (passage: any) => {
+  selectedPassage.value = passage
+  userAnswers.value = { ...passage.userAnswers }
+  showResults.value = false
+  startTime.value = Date.now()
+}
+
+const submitAnswers = async () => {
+  if (!selectedPassage.value) return
+
+  const endTime = Date.now()
+  const timeSpent = Math.floor((endTime - startTime.value) / 1000)
+  
+  try {
+    const accuracy = await englishStore.submitReadingAnswers(
+      selectedPassage.value.id,
+      userAnswers.value
+    )
+    
+    selectedPassage.value.completionTime = timeSpent
+    showResults.value = true
+    
+    ElMessage.success(`答题完成！正确率: ${accuracy}%，用�? ${formatTime(timeSpent)}`)
+  } catch (error) {
+    ElMessage.error('提交失败')
+  }
+}
+
+const resetPassage = () => {
+  if (selectedPassage.value) {
+    userAnswers.value = {}
+    showResults.value = false
+    startTime.value = Date.now()
+  }
+}
+
+const getQuestionTypeColor = (type: string) => {
+  const colors: Record<string, string> = {
+    '细节理解': 'primary',
+    '主旨大意': 'success',
+    '推理判断': 'warning',
+    '词义猜测': 'danger'
+  }
+  return colors[type] || 'info'
+}
+
+const getDifficultyTag = (difficulty: string) => {
+  const tags: Record<string, any> = {
+    '简�?: { type: 'success', text: '简�? },
+    '中等': { type: 'warning', text: '中等' },
+    '困难': { type: 'danger', text: '困难' }
+  }
+  return tags[difficulty] || { type: 'info', text: difficulty }
+}
+
+onMounted(() => {
+  englishStore.initializeEnglishData()
+})
+</script>
+
+<template>
+  <div class="reading-practice-container">
+    <!-- 顶部统计 -->
+    <div class="stats-section">
+      <h2 class="section-title">英语真题精读练习</h2>
+      <p class="section-description">提升阅读理解能力和解题技�?/p>
+      
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ passageStats.completed }}</div>
+          <div class="stat-label">已完�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ passageStats.total }}</div>
+          <div class="stat-label">总文�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ passageStats.accuracy }}%</div>
+          <div class="stat-label">平均准确�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ passages.length * 4 }}</div>
+          <div class="stat-label">总题�?/div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 题型统计 -->
+    <div class="type-stats-section">
+      <el-card>
+        <template #header>
+          <h3>题型准确率统�?/h3>
+        </template>
+        
+        <div class="type-stats">
+          <div 
+            v-for="(stat, type) in readingStats" 
+            :key="type"
+            class="type-stat-item"
+          >
+            <div class="type-header">
+              <el-tag :type="getQuestionTypeColor(type)" size="small">
+                {{ type }}
+              </el-tag>
+              <span class="type-count">{{ stat.total }}�?/span>
+            </div>
+            <el-progress 
+              :percentage="stat.accuracy" 
+              :stroke-width="15"
+              :color="stat.accuracy >= 80 ? '#67C23A' : stat.accuracy >= 60 ? '#E6A23C' : '#F56C6C'"
+            />
+            <div class="type-accuracy">{{ stat.accuracy }}%</div>
+          </div>
+        </div>
+      </el-card>
+    </div>
+
+    <!-- 主要功能区域 -->
+    <div class="practice-content">
+      <el-tabs v-model="activeTab" class="practice-tabs">
+        <el-tab-pane label="文章列表" name="passages">
+          <div class="passages-grid">
+            <el-card 
+              v-for="passage in passages" 
+              :key="passage.id"
+              class="passage-card"
+              :class="{ 'selected': selectedPassage?.id === passage.id }"
+              @click="selectPassage(passage)"
+            >
+              <div class="passage-header">
+                <h3>{{ passage.title }}</h3>
+                <div class="passage-meta">
+                  <el-tag :type="getDifficultyTag(passage.difficulty).type" size="small">
+                    {{ getDifficultyTag(passage.difficulty).text }}
+                  </el-tag>
+                  <span class="word-count">{{ passage.wordCount }}�?/span>
+                </div>
+              </div>
+              
+              <div class="passage-source">
+                来源: {{ passage.source }}
+              </div>
+              
+              <div class="passage-preview">
+                {{ passage.content.substring(0, 100) }}...
+              </div>
+              
+              <div class="passage-status">
+                <div v-if="passage.accuracy !== undefined" class="accuracy-info">
+                  <el-tag type="success" size="small">
+                    已完�?
+                  </el-tag>
+                  <span>准确�? {{ passage.accuracy }}%</span>
+                  <span v-if="passage.completionTime">用时: {{ formatTime(passage.completionTime) }}</span>
+                </div>
+                <div v-else class="not-started">
+                  <el-tag type="info" size="small">未开�?/el-tag>
+                </div>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="在线练习" name="practice" :disabled="!selectedPassage">
+          <div v-if="selectedPassage" class="practice-section">
+            <div class="passage-info">
+              <div class="info-header">
+                <h3>{{ selectedPassage.title }}</h3>
+                <div class="info-meta">
+                  <el-tag :type="getDifficultyTag(selectedPassage.difficulty).type">
+                    {{ getDifficultyTag(selectedPassage.difficulty).text }}
+                  </el-tag>
+                  <span>{{ selectedPassage.wordCount }}�?/span>
+                  <span>{{ selectedPassage.source }}</span>
+                </div>
+              </div>
+              
+              <div class="passage-content">
+                <p>{{ selectedPassage.content }}</p>
+              </div>
+            </div>
+            
+            <div class="questions-section">
+              <h4>阅读理解题目</h4>
+              
+              <div 
+                v-for="question in selectedPassage.questions" 
+                :key="question.id"
+                class="question-item"
+              >
+                <div class="question-header">
+                  <span class="question-number">{{ question.questionNumber }}.</span>
+                  <el-tag :type="getQuestionTypeColor(question.type)" size="small">
+                    {{ question.type }}
+                  </el-tag>
+                </div>
+                
+                <div class="question-content">
+                  {{ question.content }}
+                </div>
+                
+                <div class="question-options">
+                  <el-radio-group 
+                    v-model="userAnswers[question.id]" 
+                    :disabled="showResults"
+                  >
+                    <div v-for="option in question.options" :key="option" class="option-item">
+                      <el-radio :label="option.charAt(0)">
+                        {{ option }}
+                      </el-radio>
+                    </div>
+                  </el-radio-group>
+                </div>
+                
+                <div v-if="showResults" class="question-result">
+                  <div class="result-indicator">
+                    <el-icon :color="question.isCorrect ? '#67C23A' : '#F56C6C'">
+                      <Check v-if="question.isCorrect" />
+                      <Close v-else />
+                    </el-icon>
+                    <span :class="{ 'correct': question.isCorrect, 'incorrect': !question.isCorrect }">
+                      {{ question.isCorrect ? '正确' : '错误' }}
+                    </span>
+                  </div>
+                  
+                  <div v-if="!question.isCorrect" class="explanation">
+                    <strong>解析:</strong> {{ question.explanation }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="practice-actions">
+              <el-button 
+                v-if="!showResults"
+                type="primary" 
+                size="large"
+                @click="submitAnswers"
+              >
+                <el-icon><Check /></el-icon>
+                提交答案
+              </el-button>
+              
+              <el-button 
+                v-if="showResults"
+                type="warning" 
+                size="large"
+                @click="resetPassage"
+              >
+                <el-icon><Refresh /></el-icon>
+                重新练习
+              </el-button>
+              
+              <el-button 
+                size="large"
+                @click="selectedPassage = null"
+              >
+                返回列表
+              </el-button>
+            </div>
+          </div>
+          
+          <div v-else class="no-selection">
+            <el-icon size="60" color="#999999"><Document /></el-icon>
+            <p>请先从文章列表中选择一篇阅读材�?/p>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.reading-practice-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.stats-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.type-stats-section {
+  margin-bottom: 30px;
+}
+
+.type-stats-section h3 {
+  color: #333333;
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+}
+
+.type-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.type-stat-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.type-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.type-count {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.type-accuracy {
+  text-align: right;
+  font-weight: 600;
+  color: #4CAF50;
+  margin-top: 5px;
+}
+
+.practice-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.practice-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.practice-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.practice-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.practice-tabs :deep(.el-tabs__item.is-active) {
+  color: #2196F3;
+  font-weight: 600;
+}
+
+.passages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.passage-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.passage-card.selected {
+  border-color: #2196F3;
+  box-shadow: 0 10px 25px rgba(33, 150, 243, 0.2);
+}
+
+.passage-card:hover:not(.selected) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.passage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.passage-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.3em;
+  flex: 1;
+}
+
+.passage-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 15px;
+}
+
+.word-count {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.passage-source {
+  color: #2196F3;
+  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 0.95em;
+}
+
+.passage-preview {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.passage-status {
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+
+.accuracy-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.not-started {
+  color: #999999;
+}
+
+.practice-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  min-height: 500px;
+}
+
+.passage-info {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.info-header {
+  margin-bottom: 20px;
+}
+
+.info-header h3 {
+  color: #333333;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.info-meta {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.passage-content {
+  line-height: 1.8;
+  color: #444444;
+  font-size: 1.1em;
+}
+
+.questions-section {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.questions-section h4 {
+  color: #333333;
+  margin-bottom: 25px;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.question-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.question-number {
+  font-weight: 600;
+  color: #333333;
+  font-size: 1.1em;
+}
+
+.question-content {
+  color: #444444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1.05em;
+}
+
+.question-options {
+  margin-bottom: 15px;
+}
+
+.option-item {
+  margin: 10px 0;
+}
+
+.question-result {
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+
+.result-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.result-indicator span {
+  font-weight: 500;
+}
+
+.correct {
+  color: #67C23A;
+}
+
+.incorrect {
+  color: #F56C6C;
+}
+
+.explanation {
+  background: #fff8f8;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #F56C6C;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.practice-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+
+.no-selection {
+  text-align: center;
+  padding: 100px 20px;
+  color: #999999;
+}
+
+.no-selection p {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+/* 响应式设�?*/
+@media (max-width: 1024px) {
+  .practice-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .reading-practice-container {
+    padding: 20px 15px;
+  }
+  
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .type-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .passages-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .passage-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .passage-meta {
+    margin-left: 0;
+    flex-direction: row;
+  }
+  
+  .practice-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .practice-actions .el-button {
+    width: 200px;
+  }
+}
+</style>

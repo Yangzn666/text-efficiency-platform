@@ -1,0 +1,959 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+import { usePoliticsStore } from '@/stores/politics'
+import { ElMessage } from 'element-plus'
+
+const politicsStore = usePoliticsStore()
+
+const activeTab = ref('points')
+const selectedPoint = ref<any>(null)
+const masteryLevel = ref(50)
+const showRelatedAffairs = ref(false)
+
+// 计算属�?
+const politicalPoints = computed(() => politicsStore.politicalPoints)
+const masteryStats = computed(() => politicsStore.masteryStats)
+const dueForReview = computed(() => politicsStore.dueForReview)
+const categoryStats = computed(() => politicsStore.categoryStats)
+
+const filteredPoints = computed(() => {
+  return politicalPoints.value
+})
+
+const getMasteryColor = (level: number) => {
+  if (level >= 80) return '#67C23A'
+  if (level >= 60) return '#E6A23C'
+  return '#F56C6C'
+}
+
+const getCategoryColor = (category: string) => {
+  const colors: Record<string, string> = {
+    '马克思主义基本原�?: '#FF6B6B',
+    '毛泽东思想和中国特色社会主义理论体�?: '#4CAF50',
+    '中国近现代史纲要': '#2196F3',
+    '思想道德修养与法律基础': '#FF9800',
+    '形势与政�?: '#9C27B0'
+  }
+  return colors[category] || '#666666'
+}
+
+const selectPoint = (point: any) => {
+  selectedPoint.value = point
+  masteryLevel.value = point.masteryLevel
+  showRelatedAffairs.value = false
+}
+
+const updateMastery = async (level: number) => {
+  if (!selectedPoint.value) return
+
+  try {
+    await politicsStore.updateMasteryLevel(selectedPoint.value.id, level)
+    
+    const levelText = level >= 90 ? '完全掌握' : 
+                     level >= 75 ? '熟练掌握' : 
+                     level >= 60 ? '基本掌握' : '还需练习'
+    
+    ElMessage.success(`更新�?{levelText} (${level}%)`)
+  } catch (error) {
+    ElMessage.error('更新失败')
+  }
+}
+
+const getRelatedAffairs = (pointId: string) => {
+  return politicsStore.getRelatedPoints(pointId)
+}
+
+const exportPoints = () => {
+  const exportData = {
+    points: politicalPoints.value,
+    stats: masteryStats.value,
+    categoryStats: categoryStats.value,
+    exportTime: new Date().toISOString()
+  }
+  
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `政治考点_${new Date().toISOString().split('T')[0]}.json`
+  a.click()
+  
+  URL.revokeObjectURL(url)
+  ElMessage.success('导出成功�?)
+}
+
+onMounted(() => {
+  politicsStore.initializePoliticsData()
+})
+</script>
+
+<template>
+  <div class="political-points-container">
+    <!-- 顶部统计 -->
+    <div class="stats-section">
+      <h2 class="section-title">政治考点关联系统</h2>
+      <p class="section-description">系统梳理政治考点，建立知识关联网�?/p>
+      
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-value">{{ masteryStats.total }}</div>
+          <div class="stat-label">总考点</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ masteryStats.mastered }}</div>
+          <div class="stat-label">已掌�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ dueForReview.length }}</div>
+          <div class="stat-label">待复�?/div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{{ Math.round((masteryStats.mastered / Math.max(1, masteryStats.total)) * 100) }}%</div>
+          <div class="stat-label">掌握�?/div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分类统计 -->
+    <div class="category-stats-section">
+      <el-card>
+        <template #header>
+          <div class="card-header">
+            <h3>各科目掌握情�?/h3>
+            <el-button size="small" @click="exportPoints">
+              <el-icon><Download /></el-icon>
+              导出数据
+            </el-button>
+          </div>
+        </template>
+        
+        <div class="category-stats">
+          <div 
+            v-for="(stat, category) in categoryStats" 
+            :key="category"
+            class="category-stat-item"
+          >
+            <div class="category-header">
+              <div class="category-title" :style="{ color: getCategoryColor(category) }">
+                {{ category }}
+              </div>
+              <span class="category-count">{{ stat.total }}个考点</span>
+            </div>
+            
+            <el-progress 
+              :percentage="stat.accuracy" 
+              :stroke-width="20"
+              :color="getMasteryColor(stat.accuracy)"
+            />
+            
+            <div class="category-detail">
+              <span>掌握: {{ stat.mastered }}�?/span>
+              <span>准确�? {{ stat.accuracy }}%</span>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </div>
+
+    <!-- 主要功能区域 -->
+    <div class="points-content">
+      <el-tabs v-model="activeTab" class="points-tabs">
+        <el-tab-pane label="考点列表" name="points">
+          <div class="points-grid">
+            <el-card 
+              v-for="point in filteredPoints" 
+              :key="point.id"
+              class="point-card"
+              :class="{ 'selected': selectedPoint?.id === point.id }"
+              @click="selectPoint(point)"
+            >
+              <div class="point-header">
+                <h3>{{ point.title }}</h3>
+                <el-tag :color="getCategoryColor(point.category)" style="color: white;">
+                  {{ point.category }}
+                </el-tag>
+              </div>
+              
+              <div class="point-content">
+                <p>{{ point.content.substring(0, 80) }}...</p>
+              </div>
+              
+              <div class="point-keywords">
+                <el-tag 
+                  v-for="concept in point.keyConcepts" 
+                  :key="concept"
+                  size="small"
+                  type="info"
+                >
+                  {{ concept }}
+                </el-tag>
+              </div>
+              
+              <div class="point-stats">
+                <div class="mastery-indicator">
+                  <span class="label">掌握�?</span>
+                  <el-progress 
+                    :percentage="point.masteryLevel" 
+                    :stroke-width="8"
+                    :show-text="false"
+                    :color="getMasteryColor(point.masteryLevel)"
+                  />
+                  <span class="level">{{ point.masteryLevel }}%</span>
+                </div>
+                
+                <div class="frequency">
+                  <span>考查频次: {{ point.examFrequency }}</span>
+                </div>
+              </div>
+              
+              <div class="point-footer">
+                <span class="last-reviewed">
+                  上次复习: {{ new Date(point.lastReviewed).toLocaleDateString() }}
+                </span>
+              </div>
+            </el-card>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="考点详情" name="detail" :disabled="!selectedPoint">
+          <div v-if="selectedPoint" class="detail-section">
+            <el-card>
+              <template #header>
+                <div class="detail-header">
+                  <h2>{{ selectedPoint.title }}</h2>
+                  <el-tag :color="getCategoryColor(selectedPoint.category)" style="color: white; font-size: 1.1em;">
+                    {{ selectedPoint.category }}
+                  </el-tag>
+                </div>
+              </template>
+              
+              <div class="detail-content">
+                <div class="point-description">
+                  <h3>考点内容</h3>
+                  <p>{{ selectedPoint.content }}</p>
+                </div>
+                
+                <div class="key-concepts">
+                  <h3>核心概念</h3>
+                  <div class="concepts-list">
+                    <el-tag 
+                      v-for="concept in selectedPoint.keyConcepts" 
+                      :key="concept"
+                      type="success"
+                      size="large"
+                    >
+                      {{ concept }}
+                    </el-tag>
+                  </div>
+                </div>
+                
+                <div class="exam-info">
+                  <div class="info-item">
+                    <span class="label">考查频次:</span>
+                    <span class="value">{{ selectedPoint.examFrequency }}�?/span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">上次复习:</span>
+                    <span class="value">{{ new Date(selectedPoint.lastReviewed).toLocaleDateString() }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="label">下次复习:</span>
+                    <span class="value">
+                      {{
+                        new Date(
+                          new Date(selectedPoint.lastReviewed).getTime() + 
+                          selectedPoint.reviewInterval * 24 * 60 * 60 * 1000
+                        ).toLocaleDateString()
+                      }}
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="mastery-control">
+                  <h3>掌握程度调节</h3>
+                  <div class="slider-container">
+                    <el-slider
+                      v-model="masteryLevel"
+                      :min="0"
+                      :max="100"
+                      show-input
+                      :marks="{
+                        0: '完全不会',
+                        25: '模糊认识',
+                        50: '基本掌握',
+                        75: '熟练掌握',
+                        100: '完全掌握'
+                      }"
+                    />
+                  </div>
+                  
+                  <div class="mastery-buttons">
+                    <el-button @click="updateMastery(0)">不会</el-button>
+                    <el-button @click="updateMastery(25)">模糊</el-button>
+                    <el-button @click="updateMastery(50)">一�?/el-button>
+                    <el-button @click="updateMastery(75)">熟练</el-button>
+                    <el-button @click="updateMastery(100)">掌握</el-button>
+                  </div>
+                </div>
+                
+                <div class="related-section">
+                  <el-button 
+                    @click="showRelatedAffairs = !showRelatedAffairs"
+                    :type="showRelatedAffairs ? 'primary' : 'default'"
+                  >
+                    {{ showRelatedAffairs ? '隐藏' : '显示' }}关联时政
+                  </el-button>
+                  
+                  <div v-if="showRelatedAffairs" class="related-affairs">
+                    <h4>关联的时政内�?/h4>
+                    <div 
+                      v-for="affair in getRelatedAffairs(selectedPoint.id)" 
+                      :key="affair.id"
+                      class="related-affair"
+                    >
+                      <div class="affair-title">{{ affair.title }}</div>
+                      <div class="affair-date">{{ new Date(affair.date).toLocaleDateString() }}</div>
+                    </div>
+                    
+                    <div v-if="getRelatedAffairs(selectedPoint.id).length === 0" class="no-related">
+                      暂无关联的时政内�?
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="detail-actions">
+                  <el-button 
+                    size="large"
+                    @click="selectedPoint = null"
+                  >
+                    返回列表
+                  </el-button>
+                </div>
+              </div>
+            </el-card>
+          </div>
+          
+          <div v-else class="no-selection">
+            <el-icon size="60" color="#999999"><Document /></el-icon>
+            <p>请先从考点列表中选择一个考点</p>
+          </div>
+        </el-tab-pane>
+        
+        <el-tab-pane label="复习计划" name="review">
+          <div class="review-content">
+            <div class="review-header">
+              <h3>今日复习任务</h3>
+              <p>根据遗忘曲线制定的科学复习计�?/p>
+            </div>
+            
+            <div class="review-today">
+              <el-card>
+                <template #header>
+                  <div class="card-header">
+                    <h4>今日待复习考点</h4>
+                    <el-tag type="warning">{{ dueForReview.length }}�?/el-tag>
+                  </div>
+                </template>
+                
+                <div v-if="dueForReview.length > 0" class="review-list">
+                  <div 
+                    v-for="point in dueForReview.slice(0, 10)" 
+                    :key="point.id"
+                    class="review-item"
+                    @click="selectPoint(point); activeTab = 'detail'"
+                  >
+                    <div class="point-info">
+                      <span class="point-title">{{ point.title }}</span>
+                      <el-tag :color="getCategoryColor(point.category)" size="small" style="color: white;">
+                        {{ point.category }}
+                      </el-tag>
+                    </div>
+                    <div class="review-details">
+                      <span class="mastery-level">{{ point.masteryLevel }}%</span>
+                      <span class="exam-frequency">{{ point.examFrequency }}�?/span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div v-else class="no-review">
+                  <el-icon size="40" color="#67C23A"><Check /></el-icon>
+                  <p>今日复习任务已完成！</p>
+                </div>
+              </el-card>
+            </div>
+            
+            <div class="weekly-plan">
+              <el-card>
+                <template #header>
+                  <h4>本周复习计划</h4>
+                </template>
+                
+                <div class="plan-overview">
+                  <div class="plan-stats">
+                    <div class="stat-item">
+                      <span class="label">本周总复�?</span>
+                      <span class="value">35个考点</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="label">重点科目:</span>
+                      <span class="value">马原、毛中特</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="label">高频考点:</span>
+                      <span class="value">15�?/span>
+                    </div>
+                  </div>
+                  
+                  <el-button type="primary" disabled>
+                    生成详细计划（开发中�?
+                  </el-button>
+                </div>
+              </el-card>
+            </div>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.political-points-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 2.2em;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.section-description {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.stats-section {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #9C27B0 0%, #FF9800 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.category-stats-section {
+  margin-bottom: 30px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.category-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.category-stat-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.category-title {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.category-count {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.category-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.points-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.points-tabs :deep(.el-tabs__header) {
+  margin-bottom: 30px;
+}
+
+.points-tabs :deep(.el-tabs__nav-wrap)::after {
+  display: none;
+}
+
+.points-tabs :deep(.el-tabs__item) {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #666666;
+}
+
+.points-tabs :deep(.el-tabs__item.is-active) {
+  color: #9C27B0;
+  font-weight: 600;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.point-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.point-card.selected {
+  border-color: #9C27B0;
+  box-shadow: 0 10px 25px rgba(156, 39, 176, 0.2);
+}
+
+.point-card:hover:not(.selected) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.point-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.point-header h3 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.2em;
+  flex: 1;
+  margin-right: 15px;
+}
+
+.point-content p {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.point-keywords {
+  margin-bottom: 15px;
+}
+
+.point-keywords .el-tag {
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
+
+.point-stats {
+  margin-bottom: 15px;
+}
+
+.mastery-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mastery-indicator .label {
+  font-size: 0.9em;
+  color: #666666;
+  min-width: 60px;
+}
+
+.mastery-indicator .level {
+  font-weight: 600;
+  color: #333333;
+  min-width: 40px;
+}
+
+.frequency {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.point-footer {
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+
+.last-reviewed {
+  color: #999999;
+  font-size: 0.85em;
+}
+
+.detail-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-header h2 {
+  color: #333333;
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.point-description h3, .key-concepts h3, .mastery-control h3 {
+  color: #333333;
+  margin: 25px 0 15px 0;
+  font-size: 1.3em;
+}
+
+.point-description p {
+  color: #444444;
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+.concepts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.exam-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item .label {
+  color: #666666;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.info-item .value {
+  color: #333333;
+  font-weight: 600;
+}
+
+.slider-container {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.mastery-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.related-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.related-affairs {
+  margin-top: 20px;
+}
+
+.related-affairs h4 {
+  color: #333333;
+  margin: 0 0 15px 0;
+  font-size: 1.2em;
+}
+
+.related-affair {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.related-affair:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.affair-title {
+  color: #333333;
+  font-weight: 500;
+}
+
+.affair-date {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.no-related {
+  text-align: center;
+  color: #999999;
+  padding: 20px;
+}
+
+.detail-actions {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
+}
+
+.review-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.review-header {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.review-header h3 {
+  color: #333333;
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.review-header p {
+  color: #666666;
+  font-size: 1.1em;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  background: #e3f2fd;
+  transform: translateX(5px);
+}
+
+.point-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.point-title {
+  font-weight: 500;
+  color: #333333;
+}
+
+.review-details {
+  display: flex;
+  gap: 15px;
+  color: #666666;
+  font-size: 0.9em;
+}
+
+.no-review {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999999;
+}
+
+.no-review p {
+  margin: 20px 0 0 0;
+  font-size: 1.1em;
+}
+
+.weekly-plan .plan-overview {
+  text-align: center;
+}
+
+.plan-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item .label {
+  color: #666666;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.stat-item .value {
+  color: #333333;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.no-selection {
+  text-align: center;
+  padding: 80px 20px;
+  color: #999999;
+}
+
+.no-selection p {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+/* 响应式设�?*/
+@media (max-width: 1024px) {
+  .review-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .exam-info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .plan-stats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .political-points-container {
+    padding: 20px 15px;
+  }
+  
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .category-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .points-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .point-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mastery-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .mastery-indicator {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .review-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .point-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+</style>
