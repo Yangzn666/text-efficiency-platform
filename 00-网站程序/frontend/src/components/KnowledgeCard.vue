@@ -644,6 +644,38 @@ const cardData = {
   compiler: {
     id: 'compiler',
     title: '💡 知识点卡片：编译器 vs 解释器'
+  },
+  ieee754: {
+    id: 'ieee754',
+    title: '💡 知识点卡片：IEEE 754浮点数标准'
+  },
+  overflow: {
+    id: 'overflow',
+    title: '💡 知识点卡片：溢出判断三种方法'
+  },
+  complement: {
+    id: 'complement',
+    title: '💡 知识点卡片：补码的本质与优势'
+  },
+  floatCalc: {
+    id: 'floatCalc',
+    title: '💡 知识点卡片：浮点数加减运算5步骤'
+  },
+  shift: {
+    id: 'shift',
+    title: '💡 知识点卡片：算术移位vs逻辑移位'
+  },
+  booth: {
+    id: 'booth',
+    title: '💡 知识点卡片：布斯乘法算法'
+  },
+  amdahl: {
+    id: 'amdahl',
+    title: '💡 知识点卡片：Amdahl定律详解'
+  },
+  division: {
+    id: 'division',
+    title: '💡 知识点卡片：定点数除法（加减交替法）'
   }
 }
 
@@ -704,6 +736,75 @@ const compilerComparisonData = [
   { aspect: '内存占用', compiler: '少', interpreter: '多' },
   { aspect: '错误检测', compiler: '编译时发现', interpreter: '运行时发现' },
   { aspect: '典型语言', compiler: 'C/C++/Rust/Go', interpreter: 'Python/JS/Ruby/PHP' }
+]
+
+// IEEE 754浮点数标准相关数据
+const singlePrecisionData = [
+  { field: '符号位 S', bits: '1位', description: '0正1负' },
+  { field: '阶码 E', bits: '8位', description: '移码表示，偏置值127' },
+  { field: '尾数 M', bits: '23位', description: '隐含最高位1，实际精度24位' }
+]
+
+const doublePrecisionData = [
+  { field: '符号位 S', bits: '1位', description: '0正1负' },
+  { field: '阶码 E', bits: '11位', description: '移码表示，偏置值1023' },
+  { field: '尾数 M', bits: '52位', description: '隐含最高位1，实际精度53位' }
+]
+
+const normalizationData = [
+  { type: '规格化数', condition: '阶码不全为0且不全为1', meaning: '正常浮点数，尾数隐含最高位1' },
+  { type: '非规格化数', condition: '阶码全为0', meaning: '非常接近0的数，尾数不隐含1' },
+  { type: '无穷大', condition: '阶码全为1，尾数全为0', meaning: '±∞（溢出结果）' },
+  { type: 'NaN', condition: '阶码全为1，尾数非0', meaning: '非数（非法运算结果）' },
+  { type: '零', condition: '阶码全为0，尾数全为0', meaning: '±0（符号位决定正负）' }
+]
+
+const specialValuesData = [
+  { value: '+∞', exp: '11111111', mantissa: '000...000', example: '正数除以0' },
+  { value: '-∞', exp: '11111111', mantissa: '000...000', example: '负数除以0' },
+  { value: 'NaN', exp: '11111111', mantissa: '非0', example: '0/0, √(-1)' },
+  { value: '+0', exp: '00000000', mantissa: '000...000', example: 'S=0' },
+  { value: '-0', exp: '00000000', mantissa: '000...000', example: 'S=1' }
+]
+
+// 溢出判断相关数据
+const overflowMethod1Data = [
+  { case: '正数 + 正数 = 负数', result: '符号位由0变1', overflow: '✅ 正溢出' },
+  { case: '负数 + 负数 = 正数', result: '符号位由1变0', overflow: '✅ 负溢出' },
+  { case: '正数 + 负数', result: '符号位任意', overflow: '❌ 不会溢出' }
+]
+
+const overflowMethod3Data = [
+  { signs: '00', meaning: '正数', overflow: '无溢出' },
+  { signs: '11', meaning: '负数', overflow: '无溢出' },
+  { signs: '01', meaning: '结果为正但超出范围', overflow: '✅ 正溢出' },
+  { signs: '10', meaning: '结果为负但超出范围', overflow: '✅ 负溢出' }
+]
+
+const overflowComparisonData = [
+  { method: '方法一：符号位判断', difficulty: '⭐', advantage: '直观易懂，快速判断', disadvantage: '只能判断是否溢出，不能区分类型' },
+  { method: '方法二：进位判断', difficulty: '⭐⭐', advantage: '硬件实现简单，常用', disadvantage: '需要获取进位信号' },
+  { method: '方法三：双符号位', difficulty: '⭐⭐⭐', advantage: '能区分正溢出和负溢出', disadvantage: '需要额外存储和运算' }
+]
+
+// 补码相关数据
+const encodingComparisonData = [
+  { encoding: '原码', positiveZero: '0000', negativeZero: '1000', range: '-127 ~ +127', calculation: '高（需分别处理）' },
+  { encoding: '反码', positiveZero: '0000', negativeZero: '1111', range: '-127 ~ +127', calculation: '中（循环进位）' },
+  { encoding: '补码', positiveZero: '0000', negativeZero: '无', range: '-128 ~ +127', calculation: '低（统一加法）' }
+]
+
+// 浮点数运算相关数据
+const normalizationStepsData = [
+  { type: '左规', condition: '尾数最高位为0（如0.0xxx）', operation: '尾数左移1位，阶码减1，直到最高位为1' },
+  { type: '右规', condition: '尾数溢出（如10.xxx或01.xxx）', operation: '尾数右移1位，阶码加1' }
+]
+
+const roundingMethodsData = [
+  { method: '就近舍入', rule: '四舍五入（丢失位>0.5则进位）', bias: '无偏差' },
+  { method: '朝0舍入', rule: '直接截断（丢弃低位）', bias: '偏向0' },
+  { method: '朝+∞舍入', rule: '正数进位，负数截断', bias: '偏向+∞' },
+  { method: '朝-∞舍入', rule: '正数截断，负数进位', bias: '偏向-∞' }
 ]
 
 function show(cardId: string = 'assembly') {

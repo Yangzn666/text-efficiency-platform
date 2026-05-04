@@ -526,6 +526,11 @@ Fe = 0.2, Se = 5
   - 运算仍较复杂
 
 #### 3. 补码 ⭐⭐ 必考
+
+<a href="javascript:void(0)" onclick="showKnowledgeCard('complement')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看补码的本质与优势（模运算、统一加减、唯一0）
+</a>
+
 - **正数**：与原码相同
 - **负数**：反码 + 1
 - **示例**：
@@ -726,6 +731,10 @@ Fe = 0.2, Se = 5
 
 ### 二、溢出判断 ⭐ 必考
 
+<a href="javascript:void(0)" onclick="showKnowledgeCard('overflow')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看溢出判断三种方法详解（符号位/进位/双符号位）
+</a>
+
 #### 1. 溢出的定义
 运算结果超出了机器数的表示范围
 
@@ -839,7 +848,11 @@ M = 1.01（尾数）
 E = 3（阶码）
 \`\`\`
 
-#### 2. IEEE 754标准 \u2b50\u2b50 必考
+#### 2. IEEE 754标准 ⭐⭐ 必考
+
+<a href="javascript:void(0)" onclick="showKnowledgeCard('ieee754')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看IEEE 754详细解析（格式、转换、特殊值）
+</a>
 
 **单精度（32位）**：
 \`\`\`
@@ -870,7 +883,11 @@ E = 3（阶码）
 - 阶码全1，尾数非0 → NaN（非数）
 - 阶码全0，尾数全0 → 0
 
-### 二、浮点数加减运算 \u2b50\u2b50
+### 二、浮点数加减运算 ⭐⭐
+
+<a href="javascript:void(0)" onclick="showKnowledgeCard('floatCalc')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看浮点数加减运算5步骤详解（对阶/求和/规格化/舍入/溢出）
+</a>
 
 #### 步骤：
 
