@@ -23,8 +23,14 @@ export const useCompositionStore = defineStore('composition', () => {
   const currentChapterId = ref<string>('ch1')
   const currentSectionId = ref<string>('1.1')
   
-  // 学习进度记录
+  // 学习进度记录 - 立即从localStorage加载
   const studiedSections = ref<Set<string>>(new Set())
+  
+  // 立即加载进度,防止被空Set覆盖
+  const savedProgress = localStorage.getItem('composition_studied_sections')
+  if (savedProgress) {
+    studiedSections.value = new Set(JSON.parse(savedProgress))
+  }
   
   // 所有章节数据
   const chapters = ref<Chapter[]>([
@@ -4801,8 +4807,7 @@ DMA传输完成后，向CPU发出中断请求：
     }
   }
   
-  // 初始化时加载进度
-  loadProgress()
+  // loadProgress已经在初始化时执行,这里保留供外部调用
   
   return {
     // 状态
