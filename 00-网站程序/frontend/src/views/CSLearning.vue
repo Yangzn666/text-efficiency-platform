@@ -81,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted, ref } from 'vue'
+import { computed, watch, onMounted, ref, nextTick } from 'vue'
 import { useCompositionStore } from '@/stores/composition'
 import CompositionChapterNav from '@/components/CompositionChapterNav.vue'
 import MindMapView from '@/components/MindMapView.vue'
@@ -112,6 +112,21 @@ const toggleKnowledgePanel = () => {
 // 监听当前小节变化
 watch(currentSection, (newSection) => {
   console.log('当前小节切换为:', newSection?.id, newSection?.title)
+  
+  // 切换章节时,将滚动条重置到顶部
+  nextTick(() => {
+    // 知识点内容区域滚动到顶部
+    const knowledgeContent = document.querySelector('.knowledge-content')
+    if (knowledgeContent) {
+      knowledgeContent.scrollTop = 0
+    }
+    
+    // 错题本区域滚动到顶部
+    const wrongProblemsPanel = document.querySelector('.wrong-problems-panel')
+    if (wrongProblemsPanel) {
+      wrongProblemsPanel.scrollTop = 0
+    }
+  })
 })
 
 // 知识卡片引用
