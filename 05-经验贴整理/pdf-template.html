@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #fff;
+            padding: 40px 60px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        /* 标题样式 */
+        h1 {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            line-height: 1.4;
+        }
+        
+        h2 {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #3498db;
+            line-height: 1.5;
+        }
+        
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        /* 段落 */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            text-indent: 0;
+        }
+        
+        /* 列表 */
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+        
+        /* 引用块 */
+        blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        /* 代码块 */
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #e74c3c;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+        
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        tr:hover {
+            background: #e3f2fd;
+        }
+        
+        /* 强调 */
+        strong {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        em {
+            font-style: italic;
+            color: #555;
+        }
+        
+        /* 链接 */
+        a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 1px solid #3498db;
+        }
+        
+        a:hover {
+            color: #2980b9;
+            border-bottom-color: #2980b9;
+        }
+        
+        /* 分隔线 */
+        hr {
+            border: none;
+            border-top: 2px solid #ecf0f1;
+            margin: 30px 0;
+        }
+        
+        /* 特殊标记 */
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .warning {
+            background: #ffe6e6;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+        
+        .tip {
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 12px 15px;
+            margin: 15px 0;
+        }
+        
+        /* 页眉页脚 */
+        .header-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        /* 打印优化 */
+        @media print {
+            body {
+                padding: 20px 40px;
+            }
+            
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            table, pre, blockquote {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-info">
+        {{headerInfo}}
+    </div>
+    
+    <div id="content">
+        {{content}}
+    </div>
+</body>
+</html>
