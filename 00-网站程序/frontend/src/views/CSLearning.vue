@@ -40,10 +40,10 @@
       <!-- 右侧:知识点文档 -->
       <div class="knowledge-panel" :class="{ 'expanded': isKnowledgePanelExpanded }">
         <!-- 展开/收起按钮 -->
-        <div class="panel-toggle-btn" @click="toggleKnowledgePanel">
-          <el-icon :size="20">
-            <ArrowLeft v-if="isKnowledgePanelExpanded" />
-            <ArrowRight v-else />
+        <div class="panel-toggle-btn" @click="toggleKnowledgePanel" :title="isKnowledgePanelExpanded ? '收起面板' : '展开面板'">
+          <el-icon :size="18">
+            <DArrowLeft v-if="isKnowledgePanelExpanded" />
+            <DArrowRight v-else />
           </el-icon>
         </div>
               
@@ -89,7 +89,7 @@ import KnowledgeCard from '@/components/KnowledgeCard.vue'
 import CSWrongProblems from '@/components/CSWrongProblems.vue'
 import MarkdownIt from 'markdown-it'
 import { ElMessage } from 'element-plus'
-import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
+import { ArrowLeft, ArrowRight, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 
 const compositionStore = useCompositionStore()
 
@@ -240,55 +240,58 @@ function toggleCurrentSection() {
       flex: 1;
       min-width: 400px;
       overflow: hidden;
+      transition: flex 0.3s ease;
+      
+      .cs-learning-page .knowledge-panel.expanded & {
+        flex: 0.3;
+        min-width: 200px;
+      }
     }
     
     .knowledge-panel {
       width: 45%;
       min-width: 400px;
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       background: #fff;
       border-left: 1px solid #e8e8e8;
       position: relative;
       transition: all 0.3s ease;
-      z-index: 10;
       
       &.expanded {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 70%;
+        width: 65%;
         max-width: 900px;
-        box-shadow: -4px 0 16px rgba(0, 0, 0, 0.15);
-        z-index: 100;
+        min-width: 600px;
       }
       
       .panel-toggle-btn {
         position: absolute;
-        left: -20px;
+        left: -16px;
         top: 50%;
         transform: translateY(-50%);
-        width: 20px;
-        height: 60px;
-        background: #fff;
-        border: 1px solid #e8e8e8;
+        width: 16px;
+        height: 48px;
+        background: linear-gradient(to right, #f0f5ff, #fff);
+        border: 1px solid #d9d9d9;
         border-right: none;
-        border-radius: 8px 0 0 8px;
+        border-radius: 6px 0 0 6px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         color: #1890ff;
         transition: all 0.3s;
-        z-index: 101;
+        z-index: 10;
+        box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
         
         &:hover {
-          background: #1890ff;
+          background: linear-gradient(to right, #1890ff, #40a9ff);
           color: #fff;
           border-color: #1890ff;
-          width: 24px;
-          left: -24px;
+          width: 20px;
+          left: -20px;
+          box-shadow: -3px 0 8px rgba(24, 144, 255, 0.3);
         }
       }
       
