@@ -3,7 +3,7 @@
     <!-- 成就概览 -->
     <div class="achievements-overview">
       <div class="overview-cards">
-        <div class="overview-card">
+        <div class="overview-card highlight">
           <div class="card-icon">🏆</div>
           <div class="card-info">
             <div class="card-number">{{ psychologyStore.unlockedAchievements.length }}</div>
@@ -24,6 +24,14 @@
           <div class="card-info">
             <div class="card-number">{{ achievementCategories.size }}</div>
             <div class="card-label">成就类别</div>
+          </div>
+        </div>
+        
+        <div class="overview-card">
+          <div class="card-icon">📈</div>
+          <div class="card-info">
+            <div class="card-number">{{ completionRate }}%</div>
+            <div class="card-label">完成率</div>
           </div>
         </div>
       </div>
@@ -154,6 +162,12 @@ const totalAchievementPoints = computed(() => {
   )
 })
 
+const completionRate = computed(() => {
+  const total = psychologyStore.achievements.length
+  if (total === 0) return 0
+  return Math.round((psychologyStore.unlockedAchievements.length / total) * 100)
+})
+
 const completedActivitiesCount = computed(() => {
   // 这里需要从行为激活组件获取数据
   const activities = localStorage.getItem('behaviorActivities')
@@ -205,6 +219,22 @@ const formatDate = (dateString: string) => {
   background: white;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.overview-card.highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.overview-card.highlight .card-number,
+.overview.card.highlight .card-label {
+  color: white;
 }
 
 .card-icon {

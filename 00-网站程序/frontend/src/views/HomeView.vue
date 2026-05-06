@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import { Timer, DataAnalysis, Guide, MagicStick } from '@element-plus/icons-vue'
+import { ElMessage, ElDialog, ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus'
+import { Timer, DataAnalysis, Guide, MagicStick, Plus } from '@element-plus/icons-vue'
 import MonthlyCalendar from '@/components/MonthlyCalendar.vue'
 import DailyPlanCard from '@/components/DailyPlanCard.vue'
 import { useStudyStore } from '@/stores/study'
@@ -23,6 +23,95 @@ const newTodoCategory = ref('')
 
 // 学习计划相关数据
 const todayDate = ref(new Date().toISOString().split('T')[0])
+
+// 快速学习记录对话框
+const showStudyDialog = ref(false)
+const studySubject = ref('408专业课')
+const studyDuration = ref(25)
+const studyContent = ref('')
+
+const subjectOptions = [
+  { label: '408专业课', value: '408专业课' },
+  { label: '数学一', value: '数学一' },
+  { label: '英语一', value: '英语一' },
+  { label: '政治', value: '政治' }
+]
+
+const quickAddStudy = () => {
+  if (!studyContent.value.trim()) {
+    ElMessage.warning('请输入学习内容')
+    return
+  }
+  
+  const today = new Date().toISOString().split('T')[0]
+  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
+  
+  if (!studyData.studyRecords) {
+    studyData.studyRecords = []
+  }
+  
+  studyData.studyRecords.push({
+    id: 'record_' + Date.now(),
+    date: today,
+    subject: studySubject.value,
+    duration: studyDuration.value,
+    content: studyContent.value.trim(),
+    type: 'study',
+    createdAt: new Date().toISOString()
+  })
+  
+  localStorage.setItem('studyData', JSON.stringify(studyData))
+  
+  ElMessage.success(`✅ 已记录${studyDuration.value}分钟的${studySubject.value}学习！`)
+  
+  // 重置表单
+  studyContent.value = ''
+  studyDuration.value = 25
+  showStudyDialog.value = false
+}
+
+// 自动记录今天的学习（首次加载时执行）
+const autoRecordTodayStudy = () => {
+  const today = new Date().toISOString().split('T')[0]
+  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
+  
+  if (!studyData.studyRecords) {
+    studyData.studyRecords = []
+  }
+  
+  // 检查今天是否已经记录过这两条
+  const alreadyRecorded = studyData.studyRecords.some((record: any) => 
+    record.date === today && 
+    record.content.includes('第三章 存储器系统')
+  )
+  
+  if (!alreadyRecorded) {
+    // 记录第一次学习：16:00-16:25
+    studyData.studyRecords.push({
+      id: 'record_' + Date.now(),
+      date: today,
+      subject: '408专业课',
+      duration: 25,
+      content: '计算机组成原理 - 第三章 存储器系统',
+      type: 'study',
+      createdAt: new Date().toISOString()
+    })
+    
+    // 记录第二次学习：16:30-16:55
+    studyData.studyRecords.push({
+      id: 'record_' + (Date.now() + 1),
+      date: today,
+      subject: '408专业课',
+      duration: 25,
+      content: '计算机组成原理 - 第四章 指令系统',
+      type: 'study',
+      createdAt: new Date().toISOString()
+    })
+    
+    localStorage.setItem('studyData', JSON.stringify(studyData))
+    console.log('✅ 已自动记录今天的50分钟计组学习！')
+  }
+}
 const todayPlanItems = ref([
   { time: '8:00', activity: '起床 + 洗漱' },
   { time: '8:30', activity: '早餐 + 复习英语词汇(30分钟，复习剩余500词)' },
@@ -162,6 +251,9 @@ const formatDate = (dateStr: string) => {
 onMounted(() => {
   updateCountdown()
   countdownInterval = setInterval(updateCountdown, 1000)
+  
+  // 自动记录今天的学习
+  autoRecordTodayStudy()
 })
 
 onUnmounted(() => {
@@ -265,6 +357,9 @@ onUnmounted(() => {
             <h2 class="card-title">📋 今日待办</h2>
             <el-button size="small" type="primary" @click="showAddDialog = true">
               + 添加任务
+            </el-button>
+            <el-button size="small" type="success" @click="showStudyDialog = true" style="margin-left: 8px;">
+              ⏱️ 记录学习
             </el-button>
           </div>
           <div class="card-content">
@@ -391,6 +486,45 @@ onUnmounted(() => {
       <template #footer>
         <el-button @click="showAddDialog = false">取消</el-button>
         <el-button type="primary" @click="addTodo">添加</el-button>
+      </template>
+    </el-dialog>
+
+    <!-- 快速学习记录对话框 -->
+    <el-dialog v-model="showStudyDialog" title="⏱️ 快速记录学习时间" width="500px">
+      <el-form label-width="100px">
+        <el-form-item label="学习科目">
+          <el-select v-model="studySubject" placeholder="选择科目" style="width: 100%;">
+            <el-option 
+              v-for="option in subjectOptions" 
+              :key="option.value" 
+              :label="option.label" 
+              :value="option.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="学习时长">
+          <el-input-number 
+            v-model="studyDuration" 
+            :min="5" 
+            :max="180" 
+            :step="5"
+            style="width: 100%;"
+          />
+          <span style="margin-left: 10px; color: #999;">分钟</span>
+        </el-form-item>
+        <el-form-item label="学习内容">
+          <el-input 
+            v-model="studyContent" 
+            type="textarea"
+            :rows="3"
+            placeholder="例如：计算机组成原理 - 第三章 存储器系统" 
+            autofocus
+          />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="showStudyDialog = false">取消</el-button>
+        <el-button type="success" @click="quickAddStudy">✅ 记录</el-button>
       </template>
     </el-dialog>
 

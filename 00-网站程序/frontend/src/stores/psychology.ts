@@ -220,11 +220,11 @@ export const usePsychologyStore = defineStore('psychology', () => {
     // 这里可以添加具体的成就解锁逻辑
     const newAchievements: Achievement[] = []
     
-    // 示例成就
-    if (totalPoints.value >= 100 && !achievements.value.some(a => a.title === '初次突破')) {
+    // ===== 里程碑成就 =====
+    if (totalPoints.value >= 100 && !achievements.value.some(a => a.id === 'ach_milestone_1')) {
       newAchievements.push({
-        id: 'ach_1',
-        title: '初次突破',
+        id: 'ach_milestone_1',
+        title: '🌟 初次突破',
         description: '累计获得100积分',
         points: 100,
         unlockedAt: new Date().toISOString(),
@@ -232,14 +232,151 @@ export const usePsychologyStore = defineStore('psychology', () => {
       })
     }
     
-    if (cognitiveRecords.value.length >= 5 && !achievements.value.some(a => a.title === '认知勇士')) {
+    if (totalPoints.value >= 500 && !achievements.value.some(a => a.id === 'ach_milestone_2')) {
       newAchievements.push({
-        id: 'ach_2',
-        title: '认知勇士',
+        id: 'ach_milestone_2',
+        title: '💪 积少成多',
+        description: '累计获得500积分',
+        points: 500,
+        unlockedAt: new Date().toISOString(),
+        category: '里程碑'
+      })
+    }
+    
+    if (totalPoints.value >= 1000 && !achievements.value.some(a => a.id === 'ach_milestone_3')) {
+      newAchievements.push({
+        id: 'ach_milestone_3',
+        title: '🏆 千分达人',
+        description: '累计获得1000积分',
+        points: 1000,
+        unlockedAt: new Date().toISOString(),
+        category: '里程碑'
+      })
+    }
+    
+    if (totalPoints.value >= 2000 && !achievements.value.some(a => a.id === 'ach_milestone_4')) {
+      newAchievements.push({
+        id: 'ach_milestone_4',
+        title: '👑 积分大师',
+        description: '累计获得2000积分',
+        points: 2000,
+        unlockedAt: new Date().toISOString(),
+        category: '里程碑'
+      })
+    }
+    
+    // ===== 认知重构成就 =====
+    if (cognitiveRecords.value.length >= 5 && !achievements.value.some(a => a.id === 'ach_cognitive_1')) {
+      newAchievements.push({
+        id: 'ach_cognitive_1',
+        title: '🧠 认知勇士',
         description: '完成5次认知重构练习',
         points: 50,
         unlockedAt: new Date().toISOString(),
-        category: '练习成就'
+        category: '认知重构'
+      })
+    }
+    
+    if (cognitiveRecords.value.length >= 20 && !achievements.value.some(a => a.id === 'ach_cognitive_2')) {
+      newAchievements.push({
+        id: 'ach_cognitive_2',
+        title: '💭 思维蜕变',
+        description: '完成20次认知重构练习',
+        points: 100,
+        unlockedAt: new Date().toISOString(),
+        category: '认知重构'
+      })
+    }
+    
+    // ===== 情绪追踪成就 =====
+    if (moodRecords.value.length >= 7 && !achievements.value.some(a => a.id === 'ach_mood_1')) {
+      newAchievements.push({
+        id: 'ach_mood_1',
+        title: '📊 情绪观察者',
+        description: '记录7天情绪数据',
+        points: 35,
+        unlockedAt: new Date().toISOString(),
+        category: '情绪追踪'
+      })
+    }
+    
+    if (streakInfo.value.count >= 7 && !achievements.value.some(a => a.id === 'ach_streak_1')) {
+      newAchievements.push({
+        id: 'ach_streak_1',
+        title: '🔥 七日连击',
+        description: '连续7天记录情绪',
+        points: 70,
+        unlockedAt: new Date().toISOString(),
+        category: '连击成就'
+      })
+    }
+    
+    if (streakInfo.value.count >= 30 && !achievements.value.some(a => a.id === 'ach_streak_2')) {
+      newAchievements.push({
+        id: 'ach_streak_2',
+        title: '⚡ 月度坚持',
+        description: '连续30天记录情绪',
+        points: 300,
+        unlockedAt: new Date().toISOString(),
+        category: '连击成就'
+      })
+    }
+    
+    // ===== 学习联动成就 =====
+    if (integrationPoints.value.study >= 500 && !achievements.value.some(a => a.id === 'ach_study_1')) {
+      newAchievements.push({
+        id: 'ach_study_1',
+        title: '📚 学霸之路',
+        description: '通过学习获得500积分',
+        points: 100,
+        unlockedAt: new Date().toISOString(),
+        category: '学习成就'
+      })
+    }
+    
+    if (integrationPoints.value.attention >= 300 && !achievements.value.some(a => a.id === 'ach_attention_1')) {
+      newAchievements.push({
+        id: 'ach_attention_1',
+        title: '🎯 专注达人',
+        description: '通过专注获得300积分',
+        points: 80,
+        unlockedAt: new Date().toISOString(),
+        category: '专注成就'
+      })
+    }
+    
+    if (integrationPoints.value.todos >= 400 && !achievements.value.some(a => a.id === 'ach_todo_1')) {
+      newAchievements.push({
+        id: 'ach_todo_1',
+        title: '✅ 任务终结者',
+        description: '通过完成任务获得400积分',
+        points: 90,
+        unlockedAt: new Date().toISOString(),
+        category: '任务成就'
+      })
+    }
+    
+    // ===== 奖励兑换成就 =====
+    const redeemedCount = rewards.value.filter(r => r.redeemed).length
+    if (redeemedCount >= 5 && !achievements.value.some(a => a.id === 'ach_reward_1')) {
+      newAchievements.push({
+        id: 'ach_reward_1',
+        title: '🎁 奖励收藏家',
+        description: '兑换5个奖励',
+        points: 50,
+        unlockedAt: new Date().toISOString(),
+        category: '奖励成就'
+      })
+    }
+    
+    if (redeemedCount >= 10 && !achievements.value.some(a => a.id === 'ach_reward_2')) {
+      newAchievements.push({
+        id: 'ach_reward_2',
+        title: '🏅 奖励大师',
+        description: '兑换10个奖励',
+        points: 100,
+        unlockedAt: new Date().toISOString(),
+        category: '奖励成就'
       })
     }
     
@@ -453,32 +590,88 @@ export const usePsychologyStore = defineStore('psychology', () => {
   const initializeRewards = () => {
     if (rewards.value.length === 0) {
       rewards.value = [
+        // 日常小奖励
         {
           id: 'reward_1',
-          title: '休息时间',
-          description: '兑换30分钟自由休息时间',
-          cost: 50,
-          redeemed: false
-        },
-        {
-          id: 'reward_2',
-          title: '小零食',
-          description: '兑换一次小零食奖励',
+          title: '☕ 咖啡时间',
+          description: '兑换一杯喜欢的咖啡或茶',
           cost: 30,
           redeemed: false
         },
         {
-          id: 'reward_3',
-          title: '娱乐时间',
-          description: '兑换1小时娱乐时间',
-          cost: 100,
+          id: 'reward_2',
+          title: '🍫 小零食奖励',
+          description: '兑换一次小零食犒劳自己',
+          cost: 25,
           redeemed: false
         },
         {
+          id: 'reward_3',
+          title: '😴 午休时光',
+          description: '兑换30分钟自由休息时间',
+          cost: 40,
+          redeemed: false
+        },
+        
+        // 中等奖励
+        {
           id: 'reward_4',
-          title: '购物基金',
-          description: '兑换小额购物基金',
+          title: '🎬 电影之夜',
+          description: '兑换一部想看的电影',
+          cost: 80,
+          redeemed: false
+        },
+        {
+          id: 'reward_5',
+          title: '🎮 游戏时间',
+          description: '兑换1小时游戏娱乐时间',
+          cost: 60,
+          redeemed: false
+        },
+        {
+          id: 'reward_6',
+          title: '📚 购书基金',
+          description: '兑换50元购书基金',
+          cost: 150,
+          redeemed: false
+        },
+        
+        // 高级奖励
+        {
+          id: 'reward_7',
+          title: '🍽️ 美食大餐',
+          description: '兑换一顿喜欢的美食',
+          cost: 120,
+          redeemed: false
+        },
+        {
+          id: 'reward_8',
+          title: '🛍️ 购物时光',
+          description: '兑换小额购物基金（100元）',
           cost: 200,
+          redeemed: false
+        },
+        {
+          id: 'reward_9',
+          title: '🎁 惊喜礼物',
+          description: '给自己买一个心仪已久的小礼物',
+          cost: 250,
+          redeemed: false
+        },
+        
+        // 终极奖励
+        {
+          id: 'reward_10',
+          title: '🏖️ 短途旅行',
+          description: '计划一次周末短途旅行',
+          cost: 500,
+          redeemed: false
+        },
+        {
+          id: 'reward_11',
+          title: '💻 数码装备',
+          description: '兑换数码配件或装备（300元）',
+          cost: 600,
           redeemed: false
         }
       ]

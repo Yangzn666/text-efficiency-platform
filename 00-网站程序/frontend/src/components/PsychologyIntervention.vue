@@ -59,6 +59,10 @@
         <el-tab-pane label="成就系统" name="achievements">
           <AchievementSystem />
         </el-tab-pane>
+        
+        <el-tab-pane label="学习成就" name="learningAchievements">
+          <LearningAchievements />
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -72,6 +76,7 @@ import BehaviorActivation from './BehaviorActivation.vue'
 import EnhancedRewardShop from './EnhancedRewardShop.vue'
 import AchievementSystem from './AchievementSystem.vue'
 import EnhancedMoodTracker from './EnhancedMoodTracker.vue'
+import LearningAchievements from './LearningAchievements.vue'
 
 const psychologyStore = usePsychologyStore()
 const activeTab = ref('mood')

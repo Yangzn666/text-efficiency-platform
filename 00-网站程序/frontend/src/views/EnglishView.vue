@@ -5,6 +5,9 @@ const ReadingPractice = defineAsyncComponent(() => import('@/components/Placehol
 const VocabularySystem = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
 const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
 const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/EnglishStudyPlan.vue'))
+const AIGrammarAssistant = defineAsyncComponent(() => import('@/components/AIGrammarAssistant.vue'))
+const GrammarDiagnosis = defineAsyncComponent(() => import('@/components/GrammarDiagnosis.vue'))
+const GrammarLearningPlan = defineAsyncComponent(() => import('@/components/GrammarLearningPlan.vue'))
 
 const activeTab = ref('knowledge')
 </script>
@@ -131,6 +134,18 @@ const activeTab = ref('knowledge')
         <el-tab-pane label="学习计划" name="studyPlan">
           <EnglishStudyPlan />
         </el-tab-pane>
+        
+        <el-tab-pane label="AI语法助手" name="aiGrammar">
+          <AIGrammarAssistant />
+        </el-tab-pane>
+        
+        <el-tab-pane label="语法诊断报告" name="grammarDiagnosis">
+          <GrammarDiagnosis />
+        </el-tab-pane>
+        
+        <el-tab-pane label="语法学习计划" name="grammarPlan">
+          <GrammarLearningPlan />
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -164,6 +179,7 @@ const activeTab = ref('knowledge')
   font-size: 1.2em;
   color: #424242;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .tab-navigation {

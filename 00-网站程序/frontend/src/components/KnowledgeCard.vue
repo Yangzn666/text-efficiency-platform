@@ -609,6 +609,865 @@
           </ul>
         </div>
       </template>
+      
+      <!-- 补码的本质与优势 -->
+      <template v-if="currentCard?.id === 'complement'">
+        <h3>💡 知识点卡片：补码的本质与优势</h3>
+        
+        <div class="card-section">
+          <h4>🔢 什么是补码？</h4>
+          <ul>
+            <li><strong>定义</strong>：一种带符号整数的表示方法</li>
+            <li><strong>核心思想</strong>：基于<strong>模运算</strong>（Modular Arithmetic）</li>
+            <li><strong>正数</strong>：补码 = 原码</li>
+            <li><strong>负数</strong>：补码 = 反码 + 1</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 补码的三大优势</h4>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优势1：唯一的0表示</strong>
+              <ul>
+                <li>✅ 原码和反码都有+0和-0两种表示</li>
+                <li>✅ 补码只有唯一的0（0000...0）</li>
+                <li>✅ 避免了歧义，简化了比较运算</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优势2：统一加减运算</strong>
+              <ul>
+                <li>✅ 减法可以转换为加法：[A-B]补 = [A]补 + [-B]补</li>
+                <li>✅ CPU只需要一个加法器，不需要减法器</li>
+                <li>✅ 简化了硬件设计，提高了运算速度</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优势3：符号位参与运算</strong>
+              <ul>
+                <li>✅ 符号位和数值位一起参与运算</li>
+                <li>✅ 不需要单独处理符号位</li>
+                <li>✅ 运算规则简单统一</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三种编码对比</h4>
+          <el-table :data="encodingComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="encoding" label="编码方式" width="100" />
+            <el-table-column prop="positiveZero" label="+0表示" width="100" />
+            <el-table-column prop="negativeZero" label="-0表示" width="100" />
+            <el-table-column prop="range" label="表示范围" width="150" />
+            <el-table-column prop="calculation" label="运算复杂度" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》数据表示章节中：</p>
+          <ul>
+            <li>✅ 掌握补码的定义和计算方法</li>
+            <li>✅ 理解补码相比原码、反码的优势</li>
+            <li>✅ 能够进行补码的加减运算</li>
+            <li>✅ 理解C语言中整数以补码形式存储</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 溢出判断三种方法 -->
+      <template v-if="currentCard?.id === 'overflow'">
+        <h3>💡 知识点卡片：溢出判断三种方法</h3>
+        
+        <div class="card-section">
+          <h4>⚠️ 什么是溢出？</h4>
+          <ul>
+            <li><strong>定义</strong>：运算结果超出了机器数的表示范围</li>
+            <li><strong>正溢出</strong>：两个正数相加，结果为负</li>
+            <li><strong>负溢出</strong>：两个负数相加，结果为正</li>
+            <li><strong>注意</strong>：正数加负数不会溢出</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 方法一：符号位判断</h4>
+          <el-table :data="overflowMethod1Data" border stripe style="width: 100%">
+            <el-table-column prop="case" label="情况" width="200" />
+            <el-table-column prop="result" label="结果" width="200" />
+            <el-table-column prop="overflow" label="是否溢出" />
+          </el-table>
+          <p style="margin-top: 12px; color: #606266;"><strong>优点</strong>：直观易懂，快速判断<br><strong>缺点</strong>：只能判断是否溢出，不能区分类型</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 方法二：进位判断（最常用）</h4>
+          <p><strong>公式</strong>：溢出 = Cn ⊕ Cn-1</p>
+          <ul>
+            <li>Cn：符号位的进位</li>
+            <li>Cn-1：最高数值位的进位</li>
+            <li>⊕：异或运算（不同为1，相同为0）</li>
+          </ul>
+          <p style="margin-top: 12px; color: #606266;"><strong>优点</strong>：硬件实现简单，常用<br><strong>缺点</strong>：需要获取进位信号</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 方法三：双符号位（变形补码）</h4>
+          <el-table :data="overflowMethod3Data" border stripe style="width: 100%">
+            <el-table-column prop="signs" label="双符号位" width="120" />
+            <el-table-column prop="meaning" label="含义" width="200" />
+            <el-table-column prop="overflow" label="是否溢出" />
+          </el-table>
+          <p style="margin-top: 12px; color: #606266;"><strong>优点</strong>：能区分正溢出和负溢出<br><strong>缺点</strong>：需要额外存储和运算</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三种方法对比</h4>
+          <el-table :data="overflowComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="method" label="方法" width="200" />
+            <el-table-column prop="difficulty" label="难度" width="100" />
+            <el-table-column prop="advantage" label="优点" width="200" />
+            <el-table-column prop="disadvantage" label="缺点" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》定点数运算章节中：</p>
+          <ul>
+            <li>✅ 掌握三种溢出判断方法</li>
+            <li>✅ 能够进行溢出判断的计算题</li>
+            <li>✅ 理解溢出的原因和后果</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- IEEE 754浮点数标准 -->
+      <template v-if="currentCard?.id === 'ieee754'">
+        <h3>💡 知识点卡片：IEEE 754浮点数标准</h3>
+        
+        <div class="card-section">
+          <h4>📐 IEEE 754标准格式</h4>
+          <p><strong>单精度（32位）</strong>：</p>
+          <el-table :data="singlePrecisionData" border stripe style="width: 100%">
+            <el-table-column prop="field" label="字段" width="120" />
+            <el-table-column prop="bits" label="位数" width="100" />
+            <el-table-column prop="description" label="说明" />
+          </el-table>
+          
+          <p style="margin-top: 16px;"><strong>双精度（64位）</strong>：</p>
+          <el-table :data="doublePrecisionData" border stripe style="width: 100%">
+            <el-table-column prop="field" label="字段" width="120" />
+            <el-table-column prop="bits" label="位数" width="100" />
+            <el-table-column prop="description" label="说明" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔢 规格化与非规格化</h4>
+          <el-table :data="normalizationData" border stripe style="width: 100%">
+            <el-table-column prop="type" label="类型" width="120" />
+            <el-table-column prop="condition" label="条件" width="200" />
+            <el-table-column prop="meaning" label="含义" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 特殊值表示</h4>
+          <el-table :data="specialValuesData" border stripe style="width: 100%">
+            <el-table-column prop="value" label="值" width="80" />
+            <el-table-column prop="exp" label="阶码" width="120" />
+            <el-table-column prop="mantissa" label="尾数" width="120" />
+            <el-table-column prop="example" label="示例" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》浮点数章节中：</p>
+          <ul>
+            <li>✅ 掌握IEEE 754标准的格式（单精度、双精度）</li>
+            <li>✅ 能够进行十进制到IEEE 754的转换</li>
+            <li>✅ 理解规格化、非规格化、特殊值的表示</li>
+            <li>✅ 掌握浮点数的加减运算步骤</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 浮点数加减运算5步骤 -->
+      <template v-if="currentCard?.id === 'floatCalc'">
+        <h3>💡 知识点卡片：浮点数加减运算5步骤</h3>
+        
+        <div class="card-section">
+          <h4>📝 运算步骤总览</h4>
+          <ol>
+            <li><strong>对阶</strong>：小阶向大阶看齐</li>
+            <li><strong>尾数求和</strong>：按补码加法规则进行</li>
+            <li><strong>规格化</strong>：左规或右规</li>
+            <li><strong>舍入</strong>：处理精度损失</li>
+            <li><strong>溢出判断</strong>：检查阶码是否溢出</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>1️⃣ 对阶</h4>
+          <ul>
+            <li><strong>原则</strong>：小阶向大阶看齐</li>
+            <li><strong>操作</strong>：阶码小的尾数右移，右移位数 = 阶码差</li>
+            <li><strong>原因</strong>：右移丢失的是低位，误差较小；左移会丢失高位，误差大</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>2️⃣ 尾数求和</h4>
+          <ul>
+            <li>按补码加法规则进行</li>
+            <li>符号位参与运算</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>3️⃣ 规格化</h4>
+          <el-table :data="normalizationStepsData" border stripe style="width: 100%">
+            <el-table-column prop="type" label="类型" width="100" />
+            <el-table-column prop="condition" label="条件" width="250" />
+            <el-table-column prop="operation" label="操作" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>4️⃣ 舍入</h4>
+          <el-table :data="roundingMethodsData" border stripe style="width: 100%">
+            <el-table-column prop="method" label="方法" width="120" />
+            <el-table-column prop="rule" label="规则" width="250" />
+            <el-table-column prop="bias" label="偏差" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>5️⃣ 溢出判断</h4>
+          <ul>
+            <li><strong>阶码上溢</strong>：结果太大 → ±∞</li>
+            <li><strong>阶码下溢</strong>：结果太小 → 0</li>
+            <li><strong>尾数溢出</strong>：通过右规解决，不算真正的溢出</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》浮点数章节中：</p>
+          <ul>
+            <li>✅ 掌握浮点数加减运算的5个步骤</li>
+            <li>✅ 能够进行具体的计算题</li>
+            <li>✅ 理解对阶、规格化、舍入的原理</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- DRAM刷新机制详解 -->
+      <template v-if="currentCard?.id === 'dramRefresh'">
+        <h3>💡 知识点卡片：DRAM刷新机制详解</h3>
+        
+        <div class="card-section">
+          <h4>⚠️ 为什么需要刷新？</h4>
+          <ul>
+            <li><strong>原因</strong>：DRAM使用电容存储电荷，电容会漏电</li>
+            <li><strong>保持时间</strong>：通常只能保持几ms（毫秒）</li>
+            <li><strong>后果</strong>：如果不刷新，数据会丢失</li>
+            <li><strong>刷新周期</strong>：通常2ms或64ms（所有行必须在刷新周期内刷新一遍）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 三种刷新方式对比</h4>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>1. 集中刷新</strong>
+              <ul>
+                <li>✅ 实现简单</li>
+                <li>❌ <strong>死区时间长</strong>（刷新期间不能访问内存）</li>
+                <li>示例：64ms周期，1024行，每行1个时钟周期 → 死区1024个时钟周期</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>2. 分散刷新</strong>
+              <ul>
+                <li>✅ <strong>无死区时间</strong></li>
+                <li>❌ <strong>存取周期变长</strong>（每个周期都要预留刷新时间）</li>
+                <li>示例：原500ns → 分散后1000ns（500ns读写+500ns刷新）</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>3. 异步刷新 ⭐最常用</strong>
+              <ul>
+                <li>✅ 折中方案，既有较短的死区时间，又不显著影响存取周期</li>
+                <li>❌ 控制逻辑较复杂</li>
+                <li>示例：64ms/1024行 = 每隔62.5μs刷新一行</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 刷新计算例题</h4>
+          <p><strong>题目</strong>：某DRAM芯片有1024行，刷新周期为64ms，采用异步刷新方式。问：刷新信号的时间间隔是多少？</p>
+          <p><strong>解答</strong>：</p>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">刷新间隔 = 刷新周期 / 行数
+        = 64ms / 1024
+        = 62.5μs
+
+即每隔62.5μs刷新一行。</pre>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》半导体存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握三种刷新方式的优缺点</li>
+            <li>✅ 能够进行刷新间隔的计算</li>
+            <li>✅ 理解为什么DRAM需要刷新而SRAM不需要</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- Cache地址映射三种方式 -->
+      <template v-if="currentCard?.id === 'cacheMapping'">
+        <h3>💡 知识点卡片：Cache地址映射三种方式</h3>
+        
+        <div class="card-section">
+          <h4>1️⃣ 直接映射</h4>
+          <ul>
+            <li><strong>原理</strong>：主存块只能映射到Cache的固定位置</li>
+            <li><strong>公式</strong>：Cache行号 = 主存块号 mod Cache总行数</li>
+            <li><strong>地址格式</strong>：| 标记Tag | Cache行号 | 块内偏移 |</li>
+          </ul>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优点</strong>：硬件简单，速度快
+            </div>
+            <div class="cons">
+              <strong>缺点</strong>：冲突率高
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>2️⃣ 全相联映射</h4>
+          <ul>
+            <li><strong>原理</strong>：主存块可以映射到Cache的任意位置</li>
+            <li><strong>地址格式</strong>：| 标记Tag | 块内偏移 |</li>
+          </ul>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优点</strong>：冲突率最低
+            </div>
+            <div class="cons">
+              <strong>缺点</strong>：硬件复杂，速度慢（需要比较所有行）
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>3️⃣ 组相联映射 ⭐⭐ 折中方案</h4>
+          <ul>
+            <li><strong>原理</strong>：Cache分组，主存块映射到固定组，组内任意位置</li>
+            <li><strong>公式</strong>：组号 = 主存块号 mod Cache总组数</li>
+            <li><strong>地址格式</strong>：| 标记Tag | 组号 | 块内偏移 |</li>
+            <li><strong>n路组相联</strong>：每组有n行（2路组相联最常用）</li>
+          </ul>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优点</strong>：折中直接映射和全相联
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》Cache章节中：</p>
+          <ul>
+            <li>✅ 掌握三种映射方式的原理和地址格式</li>
+            <li>✅ 能够进行映射计算题</li>
+            <li>✅ 理解各自的优缺点和应用场景</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- SRAM vs DRAM对比 -->
+      <template v-if="currentCard?.id === 'sramVsDram'">
+        <h3>💡 知识点卡片：SRAM vs DRAM对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 详细对比表</h4>
+          <el-table :data="sramDramComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="特性" width="120" />
+            <el-table-column prop="sram" label="SRAM" width="200" />
+            <el-table-column prop="dram" label="DRAM" width="200" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 核心区别</h4>
+          <ol>
+            <li><strong>存储元件</strong>：
+              <ul>
+                <li>SRAM：6个晶体管组成的双稳态触发器</li>
+                <li>DRAM：1个晶体管 + 1个电容（1T1C结构）</li>
+              </ul>
+            </li>
+            <li><strong>刷新需求</strong>：
+              <ul>
+                <li>SRAM：不需要刷新（只要不断电，信息就稳定）</li>
+                <li>DRAM：需要定期刷新（电容会漏电）</li>
+              </ul>
+            </li>
+            <li><strong>速度</strong>：
+              <ul>
+                <li>SRAM：快（访问时间短，约几ns）</li>
+                <li>DRAM：较慢（访问时间长，约几十ns）</li>
+              </ul>
+            </li>
+            <li><strong>应用场景</strong>：
+              <ul>
+                <li>SRAM：用于Cache（因为速度快）</li>
+                <li>DRAM：用于主存（因为容量大、成本低）</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》半导体存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握SRAM和DRAM的区别（必考选择题）</li>
+            <li>✅ 理解各自的应用场景</li>
+            <li>✅ 能够解释为什么Cache用SRAM而主存用DRAM</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 相联存储器原理 -->
+      <template v-if="currentCard?.id === 'associativeMemory'">
+        <h3>💡 知识点卡片：相联存储器原理</h3>
+        
+        <div class="card-section">
+          <h4>💡 什么是相联存储器？</h4>
+          <ul>
+            <li><strong>定义</strong>：按内容访问的存储器（Content-Addressable Memory, CAM）</li>
+            <li><strong>特点</strong>：不通过地址访问，而是通过<strong>数据内容</strong>进行查找</li>
+            <li><strong>工作原理</strong>：并行比较所有存储单元，速度极快（O(1)时间复杂度）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 工作过程</h4>
+          <ol>
+            <li>输入一个数据（关键字）</li>
+            <li>同时与所有存储单元的内容进行比较</li>
+            <li>返回匹配的地址或直接返回数据</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>📍 应用场景</h4>
+          <ul>
+            <li><strong>TLB（快表）</strong>：加速虚拟地址到物理地址的转换</li>
+            <li><strong>Cache标记比较</strong>：判断Cache是否命中</li>
+            <li><strong>路由器查表</strong>：快速查找路由表项</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 优缺点对比</h4>
+          <div class="pros-cons">
+            <div class="pros">
+              <strong>优点</strong>
+              <ul>
+                <li>✅ 查找速度快（并行比较）</li>
+                <li>✅ 适合频繁查找的场景</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <strong>缺点</strong>
+              <ul>
+                <li>❌ 硬件复杂（每个单元都需要比较器）</li>
+                <li>❌ 功耗大</li>
+                <li>❌ 集成度低</li>
+                <li>❌ 价格昂贵</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》存储器章节中：</p>
+          <ul>
+            <li>✅ 理解相联存储器的概念和工作原理</li>
+            <li>✅ 掌握其在TLB和Cache中的应用</li>
+            <li>✅ 了解其优缺点</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- Flash存储器分类与应用 -->
+      <template v-if="currentCard?.id === 'flashMemory'">
+        <h3>💡 知识点卡片：Flash存储器分类与应用</h3>
+        
+        <div class="card-section">
+          <h4>💡 什么是Flash存储器？</h4>
+          <ul>
+            <li><strong>定义</strong>：基于EEPROM技术改进的非易失性存储器</li>
+            <li><strong>特点</strong>：按块擦除（而非按字节），提高擦除速度</li>
+            <li><strong>优势</strong>：非易失性、速度快、抗震性好、体积小</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 NOR Flash vs NAND Flash</h4>
+          <el-table :data="flashComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="特性" width="120" />
+            <el-table-column prop="nor" label="NOR Flash" width="200" />
+            <el-table-column prop="nand" label="NAND Flash" width="200" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>📍 应用场景</h4>
+          <ul>
+            <li><strong>NOR Flash</strong>：存储固件、BIOS、嵌入式系统代码（支持XIP）</li>
+            <li><strong>NAND Flash</strong>：U盘、SSD、手机存储、SD卡（容量大、成本低）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 注意事项</h4>
+          <ul>
+            <li><strong>寿命有限</strong>：擦写次数约1万~10万次</li>
+            <li><strong>磨损均衡</strong>：需要算法延长寿命</li>
+            <li><strong>坏块管理</strong>：NAND Flash可能出现坏块</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》外存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握Flash存储器的特点</li>
+            <li>✅ 理解NOR和NAND的区别</li>
+            <li>✅ 了解SSD的工作原理</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- Cache性能计算 -->
+      <template v-if="currentCard?.id === 'cachePerformance'">
+        <h3>💡 知识点卡片：Cache性能计算</h3>
+        
+        <div class="card-section">
+          <h4>📐 核心公式</h4>
+          <p><strong>平均访问时间</strong>：</p>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">Ta = H × Tc + (1-H) × Tm</pre>
+          <ul>
+            <li>H：命中率（Hit Rate）</li>
+            <li>Tc：Cache访问时间</li>
+            <li>Tm：主存访问时间</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 计算例题</h4>
+          <p><strong>题目</strong>：Cache命中率90%，Cache访问时间10ns，主存100ns，求平均访问时间？</p>
+          <p><strong>解答</strong>：</p>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">Ta = 0.9 × 10 + 0.1 × 100
+   = 9 + 10
+   = 19ns</pre>
+          <p style="margin-top: 12px; color: #606266;"><strong>分析</strong>：虽然Cache命中率高达90%，但平均访问时间仍受未命中的10%影响较大。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 影响命中率的因素</h4>
+          <ul>
+            <li><strong>Cache容量</strong>：容量越大，命中率越高</li>
+            <li><strong>块大小</strong>：块太大或太小都会降低命中率</li>
+            <li><strong>映射方式</strong>：全相联 > 组相联 > 直接映射</li>
+            <li><strong>替换算法</strong>：LRU > FIFO > 随机</li>
+            <li><strong>程序局部性</strong>：局部性越好，命中率越高</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》Cache章节中：</p>
+          <ul>
+            <li>✅ 掌握平均访问时间的计算公式</li>
+            <li>✅ 能够进行命中率相关的计算题</li>
+            <li>✅ 理解影响命中率的因素</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 存储器扩展设计 -->
+      <template v-if="currentCard?.id === 'memoryExpansion'">
+        <h3>💡 知识点卡片：存储器扩展设计</h3>
+        
+        <div class="card-section">
+          <h4>1️⃣ 位扩展</h4>
+          <ul>
+            <li><strong>场景</strong>：存储芯片的字长不够</li>
+            <li><strong>方法</strong>：所有芯片的地址线、片选线、读写线并联，数据线分别连接</li>
+            <li><strong>示例</strong>：用8K×1位芯片组成8K×8位存储器 → 需要8片</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>2️⃣ 字扩展（容量扩展）</h4>
+          <ul>
+            <li><strong>场景</strong>：存储芯片的数量不够</li>
+            <li><strong>方法</strong>：所有芯片的数据线并联，地址线低位并联，高位通过译码器选择芯片</li>
+            <li><strong>示例</strong>：用16K×4位芯片组成64K×4位存储器 → 需要4片，用2-4译码器片选</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>3️⃣ 字位同时扩展</h4>
+          <ul>
+            <li><strong>方法</strong>：先位扩展，再字扩展（或先字后位）</li>
+            <li><strong>示例</strong>：用16K×1位芯片组成64K×8位存储器</li>
+          </ul>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">总容量 = 64K × 8位
+单片容量 = 16K × 1位
+需要芯片数 = (64K×8) / (16K×1) = 32片
+
+步骤：
+1. 先用8片16K×1位组成16K×8位（位扩展）
+2. 再用4组这样的组合，通过2-4译码器片选（字扩展）</pre>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》主存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握位扩展、字扩展、字位扩展的方法</li>
+            <li>✅ 能够进行芯片数量的计算</li>
+            <li>✅ 理解地址线和数据线的连接方式</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 虚拟存储器地址转换 -->
+      <template v-if="currentCard?.id === 'virtualMemoryAddress'">
+        <h3>💡 知识点卡片：虚拟存储器地址转换</h3>
+        
+        <div class="card-section">
+          <h4>📐 页式虚存地址结构</h4>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">| 页号P | 页内偏移d |</pre>
+          <ul>
+            <li><strong>页号P</strong>：查页表得到页框号</li>
+            <li><strong>页内偏移d</strong>：直接使用</li>
+            <li><strong>物理地址</strong> = 页框号 + 页内偏移</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 地址转换流程</h4>
+          <ol>
+            <li>CPU给出虚拟地址（页号P + 页内偏移d）</li>
+            <li>先查TLB（快表）
+              <ul>
+                <li>命中：直接得到页框号</li>
+                <li>未命中：查页表，同时更新TLB</li>
+              </ul>
+            </li>
+            <li>页框号 + 页内偏移 = 物理地址</li>
+            <li>访问物理内存</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚡ TLB加速原理</h4>
+          <ul>
+            <li><strong>TLB作用</strong>：Cache页表，加速地址转换</li>
+            <li><strong>TLB命中率</strong>：通常90%以上</li>
+            <li><strong>平均访问时间（有TLB）</strong>：</li>
+          </ul>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">Ta = H × (Ttlb + Tmem) + (1-H) × (Ttlb + 2×Tmem)</pre>
+          <ul>
+            <li>H：TLB命中率</li>
+            <li>Ttlb：TLB访问时间</li>
+            <li>Tmem：内存访问时间</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》虚拟存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握页式虚存的地址转换流程</li>
+            <li>✅ 理解TLB的作用和加速原理</li>
+            <li>✅ 能够进行有TLB的平均访问时间计算</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- RAID技术详解 -->
+      <template v-if="currentCard?.id === 'raid'">
+        <h3>💡 知识点卡片：RAID技术详解</h3>
+        
+        <div class="card-section">
+          <h4>📖 什么是RAID？</h4>
+          <ul>
+            <li><strong>定义</strong>：RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种将多个物理磁盘组合成一个逻辑单元的技术</li>
+            <li><strong>核心思想</strong>：通过数据分布、镜像或parity（奇偶校验）来提高性能、可靠性或两者兼有</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 RAID的三大作用</h4>
+          <ol>
+            <li><strong>提高数据可靠性</strong>
+              <ul>
+                <li>通过数据冗余（镜像或parity）防止单点故障</li>
+                <li>单个磁盘损坏时，数据仍可恢复</li>
+              </ul>
+            </li>
+            <li><strong>提升I/O性能</strong>
+              <ul>
+                <li>并行读写多个磁盘，提高吞吐量</li>
+                <li>适合高并发访问场景</li>
+              </ul>
+            </li>
+            <li><strong>扩大存储容量</strong>
+              <ul>
+                <li>将多个小容量磁盘组合成大容量逻辑卷</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 常见RAID级别对比表</h4>
+          <el-table :data="raidComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="level" label="RAID级别" width="100" />
+            <el-table-column prop="minDisks" label="最少磁盘数" width="100" />
+            <el-table-column prop="faultTolerance" label="容错能力" width="120" />
+            <el-table-column prop="spaceUtilization" label="空间利用率" width="120" />
+            <el-table-column prop="readPerformance" label="读性能" width="100" />
+            <el-table-column prop="writePerformance" label="写性能" width="100" />
+            <el-table-column prop="application" label="应用场景" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 各RAID级别详解</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">RAID 0（条带化）</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">磁盘1: [A1] [A3] [A5]
+磁盘2: [A2] [A4] [A6]</pre>
+          <ul>
+            <li><strong>原理</strong>：数据分散存储在多个磁盘</li>
+            <li><strong>优点</strong>：速度最快，空间利用率100%</li>
+            <li><strong>缺点</strong>：<span style="color: #f56c6c; font-weight: bold;">无冗余</span>，任一磁盘损坏则全部数据丢失</li>
+            <li><strong>适用</strong>：对速度要求高、数据不重要的场景（临时数据、视频编辑）</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">RAID 1（镜像）</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">磁盘1: [A1] [A2] [A3]
+磁盘2: [A1] [A2] [A3]  ← 完全相同</pre>
+          <ul>
+            <li><strong>原理</strong>：数据完全复制到另一块磁盘</li>
+            <li><strong>优点</strong>：可靠性最高，读取速度快</li>
+            <li><strong>缺点</strong>：空间利用率仅50%，成本高</li>
+            <li><strong>适用</strong>：操作系统、关键业务数据</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">RAID 5（分布式奇偶校验）⭐⭐</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">磁盘1: [A1] [A2] [P3]
+磁盘2: [B1] [P2] [B3]
+磁盘3: [P1] [C2] [C3]
+(P = Parity 奇偶校验)</pre>
+          <ul>
+            <li><strong>原理</strong>：数据和parity信息分散存储</li>
+            <li><strong>优点</strong>：兼顾性能和可靠性，空间利用率高</li>
+            <li><strong>缺点</strong>：写入时需要计算parity，写性能下降</li>
+            <li><strong>适用</strong>：通用文件服务器、中小型数据库</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">RAID 6（双重奇偶校验）</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">磁盘1: [A1] [A2] [P3] [Q4]
+磁盘2: [B1] [P2] [B3] [Q4]
+磁盘3: [P1] [C2] [C3] [Q4]
+磁盘4: [Q1] [Q2] [Q3] [D4]
+(P, Q = 两种不同的parity)</pre>
+          <ul>
+            <li><strong>原理</strong>：使用两种独立的parity算法</li>
+            <li><strong>优点</strong>：允许同时损坏2块磁盘</li>
+            <li><strong>缺点</strong>：写性能更低，需要至少4块磁盘</li>
+            <li><strong>适用</strong>：大容量存储系统、数据归档</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">RAID 10（镜像+条带化）⭐⭐⭐</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">第一组(RAID 1):     第二组(RAID 1):
+磁盘1: [A1] [A2]   磁盘3: [B1] [B2]
+磁盘2: [A1] [A2]   磁盘4: [B1] [B2]
+         ↓                  ↓
+      条带化(RAID 0) 组合</pre>
+          <ul>
+            <li><strong>原理</strong>：先做RAID 1镜像，再做RAID 0条带化</li>
+            <li><strong>优点</strong>：兼具RAID 1的可靠性和RAID 0的速度</li>
+            <li><strong>缺点</strong>：空间利用率仅50%，成本高</li>
+            <li><strong>适用</strong>：高性能数据库、虚拟化平台</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>💡 选择建议</h4>
+          <ul>
+            <li>🟢 <strong>追求速度</strong> → RAID 0（视频剪辑、游戏加载、临时缓存）</li>
+            <li>🔵 <strong>追求可靠性</strong> → RAID 1（操作系统、财务数据、邮件服务器）</li>
+            <li>🟡 <strong>平衡方案</strong> → RAID 5（文件服务器、Web服务器、中小型数据库）</li>
+            <li>🔴 <strong>高可靠性需求</strong> → RAID 6（大规模存储、视频监控、数据备份）</li>
+            <li>🟠 <strong>高性能+高可靠</strong> → RAID 10（核心数据库、虚拟化集群、高频交易系统）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 重要注意事项</h4>
+          <ol>
+            <li><strong>RAID不是备份</strong>：RAID只能防止硬件故障，不能防止误删除、病毒、火灾等</li>
+            <li><strong>定期测试</strong>：定期检查RAID状态，确保冗余有效</li>
+            <li><strong>热备盘</strong>：重要系统建议配置热备盘（Hot Spare），自动替换故障磁盘</li>
+            <li><strong>控制器电池</strong>：RAID卡需要电池保护缓存数据，断电时写入未完成的数据</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点（408专业课）</h4>
+          <p>在《计算机组成原理》外存储器章节中：</p>
+          <ul>
+            <li>✅ 理解RAID的基本概念和目的</li>
+            <li>✅ 掌握常见RAID级别的优缺点</li>
+            <li>✅ 能够计算RAID的空间利用率</li>
+            <li>✅ 理解parity的工作原理</li>
+          </ul>
+        </div>
+      </template>
     </div>
     
     <template #footer>
@@ -676,6 +1535,43 @@ const cardData = {
   division: {
     id: 'division',
     title: '💡 知识点卡片：定点数除法（加减交替法）'
+  },
+  // 第三章知识卡片
+  dramRefresh: {
+    id: 'dramRefresh',
+    title: '💡 知识点卡片：DRAM刷新机制详解'
+  },
+  cacheMapping: {
+    id: 'cacheMapping',
+    title: '💡 知识点卡片：Cache地址映射三种方式'
+  },
+  sramVsDram: {
+    id: 'sramVsDram',
+    title: '💡 知识点卡片：SRAM vs DRAM对比'
+  },
+  associativeMemory: {
+    id: 'associativeMemory',
+    title: '💡 知识点卡片：相联存储器原理'
+  },
+  flashMemory: {
+    id: 'flashMemory',
+    title: '💡 知识点卡片：Flash存储器分类与应用'
+  },
+  cachePerformance: {
+    id: 'cachePerformance',
+    title: '💡 知识点卡片：Cache性能计算'
+  },
+  memoryExpansion: {
+    id: 'memoryExpansion',
+    title: '💡 知识点卡片：存储器扩展设计'
+  },
+  virtualMemoryAddress: {
+    id: 'virtualMemoryAddress',
+    title: '💡 知识点卡片：虚拟存储器地址转换'
+  },
+  raid: {
+    id: 'raid',
+    title: '💡 知识点卡片：RAID技术详解'
   }
 }
 
@@ -805,6 +1701,37 @@ const roundingMethodsData = [
   { method: '朝0舍入', rule: '直接截断（丢弃低位）', bias: '偏向0' },
   { method: '朝+∞舍入', rule: '正数进位，负数截断', bias: '偏向+∞' },
   { method: '朝-∞舍入', rule: '正数截断，负数进位', bias: '偏向-∞' }
+]
+
+// SRAM vs DRAM对比数据
+const sramDramComparisonData = [
+  { feature: '存储元件', sram: '6个晶体管（六管触发器）', dram: '1个晶体管 + 1个电容（1T1C）' },
+  { feature: '刷新需求', sram: '不需要刷新', dram: '需要定期刷新' },
+  { feature: '速度', sram: '快（几ns）', dram: '较慢（几十ns）' },
+  { feature: '集成度', sram: '低', dram: '高' },
+  { feature: '功耗', sram: '较大', dram: '较小' },
+  { feature: '价格', sram: '昂贵', dram: '便宜' },
+  { feature: '应用场景', sram: 'Cache', dram: '主存' }
+]
+
+// Flash存储器对比数据
+const flashComparisonData = [
+  { feature: '读取方式', nor: '随机访问', nand: '顺序访问' },
+  { feature: '写入速度', nor: '慢', nand: '快' },
+  { feature: '擦除单位', nor: '字节/扇区', nand: '块' },
+  { feature: '容量', nor: '小（MB级）', nand: '大（GB级）' },
+  { feature: '成本', nor: '高', nand: '低' },
+  { feature: 'XIP支持', nor: '支持（可直接执行代码）', nand: '不支持' },
+  { feature: '应用', nor: 'BIOS、固件', nand: 'U盘、SSD、手机存储' }
+]
+
+// RAID级别对比数据
+const raidComparisonData = [
+  { level: 'RAID 0', minDisks: '2', faultTolerance: '❌ 无', spaceUtilization: '100%', readPerformance: '⭐⭐⭐ 极高', writePerformance: '⭐⭐⭐ 极高', application: '临时数据、视频编辑' },
+  { level: 'RAID 1', minDisks: '2', faultTolerance: '✅ 允许1块损坏', spaceUtilization: '50%', readPerformance: '⭐⭐ 一般', writePerformance: '⭐ 较低', application: '系统盘、关键数据' },
+  { level: 'RAID 5', minDisks: '3', faultTolerance: '✅ 允许1块损坏', spaceUtilization: '(n-1)/n', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐⭐ 中等', application: '文件服务器、数据库' },
+  { level: 'RAID 6', minDisks: '4', faultTolerance: '✅ 允许2块损坏', spaceUtilization: '(n-2)/n', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐ 较低', application: '大容量存储、归档' },
+  { level: 'RAID 10', minDisks: '4', faultTolerance: '✅ 允许每组1块损坏', spaceUtilization: '50%', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐⭐ 中等', application: '高性能数据库' }
 ]
 
 function show(cardId: string = 'assembly') {

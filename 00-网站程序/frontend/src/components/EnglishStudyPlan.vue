@@ -53,20 +53,23 @@
               class="lesson-item"
               :class="{ 'completed': lesson.completed }"
             >
-              <el-checkbox 
-                v-model="lesson.completed" 
-                @change="updateLessonStatus('fundamental', lesson.id)"
-              >
-                <div class="lesson-info">
-                  <h4>{{ lesson.title }}</h4>
+              <div class="lesson-main">
+                <input 
+                  type="checkbox" 
+                  :checked="lesson.completed"
+                  @change="toggleLesson('fundamental', lesson.id)"
+                  class="custom-checkbox"
+                />
+                <div class="lesson-content">
+                  <h4 class="lesson-title">{{ lesson.title }}</h4>
                   <p class="lesson-desc">{{ lesson.description }}</p>
                   
                   <!-- 词汇1800子项 -->
-                  <div v-if="lesson.subItems" class="lesson-subitems">
+                  <div v-if="lesson.subItems && lesson.id === 1" class="lesson-subitems">
                     <div v-for="(item, idx) in lesson.subItems" :key="idx" class="subitem">
                       <span class="subitem-name">{{ item.name }}</span>
-                      <span class="subitem-count">{{ item.count }}</span>
-                      <span v-if="item.status" class="subitem-status">✅ {{ item.status }}</span>
+                      <span class="subitem-count">{{ (item as SubItemWithStatus).count }}</span>
+                      <span v-if="'status' in item" class="subitem-status"> {{ (item as SubItemWithStatus).status }}</span>
                     </div>
                   </div>
                   
@@ -79,7 +82,7 @@
                   <div v-if="lesson.subItems && lesson.id === 3" class="lesson-steps">
                     <div v-for="(step, idx) in lesson.subItems" :key="idx" class="step-item">
                       <span class="step-name">{{ step.name }}</span>
-                      <span class="step-detail">{{ step.detail }}</span>
+                      <span class="step-detail">{{ (step as SubItemWithDetail).detail }}</span>
                     </div>
                   </div>
                   
@@ -94,7 +97,7 @@
                     <span class="type" :class="lesson.type">{{ lesson.type }}</span>
                   </div>
                 </div>
-              </el-checkbox>
+              </div>
             </div>
           </div>
         </div>
@@ -128,12 +131,15 @@
               class="lesson-item"
               :class="{ 'completed': lesson.completed }"
             >
-              <el-checkbox 
-                v-model="lesson.completed" 
-                @change="updateLessonStatus('summer', lesson.id)"
-              >
-                <div class="lesson-info">
-                  <h4>{{ lesson.title }}</h4>
+              <div class="lesson-main">
+                <input 
+                  type="checkbox" 
+                  :checked="lesson.completed"
+                  @change="toggleLesson('summer', lesson.id)"
+                  class="custom-checkbox"
+                />
+                <div class="lesson-content">
+                  <h4 class="lesson-title">{{ lesson.title }}</h4>
                   <p class="lesson-desc">{{ lesson.description }}</p>
                   
                   <!-- 直播+录播内容详情 -->
@@ -143,7 +149,7 @@
                       <span>{{ lesson.liveContent }}</span>
                     </div>
                     <div class="content-item recorded">
-                      <span class="content-label">📹 录播：</span>
+                      <span class="content-label"> 录播：</span>
                       <span>{{ lesson.recordedContent }}</span>
                     </div>
                   </div>
@@ -156,12 +162,12 @@
                   </div>
                   
                   <div class="lesson-meta">
-                    <span class="duration">️ {{ lesson.duration }}</span>
+                    <span class="duration">⏱️ {{ lesson.duration }}</span>
                     <span class="type" :class="lesson.type">{{ lesson.type }}</span>
                     <span v-if="lesson.highlight" class="highlight-badge">🌟 重点</span>
                   </div>
                 </div>
-              </el-checkbox>
+              </div>
             </div>
           </div>
         </div>
@@ -195,18 +201,21 @@
               class="lesson-item"
               :class="{ 'completed': lesson.completed }"
             >
-              <el-checkbox 
-                v-model="lesson.completed" 
-                @change="updateLessonStatus('final', lesson.id)"
-              >
-                <div class="lesson-info">
-                  <h4>{{ lesson.title }}</h4>
+              <div class="lesson-main">
+                <input 
+                  type="checkbox" 
+                  :checked="lesson.completed"
+                  @change="toggleLesson('final', lesson.id)"
+                  class="custom-checkbox"
+                />
+                <div class="lesson-content">
+                  <h4 class="lesson-title">{{ lesson.title }}</h4>
                   <p class="lesson-desc">{{ lesson.description }}</p>
                   
                   <!-- 题型列表 -->
                   <div v-if="lesson.questionTypes" class="question-types">
                     <span v-for="type in lesson.questionTypes" :key="type" class="type-tag">
-                       {{ type }}
+                      {{ type }}
                     </span>
                   </div>
                   
@@ -224,10 +233,10 @@
                   <div class="lesson-meta">
                     <span class="duration">⏱️ {{ lesson.duration }}</span>
                     <span class="type" :class="lesson.type">{{ lesson.type }}</span>
-                    <span v-if="lesson.highlight" class="highlight-badge"> 重点</span>
+                    <span v-if="lesson.highlight" class="highlight-badge">🌟 重点</span>
                   </div>
                 </div>
-              </el-checkbox>
+              </div>
             </div>
           </div>
         </div>
@@ -236,7 +245,7 @@
 
     <!-- 学习提醒 -->
     <div class="study-reminder" v-if="incompleteItems.length > 0">
-      <h4>📋 待完成任务提醒</h4>
+      <h4> 待完成任务提醒</h4>
       <ul>
         <li v-for="item in incompleteItems" :key="item.key">
           {{ item.text }}
@@ -246,9 +255,44 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
 import { ArrowDown } from '@element-plus/icons-vue'
+
+// 类型定义
+interface SubItemWithStatus {
+  name: string
+  count: string
+  status: string
+}
+
+interface SubItemWithDetail {
+  name: string
+  detail: string
+}
+
+type SubItem = SubItemWithStatus | SubItemWithDetail
+
+interface Lesson {
+  id: number
+  title: string
+  description: string
+  duration: string
+  type: string
+  completed: boolean
+  note?: string
+  subItems?: SubItem[]
+  yearRange?: string
+  passageCount?: number
+  steps?: string[]
+  liveContent?: string
+  recordedContent?: string
+  features?: string[]
+  highlight?: boolean
+  questionTypes?: string[]
+  setCount?: number
+  duration_days?: number
+}
 
 // 展开状态
 const expandedPhases = reactive({
@@ -274,7 +318,7 @@ const phaseStatus = reactive({
 })
 
 // 基础阶段课程（开始——6月）
-const fundamentalLessons = ref([
+const fundamentalLessons = ref<Lesson[]>([
   {
     id: 1,
     title: '词汇1800核心词汇（录播）',
@@ -336,11 +380,11 @@ const fundamentalLessons = ref([
 ])
 
 // 暑期强化阶段课程（7月——9月）
-const summerLessons = ref([
+const summerLessons = ref<Lesson[]>([
   {
     id: 1,
     title: '阅读四步法强化（直播+录播）',
-    description: '直播：阅读四步法“看、找、读、比”；录播：2016—2020真题讲解',
+    description: '直播：阅读四步法"看、找、读、比"；录播：2016—2020真题讲解',
     duration: '暑期强化',
     type: '直播+录播',
     completed: false,
@@ -390,7 +434,7 @@ const summerLessons = ref([
 ])
 
 // 冲刺模拟阶段课程（10月——12月底考前）
-const finalLessons = ref([
+const finalLessons = ref<Lesson[]>([
   {
     id: 1,
     title: '五大题型综合训练',
@@ -444,7 +488,7 @@ const overallProgress = computed(() => {
 })
 
 const incompleteItems = computed(() => {
-  const items = []
+  const items: Array<{ key: string; text: string }> = []
   
   // 检查未完成的基础课程
   fundamentalLessons.value.forEach(lesson => {
@@ -480,19 +524,12 @@ const incompleteItems = computed(() => {
 })
 
 // 方法
-const togglePhase = (phaseName) => {
+const togglePhase = (phaseName: 'fundamental' | 'summer' | 'final') => {
   expandedPhases[phaseName] = !expandedPhases[phaseName]
 }
 
-const updateLessonStatus = (phaseName, lessonId) => {
-  // 更新该阶段的进度
-  updatePhaseProgress(phaseName)
-  // 更新总体进度
-  updateOverallProgress()
-}
-
-const updatePhaseProgress = (phaseName) => {
-  let lessons, completedCount
+const toggleLesson = (phaseName: 'fundamental' | 'summer' | 'final', lessonId: number) => {
+  let lessons: Lesson[] | undefined
   
   switch(phaseName) {
     case 'fundamental':
@@ -506,7 +543,38 @@ const updatePhaseProgress = (phaseName) => {
       break
   }
   
-  completedCount = lessons.filter(lesson => lesson.completed).length
+  if (!lessons) return
+  
+  const lesson = lessons.find(l => l.id === lessonId)
+  if (lesson) {
+    lesson.completed = !lesson.completed
+    updatePhaseProgress(phaseName)
+  }
+}
+
+const updateLessonStatus = (phaseName: 'fundamental' | 'summer' | 'final', lessonId: number) => {
+  // 更新该阶段的进度
+  updatePhaseProgress(phaseName)
+}
+
+const updatePhaseProgress = (phaseName: 'fundamental' | 'summer' | 'final') => {
+  let lessons: Lesson[] | undefined
+  
+  switch(phaseName) {
+    case 'fundamental':
+      lessons = fundamentalLessons.value
+      break
+    case 'summer':
+      lessons = summerLessons.value
+      break
+    case 'final':
+      lessons = finalLessons.value
+      break
+  }
+  
+  if (!lessons) return
+  
+  const completedCount = lessons.filter(lesson => lesson.completed).length
   const progress = Math.round((completedCount / lessons.length) * 100)
   
   phaseStatus[phaseName].progress = progress
@@ -593,6 +661,11 @@ const updateOverallProgress = () => {
   padding: 20px;
   cursor: pointer;
   background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.phase-header:hover {
+  background: #e9ecef;
 }
 
 .phase-info h3 {
@@ -643,34 +716,86 @@ const updateOverallProgress = () => {
   border-radius: 10px;
   background: #f8f9fa;
   transition: all 0.3s ease;
+  border-left: 3px solid transparent;
 }
 
 .lesson-item.completed {
   background: #e8f5e8;
-  border-left: 3px solid #4CAF50;
+  border-left-color: #4CAF50;
 }
 
 .lesson-item:hover {
   background: #e9ecef;
 }
 
-.lesson-info h4 {
+/* 课程主要内容区 */
+.lesson-main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* 自定义复选框 */
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 3px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-checkbox:hover {
+  border-color: #409eff;
+}
+
+.custom-checkbox:checked {
+  background-color: #409eff;
+  border-color: #409eff;
+}
+
+.custom-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* 课程内容区 */
+.lesson-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.lesson-title {
   margin: 0 0 8px 0;
   color: #333;
   font-size: 1.1em;
+  font-weight: 600;
 }
 
 .lesson-desc {
   margin: 0 0 10px 0;
   color: #666;
   font-size: 0.95em;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .lesson-meta {
   display: flex;
   gap: 15px;
   font-size: 0.85em;
+  margin-top: 10px;
 }
 
 .duration {
@@ -694,19 +819,23 @@ const updateOverallProgress = () => {
 .subitem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 6px 10px;
   background: white;
   border-radius: 6px;
   font-size: 0.9em;
+  gap: 8px;
 }
 
 .subitem-name {
   color: #333;
+  flex: 1;
 }
 
 .subitem-count {
   color: #2196F3;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .subitem-status {
@@ -716,6 +845,7 @@ const updateOverallProgress = () => {
   padding: 2px 6px;
   background: #e8f5e9;
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 /* 课程备注样式 */
@@ -742,9 +872,11 @@ const updateOverallProgress = () => {
 .step-item {
   display: flex;
   justify-content: space-between;
-  padding: 6px 0;
+  align-items: center;
+  padding: 8px 0;
   border-bottom: 1px dashed #e0e0e0;
   font-size: 0.9em;
+  gap: 10px;
 }
 
 .step-item:last-child {
@@ -754,11 +886,13 @@ const updateOverallProgress = () => {
 .step-name {
   color: #4CAF50;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .step-detail {
   color: #666;
   text-align: right;
+  flex: 1;
 }
 
 /* 年份信息样式 */
@@ -786,6 +920,8 @@ const updateOverallProgress = () => {
 .content-item.live {
   color: #F44336;
   border-bottom: 1px dashed #e0e0e0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .content-item.recorded {
@@ -921,6 +1057,10 @@ const updateOverallProgress = () => {
   .lesson-meta {
     flex-direction: column;
     gap: 5px;
+  }
+  
+  .lesson-subitems {
+    grid-template-columns: 1fr;
   }
 }
 </style>
