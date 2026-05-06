@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注入学习记录</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 600px;
+      text-align: center;
+    }
+    h1 {
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    .status {
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .loading {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    .success {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+    .error {
+      background: #ffebee;
+      color: #d32f2f;
+    }
+    .info {
+      background: #fff3e0;
+      color: #f57c00;
+      margin-top: 20px;
+      text-align: left;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .details {
+      text-align: left;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    .details h3 {
+      color: #667eea;
+      margin-top: 0;
+    }
+    .details ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .details li {
+      padding: 5px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .details li:last-child {
+      border-bottom: none;
+      font-weight: bold;
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 学习记录注入工具</h1>
+    
+    <div id="status" class="status loading">
+      ⏳ 正在准备注入2026-05-05的英语语法学习记录...
+    </div>
+    
+    <div id="buttons" style="display: none;">
+      <button onclick="injectRecords()">立即注入</button>
+      <button onclick="window.close()" style="background: #9e9e9e;">关闭</button>
+    </div>
+    
+    <div class="details">
+      <h3>📊 即将注入的学习记录：</h3>
+      <ul>
+        <li>⏰ 18:30-18:55 (25分钟) - 虚拟语气基础理论</li>
+        <li>⏰ 19:00-19:25 (25分钟) - 填空题练习</li>
+        <li>⏰ 19:30-19:55 (25分钟) - 选择题和改错题</li>
+        <li>⏰ 20:00-20:25 (25分钟) - 翻译题练习</li>
+        <li>📈 总计：100分钟（1小时40分钟）</li>
+      </ul>
+    </div>
+    
+    <div class="info">
+      <strong>💡 使用说明：</strong><br>
+      1. 点击"立即注入"按钮<br>
+      2. 等待注入完成（约1秒）<br>
+      3. 刷新考研平台页面（Ctrl+Shift+R）<br>
+      4. 查看首页今日学习时长应显示100分钟
+    </div>
+  </div>
+
+  <script>
+    const today = '2026-05-05';
+    const timestamp = Date.now();
+    
+    const newRecords = [
+      {
+        id: `record_${timestamp}_grammar_1`,
+        date: today,
+        subject: '英语一',
+        duration: 25,
+        content: '虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It\'s time）、倒装结构',
+        type: 'study',
+        createdAt: new Date('2026-05-05T18:30:00').toISOString()
+      },
+      {
+        id: `record_${timestamp}_grammar_2`,
+        date: today,
+        subject: '英语一',
+        duration: 25,
+        content: '虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配',
+        type: 'practice',
+        createdAt: new Date('2026-05-05T19:00:00').toISOString()
+      },
+      {
+        id: `record_${timestamp}_grammar_3`,
+        date: today,
+        subject: '英语一',
+        duration: 25,
+        content: '虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It\'s time用法、倒装结构',
+        type: 'practice',
+        createdAt: new Date('2026-05-05T19:30:00').toISOString()
+      },
+      {
+        id: `record_${timestamp}_grammar_4`,
+        date: today,
+        subject: '英语一',
+        duration: 25,
+        content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
+        type: 'practice',
+        createdAt: new Date('2026-05-05T20:00:00').toISOString()
+      }
+    ];
+    
+    function injectRecords() {
+      const statusDiv = document.getElementById('status');
+      
+      try {
+        // 写入 localStorage.studyData
+        let studyData = JSON.parse(localStorage.getItem('studyData') || '{}');
+        if (!studyData.studyRecords) {
+          studyData.studyRecords = [];
+        }
+        
+        const alreadyExists = studyData.studyRecords.some(record => 
+          record.date === today && 
+          record.subject === '英语一' &&
+          record.content.includes('虚拟语气')
+        );
+        
+        if (!alreadyExists) {
+          studyData.studyRecords.push(...newRecords);
+          localStorage.setItem('studyData', JSON.stringify(studyData));
+          console.log('✅ 已写入 localStorage.studyData');
+        }
+        
+        // 写入 localStorage.studyRecords
+        let existingRecords = [];
+        try {
+          const stored = localStorage.getItem('studyRecords');
+          if (stored) {
+            existingRecords = JSON.parse(stored);
+          }
+        } catch (e) {}
+        
+        const alreadyInStore = existingRecords.some(record => 
+          record.date === today && 
+          record.subject === '英语一' &&
+          record.content.includes('虚拟语气')
+        );
+        
+        if (!alreadyInStore) {
+          existingRecords.push(...newRecords);
+          localStorage.setItem('studyRecords', JSON.stringify(existingRecords));
+          console.log('✅ 已写入 localStorage.studyRecords');
+        }
+        
+        // 更新科目进度
+        let subjectProgress = {};
+        try {
+          const stored = localStorage.getItem('subjectProgress');
+          if (stored) {
+            subjectProgress = JSON.parse(stored);
+          }
+        } catch (e) {}
+        
+        if (!subjectProgress['英语一']) {
+          subjectProgress['英语一'] = {
+            totalTime: 0,
+            lastStudyDate: '',
+            weeklyGoal: 300,
+            completionRate: 0
+          };
+        }
+        
+        subjectProgress['英语一'].totalTime += 100;
+        subjectProgress['英语一'].lastStudyDate = today;
+        
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const allRecords = [...existingRecords, ...studyData.studyRecords];
+        const weeklyTime = allRecords
+          .filter(r => r.subject === '英语一' && new Date(r.date) >= oneWeekAgo)
+          .reduce((sum, r) => sum + r.duration, 0);
+        subjectProgress['英语一'].completionRate = Math.min(100, (weeklyTime / 300) * 100);
+        
+        localStorage.setItem('subjectProgress', JSON.stringify(subjectProgress));
+        console.log('✅ 已更新科目进度');
+        
+        statusDiv.className = 'status success';
+        statusDiv.innerHTML = 
+          '✅ 注入成功！<br>' +
+          '📊 今日英语学习：100分钟<br>' +
+          '🔄 请刷新考研平台页面（Ctrl+Shift+R）';
+        
+        // 3秒后自动关闭
+        setTimeout(() => {
+          window.close();
+        }, 3000);
+        
+      } catch (error) {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = '❌ 注入失败：' + error.message;
+        console.error('❌ 注入失败:', error);
+      }
+    }
+    
+    // 页面加载后自动执行
+    window.onload = function() {
+      document.getElementById('buttons').style.display = 'block';
+      setTimeout(injectRecords, 500);
+    };
+  </script>
+</body>
+</html>

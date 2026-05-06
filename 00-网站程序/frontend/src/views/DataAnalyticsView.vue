@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useStudyStore } from '@/stores/study'
 import { useUserStore } from '@/stores/user'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import StudyStats from '@/components/StudyStats.vue'
 
 const studyStore = useStudyStore()
 const userStore = useUserStore()
@@ -425,6 +426,9 @@ onMounted(() => {
       <el-tabs v-model="activeTab" class="stats-tabs">
         <!-- 学习概览 Tab -->
         <el-tab-pane label="📋 学习概览" name="overview">
+          <!-- 全新学习统计模块 -->
+          <StudyStats />
+          
           <div class="overview-content">
             <div class="charts-row">
               <!-- 学习效率图表 -->
@@ -884,6 +888,11 @@ onMounted(() => {
   background: linear-gradient(90deg, #FF6B6B 0%, #4CAF50 100%);
   height: 4px;
   border-radius: 2px;
+}
+
+/* StudyStats组件在数据分析页面的样式调整 */
+.overview-content > .study-stats-container {
+  margin-bottom: 30px;
 }
 
 /* 图表样式 */

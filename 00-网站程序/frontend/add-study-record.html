@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加今日学习记录</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #667eea;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .time-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .quick-add {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .quick-add h3 {
+      margin-top: 0;
+      color: #667eea;
+    }
+    .quick-btn {
+      background: white;
+      border: 2px solid #667eea;
+      color: #667eea;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+      transition: all 0.3s;
+    }
+    .quick-btn:hover {
+      background: #667eea;
+      color: white;
+    }
+    .status {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      display: none;
+    }
+    .status.success {
+      background: #e8f5e9;
+      color: #388e3c;
+      display: block;
+    }
+    .status.error {
+      background: #ffebee;
+      color: #d32f2f;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 添加学习记录</h1>
+    
+    <div class="quick-add">
+      <h3>⚡ 快速添加</h3>
+      <p>点击下方按钮快速添加今日学习记录：</p>
+      <button class="quick-btn" onclick="quickAdd('408计算机科学综合', 25, '计组第三章学习（1）- 存储器层次结构、Cache映射方式')">计组第三章 25分钟</button>
+      <button class="quick-btn" onclick="quickAdd('英语一', 25, '英语语法练习')">英语 25分钟</button>
+      <button class="quick-btn" onclick="quickAdd('数学一', 50, '数学做题练习')">数学 50分钟</button>
+      <button class="quick-btn" onclick="quickAdd('政治', 30, '政治知识点背诵')">政治 30分钟</button>
+    </div>
+    
+    <form id="studyForm">
+      <div class="form-group">
+        <label>科目</label>
+        <select id="subject" required>
+          <option value="">请选择科目</option>
+          <option value="408计算机科学综合">408计算机科学综合</option>
+          <option value="数学一">数学一</option>
+          <option value="英语一">英语一</option>
+          <option value="政治">政治</option>
+        </select>
+      </div>
+      
+      <div class="time-group">
+        <div class="form-group">
+          <label>学习时长（分钟）</label>
+          <input type="number" id="duration" min="1" value="25" required>
+        </div>
+        <div class="form-group">
+          <label>日期</label>
+          <input type="date" id="date" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>学习内容</label>
+        <textarea id="content" placeholder="描述你今天学了什么..." required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>学习类型</label>
+        <select id="type">
+          <option value="study">学习</option>
+          <option value="practice">练习</option>
+          <option value="review">复习</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn">✅ 添加学习记录</button>
+    </form>
+    
+    <div id="status" class="status"></div>
+  </div>
+
+  <script>
+    // 设置默认日期为今天
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+    
+    // 快速添加
+    function quickAdd(subject, duration, content) {
+      document.getElementById('subject').value = subject;
+      document.getElementById('duration').value = duration;
+      document.getElementById('content').value = content;
+      submitForm();
+    }
+    
+    // 表单提交
+    document.getElementById('studyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitForm();
+    });
+    
+    function submitForm() {
+      const subject = document.getElementById('subject').value;
+      const duration = parseInt(document.getElementById('duration').value);
+      const date = document.getElementById('date').value;
+      const content = document.getElementById('content').value;
+      const type = document.getElementById('type').value;
+      
+      if (!subject || !duration || !date || !content) {
+        showStatus('请填写所有必填项', 'error');
+        return;
+      }
+      
+      // 从IndexedDB读取现有记录
+      const request = indexedDB.open('localforage');
+      request.onsuccess = function(e) {
+        const db = e.target.result;
+        const tx = db.transaction('keyvaluepairs', 'readwrite');
+        const store = tx.objectStore('keyvaluepairs');
+        
+        store.get('studyRecords').onsuccess = function(ev) {
+          const records = ev.target.result || [];
+          
+          // 添加新记录
+          const newRecord = {
+            id: 'record_' + date.replace(/-/g, '') + '_' + Date.now(),
+            date: date,
+            subject: subject,
+            duration: duration,
+            content: content,
+            type: type,
+            createdAt: new Date().toISOString()
+          };
+          
+          records.push(newRecord);
+          
+          // 保存到IndexedDB
+          store.put(records, 'studyRecords').onsuccess = function() {
+            // 同步到localStorage
+            localStorage.setItem('studyRecords', JSON.stringify(records));
+            
+            showStatus(`✅ 成功添加学习记录！<br>科目：${subject}<br>时长：${duration}分钟<br>内容：${content}`, 'success');
+            
+            // 清空表单
+            document.getElementById('subject').value = '';
+            document.getElementById('content').value = '';
+            document.getElementById('duration').value = '25';
+            
+            // 2秒后刷新主页
+            setTimeout(() => {
+              window.open('http://localhost:6901/', '_blank');
+            }, 2000);
+          };
+        };
+      };
+    }
+    
+    function showStatus(message, type) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.innerHTML = message;
+      statusDiv.className = 'status ' + type;
+      
+      setTimeout(() => {
+        statusDiv.className = 'status';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

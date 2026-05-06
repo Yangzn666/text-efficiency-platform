@@ -1,10 +1,11 @@
-<script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+﻿<script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElDialog, ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElButton } from 'element-plus'
 import { Timer, DataAnalysis, Guide, MagicStick, Plus } from '@element-plus/icons-vue'
 import MonthlyCalendar from '@/components/MonthlyCalendar.vue'
 import DailyPlanCard from '@/components/DailyPlanCard.vue'
+import StudyStats from '@/components/StudyStats.vue'
 import { useStudyStore } from '@/stores/study'
 import { useTodoStore } from '@/stores/todos'
 import { useTaskStore } from '@/stores/tasks'
@@ -110,6 +111,113 @@ const autoRecordTodayStudy = () => {
     
     localStorage.setItem('studyData', JSON.stringify(studyData))
     console.log('✅ 已自动记录今天的50分钟计组学习！')
+  }
+}
+
+
+
+// 注入2026-05-05英语语法学习记录
+const injectEnglishGrammarRecords = () => {
+  const targetDate = '2026-05-05'
+  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
+  
+  if (!studyData.studyRecords) {
+    studyData.studyRecords = []
+  }
+  
+  // 检查是否已经注入过
+  const alreadyInjected = studyData.studyRecords.some((record: any) => 
+    record.date === targetDate && 
+    record.subject === '英语一' &&
+    record.content.includes('虚拟语气')
+  )
+  
+  if (!alreadyInjected) {
+    const recordsToAdd = [
+      {
+            "id": "record_1778071570907_grammar_1",
+            "date": "2026-05-05",
+            "subject": "英语一",
+            "duration": 25,
+            "content": "虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It's time）、倒装结构",
+            "type": "study",
+            "createdAt": "2026-05-05T10:30:00.000Z"
+      },
+      {
+            "id": "record_1778071570907_grammar_2",
+            "date": "2026-05-05",
+            "subject": "英语一",
+            "duration": 25,
+            "content": "虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配",
+            "type": "practice",
+            "createdAt": "2026-05-05T11:00:00.000Z"
+      },
+      {
+            "id": "record_1778071570907_grammar_3",
+            "date": "2026-05-05",
+            "subject": "英语一",
+            "duration": 25,
+            "content": "虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It's time用法、倒装结构",
+            "type": "practice",
+            "createdAt": "2026-05-05T11:30:00.000Z"
+      },
+      {
+            "id": "record_1778071570907_grammar_4",
+            "date": "2026-05-05",
+            "subject": "英语一",
+            "duration": 25,
+            "content": "虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配",
+            "type": "practice",
+            "createdAt": "2026-05-05T12:00:00.000Z"
+      }
+]
+    
+    recordsToAdd.forEach(record => {
+      studyData.studyRecords.push(record)
+    })
+    
+    localStorage.setItem('studyData', JSON.stringify(studyData))
+    console.log('✅ 已成功注入2026-05-05英语语法学习记录（100分钟）')
+    return true
+  } else {
+    console.log('ℹ️  2026-05-05英语语法学习记录已存在，跳过注入')
+    return false
+  }
+}
+
+// 开始第一天英语语法学习
+const startEnglishGrammarDay1 = () => {
+  const today = new Date().toISOString().split('T')[0]
+  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
+  
+  if (!studyData.studyRecords) {
+    studyData.studyRecords = []
+  }
+  
+  // 检查今天是否已经开始英语语法学习
+  const alreadyStarted = studyData.studyRecords.some((record: any) => 
+    record.date === today && 
+    record.subject === '英语一' &&
+    record.content.includes('英语语法学习计划 Day 1')
+  )
+  
+  if (!alreadyStarted) {
+    // 记录英语语法学习启动
+    studyData.studyRecords.push({
+      id: 'record_' + (Date.now() + 2),
+      date: today,
+      subject: '英语一',
+      duration: 120,
+      content: '英语语法学习计划 Day 1 - 长难句分析方法论 + 虚拟语气基础',
+      type: 'study',
+      createdAt: new Date().toISOString()
+    })
+    
+    localStorage.setItem('studyData', JSON.stringify(studyData))
+    console.log('✅ 已开始第一天英语语法学习计划！')
+    ElMessage.success('🎉 已开始第一天英语语法学习！加油！')
+  } else {
+    ElMessage.info('今天已经开始英语语法学习了，继续加油！')
   }
 }
 const todayPlanItems = ref([
@@ -248,12 +356,96 @@ const formatDate = (dateStr: string) => {
   return `${date.getFullYear()}年${String(date.getMonth() + 1).padStart(2, '0')}月${String(date.getDate()).padStart(2, '0')}日`
 }
 
+// 学习成就
+const achievements = computed(() => {
+  const totalMinutes = studyStore.studyRecords.reduce((sum, r) => sum + r.duration, 0)
+  const totalDays = new Set(studyStore.studyRecords.map(r => r.date)).size
+  
+  // 计算本周学习时长
+  const now = new Date()
+  const weekStart = new Date(now)
+  weekStart.setDate(now.getDate() - now.getDay())
+  weekStart.setHours(0, 0, 0, 0)
+  
+  const weekTotalMinutes = studyStore.studyRecords
+    .filter(r => new Date(r.date) >= weekStart)
+    .reduce((sum, r) => sum + r.duration, 0)
+  
+  // 计算每天的学习时长
+  const daysMap = new Map<string, number>()
+  studyStore.studyRecords.forEach(r => {
+    daysMap.set(r.date, (daysMap.get(r.date) || 0) + r.duration)
+  })
+  const weekDays = Array.from(daysMap.entries())
+    .filter(([date]) => new Date(date) >= weekStart)
+    .map(([_, minutes]) => ({ minutes }))
+  
+  return [
+    {
+      id: 'first-step',
+      icon: '',
+      name: '初试锋芒',
+      description: '完成第一次学习记录',
+      unlocked: totalMinutes > 0,
+      progress: Math.min(100, (totalMinutes / 25) * 100)
+    },
+    {
+      id: 'hour-master',
+      icon: '',
+      name: '小时达人',
+      description: '累计学习60分钟',
+      unlocked: totalMinutes >= 60,
+      progress: Math.min(100, (totalMinutes / 60) * 100)
+    },
+    {
+      id: 'half-day',
+      icon: '',
+      name: '半日苦读',
+      description: '单日学习超过240分钟',
+      unlocked: weekDays.some(d => d.minutes >= 240),
+      progress: Math.min(100, (Math.max(...weekDays.map(d => d.minutes), 0) / 240) * 100)
+    },
+    {
+      id: 'week-warrior',
+      icon: '🔥',
+      name: '周学习战士',
+      description: '本周学习超过600分钟',
+      unlocked: weekTotalMinutes >= 600,
+      progress: Math.min(100, (weekTotalMinutes / 600) * 100)
+    },
+    {
+      id: 'consistent',
+      icon: '',
+      name: '坚持不懈',
+      description: '连续学习7天',
+      unlocked: totalDays >= 7,
+      progress: Math.min(100, (totalDays / 7) * 100)
+    },
+    {
+      id: 'marathon',
+      icon: '🏆',
+      name: '学习马拉松',
+      description: '累计学习1000分钟',
+      unlocked: totalMinutes >= 1000,
+      progress: Math.min(100, (totalMinutes / 1000) * 100)
+    }
+  ]
+})
+
 onMounted(() => {
+  // 初始化学习数据（从localStorage/IndexedDB加载）
+  studyStore.initializeStudyData()
+  
+  // 注入2026-05-05英语语法学习记录
+  injectEnglishGrammarRecords()
   updateCountdown()
   countdownInterval = setInterval(updateCountdown, 1000)
   
   // 自动记录今天的学习
   autoRecordTodayStudy()
+  
+  // 开始第一天英语语法学习
+  startEnglishGrammarDay1()
 })
 
 onUnmounted(() => {
@@ -286,60 +478,41 @@ onUnmounted(() => {
             </div>
             <div class="countdown-numbers">
               <div class="time-unit">
-                <div class="time-value">{{ formatTimeUnit(countdown.days) }}</div>
-                <div class="time-label">天</div>
+                <div class="time-value">{{ formatTimeUnit(countdown.days) }}<span class="time-unit-text">天</span></div>
               </div>
+              <div class="time-separator">:</div>
               <div class="time-unit">
-                <div class="time-value">{{ formatTimeUnit(countdown.hours) }}</div>
-                <div class="time-label">时</div>
+                <div class="time-value">{{ formatTimeUnit(countdown.hours) }}<span class="time-unit-text">时</span></div>
               </div>
+              <div class="time-separator">:</div>
               <div class="time-unit">
-                <div class="time-value">{{ formatTimeUnit(countdown.minutes) }}</div>
-                <div class="time-label">分</div>
+                <div class="time-value">{{ formatTimeUnit(countdown.minutes) }}<span class="time-unit-text">分</span></div>
               </div>
+              <div class="time-separator">:</div>
               <div class="time-unit">
-                <div class="time-value">{{ formatTimeUnit(countdown.seconds) }}</div>
-                <div class="time-label">秒</div>
+                <div class="time-value">{{ formatTimeUnit(countdown.seconds) }}<span class="time-unit-text">秒</span></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 快速统计卡片 -->
-        <div class="stats-cards">
-          <div class="stat-card">
-            <div class="stat-icon">📚</div>
-            <div class="stat-info">
-              <div class="stat-number">{{ Math.floor(studyStore.todayStudyTime / 60) || 0 }}</div>
-              <div class="stat-label">学习时长(h)</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">✅</div>
-            <div class="stat-info">
-              <div class="stat-number">{{ todoStore.completedTodos.length || 0 }}</div>
-              <div class="stat-label">已完成任务</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">📈</div>
-            <div class="stat-info">
-              <div class="stat-number">{{ studyStore.currentStreak || 0 }}</div>
-              <div class="stat-label">学习天数</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
     <!-- 主要内容区域 -->
     <div class="main-content-grid">
-      <!-- 左侧主要内容 -->
-      <div class="main-panel">
+      <!-- 左侧栏 -->
+      <div class="left-panel">
+        <!-- 学习数据统计模块 -->
+        <StudyStats />
+      </div>
+
+      <!-- 中间栏 - 学习计划 -->
+      <div class="center-panel">
         <!-- 学习计划核心区域 -->
         <div class="primary-card">
           <div class="card-header">
-            <h2 class="card-title">📅 今日学习计划</h2>
+            <h2 class="card-title">今日学习计划</h2>
             <div class="date-display">{{ getCurrentDate() }}</div>
           </div>
           <div class="card-content">
@@ -348,6 +521,19 @@ onUnmounted(() => {
               :plan-items="todayPlanItems"
               show-date-selector
             />
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧栏 -->
+      <div class="right-panel">
+        <!-- 月度日历 -->
+        <div class="sidebar-card">
+          <div class="card-header">
+            <h3 class="card-title"> 月度日历</h3>
+          </div>
+          <div class="card-content compact-calendar">
+            <MonthlyCalendar />
           </div>
         </div>
 
@@ -397,69 +583,37 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 右侧辅助面板 -->
-      <div class="sidebar-panel">
-        <!-- 月度日历 -->
-        <div class="sidebar-card">
+        <!-- 学习成就 -->
+        <div class="sidebar-card achievements-card">
           <div class="card-header">
-            <h3 class="card-title">📅 月度日历</h3>
+            <h3 class="card-title">🏆 学习成就</h3>
           </div>
-          <div class="card-content compact-calendar">
-            <MonthlyCalendar />
-          </div>
-        </div>
-
-        <!-- 学习统计 -->
-        <div class="sidebar-card">
-          <div class="card-header">
-            <h3 class="card-title">📊 学习统计</h3>
-          </div>
-          <div class="card-content stats-summary">
-            <div class="stat-row">
-              <span class="stat-label">本周学习:</span>
-              <span class="stat-value">{{ studyStore.weeklyStudyTime || 0 }}h</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-label">本月学习:</span>
-              <span class="stat-value">{{ studyStore.monthlyStudyTime || 0 }}h</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-label">连续学习:</span>
-              <span class="stat-value">{{ studyStore.currentStreak || 0 }}天</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 快捷操作 -->
-        <div class="sidebar-card">
-          <div class="card-header">
-            <h3 class="card-title">⚡ 快捷操作</h3>
-          </div>
-          <div class="card-content quick-actions">
-            <div class="action-grid">
-              <el-button class="action-btn" type="primary" @click="router.push('/learning-path')">
-                <el-icon><Guide /></el-icon>
-                <span>学习路径</span>
-              </el-button>
-              <el-button class="action-btn" type="success" @click="router.push('/analytics')">
-                <el-icon><DataAnalysis /></el-icon>
-                <span>数据统计</span>
-              </el-button>
-              <el-button class="action-btn" type="warning" @click="router.push('/psychology')">
-                <el-icon><MagicStick /></el-icon>
-                <span>心理干预</span>
-              </el-button>
-              <el-button class="action-btn" type="info" @click="router.push('/tasks')">
-                <el-icon><Timer /></el-icon>
-                <span>任务管理</span>
-              </el-button>
+          <div class="card-content">
+            <div class="achievements-grid">
+              <div 
+                v-for="achievement in achievements" 
+                :key="achievement.id"
+                class="achievement-item"
+                :class="{ unlocked: achievement.unlocked }"
+              >
+                <div class="achievement-icon">{{ achievement.icon }}</div>
+                <div class="achievement-info">
+                  <div class="achievement-name">{{ achievement.name }}</div>
+                  <div class="achievement-desc">{{ achievement.description }}</div>
+                  <el-progress 
+                    v-if="!achievement.unlocked"
+                    :percentage="achievement.progress" 
+                    :stroke-width="4"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
 
     <!-- 添加任务对话框 -->
     <el-dialog v-model="showAddDialog" title="添加新任务" width="500px">
@@ -641,19 +795,22 @@ onUnmounted(() => {
 
 .home-container {
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 24px;
+  padding: 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
 }
 
 /* 顶部仪表盘区域 */
 .dashboard-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  padding: 32px;
-  margin-bottom: 32px;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  border-radius: 0;
+  padding: 40px 48px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
   color: white;
   position: relative;
   overflow: hidden;
@@ -665,15 +822,16 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+  opacity: 0.8;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
+  align-items: center;
+  gap: 40px;
 }
 
 /* 主标题区域 */
@@ -682,161 +840,209 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
 }
 
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
+  margin-left: 100px;
 }
 
 .logo-icon {
-  font-size: 2.5em;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  font-size: 2.8em;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
 }
 
 .logo-text .main-title {
-  font-size: 2.2em;
-  font-weight: 800;
-  margin: 0 0 8px 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 2.3em;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .logo-text .subtitle {
-  font-size: 1.1em;
-  opacity: 0.9;
+  font-size: 1.2em;
+  opacity: 0.85;
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 /* 倒计时卡片 */
 .countdown-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  min-width: 280px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  border-radius: 20px;
+  padding: 24px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+}
+
+.countdown-card:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .countdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .countdown-header h3 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 600;
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .exam-date {
-  font-size: 0.9em;
-  opacity: 0.8;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 4px 12px;
-  border-radius: 20px;
+  font-size: 0.85em;
+  opacity: 0.85;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 5px 14px;
+  border-radius: 16px;
+  font-weight: 500;
 }
 
 .countdown-numbers {
   display: flex;
-  justify-content: space-around;
-  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .time-unit {
-  text-align: center;
-  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.time-separator {
+  font-size: 1.8em;
+  font-weight: 700;
+  opacity: 0.5;
+  margin: 0 4px;
+  color: white;
 }
 
 .time-value {
-  font-size: 1.8em;
+  font-size: 2.2em;
   font-weight: 700;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color: white;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
-.time-label {
+.time-unit-text {
   font-size: 0.9em;
-  opacity: 0.9;
   font-weight: 500;
+  opacity: 0.9;
+  color: white;
+  letter-spacing: 1px;
 }
 
 /* 统计卡片 */
 .stats-cards {
   display: flex;
-  gap: 20px;
-  margin-top: 24px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .stat-card {
   flex: 1;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-radius: 16px;
-  padding: 20px;
+  padding: 18px 20px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .stat-icon {
-  font-size: 2em;
-  width: 50px;
-  height: 50px;
+  font-size: 1.8em;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .stat-info {
   flex: 1;
+  min-width: 0;
 }
 
 .stat-number {
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: 700;
   margin-bottom: 4px;
   color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  line-height: 1.2;
 }
 
 .stat-label {
-  font-size: 0.9em;
-  opacity: 0.9;
+  font-size: 0.85em;
+  opacity: 0.8;
+  font-weight: 400;
 }
 
 /* 主要内容网格布局 */
 .main-content-grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 20px;
+  grid-template-columns: 1.15fr 1.1fr 0.75fr;
+  gap: 10px;
+  padding: 0 24px 24px 24px;
 }
 
-/* 主面板 */
-.main-panel {
+/* 左侧栏 */
+.left-panel {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 600px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* 中间栏 - 学习计划 */
+.center-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 右侧栏 */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .primary-card, .secondary-card {
@@ -862,7 +1068,7 @@ onUnmounted(() => {
 }
 
 .card-title {
-  font-size: 1.4em;
+  font-size: 1.1em;
   font-weight: 700;
   color: #333;
   margin: 0;
@@ -871,8 +1077,13 @@ onUnmounted(() => {
   gap: 12px;
 }
 
+/* 学习计划卡片标题更小 */
+.center-panel .card-title {
+  font-size: 0.95em;
+}
+
 .date-display {
-  font-size: 1em;
+  font-size: 0.9em;
   color: #666;
   background: #f8f9fa;
   padding: 6px 16px;
@@ -1109,6 +1320,11 @@ onUnmounted(() => {
     padding: 16px;
   }
   
+  .main-content-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
   .dashboard-header {
     padding: 24px;
     border-radius: 16px;
@@ -1196,6 +1412,59 @@ onUnmounted(() => {
   .todo-actions {
     opacity: 1;
     align-self: flex-end;
+  }
+}
+
+/* 学习成就样式 */
+.achievements-card {
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    
+    &.unlocked {
+      background: linear-gradient(135deg, #667eea20, #764ba220);
+      border: 1px solid #667eea40;
+    }
+    
+    &:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .achievement-icon {
+    font-size: 2em;
+    min-width: 40px;
+    text-align: center;
+  }
+  
+  .achievement-info {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .achievement-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+  }
+  
+  .achievement-desc {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 8px;
   }
 }
 </style>

@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自动注入学习记录</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      color: #333;
+    }
+    h1 {
+      color: #667eea;
+      text-align: center;
+    }
+    .status {
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .info {
+      background: #d1ecf1;
+      color: #0c5460;
+      border: 1px solid #bee5eb;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #5568d3;
+    }
+    .details {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 学习记录自动注入工具</h1>
+    
+    <div id="status" class="status info">
+      正在准备注入2026-05-05的英语语法学习记录...
+    </div>
+    
+    <div style="text-align: center;">
+      <button onclick="injectRecords()">立即注入</button>
+      <button onclick="window.close()" style="background: #6c757d;">关闭</button>
+    </div>
+    
+    <div class="details">
+      <h3>📊 即将注入的学习记录：</h3>
+      <ul>
+        <li>⏰ 18:30-18:55 (25分钟) - 虚拟语气基础理论</li>
+        <li>⏰ 19:00-19:25 (25分钟) - 填空题练习</li>
+        <li>⏰ 19:30-19:55 (25分钟) - 选择题和改错题</li>
+        <li>⏰ 20:00-20:25 (25分钟) - 翻译题练习</li>
+        <li><strong>总计：100分钟（1小时40分钟）</strong></li>
+      </ul>
+      
+      <h3>💡 AI建议：</h3>
+      <ol>
+        <li>加强不规则动词记忆</li>
+        <li>巩固特殊句型规则（suggest/demand用should+原形）</li>
+        <li>掌握It's time后用过去式</li>
+        <li>注意固定搭配（listen to, advice不可数）</li>
+        <li>明天学习计划：定语从句</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    const newRecords = [
+  {
+    "id": "record_1778071170496_grammar_session1",
+    "date": "2026-05-05",
+    "subject": "英语",
+    "duration": 25,
+    "content": "虚拟语气基础学习：掌握三种基本形式（与现在/过去/将来事实相反）。理解时态倒退规律：用时间距离表达现实距离。学习特殊句型：wish后、suggest/demand后、It's time后的虚拟语气规则。掌握倒装结构：Had/Should/Were提前省略if的用法。",
+    "type": "study",
+    "createdAt": "2026-05-05T10:30:00.000Z"
+  },
+  {
+    "id": "record_1778071170496_grammar_session2",
+    "date": "2026-05-05",
+    "subject": "英语",
+    "duration": 25,
+    "content": "虚拟语气实战练习：完成15道填空题（正确率约70%）。掌握与现在/过去/将来事实相反的基本结构。需要加强：不规则动词变化（wake-woken, speak-spoke, leave-left, catch-caught, lose-lost）、固定搭配（listen to, advice不可数）。",
+    "type": "practice",
+    "createdAt": "2026-05-05T11:00:00.000Z"
+  },
+  {
+    "id": "record_1778071170496_grammar_session3",
+    "date": "2026-05-05",
+    "subject": "英语",
+    "duration": 25,
+    "content": "虚拟语气选择题和改错题：选择题5题（正确率60%），改错题5题（正确率60%）。薄弱点：suggest后应用(should)+原形而非过去式；It's time后用过去式而非should；倒装结构中had后接过去分词known而非knew。",
+    "type": "practice",
+    "createdAt": "2026-05-05T11:30:00.000Z"
+  },
+  {
+    "id": "record_1778071170496_grammar_session4",
+    "date": "2026-05-05",
+    "subject": "英语",
+    "duration": 25,
+    "content": "虚拟语气翻译练习：完成5道中译英题目。掌握混合虚拟语气（if从句过去+主句现在）。常见错误：wish后用过去分词spoken错误，应为spoke或could speak；advice是不可数名词无复数；listen必须加to。总学习时长100分钟。",
+    "type": "practice",
+    "createdAt": "2026-05-05T12:00:00.000Z"
+  }
+];
+    
+    function injectRecords() {
+      try {
+        // 获取现有记录
+        const studyRecords = JSON.parse(localStorage.getItem('studyRecords') || '[]');
+        
+        // 合并新记录
+        const updatedRecords = [...studyRecords, ...newRecords];
+        
+        // 保存到localStorage
+        localStorage.setItem('studyRecords', JSON.stringify(updatedRecords));
+        
+        // 更新科目进度
+        const subjectProgress = JSON.parse(localStorage.getItem('subjectProgress') || '{}');
+        if (!subjectProgress['英语']) {
+          subjectProgress['英语'] = {
+            totalTime: 0,
+            lastStudyDate: '',
+            weeklyGoal: 300,
+            completionRate: 0
+          };
+        }
+        subjectProgress['英语'].totalTime += 100;
+        subjectProgress['英语'].lastStudyDate = '2026-05-05';
+        
+        // 计算本周英语学习时间
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const weeklyEnglishTime = updatedRecords
+          .filter(r => r.subject === '英语' && new Date(r.date) >= oneWeekAgo)
+          .reduce((sum, r) => sum + r.duration, 0);
+        subjectProgress['英语'].completionRate = Math.min(100, (weeklyEnglishTime / 300) * 100);
+        
+        localStorage.setItem('subjectProgress', JSON.stringify(subjectProgress));
+        
+        document.getElementById('status').className = 'status success';
+        document.getElementById('status').innerHTML = 
+          '✅ 学习记录已成功注入！<br>' +
+          '📊 今日英语学习：100分钟<br>' +
+          '🔄 请刷新考研平台页面查看最新进度';
+        
+        console.log('✅ 学习记录已成功写入localStorage');
+        
+        // 3秒后自动关闭
+        setTimeout(() => {
+          window.close();
+        }, 3000);
+        
+      } catch (error) {
+        document.getElementById('status').className = 'status';
+        document.getElementById('status').style.background = '#f8d7da';
+        document.getElementById('status').style.color = '#721c24';
+        document.getElementById('status').innerHTML = '❌ 注入失败：' + error.message;
+        console.error('❌ 写入失败:', error);
+      }
+    }
+    
+    // 页面加载后自动执行
+    window.onload = function() {
+      setTimeout(injectRecords, 500);
+    };
+  </script>
+</body>
+</html>

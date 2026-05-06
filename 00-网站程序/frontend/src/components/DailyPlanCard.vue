@@ -27,7 +27,13 @@ const selectedDate = ref(props.date)
 const isDatePickerOpen = ref(false)
 
 const formattedDate = computed(() => {
-  if (!props.date) return '请选择日期'
+  if (!props.date) {
+    return {
+      dateText: '请选择日期',
+      weekdayTop: '',
+      weekdayBottom: ''
+    }
+  }
   
   const date = new Date(props.date)
   const year = date.getFullYear()
@@ -35,7 +41,11 @@ const formattedDate = computed(() => {
   const day = String(date.getDate()).padStart(2, '0')
   const weekday = ['日', '一', '二', '三', '四', '五', '六'][date.getDay()]
   
-  return `${year}年${month}月${day}日 星期${weekday}`
+  return {
+    dateText: `${year}年${month}月${day}日`,
+    weekdayTop: '星',
+    weekdayBottom: `期${weekday}`
+  }
 })
 
 const formatDateDisplay = (dateStr: string) => {
@@ -91,13 +101,20 @@ const getTimeColor = (time: string) => {
     <!-- 卡片头部 -->
     <div class="card-header">
       <div class="header-content">
-        <h2 class="card-title">📅 学习计划</h2>
+        <h2 class="card-title">
+          <span>学习</span>
+          <span>计划</span>
+        </h2>
         <div v-if="showDateSelector" class="date-selector">
           <button 
             class="date-btn"
             @click="openDatePicker"
           >
-            {{ formattedDate }}
+            <span class="date-text">{{ formattedDate.dateText }}</span>
+            <div class="weekday-text">
+              <span class="weekday-top">{{ formattedDate.weekdayTop }}</span>
+              <span class="weekday-bottom">{{ formattedDate.weekdayBottom }}</span>
+            </div>
             <span class="arrow-icon">▼</span>
           </button>
           
@@ -193,12 +210,20 @@ const getTimeColor = (time: string) => {
 }
 
 .card-title {
-  font-size: 1.8em;
+  font-size: 1.4em;
   font-weight: 700;
   margin: 0;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  color: white;
+  line-height: 1.1;
+  min-width: 60px;
+  
+  span {
+    display: block;
+  }
 }
 
 .date-selector {
@@ -216,8 +241,25 @@ const getTimeColor = (time: string) => {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transition: all 0.2s ease;
+}
+
+.date-text {
+  white-space: nowrap;
+}
+
+.weekday-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.1;
+}
+
+.weekday-top,
+.weekday-bottom {
+  display: block;
+  text-align: center;
 }
 
 .date-btn:hover {

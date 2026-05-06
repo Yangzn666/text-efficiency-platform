@@ -201,9 +201,9 @@ export const useStudyStore = defineStore('study', () => {
       
       // 如果没有数据，添加3月1日的学习记录作为初始数据
       if (!storedRecords || storedRecords.length === 0) {
-        console.log('📦 检测到无学习记录数据，添加2026年3月1日的初始学习记录...');
+        console.log('📦 检测到无学习记录数据，添加初始学习记录...');
         
-        const march1Records: StudyRecord[] = [
+        const initialRecords: StudyRecord[] = [
           {
             id: 'record_20260301_1_' + Date.now(),
             date: '2026-03-01',
@@ -239,15 +239,52 @@ export const useStudyStore = defineStore('study', () => {
             content: '考研学习计划制定',
             type: 'study',
             createdAt: new Date('2026-03-01T15:51:00Z').toISOString()
+          },
+          // 2026-05-05 英语语法学习记录
+          {
+            id: 'record_20260505_1_' + Date.now(),
+            date: '2026-05-05',
+            subject: '英语一',
+            duration: 25,
+            content: '虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It\'s time）、倒装结构',
+            type: 'study',
+            createdAt: new Date('2026-05-05T18:30:00').toISOString()
+          },
+          {
+            id: 'record_20260505_2_' + Date.now(),
+            date: '2026-05-05',
+            subject: '英语一',
+            duration: 25,
+            content: '虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配',
+            type: 'practice',
+            createdAt: new Date('2026-05-05T19:00:00').toISOString()
+          },
+          {
+            id: 'record_20260505_3_' + Date.now(),
+            date: '2026-05-05',
+            subject: '英语一',
+            duration: 25,
+            content: '虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It\'s time用法、倒装结构',
+            type: 'practice',
+            createdAt: new Date('2026-05-05T19:30:00').toISOString()
+          },
+          {
+            id: 'record_20260505_4_' + Date.now(),
+            date: '2026-05-05',
+            subject: '英语一',
+            duration: 25,
+            content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
+            type: 'practice',
+            createdAt: new Date('2026-05-05T20:00:00').toISOString()
           }
         ];
         
         // 添加记录到内存
-        studyRecords.value = march1Records;
+        studyRecords.value = initialRecords;
         
         // 初始化科目进度
         subjectProgress.value = {};
-        march1Records.forEach(record => {
+        initialRecords.forEach(record => {
           if (!subjectProgress.value[record.subject]) {
             subjectProgress.value[record.subject] = {
               totalTime: 0,
@@ -260,18 +297,100 @@ export const useStudyStore = defineStore('study', () => {
           subjectProgress.value[record.subject].lastStudyDate = record.date;
           
           // 计算完成率（简化处理）
-          const weeklyTime = march1Records
-            .filter(r => r.subject === record.subject && r.date === '2026-03-01')
+          const weeklyTime = initialRecords
+            .filter(r => r.subject === record.subject && r.date === record.date)
             .reduce((sum, r) => sum + r.duration, 0);
           subjectProgress.value[record.subject].completionRate = Math.min(100, (weeklyTime / 300) * 100);
         });
         
         // 保存到本地存储
-        await localforage.setItem('studyRecords', march1Records);
+        await localforage.setItem('studyRecords', initialRecords);
         await localforage.setItem('subjectProgress', subjectProgress.value);
         
-        console.log(`✅ 成功添加 ${march1Records.length} 条3月1日学习记录`);
-        console.log(`📅 总学习时间: ${march1Records.reduce((sum, r) => sum + r.duration, 0)} 分钟`);
+        console.log(`✅ 成功添加 ${initialRecords.length} 条初始学习记录`);
+        console.log(` 总学习时间: ${initialRecords.reduce((sum, r) => sum + r.duration, 0)} 分钟`);
+        console.log(` 5月5日英语学习: 100分钟`);
+      } else {
+        // 即使有旧数据，也要检查并添加5月5日的英语学习记录
+        const currentRecords = storedRecords || [];
+        const may5Records = currentRecords.filter(r => r.date === '2026-05-05' && r.subject === '英语一');
+        
+        if (may5Records.length === 0) {
+          console.log('📝 检测到缺少5月5日英语学习记录，正在添加...');
+          
+          const may5NewRecords: StudyRecord[] = [
+            {
+              id: 'record_20260505_1_' + Date.now(),
+              date: '2026-05-05',
+              subject: '英语一',
+              duration: 25,
+              content: '虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It\'s time）、倒装结构',
+              type: 'study',
+              createdAt: new Date('2026-05-05T18:30:00').toISOString()
+            },
+            {
+              id: 'record_20260505_2_' + Date.now(),
+              date: '2026-05-05',
+              subject: '英语一',
+              duration: 25,
+              content: '虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配',
+              type: 'practice',
+              createdAt: new Date('2026-05-05T19:00:00').toISOString()
+            },
+            {
+              id: 'record_20260505_3_' + Date.now(),
+              date: '2026-05-05',
+              subject: '英语一',
+              duration: 25,
+              content: '虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It\'s time用法、倒装结构',
+              type: 'practice',
+              createdAt: new Date('2026-05-05T19:30:00').toISOString()
+            },
+            {
+              id: 'record_20260505_4_' + Date.now(),
+              date: '2026-05-05',
+              subject: '英语一',
+              duration: 25,
+              content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
+              type: 'practice',
+              createdAt: new Date('2026-05-05T20:00:00').toISOString()
+            }
+          ];
+          
+          // 合并记录
+          studyRecords.value = [...currentRecords, ...may5NewRecords];
+          
+          // 更新科目进度
+          if (storedProgress) {
+            subjectProgress.value = storedProgress;
+          }
+          
+          if (!subjectProgress.value['英语一']) {
+            subjectProgress.value['英语一'] = {
+              totalTime: 0,
+              lastStudyDate: '',
+              weeklyGoal: 300,
+              completionRate: 0
+            };
+          }
+          
+          subjectProgress.value['英语一'].totalTime += 100;
+          subjectProgress.value['英语一'].lastStudyDate = '2026-05-05';
+          
+          // 计算本周完成率
+          const oneWeekAgo = new Date();
+          oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+          const weeklyEnglishTime = studyRecords.value
+            .filter(r => r.subject === '英语一' && new Date(r.date) >= oneWeekAgo)
+            .reduce((sum, r) => sum + r.duration, 0);
+          subjectProgress.value['英语一'].completionRate = Math.min(100, (weeklyEnglishTime / 300) * 100);
+          
+          // 保存更新后的数据
+          await localforage.setItem('studyRecords', studyRecords.value);
+          await localforage.setItem('subjectProgress', subjectProgress.value);
+          
+          console.log('✅ 已添加5月5日英语学习记录（100分钟）');
+        }
       }
       
       // 计算当前连续学习天数

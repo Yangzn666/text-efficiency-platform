@@ -73,7 +73,7 @@ const goToSubject = (subject) => {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f5f7fa;
   min-height: 100vh;
 }
 
@@ -83,17 +83,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0; /* 移除内边距限制 */
+  padding: 0 24px; /* 与主容器保持一致的左右内边距 */
 }
 
 .header {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 25px 20px;
   text-align: center;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  margin-bottom: 30px;
+  border: none;
+  margin-bottom: 0;
 }
 
 .header h1 {
@@ -177,7 +177,7 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 40px 20px;
+  padding: 0 20px;
   width: 100%;
 }
 
