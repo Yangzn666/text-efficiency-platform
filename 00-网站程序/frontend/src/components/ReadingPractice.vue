@@ -170,85 +170,102 @@
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
       </div>
 
+      <!-- 文章原文 -->
+      <div class="article-section">
+        <div class="section-title">📖 文章原文</div>
+        <div class="article-content" v-html="clozeArticle"></div>
+      </div>
+
       <!-- 题目列表 -->
       <div class="cloze-questions">
+        <div class="section-title">❓ 题目</div>
+        
         <div 
           v-for="(question, idx) in clozeQuestions" 
           :key="idx"
           class="cloze-question-item"
         >
-          <!-- 题号 -->
-          <div class="cloze-number">{{ question.number }}</div>
-          
-          <!-- 题干 -->
-          <div class="cloze-stem">
-            <p>{{ question.stem }}</p>
-          </div>
-
-          <!-- 选项（横向排列） -->
-          <div v-if="question.options && question.options.length > 0" class="cloze-options">
-            <div 
-              v-for="option in question.options" 
-              :key="option.label"
-              class="cloze-option"
-              :class="{
-                'correct': option.label === question.correctAnswer,
-                'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
-              }"
+          <!-- 题号和题干 -->
+          <div class="question-header">
+            <div class="cloze-number">{{ question.number }}</div>
+            <div class="question-stem-text">{{ question.stem }}</div>
+            <el-button 
+              size="small" 
+              type="primary" 
+              plain
+              @click="toggleQuestionExpand(idx)"
             >
-              <span class="option-label">{{ option.label }}.</span>
-              <span class="option-text">{{ option.text }}</span>
-              <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
-                <CircleCheck />
-              </el-icon>
-              <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
-                <CircleClose />
-              </el-icon>
-            </div>
+              {{ expandedQuestions.includes(idx) ? '收起' : '查看答案' }}
+            </el-button>
           </div>
 
-          <!-- 答案对比 -->
-          <div v-if="question.userAnswer" class="cloze-answer-comparison">
-            <div class="answer-box user-answer">
-              <span class="label">你的答案：</span>
-              <span :class="question.userAnswer === question.correctAnswer ? 'text-correct' : 'text-wrong'">
-                {{ question.userAnswer }}
-              </span>
-              <el-tag v-if="question.userAnswer === question.correctAnswer" type="success" size="small">✓ 正确</el-tag>
-              <el-tag v-else type="danger" size="small">✗ 错误</el-tag>
+          <!-- 展开的内容：选项、答案、解析 -->
+          <div v-show="expandedQuestions.includes(idx)" class="question-detail">
+            <!-- 选项（横向排列） -->
+            <div v-if="question.options && question.options.length > 0" class="cloze-options">
+              <div 
+                v-for="option in question.options" 
+                :key="option.label"
+                class="cloze-option"
+                :class="{
+                  'correct': option.label === question.correctAnswer,
+                  'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
+                }"
+              >
+                <span class="option-label">{{ option.label }}.</span>
+                <span class="option-text">{{ option.text }}</span>
+                <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
+                  <CircleCheck />
+                </el-icon>
+                <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
+                  <CircleClose />
+                </el-icon>
+              </div>
             </div>
-            <div class="answer-box correct-answer">
-              <span class="label">正确答案：</span>
-              <span class="text-correct">{{ question.correctAnswer }}</span>
-            </div>
-          </div>
 
-          <!-- 答案解析 -->
-          <div class="cloze-analysis">
-            <div class="analysis-title">📖 解析</div>
-            <p>{{ question.analysis }}</p>
-          </div>
-
-          <!-- 错误选项分析（仅答错时显示） -->
-          <div 
-            v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" 
-            class="cloze-error-analysis"
-          >
-            <div class="analysis-title error-title">❌ 为什么你选的答案不对</div>
-            <div class="error-detail">
-              <strong>你选了 {{ question.userAnswer }}：</strong>
-              <p>{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</p>
+            <!-- 答案对比 -->
+            <div v-if="question.userAnswer" class="cloze-answer-comparison">
+              <div class="answer-box user-answer">
+                <span class="label">你的答案：</span>
+                <span :class="question.userAnswer === question.correctAnswer ? 'text-correct' : 'text-wrong'">
+                  {{ question.userAnswer }}
+                </span>
+                <el-tag v-if="question.userAnswer === question.correctAnswer" type="success" size="small">✓ 正确</el-tag>
+                <el-tag v-else type="danger" size="small">✗ 错误</el-tag>
+              </div>
+              <div class="answer-box correct-answer">
+                <span class="label">正确答案：</span>
+                <span class="text-correct">{{ question.correctAnswer }}</span>
+              </div>
             </div>
-            <div class="correct-detail">
-              <strong>✓ 正确答案 {{ question.correctAnswer }}：</strong>
-              <p>{{ getCorrectExplanation(question) }}</p>
-            </div>
-          </div>
 
-          <!-- 解题技巧 -->
-          <div v-if="question.tips" class="cloze-tips">
-            <div class="tips-title">🎯 解题技巧</div>
-            <p>{{ question.tips }}</p>
+            <!-- 答案解析 -->
+            <div class="cloze-analysis">
+              <div class="analysis-title">📖 解析</div>
+              <p>{{ question.analysis }}</p>
+            </div>
+
+            <!-- 错误选项分析（仅答错时显示） -->
+            <div 
+              v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" 
+              class="cloze-error-analysis"
+            >
+              <div class="analysis-title error-title">❌ 为什么你选的答案不对</div>
+              <div class="error-detail">
+                <strong>你选了 {{ question.userAnswer }}：</strong>
+                <p>{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</p>
+              </div>
+              <div class="correct-detail">
+                <strong>✓ 正确答案 {{ question.correctAnswer }}：</strong>
+                <p>{{ getCorrectExplanation(question) }}</p>
+              </div>
+            </div>
+
+            <!-- 解题技巧 -->
+            <div v-if="question.tips" class="cloze-tips">
+              <div class="tips-title">🎯 解题技巧</div>
+              <p>{{ question.tips }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -319,6 +336,55 @@ const clozeYear = computed(() => {
     return clozeQuestions.value[0].year
   }
   return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
+})
+
+// 展开的题目索引列表
+const expandedQuestions = ref<number[]>([])
+
+// 切换题目展开/收起
+const toggleQuestionExpand = (index: number) => {
+  const idx = expandedQuestions.value.indexOf(index)
+  if (idx > -1) {
+    expandedQuestions.value.splice(idx, 1)
+  } else {
+    expandedQuestions.value.push(index)
+  }
+}
+
+// 生成完整文章（带空格标记）
+const clozeArticle = computed(() => {
+  if (clozeQuestions.value.length === 0) return ''
+  
+  // 这里需要根据实际文章内容生成
+  // 暂时返回提示，后续可以补充真实文章
+  return '<p style="color: #666; line-height: 2; text-align: justify;">' +
+    'Humans are often thought to be insensitive smellers compared with animals, ' +
+    '<strong style="color: #667eea;">___(1)___</strong> this is largely because, ' +
+    '<strong style="color: #667eea;">___(2)___</strong> animals, we stand upright. ' +
+    'This means that our noses are <strong style="color: #667eea;">___(3)___</strong> to perceiving those smells which float through the air, ' +
+    '<strong style="color: #667eea;">___(4)___</strong> the majority of smells which stick to surfaces. ' +
+    'In fact, <strong style="color: #667eea;">___(5)___</strong>, we are extremely sensitive to smells, ' +
+    '<strong style="color: #667eea;">___(6)___</strong> we do not generally realize it. ' +
+    'Our noses are capable of <strong style="color: #667eea;">___(7)___</strong> human smells even when these are ' +
+    '<strong style="color: #667eea;">___(8)___</strong> to far below one part in one million. ' +
+    'Strangely, some people find that they can smell one type of flower but not another, ' +
+    '<strong style="color: #667eea;">___(9)___</strong> others are sensitive to the smells of both flowers. ' +
+    'This may be because some people do not have the genes necessary to generate ' +
+    '<strong style="color: #667eea;">___(10)___</strong> smell receptors in the nose. ' +
+    'These receptors are the cells which sense smells and send ' +
+    '<strong style="color: #667eea;">___(11)___</strong> to the brain. ' +
+    'However, it has been found that even people insensitive to a certain smell ' +
+    '<strong style="color: #667eea;">___(12)___</strong> can suddenly become sensitive to it when ' +
+    '<strong style="color: #667eea;">___(13)___</strong> to it often enough. ' +
+    'The explanation for insensitivity to smell seems to be that the brain finds it ' +
+    '<strong style="color: #667eea;">___(14)___</strong> to keep all smell receptors working all the time but can ' +
+    '<strong style="color: #667eea;">___(15)___</strong> new receptors if necessary. ' +
+    'This may <strong style="color: #667eea;">___(16)___</strong> explain why we are not usually sensitive to our own smells—' +
+    'we simply do not need to be. We are not <strong style="color: #667eea;">___(17)___</strong> of the usual smell of our own house, ' +
+    'but we <strong style="color: #667eea;">___(18)___</strong> new smells when we visit someone else\'s. ' +
+    'The brain finds it best to keep smell receptors <strong style="color: #667eea;">___(19)___</strong> for unfamiliar and emergency signals ' +
+    '<strong style="color: #667eea;">___(20)___</strong> the smell of smoke, which might indicate the danger of fire.' +
+    '</p>'
 })
 
 // 答对题数
@@ -877,12 +943,36 @@ onMounted(async () => {
   opacity: 0.9;
 }
 
+/* 文章区域 */
+.article-section {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.article-content {
+  font-size: 1.05em;
+  line-height: 2.2;
+  color: #333;
+  text-align: justify;
+}
+
+.section-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #667eea;
+}
+
 .cloze-question-item {
   background: white;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   transition: all 0.3s;
 }
 
@@ -891,25 +981,33 @@ onMounted(async () => {
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
 }
 
+/* 题目头部：题号+题干+按钮 */
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
 .cloze-number {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
   text-align: center;
   background: #667eea;
   color: white;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 15px;
+  font-size: 1em;
 }
 
-.cloze-stem {
-  margin-bottom: 20px;
-  font-size: 1.05em;
-  line-height: 1.8;
+.question-stem-text {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.6;
   color: #333;
+  padding-top: 5px;
 }
 
 /* 选项横向排列 */
