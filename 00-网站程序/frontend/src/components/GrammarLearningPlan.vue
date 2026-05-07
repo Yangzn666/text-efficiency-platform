@@ -1,15 +1,15 @@
 <template>
   <div class="grammar-learning-plan">
     <div class="plan-header">
-      <h2 class="plan-title"> 语法6周学习计划</h2>
-      <p class="plan-subtitle">2026-05-05 ~ 2026-06-15 | 目标：从60-70分提升到80-85分</p>
+      <h2 class="plan-title"> 语法2周强化计划</h2>
+      <p class="plan-subtitle">2026-05-05 ~ 2026-05-18 | 目标：从60-70分提升到80-85分</p>
       <div class="plan-stats">
         <div class="stat-item">
-          <div class="stat-value">6周</div>
+          <div class="stat-value">2周</div>
           <div class="stat-label">总时长</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">2-2.5h</div>
+          <div class="stat-value">2.5h</div>
           <div class="stat-label">每日学习</div>
         </div>
         <div class="stat-item">
@@ -24,7 +24,7 @@
       <div class="progress-header">
         <h3>📊 当前学习进度</h3>
         <div class="progress-info">
-          <span>第 {{ currentWeek }} 周 / 共 6 周</span>
+          <span>第 {{ currentWeek }} 周 / 共 2 周</span>
           <span>第 {{ currentDay }} 天</span>
         </div>
       </div>
@@ -42,31 +42,30 @@
     <!-- 学习阶段标签页 -->
     <div class="phase-tabs">
       <el-tabs v-model="activePhase" type="border-card">
-        <!-- 第1-2周：基础巩固期 -->
-        <el-tab-pane label="第1-2周：基础巩固" name="phase1">
+        <!-- 第1周：核心语法突破 -->
+        <el-tab-pane label="第1周：核心语法" name="week1">
           <div class="phase-content">
             <div class="phase-overview">
-              <h3>📚 第1-2周：基础巩固期</h3>
+              <h3>📚 第1周：核心语法突破</h3>
               <div class="phase-info-grid">
                 <div class="info-item">
                   <div class="info-label">🎯 重点内容</div>
-                  <div class="info-value">长难句分析 + 虚拟语气</div>
+                  <div class="info-value">长难句 + 虚拟语气 + 非谓语动词</div>
                 </div>
                 <div class="info-item">
                   <div class="info-label">⏰ 每日时间</div>
-                  <div class="info-value">2小时</div>
+                  <div class="info-value">2.5小时</div>
                 </div>
                 <div class="info-item">
                   <div class="info-label">📈 预期成果</div>
-                  <div class="info-value">掌握长难句拆解方法，虚拟语气运用自如</div>
+                  <div class="info-value">掌握三大核心语法，能分析复杂句子</div>
                 </div>
               </div>
             </div>
 
             <div class="weekly-plans">
-              <!-- 第1周 -->
               <div class="week-plan">
-                <h4 class="week-title">第1周：长难句入门 + 虚拟语气基础</h4>
+                <h4 class="week-title">第1周（Day 1-7）：核心语法强化</h4>
                 <div class="daily-plans">
                   <div v-for="day in week1Plans" :key="day.day" 
                        class="day-plan"
@@ -95,10 +94,34 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </el-tab-pane>
 
-              <!-- 第2周 -->
+        <!-- 第2周：进阶语法+实战 -->
+        <el-tab-pane label="第2周：进阶实战" name="week2">
+          <div class="phase-content">
+            <div class="phase-overview">
+              <h3>🎯 第2周：进阶语法+实战</h3>
+              <div class="phase-info-grid">
+                <div class="info-item">
+                  <div class="info-label">🎯 重点内容</div>
+                  <div class="info-value">倒装句 + 独立主格 + 真题模拟</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">⏰ 每日时间</div>
+                  <div class="info-value">2.5小时</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">📈 预期成果</div>
+                  <div class="info-value">语法部分达80-85分，写作能用高级语法</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="weekly-plans">
               <div class="week-plan">
-                <h4 class="week-title">第2周：长难句进阶 + 虚拟语气强化</h4>
+                <h4 class="week-title">第2周（Day 8-14）：进阶语法+综合测试</h4>
                 <div class="daily-plans">
                   <div v-for="day in week2Plans" :key="day.day" 
                        class="day-plan"
@@ -112,184 +135,6 @@
                         type="checkbox" 
                         :checked="day.completed"
                         @change="toggleDayComplete('week2', day.day)"
-                        class="day-checkbox"
-                      />
-                    </div>
-                    <div class="day-tasks">
-                      <div v-for="(task, idx) in day.tasks" :key="idx" class="task-item">
-                        <div class="task-time">{{ task.time }}</div>
-                        <div class="task-content">{{ task.content }}</div>
-                      </div>
-                    </div>
-                    <div v-if="day.aiTemplate" class="ai-template">
-                      🤖 {{ day.aiTemplate }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
-
-        <!-- 第3-4周：专项突破期 -->
-        <el-tab-pane label="第3-4周：专项突破" name="phase2">
-          <div class="phase-content">
-            <div class="phase-overview">
-              <h3> 第3-4周：专项突破期</h3>
-              <div class="phase-info-grid">
-                <div class="info-item">
-                  <div class="info-label">🎯 重点内容</div>
-                  <div class="info-value">非谓语动词 + 倒装句</div>
-                </div>
-                <div class="info-item">
-                  <div class="info-label">⏰ 每日时间</div>
-                  <div class="info-value">2小时</div>
-                </div>
-                <div class="info-item">
-                  <div class="info-label">📈 预期成果</div>
-                  <div class="info-value">非谓语概念清晰，倒装句识别准确</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="weekly-plans">
-              <!-- 第3周 -->
-              <div class="week-plan">
-                <h4 class="week-title">第3周：非谓语动词系统学习</h4>
-                <div class="daily-plans">
-                  <div v-for="day in week3Plans" :key="day.day" 
-                       class="day-plan"
-                       :class="{ 'completed': day.completed, 'today': day.isToday }">
-                    <div class="day-header">
-                      <div class="day-info">
-                        <div class="day-number">Day {{ day.day + 14 }}</div>
-                        <div class="day-date">{{ day.date }}</div>
-                      </div>
-                      <input 
-                        type="checkbox" 
-                        :checked="day.completed"
-                        @change="toggleDayComplete('week3', day.day)"
-                        class="day-checkbox"
-                      />
-                    </div>
-                    <div class="day-tasks">
-                      <div v-for="(task, idx) in day.tasks" :key="idx" class="task-item">
-                        <div class="task-time">{{ task.time }}</div>
-                        <div class="task-content">{{ task.content }}</div>
-                      </div>
-                    </div>
-                    <div v-if="day.aiTemplate" class="ai-template">
-                      🤖 {{ day.aiTemplate }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 第4周 -->
-              <div class="week-plan">
-                <h4 class="week-title">第4周：倒装句规则掌握</h4>
-                <div class="daily-plans">
-                  <div v-for="day in week4Plans" :key="day.day" 
-                       class="day-plan"
-                       :class="{ 'completed': day.completed, 'today': day.isToday }">
-                    <div class="day-header">
-                      <div class="day-info">
-                        <div class="day-number">Day {{ day.day + 21 }}</div>
-                        <div class="day-date">{{ day.date }}</div>
-                      </div>
-                      <input 
-                        type="checkbox" 
-                        :checked="day.completed"
-                        @change="toggleDayComplete('week4', day.day)"
-                        class="day-checkbox"
-                      />
-                    </div>
-                    <div class="day-tasks">
-                      <div v-for="(task, idx) in day.tasks" :key="idx" class="task-item">
-                        <div class="task-time">{{ task.time }}</div>
-                        <div class="task-content">{{ task.content }}</div>
-                      </div>
-                    </div>
-                    <div v-if="day.aiTemplate" class="ai-template">
-                      🤖 {{ day.aiTemplate }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
-
-        <!-- 第5-6周：综合提升期 -->
-        <el-tab-pane label="第5-6周：综合提升" name="phase3">
-          <div class="phase-content">
-            <div class="phase-overview">
-              <h3>🎯 第5-6周：综合提升期</h3>
-              <div class="phase-info-grid">
-                <div class="info-item">
-                  <div class="info-label"> 重点内容</div>
-                  <div class="info-value">独立主格 + 综合应用 + 写作实践</div>
-                </div>
-                <div class="info-item">
-                  <div class="info-label">⏰ 每日时间</div>
-                  <div class="info-value">2.5小时</div>
-                </div>
-                <div class="info-item">
-                  <div class="info-label">📈 预期成果</div>
-                  <div class="info-value">写作能使用高级语法，语法部分达80-85分</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="weekly-plans">
-              <!-- 第5周 -->
-              <div class="week-plan">
-                <h4 class="week-title">第5周：独立主格 + 写作应用</h4>
-                <div class="daily-plans">
-                  <div v-for="day in week5Plans" :key="day.day" 
-                       class="day-plan"
-                       :class="{ 'completed': day.completed, 'today': day.isToday }">
-                    <div class="day-header">
-                      <div class="day-info">
-                        <div class="day-number">Day {{ day.day + 28 }}</div>
-                        <div class="day-date">{{ day.date }}</div>
-                      </div>
-                      <input 
-                        type="checkbox" 
-                        :checked="day.completed"
-                        @change="toggleDayComplete('week5', day.day)"
-                        class="day-checkbox"
-                      />
-                    </div>
-                    <div class="day-tasks">
-                      <div v-for="(task, idx) in day.tasks" :key="idx" class="task-item">
-                        <div class="task-time">{{ task.time }}</div>
-                        <div class="task-content">{{ task.content }}</div>
-                      </div>
-                    </div>
-                    <div v-if="day.aiTemplate" class="ai-template">
-                      🤖 {{ day.aiTemplate }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 第6周 -->
-              <div class="week-plan">
-                <h4 class="week-title">第6周：综合复习 + 模拟测试</h4>
-                <div class="daily-plans">
-                  <div v-for="day in week6Plans" :key="day.day" 
-                       class="day-plan"
-                       :class="{ 'completed': day.completed, 'today': day.isToday }">
-                    <div class="day-header">
-                      <div class="day-info">
-                        <div class="day-number">Day {{ day.day + 35 }}</div>
-                        <div class="day-date">{{ day.date }}</div>
-                      </div>
-                      <input 
-                        type="checkbox" 
-                        :checked="day.completed"
-                        @change="toggleDayComplete('week6', day.day)"
                         class="day-checkbox"
                       />
                     </div>
@@ -388,23 +233,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-const activePhase = ref('phase1')
+const activePhase = ref('week1')
 
 // 计算当前周和天
 const startDate = new Date('2026-05-05')
 const today = new Date()
 const daysDiff = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
-const currentWeek = computed(() => Math.min(Math.floor(daysDiff / 7) + 1, 6))
-const currentDay = computed(() => Math.min(daysDiff + 1, 42))
+const currentWeek = computed(() => Math.min(Math.floor(daysDiff / 7) + 1, 2))
+const currentDay = computed(() => Math.min(daysDiff + 1, 14))
 
 // 学习进度数据
 const learningProgress = ref({
   week1: [false, false, false, false, false, false, false],
-  week2: [false, false, false, false, false, false, false],
-  week3: [false, false, false, false, false, false, false],
-  week4: [false, false, false, false, false, false, false],
-  week5: [false, false, false, false, false, false, false],
-  week6: [false, false, false, false, false, false, false]
+  week2: [false, false, false, false, false, false, false]
 })
 
 const completedDays = computed(() => {
@@ -415,7 +256,7 @@ const completedDays = computed(() => {
   return count
 })
 
-const totalDays = 42
+const totalDays = 14
 const overallProgress = computed(() => {
   return Math.round((completedDays.value / totalDays) * 100)
 })
@@ -439,7 +280,7 @@ const generateDate = (dayOffset: number) => {
   return `${date.getMonth() + 1}/${date.getDate()}`
 }
 
-// 第1周计划
+// 第1周计划（已优化，避免重复）
 const week1Plans = ref([
   {
     day: 1,
@@ -447,10 +288,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 0,
     tasks: [
-      { time: '30分钟', content: '使用AI语法助手模板1学习长难句分析方法论' },
-      { time: '30分钟', content: '学习"四步法"：找主干→找并列→找从句→去修饰' },
-      { time: '30分钟', content: '使用模板2分析5个简单长难句' },
-      { time: '30分钟', content: '整理笔记，总结今天学到的方法' }
+      { time: '40分钟', content: '使用AI语法助手模板1学习长难句分析方法论' },
+      { time: '40分钟', content: '学习"四步法"：找主干→找并列→找从句→去修饰' },
+      { time: '40分钟', content: '使用模板2分析5个简单长难句+整理笔记' }
     ],
     aiTemplate: '模板1：语法概念深度解释器 + 模板2：长难句拆解教练'
   },
@@ -520,16 +360,15 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 6,
     tasks: [
-      { time: '30分钟', content: '复习本周所有内容' },
-      { time: '30分钟', content: '完成10道综合测试题' },
-      { time: '30分钟', content: '使用模板10诊断本周学习进度' },
-      { time: '30分钟', content: '制定下周学习计划' }
+      { time: '40分钟', content: '复习本周所有内容（长难句+虚拟语气）' },
+      { time: '40分钟', content: '完成30道综合测试题' },
+      { time: '40分钟', content: '使用模板10诊断学习进度+制定下周计划' }
     ],
     aiTemplate: '模板10：学习进度诊断师'
   }
 ])
 
-// 第2周计划
+// 第2周计划（已优化，紧凑高效）
 const week2Plans = ref([
   {
     day: 1,
@@ -537,11 +376,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 7,
     tasks: [
-      { time: '40分钟', content: '长难句真题实战：分析5个阅读真题长难句' },
-      { time: '40分钟', content: '应用"四步法"完整分析+翻译句子' },
-      { time: '40分钟', content: '整理阅读中长难句的出题特点' }
+      { time: '40分钟', content: '非谓语动词入门：学习不定式、动名词、分词概念' },
+      { time: '40分钟', content: '澄清三种非谓语的核心功能差异+制作对比表' },
+      { time: '40分钟', content: '完成20道基础练习+整理常见搭配' }
     ],
-    aiTemplate: '模板2：长难句拆解教练'
+    aiTemplate: '模板1：语法概念深度解释器'
   },
   {
     day: 2,
@@ -549,11 +388,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 8,
     tasks: [
-      { time: '40分钟', content: '虚拟语气综合测试：完成40道真题' },
-      { time: '40分钟', content: '分析错题，总结三种形式的易混点' },
-      { time: '40分钟', content: '制作虚拟语气思维导图（模板9）' }
+      { time: '40分钟', content: '非谓语专项：不定式vs动名词对比+20道练习' },
+      { time: '40分钟', content: '整理动词后接规则+总结易混淆点' },
+      { time: '40分钟', content: '错题分析+规律总结' }
     ],
-    aiTemplate: '模板6：个性化练习生成器 + 模板9：知识卡片生成器'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 3,
@@ -561,11 +400,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 9,
     tasks: [
-      { time: '40分钟', content: '非谓语动词入门：学习不定式、动名词、分词概念' },
-      { time: '40分钟', content: '澄清三种非谓语的核心功能差异' },
-      { time: '40分钟', content: '制作对比表格+完成15道基础练习' }
+      { time: '40分钟', content: '倒装句入门：完全倒装vs不完全倒装' },
+      { time: '40分钟', content: '学习否定词/only/so等引起的倒装' },
+      { time: '40分钟', content: '完成20道倒装句练习+整理触发词' }
     ],
-    aiTemplate: '模板1：语法概念深度解释器'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 4,
@@ -573,9 +412,9 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 10,
     tasks: [
-      { time: '40分钟', content: '非谓语动词专项：不定式用法详解' },
-      { time: '40分钟', content: '完成20道不定式练习+整理常见搭配' },
-      { time: '40分钟', content: '总结错题规律' }
+      { time: '40分钟', content: '独立主格结构学习+与从句的区别' },
+      { time: '40分钟', content: '完成15道独立主格练习' },
+      { time: '40分钟', content: '总结使用场景+整理句型' }
     ],
     aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
@@ -585,11 +424,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 11,
     tasks: [
-      { time: '40分钟', content: '非谓语动词专项：动名词vs不定式对比' },
-      { time: '40分钟', content: '完成20道对比练习+整理动词后接规则' },
-      { time: '40分钟', content: '总结易混淆点' }
+      { time: '50分钟', content: '第1次真题模拟测试（语法部分）' },
+      { time: '40分钟', content: '核对答案+分析错题，找出薄弱点' },
+      { time: '30分钟', content: '针对薄弱点进行专项练习' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板10：学习进度诊断师'
   },
   {
     day: 6,
@@ -597,11 +436,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 12,
     tasks: [
-      { time: '40分钟', content: '非谓语动词专项：分词（现在/过去）用法' },
-      { time: '40分钟', content: '理解主动/被动关系+完成20道练习' },
-      { time: '40分钟', content: '整理分词作定语、状语的用法' }
+      { time: '40分钟', content: '写作实战：写一篇完整的作文（运用高级语法）' },
+      { time: '40分钟', content: '使用AI获取反馈并修改完善' },
+      { time: '40分钟', content: '确保使用3种以上高级语法结构' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
   },
   {
     day: 7,
@@ -609,386 +448,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 13,
     tasks: [
-      { time: '40分钟', content: '复习第1-2周所有内容（长难句+虚拟语气）' },
-      { time: '40分钟', content: '完成30道综合测试题' },
-      { time: '40分钟', content: '使用模板10诊断学习进度+制定第3周计划' }
+      { time: '40分钟', content: '全面复习所有语法知识点+制作思维导图' },
+      { time: '40分钟', content: '第2次真题模拟测试+对比两次成绩' },
+      { time: '40分钟', content: '最终诊断+总结2周学习成果' }
     ],
-    aiTemplate: '模板10：学习进度诊断师'
-  }
-])
-
-// 第3周计划
-const week3Plans = ref([
-  {
-    day: 1,
-    date: generateDate(14),
-    completed: false,
-    isToday: daysDiff === 14,
-    tasks: [
-      { time: '30分钟', content: '使用模板1学习非谓语动词概念（不定式、动名词、分词）' },
-      { time: '30分钟', content: '澄清三种非谓语动词的核心功能差异' },
-      { time: '30分钟', content: '制作对比表格' },
-      { time: '30分钟', content: '完成10道基础练习' }
-    ],
-    aiTemplate: '模板1：语法概念深度解释器'
-  },
-  {
-    day: 2,
-    date: generateDate(15),
-    completed: false,
-    isToday: daysDiff === 15,
-    tasks: [
-      { time: '30分钟', content: '深入学习不定式的用法' },
-      { time: '30分钟', content: '完成15道不定式专项练习' },
-      { time: '30分钟', content: '整理不定式常见搭配' },
-      { time: '30分钟', content: '总结错题' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 3,
-    date: generateDate(16),
-    completed: false,
-    isToday: daysDiff === 16,
-    tasks: [
-      { time: '30分钟', content: '深入学习动名词的用法' },
-      { time: '30分钟', content: '对比不定式和动名词的区别' },
-      { time: '30分钟', content: '完成15道动名词练习' },
-      { time: '30分钟', content: '整理常见动词后接动名词的情况' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 4,
-    date: generateDate(17),
-    completed: false,
-    isToday: daysDiff === 17,
-    tasks: [
-      { time: '30分钟', content: '深入学习分词（现在分词、过去分词）' },
-      { time: '30分钟', content: '理解分词的主动/被动关系' },
-      { time: '30分钟', content: '完成15道分词练习' },
-      { time: '30分钟', content: '整理分词作定语、状语的用法' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 5,
-    date: generateDate(18),
-    completed: false,
-    isToday: daysDiff === 18,
-    tasks: [
-      { time: '30分钟', content: '非谓语动词综合复习' },
-      { time: '30分钟', content: '完成30道综合练习' },
-      { time: '30分钟', content: '分析错题，总结规律' },
-      { time: '30分钟', content: '整理高频考点' }
-    ],
-    aiTemplate: '模板6：个性化练习生成器'
-  },
-  {
-    day: 6,
-    date: generateDate(19),
-    completed: false,
-    isToday: daysDiff === 19,
-    tasks: [
-      { time: '30分钟', content: '非谓语动词在真题中的应用' },
-      { time: '30分钟', content: '分析10个真题例句' },
-      { time: '30分钟', content: '理解出题规律' },
-      { time: '30分钟', content: '整理笔记' }
-    ],
-    aiTemplate: '模板3：平行文本分析'
-  },
-  {
-    day: 7,
-    date: generateDate(20),
-    completed: false,
-    isToday: daysDiff === 20,
-    tasks: [
-      { time: '30分钟', content: '复习本周非谓语动词内容' },
-      { time: '30分钟', content: '完成20道测试题' },
-      { time: '30分钟', content: '使用模板10诊断进度' },
-      { time: '30分钟', content: '制定下周计划' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  }
-])
-
-// 第4周计划
-const week4Plans = ref([
-  {
-    day: 1,
-    date: generateDate(21),
-    completed: false,
-    isToday: daysDiff === 21,
-    tasks: [
-      { time: '30分钟', content: '使用模板1学习倒装句概念' },
-      { time: '30分钟', content: '理解完全倒装和不完全倒装的区别' },
-      { time: '30分钟', content: '整理常见倒装触发词' },
-      { time: '30分钟', content: '完成10道基础练习' }
-    ],
-    aiTemplate: '模板1：语法概念深度解释器'
-  },
-  {
-    day: 2,
-    date: generateDate(22),
-    completed: false,
-    isToday: daysDiff === 22,
-    tasks: [
-      { time: '30分钟', content: '学习否定词引起的倒装（never, hardly, seldom等）' },
-      { time: '30分钟', content: '完成15道专项练习' },
-      { time: '30分钟', content: '整理句型结构' },
-      { time: '30分钟', content: '总结规律' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 3,
-    date: generateDate(23),
-    completed: false,
-    isToday: daysDiff === 23,
-    tasks: [
-      { time: '30分钟', content: '学习only引起的倒装' },
-      { time: '30分钟', content: '学习so/neither/nor引起的倒装' },
-      { time: '30分钟', content: '完成15道练习' },
-      { time: '30分钟', content: '对比不同触发词的区别' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 4,
-    date: generateDate(24),
-    completed: false,
-    isToday: daysDiff === 24,
-    tasks: [
-      { time: '30分钟', content: '学习here/there/now/then引起的完全倒装' },
-      { time: '30分钟', content: '理解完全倒装的语序' },
-      { time: '30分钟', content: '完成15道练习' },
-      { time: '30分钟', content: '整理完全倒装句型' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 5,
-    date: generateDate(25),
-    completed: false,
-    isToday: daysDiff === 25,
-    tasks: [
-      { time: '30分钟', content: '倒装句综合复习' },
-      { time: '30分钟', content: '完成30道综合练习' },
-      { time: '30分钟', content: '分析错题，总结规律' },
-      { time: '30分钟', content: '整理高频考点' }
-    ],
-    aiTemplate: '模板6：个性化练习生成器'
-  },
-  {
-    day: 6,
-    date: generateDate(26),
-    completed: false,
-    isToday: daysDiff === 26,
-    tasks: [
-      { time: '30分钟', content: '倒装句在真题中的应用' },
-      { time: '30分钟', content: '分析10个真题例句' },
-      { time: '30分钟', content: '理解出题规律' },
-      { time: '30分钟', content: '整理笔记' }
-    ],
-    aiTemplate: '模板3：平行文本分析'
-  },
-  {
-    day: 7,
-    date: generateDate(27),
-    completed: false,
-    isToday: daysDiff === 27,
-    tasks: [
-      { time: '30分钟', content: '复习第3-4周内容' },
-      { time: '30分钟', content: '完成20道测试题' },
-      { time: '30分钟', content: '使用模板10诊断进度' },
-      { time: '30分钟', content: '制定第5周计划' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  }
-])
-
-// 第5周计划
-const week5Plans = ref([
-  {
-    day: 1,
-    date: generateDate(28),
-    completed: false,
-    isToday: daysDiff === 28,
-    tasks: [
-      { time: '30分钟', content: '使用模板1学习独立主格结构' },
-      { time: '30分钟', content: '理解"名词/代词+分词/形容词/介词短语"结构' },
-      { time: '30分钟', content: '完成10道基础练习' },
-      { time: '30分钟', content: '整理独立主格句型' }
-    ],
-    aiTemplate: '模板1：语法概念深度解释器'
-  },
-  {
-    day: 2,
-    date: generateDate(29),
-    completed: false,
-    isToday: daysDiff === 29,
-    tasks: [
-      { time: '30分钟', content: '深入学习独立主格的用法' },
-      { time: '30分钟', content: '对比独立主格和从句的区别' },
-      { time: '30分钟', content: '完成15道练习' },
-      { time: '30分钟', content: '总结使用场景' }
-    ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
-  },
-  {
-    day: 3,
-    date: generateDate(30),
-    completed: false,
-    isToday: daysDiff === 30,
-    tasks: [
-      { time: '30分钟', content: '高级语法在写作中的应用' },
-      { time: '30分钟', content: '用模板5写一篇含高级语法的作文' },
-      { time: '30分钟', content: '用模板8获取写作反馈' },
-      { time: '30分钟', content: '修改并完善作文' }
-    ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
-  },
-  {
-    day: 4,
-    date: generateDate(31),
-    completed: false,
-    isToday: daysDiff === 31,
-    tasks: [
-      { time: '30分钟', content: '综合语法复习（长难句+虚拟语气+非谓语）' },
-      { time: '30分钟', content: '完成30道综合练习' },
-      { time: '30分钟', content: '分析错题' },
-      { time: '30分钟', content: '整理薄弱环节' }
-    ],
-    aiTemplate: '模板6：个性化练习生成器'
-  },
-  {
-    day: 5,
-    date: generateDate(32),
-    completed: false,
-    isToday: daysDiff === 32,
-    tasks: [
-      { time: '30分钟', content: '综合语法复习（倒装句+独立主格）' },
-      { time: '30分钟', content: '完成30道综合练习' },
-      { time: '30分钟', content: '分析错题' },
-      { time: '30分钟', content: '整理薄弱环节' }
-    ],
-    aiTemplate: '模板6：个性化练习生成器'
-  },
-  {
-    day: 6,
-    date: generateDate(33),
-    completed: false,
-    isToday: daysDiff === 33,
-    tasks: [
-      { time: '45分钟', content: '写作实战：写一篇完整的作文' },
-      { time: '45分钟', content: '使用模板5和模板8获取反馈' },
-      { time: '30分钟', content: '修改作文，运用高级语法' }
-    ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
-  },
-  {
-    day: 7,
-    date: generateDate(34),
-    completed: false,
-    isToday: daysDiff === 34,
-    tasks: [
-      { time: '30分钟', content: '复习第5周内容' },
-      { time: '30分钟', content: '完成20道测试题' },
-      { time: '30分钟', content: '使用模板10诊断进度' },
-      { time: '30分钟', content: '制定第6周计划' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  }
-])
-
-// 第6周计划
-const week6Plans = ref([
-  {
-    day: 1,
-    date: generateDate(35),
-    completed: false,
-    isToday: daysDiff === 35,
-    tasks: [
-      { time: '30分钟', content: '全面复习所有语法知识点' },
-      { time: '30分钟', content: '制作知识点思维导图（模板9）' },
-      { time: '30分钟', content: '整理高频考点' },
-      { time: '30分钟', content: '复习错题本' }
-    ],
-    aiTemplate: '模板9：知识卡片生成器'
-  },
-  {
-    day: 2,
-    date: generateDate(36),
-    completed: false,
-    isToday: daysDiff === 36,
-    tasks: [
-      { time: '60分钟', content: '第1次真题模拟测试（语法部分）' },
-      { time: '30分钟', content: '核对答案' },
-      { time: '30分钟', content: '分析错题，找出薄弱点' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  },
-  {
-    day: 3,
-    date: generateDate(37),
-    completed: false,
-    isToday: daysDiff === 37,
-    tasks: [
-      { time: '30分钟', content: '针对薄弱点进行专项练习' },
-      { time: '30分钟', content: '完成30道专项练习' },
-      { time: '30分钟', content: '总结错题规律' },
-      { time: '30分钟', content: '整理笔记' }
-    ],
-    aiTemplate: '模板6：个性化练习生成器'
-  },
-  {
-    day: 4,
-    date: generateDate(38),
-    completed: false,
-    isToday: daysDiff === 38,
-    tasks: [
-      { time: '60分钟', content: '第2次真题模拟测试（语法部分）' },
-      { time: '30分钟', content: '核对答案' },
-      { time: '30分钟', content: '对比两次测试成绩，评估进步' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  },
-  {
-    day: 5,
-    date: generateDate(39),
-    completed: false,
-    isToday: daysDiff === 39,
-    tasks: [
-      { time: '30分钟', content: '写作实战：写一篇完整的作文' },
-      { time: '45分钟', content: '使用AI获取反馈并修改' },
-      { time: '45分钟', content: '完善作文，确保使用3种以上高级语法' }
-    ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
-  },
-  {
-    day: 6,
-    date: generateDate(40),
-    completed: false,
-    isToday: daysDiff === 40,
-    tasks: [
-      { time: '30分钟', content: '最后复习所有知识点' },
-      { time: '30分钟', content: '复习错题本' },
-      { time: '30分钟', content: '使用模板10进行最终诊断' },
-      { time: '30分钟', content: '总结6周学习成果' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
-  },
-  {
-    day: 7,
-    date: generateDate(41),
-    completed: false,
-    isToday: daysDiff === 41,
-    tasks: [
-      { time: '30分钟', content: '庆祝完成6周学习计划！' },
-      { time: '30分钟', content: '制定下一阶段学习计划' },
-      { time: '60分钟', content: '放松休息，准备新的开始' }
-    ],
-    aiTemplate: '模板10：学习进度诊断师'
+    aiTemplate: '模板9：知识卡片生成器 + 模板10：学习进度诊断师'
   }
 ])
 </script>
