@@ -134,6 +134,24 @@
       "content": "学习计组第三章（20:00-20:25）",
       "type": "study",
       "createdAt": "2026-05-07T20:00:00.000Z"
+    },
+    {
+      "id": "record_20260507_7",
+      "date": "2026-05-07",
+      "subject": "408计算机",
+      "duration": 25,
+      "content": "学习计组第三章知识点（22:30-22:55）- 存储器系统、Cache映射方式、虚拟存储器",
+      "type": "study",
+      "createdAt": "2026-05-07T22:30:00.000Z"
+    },
+    {
+      "id": "record_20260507_8",
+      "date": "2026-05-07",
+      "subject": "408计算机",
+      "duration": 25,
+      "content": "学习计组第三章知识点（23:00-23:25）- 局部性原理、DRAM刷新、存储器扩展",
+      "type": "study",
+      "createdAt": "2026-05-07T23:00:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -168,10 +186,10 @@
       "completionRate": 25.0
     },
     "408计算机": {
-      "totalTime": 25,
+      "totalTime": 75,
       "lastStudyDate": "2026-05-07",
       "weeklyGoal": 300,
-      "completionRate": 8.33
+      "completionRate": 25.0
     }
   }
 }
