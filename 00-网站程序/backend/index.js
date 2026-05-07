@@ -9,13 +9,15 @@ const PORT = process.env.PORT || 3001
 // 中间件配置
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../frontend/dist')))
 
 // 导入路由
 const readingQuestionsRouter = require('./routes/reading-questions')
 
-// 注册路由
+// 注册API路由（必须在static之前）
 app.use('/api/reading-questions', readingQuestionsRouter)
+
+// 静态文件服务
+app.use(express.static(path.join(__dirname, '../frontend/dist')))
 
 // 路由
 app.get('/api/health', (req, res) => {
