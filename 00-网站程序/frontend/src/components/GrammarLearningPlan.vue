@@ -460,10 +460,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 1,
     tasks: [
-      { time: '30分钟', content: '使用模板1学习虚拟语气三种形式（与现在/过去/将来事实相反）' },
-      { time: '30分钟', content: '制作虚拟语气规则表格（时态倒退规则）' },
-      { time: '30分钟', content: '完成10道虚拟语气基础练习' },
-      { time: '30分钟', content: '核对答案，分析错误原因' }
+      { time: '40分钟', content: '虚拟语气三种形式对比学习（现在/过去/将来）' },
+      { time: '40分钟', content: '制作时态倒退规则表格+完成20道综合练习' },
+      { time: '40分钟', content: '核对答案，分析错误原因，总结规律' }
     ],
     aiTemplate: '模板1：语法概念深度解释器 + 模板6：个性化练习生成器'
   },
@@ -473,10 +472,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 2,
     tasks: [
-      { time: '30分钟', content: '复习长难句"四步法"' },
-      { time: '30分钟', content: '使用模板2分析5个中等难度长难句' },
-      { time: '30分钟', content: '练习提取句子主干' },
-      { time: '30分钟', content: '整理错题笔记' }
+      { time: '40分钟', content: '长难句实战：分析5个含定语从句的复杂句' },
+      { time: '40分钟', content: '重点练习"找从句"和"去修饰"步骤' },
+      { time: '40分钟', content: '整理定语从句嵌套技巧+错题笔记' }
     ],
     aiTemplate: '模板2：长难句拆解教练'
   },
@@ -486,12 +484,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 3,
     tasks: [
-      { time: '30分钟', content: '深入学习虚拟语气第1种：与现在事实相反' },
-      { time: '30分钟', content: '完成15道虚拟语气（现在）练习' },
-      { time: '30分钟', content: '用模板6生成更多练习' },
-      { time: '30分钟', content: '总结常见错误类型' }
+      { time: '40分钟', content: '虚拟语气真题实战：完成30道考研真题' },
+      { time: '40分钟', content: '分析出题规律，总结高频考点' },
+      { time: '40分钟', content: '整理常见错误类型+易混淆点' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板6：个性化练习生成器'
   },
   {
     day: 5,
@@ -499,10 +496,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 4,
     tasks: [
-      { time: '30分钟', content: '使用模板2分析5个复杂长难句（含定语从句）' },
-      { time: '30分钟', content: '重点练习"找从句"步骤' },
-      { time: '30分钟', content: '对比简单句和复杂句的区别' },
-      { time: '30分钟', content: '整理定语从句嵌套的技巧' }
+      { time: '40分钟', content: '长难句进阶：分析5个含状语从句+插入语的复杂句' },
+      { time: '40分钟', content: '练习快速跳过插入语找主干的技巧' },
+      { time: '40分钟', content: '整理状语从句类型+常见插入语' }
     ],
     aiTemplate: '模板2：长难句拆解教练'
   },
@@ -512,12 +508,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 5,
     tasks: [
-      { time: '30分钟', content: '学习虚拟语气第2种：与过去事实相反' },
-      { time: '30分钟', content: '对比第1种和第2种的区别' },
-      { time: '30分钟', content: '完成20道综合练习' },
-      { time: '30分钟', content: '分析错题，总结规律' }
+      { time: '40分钟', content: '虚拟语气写作应用：写一段含虚拟语气的作文' },
+      { time: '40分钟', content: '用AI获取写作反馈并修改完善' },
+      { time: '40分钟', content: '总结虚拟语气在写作中的高分句型' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
   },
   {
     day: 7,
@@ -542,10 +537,9 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 7,
     tasks: [
-      { time: '30分钟', content: '使用模板2分析5个含状语从句的长难句' },
-      { time: '30分钟', content: '重点练习"去修饰"步骤' },
-      { time: '30分钟', content: '对比主干和修饰成分' },
-      { time: '30分钟', content: '整理状语从句类型' }
+      { time: '40分钟', content: '长难句真题实战：分析5个阅读真题长难句' },
+      { time: '40分钟', content: '应用"四步法"完整分析+翻译句子' },
+      { time: '40分钟', content: '整理阅读中长难句的出题特点' }
     ],
     aiTemplate: '模板2：长难句拆解教练'
   },
@@ -555,12 +549,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 8,
     tasks: [
-      { time: '30分钟', content: '学习虚拟语气第3种：与将来事实相反' },
-      { time: '30分钟', content: '对比三种虚拟语气的区别' },
-      { time: '30分钟', content: '制作三种形式的对比表格' },
-      { time: '30分钟', content: '完成15道综合练习' }
+      { time: '40分钟', content: '虚拟语气综合测试：完成40道真题' },
+      { time: '40分钟', content: '分析错题，总结三种形式的易混点' },
+      { time: '40分钟', content: '制作虚拟语气思维导图（模板9）' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板6：个性化练习生成器 + 模板9：知识卡片生成器'
   },
   {
     day: 3,
@@ -568,12 +561,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 9,
     tasks: [
-      { time: '30分钟', content: '使用模板2分析5个含插入语的长难句' },
-      { time: '30分钟', content: '练习快速跳过插入语找主干' },
-      { time: '30分钟', content: '整理常见插入语类型' },
-      { time: '30分钟', content: '总结技巧' }
+      { time: '40分钟', content: '非谓语动词入门：学习不定式、动名词、分词概念' },
+      { time: '40分钟', content: '澄清三种非谓语的核心功能差异' },
+      { time: '40分钟', content: '制作对比表格+完成15道基础练习' }
     ],
-    aiTemplate: '模板2：长难句拆解教练'
+    aiTemplate: '模板1：语法概念深度解释器'
   },
   {
     day: 4,
@@ -581,12 +573,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 10,
     tasks: [
-      { time: '30分钟', content: '虚拟语气综合复习' },
-      { time: '30分钟', content: '完成30道虚拟语气真题' },
-      { time: '30分钟', content: '分析错题，总结出题规律' },
-      { time: '30分钟', content: '整理高频考点' }
+      { time: '40分钟', content: '非谓语动词专项：不定式用法详解' },
+      { time: '40分钟', content: '完成20道不定式练习+整理常见搭配' },
+      { time: '40分钟', content: '总结错题规律' }
     ],
-    aiTemplate: '模板6：个性化练习生成器'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 5,
@@ -594,12 +585,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 11,
     tasks: [
-      { time: '30分钟', content: '使用模板2分析5个真题阅读长难句' },
-      { time: '30分钟', content: '应用"四步法"完整分析' },
-      { time: '30分钟', content: '翻译句子，理解句意' },
-      { time: '30分钟', content: '整理阅读中的长难句特点' }
+      { time: '40分钟', content: '非谓语动词专项：动名词vs不定式对比' },
+      { time: '40分钟', content: '完成20道对比练习+整理动词后接规则' },
+      { time: '40分钟', content: '总结易混淆点' }
     ],
-    aiTemplate: '模板2：长难句拆解教练'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 6,
@@ -607,12 +597,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 12,
     tasks: [
-      { time: '30分钟', content: '虚拟语气写作应用' },
-      { time: '30分钟', content: '用模板5写一段含虚拟语气的作文' },
-      { time: '30分钟', content: '用模板8获取写作反馈' },
-      { time: '30分钟', content: '修改并完善作文' }
+      { time: '40分钟', content: '非谓语动词专项：分词（现在/过去）用法' },
+      { time: '40分钟', content: '理解主动/被动关系+完成20道练习' },
+      { time: '40分钟', content: '整理分词作定语、状语的用法' }
     ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 7,
@@ -620,10 +609,9 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 13,
     tasks: [
-      { time: '30分钟', content: '复习第1-2周所有内容' },
-      { time: '30分钟', content: '完成20道综合测试题' },
-      { time: '30分钟', content: '使用模板10诊断学习进度' },
-      { time: '30分钟', content: '制定第3周计划' }
+      { time: '40分钟', content: '复习第1-2周所有内容（长难句+虚拟语气）' },
+      { time: '40分钟', content: '完成30道综合测试题' },
+      { time: '40分钟', content: '使用模板10诊断学习进度+制定第3周计划' }
     ],
     aiTemplate: '模板10：学习进度诊断师'
   }
