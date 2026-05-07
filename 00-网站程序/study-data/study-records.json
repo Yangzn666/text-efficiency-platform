@@ -107,6 +107,33 @@
       "content": "概率论强化第一章学习（17:00-17:25）- 方浩强化讲义同步学习",
       "type": "study",
       "createdAt": "2026-05-07T17:00:00.000"
+    },
+    {
+      "id": "record_20260507_4",
+      "date": "2026-05-07",
+      "subject": "英语一",
+      "duration": 25,
+      "content": "写2005年英一真题（18:00-18:25）",
+      "type": "practice",
+      "createdAt": "2026-05-07T18:00:00.000Z"
+    },
+    {
+      "id": "record_20260507_5",
+      "date": "2026-05-07",
+      "subject": "英语一",
+      "duration": 25,
+      "content": "写2005年英一真题（18:30-18:55）",
+      "type": "practice",
+      "createdAt": "2026-05-07T18:30:00.000Z"
+    },
+    {
+      "id": "record_20260507_6",
+      "date": "2026-05-07",
+      "subject": "408计算机",
+      "duration": 25,
+      "content": "学习计组第三章（20:00-20:25）",
+      "type": "study",
+      "createdAt": "2026-05-07T20:00:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -129,16 +156,22 @@
       "completionRate": 16.67
     },
     "英语一": {
-      "totalTime": 250,
-      "lastStudyDate": "2026-05-06",
+      "totalTime": 300,
+      "lastStudyDate": "2026-05-07",
       "weeklyGoal": 300,
-      "completionRate": 83.33
+      "completionRate": 100.0
     },
     "数学一": {
       "totalTime": 75,
       "lastStudyDate": "2026-05-07",
       "weeklyGoal": 300,
       "completionRate": 25.0
+    },
+    "408计算机": {
+      "totalTime": 25,
+      "lastStudyDate": "2026-05-07",
+      "weeklyGoal": 300,
+      "completionRate": 8.33
     }
   }
 }
