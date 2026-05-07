@@ -280,7 +280,7 @@ const generateDate = (dayOffset: number) => {
   return `${date.getMonth() + 1}/${date.getDate()}`
 }
 
-// 第1周计划（已优化，避免重复）
+// 第1周计划（每天不同语法点，不重复）
 const week1Plans = ref([
   {
     day: 1,
@@ -288,9 +288,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 0,
     tasks: [
-      { time: '40分钟', content: '使用AI语法助手模板1学习长难句分析方法论' },
-      { time: '40分钟', content: '学习"四步法"：找主干→找并列→找从句→去修饰' },
-      { time: '40分钟', content: '使用模板2分析5个简单长难句+整理笔记' }
+      { time: '50分钟', content: '长难句分析方法论：四步法（找主干→找并列→找从句→去修饰）' },
+      { time: '40分钟', content: '实战分析5个简单长难句，掌握找主干技巧' },
+      { time: '30分钟', content: '整理笔记，总结四步法要点' }
     ],
     aiTemplate: '模板1：语法概念深度解释器 + 模板2：长难句拆解教练'
   },
@@ -300,9 +300,9 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 1,
     tasks: [
-      { time: '40分钟', content: '虚拟语气三种形式对比学习（现在/过去/将来）' },
-      { time: '40分钟', content: '制作时态倒退规则表格+完成20道综合练习' },
-      { time: '40分钟', content: '核对答案，分析错误原因，总结规律' }
+      { time: '60分钟', content: '虚拟语气三种形式对比学习（现在/过去/将来事实相反）' },
+      { time: '30分钟', content: '制作时态倒退规则表格' },
+      { time: '30分钟', content: '完成15道基础练习' }
     ],
     aiTemplate: '模板1：语法概念深度解释器 + 模板6：个性化练习生成器'
   },
@@ -312,11 +312,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 2,
     tasks: [
-      { time: '40分钟', content: '长难句实战：分析5个含定语从句的复杂句' },
-      { time: '40分钟', content: '重点练习"找从句"和"去修饰"步骤' },
-      { time: '40分钟', content: '整理定语从句嵌套技巧+错题笔记' }
+      { time: '60分钟', content: '非谓语动词入门：不定式、动名词、分词概念辨析' },
+      { time: '30分钟', content: '制作三种非谓语对比表格' },
+      { time: '30分钟', content: '完成15道基础练习' }
     ],
-    aiTemplate: '模板2：长难句拆解教练'
+    aiTemplate: '模板1：语法概念深度解释器'
   },
   {
     day: 4,
@@ -324,11 +324,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 3,
     tasks: [
-      { time: '40分钟', content: '虚拟语气真题实战：完成30道考研真题' },
-      { time: '40分钟', content: '分析出题规律，总结高频考点' },
-      { time: '40分钟', content: '整理常见错误类型+易混淆点' }
+      { time: '60分钟', content: '倒装句规则：完全倒装vs不完全倒装' },
+      { time: '30分钟', content: '学习否定词/only/so等引起的倒装' },
+      { time: '30分钟', content: '完成15道倒装句练习' }
     ],
-    aiTemplate: '模板6：个性化练习生成器'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 5,
@@ -336,11 +336,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 4,
     tasks: [
-      { time: '40分钟', content: '长难句进阶：分析5个含状语从句+插入语的复杂句' },
-      { time: '40分钟', content: '练习快速跳过插入语找主干的技巧' },
-      { time: '40分钟', content: '整理状语从句类型+常见插入语' }
+      { time: '60分钟', content: '独立主格结构：名词/代词+分词/形容词/介词短语' },
+      { time: '30分钟', content: '对比独立主格和从句的区别' },
+      { time: '30分钟', content: '完成15道独立主格练习' }
     ],
-    aiTemplate: '模板2：长难句拆解教练'
+    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
   },
   {
     day: 6,
@@ -348,11 +348,11 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 5,
     tasks: [
-      { time: '40分钟', content: '虚拟语气写作应用：写一段含虚拟语气的作文' },
-      { time: '40分钟', content: '用AI获取写作反馈并修改完善' },
-      { time: '40分钟', content: '总结虚拟语气在写作中的高分句型' }
+      { time: '60分钟', content: '定语从句进阶：嵌套从句+多重修饰' },
+      { time: '30分钟', content: '分析5个复杂定语从句真题例句' },
+      { time: '30分钟', content: '整理定语从句高频考点' }
     ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
+    aiTemplate: '模板2：长难句拆解教练'
   },
   {
     day: 7,
@@ -360,15 +360,15 @@ const week1Plans = ref([
     completed: false,
     isToday: daysDiff === 6,
     tasks: [
-      { time: '40分钟', content: '复习本周所有内容（长难句+虚拟语气）' },
-      { time: '40分钟', content: '完成30道综合测试题' },
-      { time: '40分钟', content: '使用模板10诊断学习进度+制定下周计划' }
+      { time: '60分钟', content: '状语从句+插入语：快速跳过修饰找主干' },
+      { time: '30分钟', content: '分析5个含插入语的复杂句' },
+      { time: '30分钟', content: '整理常见插入语类型' }
     ],
-    aiTemplate: '模板10：学习进度诊断师'
+    aiTemplate: '模板2：长难句拆解教练'
   }
 ])
 
-// 第2周计划（已优化，紧凑高效）
+// 第2周计划（评估+针对性突破）
 const week2Plans = ref([
   {
     day: 1,
@@ -376,11 +376,10 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 7,
     tasks: [
-      { time: '40分钟', content: '非谓语动词入门：学习不定式、动名词、分词概念' },
-      { time: '40分钟', content: '澄清三种非谓语的核心功能差异+制作对比表' },
-      { time: '40分钟', content: '完成20道基础练习+整理常见搭配' }
+      { time: '90分钟', content: '第1次全面评估测试（涵盖所有语法点）' },
+      { time: '30分钟', content: '核对答案，分析错题' }
     ],
-    aiTemplate: '模板1：语法概念深度解释器'
+    aiTemplate: '模板10：学习进度诊断师'
   },
   {
     day: 2,
@@ -388,11 +387,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 8,
     tasks: [
-      { time: '40分钟', content: '非谓语专项：不定式vs动名词对比+20道练习' },
-      { time: '40分钟', content: '整理动词后接规则+总结易混淆点' },
-      { time: '40分钟', content: '错题分析+规律总结' }
+      { time: '60分钟', content: '针对评估薄弱点1进行专项突破' },
+      { time: '30分钟', content: '完成20道专项练习' },
+      { time: '30分钟', content: '总结规律，整理笔记' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板6：个性化练习生成器'
   },
   {
     day: 3,
@@ -400,11 +399,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 9,
     tasks: [
-      { time: '40分钟', content: '倒装句入门：完全倒装vs不完全倒装' },
-      { time: '40分钟', content: '学习否定词/only/so等引起的倒装' },
-      { time: '40分钟', content: '完成20道倒装句练习+整理触发词' }
+      { time: '60分钟', content: '针对评估薄弱点2进行专项突破' },
+      { time: '30分钟', content: '完成20道专项练习' },
+      { time: '30分钟', content: '总结规律，整理笔记' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板6：个性化练习生成器'
   },
   {
     day: 4,
@@ -412,11 +411,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 10,
     tasks: [
-      { time: '40分钟', content: '独立主格结构学习+与从句的区别' },
-      { time: '40分钟', content: '完成15道独立主格练习' },
-      { time: '40分钟', content: '总结使用场景+整理句型' }
+      { time: '60分钟', content: '针对评估薄弱点3进行专项突破' },
+      { time: '30分钟', content: '完成20道专项练习' },
+      { time: '30分钟', content: '总结规律，整理笔记' }
     ],
-    aiTemplate: '模板1：概念解释 + 模板6：练习生成'
+    aiTemplate: '模板6：个性化练习生成器'
   },
   {
     day: 5,
@@ -424,11 +423,11 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 11,
     tasks: [
-      { time: '50分钟', content: '第1次真题模拟测试（语法部分）' },
-      { time: '40分钟', content: '核对答案+分析错题，找出薄弱点' },
-      { time: '30分钟', content: '针对薄弱点进行专项练习' }
+      { time: '60分钟', content: '写作实战：写一篇完整作文（运用所学语法）' },
+      { time: '30分钟', content: '使用AI获取反馈并修改' },
+      { time: '30分钟', content: '确保使用3种以上高级语法' }
     ],
-    aiTemplate: '模板10：学习进度诊断师'
+    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
   },
   {
     day: 6,
@@ -436,11 +435,10 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 12,
     tasks: [
-      { time: '40分钟', content: '写作实战：写一篇完整的作文（运用高级语法）' },
-      { time: '40分钟', content: '使用AI获取反馈并修改完善' },
-      { time: '40分钟', content: '确保使用3种以上高级语法结构' }
+      { time: '90分钟', content: '第2次评估测试（检验薄弱点是否解决）' },
+      { time: '30分钟', content: '对比两次成绩，评估进步' }
     ],
-    aiTemplate: '模板5：写作反馈 + 模板8：作文阅卷'
+    aiTemplate: '模板10：学习进度诊断师'
   },
   {
     day: 7,
@@ -448,9 +446,9 @@ const week2Plans = ref([
     completed: false,
     isToday: daysDiff === 13,
     tasks: [
-      { time: '40分钟', content: '全面复习所有语法知识点+制作思维导图' },
-      { time: '40分钟', content: '第2次真题模拟测试+对比两次成绩' },
-      { time: '40分钟', content: '最终诊断+总结2周学习成果' }
+      { time: '60分钟', content: '最后查漏补缺：针对仍存在的薄弱点' },
+      { time: '30分钟', content: '制作语法知识点思维导图' },
+      { time: '30分钟', content: '总结2周学习成果，制定后续计划' }
     ],
     aiTemplate: '模板9：知识卡片生成器 + 模板10：学习进度诊断师'
   }
