@@ -187,16 +187,55 @@ export const useStudyStore = defineStore('study', () => {
   const initializeStudyData = async () => {
     isLoading.value = true
     try {
-      // 从本地存储加载数据
-      const storedRecords = await localforage.getItem<StudyRecord[]>('studyRecords')
-      const storedProgress = await localforage.getItem<SubjectProgress>('subjectProgress')
+      // 优先从后端API加载数据
+      let apiDataLoaded = false
+      let storedRecords: StudyRecord[] | null = null
+      let storedProgress: SubjectProgress | null = null
       
-      if (storedRecords) {
-        studyRecords.value = storedRecords
+      try {
+        console.log('🔄 尝试从后端API加载学习数据...')
+        const response = await fetch('http://localhost:3001/api/study-data')
+        
+        if (response.ok) {
+          const result = await response.json()
+          
+          if (result.success && result.data) {
+            console.log('✅ 从后端API成功加载学习数据')
+            
+            if (result.data.studyRecords) {
+              studyRecords.value = result.data.studyRecords
+              storedRecords = result.data.studyRecords
+              // 同步到localStorage作为备份
+              await localforage.setItem('studyRecords', result.data.studyRecords)
+            }
+            
+            if (result.data.subjectProgress) {
+              subjectProgress.value = result.data.subjectProgress
+              storedProgress = result.data.subjectProgress
+              // 同步到localStorage作为备份
+              await localforage.setItem('subjectProgress', result.data.subjectProgress)
+            }
+            
+            apiDataLoaded = true
+          }
+        }
+      } catch (apiError) {
+        console.warn('⚠️  后端API不可用，使用localStorage数据:', apiError)
       }
       
-      if (storedProgress) {
-        subjectProgress.value = storedProgress
+      // 如果API加载失败，从localStorage加载
+      if (!apiDataLoaded) {
+        console.log('📦 从localStorage加载学习数据...')
+        storedRecords = await localforage.getItem<StudyRecord[]>('studyRecords')
+        storedProgress = await localforage.getItem<SubjectProgress>('subjectProgress')
+        
+        if (storedRecords) {
+          studyRecords.value = storedRecords
+        }
+        
+        if (storedProgress) {
+          subjectProgress.value = storedProgress
+        }
       }
       
       // 如果没有数据，添加3月1日的学习记录作为初始数据
@@ -276,6 +315,16 @@ export const useStudyStore = defineStore('study', () => {
             content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
             type: 'practice',
             createdAt: new Date('2026-05-05T20:00:00').toISOString()
+          },
+          // 2026-05-06 英语长难句学习记录
+          {
+            id: 'record_20260506_1_' + Date.now(),
+            date: '2026-05-06',
+            subject: '英语一',
+            duration: 150,
+            content: '长难句分析方法论学习 - 掌握主干提取、修饰成分识别、从句分析三步法。练习5个复杂句式，理解句子结构层次。',
+            type: 'study',
+            createdAt: new Date('2026-05-06T10:00:00').toISOString()
           }
         ];
         
@@ -311,10 +360,14 @@ export const useStudyStore = defineStore('study', () => {
         console.log(` 总学习时间: ${initialRecords.reduce((sum, r) => sum + r.duration, 0)} 分钟`);
         console.log(` 5月5日英语学习: 100分钟`);
       } else {
-        // 即使有旧数据，也要检查并添加5月5日的英语学习记录
+        // 即使有旧数据，也要检查并添加5月5日和5月6日的英语学习记录
         const currentRecords = storedRecords || [];
         const may5Records = currentRecords.filter(r => r.date === '2026-05-05' && r.subject === '英语一');
+        const may6Records = currentRecords.filter(r => r.date === '2026-05-06' && r.subject === '英语一');
         
+        let recordsToAdd: StudyRecord[] = [];
+        
+        // 检查是否需要添加5月5日记录
         if (may5Records.length === 0) {
           console.log('📝 检测到缺少5月5日英语学习记录，正在添加...');
           
@@ -357,8 +410,32 @@ export const useStudyStore = defineStore('study', () => {
             }
           ];
           
+          recordsToAdd.push(...may5NewRecords);
+          console.log('✅ 已添加5月5日英语学习记录（100分钟）');
+        }
+        
+        // 检查是否需要添加5月6日记录
+        if (may6Records.length === 0) {
+          console.log('📝 检测到缺少5月6日英语学习记录，正在添加...');
+          
+          const may6NewRecord: StudyRecord = {
+            id: 'record_20260506_1_' + Date.now(),
+            date: '2026-05-06',
+            subject: '英语一',
+            duration: 150,
+            content: '长难句分析方法论学习 - 掌握主干提取、修饰成分识别、从句分析三步法。练习5个复杂句式，理解句子结构层次。',
+            type: 'study',
+            createdAt: new Date('2026-05-06T10:00:00').toISOString()
+          };
+          
+          recordsToAdd.push(may6NewRecord);
+          console.log('✅ 已添加5月6日英语学习记录（150分钟）');
+        }
+        
+        // 如果有需要添加的记录
+        if (recordsToAdd.length > 0) {
           // 合并记录
-          studyRecords.value = [...currentRecords, ...may5NewRecords];
+          studyRecords.value = [...currentRecords, ...recordsToAdd];
           
           // 更新科目进度
           if (storedProgress) {
@@ -374,8 +451,10 @@ export const useStudyStore = defineStore('study', () => {
             };
           }
           
-          subjectProgress.value['英语一'].totalTime += 100;
-          subjectProgress.value['英语一'].lastStudyDate = '2026-05-05';
+          // 计算新增的总时长
+          const addedDuration = recordsToAdd.reduce((sum, r) => sum + r.duration, 0);
+          subjectProgress.value['英语一'].totalTime += addedDuration;
+          subjectProgress.value['英语一'].lastStudyDate = '2026-05-06';
           
           // 计算本周完成率
           const oneWeekAgo = new Date();
@@ -389,7 +468,7 @@ export const useStudyStore = defineStore('study', () => {
           await localforage.setItem('studyRecords', studyRecords.value);
           await localforage.setItem('subjectProgress', subjectProgress.value);
           
-          console.log('✅ 已添加5月5日英语学习记录（100分钟）');
+          console.log(`✅ 共添加 ${recordsToAdd.length} 条记录，总计 ${addedDuration} 分钟`);
         }
       }
       

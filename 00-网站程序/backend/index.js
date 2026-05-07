@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
+const fs = require('fs')
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -13,6 +14,49 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')))
 // 路由
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: '个人考研效率平台后端服务运行正常' })
+})
+
+// 获取学习记录数据
+app.get('/api/study-data', (req, res) => {
+  try {
+    const dataPath = path.join(__dirname, '../study-data/study-records.json')
+    
+    // 检查文件是否存在
+    if (!fs.existsSync(dataPath)) {
+      return res.status(404).json({ error: '数据文件不存在' })
+    }
+    
+    // 读取JSON文件
+    const data = fs.readFileSync(dataPath, 'utf-8')
+    const studyData = JSON.parse(data)
+    
+    res.json({
+      success: true,
+      data: studyData
+    })
+  } catch (error) {
+    console.error('读取学习数据失败:', error)
+    res.status(500).json({ error: '读取数据失败' })
+  }
+})
+
+// 保存学习记录数据
+app.post('/api/study-data', (req, res) => {
+  try {
+    const dataPath = path.join(__dirname, '../study-data/study-records.json')
+    const newData = req.body
+    
+    // 写入JSON文件
+    fs.writeFileSync(dataPath, JSON.stringify(newData, null, 2), 'utf-8')
+    
+    res.json({
+      success: true,
+      message: '数据保存成功'
+    })
+  } catch (error) {
+    console.error('保存学习数据失败:', error)
+    res.status(500).json({ error: '保存数据失败' })
+  }
 })
 
 // 基础路由示例
