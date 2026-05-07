@@ -80,6 +80,33 @@
       "content": "长难句分析方法论学习 - 掌握主干提取、修饰成分识别、从句分析三步法。练习5个复杂句式，理解句子结构层次。",
       "type": "study",
       "createdAt": "2026-05-06T10:00:00.000Z"
+    },
+    {
+      "id": "record_20260507_1",
+      "date": "2026-05-07",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化第一章学习（16:00-16:25）- 方浩强化讲义同步学习",
+      "type": "study",
+      "createdAt": "2026-05-07T16:00:00.000Z"
+    },
+    {
+      "id": "record_20260507_2",
+      "date": "2026-05-07",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化第一章学习（16:30-16:55）- 方浩强化讲义同步学习",
+      "type": "study",
+      "createdAt": "2026-05-07T16:30:00.000Z"
+    },
+    {
+      "id": "record_20260507_3",
+      "date": "2026-05-07",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化第一章学习（17:00-17:25）- 方浩强化讲义同步学习",
+      "type": "study",
+      "createdAt": "2026-05-07T17:00:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -106,6 +133,12 @@
       "lastStudyDate": "2026-05-06",
       "weeklyGoal": 300,
       "completionRate": 83.33
+    },
+    "数学一": {
+      "totalTime": 75,
+      "lastStudyDate": "2026-05-07",
+      "weeklyGoal": 300,
+      "completionRate": 25.0
     }
   }
 }
