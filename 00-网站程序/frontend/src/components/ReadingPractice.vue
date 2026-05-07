@@ -41,21 +41,7 @@
       </el-button>
     </div>
 
-    <!-- 统计信息 -->
-    <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-value">{{ filteredQuestions.length }}</div>
-        <div class="stat-label">题目总数</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ correctCount }}</div>
-        <div class="stat-label">答对题数</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ accuracyRate }}%</div>
-        <div class="stat-label">正确率</div>
-      </div>
-    </div>
+
 
     <!-- 按题型分组展示（传统阅读和新题型） -->
     <div v-if="activeSection === 'Reading Comprehension' || activeSection === 'New Question Types'" class="type-groups">
