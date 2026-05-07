@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>检查学习记录</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f7fa;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    #output {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      min-height: 200px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .info {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 学习记录检查工具</h1>
+    <div class="info">
+      <p>点击下方按钮检查localStorage中的学习记录数据。</p>
+      <p><strong>注意：</strong>请确保您已经访问过考研效率平台网站，这样localStorage中才会有数据。</p>
+    </div>
+    
+    <button onclick="checkMay67Records()">检查5月6日和5月7日记录</button>
+    <button onclick="checkAllData()">检查所有学习数据</button>
+    <button onclick="clearOutput()">清空输出</button>
+    
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function log(message) {
+      const output = document.getElementById('output');
+      output.textContent += message + '\n';
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').textContent = '';
+    }
+
+    function checkMay67Records() {
+      clearOutput();
+      log('🔍 检查5月6日和5月7日的学习记录...\n');
+      
+      try {
+        const studyRecords = JSON.parse(localStorage.getItem('studyRecords') || '[]');
+        
+        log(`📊 总记录数：${studyRecords.length} 条\n`);
+        
+        // 查找5月6日和5月7日的记录
+        const may6Records = studyRecords.filter(r => r.date === '2026-05-06');
+        const may7Records = studyRecords.filter(r => r.date === '2026-05-07');
+        
+        log('📅 2026-05-06（星期二）的学习记录：');
+        if (may6Records.length === 0) {
+          log('  ❌ 没有找到5月6日的学习记录');
+        } else {
+          let totalMinutes = 0;
+          may6Records.forEach((r, i) => {
+            log(`  ${i + 1}. ${r.subject}: ${r.duration}分钟 - ${r.content.substring(0, 50)}...`);
+            totalMinutes += r.duration;
+          });
+          log(`  📊 总计：${totalMinutes}分钟\n`);
+        }
+        
+        log('📅 2026-05-07（星期三）的学习记录：');
+        if (may7Records.length === 0) {
+          log('  ❌ 没有找到5月7日的学习记录');
+        } else {
+          let totalMinutes = 0;
+          may7Records.forEach((r, i) => {
+            log(`  ${i + 1}. ${r.subject}: ${r.duration}分钟 - ${r.content.substring(0, 50)}...`);
+            totalMinutes += r.duration;
+          });
+          log(`  📊 总计：${totalMinutes}分钟\n`);
+        }
+        
+        // 计算本周（从5月3日星期日开始）的学习时长
+        const weekStart = new Date('2026-05-03');
+        const weekRecords = studyRecords.filter(r => new Date(r.date) >= weekStart);
+        
+        log('📈 本周学习记录（从2026-05-03星期日开始）：');
+        let weekTotal = 0;
+        const recordsByDate = {};
+        weekRecords.forEach(r => {
+          if (!recordsByDate[r.date]) {
+            recordsByDate[r.date] = 0;
+          }
+          recordsByDate[r.date] += r.duration;
+          weekTotal += r.duration;
+        });
+        
+        Object.keys(recordsByDate).sort().forEach(date => {
+          log(`  ${date}: ${recordsByDate[date]}分钟`);
+        });
+        
+        log(`\n📊 本周总学习时长：${weekTotal}分钟 (${Math.floor(weekTotal/60)}小时${weekTotal%60}分钟)`);
+        
+      } catch (error) {
+        log('❌ 检查失败: ' + error.message);
+      }
+    }
+
+    function checkAllData() {
+      clearOutput();
+      log('🔍 检查localStorage学习记录数据...\n');
+      
+      try {
+        const studyRecords = JSON.parse(localStorage.getItem('studyRecords') || '[]');
+        
+        log(`📊 总记录数：${studyRecords.length} 条\n`);
+        
+        // 按日期分组统计
+        const recordsByDate = {};
+        studyRecords.forEach(record => {
+          if (!recordsByDate[record.date]) {
+            recordsByDate[record.date] = [];
+          }
+          recordsByDate[record.date].push(record);
+        });
+        
+        log('📅 按日期统计：');
+        Object.keys(recordsByDate).sort().forEach(date => {
+          const records = recordsByDate[date];
+          const totalMinutes = records.reduce((sum, r) => sum + r.duration, 0);
+          log(`  ${date}: ${records.length}条记录, 共${totalMinutes}分钟`);
+          records.forEach((r, i) => {
+            log(`    - ${r.subject}: ${r.duration}分钟 (${r.content.substring(0, 30)}...)`);
+          });
+        });
+        
+        log('\n📈 本周学习记录（2026-05-04 到 2026-05-10）：');
+        const weekStart = new Date('2026-05-04');
+        const weekEnd = new Date('2026-05-10');
+        
+        const weekRecords = studyRecords.filter(r => {
+          const recordDate = new Date(r.date);
+          return recordDate >= weekStart && recordDate <= weekEnd;
+        });
+        
+        let weekTotal = 0;
+        weekRecords.forEach(r => {
+          log(`  ${r.date} - ${r.subject}: ${r.duration}分钟`);
+          weekTotal += r.duration;
+        });
+        
+        log(`\n📊 本周总学习时长：${weekTotal}分钟 (${Math.floor(weekTotal/60)}小时${weekTotal%60}分钟)`);
+        
+        // 检查subjectProgress
+        const subjectProgress = JSON.parse(localStorage.getItem('subjectProgress') || '{}');
+        log('\n📚 科目进度数据：');
+        Object.keys(subjectProgress).forEach(subject => {
+          const progress = subjectProgress[subject];
+          log(`  ${subject}:`);
+          log(`    - 总时长: ${progress.totalTime}分钟`);
+          log(`    - 最后学习: ${progress.lastStudyDate}`);
+          log(`    - 本周目标: ${progress.weeklyGoal}分钟`);
+          log(`    - 完成率: ${progress.completionRate}%`);
+        });
+        
+      } catch (error) {
+        log('❌ 检查失败: ' + error.message);
+      }
+    }
+  </script>
+</body>
+</html>

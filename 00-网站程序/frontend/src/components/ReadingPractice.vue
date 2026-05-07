@@ -251,16 +251,31 @@ const importQuestions = () => {
   const input = document.createElement('input')
   input.type = 'file'
   input.accept = '.json'
-  input.onchange = (e: any) => {
+  input.onchange = async (e: any) => {
     const file = e.target.files[0]
     const reader = new FileReader()
-    reader.onload = (event: any) => {
+    reader.onload = async (event: any) => {
       try {
         const data = JSON.parse(event.target.result)
         if (Array.isArray(data)) {
           allQuestions.value = data
+          
+          // 保存到localStorage（临时）
           localStorage.setItem('readingQuestions', JSON.stringify(data))
-          alert(`✅ 成功导入 ${data.length} 道题目！`)
+          
+          // 保存到后端
+          try {
+            await fetch('http://localhost:3000/api/reading-questions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ questions: data })
+            })
+            console.log('✅ 已保存到后端')
+          } catch (err) {
+            console.log('⚠️ 后端保存失败，仅保存到本地')
+          }
+          
+          alert(`✅ 成功导入 ${data.length} 道题目！\n数据已保存，下次登录依然可见`)
         } else {
           alert('❌ JSON格式错误：应该是数组格式')
         }
@@ -301,15 +316,34 @@ const showImportGuide = () => {
 选填字段：passage, number, options, analysis, tips, location`)
 }
 
-onMounted(() => {
-  // 从localStorage加载数据
-  const saved = localStorage.getItem('readingQuestions')
-  if (saved) {
-    try {
-      allQuestions.value = JSON.parse(saved)
-      console.log(`✅ 已加载 ${allQuestions.value.length} 道题目`)
-    } catch (e) {
-      console.error('加载数据失败', e)
+onMounted(async () => {
+  // 优先从后端加载数据
+  try {
+    const response = await fetch('http://localhost:3001/api/reading-questions')
+    const data = await response.json()
+    
+    if (data.questions && data.questions.length > 0) {
+      allQuestions.value = data.questions
+      console.log(`✅ 从后端加载 ${data.questions.length} 道题目`)
+    } else {
+      // 如果后端没有数据，尝试从localStorage加载
+      const saved = localStorage.getItem('readingQuestions')
+      if (saved) {
+        allQuestions.value = JSON.parse(saved)
+        console.log(`✅ 从localStorage加载 ${allQuestions.value.length} 道题目`)
+      }
+    }
+  } catch (error) {
+    console.log('⚠️ 后端加载失败，尝试从localStorage加载')
+    // 从localStorage加载
+    const saved = localStorage.getItem('readingQuestions')
+    if (saved) {
+      try {
+        allQuestions.value = JSON.parse(saved)
+        console.log(`✅ 从localStorage加载 ${allQuestions.value.length} 道题目`)
+      } catch (e) {
+        console.error('加载数据失败', e)
+      }
     }
   }
 })

@@ -11,6 +11,12 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../frontend/dist')))
 
+// 导入路由
+const readingQuestionsRouter = require('./routes/reading-questions')
+
+// 注册路由
+app.use('/api/reading-questions', readingQuestionsRouter)
+
 // 路由
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: '个人考研效率平台后端服务运行正常' })
