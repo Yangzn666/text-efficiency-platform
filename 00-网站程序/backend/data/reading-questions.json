@@ -1,0 +1,635 @@
+{
+  "questions": [
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 1,
+      "type": "逻辑关系",
+      "stem": "Humans are often thought to be insensitive smellers compared with animals, ___ this is largely because...",
+      "options": [
+        {
+          "label": "A",
+          "text": "although"
+        },
+        {
+          "label": "B",
+          "text": "as"
+        },
+        {
+          "label": "C",
+          "text": "but"
+        },
+        {
+          "label": "D",
+          "text": "while"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "D",
+      "analysis": "前后句是转折关系：人们认为人类嗅觉不灵敏，但这主要是因为人类直立行走。but表示转折，符合逻辑关系。",
+      "errorAnalysis": {
+        "A": "although引导让步状语从句，意思是'虽然'，后面需要跟完整的从句结构，而这里需要一个连词连接两个并列句。",
+        "B": "as可以表示'因为'或'当...时'，但这里前后句是转折关系，不是因果关系或时间关系。",
+        "D": "while可以表示'然而'（对比）或'当...时'（时间）。虽然while有时可以表示对比，但but更直接表达转折关系。while的对比语气较弱，通常用于对比两种同时存在的情况，而这里是明显的转折。"
+      },
+      "tips": "注意句子前后的逻辑关系，这里是典型的转折关系。although/though引导让步状语从句，but表示转折。",
+      "location": "第一句和第二句之间"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 2,
+      "type": "介词辨析",
+      "stem": "...this is largely because, ___ animals, we stand upright.",
+      "options": [
+        {
+          "label": "A",
+          "text": "above"
+        },
+        {
+          "label": "B",
+          "text": "unlike"
+        },
+        {
+          "label": "C",
+          "text": "excluding"
+        },
+        {
+          "label": "D",
+          "text": "besides"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "B",
+      "analysis": "unlike表示'不像...，与...不同'。句意：这主要是因为，与动物不同，我们是直立行走的。unlike强调人类与动物的区别。",
+      "errorAnalysis": {
+        "A": "above表示位置关系'在...上方'，不能用来比较人类和动物的特征差异。",
+        "C": "excluding表示'排除，不包括'，强调的是范围排除，而不是对比两者的不同特征。",
+        "D": "besides表示'除...之外还'，有包含的意思，而这里需要的是对比两者不同的介词。"
+      },
+      "tips": "unlike表示对比关系，above表示位置，excluding表示排除，besides表示'除...之外还'。",
+      "location": "第二段开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 3,
+      "type": "固定搭配",
+      "stem": "This means that our noses are ___ to perceiving those smells which float through the air...",
+      "options": [
+        {
+          "label": "A",
+          "text": "limited"
+        },
+        {
+          "label": "B",
+          "text": "committed"
+        },
+        {
+          "label": "C",
+          "text": "dedicated"
+        },
+        {
+          "label": "D",
+          "text": "confined"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "be limited to表示'局限于...'，符合句意：我们的鼻子只能感知飘浮在空气中的气味。",
+      "tips": "be limited to是固定搭配，表示限制在某范围。committed to致力于，dedicated to献身于，confined to局限于（多指空间）。",
+      "location": "第二句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 4,
+      "type": "动词辨析",
+      "stem": "...perceiving those smells which float through the air, ___ the majority of smells which stick to surfaces.",
+      "options": [
+        {
+          "label": "A",
+          "text": "catching"
+        },
+        {
+          "label": "B",
+          "text": "ignoring"
+        },
+        {
+          "label": "C",
+          "text": "missing"
+        },
+        {
+          "label": "D",
+          "text": "tracking"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "missing表示'错过，漏掉'。句意：鼻子只能闻到空气中的气味，而错过了（漏掉了）附着在表面的大多数气味。",
+      "tips": "根据上下文逻辑，前面说鼻子'局限于'感知空气中的气味，后面应该是'错过'表面的气味。",
+      "location": "第二句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 5,
+      "type": "逻辑关系",
+      "stem": "In fact, ___, we are extremely sensitive to smells, ___ we do not generally realize it.",
+      "options": [
+        {
+          "label": "A",
+          "text": "anyway"
+        },
+        {
+          "label": "B",
+          "text": "though"
+        },
+        {
+          "label": "C",
+          "text": "instead"
+        },
+        {
+          "label": "D",
+          "text": "therefore"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "though在此处作副词，表示'然而，不过'，放在句中用逗号隔开。句意：事实上，我们对气味极其敏感，不过我们通常没有意识到。",
+      "errorAnalysis": {
+        "A": "anyway表示'无论如何'，用于转换话题或总结，不符合这里的转折语境。",
+        "C": "instead表示'代替，反而'，强调替代关系，而这里是轻微的转折，不是替代。",
+        "D": "therefore表示'因此'，是因果关系，而这里前后句是转折关系。"
+      },
+      "tips": "though作副词时可放在句中，前后用逗号隔开，表示转折。anyway无论如何，instead代替，therefore因此。",
+      "location": "第三句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 6,
+      "type": "连词辨析",
+      "stem": "...we are extremely sensitive to smells, ___ we do not generally realize it.",
+      "options": [
+        {
+          "label": "A",
+          "text": "even if"
+        },
+        {
+          "label": "B",
+          "text": "if only"
+        },
+        {
+          "label": "C",
+          "text": "only if"
+        },
+        {
+          "label": "D",
+          "text": "as if"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "C",
+      "analysis": "even if表示'即使，虽然'，引导让步状语从句。句意：即使我们没有意识到，我们对气味也是极其敏感的。",
+      "errorAnalysis": {
+        "B": "if only表示'要是...就好了'，表达愿望或遗憾，后面常跟虚拟语气，不符合这里的语境。",
+        "C": "only if表示'只有...才'，强调条件，而这里需要的是让步关系（即使...也）。only if的逻辑是：只有满足条件，结果才成立；而even if的逻辑是：即使不满足条件，结果也成立。",
+        "D": "as if表示'好像'，用于比喻或假设，不符合这里的让步逻辑。"
+      },
+      "tips": "even if表示让步，if only要是...就好了，only if只有...才，as if好像。",
+      "location": "第三句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 7,
+      "type": "动词辨析",
+      "stem": "Our noses are capable of ___ human smells even when these are ___ to far below one part in one million.",
+      "options": [
+        {
+          "label": "A",
+          "text": "distinguishing"
+        },
+        {
+          "label": "B",
+          "text": "discovering"
+        },
+        {
+          "label": "C",
+          "text": "determining"
+        },
+        {
+          "label": "D",
+          "text": "detecting"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "detecting表示'探测，察觉'，特别适合用于感官感知。句意：我们的鼻子能够察觉到人类的气味。",
+      "errorAnalysis": {
+        "A": "distinguishing表示'区分，辨别'，强调分辨两个或多个事物的不同，而这里只是单纯的感知、察觉，不需要区分。",
+        "B": "discovering表示'发现'，通常指发现新事物或之前不知道的事物，而这里是指感知已经存在的气味。",
+        "C": "determining表示'确定，决定'，强调做出判断或决定，不符合感官感知的语境。"
+      },
+      "tips": "detect强调发现、察觉（不易觉察的事物），distinguish区分，discover发现（新事物），determine决定。",
+      "location": "第四句开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 8,
+      "type": "动词辨析",
+      "stem": "...even when these are ___ to far below one part in one million.",
+      "options": [
+        {
+          "label": "A",
+          "text": "diluted"
+        },
+        {
+          "label": "B",
+          "text": "dissolved"
+        },
+        {
+          "label": "C",
+          "text": "dispersed"
+        },
+        {
+          "label": "D",
+          "text": "diffused"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "diluted表示'稀释'。句意：即使气味被稀释到远低于百万分之一，我们的鼻子也能察觉到。",
+      "tips": "diluted稀释（液体或气体），dissolved溶解（固体在液体中），dispersed分散，diffused扩散。",
+      "location": "第四句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 9,
+      "type": "连词辨析",
+      "stem": "Strangely, some people find that they can smell one type of flower but not another, ___ others are sensitive to the smells of both flowers.",
+      "options": [
+        {
+          "label": "A",
+          "text": "when"
+        },
+        {
+          "label": "B",
+          "text": "since"
+        },
+        {
+          "label": "C",
+          "text": "for"
+        },
+        {
+          "label": "D",
+          "text": "whereas"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "whereas表示'然而，但是'，用于对比两种情况。句意：有些人只能闻到一种花的气味，而另一些人对两种花都敏感。",
+      "errorAnalysis": {
+        "A": "when表示'当...时'，是时间关系，而这里需要的是对比关系。",
+        "B": "since可以表示'因为'（因果）或'自从'（时间），都不符合这里的对比语境。",
+        "C": "for作为连词时表示'因为'，引导原因状语从句，而这里是对比两种人的不同情况，不是因果关系。"
+      },
+      "tips": "whereas强调对比，when当...时，since因为/自从，for因为。",
+      "location": "第五句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 10,
+      "type": "形容词辨析",
+      "stem": "This may be because some people do not have the genes necessary to generate ___ smell receptors in the nose.",
+      "options": [
+        {
+          "label": "A",
+          "text": "unusual"
+        },
+        {
+          "label": "B",
+          "text": "particular"
+        },
+        {
+          "label": "C",
+          "text": "unique"
+        },
+        {
+          "label": "D",
+          "text": "typical"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "D",
+      "analysis": "particular表示'特定的，特定的某种'。句意：有些人没有产生特定气味感受器所需的基因。",
+      "tips": "particular强调特定的某一种，unusual不寻常，unique独一无二，typical典型的。",
+      "location": "第五句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 11,
+      "type": "名词辨析",
+      "stem": "These receptors are the cells which sense smells and send ___ to the brain.",
+      "options": [
+        {
+          "label": "A",
+          "text": "signs"
+        },
+        {
+          "label": "B",
+          "text": "stimuli"
+        },
+        {
+          "label": "C",
+          "text": "messages"
+        },
+        {
+          "label": "D",
+          "text": "impulses"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "messages表示'信息，信号'。句意：这些感受器是感知气味并向大脑发送信息的细胞。",
+      "tips": "在神经系统中，感受器向大脑发送的是messages（信息）。signs迹象，stimuli刺激，impulses冲动。",
+      "location": "第六句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 12,
+      "type": "固定搭配",
+      "stem": "However, it has been found that even people insensitive to a certain smell ___ can suddenly become sensitive to it...",
+      "options": [
+        {
+          "label": "A",
+          "text": "at first"
+        },
+        {
+          "label": "B",
+          "text": "at all"
+        },
+        {
+          "label": "C",
+          "text": "at large"
+        },
+        {
+          "label": "D",
+          "text": "at times"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "D",
+      "analysis": "at first表示'起初，开始时'。句意：即使是起初对某种气味不敏感的人，也可能突然变得敏感。",
+      "tips": "at first起初，与后面的suddenly形成时间对比。at all根本，at large总体上，at times有时。",
+      "location": "第七句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 13,
+      "type": "固定搭配",
+      "stem": "...when ___ to it often enough.",
+      "options": [
+        {
+          "label": "A",
+          "text": "subjected"
+        },
+        {
+          "label": "B",
+          "text": "left"
+        },
+        {
+          "label": "C",
+          "text": "drawn"
+        },
+        {
+          "label": "D",
+          "text": "exposed"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "be exposed to表示'接触，暴露于'。句意：当经常接触到这种气味时，就会突然变得敏感。",
+      "tips": "be exposed to是固定搭配，表示接触、暴露。subjected to遭受，left to留给，drawn to被吸引。",
+      "location": "第七句末尾"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 14,
+      "type": "形容词辨析",
+      "stem": "The explanation for insensitivity to smell seems to be that the brain finds it ___ to keep all smell receptors working all the time...",
+      "options": [
+        {
+          "label": "A",
+          "text": "ineffective"
+        },
+        {
+          "label": "B",
+          "text": "incompetent"
+        },
+        {
+          "label": "C",
+          "text": "inefficient"
+        },
+        {
+          "label": "D",
+          "text": "insufficient"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "inefficient表示'效率低的'。句意：大脑认为让所有嗅觉感受器一直工作是不高效的。",
+      "tips": "inefficient效率低（浪费资源），ineffective无效（没效果），incompetent无能力，insufficient不足。",
+      "location": "第八句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 15,
+      "type": "动词辨析",
+      "stem": "...but can ___ new receptors if necessary.",
+      "options": [
+        {
+          "label": "A",
+          "text": "introduce"
+        },
+        {
+          "label": "B",
+          "text": "summon"
+        },
+        {
+          "label": "C",
+          "text": "trigger"
+        },
+        {
+          "label": "D",
+          "text": "create"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "create表示'创造，生成'。句意：但在必要时可以创造新的感受器。",
+      "tips": "create强调从无到有的创造。introduce引入，summon召唤，trigger触发。",
+      "location": "第八句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 16,
+      "type": "副词辨析",
+      "stem": "This may ___ explain why we are not usually sensitive to our own smells...",
+      "options": [
+        {
+          "label": "A",
+          "text": "still"
+        },
+        {
+          "label": "B",
+          "text": "also"
+        },
+        {
+          "label": "C",
+          "text": "otherwise"
+        },
+        {
+          "label": "D",
+          "text": "nevertheless"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "A",
+      "analysis": "also表示'也，还'。句意：这也可以解释为什么我们通常对自己的气味不敏感。",
+      "tips": "also表示补充说明，除了前面的解释外，还有这个解释。still仍然，otherwise否则，nevertheless然而。",
+      "location": "第九句开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 17,
+      "type": "固定搭配",
+      "stem": "We are not ___ of the usual smell of our own house...",
+      "options": [
+        {
+          "label": "A",
+          "text": "sure"
+        },
+        {
+          "label": "B",
+          "text": "sick"
+        },
+        {
+          "label": "C",
+          "text": "aware"
+        },
+        {
+          "label": "D",
+          "text": "tired"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "B",
+      "analysis": "be aware of表示'意识到，觉察到'。句意：我们通常觉察不到自己房子的气味。",
+      "tips": "be aware of是固定搭配。sure of确信，sick of厌倦，tired of厌倦。",
+      "location": "第九句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 18,
+      "type": "动词辨析",
+      "stem": "...but we ___ new smells when we visit someone else's.",
+      "options": [
+        {
+          "label": "A",
+          "text": "tolerate"
+        },
+        {
+          "label": "B",
+          "text": "repel"
+        },
+        {
+          "label": "C",
+          "text": "neglect"
+        },
+        {
+          "label": "D",
+          "text": "notice"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "notice表示'注意到'。句意：但当我们拜访别人家时，我们会注意到新的气味。与前文'觉察不到'形成对比。",
+      "tips": "notice与前面的aware形成语义呼应。tolerate容忍，repel排斥，neglect忽视。",
+      "location": "第九句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 19,
+      "type": "形容词辨析",
+      "stem": "The brain finds it best to keep smell receptors ___ for unfamiliar and emergency signals...",
+      "options": [
+        {
+          "label": "A",
+          "text": "available"
+        },
+        {
+          "label": "B",
+          "text": "reliable"
+        },
+        {
+          "label": "C",
+          "text": "identifiable"
+        },
+        {
+          "label": "D",
+          "text": "suitable"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "D",
+      "analysis": "available表示'可用的，可用的'。句意：大脑最好让嗅觉感受器保持可用状态，以应对不熟悉和紧急的信号。",
+      "tips": "available可用（随时能用），reliable可靠，identifiable可识别，suitable适合。",
+      "location": "第十句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 20,
+      "type": "介词短语",
+      "stem": "...for unfamiliar and emergency signals ___ the smell of smoke, which might indicate the danger of fire.",
+      "options": [
+        {
+          "label": "A",
+          "text": "similar to"
+        },
+        {
+          "label": "B",
+          "text": "such as"
+        },
+        {
+          "label": "C",
+          "text": "along with"
+        },
+        {
+          "label": "D",
+          "text": "aside from"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "B",
+      "analysis": "such as表示'例如'，用于举例。句意：例如烟味，可能预示着火灾的危险。",
+      "tips": "such as用于举例说明前面的'unfamiliar and emergency signals'。similar to类似于，along with和...一起，aside from除...之外。",
+      "location": "第十句末尾"
+    }
+  ],
+  "lastUpdated": "2026-05-07T12:44:55.252Z"
+}
