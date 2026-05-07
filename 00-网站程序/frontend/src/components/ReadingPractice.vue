@@ -192,7 +192,15 @@
             >
               <!-- 题号和题干 -->
               <div class="question-header">
-                <div class="cloze-number">{{ question.number }}</div>
+                <div 
+                  class="cloze-number"
+                  :class="{
+                    'correct': question.userAnswer && question.userAnswer === question.correctAnswer,
+                    'wrong': question.userAnswer && question.userAnswer !== question.correctAnswer
+                  }"
+                >
+                  {{ question.number }}
+                </div>
                 <div class="question-stem-text">{{ question.stem }}</div>
                 <el-button 
                   size="small" 
@@ -1397,7 +1405,19 @@ onMounted(async () => {
   background: #ffebee;
 }
 
-.icon-correct {
+/* 完型填空序号颜色：答对绿色，答错红色 */
+.cloze-question-item .question-header .cloze-number.correct {
+  background: #4CAF50 !important;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.cloze-question-item .question-header .cloze-number.wrong {
+  background: #F44336 !important;
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+/* 题干后面的comment文本 */
+.comment-text {
   position: absolute;
   right: 10px;
   top: 50%;
