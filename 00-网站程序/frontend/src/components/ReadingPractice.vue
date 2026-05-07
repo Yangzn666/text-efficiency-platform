@@ -297,7 +297,7 @@ import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element
 // 数据状态
 const selectedYear = ref('all')
 const selectedQuestionType = ref('all')
-const allQuestions = ref<any[]>([])
+const allQuestions = ref<any[]>([]) // 初始化为空数组
 const expandedGroups = ref<string[]>([]) // 默认全部折叠
 const activeSection = ref<'Reading Comprehension' | 'Use of English' | 'New Question Types'>('Reading Comprehension')
 const expandedCloze = ref(false) // 完型填空大题默认折叠
@@ -307,6 +307,10 @@ const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
 
 // 过滤后的题目
 const filteredQuestions = computed(() => {
+  if (!allQuestions.value || allQuestions.value.length === 0) {
+    return []
+  }
+  
   let questions = allQuestions.value
   
   // 按年份过滤
@@ -324,26 +328,35 @@ const filteredQuestions = computed(() => {
 
 // 所有题型列表
 const questionTypes = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return []
+  }
   const types = new Set(filteredQuestions.value.map(q => q.type))
   return Array.from(types)
 })
 
 // 覆盖的年份
 const coveredYears = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return []
+  }
   const years = new Set(filteredQuestions.value.map(q => q.year))
   return Array.from(years)
 })
 
 // 完型填空相关（Use of English）
 const clozeQuestions = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return []
+  }
   return filteredQuestions.value.filter(q => q.section === 'Use of English')
 })
 
 const clozeYear = computed(() => {
-  if (clozeQuestions.value.length > 0) {
-    return clozeQuestions.value[0].year
+  if (!clozeQuestions.value || clozeQuestions.value.length === 0) {
+    return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
   }
-  return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
+  return clozeQuestions.value[0].year
 })
 
 // 展开的题目索引列表
@@ -397,11 +410,17 @@ const clozeArticle = computed(() => {
 
 // 答对题数
 const correctCount = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return 0
+  }
   return filteredQuestions.value.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
 })
 
 // 正确率
 const accuracyRate = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return 0
+  }
   const answered = filteredQuestions.value.filter(q => q.userAnswer).length
   if (answered === 0) return 0
   return Math.round((correctCount.value / answered) * 100)
