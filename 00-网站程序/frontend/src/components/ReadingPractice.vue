@@ -5,6 +5,14 @@
       <p class="practice-subtitle">Part A · 传统阅读 · 按题型分类整理</p>
     </div>
 
+    <!-- 显示模式切换 -->
+    <div class="mode-switcher">
+      <el-radio-group v-model="displayMode" size="large">
+        <el-radio-button value="byType">按题型分类</el-radio-button>
+        <el-radio-button value="cloze">完型填空试卷式</el-radio-button>
+      </el-radio-group>
+    </div>
+
     <!-- 筛选器 -->
     <div class="filter-section">
       <el-select v-model="selectedYear" placeholder="选择年份" size="large" @change="loadData">
@@ -155,6 +163,97 @@
       </div>
     </div>
 
+    <!-- 完型填空试卷式展示 -->
+    <div v-if="displayMode === 'cloze' && clozeQuestions.length > 0" class="cloze-section">
+      <div class="cloze-header">
+        <h3 class="cloze-title">📝 {{ clozeYear }}年考研英语一 Use of English</h3>
+        <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
+      </div>
+
+      <!-- 题目列表 -->
+      <div class="cloze-questions">
+        <div 
+          v-for="(question, idx) in clozeQuestions" 
+          :key="idx"
+          class="cloze-question-item"
+        >
+          <!-- 题号 -->
+          <div class="cloze-number">{{ question.number }}</div>
+          
+          <!-- 题干 -->
+          <div class="cloze-stem">
+            <p>{{ question.stem }}</p>
+          </div>
+
+          <!-- 选项（横向排列） -->
+          <div v-if="question.options && question.options.length > 0" class="cloze-options">
+            <div 
+              v-for="option in question.options" 
+              :key="option.label"
+              class="cloze-option"
+              :class="{
+                'correct': option.label === question.correctAnswer,
+                'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
+              }"
+            >
+              <span class="option-label">{{ option.label }}.</span>
+              <span class="option-text">{{ option.text }}</span>
+              <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
+                <CircleCheck />
+              </el-icon>
+              <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
+                <CircleClose />
+              </el-icon>
+            </div>
+          </div>
+
+          <!-- 答案对比 -->
+          <div v-if="question.userAnswer" class="cloze-answer-comparison">
+            <div class="answer-box user-answer">
+              <span class="label">你的答案：</span>
+              <span :class="question.userAnswer === question.correctAnswer ? 'text-correct' : 'text-wrong'">
+                {{ question.userAnswer }}
+              </span>
+              <el-tag v-if="question.userAnswer === question.correctAnswer" type="success" size="small">✓ 正确</el-tag>
+              <el-tag v-else type="danger" size="small">✗ 错误</el-tag>
+            </div>
+            <div class="answer-box correct-answer">
+              <span class="label">正确答案：</span>
+              <span class="text-correct">{{ question.correctAnswer }}</span>
+            </div>
+          </div>
+
+          <!-- 答案解析 -->
+          <div class="cloze-analysis">
+            <div class="analysis-title">📖 解析</div>
+            <p>{{ question.analysis }}</p>
+          </div>
+
+          <!-- 错误选项分析（仅答错时显示） -->
+          <div 
+            v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" 
+            class="cloze-error-analysis"
+          >
+            <div class="analysis-title error-title">❌ 为什么你选的答案不对</div>
+            <div class="error-detail">
+              <strong>你选了 {{ question.userAnswer }}：</strong>
+              <p>{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</p>
+            </div>
+            <div class="correct-detail">
+              <strong>✓ 正确答案 {{ question.correctAnswer }}：</strong>
+              <p>{{ getCorrectExplanation(question) }}</p>
+            </div>
+          </div>
+
+          <!-- 解题技巧 -->
+          <div v-if="question.tips" class="cloze-tips">
+            <div class="tips-title">🎯 解题技巧</div>
+            <p>{{ question.tips }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 空状态 -->
     <div v-if="filteredQuestions.length === 0" class="empty-state">
       <el-icon size="80" color="#ddd"><Document /></el-icon>
@@ -169,13 +268,14 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { Document, Upload, CircleCheck } from '@element-plus/icons-vue'
+import { Document, Upload, CircleCheck, CircleClose } from '@element-plus/icons-vue'
 
 // 数据状态
 const selectedYear = ref('all')
 const selectedType = ref('all')
 const allQuestions = ref<any[]>([])
 const expandedGroups = ref<string[]>(['细节题', '主旨题', '推理题', '词义题', '态度题'])
+const displayMode = ref<'byType' | 'cloze'>('byType') // 显示模式：按题型或完型试卷式
 
 // 可用年份（2010-2025）
 const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
@@ -207,6 +307,18 @@ const questionTypes = computed(() => {
 const coveredYears = computed(() => {
   const years = new Set(filteredQuestions.value.map(q => q.year))
   return Array.from(years)
+})
+
+// 完型填空相关（Use of English）
+const clozeQuestions = computed(() => {
+  return filteredQuestions.value.filter(q => q.section === 'Use of English')
+})
+
+const clozeYear = computed(() => {
+  if (clozeQuestions.value.length > 0) {
+    return clozeQuestions.value[0].year
+  }
+  return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
 })
 
 // 答对题数
@@ -246,6 +358,9 @@ const getCorrectOptionExplanation = (question: any) => {
   const correctOption = question.options?.find((o: any) => o.label === question.correctAnswer)
   return correctOption ? correctOption.text : ''
 }
+
+// 完型填空用的正确解释函数（别名）
+const getCorrectExplanation = getCorrectOptionExplanation
 
 // 切换分组展开/收起
 const toggleGroup = (type: string) => {
@@ -727,6 +842,234 @@ onMounted(async () => {
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
+  }
+}
+
+/* 完型填空试卷式展示 */
+.mode-switcher {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.cloze-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cloze-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.cloze-title {
+  font-size: 1.6em;
+  margin: 0 0 8px 0;
+}
+
+.cloze-subtitle {
+  font-size: 0.95em;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.cloze-question-item {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.cloze-question-item:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.cloze-number {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background: #667eea;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.cloze-stem {
+  margin-bottom: 20px;
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 选项横向排列 */
+.cloze-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cloze-option {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.cloze-option.correct {
+  border-color: #4CAF50;
+  background: #e8f5e9;
+}
+
+.cloze-option.user-wrong {
+  border-color: #F44336;
+  background: #ffebee;
+}
+
+.icon-correct {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4CAF50;
+  font-size: 1.3em;
+}
+
+.icon-wrong {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #F44336;
+  font-size: 1.3em;
+}
+
+/* 答案对比 */
+.cloze-answer-comparison {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.answer-box {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 15px;
+  border-radius: 6px;
+}
+
+.user-answer {
+  background: #fff3e0;
+  border-left: 4px solid #FF9800;
+}
+
+.correct-answer {
+  background: #e8f5e9;
+  border-left: 4px solid #4CAF50;
+}
+
+.answer-box .label {
+  color: #666;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.text-correct {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.text-wrong {
+  color: #F44336;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* 解析区域 */
+.cloze-analysis,
+.cloze-error-analysis,
+.cloze-tips {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.cloze-analysis {
+  background: #f5f7fa;
+  border-left: 4px solid #667eea;
+}
+
+.cloze-error-analysis {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+  border-left: 4px solid #F44336;
+}
+
+.cloze-tips {
+  background: #fff9e6;
+  border-left: 4px solid #FFC107;
+}
+
+.analysis-title {
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.error-title {
+  color: #F44336 !important;
+}
+
+.cloze-analysis p,
+.cloze-error-analysis p,
+.cloze-tips p {
+  margin: 0;
+  line-height: 1.8;
+  color: #555;
+}
+
+.error-detail,
+.correct-detail {
+  margin-bottom: 10px;
+}
+
+.error-detail strong {
+  color: #F44336;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.correct-detail strong {
+  color: #4CAF50;
+  display: block;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .cloze-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .cloze-answer-comparison {
+    flex-direction: column;
+  }
+  
+  .cloze-title {
+    font-size: 1.3em;
   }
 }
 </style>

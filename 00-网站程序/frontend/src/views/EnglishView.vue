@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue'
 // 使用动态导入解决TypeScript默认导出识别问题
-const ClozeTest = defineAsyncComponent(() => import('@/components/ClozeTest.vue'))
 const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
 const VocabularySystem = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
 const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
@@ -22,10 +21,6 @@ const activeTab = ref('knowledge')
       <el-tabs v-model="activeTab" class="english-tabs">
         <el-tab-pane label="知识点梳理" name="knowledge">
           <KnowledgeStructure subject="english" />
-        </el-tab-pane>
-        
-        <el-tab-pane label="完型填空" name="cloze">
-          <ClozeTest />
         </el-tab-pane>
         
         <el-tab-pane label="真题阅读" name="reading">
