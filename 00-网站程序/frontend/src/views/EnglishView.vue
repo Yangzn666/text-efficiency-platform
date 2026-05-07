@@ -8,6 +8,7 @@ const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/English
 const AIGrammarAssistant = defineAsyncComponent(() => import('@/components/AIGrammarAssistant.vue'))
 const GrammarDiagnosis = defineAsyncComponent(() => import('@/components/GrammarDiagnosis.vue'))
 const GrammarLearningPlan = defineAsyncComponent(() => import('@/components/GrammarLearningPlan.vue'))
+const StudyProgressReport = defineAsyncComponent(() => import('@/components/StudyProgressReport.vue'))
 
 const activeTab = ref('knowledge')
 </script>
@@ -145,6 +146,10 @@ const activeTab = ref('knowledge')
         
         <el-tab-pane label="语法学习计划" name="grammarPlan">
           <GrammarLearningPlan />
+        </el-tab-pane>
+        
+        <el-tab-pane label="学习情况报告" name="progressReport">
+          <StudyProgressReport />
         </el-tab-pane>
       </el-tabs>
     </div>
