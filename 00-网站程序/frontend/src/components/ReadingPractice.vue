@@ -1,25 +1,8 @@
 <template>
   <div class="reading-practice">
-    <h2>📖 英语一真题阅读训练</h2>
-    
-    <!-- 筛选器 -->
-    <div class="filters">
-      <el-select v-model="selectedYear" placeholder="选择年份" @change="filterQuestions">
-        <el-option label="全部年份" value="all"></el-option>
-        <el-option v-for="year in availableYears" :key="year" :label="year + '年'" :value="year"></el-option>
-      </el-select>
-
-      <el-select v-model="selectedQuestionType" placeholder="选择题型" @change="filterQuestions">
-        <el-option label="全部题型" value="all"></el-option>
-        <el-option label="主旨题" value="主旨题"></el-option>
-        <el-option label="细节题" value="细节题"></el-option>
-        <el-option label="推理题" value="推理题"></el-option>
-        <el-option label="词汇题" value="词汇题"></el-option>
-        <el-option label="态度题" value="态度题"></el-option>
-        <el-option label="例证题" value="例证题"></el-option>
-        <el-option label="逻辑关系" value="逻辑关系"></el-option>
-        <el-option label="固定搭配" value="固定搭配"></el-option>
-      </el-select>
+    <div class="practice-header">
+      <h2 class="practice-title">📖 考研英语一真题阅读</h2>
+      <p class="practice-subtitle">Part A · 传统阅读 · 按题型分类整理</p>
     </div>
 
     <!-- 题型标签切换 -->
@@ -31,104 +14,153 @@
       </el-tabs>
     </div>
 
-    <!-- 统计信息 -->
-    <div class="stats-bar">
-      <span>共 {{ filteredQuestions.length }} 道题</span>
-      <span>已作答 {{ answeredCount }} 道</span>
-      <span>答对 {{ correctCount }} 道</span>
-      <span>正确率 {{ correctRate }}%</span>
+    <!-- 筛选器 -->
+    <div class="filter-section">
+      <el-select v-model="selectedYear" placeholder="选择年份" size="large" @change="loadData">
+        <el-option label="全部年份" value="all" />
+        <el-option
+          v-for="year in availableYears"
+          :key="year"
+          :label="`${year}年`"
+          :value="year"
+        />
+      </el-select>
+      
+      <el-select v-model="selectedQuestionType" placeholder="选择题型" size="large" @change="filterQuestions">
+        <el-option label="全部题型" value="all" />
+        <el-option label="细节题" value="细节题" />
+        <el-option label="主旨题" value="主旨题" />
+        <el-option label="推理题" value="推理题" />
+        <el-option label="词义题" value="词义题" />
+        <el-option label="态度题" value="态度题" />
+      </el-select>
+      
+      <el-button type="primary" size="large" @click="importQuestions">
+        <el-icon><Upload /></el-icon>
+        导入题目
+      </el-button>
     </div>
 
-    <!-- 按题型分类显示 -->
-    <div v-if="activeSection === 'Reading Comprehension' || activeSection === 'New Question Types'">
-      <div v-for="(group, type) in groupedQuestions" :key="type" class="question-group">
+    <!-- 统计信息 -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">{{ filteredQuestions.length }}</div>
+        <div class="stat-label">题目总数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{ correctCount }}</div>
+        <div class="stat-label">答对题数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{ accuracyRate }}%</div>
+        <div class="stat-label">正确率</div>
+      </div>
+    </div>
+
+    <!-- 按题型分组展示（传统阅读和新题型） -->
+    <div v-if="activeSection === 'Reading Comprehension' || activeSection === 'New Question Types'" class="type-groups">
+      <div 
+        v-for="type in questionTypes" 
+        :key="type"
+        class="type-group"
+      >
         <div class="group-header" @click="toggleGroup(type)">
-          <el-icon class="expand-icon" :class="{ 'expanded': expandedGroups.includes(type) }">
-            <ArrowRight />
-          </el-icon>
-          <h3>{{ type }} ({{ group.length }}题)</h3>
-          <el-tag v-if="getGroupStats(group).total > 0" type="success">
-            答对 {{ getGroupStats(group).correct }}/{{ getGroupStats(group).total }}
-          </el-tag>
+          <div class="group-title">
+            <el-icon class="expand-icon" :class="{ 'expanded': expandedGroups.includes(type) }">
+              <ArrowRight />
+            </el-icon>
+            <el-tag size="large" :type="getQuestionTypeColor(type)">{{ type }}</el-tag>
+            <span class="group-count">{{ getQuestionsByType(type).length }} 题</span>
+            <el-tag v-if="getGroupStats(type).total > 0" type="success" size="small">
+              答对 {{ getGroupStats(type).correct }}/{{ getGroupStats(type).total }}
+            </el-tag>
+          </div>
         </div>
-        
-        <div v-show="expandedGroups.includes(type)" class="group-content">
-          <div v-for="question in group" :key="question.id" class="question-card">
-            <div class="question-header">
-              <span class="question-number">{{ question.number }}</span>
-              <span class="question-meta">
-                {{ question.year }}年 · {{ question.section }}
-                <el-tag v-if="question.userAnswer" 
-                  :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" 
-                  size="small">
-                  {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : ' 错误' }}
-                </el-tag>
-              </span>
+
+        <div v-show="expandedGroups.includes(type)" class="questions-list">
+          <div 
+            v-for="(question, idx) in getQuestionsByType(type)" 
+            :key="idx"
+            class="question-card"
+          >
+            <!-- 题目信息 -->
+            <div class="question-meta">
+              <el-tag size="small">{{ question.year }}年</el-tag>
+              <el-tag v-if="question.section" size="small" type="info">{{ question.section }}</el-tag>
+              <el-tag v-if="question.number" size="small" type="warning">第{{ question.number }}题</el-tag>
+              <el-tag v-if="question.userAnswer" :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" size="small">
+                {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : '✗ 错误' }}
+              </el-tag>
             </div>
-            
-            <div class="question-body">
-              <p class="stem">{{ question.stem }}</p>
-              
-              <div v-if="question.options && question.options.length > 0" class="options">
-                <div v-for="option in question.options" :key="option.label" 
-                  class="option"
-                  :class="{
-                    'correct': option.label === question.correctAnswer,
-                    'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
-                  }">
-                  <span class="option-label">{{ option.label }}.</span>
-                  <span class="option-text">{{ option.text }}</span>
-                  <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
-                    <CircleCheck />
-                  </el-icon>
-                  <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
-                    <CircleClose />
-                  </el-icon>
-                </div>
-              </div>
-              
-              <!-- 用户答案和正确答案 -->
-              <div class="answer-comparison">
-                <div class="user-answer" v-if="question.userAnswer">
-                  <span class="label">你的答案：</span>
-                  <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
-                </div>
-                <div class="correct-answer">
-                  <span class="label">正确答案：</span>
-                  <span class="answer">{{ question.correctAnswer }}</span>
-                </div>
-              </div>
 
-              <!-- 答案解析 -->
-              <div class="analysis-section">
-                <h5> 答案解析：</h5>
-                <p>{{ question.analysis }}</p>
-              </div>
+            <!-- 题干 -->
+            <div class="question-stem">
+              {{ question.stem }}
+            </div>
 
-              <!-- 错误选项分析（如果用户答错） -->
-              <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
-                <h5 class="error-title">❌ 为什么你选的答案不对</h5>
-                <div class="error-item">
-                  <span class="error-label">你选了 {{ question.userAnswer }}：</span>
-                  <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
-                </div>
-                <div class="correct-comparison">
-                  <span class="correct-label">✓ 正确答案 {{ question.correctAnswer }}：</span>
-                  <span class="correct-explanation">{{ getCorrectOptionExplanation(question) }}</span>
-                </div>
+            <!-- 选项（如果有） -->
+            <div v-if="question.options && question.options.length > 0" class="options-list">
+              <div 
+                v-for="option in question.options" 
+                :key="option.label"
+                class="option-item"
+                :class="{ 
+                  'correct': option.label === question.correctAnswer,
+                  'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer
+                }"
+              >
+                <span class="option-label">{{ option.label }}.</span>
+                <span class="option-text">{{ option.text }}</span>
+                <el-icon v-if="option.label === question.correctAnswer" class="correct-icon">
+                  <CircleCheck />
+                </el-icon>
+                <el-icon v-if="question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer" class="wrong-icon">
+                  <CircleClose />
+                </el-icon>
               </div>
+            </div>
 
-              <!-- 解题技巧 -->
-              <div v-if="question.tips" class="tips-section">
-                <h5>🎯 解题技巧：</h5>
-                <p>{{ question.tips }}</p>
+            <!-- 用户答案和正确答案 -->
+            <div class="answer-comparison">
+              <div class="user-answer" v-if="question.userAnswer">
+                <span class="label">你的答案：</span>
+                <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
               </div>
+              <div class="correct-answer">
+                <span class="label">正确答案：</span>
+                <span class="answer">{{ question.correctAnswer }}</span>
+              </div>
+            </div>
 
-              <!-- 定位句 -->
-              <div v-if="question.location" class="location-section">
-                <h5>📍 原文定位：</h5>
-                <blockquote>{{ question.location }}</blockquote>
+            <!-- 答案解析 -->
+            <div class="analysis-section">
+              <h5>📖 答案解析：</h5>
+              <p>{{ question.analysis }}</p>
+            </div>
+
+            <!-- 错误选项分析（如果用户答错） -->
+            <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
+              <h5 class="error-title">❌ 为什么你选的答案不对</h5>
+              <div class="error-item">
+                <span class="error-label">你选了 {{ question.userAnswer }}：</span>
+                <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
               </div>
+              <div class="correct-comparison">
+                <span class="correct-label">✓ 正确答案 {{ question.correctAnswer }}：</span>
+                <span class="correct-explanation">{{ getCorrectOptionExplanation(question) }}</span>
+              </div>
+            </div>
+
+            <!-- 解题技巧 -->
+            <div v-if="question.tips" class="tips-section">
+              <h5>🎯 解题技巧：</h5>
+              <p>{{ question.tips }}</p>
+            </div>
+
+            <!-- 定位句 -->
+            <div v-if="question.location" class="location-section">
+              <h5>📍 原文定位：</h5>
+              <blockquote>{{ question.location }}</blockquote>
             </div>
           </div>
         </div>
@@ -138,20 +170,21 @@
     <!-- 完型填空 -->
     <div v-if="activeSection === 'Use of English' && clozeQuestions.length > 0" class="cloze-section">
       <div class="cloze-header">
-        <h3 class="cloze-title">📝 {{ clozeYear }}年考研英语一 Use of English</h3>
+        <h3 class="cloze-title"> {{ clozeYear }}年考研英语一 Use of English</h3>
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
       </div>
 
       <!-- 文章原文 -->
       <div class="article-section">
-        <div class="section-title"> 文章原文</div>
+        <div class="section-title">📖 文章原文</div>
         <div class="article-content" v-html="clozeArticle"></div>
       </div>
 
-      <!-- 题目列表（可折叠） -->
+      <!-- 题目列表（可折叠大题） -->
       <div class="cloze-questions">
-        <div class="section-title">❓ 题目（点击展开查看答案）</div>
+        <div class="section-title">❓ 题目</div>
         
+        <!-- 完型填空大题容器（可折叠） -->
         <div class="cloze-year-group">
           <div 
             class="year-header"
@@ -227,7 +260,7 @@
 
                 <!-- 答案解析 -->
                 <div class="cloze-analysis">
-                  <div class="analysis-title"> 解析</div>
+                  <div class="analysis-title">📖 解析</div>
                   <p>{{ question.analysis }}</p>
                 </div>
 
@@ -259,8 +292,15 @@
       </div>
     </div>
 
-    <!-- 无数据提示 -->
-    <el-empty v-if="filteredQuestions.length === 0 && activeSection !== 'Use of English'" description="暂无数据"></el-empty>
+    <!-- 空状态 -->
+    <div v-if="filteredQuestions.length === 0" class="empty-state">
+      <el-icon size="80" color="#ddd"><Document /></el-icon>
+      <h3>暂无题目数据</h3>
+      <p>请点击右上角"导入题目"按钮，导入JSON格式的题目数据</p>
+      <el-button type="primary" size="large" @click="showImportGuide">
+        查看导入指南
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -272,18 +312,16 @@ import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element
 const selectedYear = ref('all')
 const selectedQuestionType = ref('all')
 const allQuestions = ref<any[]>([])
-const expandedGroups = ref<string[]>([])
+const expandedGroups = ref<string[]>([]) // 默认全部折叠
 const activeSection = ref<'Reading Comprehension' | 'Use of English' | 'New Question Types'>('Reading Comprehension')
-const expandedCloze = ref(false)
+const expandedCloze = ref(false) // 完型填空大题默认折叠
 
 // 可用年份（2010-2025）
 const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
 
-// 过滤后的题目（用于传统阅读和新题型）
+// 过滤后的题目
 const filteredQuestions = computed(() => {
-  if (activeSection.value === 'Use of English') return []
-  
-  let questions = allQuestions.value.filter(q => q.section !== 'Use of English')
+  let questions = allQuestions.value
   
   // 按年份过滤
   if (selectedYear.value !== 'all') {
@@ -298,45 +336,32 @@ const filteredQuestions = computed(() => {
   return questions
 })
 
-// 按题型分组（传统阅读和新题型）
-const groupedQuestions = computed(() => {
-  if (activeSection.value === 'Use of English') return {}
-  
-  let questions = filteredQuestions.value
-  
-  // 按题型分组
-  const groups: Record<string, any[]> = {}
-  questions.forEach(q => {
-    if (!groups[q.type]) {
-      groups[q.type] = []
-    }
-    groups[q.type].push(q)
-  })
-  
-  return groups
+// 所有题型列表
+const questionTypes = computed(() => {
+  const types = new Set(filteredQuestions.value.map(q => q.type))
+  return Array.from(types)
 })
 
+// 覆盖的年份
+const coveredYears = computed(() => {
+  const years = new Set(filteredQuestions.value.map(q => q.year))
+  return Array.from(years)
+})
 
+// 完型填空相关（Use of English）
+const clozeQuestions = computed(() => {
+  return filteredQuestions.value.filter(q => q.section === 'Use of English')
+})
+
+const clozeYear = computed(() => {
+  if (clozeQuestions.value.length > 0) {
+    return clozeQuestions.value[0].year
+  }
+  return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
+})
 
 // 展开的题目索引列表
 const expandedQuestions = ref<number[]>([])
-
-// 切换题型组展开/收起
-const toggleGroup = (type: string) => {
-  const idx = expandedGroups.value.indexOf(type)
-  if (idx > -1) {
-    expandedGroups.value.splice(idx, 1)
-  } else {
-    expandedGroups.value.push(type)
-  }
-}
-
-// 获取组统计信息
-const getGroupStats = (group: any[]) => {
-  const total = group.filter(q => q.userAnswer).length
-  const correct = group.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
-  return { total, correct }
-}
 
 // 切换题目展开/收起
 const toggleQuestionExpand = (index: number) => {
@@ -389,13 +414,8 @@ const correctCount = computed(() => {
   return filteredQuestions.value.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
 })
 
-// 已作答题数
-const answeredCount = computed(() => {
-  return filteredQuestions.value.filter(q => q.userAnswer).length
-})
-
 // 正确率
-const correctRate = computed(() => {
+const accuracyRate = computed(() => {
   const answered = filteredQuestions.value.filter(q => q.userAnswer).length
   if (answered === 0) return 0
   return Math.round((correctCount.value / answered) * 100)
@@ -407,9 +427,22 @@ const loadData = () => {
   // TODO: 从 localStorage或API加载真实数据
 }
 
+// 按题型过滤
+const filterQuestions = () => {
+  console.log(` 按题型过滤：${selectedQuestionType.value}`)
+}
+
 // 获取某题型的所有题目
 const getQuestionsByType = (type: string) => {
   return filteredQuestions.value.filter(q => q.type === type)
+}
+
+// 获取组统计信息
+const getGroupStats = (type: string) => {
+  const questions = getQuestionsByType(type)
+  const total = questions.filter(q => q.userAnswer).length
+  const correct = questions.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
+  return { total, correct }
 }
 
 // 获取正确答案的解释
@@ -864,6 +897,332 @@ onMounted(async () => {
   border-radius: 6px;
   color: #666;
   font-style: italic;
+}
+
+/* 题型标签切换 */
+.section-tabs {
+  margin-bottom: 25px;
+}
+
+/* 题型分组头部（可点击） */
+.group-header {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+
+.group-header:hover {
+  background: #f5f7fa;
+}
+
+.expand-icon {
+  display: inline-block;
+  transition: transform 0.3s;
+  margin-right: 8px;
+}
+
+.expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+/* 完型填空区域 */
+.cloze-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cloze-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.cloze-title {
+  font-size: 1.6em;
+  margin: 0 0 8px 0;
+}
+
+.cloze-subtitle {
+  font-size: 0.95em;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* 文章区域 */
+.article-section {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.article-content {
+  font-size: 1.05em;
+  line-height: 2.2;
+  color: #333;
+  text-align: justify;
+}
+
+.section-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #667eea;
+}
+
+/* 完型填空大题容器 */
+.cloze-year-group {
+  margin-bottom: 20px;
+}
+
+.year-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+
+.year-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.year-header .expand-icon {
+  color: white;
+}
+
+.year-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  flex: 1;
+}
+
+.year-content {
+  margin-top: 15px;
+  padding-left: 10px;
+}
+
+/* 完型填空题目项 */
+.cloze-question-item {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  transition: all 0.3s;
+}
+
+.cloze-question-item:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+/* 题目头部：题号+题干+按钮 */
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.cloze-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  background: #667eea;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.question-stem-text {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+  padding-top: 5px;
+}
+
+/* 选项横向排列 */
+.cloze-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cloze-option {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cloze-option.correct {
+  border-color: #4CAF50;
+  background: #e8f5e9;
+}
+
+.cloze-option.user-wrong {
+  border-color: #F44336;
+  background: #ffebee;
+}
+
+.option-label {
+  font-weight: bold;
+  color: #667eea;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.icon-correct {
+  color: #4CAF50;
+  font-size: 1.2em;
+}
+
+.icon-wrong {
+  color: #F44336;
+  font-size: 1.2em;
+}
+
+/* 答案对比 */
+.cloze-answer-comparison {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.answer-box {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-answer {
+  background: #fff3e0;
+  border: 2px solid #FF9800;
+}
+
+.correct-answer {
+  background: #e8f5e9;
+  border: 2px solid #4CAF50;
+}
+
+.text-correct {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.text-wrong {
+  color: #F44336;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* 解析区域 */
+.cloze-analysis {
+  padding: 15px;
+  background: #e3f2fd;
+  border-left: 4px solid #2196F3;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.analysis-title {
+  font-weight: bold;
+  color: #2196F3;
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+.analysis-title.error-title {
+  color: #F44336;
+}
+
+/* 错误分析 */
+.cloze-error-analysis {
+  padding: 15px;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+  border: 2px solid #F44336;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.error-detail,
+.correct-detail {
+  margin-bottom: 12px;
+}
+
+.error-detail:last-child,
+.correct-detail:last-child {
+  margin-bottom: 0;
+}
+
+.error-detail strong {
+  color: #F44336;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.correct-detail strong {
+  color: #4CAF50;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* 解题技巧 */
+.cloze-tips {
+  padding: 15px;
+  background: #fff9c4;
+  border-left: 4px solid #FFC107;
+  border-radius: 6px;
+}
+
+.tips-title {
+  font-weight: bold;
+  color: #FF9800;
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .cloze-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .cloze-answer-comparison {
+    flex-direction: column;
+  }
+  
+  .answer-box {
+    min-width: 100%;
+  }
 }
 
 /* 空状态 */
