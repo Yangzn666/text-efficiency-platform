@@ -1468,6 +1468,305 @@
           </ul>
         </div>
       </template>
+      
+      <!-- 读操作与写操作的区别 -->
+      <template v-if="currentCard?.id === 'readWriteOps'">
+        <h3>💡 知识点卡片：读操作与写操作的区别</h3>
+        
+        <div class="card-section">
+          <h4>📖 读操作（Read Operation）</h4>
+          <ul>
+            <li><strong>定义</strong>：从存储器中取出数据</li>
+            <li><strong>流程</strong>：
+              <ol>
+                <li>CPU送出地址到地址总线</li>
+                <li>存储器根据地址找到对应单元</li>
+                <li>将数据放到数据总线上</li>
+                <li>CPU从数据总线读取数据</li>
+              </ol>
+            </li>
+            <li><strong>特点</strong>：
+              <ul>
+                <li>✅ 不改变存储单元内容</li>
+                <li>✅ 属于非破坏性操作</li>
+                <li>✅ 可以连续读取</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✍️ 写操作（Write Operation）</h4>
+          <ul>
+            <li><strong>定义</strong>：将数据存入存储器</li>
+            <li><strong>流程</strong>：
+              <ol>
+                <li>CPU送出地址到地址总线</li>
+                <li>CPU将数据放到数据总线</li>
+                <li>CPU发出写控制信号</li>
+                <li>存储器将数据写入指定单元</li>
+              </ol>
+            </li>
+            <li><strong>特点</strong>：
+              <ul>
+                <li>⚠️ 会覆盖原有数据</li>
+                <li>⚠️ 属于破坏性操作</li>
+                <li>⚠️ 需要写使能信号</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 关键区别对比表</h4>
+          <el-table :data="readWriteComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="read" label="读操作" width="200" />
+            <el-table-column prop="write" label="写操作" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》主存储器章节中：</p>
+          <ul>
+            <li>✅ 掌握读操作和写操作的流程</li>
+            <li>✅ 理解两者的本质区别（数据流向、破坏性）</li>
+            <li>✅ 能够分析存储器访问时序图</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 局部性原理详解 -->
+      <template v-if="currentCard?.id === 'localityPrinciple'">
+        <h3>💡 知识点卡片：局部性原理详解</h3>
+        
+        <div class="card-section">
+          <h4>⏱️ 时间局部性（Temporal Locality）</h4>
+          <ul>
+            <li><strong>定义</strong>：如果某信息被访问，那么在不久的将来它可能再次被访问</li>
+            <li><strong>原因</strong>：程序中存在循环结构、子程序调用、变量重复使用</li>
+            <li><strong>示例</strong>：
+              <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">for (i = 0; i < 1000; i++) {
+    sum = sum + array[i];  // sum变量每次循环都被访问
+}</pre>
+              - `sum`变量在每次循环中都被访问 → 时间局部性好
+            </li>
+            <li><strong>应用</strong>：Cache缓存最近访问的数据</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📍 空间局部性（Spatial Locality）</h4>
+          <ul>
+            <li><strong>定义</strong>：如果某存储单元被访问，那么它附近的存储单元也可能被访问</li>
+            <li><strong>原因</strong>：程序顺序执行、数组连续存储、指令连续存放</li>
+            <li><strong>示例</strong>：
+              <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">int array[100];
+for (i = 0; i < 100; i++) {
+    sum = sum + array[i];  // 数组元素连续访问
+}</pre>
+              - 访问array[0]后，很可能访问array[1]、array[2]... → 空间局部性好
+            </li>
+            <li><strong>应用</strong>：Cache预取相邻数据块</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 局部性原理的度量</h4>
+          <el-table :data="localityMeasurementData" border stripe style="width: 100%">
+            <el-table-column prop="type" label="类型" width="150" />
+            <el-table-column prop="measurement" label="度量方法" />
+            <el-table-column prop="good" label="良好表现" width="200" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔧 在存储系统中的应用</h4>
+          <ol>
+            <li><strong>Cache设计</strong>：利用局部性原理缓存常用数据
+              <ul>
+                <li>时间局部性 → 保留最近访问的数据</li>
+                <li>空间局部性 → 预取相邻数据块</li>
+              </ul>
+            </li>
+            <li><strong>虚拟存储器</strong>：只将当前需要的页面调入主存
+              <ul>
+                <li>页面置换算法（LRU）基于时间局部性</li>
+                <li>预取机制基于空间局部性</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》存储系统章节中：</p>
+          <ul>
+            <li>✅ 掌握时间局部性和空间局部性的定义</li>
+            <li>✅ 能够分析代码的局部性特征</li>
+            <li>✅ 理解局部性原理在Cache和虚存中的应用</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 组相联映射实例 -->
+      <template v-if="currentCard?.id === 'setAssociativeExample'">
+        <h3>💡 知识点卡片：组相联映射实例</h3>
+        
+        <div class="card-section">
+          <h4>📝 典型例题</h4>
+          <p><strong>题目</strong>：设主存容量为1MB，Cache容量为16KB，每块32B，采用4路组相联映射，求地址格式。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 解题步骤</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">步骤1：计算块内偏移位数</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">块大小 = 32B = 2^5B
+块内偏移 = 5位</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">步骤2：计算Cache块数</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">Cache容量 = 16KB = 2^14B
+Cache块数 = 16KB / 32B = 512块</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">步骤3：计算组数</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">4路组相联 → 每组4块
+组数 = 512 / 4 = 128组 = 2^7
+组号 = 7位</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">步骤4：计算主存块数</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">主存容量 = 1MB = 2^20B
+主存块数 = 1MB / 32B = 32768块 = 2^15</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">步骤5：计算标记位数</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">主存地址 = 20位（1MB = 2^20B）
+标记 = 主存地址 - 组号 - 块内偏移
+标记 = 20 - 7 - 5 = 8位</pre>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 最终答案</h4>
+          <pre style="background: #e8f5e9; padding: 12px; border-radius: 4px; overflow-x: auto; border-left: 4px solid #4CAF50;">地址格式：
+| 标记Tag(8位) | 组号Set(7位) | 块内偏移Offset(5位) |</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">映射规则</h5>
+          <ul>
+            <li>主存块号 mod 组数 = 组号</li>
+            <li>例：主存块号 = 100
+              <ul>
+                <li>100 mod 128 = 100 → 映射到第100组</li>
+                <li>可以放在第100组的任意一行（0/1/2/3行）</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》Cache章节中：</p>
+          <ul>
+            <li>✅ 掌握组相联映射的地址格式计算方法</li>
+            <li>✅ 能够进行类似题型的计算</li>
+            <li>✅ 理解映射规则和冲突情况</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 映射表有效位 -->
+      <template v-if="currentCard?.id === 'validBit'">
+        <h3>💡 知识点卡片：映射表有效位（必考点）</h3>
+        
+        <div class="card-section">
+          <h4>⚠️ 为什么需要有效位？</h4>
+          <ul>
+            <li>Cache初始化时，所有块都是<strong>无效</strong>的（没有数据）</li>
+            <li>标记（Tag）字段可能有任意值（可能是上次残留的数据）</li>
+            <li>如果不检查有效位，可能会<strong>误判为命中</strong></li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔑 有效位的作用</h4>
+          <ul>
+            <li><strong>有效位 = 1</strong>：该Cache块包含有效数据</li>
+            <li><strong>有效位 = 0</strong>：该Cache块为空或数据已无效</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📋 映射表结构</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">直接映射映射表项</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">| 有效位(1位) | 标记Tag | 数据块 |</pre>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">组相联映射映射表项</h5>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">| 有效位(1位) | 标记Tag | 数据块 |</pre>
+          <p style="color: #606266;">（每组有多个这样的表项）</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 有效位的使用流程</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">读操作流程</h5>
+          <ol>
+            <li>根据地址找到Cache块</li>
+            <li><strong>检查有效位</strong>：
+              <ul>
+                <li>有效位 = 0 → 未命中，访问主存</li>
+                <li>有效位 = 1 → 继续检查标记</li>
+              </ul>
+            </li>
+            <li>比较标记Tag：
+              <ul>
+                <li>Tag匹配 → 命中，返回数据</li>
+                <li>Tag不匹配 → 未命中，访问主存</li>
+              </ul>
+            </li>
+          </ol>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">写操作流程</h5>
+          <ol>
+            <li>根据地址找到Cache块</li>
+            <li>检查有效位和标记</li>
+            <li>如果未命中，从主存调入块，<strong>设置有效位 = 1</strong></li>
+            <li>写入数据到Cache</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 重要考点</h4>
+          <div style="background: #fff7e6; padding: 16px; border-radius: 8px; border-left: 4px solid #faad14;">
+            <p style="margin: 0; font-weight: bold; color: #fa8c16;">⚠️ 必考点：映射表必须要有一位有效位！</p>
+          </div>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">原因</h5>
+          <ul>
+            <li>避免Cache初始化时的误判</li>
+            <li>区分有效数据和无效数据</li>
+            <li>确保Cache命中判断的准确性</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 真题示例</h4>
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; border-left: 4px solid #409eff;">
+            <p style="margin: 0 0 12px 0;"><strong>题目</strong>：Cache的映射表中，每个映射项除了标记和数据外，还必须包含（ ）</p>
+            <p style="margin: 0 0 8px 0;">A. 替换算法标志 &nbsp;&nbsp; B. 有效位 &nbsp;&nbsp; C. 修改位 &nbsp;&nbsp; D. 以上都是</p>
+            <p style="margin: 0; color: #4CAF50; font-weight: bold;">✅ 答案：B（有效位是必须的，修改位和替换算法标志是可选的）</p>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》Cache章节中：</p>
+          <ul>
+            <li>✅ 理解有效位的必要性和作用</li>
+            <li>✅ 掌握有效位在读写操作中的使用流程</li>
+            <li>✅ 能够回答相关选择题</li>
+          </ul>
+        </div>
+      </template>
     </div>
     
     <template #footer>
@@ -1732,6 +2031,21 @@ const raidComparisonData = [
   { level: 'RAID 5', minDisks: '3', faultTolerance: '✅ 允许1块损坏', spaceUtilization: '(n-1)/n', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐⭐ 中等', application: '文件服务器、数据库' },
   { level: 'RAID 6', minDisks: '4', faultTolerance: '✅ 允许2块损坏', spaceUtilization: '(n-2)/n', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐ 较低', application: '大容量存储、归档' },
   { level: 'RAID 10', minDisks: '4', faultTolerance: '✅ 允许每组1块损坏', spaceUtilization: '50%', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐⭐ 中等', application: '高性能数据库' }
+]
+
+// 读操作与写操作对比数据
+const readWriteComparisonData = [
+  { aspect: '数据流向', read: '存储器→CPU', write: 'CPU→存储器' },
+  { aspect: '控制信号', read: '读使能（RD）', write: '写使能（WR）' },
+  { aspect: '内容变化', read: '不改变', write: '覆盖原有数据' },
+  { aspect: '破坏性', read: '非破坏性', write: '破坏性' },
+  { aspect: '总线使用', read: '数据总线输入', write: '数据总线输出' }
+]
+
+// 局部性原理度量数据
+const localityMeasurementData = [
+  { type: '时间局部性', measurement: '同一数据被重复访问的时间间隔', good: '间隔短，频繁访问' },
+  { type: '空间局部性', measurement: '被访问数据的地址分布范围', good: '范围小，连续访问' }
 ]
 
 function show(cardId: string = 'assembly') {
