@@ -383,53 +383,43 @@ const fundamentalLessons = ref<Lesson[]>([
 const summerLessons = ref<Lesson[]>([
   {
     id: 1,
-    title: '阅读四步法强化（直播+录播）',
-    description: '直播：阅读四步法"看、找、读、比"；录播：2016—2020真题讲解',
+    title: '翻译二步法专项突破',
+    description: '掌握翻译核心技巧，重点突破长难句翻译',
     duration: '暑期强化',
     type: '直播+录播',
     completed: false,
-    liveContent: '阅读四步法"看、找、读、比"',
-    recordedContent: '2016-2020真题讲解'
+    liveContent: '翻译二步法精讲',
+    recordedContent: '2016-2020翻译真题实战'
   },
   {
     id: 2,
-    title: '翻译二步法（直播+录播）',
-    description: '直播：翻译二步法；录播：2016—2020真题讲解',
+    title: '完形填空三步法',
+    description: '完形填空解题技巧与实战训练',
     duration: '暑期强化',
     type: '直播+录播',
     completed: false,
-    liveContent: '翻译二步法',
-    recordedContent: '2016-2020真题讲解'
+    liveContent: '完形三步法技巧',
+    recordedContent: '2016-2020完形真题讲解'
   },
   {
     id: 3,
-    title: '完形三步法（直播+录播）',
-    description: '直播：完形三步法；录播：2016—2020真题讲解',
+    title: '新题型解题策略',
+    description: '七选五/小标题/排序题解题方法',
     duration: '暑期强化',
     type: '直播+录播',
     completed: false,
-    liveContent: '完形三步法',
-    recordedContent: '2016-2020真题讲解'
+    liveContent: '新题型三步法',
+    recordedContent: '2016-2020新题型真题'
   },
   {
     id: 4,
-    title: '新题型三步法（直播+录播）',
-    description: '直播：完新题型三步法；直播：2016—2020真题讲解',
-    duration: '暑期强化',
-    type: '直播+录播',
-    completed: false,
-    liveContent: '完新题型三步法',
-    recordedContent: '2016-2020真题讲解'
-  },
-  {
-    id: 5,
-    title: '八哥写作保命（绝招）',
-    description: '英语一：9月初直播（大小作文）；英语二：9月初直播（大小作文）；写作全程直播：模板+带背+带练！',
+    title: '写作框架搭建',
+    description: '大小作文模板构建+素材积累',
     duration: '9月初直播',
     type: '直播',
     completed: false,
     highlight: true,
-    features: ['模板', '带背', '带练']
+    features: ['模板框架', '万能句型', '高分词汇']
   }
 ])
 
@@ -437,31 +427,31 @@ const summerLessons = ref<Lesson[]>([
 const finalLessons = ref<Lesson[]>([
   {
     id: 1,
-    title: '五大题型综合训练',
-    description: '阅读+翻译+完形+新题型+写作✏️ 全覆盖冲刺训练',
-    duration: '冲刺阶段',
+    title: '近5年真题全真模拟',
+    description: '2021-2025年真题限时训练+深度解析',
+    duration: '10-11月',
     type: '综合训练',
     completed: false,
-    questionTypes: ['阅读', '翻译', '完形', '新题型', '写作']
+    yearRange: '2021-2025',
+    setCount: 5
   },
   {
     id: 2,
-    title: '2021年—2026年真题（4套直播讲解）',
-    description: '最新5年真题，4套直播精讲解析',
-    duration: '冲刺阶段',
-    type: '直播讲解',
-    completed: false,
-    yearRange: '2021-2026',
-    setCount: 4
-  },
-  {
-    id: 3,
-    title: '八哥写作带练（11月初）',
-    description: '冲刺50天带练直播！写作强化训练',
-    duration: '11月初开始',
+    title: '写作实战带练',
+    description: '50天写作强化训练，每日一篇+批改反馈',
+    duration: '11月初-考前',
     type: '直播带练',
     completed: false,
     duration_days: 50,
+    highlight: true
+  },
+  {
+    id: 3,
+    title: '考前押题+查漏补缺',
+    description: '最后2周高频考点梳理+预测题训练',
+    duration: '12月中旬-考前',
+    type: '冲刺点睛',
+    completed: false,
     highlight: true
   }
 ])
