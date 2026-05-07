@@ -190,7 +190,7 @@
         }
       ],
       "correctAnswer": "A",
-      "userAnswer": "C",
+      "userAnswer": "A",
       "analysis": "even if表示'即使，虽然'，引导让步状语从句。句意：即使我们没有意识到，我们对气味也是极其敏感的。",
       "errorAnalysis": {
         "B": "if only表示'要是...就好了'，表达愿望或遗憾，后面常跟虚拟语气，不符合这里的语境。",
@@ -290,7 +290,7 @@
         }
       ],
       "correctAnswer": "D",
-      "userAnswer": "C",
+      "userAnswer": "D",
       "analysis": "whereas表示'然而，但是'，用于对比两种情况。句意：有些人只能闻到一种花的气味，而另一些人对两种花都敏感。",
       "errorAnalysis": {
         "A": "when表示'当...时'，是时间关系，而这里需要的是对比关系。",
@@ -325,7 +325,7 @@
         }
       ],
       "correctAnswer": "B",
-      "userAnswer": "D",
+      "userAnswer": "C",
       "analysis": "particular表示'特定的，特定的某种'。句意：有些人没有产生特定气味感受器所需的基因。",
       "tips": "particular强调特定的某一种，unusual不寻常，unique独一无二，typical典型的。",
       "location": "第五句后半部分"
@@ -505,7 +505,7 @@
         }
       ],
       "correctAnswer": "B",
-      "userAnswer": "A",
+      "userAnswer": "B",
       "analysis": "also表示'也，还'。句意：这也可以解释为什么我们通常对自己的气味不敏感。",
       "tips": "also表示补充说明，除了前面的解释外，还有这个解释。still仍然，otherwise否则，nevertheless然而。",
       "location": "第九句开头"
@@ -535,7 +535,7 @@
         }
       ],
       "correctAnswer": "C",
-      "userAnswer": "B",
+      "userAnswer": "C",
       "analysis": "be aware of表示'意识到，觉察到'。句意：我们通常觉察不到自己房子的气味。",
       "tips": "be aware of是固定搭配。sure of确信，sick of厌倦，tired of厌倦。",
       "location": "第九句"
@@ -565,7 +565,7 @@
         }
       ],
       "correctAnswer": "D",
-      "userAnswer": "C",
+      "userAnswer": "D",
       "analysis": "notice表示'注意到'。句意：但当我们拜访别人家时，我们会注意到新的气味。与前文'觉察不到'形成对比。",
       "tips": "notice与前面的aware形成语义呼应。tolerate容忍，repel排斥，neglect忽视。",
       "location": "第九句后半部分"
@@ -595,7 +595,7 @@
         }
       ],
       "correctAnswer": "A",
-      "userAnswer": "D",
+      "userAnswer": "B",
       "analysis": "available表示'可用的，可用的'。句意：大脑最好让嗅觉感受器保持可用状态，以应对不熟悉和紧急的信号。",
       "tips": "available可用（随时能用），reliable可靠，identifiable可识别，suitable适合。",
       "location": "第十句"
