@@ -1,170 +1,142 @@
 <template>
   <div class="reading-practice">
-    <div class="practice-header">
-      <h2 class="practice-title">📖 考研英语一真题阅读</h2>
-      <p class="practice-subtitle">Part A · 传统阅读 · 按题型分类整理</p>
-    </div>
-
-    <!-- 显示模式切换 -->
-    <div class="mode-switcher">
-      <el-radio-group v-model="displayMode" size="large">
-        <el-radio-button value="byType">按题型分类</el-radio-button>
-        <el-radio-button value="cloze">完型填空试卷式</el-radio-button>
-      </el-radio-group>
-    </div>
-
+    <h2>📖 英语一真题阅读训练</h2>
+    
     <!-- 筛选器 -->
-    <div class="filter-section">
-      <el-select v-model="selectedYear" placeholder="选择年份" size="large" @change="loadData">
-        <el-option label="全部年份" value="all" />
-        <el-option
-          v-for="year in availableYears"
-          :key="year"
-          :label="`${year}年`"
-          :value="year"
-        />
+    <div class="filters">
+      <el-select v-model="selectedYear" placeholder="选择年份" @change="filterQuestions">
+        <el-option label="全部年份" value="all"></el-option>
+        <el-option v-for="year in availableYears" :key="year" :label="year + '年'" :value="year"></el-option>
       </el-select>
-      
-      <el-select v-model="selectedType" placeholder="选择题型" size="large" @change="filterByType">
-        <el-option label="全部题型" value="all" />
-        <el-option label="细节题" value="细节题" />
-        <el-option label="主旨题" value="主旨题" />
-        <el-option label="推理题" value="推理题" />
-        <el-option label="词义题" value="词义题" />
-        <el-option label="态度题" value="态度题" />
+
+      <el-select v-model="selectedQuestionType" placeholder="选择题型" @change="filterQuestions">
+        <el-option label="全部题型" value="all"></el-option>
+        <el-option label="主旨题" value="主旨题"></el-option>
+        <el-option label="细节题" value="细节题"></el-option>
+        <el-option label="推理题" value="推理题"></el-option>
+        <el-option label="词汇题" value="词汇题"></el-option>
+        <el-option label="态度题" value="态度题"></el-option>
+        <el-option label="例证题" value="例证题"></el-option>
+        <el-option label="逻辑关系" value="逻辑关系"></el-option>
+        <el-option label="固定搭配" value="固定搭配"></el-option>
       </el-select>
-      
-      <el-button type="primary" size="large" @click="importQuestions">
-        <el-icon><Upload /></el-icon>
-        导入题目
-      </el-button>
+    </div>
+
+    <!-- 题型标签切换 -->
+    <div class="section-tabs">
+      <el-tabs v-model="activeSection" type="card" size="large">
+        <el-tab-pane label="📖 传统阅读" name="Reading Comprehension"></el-tab-pane>
+        <el-tab-pane label="✍️ 完型填空" name="Use of English"></el-tab-pane>
+        <el-tab-pane label="📝 新题型" name="New Question Types"></el-tab-pane>
+      </el-tabs>
     </div>
 
     <!-- 统计信息 -->
     <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-value">{{ filteredQuestions.length }}</div>
-        <div class="stat-label">题目总数</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ correctCount }}</div>
-        <div class="stat-label">答对题数</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ accuracyRate }}%</div>
-        <div class="stat-label">正确率</div>
-      </div>
+      <span>共 {{ filteredQuestions.length }} 道题</span>
+      <span>已作答 {{ answeredCount }} 道</span>
+      <span>答对 {{ correctCount }} 道</span>
+      <span>正确率 {{ correctRate }}%</span>
     </div>
 
-    <!-- 按题型分组展示 -->
-    <div class="type-groups">
-      <div 
-        v-for="type in questionTypes" 
-        :key="type"
-        class="type-group"
-      >
-        <div class="group-header">
-          <div class="group-title">
-            <el-tag size="large" :type="getQuestionTypeColor(type)">{{ type }}</el-tag>
-            <span class="group-count">{{ getQuestionsByType(type).length }} 题</span>
-          </div>
-          <el-button size="small" plain @click="toggleGroup(type)">
-            {{ expandedGroups.includes(type) ? '收起' : '展开' }}
-          </el-button>
+    <!-- 按题型分类显示 -->
+    <div v-if="activeSection === 'Reading Comprehension' || activeSection === 'New Question Types'">
+      <div v-for="(group, type) in groupedQuestions" :key="type" class="question-group">
+        <div class="group-header" @click="toggleGroup(type)">
+          <el-icon class="expand-icon" :class="{ 'expanded': expandedGroups.includes(type) }">
+            <ArrowRight />
+          </el-icon>
+          <h3>{{ type }} ({{ group.length }}题)</h3>
+          <el-tag v-if="getGroupStats(group).total > 0" type="success">
+            答对 {{ getGroupStats(group).correct }}/{{ getGroupStats(group).total }}
+          </el-tag>
         </div>
-
-        <div v-show="expandedGroups.includes(type)" class="questions-list">
-          <div 
-            v-for="(question, idx) in getQuestionsByType(type)" 
-            :key="idx"
-            class="question-card"
-          >
-            <!-- 题目信息 -->
-            <div class="question-meta">
-              <el-tag size="small">{{ question.year }}年</el-tag>
-              <el-tag v-if="question.section" size="small" type="info">{{ question.section }}</el-tag>
-              <el-tag v-if="question.number" size="small" type="warning">第{{ question.number }}题</el-tag>
-              <el-tag v-if="question.userAnswer" :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" size="small">
-                {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : '✗ 错误' }}
-              </el-tag>
+        
+        <div v-show="expandedGroups.includes(type)" class="group-content">
+          <div v-for="question in group" :key="question.id" class="question-card">
+            <div class="question-header">
+              <span class="question-number">{{ question.number }}</span>
+              <span class="question-meta">
+                {{ question.year }}年 · {{ question.section }}
+                <el-tag v-if="question.userAnswer" 
+                  :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" 
+                  size="small">
+                  {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : ' 错误' }}
+                </el-tag>
+              </span>
             </div>
-
-            <!-- 题干 -->
-            <div class="question-stem">
-              {{ question.stem }}
-            </div>
-
-            <!-- 选项（如果有） -->
-            <div v-if="question.options && question.options.length > 0" class="options-list">
-              <div 
-                v-for="option in question.options" 
-                :key="option.label"
-                class="option-item"
-                :class="{ 
-                  'correct': option.label === question.correctAnswer,
-                  'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer
-                }"
-              >
-                <span class="option-label">{{ option.label }}.</span>
-                <span class="option-text">{{ option.text }}</span>
-                <el-icon v-if="option.label === question.correctAnswer" class="correct-icon">
-                  <CircleCheck />
-                </el-icon>
-                <el-icon v-if="question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer" class="wrong-icon">
-                  <CircleClose />
-                </el-icon>
+            
+            <div class="question-body">
+              <p class="stem">{{ question.stem }}</p>
+              
+              <div v-if="question.options && question.options.length > 0" class="options">
+                <div v-for="option in question.options" :key="option.label" 
+                  class="option"
+                  :class="{
+                    'correct': option.label === question.correctAnswer,
+                    'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
+                  }">
+                  <span class="option-label">{{ option.label }}.</span>
+                  <span class="option-text">{{ option.text }}</span>
+                  <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
+                    <CircleCheck />
+                  </el-icon>
+                  <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
+                    <CircleClose />
+                  </el-icon>
+                </div>
               </div>
-            </div>
-
-            <!-- 用户答案和正确答案 -->
-            <div class="answer-comparison">
-              <div class="user-answer" v-if="question.userAnswer">
-                <span class="label">你的答案：</span>
-                <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
+              
+              <!-- 用户答案和正确答案 -->
+              <div class="answer-comparison">
+                <div class="user-answer" v-if="question.userAnswer">
+                  <span class="label">你的答案：</span>
+                  <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
+                </div>
+                <div class="correct-answer">
+                  <span class="label">正确答案：</span>
+                  <span class="answer">{{ question.correctAnswer }}</span>
+                </div>
               </div>
-              <div class="correct-answer">
-                <span class="label">正确答案：</span>
-                <span class="answer">{{ question.correctAnswer }}</span>
+
+              <!-- 答案解析 -->
+              <div class="analysis-section">
+                <h5> 答案解析：</h5>
+                <p>{{ question.analysis }}</p>
               </div>
-            </div>
 
-            <!-- 答案解析 -->
-            <div class="analysis-section">
-              <h5>📖 答案解析：</h5>
-              <p>{{ question.analysis }}</p>
-            </div>
-
-            <!-- 错误选项分析（如果用户答错） -->
-            <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
-              <h5 class="error-title">❌ 为什么你选的答案不对</h5>
-              <div class="error-item">
-                <span class="error-label">你选了 {{ question.userAnswer }}：</span>
-                <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
+              <!-- 错误选项分析（如果用户答错） -->
+              <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
+                <h5 class="error-title">❌ 为什么你选的答案不对</h5>
+                <div class="error-item">
+                  <span class="error-label">你选了 {{ question.userAnswer }}：</span>
+                  <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
+                </div>
+                <div class="correct-comparison">
+                  <span class="correct-label">✓ 正确答案 {{ question.correctAnswer }}：</span>
+                  <span class="correct-explanation">{{ getCorrectOptionExplanation(question) }}</span>
+                </div>
               </div>
-              <div class="correct-comparison">
-                <span class="correct-label">✓ 正确答案 {{ question.correctAnswer }}：</span>
-                <span class="correct-explanation">{{ getCorrectOptionExplanation(question) }}</span>
+
+              <!-- 解题技巧 -->
+              <div v-if="question.tips" class="tips-section">
+                <h5>🎯 解题技巧：</h5>
+                <p>{{ question.tips }}</p>
               </div>
-            </div>
 
-            <!-- 解题技巧 -->
-            <div v-if="question.tips" class="tips-section">
-              <h5>🎯 解题技巧：</h5>
-              <p>{{ question.tips }}</p>
-            </div>
-
-            <!-- 定位句 -->
-            <div v-if="question.location" class="location-section">
-              <h5>📍 原文定位：</h5>
-              <blockquote>{{ question.location }}</blockquote>
+              <!-- 定位句 -->
+              <div v-if="question.location" class="location-section">
+                <h5>📍 原文定位：</h5>
+                <blockquote>{{ question.location }}</blockquote>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 完型填空试卷式展示 -->
-    <div v-if="displayMode === 'cloze' && clozeQuestions.length > 0" class="cloze-section">
+    <!-- 完型填空 -->
+    <div v-if="activeSection === 'Use of English' && clozeQuestions.length > 0" class="cloze-section">
       <div class="cloze-header">
         <h3 class="cloze-title">📝 {{ clozeYear }}年考研英语一 Use of English</h3>
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
@@ -172,134 +144,146 @@
 
       <!-- 文章原文 -->
       <div class="article-section">
-        <div class="section-title">📖 文章原文</div>
+        <div class="section-title"> 文章原文</div>
         <div class="article-content" v-html="clozeArticle"></div>
       </div>
 
-      <!-- 题目列表 -->
+      <!-- 题目列表（可折叠） -->
       <div class="cloze-questions">
-        <div class="section-title">❓ 题目</div>
+        <div class="section-title">❓ 题目（点击展开查看答案）</div>
         
-        <div 
-          v-for="(question, idx) in clozeQuestions" 
-          :key="idx"
-          class="cloze-question-item"
-        >
-          <!-- 题号和题干 -->
-          <div class="question-header">
-            <div class="cloze-number">{{ question.number }}</div>
-            <div class="question-stem-text">{{ question.stem }}</div>
-            <el-button 
-              size="small" 
-              type="primary" 
-              plain
-              @click="toggleQuestionExpand(idx)"
-            >
-              {{ expandedQuestions.includes(idx) ? '收起' : '查看答案' }}
-            </el-button>
+        <div class="cloze-year-group">
+          <div 
+            class="year-header"
+            :class="{ 'expanded': expandedCloze }"
+            @click="expandedCloze = !expandedCloze"
+          >
+            <el-icon class="expand-icon" :class="{ 'rotated': expandedCloze }">
+              <ArrowRight />
+            </el-icon>
+            <span class="year-text">{{ clozeYear }}年完型填空</span>
+            <el-tag type="info" size="small">{{ clozeQuestions.length }}题</el-tag>
           </div>
 
-          <!-- 展开的内容：选项、答案、解析 -->
-          <div v-show="expandedQuestions.includes(idx)" class="question-detail">
-            <!-- 选项（横向排列） -->
-            <div v-if="question.options && question.options.length > 0" class="cloze-options">
-              <div 
-                v-for="option in question.options" 
-                :key="option.label"
-                class="cloze-option"
-                :class="{
-                  'correct': option.label === question.correctAnswer,
-                  'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
-                }"
-              >
-                <span class="option-label">{{ option.label }}.</span>
-                <span class="option-text">{{ option.text }}</span>
-                <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
-                  <CircleCheck />
-                </el-icon>
-                <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
-                  <CircleClose />
-                </el-icon>
-              </div>
-            </div>
-
-            <!-- 答案对比 -->
-            <div v-if="question.userAnswer" class="cloze-answer-comparison">
-              <div class="answer-box user-answer">
-                <span class="label">你的答案：</span>
-                <span :class="question.userAnswer === question.correctAnswer ? 'text-correct' : 'text-wrong'">
-                  {{ question.userAnswer }}
-                </span>
-                <el-tag v-if="question.userAnswer === question.correctAnswer" type="success" size="small">✓ 正确</el-tag>
-                <el-tag v-else type="danger" size="small">✗ 错误</el-tag>
-              </div>
-              <div class="answer-box correct-answer">
-                <span class="label">正确答案：</span>
-                <span class="text-correct">{{ question.correctAnswer }}</span>
-              </div>
-            </div>
-
-            <!-- 答案解析 -->
-            <div class="cloze-analysis">
-              <div class="analysis-title">📖 解析</div>
-              <p>{{ question.analysis }}</p>
-            </div>
-
-            <!-- 错误选项分析（仅答错时显示） -->
+          <div v-show="expandedCloze" class="year-content">
             <div 
-              v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" 
-              class="cloze-error-analysis"
+              v-for="(question, idx) in clozeQuestions" 
+              :key="idx"
+              class="cloze-question-item"
             >
-              <div class="analysis-title error-title">❌ 为什么你选的答案不对</div>
-              <div class="error-detail">
-                <strong>你选了 {{ question.userAnswer }}：</strong>
-                <p>{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</p>
+              <!-- 题号和题干 -->
+              <div class="question-header">
+                <div class="cloze-number">{{ question.number }}</div>
+                <div class="question-stem-text">{{ question.stem }}</div>
+                <el-button 
+                  size="small" 
+                  type="primary" 
+                  plain
+                  @click="toggleQuestionExpand(idx)"
+                >
+                  {{ expandedQuestions.includes(idx) ? '收起' : '查看答案' }}
+                </el-button>
               </div>
-              <div class="correct-detail">
-                <strong>✓ 正确答案 {{ question.correctAnswer }}：</strong>
-                <p>{{ getCorrectExplanation(question) }}</p>
-              </div>
-            </div>
 
-            <!-- 解题技巧 -->
-            <div v-if="question.tips" class="cloze-tips">
-              <div class="tips-title">🎯 解题技巧</div>
-              <p>{{ question.tips }}</p>
+              <!-- 展开的内容：选项、答案、解析 -->
+              <div v-show="expandedQuestions.includes(idx)" class="question-detail">
+                <!-- 选项（横向排列） -->
+                <div v-if="question.options && question.options.length > 0" class="cloze-options">
+                  <div 
+                    v-for="option in question.options" 
+                    :key="option.label"
+                    class="cloze-option"
+                    :class="{
+                      'correct': option.label === question.correctAnswer,
+                      'user-wrong': question.userAnswer === option.label && option.label !== question.correctAnswer
+                    }"
+                  >
+                    <span class="option-label">{{ option.label }}.</span>
+                    <span class="option-text">{{ option.text }}</span>
+                    <el-icon v-if="option.label === question.correctAnswer" class="icon-correct">
+                      <CircleCheck />
+                    </el-icon>
+                    <el-icon v-if="question.userAnswer === option.label && option.label !== question.correctAnswer" class="icon-wrong">
+                      <CircleClose />
+                    </el-icon>
+                  </div>
+                </div>
+
+                <!-- 答案对比 -->
+                <div v-if="question.userAnswer" class="cloze-answer-comparison">
+                  <div class="answer-box user-answer">
+                    <span class="label">你的答案：</span>
+                    <span :class="question.userAnswer === question.correctAnswer ? 'text-correct' : 'text-wrong'">
+                      {{ question.userAnswer }}
+                    </span>
+                    <el-tag v-if="question.userAnswer === question.correctAnswer" type="success" size="small">✓ 正确</el-tag>
+                    <el-tag v-else type="danger" size="small">✗ 错误</el-tag>
+                  </div>
+                  <div class="answer-box correct-answer">
+                    <span class="label">正确答案：</span>
+                    <span class="text-correct">{{ question.correctAnswer }}</span>
+                  </div>
+                </div>
+
+                <!-- 答案解析 -->
+                <div class="cloze-analysis">
+                  <div class="analysis-title"> 解析</div>
+                  <p>{{ question.analysis }}</p>
+                </div>
+
+                <!-- 错误选项分析（仅答错时显示） -->
+                <div 
+                  v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" 
+                  class="cloze-error-analysis"
+                >
+                  <div class="analysis-title error-title">❌ 为什么你选的答案不对</div>
+                  <div class="error-detail">
+                    <strong>你选了 {{ question.userAnswer }}：</strong>
+                    <p>{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</p>
+                  </div>
+                  <div class="correct-detail">
+                    <strong>✓ 正确答案 {{ question.correctAnswer }}：</strong>
+                    <p>{{ getCorrectExplanation(question) }}</p>
+                  </div>
+                </div>
+
+                <!-- 解题技巧 -->
+                <div v-if="question.tips" class="cloze-tips">
+                  <div class="tips-title">🎯 解题技巧</div>
+                  <p>{{ question.tips }}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 空状态 -->
-    <div v-if="filteredQuestions.length === 0" class="empty-state">
-      <el-icon size="80" color="#ddd"><Document /></el-icon>
-      <h3>暂无题目数据</h3>
-      <p>请点击右上角"导入题目"按钮，导入JSON格式的题目数据</p>
-      <el-button type="primary" size="large" @click="showImportGuide">
-        查看导入指南
-      </el-button>
-    </div>
+    <!-- 无数据提示 -->
+    <el-empty v-if="filteredQuestions.length === 0 && activeSection !== 'Use of English'" description="暂无数据"></el-empty>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { Document, Upload, CircleCheck, CircleClose } from '@element-plus/icons-vue'
+import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
 
 // 数据状态
 const selectedYear = ref('all')
-const selectedType = ref('all')
+const selectedQuestionType = ref('all')
 const allQuestions = ref<any[]>([])
-const expandedGroups = ref<string[]>(['细节题', '主旨题', '推理题', '词义题', '态度题'])
-const displayMode = ref<'byType' | 'cloze'>('byType') // 显示模式：按题型或完型试卷式
+const expandedGroups = ref<string[]>([])
+const activeSection = ref<'Reading Comprehension' | 'Use of English' | 'New Question Types'>('Reading Comprehension')
+const expandedCloze = ref(false)
 
 // 可用年份（2010-2025）
 const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
 
-// 过滤后的题目
+// 过滤后的题目（用于传统阅读和新题型）
 const filteredQuestions = computed(() => {
-  let questions = allQuestions.value
+  if (activeSection.value === 'Use of English') return []
+  
+  let questions = allQuestions.value.filter(q => q.section !== 'Use of English')
   
   // 按年份过滤
   if (selectedYear.value !== 'all') {
@@ -307,39 +291,52 @@ const filteredQuestions = computed(() => {
   }
   
   // 按题型过滤
-  if (selectedType.value !== 'all') {
-    questions = questions.filter(q => q.type === selectedType.value)
+  if (selectedQuestionType.value !== 'all') {
+    questions = questions.filter(q => q.type === selectedQuestionType.value)
   }
   
   return questions
 })
 
-// 所有题型列表
-const questionTypes = computed(() => {
-  const types = new Set(filteredQuestions.value.map(q => q.type))
-  return Array.from(types)
+// 按题型分组（传统阅读和新题型）
+const groupedQuestions = computed(() => {
+  if (activeSection.value === 'Use of English') return {}
+  
+  let questions = filteredQuestions.value
+  
+  // 按题型分组
+  const groups: Record<string, any[]> = {}
+  questions.forEach(q => {
+    if (!groups[q.type]) {
+      groups[q.type] = []
+    }
+    groups[q.type].push(q)
+  })
+  
+  return groups
 })
 
-// 覆盖的年份
-const coveredYears = computed(() => {
-  const years = new Set(filteredQuestions.value.map(q => q.year))
-  return Array.from(years)
-})
 
-// 完型填空相关（Use of English）
-const clozeQuestions = computed(() => {
-  return filteredQuestions.value.filter(q => q.section === 'Use of English')
-})
-
-const clozeYear = computed(() => {
-  if (clozeQuestions.value.length > 0) {
-    return clozeQuestions.value[0].year
-  }
-  return selectedYear.value !== 'all' ? parseInt(selectedYear.value) : 2005
-})
 
 // 展开的题目索引列表
 const expandedQuestions = ref<number[]>([])
+
+// 切换题型组展开/收起
+const toggleGroup = (type: string) => {
+  const idx = expandedGroups.value.indexOf(type)
+  if (idx > -1) {
+    expandedGroups.value.splice(idx, 1)
+  } else {
+    expandedGroups.value.push(type)
+  }
+}
+
+// 获取组统计信息
+const getGroupStats = (group: any[]) => {
+  const total = group.filter(q => q.userAnswer).length
+  const correct = group.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
+  return { total, correct }
+}
 
 // 切换题目展开/收起
 const toggleQuestionExpand = (index: number) => {
@@ -392,8 +389,13 @@ const correctCount = computed(() => {
   return filteredQuestions.value.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
 })
 
+// 已作答题数
+const answeredCount = computed(() => {
+  return filteredQuestions.value.filter(q => q.userAnswer).length
+})
+
 // 正确率
-const accuracyRate = computed(() => {
+const correctRate = computed(() => {
   const answered = filteredQuestions.value.filter(q => q.userAnswer).length
   if (answered === 0) return 0
   return Math.round((correctCount.value / answered) * 100)
@@ -401,13 +403,8 @@ const accuracyRate = computed(() => {
 
 // 加载数据
 const loadData = () => {
-  console.log(`📊 加载数据：年份=${selectedYear.value}, 题型=${selectedType.value}`)
-  // TODO: 从localStorage或API加载真实数据
-}
-
-// 按题型过滤
-const filterByType = () => {
-  console.log(`🔍 按题型过滤：${selectedType.value}`)
+  console.log(`📊 加载数据：年份=${selectedYear.value}, 题型=${selectedQuestionType.value}`)
+  // TODO: 从 localStorage或API加载真实数据
 }
 
 // 获取某题型的所有题目
