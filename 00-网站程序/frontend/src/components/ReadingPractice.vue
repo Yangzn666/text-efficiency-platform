@@ -126,6 +126,19 @@
               <p>{{ question.analysis }}</p>
             </div>
 
+            <!-- 错误选项分析（如果用户答错） -->
+            <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
+              <h5 class="error-title">❌ 为什么你选的答案不对</h5>
+              <div class="error-item">
+                <span class="error-label">你选了 {{ question.userAnswer }}：</span>
+                <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
+              </div>
+              <div class="correct-comparison">
+                <span class="correct-label">✓ 正确答案 {{ question.correctAnswer }}：</span>
+                <span class="correct-explanation">{{ getCorrectOptionExplanation(question) }}</span>
+              </div>
+            </div>
+
             <!-- 解题技巧 -->
             <div v-if="question.tips" class="tips-section">
               <h5>🎯 解题技巧：</h5>
@@ -222,6 +235,16 @@ const filterByType = () => {
 // 获取某题型的所有题目
 const getQuestionsByType = (type: string) => {
   return filteredQuestions.value.filter(q => q.type === type)
+}
+
+// 获取正确答案的解释
+const getCorrectOptionExplanation = (question: any) => {
+  if (question.errorAnalysis && question.errorAnalysis[question.correctAnswer]) {
+    return question.errorAnalysis[question.correctAnswer]
+  }
+  // 如果没有专门的解释，返回选项文本
+  const correctOption = question.options?.find((o: any) => o.label === question.correctAnswer)
+  return correctOption ? correctOption.text : ''
 }
 
 // 切换分组展开/收起
@@ -598,6 +621,61 @@ onMounted(async () => {
   margin: 0;
   color: #555;
   line-height: 1.6;
+}
+
+/* 错误选项分析 */
+.error-analysis-section {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+  border-left: 4px solid #F44336;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.error-title {
+  color: #F44336 !important;
+  font-weight: bold;
+}
+
+.error-item {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 2px solid #F44336;
+}
+
+.error-label {
+  color: #F44336;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.error-explanation {
+  color: #333;
+  line-height: 1.8;
+  display: block;
+}
+
+.correct-comparison {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 2px solid #4CAF50;
+}
+
+.correct-label {
+  color: #4CAF50;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.correct-explanation {
+  color: #333;
+  line-height: 1.8;
+  display: block;
 }
 
 .location-section blockquote {
