@@ -39,12 +39,12 @@
         <div class="stat-label">题目总数</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">{{ questionTypes.length }}</div>
-        <div class="stat-label">题型种类</div>
+        <div class="stat-value">{{ correctCount }}</div>
+        <div class="stat-label">答对题数</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">{{ coveredYears.length }}</div>
-        <div class="stat-label">覆盖年份</div>
+        <div class="stat-value">{{ accuracyRate }}%</div>
+        <div class="stat-label">正确率</div>
       </div>
     </div>
 
@@ -74,8 +74,11 @@
             <!-- 题目信息 -->
             <div class="question-meta">
               <el-tag size="small">{{ question.year }}年</el-tag>
-              <el-tag v-if="question.passage" size="small" type="info">Text {{ question.passage }}</el-tag>
+              <el-tag v-if="question.section" size="small" type="info">{{ question.section }}</el-tag>
               <el-tag v-if="question.number" size="small" type="warning">第{{ question.number }}题</el-tag>
+              <el-tag v-if="question.userAnswer" :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" size="small">
+                {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : '✗ 错误' }}
+              </el-tag>
             </div>
 
             <!-- 题干 -->
@@ -89,20 +92,32 @@
                 v-for="option in question.options" 
                 :key="option.label"
                 class="option-item"
-                :class="{ 'correct': option.label === question.correctAnswer }"
+                :class="{ 
+                  'correct': option.label === question.correctAnswer,
+                  'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer
+                }"
               >
                 <span class="option-label">{{ option.label }}.</span>
                 <span class="option-text">{{ option.text }}</span>
                 <el-icon v-if="option.label === question.correctAnswer" class="correct-icon">
                   <CircleCheck />
                 </el-icon>
+                <el-icon v-if="question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer" class="wrong-icon">
+                  <CircleClose />
+                </el-icon>
               </div>
             </div>
 
-            <!-- 正确答案 -->
-            <div class="correct-answer">
-              <span class="label">正确答案：</span>
-              <span class="answer">{{ question.correctAnswer }}</span>
+            <!-- 用户答案和正确答案 -->
+            <div class="answer-comparison">
+              <div class="user-answer" v-if="question.userAnswer">
+                <span class="label">你的答案：</span>
+                <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
+              </div>
+              <div class="correct-answer">
+                <span class="label">正确答案：</span>
+                <span class="answer">{{ question.correctAnswer }}</span>
+              </div>
             </div>
 
             <!-- 答案解析 -->
@@ -179,6 +194,18 @@ const questionTypes = computed(() => {
 const coveredYears = computed(() => {
   const years = new Set(filteredQuestions.value.map(q => q.year))
   return Array.from(years)
+})
+
+// 答对题数
+const correctCount = computed(() => {
+  return filteredQuestions.value.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length
+})
+
+// 正确率
+const accuracyRate = computed(() => {
+  const answered = filteredQuestions.value.filter(q => q.userAnswer).length
+  if (answered === 0) return 0
+  return Math.round((correctCount.value / answered) * 100)
 })
 
 // 加载数据
@@ -441,6 +468,11 @@ onMounted(() => {
   background: #e8f5e9;
 }
 
+.option-item.user-wrong {
+  border-color: #F44336;
+  background: #ffebee;
+}
+
 .option-label {
   font-weight: bold;
   color: #667eea;
@@ -458,17 +490,53 @@ onMounted(() => {
   font-size: 1.3em;
 }
 
-.correct-answer {
-  padding: 12px 15px;
-  background: #e8f5e9;
-  border-left: 4px solid #4CAF50;
-  border-radius: 6px;
-  margin-bottom: 20px;
+.wrong-icon {
+  color: #F44336;
+  font-size: 1.3em;
 }
 
+/* 答案对比 */
+.answer-comparison {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.user-answer,
+.correct-answer {
+  padding: 12px 15px;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.user-answer {
+  background: #fff3e0;
+  border-left: 4px solid #FF9800;
+}
+
+.correct-answer {
+  background: #e8f5e9;
+  border-left: 4px solid #4CAF50;
+}
+
+.user-answer .label,
 .correct-answer .label {
   color: #666;
   font-weight: 500;
+}
+
+.user-answer .correct-text {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.user-answer .wrong-text {
+  color: #F44336;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .correct-answer .answer {
