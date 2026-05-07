@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue'
 // 使用动态导入解决TypeScript默认导出识别问题
-const ReadingPractice = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
+const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
 const VocabularySystem = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
 const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
 const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/EnglishStudyPlan.vue'))
