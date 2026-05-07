@@ -160,31 +160,31 @@
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
       </div>
 
-      <!-- 文章原文 -->
-      <div class="article-section">
-        <div class="section-title">📖 文章原文</div>
-        <div class="article-content" v-html="clozeArticle"></div>
-      </div>
+      <!-- 完型填空大题容器（可折叠，包含原文和题目） -->
+      <div class="cloze-year-group">
+        <div 
+          class="year-header"
+          :class="{ 'expanded': expandedCloze }"
+          @click="expandedCloze = !expandedCloze"
+        >
+          <el-icon class="expand-icon" :class="{ 'rotated': expandedCloze }">
+            <ArrowRight />
+          </el-icon>
+          <span class="year-text">{{ clozeYear }}年完型填空</span>
+          <el-tag type="info" size="small">{{ clozeQuestions.length }}题</el-tag>
+        </div>
 
-      <!-- 题目列表（可折叠大题） -->
-      <div class="cloze-questions">
-        <div class="section-title">❓ 题目</div>
-        
-        <!-- 完型填空大题容器（可折叠） -->
-        <div class="cloze-year-group">
-          <div 
-            class="year-header"
-            :class="{ 'expanded': expandedCloze }"
-            @click="expandedCloze = !expandedCloze"
-          >
-            <el-icon class="expand-icon" :class="{ 'rotated': expandedCloze }">
-              <ArrowRight />
-            </el-icon>
-            <span class="year-text">{{ clozeYear }}年完型填空</span>
-            <el-tag type="info" size="small">{{ clozeQuestions.length }}题</el-tag>
+        <div v-show="expandedCloze" class="year-content">
+          <!-- 文章原文 -->
+          <div class="article-section">
+            <div class="section-title"> 文章原文</div>
+            <div class="article-content" v-html="clozeArticle"></div>
           </div>
 
-          <div v-show="expandedCloze" class="year-content">
+          <!-- 题目列表 -->
+          <div class="cloze-questions">
+            <div class="section-title">❓ 题目</div>
+            
             <div 
               v-for="(question, idx) in clozeQuestions" 
               :key="idx"
@@ -246,7 +246,7 @@
 
                 <!-- 答案解析 -->
                 <div class="cloze-analysis">
-                  <div class="analysis-title">📖 解析</div>
+                  <div class="analysis-title"> 解析</div>
                   <p>{{ question.analysis }}</p>
                 </div>
 
