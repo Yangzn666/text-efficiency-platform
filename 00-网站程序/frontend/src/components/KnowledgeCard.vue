@@ -1326,6 +1326,196 @@
         </div>
       </template>
       
+      <!-- 快表(TLB)与慢表(页表)对比 -->
+      <template v-if="currentCard?.id === 'tlbVsPageTable'">
+        <h3>💡 知识点卡片：快表(TLB)与慢表(页表)对比</h3>
+        
+        <div class="card-section">
+          <h4>📖 基本概念</h4>
+          <ul>
+            <li><strong>快表（TLB）</strong>：Translation Lookaside Buffer，位于CPU内部的相联存储器，用于缓存最近使用的页表项</li>
+            <li><strong>慢表（页表）</strong>：存放在主存中的数组结构，包含所有虚拟页到物理页框的映射关系</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 TLB vs 页表详细对比</h4>
+          <el-table :data="tlbComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="特性" width="120" />
+            <el-table-column prop="tlb" label="快表（TLB）" />
+            <el-table-column prop="pageTable" label="慢表（页表）" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 工作流程</h4>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">1. CPU发出虚拟地址
+2. 先查TLB（快表）：
+   - TLB命中 → 直接得到物理地址（快速路径）
+   - TLB缺失 → 查页表（慢表）
+3. 查页表：
+   - 页表项有效 → 得到物理地址，同时更新TLB
+   - 页表项无效 → 缺页中断，操作系统处理</pre>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚡ 性能分析</h4>
+          <ul>
+            <li><strong>TLB命中率</strong>：通常90%以上（利用时间局部性）</li>
+            <li><strong>平均访问时间公式</strong>：
+              <pre style="background: #fff7e6; padding: 8px; border-radius: 4px; margin-top: 8px;">Ta = H × (Ttlb + Tmem) + (1-H) × (Ttlb + 2×Tmem)</pre>
+              <ul>
+                <li>H：TLB命中率</li>
+                <li>Ttlb：TLB访问时间（约1个时钟周期）</li>
+                <li>Tmem：主存访问时间（几十ns）</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》虚拟存储器章节中：</p>
+          <ul>
+            <li>✅ 理解TLB的作用和工作原理</li>
+            <li>✅ 掌握TLB与页表的区别</li>
+            <li>✅ 能够计算有TLB的平均访问时间</li>
+            <li>✅ 理解TLB缺失的处理流程</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 段式虚拟存储器详解 -->
+      <template v-if="currentCard?.id === 'segmentedVirtualMemory'">
+        <h3>💡 知识点卡片：段式虚拟存储器详解</h3>
+        
+        <div class="card-section">
+          <h4>📖 基本概念</h4>
+          <ul>
+            <li><strong>定义</strong>：将程序的逻辑地址空间划分为若干个段（代码段、数据段、栈段等），每个段长度可变</li>
+            <li><strong>地址结构</strong>：| 段号 | 段内偏移 |</li>
+            <li><strong>段表</strong>：记录每个段的基址和长度，实现逻辑段到物理内存的映射</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 分段方式的透明性 ⭐⭐⭐</h4>
+          <el-table :data="segmentTransparencyData" border stripe style="width: 100%">
+            <el-table-column prop="role" label="角色" width="150" />
+            <el-table-column prop="transparent" label="是否透明" width="120" />
+            <el-table-column prop="explanation" label="说明" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 段式 vs 页式对比</h4>
+          <el-table :data="segmentVsPageData" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="特性" width="120" />
+            <el-table-column prop="segmented" label="段式" />
+            <el-table-column prop="paged" label="页式" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 段式虚存的优缺点</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; border-left: 4px solid #409eff;">
+              <h5 style="margin: 0 0 8px 0; color: #409eff;">优点</h5>
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>符合用户视角（按逻辑模块划分）</li>
+                <li>便于信息共享和保护</li>
+                <li>支持动态链接</li>
+                <li>段长可变，灵活性强</li>
+              </ul>
+            </div>
+            <div style="background: #fef0f0; padding: 12px; border-radius: 8px; border-left: 4px solid #f56c6c;">
+              <h5 style="margin: 0 0 8px 0; color: #f56c6c;">缺点</h5>
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>产生外部碎片</li>
+                <li>需要紧凑技术（compaction）</li>
+                <li>管理复杂度高</li>
+                <li>地址转换速度较慢</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》虚拟存储器章节中：</p>
+          <ul>
+            <li>✅ 理解段式虚存的基本原理</li>
+            <li>✅ 掌握分段方式对不同程序员的透明性</li>
+            <li>✅ 能够对比段式和页式的优缺点</li>
+            <li>✅ 了解段页式虚存的三次访存过程</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 多体交叉存储器详解 -->
+      <template v-if="currentCard?.id === 'interleavedMemory'">
+        <h3>💡 知识点卡片：多体交叉存储器详解</h3>
+        
+        <div class="card-section">
+          <h4>📖 基本概念</h4>
+          <ul>
+            <li><strong>定义</strong>：将主存划分为多个独立的存储模块（体），通过并行访问提高存储器带宽</li>
+            <li><strong>目的</strong>：解决CPU与主存速度不匹配问题</li>
+            <li><strong>核心思想</strong>：连续地址分布在不同模块，实现并行访问</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 低位交叉 vs 高位交对比</h4>
+          <el-table :data="interleavedComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="特性" width="120" />
+            <el-table-column prop="lowInterleave" label="低位交叉" />
+            <el-table-column prop="highInterleave" label="高位交叉" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 低位交叉编址详解 ⭐⭐⭐</h4>
+          <ul>
+            <li><strong>编址方式</strong>：地址的低位选择模块号，高位选择模块内地址</li>
+            <li><strong>示例</strong>（4体交叉）：
+              <pre style="background: #f5f7fa; padding: 8px; border-radius: 4px; margin-top: 8px;">地址格式：| 高位地址 | 模块号(2位) |
+地址0 → 模块0，地址1 → 模块1，地址2 → 模块2，地址3 → 模块3
+地址4 → 模块0，地址5 → 模块1...</pre>
+            </li>
+            <li><strong>带宽提升</strong>：
+              <ul>
+                <li>理想情况下，m体交叉存储器的带宽是单体存储器的m倍</li>
+                <li>公式：<code>带宽 = m × (字长 / 存取周期)</code></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 例题解析</h4>
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; border-left: 4px solid #409eff;">
+            <p style="margin: 0 0 12px 0;"><strong>题目</strong>：某存储器采用4体低位交叉编址，存取周期为200ns，字长为32位。求存储器带宽。</p>
+            <p style="margin: 0 0 8px 0;"><strong>解</strong>：</p>
+            <ul style="margin: 0; padding-left: 20px;">
+              <li>单体带宽 = 32位 / 200ns = 160 Mbps</li>
+              <li>4体交叉带宽 = 4 × 160 Mbps = <span style="color: #4CAF50; font-weight: bold;">640 Mbps</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》存储器章节中：</p>
+          <ul>
+            <li>✅ 理解低位交叉和高位交叉的区别</li>
+            <li>✅ 掌握低位交叉的地址分配方式</li>
+            <li>✅ 能够计算多体交叉存储器的带宽</li>
+            <li>✅ 理解为什么现代计算机采用低位交叉</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- RAID技术详解 -->
       <template v-if="currentCard?.id === 'raid'">
         <h3>💡 知识点卡片：RAID技术详解</h3>
@@ -1868,6 +2058,18 @@ const cardData = {
     id: 'virtualMemoryAddress',
     title: '💡 知识点卡片：虚拟存储器地址转换'
   },
+  tlbVsPageTable: {
+    id: 'tlbVsPageTable',
+    title: '💡 知识点卡片：快表(TLB)与慢表(页表)对比'
+  },
+  segmentedVirtualMemory: {
+    id: 'segmentedVirtualMemory',
+    title: '💡 知识点卡片：段式虚拟存储器详解'
+  },
+  interleavedMemory: {
+    id: 'interleavedMemory',
+    title: '💡 知识点卡片：多体交叉存储器详解'
+  },
   raid: {
     id: 'raid',
     title: '💡 知识点卡片：RAID技术详解'
@@ -2022,6 +2224,44 @@ const flashComparisonData = [
   { feature: '成本', nor: '高', nand: '低' },
   { feature: 'XIP支持', nor: '支持（可直接执行代码）', nand: '不支持' },
   { feature: '应用', nor: 'BIOS、固件', nand: 'U盘、SSD、手机存储' }
+]
+
+// TLB vs 页表对比数据
+const tlbComparisonData = [
+  { feature: '存储位置', tlb: 'CPU内部（寄存器或SRAM）', pageTable: '主存中' },
+  { feature: '容量', tlb: '很小（16-512个条目）', pageTable: '很大（所有页面映射）' },
+  { feature: '速度', tlb: '极快（1个时钟周期）', pageTable: '较慢（几十ns）' },
+  { feature: '实现方式', tlb: '相联存储器（按内容查找）', pageTable: '数组结构（按索引查找）' },
+  { feature: '管理方式', tlb: '硬件自动管理', pageTable: '操作系统管理' },
+  { feature: '缺失处理', tlb: 'TLB缺失 → 查页表', pageTable: '页表缺失 → 缺页中断' },
+  { feature: '成本', tlb: '昂贵（集成在CPU中）', pageTable: '便宜（占用主存空间）' }
+]
+
+// 分段透明性数据
+const segmentTransparencyData = [
+  { role: '低级语言程序员', transparent: '✅ 透明', explanation: '汇编程序员直接使用段寄存器和偏移地址，无需关心段的物理位置' },
+  { role: '编译器', transparent: '✅ 透明', explanation: '编译器生成目标代码时自动处理段划分，程序员只需声明变量和函数' },
+  { role: '应用程序员', transparent: '✅ 透明', explanation: '高级语言程序员完全看不到分段机制，像使用连续内存一样编程' },
+  { role: '系统程序员', transparent: '❌ 不透明', explanation: '操作系统需要管理段表、处理段保护、实现段的装入和换出' }
+]
+
+// 段式 vs 页式对比数据
+const segmentVsPageData = [
+  { feature: '划分依据', segmented: '逻辑模块（代码、数据、栈）', paged: '固定大小页面' },
+  { feature: '段/页大小', segmented: '可变长度', paged: '固定长度' },
+  { feature: '碎片问题', segmented: '外部碎片', paged: '内部碎片' },
+  { feature: '信息共享', segmented: '方便（以段为单位）', paged: '较复杂' },
+  { feature: '地址转换', segmented: '段号→基址+偏移', paged: '页号→页框号+偏移' },
+  { feature: '访存次数', segmented: '2次（段表+数据）', paged: '2次（页表+数据）' }
+]
+
+// 低位交叉 vs 高位交对比数据
+const interleavedComparisonData = [
+  { feature: '地址分配', lowInterleave: '连续地址在不同模块', highInterleave: '连续地址在同一模块' },
+  { feature: '并行性', lowInterleave: '✅ 高（可同时访问）', highInterleave: '❌ 低（串行访问）' },
+  { feature: '带宽', lowInterleave: '✅ 提高m倍', highInterleave: '❌ 无提升' },
+  { feature: '应用场景', lowInterleave: '现代计算机主流', highInterleave: '早期计算机' },
+  { feature: '适用访问模式', lowInterleave: '顺序访问、突发传输', highInterleave: '随机访问' }
 ]
 
 // RAID级别对比数据
