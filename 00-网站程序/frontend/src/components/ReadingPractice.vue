@@ -564,34 +564,25 @@ const showImportGuide = () => {
 }
 
 onMounted(async () => {
-  // 优先从后端加载数据
+  // 从后端API加载数据（直接读取JSON文件）
   try {
+    console.log('🔄 从后端API加载英语真题...')
     const response = await fetch('http://localhost:3001/api/reading-questions')
-    const data = await response.json()
     
-    if (data.questions && data.questions.length > 0) {
-      allQuestions.value = data.questions
-      console.log(`✅ 从后端加载 ${data.questions.length} 道题目`)
-    } else {
-      // 如果后端没有数据，尝试从localStorage加载
-      const saved = localStorage.getItem('readingQuestions')
-      if (saved) {
-        allQuestions.value = JSON.parse(saved)
-        console.log(`✅ 从localStorage加载 ${allQuestions.value.length} 道题目`)
+    if (response.ok) {
+      const data = await response.json()
+      
+      if (data.questions && data.questions.length > 0) {
+        allQuestions.value = data.questions
+        console.log(`✅ 成功加载 ${data.questions.length} 道题目`)
+      } else {
+        console.warn('⚠️  API返回数据为空')
       }
+    } else {
+      console.error('❌ API请求失败:', response.status)
     }
   } catch (error) {
-    console.log('⚠️ 后端加载失败，尝试从localStorage加载')
-    // 从localStorage加载
-    const saved = localStorage.getItem('readingQuestions')
-    if (saved) {
-      try {
-        allQuestions.value = JSON.parse(saved)
-        console.log(`✅ 从localStorage加载 ${allQuestions.value.length} 道题目`)
-      } catch (e) {
-        console.error('加载数据失败', e)
-      }
-    }
+    console.error('❌ 加载英语真题失败:', error)
   }
 })
 </script>
