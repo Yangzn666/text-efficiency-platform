@@ -8,7 +8,7 @@
     <!-- 题型标签切换 -->
     <div class="section-tabs">
       <el-tabs v-model="activeSection" type="card" size="large">
-        <el-tab-pane label="📖 传统阅读" name="Reading Comprehension"></el-tab-pane>
+        <!-- 已删除传统阅读，只保留完型填空和新题型 -->
         <el-tab-pane label="✍️ 完型填空" name="Use of English"></el-tab-pane>
         <el-tab-pane label="📝 新题型" name="New Question Types"></el-tab-pane>
       </el-tabs>
@@ -43,8 +43,8 @@
 
 
 
-    <!-- 按题型分组展示（传统阅读和新题型） -->
-    <div v-if="activeSection === 'Reading Comprehension' || activeSection === 'New Question Types'" class="type-groups">
+    <!-- 按题型分组展示（新题型） -->
+    <div v-if="activeSection === 'New Question Types'" class="type-groups">
       <div 
         v-for="type in questionTypes" 
         :key="type"
@@ -158,6 +158,13 @@
       <div class="cloze-header">
         <h3 class="cloze-title"> {{ clozeYear }}年考研英语一 Use of English</h3>
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
+        <el-button 
+          type="warning" 
+          size="large"
+          @click="openIntensiveReading('Use of English', clozeYear)"
+        >
+           精读
+        </el-button>
       </div>
 
       <!-- 完型填空大题容器（可折叠，包含原文和题目） -->
@@ -307,19 +314,21 @@ const selectedYear = ref('all')
 const selectedQuestionType = ref('all')
 const allQuestions = ref<any[]>([]) // 初始化为空数组
 const expandedGroups = ref<string[]>([]) // 默认全部折叠
-const activeSection = ref<'Reading Comprehension' | 'Use of English' | 'New Question Types'>('Reading Comprehension')
+const activeSection = ref<'Use of English' | 'New Question Types'>('Use of English')
 const expandedCloze = ref(false) // 完型填空大题默认折叠
 
 // 可用年份（2010-2025）
 const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
 
-// 过滤后的题目
+// 过滤后的题目（只保留完型填空和新题型，删除传统阅读）
 const filteredQuestions = computed(() => {
   if (!allQuestions.value || allQuestions.value.length === 0) {
     return []
   }
   
-  let questions = allQuestions.value
+  let questions = allQuestions.value.filter(q => 
+    q.section === 'Use of English' || q.section === 'New Question Types'
+  )
   
   // 按年份过滤
   if (selectedYear.value !== 'all') {
@@ -561,6 +570,12 @@ const showImportGuide = () => {
 
 必填字段：year, type, stem, correctAnswer
 选填字段：passage, number, options, analysis, tips, location`)
+}
+
+// 打开精读页面
+const openIntensiveReading = (section: string, year: number) => {
+  // 跳转到精读页面，传递题型和年份参数
+  window.location.href = `/intensive-reading?section=${encodeURIComponent(section)}&year=${year}`
 }
 
 onMounted(async () => {
