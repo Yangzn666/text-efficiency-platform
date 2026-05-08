@@ -242,73 +242,83 @@ const pageTitle = computed(() => {
   return `${year.value}年考研英语一 · ${sectionName}精读`
 })
 
-// 关键词高亮
+// 关键词高亮（不再使用，保留以防万一）
 const highlightKeywords = (text: string) => {
-  // 高亮空格标记
-  return text.replace(/___\(\d+\)___/g, '<strong style="color: #667eea; background: #f0f4ff; padding: 2px 6px; border-radius: 4px;">$&</strong>')
+  return text
 }
 
-// 文章内容
+// 文章内容（完整原文，不带空格标记）
 const articleContent = ref(`<p style="line-height: 2.2; text-align: justify; font-size: 1.15em; color: #333;">
-  Humans are often thought to be insensitive smellers compared with animals, 
-  ___(1)___ this is largely because, 
-  ___(2)___ animals, we stand upright. 
-  This means that our noses are ___(3)___ to perceiving those smells which float through the air, 
-  ___(4)___ the majority of smells which stick to surfaces. 
-  In fact, ___(5)___, we are extremely sensitive to smells, 
-  ___(6)___ we do not generally realize it.
+  Humans are often thought to be insensitive smellers compared with animals, but this is largely because, unlike animals, we stand upright. This means that our noses are limited to perceiving those smells which float through the air, rather than the majority of smells which stick to surfaces. In fact, though, we are extremely sensitive to smells, even if we do not generally realize it.
 </p>`)
 
 // 逐句解析数据（增强版）
 const sentenceList = ref([
   {
-    english: 'Humans are often thought to be insensitive smellers compared with animals, ___(1)___ this is largely because...',
-    chinese: '与动物相比，人类通常被认为是嗅觉不敏感的，___(1)___ 这主要是因为...',
+    english: 'Humans are often thought to be insensitive smellers compared with animals, but this is largely because, unlike animals, we stand upright.',
+    chinese: '与动物相比，人类通常被认为是嗅觉不敏感的，但这主要是因为，与动物不同，我们是直立行走的。',
     vocabulary: [
       { word: 'insensitive', meaning: '不敏感的', usage: 'in-（否定前缀）+ sensitive（敏感的）' },
       { word: 'compared with', meaning: '与...相比', usage: '固定搭配' },
-      { word: 'largely', meaning: '主要地', usage: 'largely because = 主要是因为' }
+      { word: 'largely', meaning: '主要地', usage: 'largely because = 主要是因为' },
+      { word: 'unlike', meaning: '与...不同', usage: '介词，表对比' }
     ],
     grammar: '主句 + 原因状语从句，<strong>compared with animals</strong> 是过去分词短语作状语，表比较',
     structure: `主句: Humans are often thought to be insensitive smellers
   |
   +-- 状语: compared with animals（与动物相比）
   |
-  +-- 从句: ___(1)___ this is largely because...（原因状语）`,
-    logic: '对比关系：人类 vs 动物（compared with）',
-    examPoints: ['比较结构', '原因状语从句', '过去分词作状语']
+  +-- 原因状语从句: but this is largely because...
+      |
+      +-- 插入语: unlike animals（与动物不同）
+      |
+      +-- 从句内容: we stand upright（我们直立行走）`,
+    logic: '对比关系：人类 vs 动物（compared with / unlike）',
+    examPoints: ['比较结构', '原因状语从句', '过去分词作状语', '插入语']
   },
   {
-    english: 'This means that our noses are ___(3)___ to perceiving those smells which float through the air...',
-    chinese: '这意味着我们的鼻子 ___(3)___ 感知那些在空气中漂浮的气味...',
+    english: 'This means that our noses are limited to perceiving those smells which float through the air, rather than the majority of smells which stick to surfaces.',
+    chinese: '这意味着我们的鼻子仅限于感知那些在空气中漂浮的气味，而不是大部分附着在表面的气味。',
     vocabulary: [
+      { word: 'be limited to', meaning: '仅限于', usage: 'to是介词，后接动名词' },
       { word: 'perceive', meaning: '感知，察觉', usage: 'perceive sth = 感知某物' },
       { word: 'float through', meaning: '漂浮通过', usage: 'float through the air' },
+      { word: 'rather than', meaning: '而不是', usage: '表对比/选择' },
       { word: 'stick to', meaning: '附着在...上', usage: 'stick to surfaces' }
     ],
-    grammar: '宾语从句 + 定语从句，<strong>which</strong>引导的定语从句修饰smells，表主动',
+    grammar: '宾语从句 + 两个定语从句，<strong>which</strong>引导的定语从句分别修饰smells，<strong>rather than</strong>表对比',
     structure: `主句: This means that...
   |
-  +-- 宾语从句: our noses are ___(3)___ to perceiving...
+  +-- 宾语从句: our noses are limited to perceiving those smells
       |
-      +-- 定语从句: which float through the air（修饰smells）`,
-    logic: '因果关系：站立 → 鼻子功能受限',
-    examPoints: ['宾语从句', '定语从句', '动词不定式']
+      +-- 定语从句1: which float through the air（修饰第一个smells）
+      |
+      +-- 对比结构: rather than（而不是）
+      |
+      +-- 定语从句2: which stick to surfaces（修饰第二个smells）`,
+    logic: '对比关系：空气中的气味 vs 表面的气味（rather than）',
+    examPoints: ['宾语从句', '定语从句', 'rather than用法', '动词不定式']
   },
   {
-    english: 'In fact, ___(5)___, we are extremely sensitive to smells, ___(6)___ we do not generally realize it.',
-    chinese: '事实上，___(5)___，我们对气味极其敏感，___(6)___ 我们通常没有意识到这一点。',
+    english: 'In fact, though, we are extremely sensitive to smells, even if we do not generally realize it.',
+    chinese: '事实上，我们对气味极其敏感，即使我们通常没有意识到这一点。',
     vocabulary: [
       { word: 'in fact', meaning: '事实上', usage: '转折信号词' },
+      { word: 'though', meaning: '然而', usage: '副词，放在句中表转折' },
       { word: 'extremely', meaning: '极其地', usage: 'extremely sensitive = 极其敏感' },
+      { word: 'even if', meaning: '即使', usage: '引导让步状语从句' },
       { word: 'realize', meaning: '意识到', usage: 'realize it = 意识到这一点' }
     ],
-    grammar: '让步状语从句，<strong>In fact</strong>表转折，___(6)___ 引导让步状语（although/though）',
-    structure: `转折句: In fact, ___(5)___, we are extremely sensitive to smells
+    grammar: '让步状语从句，<strong>In fact</strong>和<strong>though</strong>双重转折，<strong>even if</strong>引导让步状语',
+    structure: `转折句: In fact, though, we are extremely sensitive to smells
   |
-  +-- 让步状语: ___(6)___ we do not generally realize it（虽然...但是...）`,
+  +-- 双重转折信号: In fact + though（强调转折）
+  |
+  +-- 让步状语从句: even if we do not generally realize it
+      |
+      +-- 让步关系: 虽然没意识到，但确实敏感`,
     logic: '转折关系：In fact 引出与上文相反的观点',
-    examPoints: ['让步状语从句', '转折信号词', '强调句型']
+    examPoints: ['让步状语从句', '转折信号词', 'even if用法', '副词though']
   }
 ])
 
