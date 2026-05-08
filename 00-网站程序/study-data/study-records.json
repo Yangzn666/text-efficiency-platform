@@ -82,6 +82,15 @@
       "createdAt": "2026-05-06T10:00:00.000Z"
     },
     {
+      "id": "record_20260506_2",
+      "date": "2026-05-06",
+      "subject": "英语一",
+      "duration": 15,
+      "content": "背单词（18:30-18:45）",
+      "type": "study",
+      "createdAt": "2026-05-06T18:30:00.000Z"
+    },
+    {
       "id": "record_20260507_1",
       "date": "2026-05-07",
       "subject": "数学一",
@@ -174,10 +183,10 @@
       "completionRate": 16.67
     },
     "英语一": {
-      "totalTime": 300,
+      "totalTime": 315,
       "lastStudyDate": "2026-05-07",
       "weeklyGoal": 300,
-      "completionRate": 100.0
+      "completionRate": 105.0
     },
     "数学一": {
       "totalTime": 75,
