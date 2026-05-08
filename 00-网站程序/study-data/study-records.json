@@ -161,6 +161,33 @@
       "content": "学习计组第三章知识点（23:00-23:25）- 局部性原理、DRAM刷新、存储器扩展",
       "type": "study",
       "createdAt": "2026-05-07T23:00:00.000Z"
+    },
+    {
+      "id": "record_20260508_1",
+      "date": "2026-05-08",
+      "subject": "408计算机",
+      "duration": 35,
+      "content": "学习计组第三章（14:20-14:55）- 存储系统知识点复习",
+      "type": "study",
+      "createdAt": "2026-05-08T14:20:00.000Z"
+    },
+    {
+      "id": "record_20260508_2",
+      "date": "2026-05-08",
+      "subject": "408计算机",
+      "duration": 25,
+      "content": "学习计组第三章（15:00-15:25）- 存储器系统深入理解",
+      "type": "study",
+      "createdAt": "2026-05-08T15:00:00.000Z"
+    },
+    {
+      "id": "record_20260508_3",
+      "date": "2026-05-08",
+      "subject": "408计算机",
+      "duration": 25,
+      "content": "学习计组第四章（15:30-15:55）- 指令系统基础",
+      "type": "study",
+      "createdAt": "2026-05-08T15:30:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -195,10 +222,10 @@
       "completionRate": 25.0
     },
     "408计算机": {
-      "totalTime": 75,
-      "lastStudyDate": "2026-05-07",
+      "totalTime": 160,
+      "lastStudyDate": "2026-05-08",
       "weeklyGoal": 300,
-      "completionRate": 25.0
+      "completionRate": 53.33
     }
   }
 }
