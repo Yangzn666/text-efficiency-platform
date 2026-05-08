@@ -1516,6 +1516,245 @@
         </div>
       </template>
       
+      <!-- 扩展操作码技术详解 -->
+      <template v-if="currentCard?.id === 'extendedOpcode'">
+        <h3>💡 知识点卡片：扩展操作码技术详解</h3>
+        
+        <div class="card-section">
+          <h4>📖 基本概念</h4>
+          <ul>
+            <li><strong>定义</strong>：通过缩短地址码位数来扩展操作码位数，实现变长操作码的技术</li>
+            <li><strong>核心思想</strong>：高频指令使用短操作码，低频指令使用长操作码</li>
+            <li><strong>设计原则</strong>：必须保证指令的唯一性（无歧义）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 设计原则</h4>
+          <ol>
+            <li><strong>高频短码</strong>：常用指令（如MOV、ADD）使用短操作码，节省空间</li>
+            <li><strong>低频长码</strong>：不常用指令（如特权指令）使用长操作码，充分利用编码空间</li>
+            <li><strong>唯一性原则</strong>：任何指令的编码不能是另一条指令的前缀（避免歧义）</li>
+          </ol>
+          <div style="background: #fff7e6; padding: 12px; border-radius: 8px; border-left: 4px solid #faad14; margin-top: 12px;">
+            <p style="margin: 0; font-weight: bold; color: #fa8c16;">⚠️ 记忆口诀："高频短码，低频长码，唯一性原则"</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 经典例题解析 ⭐⭐⭐</h4>
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; border-left: 4px solid #409eff;">
+            <p style="margin: 0 0 12px 0;"><strong>题目</strong>：某指令系统采用扩展操作码，指令字长16位，每个地址码4位。若已有15条三地址指令、14条二地址指令、31条一地址指令，问能否再设计16条零地址指令？</p>
+            
+            <p style="margin: 16px 0 8px 0; font-weight: bold; color: #409eff;">解题步骤：</p>
+            
+            <p style="margin: 8px 0;"><strong>Step 1：分析三地址指令</strong></p>
+            <ul style="margin: 4px 0; padding-left: 20px;">
+              <li>指令格式：OP(4位) + A1(4位) + A2(4位) + A3(4位)</li>
+              <li>15条三地址指令用掉：15种操作码组合（0000~1110）</li>
+              <li>剩余：2⁴ - 15 = 1种组合（1111）可用于后续指令</li>
+              <li>这1种组合可以扩展出：1 × 2⁴ × 2⁴ = 256种编码用于二地址及以下指令</li>
+            </ul>
+            
+            <p style="margin: 12px 0 8px 0;"><strong>Step 2：分析二地址指令</strong></p>
+            <ul style="margin: 4px 0; padding-left: 20px;">
+              <li>指令格式：1111 + OP(4位) + A1(4位) + A2(4位)</li>
+              <li>14条二地址指令用掉：14种组合（1111_0000~1111_1101）</li>
+              <li>剩余：256 - 14×2⁴ = 256 - 224 = 32种组合用于一地址及以下指令</li>
+            </ul>
+            
+            <p style="margin: 12px 0 8px 0;"><strong>Step 3：分析一地址指令</strong></p>
+            <ul style="margin: 4px 0; padding-left: 20px;">
+              <li>指令格式：1111_1110/1111_1111 + OP(4位) + A1(4位)</li>
+              <li>可用组合：2种（1111_1110, 1111_1111）</li>
+              <li>31条一地址指令用掉：31种组合</li>
+              <li>剩余：32 - 31 = 1种组合（1111_1111_1111）用于零地址指令</li>
+            </ul>
+            
+            <p style="margin: 12px 0 8px 0;"><strong>Step 4：分析零地址指令</strong></p>
+            <ul style="margin: 4px 0; padding-left: 20px;">
+              <li>指令格式：1111_1111_1111 + OP(4位)</li>
+              <li>可用编码：1 × 2⁴ = 16种</li>
+              <li>需要设计：16条零地址指令</li>
+              <li><span style="color: #4CAF50; font-weight: bold;">✅ 结论：刚好可以设计16条零地址指令！</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 常见陷阱与注意事项</h4>
+          <ul>
+            <li><strong>陷阱1</strong>：忘记检查唯一性原则 → 确保短操作码不是长操作码的前缀</li>
+            <li><strong>陷阱2</strong>：计算错误 → 每扩展一位，编码空间翻倍（×2ⁿ）</li>
+            <li><strong>陷阱3</strong>：混淆地址码位数 → 题目中"每个地址码4位"意味着每次扩展都是×2⁴=×16</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 掌握扩展操作码的设计原理和计算方法</li>
+            <li>✅ 能够判断给定的指令数量是否可行</li>
+            <li>✅ 理解唯一性原则的重要性</li>
+            <li>✅ 熟练运用"高频短码，低频长码"的设计思想</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 8种数据寻址方式完全指南 -->
+      <template v-if="currentCard?.id === 'addressingModes'">
+        <h3>💡 知识点卡片：8种数据寻址方式完全指南</h3>
+        
+        <div class="card-section">
+          <h4>📊 8种寻址方式对比总表</h4>
+          <el-table :data="addressingModesData" border stripe style="width: 100%">
+            <el-table-column prop="mode" label="寻址方式" width="120" />
+            <el-table-column prop="ea" label="有效地址EA" width="150" />
+            <el-table-column prop="memoryAccess" label="访存次数" width="100" />
+            <el-table-column prop="advantage" label="优点" />
+            <el-table-column prop="application" label="典型应用" width="150" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 三大易混淆寻址方式深度对比 ⭐⭐⭐</h4>
+          <el-table :data="confusingModesData" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="base" label="基址寻址" />
+            <el-table-column prop="index" label="变址寻址" />
+            <el-table-column prop="relative" label="相对寻址" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚡ 快速判断技巧</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="background: #f0f9ff; padding: 12px; border-radius: 8px;">
+              <p style="margin: 0 0 8px 0; font-weight: bold; color: #409eff;">看到这些关键词 → 选择对应寻址方式</p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
+                <li>"#"或"立即数" → <strong>立即寻址</strong></li>
+                <li>"Ri"或"寄存器" → <strong>寄存器寻址</strong></li>
+                <li>"地址码即为有效地址" → <strong>直接寻址</strong></li>
+                <li>"@"或"两次访存" → <strong>间接寻址</strong></li>
+                <li>"寄存器中存放的是地址" → <strong>寄存器间接寻址</strong></li>
+                <li>"多道程序"、"重定位" → <strong>基址寻址</strong></li>
+                <li>"数组"、"循环"、"下标" → <strong>变址寻址</strong></li>
+                <li>"转移"、"跳转"、"分支" → <strong>相对寻址</strong></li>
+              </ul>
+            </div>
+            <div style="background: #fff7e6; padding: 12px; border-radius: 8px;">
+              <p style="margin: 0 0 8px 0; font-weight: bold; color: #faad14;">记忆口诀</p>
+              <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
+                <li>"立即最快，寄存器次之"</li>
+                <li>"直接一次，间接两次"</li>
+                <li>"基于操作系统重定位"</li>
+                <li>"变化下标处理数组"</li>
+                <li>"相对跳转位置无关"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 熟练掌握8种寻址方式的EA计算公式</li>
+            <li>✅ 能够根据应用场景选择最合适的寻址方式</li>
+            <li>✅ 重点掌握基址、变址、相对三种寻址方式的区别</li>
+            <li>✅ 能够分析综合应用题中的寻址方式</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- CISC与RISC全面对比 -->
+      <template v-if="currentCard?.id === 'ciscVsRisc'">
+        <h3>💡 知识点卡片：CISC与RISC全面对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 15维度详细对比表</h4>
+          <el-table :data="ciscRiscComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="cisc" label="CISC" />
+            <el-table-column prop="risc" label="RISC" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔑 RISC核心特点：Load/Store架构</h4>
+          <ul>
+            <li><strong>定义</strong>：只有LOAD和STORE指令可以访问内存，其他指令只能操作寄存器</li>
+            <li><strong>LOAD指令</strong>：从内存加载数据到寄存器 📖</li>
+            <li><strong>STORE指令</strong>：从寄存器存储数据到内存 📝</li>
+            <li><strong>其他指令</strong>：如ADD、SUB只能在寄存器之间操作 🔢</li>
+          </ul>
+          <div style="background: #f0f9ff; padding: 12px; border-radius: 8px; margin-top: 12px;">
+            <p style="margin: 0;"><strong>优点</strong>：简化了指令执行流程，便于流水线优化，提高执行速度 ⚡⚡⚡</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🤝 现代处理器：CISC与RISC的融合</h4>
+          <ul>
+            <li><strong>CISC内部采用RISC思想</strong>：
+              <ul>
+                <li>x86处理器将复杂指令分解为微操作（μops）执行 🔧</li>
+                <li>外部接口仍是CISC（保持兼容性），内部执行引擎是RISC风格 ⚡</li>
+              </ul>
+            </li>
+            <li><strong>RISC增加复杂指令</strong>：
+              <ul>
+                <li>ARMv8增加浮点运算、SIMD等复杂指令 💪</li>
+                <li>RISC-V逐步扩展指令集（向量扩展、加密扩展等） 🔧</li>
+              </ul>
+            </li>
+            <li><strong>共同特点</strong>：
+              <ul>
+                <li>超标量架构、深流水线、乱序执行、分支预测、多级Cache、多核技术 🚀</li>
+              </ul>
+            </li>
+          </ul>
+          <div style="background: #fff7e6; padding: 12px; border-radius: 8px; margin-top: 12px;">
+            <p style="margin: 0; font-weight: bold; color: #fa8c16;">💡 结论：现代处理器是CISC和RISC的混合体，关键看微架构设计质量！</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>📱 典型产品与应用场景</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="background: #fef0f0; padding: 12px; border-radius: 8px;">
+              <h5 style="margin: 0 0 8px 0; color: #f56c6c;">CISC代表</h5>
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>Intel Core系列（PC、服务器）</li>
+                <li>AMD Ryzen系列（PC、工作站）</li>
+                <li>应用场景：个人电脑、服务器、工作站 💻🖥️</li>
+              </ul>
+            </div>
+            <div style="background: #f0f9ff; padding: 12px; border-radius: 8px;">
+              <h5 style="margin: 0 0 8px 0; color: #409eff;">RISC代表</h5>
+              <ul style="margin: 0; padding-left: 20px;">
+                <li>ARM（iPhone、安卓手机）</li>
+                <li>MIPS（路由器、游戏机）</li>
+                <li>RISC-V（IoT设备、AI加速器）</li>
+                <li>应用场景：移动设备、嵌入式系统 📱🔧</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 掌握CISC和RISC的核心区别（至少5点）</li>
+            <li>✅ 理解Load/Store架构的含义和优势</li>
+            <li>✅ 了解现代处理器的融合趋势</li>
+            <li>✅ 能够根据应用场景选择合适的架构</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- RAID技术详解 -->
       <template v-if="currentCard?.id === 'raid'">
         <h3>💡 知识点卡片：RAID技术详解</h3>
@@ -2070,6 +2309,18 @@ const cardData = {
     id: 'interleavedMemory',
     title: '💡 知识点卡片：多体交叉存储器详解'
   },
+  extendedOpcode: {
+    id: 'extendedOpcode',
+    title: '💡 知识点卡片：扩展操作码技术详解'
+  },
+  addressingModes: {
+    id: 'addressingModes',
+    title: '💡 知识点卡片：8种数据寻址方式完全指南'
+  },
+  ciscVsRisc: {
+    id: 'ciscVsRisc',
+    title: '💡 知识点卡片：CISC与RISC全面对比'
+  },
   raid: {
     id: 'raid',
     title: '💡 知识点卡片：RAID技术详解'
@@ -2262,6 +2513,49 @@ const interleavedComparisonData = [
   { feature: '带宽', lowInterleave: '✅ 提高m倍', highInterleave: '❌ 无提升' },
   { feature: '应用场景', lowInterleave: '现代计算机主流', highInterleave: '早期计算机' },
   { feature: '适用访问模式', lowInterleave: '顺序访问、突发传输', highInterleave: '随机访问' }
+]
+
+// 8种寻址方式对比数据
+const addressingModesData = [
+  { mode: '立即寻址', ea: 'EA = NUM', memoryAccess: '0次 ⚡⚡⚡', advantage: '速度最快', application: '赋初值、常量' },
+  { mode: '寄存器寻址', ea: 'EA = Ri', memoryAccess: '0次 ⚡⚡⚡', advantage: '速度极快', application: '频繁使用的变量' },
+  { mode: '直接寻址', ea: 'EA = ADDR', memoryAccess: '1次 📖', advantage: '简单直观', application: '全局变量、静态数据' },
+  { mode: '间接寻址', ea: 'EA = (ADDR)', memoryAccess: '2次 📖📖', advantage: '寻址范围大', application: '指针、动态数据结构' },
+  { mode: '寄存器间接', ea: 'EA = (Ri)', memoryAccess: '1次 📖', advantage: '灵活性好', application: '数组遍历、指针操作' },
+  { mode: '基址寻址', ea: 'EA = (RB) + X', memoryAccess: '1次 📖', advantage: '支持重定位', application: '多道程序、操作系统 🏛️' },
+  { mode: '变址寻址', ea: 'EA = (RI) + X', memoryAccess: '1次 📖', advantage: '适合数组处理', application: '数组、循环 📊🔄' },
+  { mode: '相对寻址', ea: 'EA = (PC) + X', memoryAccess: '1次 📖', advantage: '位置无关代码', application: '转移、跳转 🏃‍♂️🎯' }
+]
+
+// 三大易混淆寻址方式对比数据
+const confusingModesData = [
+  { aspect: '公式', base: 'EA = (RB) + X', index: 'EA = (RI) + X', relative: 'EA = (PC) + X' },
+  { aspect: '寄存器角色', base: 'RB存放基地址（程序起始地址）', index: 'RI存放索引值（下标）', relative: 'PC存放下一条指令地址' },
+  { aspect: '谁管理', base: '操作系统管理（用户不可改）🔒', index: '用户程序管理（用户可改）👤', relative: '硬件自动更新（PC）' },
+  { aspect: 'X的含义', base: 'X是偏移量（编译时确定）', index: 'X是基准地址（数组首地址）', relative: 'X是偏移量（有符号数）' },
+  { aspect: '主要用途', base: '程序重定位、多道程序 🏛️', index: '数组处理、循环 📊', relative: '转移、跳转、分支 🏃‍♂️' },
+  { aspect: '变化频率', base: 'RB基本不变（加载后固定）', index: 'RI经常变化（每次循环都变）🔄', relative: 'PC每条指令后自动+1' },
+  { aspect: '记忆口诀', base: '"基于操作系统"', index: '"变化的是下标"', relative: '"相对PC跳转"' }
+]
+
+// CISC vs RISC对比数据
+const ciscRiscComparisonData = [
+  { aspect: '指令数量', cisc: '多（几百条）💪', risc: '少（几十到一百多条）✂️' },
+  { aspect: '指令长度', cisc: '可变（1~15字节）📦', risc: '固定（如32位）📏' },
+  { aspect: '寻址方式', cisc: '丰富多样 🔍🔍🔍', risc: '简单少数 🔍' },
+  { aspect: '执行时间', cisc: '不等（1~多个周期）⏱️', risc: '相等（大多1周期）⚡' },
+  { aspect: '控制方式', cisc: '微程序控制 🔧', risc: '硬布线控制 🔧⚡' },
+  { aspect: '访存方式', cisc: '多数指令可直接访存 📖', risc: '仅LOAD/STORE可访存 📦➡️📦' },
+  { aspect: '寄存器数量', cisc: '较少（8~16个）📊', risc: '较多（如32个）📊📊' },
+  { aspect: '硬件复杂度', cisc: '高（译码器复杂）❌', risc: '低（译码器简单）✅' },
+  { aspect: '编译器难度', cisc: '低（容易生成代码）✅', risc: '高（需要优化）❌' },
+  { aspect: '代码密度', cisc: '高（程序占用内存小）✅', risc: '低（程序占用内存大）❌' },
+  { aspect: '流水线友好度', cisc: '差（指令长度不一）❌', risc: '好（指令长度一致）✅✅✅' },
+  { aspect: '功耗', cisc: '较高 ❌', risc: '较低 ✅✅' },
+  { aspect: '时钟频率', cisc: '较低 🐢', risc: '较高 🚀' },
+  { aspect: '向后兼容性', cisc: '强 ✅✅✅', risc: '弱 ❌' },
+  { aspect: '典型应用', cisc: 'PC、服务器 💻🖥️', risc: '手机、嵌入式 📱🔧' },
+  { aspect: '代表架构', cisc: 'x86、x86-64', risc: 'ARM、MIPS、RISC-V' }
 ]
 
 // RAID级别对比数据

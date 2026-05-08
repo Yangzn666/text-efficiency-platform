@@ -2425,7 +2425,12 @@ Dr = r × N
 - 缺点：浪费编码空间（短指令也用同样长的操作码）
 - 示例：8位操作码可表示256种指令
 
-#### 2. 扩展操作码技术 \u2b50\u2b50 重点难点
+#### 2. 扩展操作码技术 ⭐⭐ 重点难点
+
+<a href="javascript:void(0)" onclick="showKnowledgeCard('extendedOpcode')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看扩展操作码技术详解（设计原则、计算例题、常见陷阱）
+</a>
+
 **核心思想**：通过缩短地址码位数来扩展操作码位数，实现变长操作码。
 
 **设计原则**：
@@ -2536,9 +2541,13 @@ Dr = r × N
 
 ---
 
-### 二、数据寻址方式 \u2b50\u2b50\u2b50 重中之重（8种必考）
+### 二、数据寻址方式 ⭐⭐⭐ 重中之重（8种必考）
 
-#### 1. 立即寻址 \u2b50\u2b50
+<a href="javascript:void(0)" onclick="showKnowledgeCard('addressingModes')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看8种数据寻址方式完全指南（对比表、易混淆点对比、快速判断技巧）
+</a>
+
+#### 1. 立即寻址 ⭐⭐
 **特点**：操作数直接在指令中给出（作为立即数）
 **格式**：OP #NUM
 **有效地址**：EA = NUM（操作数就是NUM本身）
@@ -2793,7 +2802,12 @@ JMP +10           ; 相对寻址（+10是相对于PC的偏移量）
       过程调用实现`,
           content: `## 4.3 CISC和RISC \u2b50\u2b50 对比分析必考
 
-### 一、CISC（Complex Instruction Set Computer）复杂指令集计算机 \u2b50
+### 一、CISC（Complex Instruction Set Computer）复杂指令集计算机 ⭐
+
+<a href="javascript:void(0)" onclick="showKnowledgeCard('ciscVsRisc')" style="color: #409eff; text-decoration: underline; cursor: pointer; display: inline-block; margin-bottom: 12px;">
+  💡 点击查看CISC与RISC全面对比（15维度对比、Load/Store架构、融合趋势）
+</a>
+
 **代表架构**：x86、x86-64（Intel、AMD处理器）
 **设计哲学**："让硬件做更多事，简化软件（编译器）的工作"
 **核心特点**：
