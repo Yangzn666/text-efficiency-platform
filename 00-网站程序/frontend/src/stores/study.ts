@@ -187,295 +187,35 @@ export const useStudyStore = defineStore('study', () => {
   const initializeStudyData = async () => {
     isLoading.value = true
     try {
-      // 优先从后端API加载数据
-      let apiDataLoaded = false
-      let storedRecords: StudyRecord[] | null = null
-      let storedProgress: SubjectProgress | null = null
-      
+      // 从后端API加载数据（直接读取JSON文件）
       try {
-        console.log('🔄 尝试从后端API加载学习数据...')
+        console.log('🔄 从后端API加载学习数据...')
         const response = await fetch('http://localhost:3001/api/study-data')
         
         if (response.ok) {
           const result = await response.json()
           
           if (result.success && result.data) {
-            console.log('✅ 从后端API成功加载学习数据')
+            console.log('✅ 成功加载学习数据')
             
             if (result.data.studyRecords) {
               studyRecords.value = result.data.studyRecords
-              storedRecords = result.data.studyRecords
-              // 同步到localStorage作为备份
-              await localforage.setItem('studyRecords', result.data.studyRecords)
+              console.log(`📊 加载了 ${result.data.studyRecords.length} 条学习记录`)
             }
             
             if (result.data.subjectProgress) {
               subjectProgress.value = result.data.subjectProgress
-              storedProgress = result.data.subjectProgress
-              // 同步到localStorage作为备份
-              await localforage.setItem('subjectProgress', result.data.subjectProgress)
+              console.log('📈 加载了科目进度数据')
             }
-            
-            apiDataLoaded = true
+          } else {
+            console.warn('⚠️  API返回数据格式错误')
           }
+        } else {
+          console.error('❌ API请求失败:', response.status)
         }
-      } catch (apiError) {
-        console.warn('⚠️  后端API不可用，使用localStorage数据:', apiError)
+      } catch (error) {
+        console.error('❌ 加载学习数据失败:', error)
       }
-      
-      // 如果API加载失败，从localStorage加载
-      if (!apiDataLoaded) {
-        console.log('📦 从localStorage加载学习数据...')
-        storedRecords = await localforage.getItem<StudyRecord[]>('studyRecords')
-        storedProgress = await localforage.getItem<SubjectProgress>('subjectProgress')
-        
-        if (storedRecords) {
-          studyRecords.value = storedRecords
-        }
-        
-        if (storedProgress) {
-          subjectProgress.value = storedProgress
-        }
-      }
-      
-      // 如果没有数据，添加3月1日的学习记录作为初始数据
-      if (!storedRecords || storedRecords.length === 0) {
-        console.log('📦 检测到无学习记录数据，添加初始学习记录...');
-        
-        const initialRecords: StudyRecord[] = [
-          {
-            id: 'record_20260301_1_' + Date.now(),
-            date: '2026-03-01',
-            subject: '经验贴/视频',
-            duration: 25,
-            content: '向其他人学习考研经验',
-            type: 'study',
-            createdAt: new Date('2026-03-01T21:19:00Z').toISOString()
-          },
-          {
-            id: 'record_20260301_2_' + Date.now(),
-            date: '2026-03-01',
-            subject: '数学',
-            duration: 25,
-            content: '数学学习',
-            type: 'study',
-            createdAt: new Date('2026-03-01T19:35:00Z').toISOString()
-          },
-          {
-            id: 'record_20260301_3_' + Date.now(),
-            date: '2026-03-01',
-            subject: '计划',
-            duration: 25,
-            content: '考研学习计划制定',
-            type: 'study',
-            createdAt: new Date('2026-03-01T16:37:00Z').toISOString()
-          },
-          {
-            id: 'record_20260301_4_' + Date.now(),
-            date: '2026-03-01',
-            subject: '计划',
-            duration: 25,
-            content: '考研学习计划制定',
-            type: 'study',
-            createdAt: new Date('2026-03-01T15:51:00Z').toISOString()
-          },
-          // 2026-05-05 英语语法学习记录
-          {
-            id: 'record_20260505_1_' + Date.now(),
-            date: '2026-05-05',
-            subject: '英语一',
-            duration: 25,
-            content: '虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It\'s time）、倒装结构',
-            type: 'study',
-            createdAt: new Date('2026-05-05T18:30:00').toISOString()
-          },
-          {
-            id: 'record_20260505_2_' + Date.now(),
-            date: '2026-05-05',
-            subject: '英语一',
-            duration: 25,
-            content: '虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配',
-            type: 'practice',
-            createdAt: new Date('2026-05-05T19:00:00').toISOString()
-          },
-          {
-            id: 'record_20260505_3_' + Date.now(),
-            date: '2026-05-05',
-            subject: '英语一',
-            duration: 25,
-            content: '虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It\'s time用法、倒装结构',
-            type: 'practice',
-            createdAt: new Date('2026-05-05T19:30:00').toISOString()
-          },
-          {
-            id: 'record_20260505_4_' + Date.now(),
-            date: '2026-05-05',
-            subject: '英语一',
-            duration: 25,
-            content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
-            type: 'practice',
-            createdAt: new Date('2026-05-05T20:00:00').toISOString()
-          },
-          // 2026-05-06 英语长难句学习记录
-          {
-            id: 'record_20260506_1_' + Date.now(),
-            date: '2026-05-06',
-            subject: '英语一',
-            duration: 150,
-            content: '长难句分析方法论学习 - 掌握主干提取、修饰成分识别、从句分析三步法。练习5个复杂句式，理解句子结构层次。',
-            type: 'study',
-            createdAt: new Date('2026-05-06T10:00:00').toISOString()
-          }
-        ];
-        
-        // 添加记录到内存
-        studyRecords.value = initialRecords;
-        
-        // 初始化科目进度
-        subjectProgress.value = {};
-        initialRecords.forEach(record => {
-          if (!subjectProgress.value[record.subject]) {
-            subjectProgress.value[record.subject] = {
-              totalTime: 0,
-              lastStudyDate: '',
-              weeklyGoal: 300,
-              completionRate: 0
-            };
-          }
-          subjectProgress.value[record.subject].totalTime += record.duration;
-          subjectProgress.value[record.subject].lastStudyDate = record.date;
-          
-          // 计算完成率（简化处理）
-          const weeklyTime = initialRecords
-            .filter(r => r.subject === record.subject && r.date === record.date)
-            .reduce((sum, r) => sum + r.duration, 0);
-          subjectProgress.value[record.subject].completionRate = Math.min(100, (weeklyTime / 300) * 100);
-        });
-        
-        // 保存到本地存储
-        await localforage.setItem('studyRecords', initialRecords);
-        await localforage.setItem('subjectProgress', subjectProgress.value);
-        
-        console.log(`✅ 成功添加 ${initialRecords.length} 条初始学习记录`);
-        console.log(` 总学习时间: ${initialRecords.reduce((sum, r) => sum + r.duration, 0)} 分钟`);
-        console.log(` 5月5日英语学习: 100分钟`);
-      } else {
-        // 即使有旧数据，也要检查并添加5月5日和5月6日的英语学习记录
-        const currentRecords = storedRecords || [];
-        const may5Records = currentRecords.filter(r => r.date === '2026-05-05' && r.subject === '英语一');
-        const may6Records = currentRecords.filter(r => r.date === '2026-05-06' && r.subject === '英语一');
-        
-        let recordsToAdd: StudyRecord[] = [];
-        
-        // 检查是否需要添加5月5日记录
-        if (may5Records.length === 0) {
-          console.log('📝 检测到缺少5月5日英语学习记录，正在添加...');
-          
-          const may5NewRecords: StudyRecord[] = [
-            {
-              id: 'record_20260505_1_' + Date.now(),
-              date: '2026-05-05',
-              subject: '英语一',
-              duration: 25,
-              content: '虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It\'s time）、倒装结构',
-              type: 'study',
-              createdAt: new Date('2026-05-05T18:30:00').toISOString()
-            },
-            {
-              id: 'record_20260505_2_' + Date.now(),
-              date: '2026-05-05',
-              subject: '英语一',
-              duration: 25,
-              content: '虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配',
-              type: 'practice',
-              createdAt: new Date('2026-05-05T19:00:00').toISOString()
-            },
-            {
-              id: 'record_20260505_3_' + Date.now(),
-              date: '2026-05-05',
-              subject: '英语一',
-              duration: 25,
-              content: '虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It\'s time用法、倒装结构',
-              type: 'practice',
-              createdAt: new Date('2026-05-05T19:30:00').toISOString()
-            },
-            {
-              id: 'record_20260505_4_' + Date.now(),
-              date: '2026-05-05',
-              subject: '英语一',
-              duration: 25,
-              content: '虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配',
-              type: 'practice',
-              createdAt: new Date('2026-05-05T20:00:00').toISOString()
-            }
-          ];
-          
-          recordsToAdd.push(...may5NewRecords);
-          console.log('✅ 已添加5月5日英语学习记录（100分钟）');
-        }
-        
-        // 检查是否需要添加5月6日记录
-        if (may6Records.length === 0) {
-          console.log('📝 检测到缺少5月6日英语学习记录，正在添加...');
-          
-          const may6NewRecord: StudyRecord = {
-            id: 'record_20260506_1_' + Date.now(),
-            date: '2026-05-06',
-            subject: '英语一',
-            duration: 150,
-            content: '长难句分析方法论学习 - 掌握主干提取、修饰成分识别、从句分析三步法。练习5个复杂句式，理解句子结构层次。',
-            type: 'study',
-            createdAt: new Date('2026-05-06T10:00:00').toISOString()
-          };
-          
-          recordsToAdd.push(may6NewRecord);
-          console.log('✅ 已添加5月6日英语学习记录（150分钟）');
-        }
-        
-        // 如果有需要添加的记录
-        if (recordsToAdd.length > 0) {
-          // 合并记录
-          studyRecords.value = [...currentRecords, ...recordsToAdd];
-          
-          // 更新科目进度
-          if (storedProgress) {
-            subjectProgress.value = storedProgress;
-          }
-          
-          if (!subjectProgress.value['英语一']) {
-            subjectProgress.value['英语一'] = {
-              totalTime: 0,
-              lastStudyDate: '',
-              weeklyGoal: 300,
-              completionRate: 0
-            };
-          }
-          
-          // 计算新增的总时长
-          const addedDuration = recordsToAdd.reduce((sum, r) => sum + r.duration, 0);
-          subjectProgress.value['英语一'].totalTime += addedDuration;
-          subjectProgress.value['英语一'].lastStudyDate = '2026-05-06';
-          
-          // 计算本周完成率
-          const oneWeekAgo = new Date();
-          oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-          const weeklyEnglishTime = studyRecords.value
-            .filter(r => r.subject === '英语一' && new Date(r.date) >= oneWeekAgo)
-            .reduce((sum, r) => sum + r.duration, 0);
-          subjectProgress.value['英语一'].completionRate = Math.min(100, (weeklyEnglishTime / 300) * 100);
-          
-          // 保存更新后的数据
-          await localforage.setItem('studyRecords', studyRecords.value);
-          await localforage.setItem('subjectProgress', subjectProgress.value);
-          
-          console.log(`✅ 共添加 ${recordsToAdd.length} 条记录，总计 ${addedDuration} 分钟`);
-        }
-      }
-      
-      // 计算当前连续学习天数
-      calculateCurrentStreak()
-    } catch (error) {
-      console.error('初始化学习数据失败:', error)
     } finally {
       isLoading.value = false
     }
