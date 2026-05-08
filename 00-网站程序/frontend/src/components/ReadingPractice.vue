@@ -158,13 +158,6 @@
       <div class="cloze-header">
         <h3 class="cloze-title"> {{ clozeYear }}年考研英语一 Use of English</h3>
         <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
-        <el-button 
-          type="warning" 
-          size="large"
-          @click="openIntensiveReading('Use of English', clozeYear)"
-        >
-           精读
-        </el-button>
       </div>
 
       <!-- 完型填空大题容器（可折叠，包含原文和题目） -->
@@ -179,6 +172,13 @@
           </el-icon>
           <span class="year-text">{{ clozeYear }}年完型填空</span>
           <el-tag type="info" size="small">{{ clozeQuestions.length }}题</el-tag>
+          <el-button 
+            type="warning" 
+            size="small"
+            @click.stop="openIntensiveReading('Use of English', clozeYear)"
+          >
+             精读
+          </el-button>
         </div>
 
         <div v-show="expandedCloze" class="year-content">
