@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Force no bold text anywhere */
+*, *::before, *::after {
   font-weight: normal !important;
 }
 
@@ -107,7 +111,7 @@ body {
 .card-title {
   font-size: var(--font-size-xl);
   color: var(--color-text);
-  font-weight: 600;
+  font-weight: normal;
   margin-bottom: 8px;
 }
 
@@ -221,7 +225,7 @@ body {
 
 .nav-item.active {
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .nav-item::after {
@@ -246,7 +250,7 @@ body {
   font-size: var(--font-size-xxxl);
   color: var(--color-text);
   margin-bottom: 16px;
-  font-weight: 700;
+  font-weight: normal;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
 }

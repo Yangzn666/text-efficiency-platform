@@ -1,0 +1,6225 @@
+[
+  {
+    "name": "上海交通大学",
+    "college": "计算机学院/人工智能学院/网络空间安全学院",
+    "region": "上海市闵行区",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 369,
+        "politics": 60,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "390",
+        "avgScore": "410",
+        "quota": 5
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 378,
+        "politics": 60,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "388",
+        "avgScore": "405",
+        "quota": 10
+      }
+    ],
+    "scoreLine": 360,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第一梯队顶尖名校，与清北复浙同属一个梯队",
+      "C9联盟",
+      "计算机A",
+      "人工智能学院"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "45%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金（上海优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "外企",
+        "percentage": "10%",
+        "companies": "Microsoft、Google、Amazon"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "斯坦福、MIT、CMU等"
+      }
+    ],
+    "salary": "35-50万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "学科实力：A学科，全国前三",
+      "地理位置：上海，就业机会丰富"
+    ],
+    "cons": [
+      "竞争极其激烈：C9+上海，报考人数最多",
+      "复试难度大：机试难度高，面试严格",
+      "对本科背景要求高：偏好985本科生"
+    ],
+    "targetScore": 370,
+    "links": {
+      "graduate": "https://yzb.sjtu.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10248"
+    },
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "中国科学技术大学",
+    "college": "计算机科学与技术学院",
+    "region": "安徽省合肥市",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 355,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "383 [361-418]",
+        "avgScore": "375",
+        "quota": "36+1专项"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 320,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "355",
+        "avgScore": "375",
+        "quota": null
+      },
+      {
+        "name": "软件方向",
+        "college": "225软件学院",
+        "scoreLine": 388,
+        "minScore": "406",
+        "quota": "2985人",
+        "singleScores": "60, 100",
+        "direction": "225软件学院-软件方向",
+        "note": "2026复试线388分"
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 347,
+        "minScore": "374 [347-404]",
+        "quota": "79+2专项",
+        "singleScores": "50, 70",
+        "direction": "218先进技术研究院-计算机方向",
+        "note": "2026复试线347分"
+      },
+      {
+        "name": "智能科学与技术-大数据",
+        "college": "229人工智能与数据科学学院",
+        "scoreLine": 330,
+        "minScore": "374 [330-413]",
+        "quota": 69,
+        "singleScores": "50, 90, 70",
+        "direction": "229人工智能与数据科学学院-智能科学与技术-大数据",
+        "note": "2026复试线330分"
+      }
+    ],
+    "scoreLine": 388,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "2026改考408",
+      "理工科专业分数线较高，对专业能力要求极高",
+      "- **拟录取名单**: 已公示（2026年4月27日-5月4日）",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "25%",
+        "companies": "中科院、各大研究院（中科大优势）"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "斯坦福、MIT、CMU等"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "学科实力：A学科，全国前三",
+      "科研氛围：中科大以科研见长"
+    ],
+    "cons": [
+      "地理位置：合肥，相比北上广深机会较少",
+      "改考影响：2026改考408，竞争将加剧",
+      "复试严格：中科大复试较为严格"
+    ],
+    "targetScore": 403,
+    "links": {
+      "graduate": "https://gradschool.ustc.edu.cn/",
+      "college": "https://cs.ustc.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10358"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "北京大学",
+    "college": "计算机学院/智能学院/软件与微电子学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 340,
+        "politics": 55,
+        "english": 55,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "392 [350-427]",
+        "avgScore": "385",
+        "quota": "33+2专项"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085400",
+        "name": "电子信息（软件工程）",
+        "type": "专业型硕士",
+        "scoreLine": 373,
+        "politics": 55,
+        "english": 90,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "378",
+        "avgScore": "400",
+        "quota": 60
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "智能学院",
+        "scoreLine": 330,
+        "minScore": "379 [347-424]",
+        "quota": 9,
+        "singleScores": "55, 90",
+        "direction": "智能学院-智能科学与技术",
+        "note": "2026复试线330分"
+      },
+      {
+        "name": "软件信息01-04方向",
+        "college": "软件与微电子学院",
+        "scoreLine": 378,
+        "minScore": "399 [378-435]",
+        "quota": 401,
+        "singleScores": "55, 90",
+        "direction": "软件与微电子学院-软件信息01-04方向",
+        "note": "2026复试线378分"
+      },
+      {
+        "name": "5145300大数据",
+        "college": "数学科学学院",
+        "scoreLine": 360,
+        "minScore": "391 [364-436]",
+        "quota": 26,
+        "singleScores": "55, 90",
+        "direction": "数学科学学院-5145300大数据",
+        "note": "2026复试线360分"
+      }
+    ],
+    "scoreLine": 340,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "C9联盟",
+      "计算机A+",
+      "深圳研究院招生",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI独角兽",
+        "percentage": "30%",
+        "companies": "商汤、旷视、云从、依图"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "量化交易、金融科技"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "斯坦福、MIT、CMU等"
+      }
+    ],
+    "salary": "30-50万",
+    "pros": [
+      "学校品牌强：北大金字招牌，就业认可度极高",
+      "师资雄厚：国际顶尖学者云集",
+      "资源丰富：科研平台、企业合作机会多"
+    ],
+    "cons": [
+      "竞争极其激烈：报录比高，分数线高",
+      "对本科背景要求高：偏好985/211本科生",
+      "复试难度大：注重综合素质和科研潜力"
+    ],
+    "targetScore": 355,
+    "links": {
+      "graduate": "https://admission.pku.edu.cn/",
+      "college": "https://ai.pku.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "南京大学",
+    "college": "计算机科学与技术学院/软件学院/人工智能学院",
+    "region": "江苏省南京市",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 363,
+        "politics": 50,
+        "english": 75,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "385 [368-421]",
+        "avgScore": "385",
+        "quota": 15
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 329,
+        "politics": 50,
+        "english": 75,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "366 [320-395]",
+        "avgScore": "380",
+        "quota": "12+1专项"
+      }
+    ],
+    "scoreLine": 371,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "顶尖院校竞争激烈，实际录取可能更高",
+      "华东地区综合类名校，计算机专业热门",
+      "C9联盟",
+      "计算机A",
+      "人工智能学院",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "25%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "斯坦福、MIT、CMU等"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "学科实力：A学科，全国前三",
+      "学术氛围：南大以基础研究见长"
+    ],
+    "cons": [
+      "竞争极其激烈：C9院校，报考人数多",
+      "复试难度大：注重学术能力",
+      "对本科背景要求高：偏好985本科生"
+    ],
+    "targetScore": 386,
+    "links": {
+      "graduate": "https://grawww.nju.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10284"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "哈尔滨工业大学",
+    "college": "计算学部/未来学院/深圳校区",
+    "region": "黑龙江省哈尔滨市（一校三区）",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 395,
+        "politics": 50,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "405",
+        "avgScore": "420",
+        "quota": 11
+      },
+      {
+        "code": "085400",
+        "name": "电子信息",
+        "type": "专业型硕士",
+        "scoreLine": 365,
+        "politics": 50,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "376",
+        "avgScore": "395",
+        "quota": 100
+      }
+    ],
+    "scoreLine": 365,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408",
+      "C9联盟",
+      "计算机A",
+      "深圳校区",
+      "多校区办学"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "航天军工",
+        "percentage": "25%",
+        "companies": "航天科技、航天科工"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "学科实力：A学科，全国前三",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "地理位置：哈尔滨，气候寒冷",
+      "改考影响：2026改考408，竞争将加剧"
+    ],
+    "targetScore": 375,
+    "links": {
+      "graduate": "https://yzb.hit.edu.cn/",
+      "college": "https://cs.hit.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10213"
+    },
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "复旦大学",
+    "college": "计算机科学技术学院",
+    "region": "上海市杨浦区",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第一梯队顶尖名校，与清北交浙同属一个梯队"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "25%",
+        "companies": "银行、证券、基金（上海优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "外企",
+        "percentage": "10%",
+        "companies": "Microsoft、Google等"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "地理位置：上海，就业机会丰富",
+      "学科实力：A-学科，全国前列"
+    ],
+    "cons": [
+      "竞争极其激烈：C9院校，报考人数多",
+      "复试难度大：注重综合素质",
+      "生活成本高：上海房价、生活成本高"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gsao.fudan.edu.cn/",
+      "college": "https://www.cs.fudan.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10246"
+    }
+  },
+  {
+    "name": "浙江大学",
+    "college": "计算机科学与技术学院/软件学院/海洋学院/国际联合学院（海宁校区）",
+    "region": "浙江省杭州市",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 332,
+        "politics": 50,
+        "english": 75,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "386",
+        "avgScore": "404",
+        "quota": 9
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 378,
+        "politics": 50,
+        "english": 75,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "390",
+        "avgScore": "408",
+        "quota": 5
+      },
+      {
+        "code": "085410",
+        "name": "人工智能",
+        "type": "专业型硕士",
+        "scoreLine": 332,
+        "politics": 50,
+        "english": 75,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "344",
+        "avgScore": "371",
+        "quota": 13,
+        "college": "国际联合学院（海宁国际校区）",
+        "note": "2026年拟录取13人，初试范围344-426分，复试线332分"
+      }
+    ],
+    "scoreLine": 332,
+    "scoreHistory": [
+      {
+        "year": 2023,
+        "scoreLine": "345",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2022,
+        "scoreLine": "377",
+        "avgScore": "377",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2023,
+        "scoreLine": "325",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
+    "is408Change": false,
+    "hasAI": true,
+    "tags": [
+      "C9联盟",
+      "计算机A+",
+      "软件学院宁波校区",
+      "国际联合学院AI专硕（海宁校区）",
+      "2026人工智能拟录取13人"
+    ],
+    "employment": [],
+    "salary": "待更新",
+    "pros": [],
+    "cons": [],
+    "targetScore": 342,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    },
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "清华大学",
+    "college": "计算机科学与技术系/软件学院/深圳国际研究生院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "数据科学和信息技术",
+        "type": "学术型硕士",
+        "scoreLine": 332,
+        "politics": 50,
+        "english": 80,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "347 [332-370]",
+        "avgScore": "390",
+        "quota": "20+3强军"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 330,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "364 [332-396]",
+        "avgScore": "382",
+        "quota": "20+1专项"
+      },
+      {
+        "name": "大数据工程方向",
+        "college": "",
+        "scoreLine": 330,
+        "minScore": "382 [336-416]",
+        "quota": 17,
+        "singleScores": "50, 90, 75",
+        "direction": "深圳国际研究生院-大数据工程方向",
+        "note": "2026复试线330分"
+      }
+    ],
+    "scoreLine": 332,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "C9联盟",
+      "计算机A+",
+      "深圳研究院",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [],
+    "salary": "待更新",
+    "pros": [],
+    "cons": [],
+    "targetScore": 347,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "西安交通大学",
+    "college": "计算机学院",
+    "region": "陕西省西安市",
+    "level": "985 / 211 / 双一流A类 / C9联盟",
+    "grade": "A-",
+    "difficulty": "S",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 320,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "350",
+        "avgScore": "370",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 320,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "350",
+        "avgScore": "370",
+        "quota": null
+      }
+    ],
+    "scoreLine": 320,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "C9品牌：顶尖名校，认可度极高",
+      "学科实力：A-学科，全国前列",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "地理位置：西安，相比东部机会较少",
+      "改考影响：2026改考408，竞争将加剧"
+    ],
+    "targetScore": 330,
+    "links": {
+      "graduate": "https://yz.xjtu.edu.cn/",
+      "college": "https://gr.xjtu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10698"
+    }
+  },
+  {
+    "name": "北京航空航天大学",
+    "college": "计算机学院/软件学院/人工智能研究院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 360,
+        "politics": 40,
+        "english": 60,
+        "course1": 60,
+        "course2": 60,
+        "minScore": "398 [363-428]",
+        "avgScore": "389",
+        "quota": 55
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 320,
+        "politics": 40,
+        "english": 60,
+        "course1": 60,
+        "course2": 60,
+        "minScore": "361 [337-394]",
+        "avgScore": "356",
+        "quota": "25+1专项"
+      },
+      {
+        "name": "人工智能",
+        "college": "",
+        "scoreLine": 310,
+        "minScore": "374 [346-395]",
+        "quota": 10,
+        "singleScores": "40, 60",
+        "direction": "人工智能研究院-人工智能",
+        "note": "2026复试线310分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 310,
+        "minScore": "367 [328-407]",
+        "quota": 47,
+        "singleScores": "40, 60",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线310分"
+      }
+    ],
+    "scoreLine": 360,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "国防七子",
+      "985高校",
+      "计算机A",
+      "杭州国际创新研究院",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "航天军工",
+        "percentage": "30%",
+        "companies": "航天科技、航天科工"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "学科实力：A学科，全国前列",
+      "地理位置：北京，资源丰富",
+      "国防特色：航天军工领域就业优势"
+    ],
+    "cons": [
+      "竞争极其激烈：北京+985，报考人数多",
+      "考试科目复杂：需确认具体方向"
+    ],
+    "targetScore": 375,
+    "links": {
+      "graduate": "https://yzb.buaa.edu.cn/",
+      "college": "https://scse.buaa.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10006"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "东北大学",
+    "college": "计算机科学与工程学院",
+    "region": "辽宁省沈阳市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "复试公平，对双非友好",
+      "- 第七梯队985高校",
+      "- 复试公平，对双非考生友好",
+      "- 自动化、计算机、软件工程是热门高薪专业"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地软件",
+        "percentage": "25%",
+        "companies": "东软、IBM"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：东北强校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "软件产业：东软总部在沈阳"
+    ],
+    "cons": [
+      "地域局限：东北，经济相对落后",
+      "气候寒冷：冬季较长"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://graduate.neu.edu.cn/",
+      "college": "https://cse.neu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10145"
+    }
+  },
+  {
+    "name": "东南大学",
+    "college": "计算机科学与工程学院",
+    "region": "江苏省南京市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 376,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "388 [376-411]",
+        "avgScore": "待补充",
+        "quota": 23
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 355,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "367 [355-380]",
+        "avgScore": "待补充",
+        "quota": 6
+      },
+      {
+        "name": "140500智能科学与技术",
+        "college": "",
+        "scoreLine": 345,
+        "minScore": "365 [349-385]",
+        "quota": 9,
+        "singleScores": "50, 70",
+        "direction": "140500智能科学与技术",
+        "note": "2026复试线345分"
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 344,
+        "minScore": "370 [344-406]",
+        "quota": 23,
+        "singleScores": "50, 70",
+        "direction": "电子信息-计算机方向",
+        "note": "2026复试线344分"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 347,
+        "minScore": "372 [347-407]",
+        "quota": 23,
+        "singleScores": "50, 70",
+        "direction": "电子信息-人工智能方向",
+        "note": "2026复试线347分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 322,
+        "minScore": "358 [322-424]",
+        "quota": "45+2专项+1",
+        "singleScores": "50, 70",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线322分"
+      }
+    ],
+    "scoreLine": 376,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "2026改考408",
+      "计算机科学与工程学院、软件学院、人工智能学院联合招生",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "20%",
+        "companies": "华为、中兴、小米"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "985品牌：工科强校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "改考影响：2026改考408，竞争将加剧",
+      "地域局限：相比北上广深机会略少"
+    ],
+    "targetScore": 391,
+    "links": {
+      "graduate": "https://yzb.seu.edu.cn/",
+      "college": "https://computer.seu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10286"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "中南大学",
+    "college": "计算机学院",
+    "region": "湖南省长沙市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 385,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "345",
+        "avgScore": "365",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 385,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "345",
+        "avgScore": "365",
+        "quota": null
+      }
+    ],
+    "scoreLine": 385,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "- 第五档末流985高校",
+      "- 办学体量庞大，学科门类齐全",
+      "- 录取分数线相对友好，中等偏上分数有机会上岸"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "985品牌：华中强校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "生活舒适：长沙，房价低，美食多"
+    ],
+    "cons": [
+      "竞争激烈：985院校，报考人数较多",
+      "地域局限：中部地区，相比东部机会略少"
+    ],
+    "targetScore": 395,
+    "links": {
+      "graduate": "https://gra.csu.edu.cn/",
+      "college": "https://cse.csu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10533"
+    }
+  },
+  {
+    "name": "中山大学",
+    "college": "人工智能学院",
+    "region": "广东省广州市/珠海市/深圳市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "A+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 379,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "355",
+        "avgScore": "375",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 379,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "355",
+        "avgScore": "375",
+        "quota": null
+      }
+    ],
+    "scoreLine": 379,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "腾讯、华为、字节、阿里"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "25%",
+        "companies": "商汤、旷视、云从"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、保险"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "10%",
+        "companies": "中科院、研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "985品牌：综合声誉好",
+      "地理位置优：粤港澳大湾区，就业机会多",
+      "学科交叉：医学AI等特色方向"
+    ],
+    "cons": [
+      "竞争激烈：广东地区热门院校",
+      "校区分散：需确认具体校区",
+      "生活成本高：广州/深圳房价高"
+    ],
+    "targetScore": 389,
+    "links": {
+      "graduate": "https://graduate.sysu.edu.cn/",
+      "college": "https://ai.sysu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10558"
+    }
+  },
+  {
+    "name": "北京理工大学",
+    "college": "计算机学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 338,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "360",
+        "avgScore": "380",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 338,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "360",
+        "avgScore": "380",
+        "quota": null
+      }
+    ],
+    "scoreLine": 338,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "国防七子"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "国防军工",
+        "percentage": "30%",
+        "companies": "航天科技、航天科工、兵器工业"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "学科实力：A-学科，全国前列",
+      "地理位置：北京，资源丰富",
+      "国防特色：军工领域就业优势"
+    ],
+    "cons": [
+      "竞争激烈：北京+985，报考人数多",
+      "复试严格：注重综合素质"
+    ],
+    "targetScore": 348,
+    "links": {
+      "graduate": "https://gs.bit.edu.cn/",
+      "college": "https://cs.bit.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10007"
+    }
+  },
+  {
+    "name": "北京邮电大学",
+    "college": "计算机学院",
+    "region": "北京市海淀区",
+    "level": "211 / 双一流 / 两电一邮",
+    "grade": "A",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 328,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "366 [338-410]",
+        "avgScore": "待补充",
+        "quota": "156+5其他"
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "name": "软件工程",
+        "college": "",
+        "scoreLine": 313,
+        "minScore": "338 [315-385]",
+        "quota": 17,
+        "singleScores": "",
+        "direction": "软件工程",
+        "note": "2026复试线313分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 328,
+        "minScore": "353 [328-407]",
+        "quota": 82,
+        "singleScores": "",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线328分"
+      },
+      {
+        "name": "智能科学与技术-1方向",
+        "college": "人工智能学院",
+        "scoreLine": 321,
+        "minScore": "359 [326-399]",
+        "quota": "39+专项",
+        "singleScores": "",
+        "direction": "人工智能学院-智能科学与技术-1方向",
+        "note": "2026复试线321分"
+      }
+    ],
+    "scoreLine": 328,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "两电一邮",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "45%",
+        "companies": "字节、阿里、腾讯、百度、美团"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "20%",
+        "companies": "华为、中兴、爱立信"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "学科实力：A学科，全国前列",
+      "就业优势：IT行业认可度极高，堪比985",
+      "地理位置：北京，互联网企业云集"
+    ],
+    "cons": [
+      "竞争激烈：211中竞争最激烈的院校之一",
+      "分数线高：复试线常年360+",
+      "生活成本高：北京房价、生活成本高"
+    ],
+    "targetScore": 343,
+    "links": {
+      "graduate": "https://yzb.bupt.edu.cn/",
+      "college": "https://scs.bupt.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10013"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "华东师范大学",
+    "college": "计算机科学与技术学院",
+    "region": "上海市闵行区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "A",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "name": "电子信息-计算机方向-全日制",
+        "college": "计算机科学与技术学院",
+        "scoreLine": 264,
+        "minScore": "365+6专项",
+        "quota": "244+7专项",
+        "singleScores": "",
+        "direction": "计算机科学与技术学院-电子信息-计算机方向-全日制",
+        "note": "2026复试线264分"
+      },
+      {
+        "name": "电子信息-软件方向-全日制",
+        "college": "软件工程学院",
+        "scoreLine": 264,
+        "minScore": "376 [317-404]",
+        "quota": "201+3专项",
+        "singleScores": "",
+        "direction": "软件工程学院-电子信息-软件方向-全日制",
+        "note": "2026复试线264分"
+      },
+      {
+        "name": "电子信息-大数据方向-全日制",
+        "college": "数据科学与工程学院",
+        "scoreLine": 264,
+        "minScore": "总学费9万元",
+        "quota": 105,
+        "singleScores": "",
+        "direction": "数据科学与工程学院-电子信息-大数据方向-全日制",
+        "note": "2026复试线264分"
+      },
+      {
+        "name": "电子信息-人工智能-全日制",
+        "college": "人工智能学院",
+        "scoreLine": 264,
+        "minScore": "总学费9万元",
+        "quota": 8,
+        "singleScores": "",
+        "direction": "人工智能学院-电子信息-人工智能-全日制",
+        "note": "2026复试线264分"
+      }
+    ],
+    "scoreLine": 264,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "教育科技",
+        "percentage": "25%",
+        "companies": "好未来、猿辅导、作业帮"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金（上海优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "985品牌：师范名校，认可度高",
+      "地理位置：上海，就业机会丰富",
+      "AI+教育特色：差异化竞争优势"
+    ],
+    "cons": [
+      "竞争激烈：上海+985，报考人数较多",
+      "学科实力一般：相比理工强校略弱"
+    ],
+    "targetScore": 279,
+    "links": {
+      "graduate": "https://yjszs.ecnu.edu.cn/",
+      "college": "https://www.cs.ecnu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10269"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "华中科技大学",
+    "college": "计算机科学与技术学院/软件学院/网络空间安全学院",
+    "region": "湖北省武汉市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 360,
+        "politics": 50,
+        "english": 90,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "386 [373-420]",
+        "avgScore": "382",
+        "quota": "18+4强军"
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 330,
+        "politics": 50,
+        "english": 90,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "371",
+        "avgScore": "380",
+        "quota": 125
+      },
+      {
+        "name": "软件方向",
+        "college": "软件学院",
+        "scoreLine": 320,
+        "minScore": "363 [321-414]",
+        "quota": 86,
+        "singleScores": "50, 75",
+        "direction": "软件学院-软件方向",
+        "note": "2026复试线320分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 340,
+        "minScore": "374 [343-395]",
+        "quota": 40,
+        "singleScores": "50, 85, 80",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线340分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "人工智能学院",
+        "scoreLine": 345,
+        "minScore": "371 [30-421]",
+        "quota": 48,
+        "singleScores": "50, 55, 105, 90",
+        "direction": "人工智能学院-智能科学与技术",
+        "note": "2026复试线345分"
+      }
+    ],
+    "scoreLine": 360,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": true,
+    "tags": [
+      "2026数据已更新",
+      "2026改考408",
+      "AI专硕",
+      "华中地区顶尖工科强校",
+      "985高校",
+      "计算机A-",
+      "人工智能学院",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、华为"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "25%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "智能制造",
+        "percentage": "20%",
+        "companies": "华为、长江存储、小米"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "10%",
+        "companies": "中科院、航天院所"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "学科实力强：控制A+，计算机A-，全国顶尖",
+      "大幅扩招：2026年人工智能专硕扩招63.3%，机会增加",
+      "产业资源丰富：华为、长江存储等深度合作"
+    ],
+    "cons": [
+      "竞争依然激烈：即使扩招，报录比仍较高",
+      "复试难度大：注重综合素质和科研能力",
+      "对本科背景有要求：偏好985/211本科生"
+    ],
+    "targetScore": 375,
+    "links": {
+      "graduate": "https://gszs.hust.edu.cn/",
+      "college": "https://aia.hust.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10487"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "华南理工大学",
+    "college": "计算机科学与工程学院",
+    "region": "广东省广州市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "重点考查学生编程与解决实际问题的能力"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度、网易"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "智能制造",
+        "percentage": "15%",
+        "companies": "华为、小米、格力"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "985品牌：华南最强工科，认可度高",
+      "地理位置：广州，珠三角就业机会丰富",
+      "产业资源：与多家科技巨头合作"
+    ],
+    "cons": [
+      "竞争激烈：华南地区热门985",
+      "生活成本高：广州房价、生活成本较高"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://admission.scut.edu.cn/",
+      "college": "https://www.cs.scut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10561"
+    }
+  },
+  {
+    "name": "南开大学",
+    "college": "计算机学院",
+    "region": "天津市南开区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 335,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "385 [366-418]",
+        "avgScore": "370",
+        "quota": 8
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 290,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "398 [370-420]",
+        "avgScore": "370",
+        "quota": "22+1专项"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 310,
+        "minScore": "370",
+        "quota": 2,
+        "singleScores": "50, 75",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线310分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "人工智能学院",
+        "scoreLine": 300,
+        "minScore": "335",
+        "quota": 3,
+        "singleScores": "50, 70, 75",
+        "direction": "人工智能学院-智能科学与技术",
+        "note": "2026复试线300分"
+      }
+    ],
+    "scoreLine": 335,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "天津地区重要985高校",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金（天津优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "985品牌：百年名校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "地理位置：天津，生活成本适中"
+    ],
+    "cons": [
+      "竞争激烈：985院校，报考人数较多",
+      "地域局限：相比北上广深机会略少"
+    ],
+    "targetScore": 350,
+    "links": {
+      "graduate": "https://gradadmission.nankai.edu.cn/",
+      "college": "https://cc.nankai.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10055"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "同济大学",
+    "college": "电子与信息工程学院",
+    "region": "上海市杨浦区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 355,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "343",
+        "avgScore": "373",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 350,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "343",
+        "avgScore": "373",
+        "quota": null
+      }
+    ],
+    "scoreLine": 350,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金（上海优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "智能交通",
+        "percentage": "10%",
+        "companies": "车企、交通科技公司"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "30-45万",
+    "pros": [
+      "985品牌：百年名校，认可度高",
+      "地理位置：上海，就业机会丰富",
+      "学科实力：A-学科，全国前列"
+    ],
+    "cons": [
+      "竞争极其激烈：上海+985，报考人数多",
+      "生活成本高：上海房价、生活成本高"
+    ],
+    "targetScore": 365,
+    "links": {
+      "graduate": "https://yz.tongji.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10247"
+    }
+  },
+  {
+    "name": "四川大学",
+    "college": "计算机学院",
+    "region": "四川省成都市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "计算机学院（软件学院、智能科学与技术学院）联合招生"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "985品牌：西南最强高校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "生活舒适：成都，美食之都，生活成本低"
+    ],
+    "cons": [
+      "专硕非11408：专硕采用22408，不适合11408考生",
+      "地域局限：西南地区，相比东部机会略少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gs.scu.edu.cn/",
+      "college": "https://cs.scu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10610"
+    }
+  },
+  {
+    "name": "大连理工大学",
+    "college": "计算机科学与技术学院",
+    "region": "辽宁省大连市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 300,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "320",
+        "avgScore": "355",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 300,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "320",
+        "avgScore": "355",
+        "quota": null
+      }
+    ],
+    "scoreLine": 300,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第五梯队985高校，工科霸主，软件工程是热门专业"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地软件",
+        "percentage": "25%",
+        "companies": "东软、IBM大连"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：东北强校，认可度高",
+      "软件产业：大连软件园发达",
+      "环境优美：海滨城市"
+    ],
+    "cons": [
+      "地域局限：东北，经济相对落后",
+      "气候寒冷：冬季较长"
+    ],
+    "targetScore": 310,
+    "links": {
+      "graduate": "https://gs.dlut.edu.cn/",
+      "college": "https://cs.dlut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10141"
+    }
+  },
+  {
+    "name": "天津大学",
+    "college": "智能与计算学部",
+    "region": "天津市南开区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 321,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "356 [326-377]",
+        "avgScore": "待补充",
+        "quota": 57
+      },
+      {
+        "name": "计算机硕士",
+        "college": "计算机科学与技术学院",
+        "scoreLine": 335,
+        "minScore": "361 [337-391]",
+        "quota": 48,
+        "singleScores": "",
+        "direction": "计算机科学与技术学院-计算机硕士",
+        "note": "2026复试线335分"
+      },
+      {
+        "name": "网安学硕",
+        "college": "网络安全学院",
+        "scoreLine": 315,
+        "minScore": "332 [315-361]",
+        "quota": 2,
+        "singleScores": "",
+        "direction": "网络安全学院-网安学硕",
+        "note": "2026复试线315分"
+      },
+      {
+        "name": "智能学硕",
+        "college": "人工智能学院",
+        "scoreLine": 336,
+        "minScore": "359 [336-386]",
+        "quota": 2,
+        "singleScores": "",
+        "direction": "人工智能学院-智能学硕",
+        "note": "2026复试线336分"
+      }
+    ],
+    "scoreLine": 335,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "2026改考408",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "智能制造",
+        "percentage": "20%",
+        "companies": "华为、小米、海尔"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "985品牌：百年名校，认可度高",
+      "学科实力：A-学科，全国前列",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "改考影响：2026改考408，竞争将加剧",
+      "地域局限：相比北上广深机会略少"
+    ],
+    "targetScore": 350,
+    "links": {
+      "graduate": "https://gradschool.tju.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10056"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "山东大学",
+    "college": "计算机科学与技术学院",
+    "region": "山东省济南市/青岛市/威海市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408",
+      "2026年改考408"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金（山东优势）"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：百年名校，认可度高",
+      "改考机遇：2026改考408，可能有抄底机会",
+      "生活成本低：济南/青岛房价、生活成本较低"
+    ],
+    "cons": [
+      "改考影响：2026改考408，竞争将加剧",
+      "学科实力一般：B+学科，相比A学科略弱"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://www.yz.sdu.edu.cn/",
+      "college": "https://www.cs.sdu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10422"
+    }
+  },
+  {
+    "name": "武汉大学",
+    "college": "人工智能学院",
+    "region": "湖北省武汉市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "A",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 295,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "338",
+        "avgScore": "375",
+        "quota": 3
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 295,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "385 [352-415]",
+        "avgScore": "375",
+        "quota": 15
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 350,
+        "minScore": "392 [354-424]",
+        "quota": 123,
+        "singleScores": "50, 100, 80",
+        "direction": "计算机方向",
+        "note": "2026复试线350分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "人工智能学院",
+        "scoreLine": 295,
+        "minScore": "335 [295-374]",
+        "quota": 5,
+        "singleScores": "45, 50, 60, 75",
+        "direction": "人工智能学院-智能科学与技术",
+        "note": "2026复试线295分"
+      }
+    ],
+    "scoreLine": 295,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "按学硕、专硕大类进行招生复试录取",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、华为"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "25%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、航天院所"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、保险"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "985品牌：综合声誉好，中部最强高校",
+      "学科特色：遥感AI方向全国领先",
+      "地理位置：武汉，生活成本适中"
+    ],
+    "cons": [
+      "竞争激烈：华中地区热门院校",
+      "机试难度大：无签到题，需要扎实编程功底",
+      "复试比例高：135%，淘汰率较高"
+    ],
+    "targetScore": 310,
+    "links": {
+      "graduate": "https://gs.whu.edu.cn/",
+      "college": "https://sai.whu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10486"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "湖南大学",
+    "college": "信息科学与工程学院",
+    "region": "湖南省长沙市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "C",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 23,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "340",
+        "avgScore": "422",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 23,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "340",
+        "avgScore": "422",
+        "quota": null
+      }
+    ],
+    "scoreLine": 23,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "- 第五档末流985高校",
+      "- 全球排名第223位，上升3名",
+      "- 办学体量庞大，学科门类齐全"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：千年学府，认可度高",
+      "生活舒适：长沙，房价低，美食多",
+      "性价比高：相比其他985竞争略小"
+    ],
+    "cons": [
+      "学科实力一般：B+学科，相比A学科略弱",
+      "地域局限：中部地区，相比东部机会略少"
+    ],
+    "targetScore": 33,
+    "links": {
+      "graduate": "https://gra.hnu.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10532"
+    }
+  },
+  {
+    "name": "西北工业大学",
+    "college": "计算机学院",
+    "region": "陕西省西安市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "A",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 350,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "368 [351-398]",
+        "avgScore": "待补充",
+        "quota": 48
+      },
+      {
+        "name": "软件工程",
+        "college": "",
+        "scoreLine": 310,
+        "minScore": "360 [336-384]",
+        "quota": 4,
+        "singleScores": "45, 70",
+        "direction": "软件工程",
+        "note": "2026复试线310分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 310,
+        "minScore": "357 [325-388]",
+        "quota": 13,
+        "singleScores": "45, 70",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线310分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "",
+        "scoreLine": 325,
+        "minScore": "344 [319-383]",
+        "quota": "11+1",
+        "singleScores": "45, 70",
+        "direction": "光电与智能研究院-智能科学与技术",
+        "note": "2026复试线325分"
+      }
+    ],
+    "scoreLine": 350,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "国防七子",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "国防军工",
+        "percentage": "35%",
+        "companies": "航天科技、航天科工、航空工业"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：国防七子，认可度高",
+      "国防特色：军工领域就业优势明显",
+      "生活成本低：西安房价、生活成本较低"
+    ],
+    "cons": [
+      "地域局限：西北，相比东部机会少",
+      "学科实力一般：B+学科，相比A学科略弱"
+    ],
+    "targetScore": 365,
+    "links": {
+      "graduate": "https://gs.nwpu.edu.cn/",
+      "college": "https://jsj.nwpu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10699"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "西安电子科技大学",
+    "college": "计算机科学与技术学院",
+    "region": "陕西省西安市",
+    "level": "211 / 双一流 / 两电一邮",
+    "grade": "A-",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 305,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "323 [309-332]",
+        "avgScore": "375",
+        "quota": 3
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 310,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "355",
+        "avgScore": "375",
+        "quota": null
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络与信息安全学院",
+        "scoreLine": 310,
+        "minScore": "358 [324-405]",
+        "quota": 74,
+        "singleScores": "40, 60",
+        "direction": "网络与信息安全学院-网络空间安全",
+        "note": "2026复试线310分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "人工智能学院",
+        "scoreLine": 315,
+        "minScore": "351 [307-386]",
+        "quota": 74,
+        "singleScores": "50, 65",
+        "direction": "人工智能学院-智能科学与技术",
+        "note": "2026复试线315分"
+      }
+    ],
+    "scoreLine": 335,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "两电一邮",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度、华为"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "25%",
+        "companies": "华为、中兴、爱立信"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "学科实力：A-学科，全国前列",
+      "就业优势：IT行业认可度极高，堪比985",
+      "生活成本低：西安房价、生活成本较低"
+    ],
+    "cons": [
+      "竞争激烈：211中竞争最激烈的院校之一",
+      "分数线高：复试线常年350+",
+      "地域局限：西北，相比东部机会略少"
+    ],
+    "targetScore": 350,
+    "links": {
+      "graduate": "https://gr.xidian.edu.cn/",
+      "college": "https://cs.xidian.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10701"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "重庆大学",
+    "college": "计算机学院",
+    "region": "重庆市沙坪坝区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "西南地区工科强校，建筑、电气工程突出"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "汽车产业",
+        "percentage": "20%",
+        "companies": "长安、比亚迪、蔚来"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：西南强校，认可度高",
+      "生活成本低：重庆房价、生活成本较低",
+      "性价比高：相比其他985竞争略小"
+    ],
+    "cons": [
+      "学科实力一般：B+学科，相比A学科略弱",
+      "地域局限：西南地区，相比东部机会略少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://graduate.cqu.edu.cn/",
+      "college": "https://www.cse.cqu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10611"
+    }
+  },
+  {
+    "name": "中国人民大学",
+    "college": "高瓴人工智能学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 355,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "375 [355-401]",
+        "avgScore": "待补充",
+        "quota": 24
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "name": "电子信息-全日制",
+        "college": "信息学院",
+        "scoreLine": 315,
+        "minScore": "378 [355-416]",
+        "quota": "110+专项",
+        "singleScores": "",
+        "direction": "信息学院-电子信息-全日制",
+        "note": "2026复试线315分"
+      },
+      {
+        "name": "AI智能",
+        "college": "高瓴人工智能学院",
+        "scoreLine": 330,
+        "minScore": "招网",
+        "quota": 10,
+        "singleScores": "45, 85",
+        "direction": "高瓴人工智能学院-AI智能",
+        "note": "2026复试线330分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "高人工智能学院",
+        "scoreLine": 351,
+        "minScore": "招网",
+        "quota": 10,
+        "singleScores": "50, 80",
+        "direction": "高人工智能学院-智能科学与技术",
+        "note": "2026复试线351分"
+      }
+    ],
+    "scoreLine": 355,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "经济学、法学、管理学等强势学科分数线居高不下",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "30%",
+        "companies": "银行、证券、基金、保险"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "政府机构",
+        "percentage": "10%",
+        "companies": "部委、地方政府"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "学校品牌好：人大在人文社科领域声誉极高",
+      "AI+社科特色：差异化竞争优势",
+      "地理位置优：北京，资源丰富"
+    ],
+    "cons": [
+      "计算机学科相对较弱：相比传统理工强校",
+      "竞争逐年加剧：知名度提升，报考人数增加",
+      "对跨专业友好度有限：偏好有CS背景考生"
+    ],
+    "targetScore": 370,
+    "links": {
+      "graduate": "https://pgs.ruc.edu.cn/",
+      "college": "https://ai.ruc.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10002"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "中国农业大学",
+    "college": "信息与电气工程学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第七梯队985高校，农林类顶尖，保研率20%+"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "农业科技",
+        "percentage": "25%",
+        "companies": "大疆农业、极飞科技"
+      },
+      {
+        "direction": "公务员/事业单位",
+        "percentage": "20%",
+        "companies": "农业农村部、各地农业局"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "15%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "985品牌：农业顶尖985，认可度高",
+      "竞争较小：相比其他985，竞争压力小",
+      "地理位置：北京，就业机会多"
+    ],
+    "cons": [
+      "学科实力一般：B学科",
+      "农业特色：计算机非主流学科"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gs.cau.edu.cn/",
+      "college": "https://ciee.cau.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10019"
+    }
+  },
+  {
+    "name": "中国海洋大学",
+    "college": "信息科学与工程学部",
+    "region": "山东省青岛市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "海洋科学全国第一，山东本地540分可报",
+      "- 第七梯队985高校",
+      "- 海洋科学全国第一",
+      "- 山东本地540分可报"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "海洋产业",
+        "percentage": "20%",
+        "companies": "海洋科技企业"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "海尔、海信、歌尔"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "20%",
+        "companies": "中科院海洋所等"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "985品牌：海洋特色985，认可度好",
+      "竞争较小：相比其他985，竞争压力小",
+      "环境优美：青岛，海滨城市"
+    ],
+    "cons": [
+      "学科实力一般：B学科，相比A学科弱",
+      "地域局限：山东，相比北上广深机会少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yz.ouc.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10423"
+    }
+  },
+  {
+    "name": "中央民族大学",
+    "college": "信息工程学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "C+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 304,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "333 [312-376]",
+        "avgScore": "335",
+        "quota": 48
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 295,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "331 [302-362]",
+        "avgScore": "335",
+        "quota": 16
+      },
+      {
+        "name": "电子信息",
+        "college": "信息工程学院",
+        "scoreLine": 313,
+        "minScore": "357 [313-412]",
+        "quota": 220,
+        "singleScores": "",
+        "direction": "信息工程学院-电子信息",
+        "note": "2026复试线313分"
+      }
+    ],
+    "scoreLine": 304,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "- 第七梯队985高校",
+      "- 民族类全国第1",
+      "- 竞争压力相对较小",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "公务员/事业单位",
+        "percentage": "30%",
+        "companies": "政府部门、事业单位"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "985品牌：北京985，认可度高",
+      "竞争较小：985中竞争最小的院校之一",
+      "地理位置：北京，就业机会多"
+    ],
+    "cons": [
+      "学科实力较弱：C+学科",
+      "民族特色：计算机非主流学科"
+    ],
+    "targetScore": 319,
+    "links": {
+      "graduate": "https://grs.muc.edu.cn/",
+      "college": "https://ie.muc.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10052"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "兰州大学",
+    "college": "信息科学与工程学院",
+    "region": "甘肃省兰州市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "C+",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第七梯队985高校，复试重视面试表现"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "20%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "甘肃本地科技企业"
+      },
+      {
+        "direction": "公务员/事业单位",
+        "percentage": "25%",
+        "companies": "政府部门、事业单位"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "18-28万",
+    "pros": [
+      "985品牌：西北唯一985，认可度好",
+      "竞争较小：相比其他985，竞争压力小",
+      "性价比高：分数线相对较低"
+    ],
+    "cons": [
+      "学科实力较弱：C+学科",
+      "地域局限：西北，经济相对落后",
+      "就业机会少：本地IT产业不发达"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yz.lzu.edu.cn/",
+      "college": "",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10730"
+    }
+  },
+  {
+    "name": "北京交通大学",
+    "college": "计算机与信息技术学院",
+    "region": "北京市海淀区",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 329,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "357 [329-399]",
+        "avgScore": "待补充",
+        "quota": 47
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 270,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "301 [270-369]",
+        "avgScore": "待补充",
+        "quota": 9
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 297,
+        "minScore": "327 [297-369]",
+        "quota": 13,
+        "singleScores": "",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线297分"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "电子信息学院",
+        "scoreLine": 326,
+        "minScore": "358 [327-398]",
+        "quota": 21,
+        "singleScores": "",
+        "direction": "电子信息学院-人工智能方向",
+        "note": "2026复试线326分"
+      }
+    ],
+    "scoreLine": 329,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度、美团"
+      },
+      {
+        "direction": "轨道交通",
+        "percentage": "20%",
+        "companies": "中车、中铁、北京地铁"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "211品牌：北京强校，认可度高",
+      "地理位置：北京，互联网企业云集",
+      "轨道特色：轨道交通领域就业优势"
+    ],
+    "cons": [
+      "竞争激烈：北京热门211",
+      "生活成本高：北京房价、生活成本高"
+    ],
+    "targetScore": 344,
+    "links": {
+      "graduate": "https://gs.bjtu.edu.cn/",
+      "college": "https://scit.bjtu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10004"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "北京师范大学",
+    "college": "人工智能学院",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流A类",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "教育学、心理学等优势学科院线高于校线"
+    ],
+    "employment": [
+      {
+        "direction": "教育科技",
+        "percentage": "40%",
+        "companies": "好未来、猿辅导、作业帮"
+      },
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯（教育板块）"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、教育研究院"
+      },
+      {
+        "direction": "中小学/高校",
+        "percentage": "10%",
+        "companies": "重点中学、高职院校"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "教育技术强校"
+      }
+    ],
+    "salary": "20-35万",
+    "pros": [
+      "特色鲜明：AI+教育差异化竞争",
+      "竞争相对较小：相比纯CS强校",
+      "就业前景好：教育科技行业快速发展"
+    ],
+    "cons": [
+      "计算机学科实力一般：非传统理工强校",
+      "研究方向较窄：主要聚焦教育领域",
+      "地域局限：北京生活成本高"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gs.bnu.edu.cn/",
+      "college": "https://ai.bnu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10027"
+    }
+  },
+  {
+    "name": "北京科技大学",
+    "college": "计算机与通信工程学院",
+    "region": "北京市海淀区",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 310,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "334 [316-356]",
+        "avgScore": "待补充",
+        "quota": 21
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 330,
+        "minScore": "355 [331-403]",
+        "quota": 57,
+        "singleScores": "35, 53",
+        "direction": "计算机方向",
+        "note": "2026复试线330分"
+      },
+      {
+        "name": "软件方向-非全日制",
+        "college": "数媒学院",
+        "scoreLine": 301,
+        "minScore": "336 [307-390]",
+        "quota": 59,
+        "singleScores": "35, 53",
+        "direction": "数媒学院-软件方向-非全日制",
+        "note": "2026复试线301分"
+      },
+      {
+        "name": "AI工程",
+        "college": "智能科学与技术学院",
+        "scoreLine": 264,
+        "minScore": "353",
+        "quota": 5,
+        "singleScores": "35, 53",
+        "direction": "智能科学与技术学院-AI工程",
+        "note": "2026复试线264分"
+      }
+    ],
+    "scoreLine": 310,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "2026改考408",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "钢铁行业",
+        "percentage": "15%",
+        "companies": "宝武钢铁、首钢"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "15%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "211品牌：北京211，认可度高",
+      "地理位置：北京，就业机会多",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "竞争激烈：北京热门211",
+      "生活成本高：北京房价、生活成本高"
+    ],
+    "targetScore": 325,
+    "links": {
+      "graduate": "https://gs.ustb.edu.cn/",
+      "college": "https://cse.ustb.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10008"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "南京理工大学",
+    "college": "计算机科学与工程学院",
+    "region": "江苏省南京市",
+    "level": "211 / 双一流 / 国防七子",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 330,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "358 [330-398]",
+        "avgScore": "待补充",
+        "quota": 20
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 305,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "347 [309-373]",
+        "avgScore": "待补充",
+        "quota": 16
+      },
+      {
+        "name": "网络空间安全",
+        "college": "网络空间安全学院",
+        "scoreLine": 335,
+        "minScore": "349 [335-367]",
+        "quota": 12,
+        "singleScores": "",
+        "direction": "网络空间安全学院-网络空间安全",
+        "note": "2026复试线335分"
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "智能科学与技术学院",
+        "scoreLine": 270,
+        "minScore": "322 [278-383]",
+        "quota": 37,
+        "singleScores": "",
+        "direction": "智能科学与技术学院-智能科学与技术",
+        "note": "2026复试线270分"
+      }
+    ],
+    "scoreLine": 330,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "国防七子",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "国防军工",
+        "percentage": "25%",
+        "companies": "航天科技、兵器工业、中电科"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "20%",
+        "companies": "华为南京、中兴南京"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "211品牌：国防七子，认可度高",
+      "地理位置：南京，长三角经济中心",
+      "军工特色：军工领域就业优势"
+    ],
+    "cons": [
+      "学科实力一般：B+学科",
+      "竞争激烈：长三角热门211"
+    ],
+    "targetScore": 345,
+    "links": {
+      "graduate": "https://gs.njust.edu.cn/",
+      "college": "https://cse.njust.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10288"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "南京航空航天大学",
+    "college": "计算机科学与技术学院",
+    "region": "江苏省南京市",
+    "level": "211 / 双一流 / 国防七子",
+    "grade": "B+",
+    "difficulty": "A",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 267,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "352 [305-407]",
+        "avgScore": "365",
+        "quota": 8
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 340,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "369 [342-412]",
+        "avgScore": "365",
+        "quota": 22
+      },
+      {
+        "name": "网络空间安全",
+        "college": "",
+        "scoreLine": 333,
+        "minScore": "358 [338-380]",
+        "quota": 22,
+        "singleScores": "",
+        "direction": "网络空间安全",
+        "note": "2026复试线333分"
+      }
+    ],
+    "scoreLine": 340,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "国防七子",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "航空航天",
+        "percentage": "25%",
+        "companies": "航天科技、航空工业、中国商飞"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "20%",
+        "companies": "华为南京、中兴南京"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "211品牌：国防七子，认可度高",
+      "地理位置：南京，长三角经济中心",
+      "航空航天特色：军工领域就业优势"
+    ],
+    "cons": [
+      "学科实力一般：B+学科",
+      "竞争激烈：长三角热门211"
+    ],
+    "targetScore": 355,
+    "links": {
+      "graduate": "https://www.graduate.nuaa.edu.cn/",
+      "college": "https://cs.nuaa.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10287"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "南京邮电大学",
+    "college": "计算机学院",
+    "region": "江苏省南京市",
+    "level": "双非 / 省重点 / 通信强校",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "25%",
+        "companies": "华为、中兴、爱立信"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "华为南京、中兴南京"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "10%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "就业优势：通信和IT行业认可度好",
+      "地理位置：南京，长三角经济中心",
+      "性价比高：双非中就业较好的院校"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "竞争激烈：报考人数逐年增加"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gra.njupt.edu.cn/",
+      "college": "https://cs.njupt.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10293"
+    }
+  },
+  {
+    "name": "厦门大学",
+    "college": "信息学院",
+    "region": "福建省厦门市",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "B",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "第四梯队985高校，地理位置优势明显"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "美图、吉比特、瑞幸"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "20%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "985品牌：海滨名校，认可度高",
+      "环境优美：厦门，气候宜人",
+      "地理位置：经济特区，发展潜力大"
+    ],
+    "cons": [
+      "考试科目不确定：需确认是否11408",
+      "学科实力一般：B学科",
+      "生活成本高：厦门房价较高"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://zs.xmu.edu.cn/",
+      "college": "https://informatics.xmu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10384"
+    }
+  },
+  {
+    "name": "合肥工业大学",
+    "college": "计算机与信息学院",
+    "region": "安徽省合肥市",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 375,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "382 [376-393]",
+        "avgScore": "待补充",
+        "quota": 27
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 358,
+        "minScore": "375 [358-411]",
+        "quota": "54+13专项",
+        "singleScores": "35, 53",
+        "direction": "计算机方向",
+        "note": "2026复试线358分"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 356,
+        "minScore": "375 [356-420]",
+        "quota": "61+5专项",
+        "singleScores": "35, 53",
+        "direction": "人工智能方向",
+        "note": "2026复试线356分"
+      }
+    ],
+    "scoreLine": 337,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "科大讯飞、京东方、蔚来"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "211品牌：安徽强校，认可度高",
+      "地理位置：合肥，科技发展快",
+      "性价比高：相比东部211竞争略小"
+    ],
+    "cons": [
+      "地域局限：中部，相比东部机会略少"
+    ],
+    "targetScore": 352,
+    "links": {
+      "graduate": "https://yjszs.hfut.edu.cn/",
+      "college": "https://cis.hfut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10359"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "吉林大学",
+    "college": "人工智能学院",
+    "region": "吉林省长春市",
+    "level": "985 / 211 / 双一流A类",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408",
+      "东北地区重要985高校"
+    ],
+    "employment": [
+      {
+        "direction": "汽车产业",
+        "percentage": "30%",
+        "companies": "一汽、比亚迪、蔚来"
+      },
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、长春光机所"
+      },
+      {
+        "direction": "其他",
+        "percentage": "10%",
+        "companies": "金融、教育等"
+      }
+    ],
+    "salary": "20-35万",
+    "pros": [
+      "985品牌：东北地区最强高校之一",
+      "性价比高：相比北上广深，竞争相对较小（改考前）",
+      "产业优势：汽车智能化方向突出"
+    ],
+    "cons": [
+      "地理位置：东北，气候寒冷，经济相对落后",
+      "改考影响：2026改考408，竞争将加剧",
+      "知名度下降：相比巅峰期有所下滑"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yzb.jlu.edu.cn/",
+      "college": "https://ai.jlu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10183"
+    }
+  },
+  {
+    "name": "哈尔滨工程大学",
+    "college": "计算机科学与技术学院",
+    "region": "黑龙江省哈尔滨市",
+    "level": "211 / 双一流 / 国防七子",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 290,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "343 [303-398]",
+        "avgScore": "待补充",
+        "quota": "32+2专项"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 275,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "320 [277-336]",
+        "avgScore": "待补充",
+        "quota": 6
+      },
+      {
+        "name": "网络安全技术与工程",
+        "college": "",
+        "scoreLine": 270,
+        "minScore": "311 [272-352]",
+        "quota": 9,
+        "singleScores": "",
+        "direction": "网络安全技术与工程",
+        "note": "2026复试线270分"
+      },
+      {
+        "name": "全日制",
+        "college": "",
+        "scoreLine": 295,
+        "minScore": "342 [301-394]",
+        "quota": 42,
+        "singleScores": "",
+        "direction": "电子信息-全日制",
+        "note": "2026复试线295分"
+      }
+    ],
+    "scoreLine": 290,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "国防七子",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "船舶军工",
+        "percentage": "25%",
+        "companies": "中船重工、中船工业"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "20%",
+        "companies": "华为哈尔滨、中兴哈尔滨"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "15%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "211品牌：国防七子，认可度高",
+      "军工特色：船舶领域就业优势",
+      "性价比高：相比东部211竞争略小"
+    ],
+    "cons": [
+      "地域局限：东北，经济相对落后",
+      "气候寒冷：冬季较长"
+    ],
+    "targetScore": 305,
+    "links": {
+      "graduate": "https://yjsy.hrbeu.edu.cn/",
+      "college": "https://cs.hrbeu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10217"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "国防科技大学",
+    "college": "计算机学院/电子对抗学院/系统工程学院",
+    "region": "湖南省长沙市",
+    "level": "985 / 211 / 双一流A类 / 军校",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 355,
+        "politics": 50,
+        "english": 45,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "371",
+        "avgScore": "390",
+        "quota": 13
+      },
+      {
+        "code": "085404",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 325,
+        "politics": 50,
+        "english": 45,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "338",
+        "avgScore": "355",
+        "quota": 16
+      }
+    ],
+    "scoreLine": 325,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408",
+      "军校中唯一985，有“军中清华”之称",
+      "- 第二档中上985高校",
+      "- 具有鲜明军事特色的双一流高校",
+      "- 航空航天、军工、电气、计算机等王牌专业就业优势明显",
+      "985高校",
+      "计算机A+",
+      "军校背景",
+      "地方生招生"
+    ],
+    "employment": [
+      {
+        "direction": "军队系统",
+        "percentage": "40%",
+        "companies": "各军区、军委机关"
+      },
+      {
+        "direction": "国防军工",
+        "percentage": "30%",
+        "companies": "航天科技、航天科工、中电科"
+      },
+      {
+        "direction": "互联网大厂",
+        "percentage": "15%",
+        "companies": "字节、阿里、腾讯、华为"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "10%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校（受限）"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "学科实力：A+学科，全国顶尖",
+      "改考机遇：2026改考408，可能有抄底机会",
+      "军队待遇：毕业后包分配，待遇优厚"
+    ],
+    "cons": [
+      "军校限制：需要通过政审、体检",
+      "自由度低：毕业后需服从分配",
+      "改考影响：2026改考408，竞争将加剧"
+    ],
+    "targetScore": 335,
+    "links": {
+      "graduate": "https://yjsc.nudt.edu.cn/",
+      "college": "https://nudt.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=91002"
+    },
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "杭州电子科技大学",
+    "college": "计算机学院",
+    "region": "浙江省杭州市",
+    "level": "双非 / 省重点 / IT强校",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "阿里、网易、字节、腾讯"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "海康威视、大华、新华三"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "10%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "就业优势：浙江IT行业认可度极高，阿里目标校",
+      "地理位置：杭州，互联网之都",
+      "性价比高：双非中就业最好的院校之一"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "竞争激烈：报考人数逐年增加",
+      "学科实力：B+学科，相比A学科略弱"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://grs.hdu.edu.cn/",
+      "college": "https://cs.hdu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10336"
+    }
+  },
+  {
+    "name": "武汉理工大学",
+    "college": "计算机与人工智能学院",
+    "region": "湖北省武汉市",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 334,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "370 [344-395]",
+        "avgScore": "待补充",
+        "quota": 17
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 343,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "376 [351-402]",
+        "avgScore": "待补充",
+        "quota": 23
+      },
+      {
+        "name": "计算机制算方向",
+        "college": "",
+        "scoreLine": 348,
+        "minScore": "45",
+        "quota": "68+1专项",
+        "singleScores": "50, 45, 85",
+        "direction": "计算机制算方向",
+        "note": "2026复试线348分"
+      }
+    ],
+    "scoreLine": 334,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "华为武汉、小米武汉"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "交通行业",
+        "percentage": "20%",
+        "companies": "中车、中铁、中建"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "211品牌：中部强校，认可度高",
+      "地理位置：武汉，高校云集，生活成本低",
+      "性价比高：相比东部211竞争略小"
+    ],
+    "cons": [
+      "学科实力一般：B+学科",
+      "地域局限：中部，相比东部机会略少"
+    ],
+    "targetScore": 349,
+    "links": {
+      "graduate": "https://gd.whut.edu.cn/",
+      "college": "https://cs.whut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10497"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "河海大学",
+    "college": "计算机与信息学院",
+    "region": "江苏省南京市",
+    "level": "211 / 双一流",
+    "grade": "B",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "水利行业",
+        "percentage": "25%",
+        "companies": "水利部、南水北调、三峡集团"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "华为南京、中兴南京"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "211品牌：水利强校，认可度高",
+      "地理位置：南京，长三角经济中心",
+      "性价比高：相比其他211竞争略小"
+    ],
+    "cons": [
+      "学科实力一般：B学科",
+      "水利特色：计算机非主流学科"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gs.hhu.edu.cn/",
+      "college": "https://cs.hhu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10294"
+    }
+  },
+  {
+    "name": "电子科技大学",
+    "college": "计算机科学与工程学院/信息与软件工程学院",
+    "region": "四川省成都市",
+    "level": "985 / 211 / 双一流A类",
+    "difficulty": "C",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 340,
+        "politics": 50,
+        "english": 90,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "370 [344-410]",
+        "avgScore": "375",
+        "quota": "114+10强军"
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 355,
+        "politics": 50,
+        "english": 90,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "366",
+        "avgScore": "375",
+        "quota": 126
+      },
+      {
+        "name": "网络空间安全",
+        "college": "",
+        "scoreLine": 320,
+        "minScore": "358 [326-412]",
+        "quota": 19,
+        "singleScores": "50, 90",
+        "direction": "网络空间安全",
+        "note": "2026复试线320分"
+      },
+      {
+        "name": "软件工程",
+        "college": "信息与软件工程学院",
+        "scoreLine": 325,
+        "minScore": "359 [326-395]",
+        "quota": 55,
+        "singleScores": "50, 75",
+        "direction": "信息与软件工程学院-软件工程",
+        "note": "2026复试线325分"
+      },
+      {
+        "name": "计算机方向-全日制",
+        "college": "",
+        "scoreLine": 335,
+        "minScore": "369 [336-430]",
+        "quota": 201,
+        "singleScores": "50, 75",
+        "direction": "深圳高等研究院-计算机方向-全日制",
+        "note": "2026复试线335分"
+      }
+    ],
+    "scoreLine": 340,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "两电一邮",
+      "2026改考408",
+      "985高校",
+      "计算机A-",
+      "深圳高等研究院",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "25%",
+        "companies": "华为、中兴、小米"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研院所",
+        "percentage": "15%",
+        "companies": "中科院、各大研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "学科实力：A学科，全国前列",
+      "IT行业认可：两电一邮，就业极好",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "改考影响：2026改考408，竞争将加剧",
+      "地域局限：西南地区，相比东部机会略少"
+    ],
+    "targetScore": 355,
+    "links": {
+      "graduate": "https://yz.uestc.edu.cn/",
+      "college": "https://www.scse.uestc.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10614"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "福州大学",
+    "college": "计算机与大数据学院",
+    "region": "福建省福州市",
+    "level": "211 / 双一流",
+    "grade": "B",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 318,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "349 [318-399]",
+        "avgScore": "待补充",
+        "quota": "36"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 315,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "339 [315-396]",
+        "avgScore": "待补充",
+        "quota": 11
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 376,
+        "minScore": "390 [377-417]",
+        "quota": "103+1",
+        "singleScores": "",
+        "direction": "计算机方向",
+        "note": "2026复试线376分"
+      },
+      {
+        "name": "软件方向",
+        "college": "",
+        "scoreLine": 359,
+        "minScore": "377 [359-416]",
+        "quota": 34,
+        "singleScores": "",
+        "direction": "软件方向",
+        "note": "2026复试线359分"
+      }
+    ],
+    "scoreLine": 318,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "35%",
+        "companies": "新大陆、网龙、瑞芯微"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "211品牌：福建强校，认可度高",
+      "地理位置：福州，东南沿海",
+      "性价比高：相比东部211竞争略小"
+    ],
+    "cons": [
+      "学科实力一般：B学科",
+      "地域局限：福建，相比北上广机会少"
+    ],
+    "targetScore": 333,
+    "links": {
+      "graduate": "https://yjsy.fzu.edu.cn/",
+      "college": "https://cs.fzu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10386"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "苏州大学",
+    "college": "计算机科学与技术学院",
+    "region": "江苏省苏州市",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 265,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "332+265",
+        "avgScore": "待补充",
+        "quota": 2
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 326,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "351 [328-384]",
+        "avgScore": "待补充",
+        "quota": 12
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 340,
+        "minScore": "378 [340-423]",
+        "quota": 12,
+        "singleScores": "",
+        "direction": "电子信息-计算机方向",
+        "note": "2026复试线340分"
+      },
+      {
+        "name": "软件方向",
+        "college": "",
+        "scoreLine": 346,
+        "minScore": "379 [354-411]",
+        "quota": 12,
+        "singleScores": "",
+        "direction": "电子信息-软件方向",
+        "note": "2026复试线346分"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 326,
+        "minScore": "356 [326-396]",
+        "quota": 27,
+        "singleScores": "",
+        "direction": "电子信息-人工智能方向",
+        "note": "2026复试线326分"
+      },
+      {
+        "name": "大数据方向",
+        "college": "",
+        "scoreLine": 352,
+        "minScore": "360 [352-369]",
+        "quota": 7,
+        "singleScores": "",
+        "direction": "电子信息-大数据方向",
+        "note": "2026复试线352分"
+      },
+      {
+        "name": "网安方向",
+        "college": "",
+        "scoreLine": 358,
+        "minScore": "390 [359-407]",
+        "quota": 6,
+        "singleScores": "",
+        "direction": "电子信息-网安方向",
+        "note": "2026复试线358分"
+      },
+      {
+        "name": "电子信息-人工智能方向",
+        "college": "未来科学与工程学院",
+        "scoreLine": 340,
+        "minScore": "371 [340-420]",
+        "quota": 29,
+        "singleScores": "",
+        "direction": "未来科学与工程学院-电子信息-人工智能方向",
+        "note": "2026复试线340分"
+      }
+    ],
+    "scoreLine": 341,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "外企",
+        "percentage": "25%",
+        "companies": "微软、IBM、思科"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "20%",
+        "companies": "华为苏州、中兴苏州"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "211品牌：长三角强校，认可度高",
+      "地理位置：苏州，外企云集，环境好",
+      "发展迅速：经费充足，师资强"
+    ],
+    "cons": [
+      "竞争激烈：报考人数逐年增加",
+      "生活成本高：苏州房价较高"
+    ],
+    "targetScore": 356,
+    "links": {
+      "graduate": "https://yjs.suda.edu.cn/",
+      "college": "https://cs.suda.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10285"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "西北农林科技大学",
+    "college": "信息工程学院",
+    "region": "陕西省杨凌示范区",
+    "level": "985 / 211 / 双一流A类",
+    "grade": "C+",
+    "difficulty": "C",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 240,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "305",
+        "avgScore": "325",
+        "quota": null
+      }
+    ],
+    "scoreLine": 240,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408",
+      "- 985守门员，计算机相关学科被低估",
+      "- 复试公平，对双非考生友好",
+      "- 全国排名第50位，农林类特色985",
+      "- 第七梯队985高校",
+      "- 农林类全国顶尖，葡萄酒专业亚洲第一",
+      "- 招生体量超大，一志愿生源不足，调剂机会多"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "20%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "农业科技",
+        "percentage": "25%",
+        "companies": "大疆农业、极飞科技"
+      },
+      {
+        "direction": "公务员/事业单位",
+        "percentage": "30%",
+        "companies": "政府部门、事业单位"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "15%",
+        "companies": "陕西本地IT企业"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "18-28万",
+    "pros": [
+      "985品牌：农林985，认可度好",
+      "竞争较小：985中竞争最小的院校之一",
+      "性价比高：分数线低，容易上岸"
+    ],
+    "cons": [
+      "学科实力较弱：C+学科",
+      "地理位置：杨凌，小城市，就业机会少",
+      "农林特色：计算机非主流学科"
+    ],
+    "targetScore": 250,
+    "links": {
+      "graduate": "https://gs.nwsuaf.edu.cn/",
+      "college": "https://ie.nwsuaf.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10712"
+    }
+  },
+  {
+    "name": "西南交通大学",
+    "college": "计算机与人工智能学院",
+    "region": "四川省成都市",
+    "level": "211 / 双一流",
+    "grade": "B+",
+    "difficulty": "A-",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 320,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "352 [323-405]",
+        "avgScore": "待补充",
+        "quota": "50+1"
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "name": "智能科学与技术",
+        "college": "",
+        "scoreLine": 300,
+        "minScore": "341 [303-369]",
+        "quota": "21+1",
+        "singleScores": "35, 53",
+        "direction": "智能科学与技术",
+        "note": "2026复试线300分"
+      },
+      {
+        "name": "网络空间安全",
+        "college": "信息科学与技术学院",
+        "scoreLine": 330,
+        "minScore": "365 [333-398]",
+        "quota": 3,
+        "singleScores": "35, 53",
+        "direction": "信息科学与技术学院-网络空间安全",
+        "note": "2026复试线330分"
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 330,
+        "minScore": "369 [338-412]",
+        "quota": 68,
+        "singleScores": "35, 53",
+        "direction": "唐山研究院-计算机方向",
+        "note": "2026复试线330分"
+      }
+    ],
+    "scoreLine": 320,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [
+      "2026数据已更新",
+      "数据来源:灰灰考研"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "轨道交通",
+        "percentage": "25%",
+        "companies": "中车、中铁、成都地铁"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "20%",
+        "companies": "华为成都、腾讯成都"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "22-35万",
+    "pros": [
+      "211品牌：西南强校，认可度高",
+      "地理位置：成都，生活舒适，美食之都",
+      "轨道特色：轨道交通领域就业优势"
+    ],
+    "cons": [
+      "学科实力一般：B+学科",
+      "地域局限：西南，相比东部机会略少"
+    ],
+    "targetScore": 335,
+    "links": {
+      "graduate": "https://gs.swjtu.edu.cn/",
+      "college": "https://sci.swjtu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10613"
+    },
+    "note": "灰灰考研统计（2026年5月13日）"
+  },
+  {
+    "name": "上海科技大学",
+    "college": "信息科学与技术学院",
+    "region": "上海市浦东新区",
+    "level": "双非 / 新型研究型大学 / 小而精",
+    "grade": "B+",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "30%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "外企",
+        "percentage": "25%",
+        "companies": "微软、IBM、思科"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "20%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "科研机构",
+        "percentage": "15%",
+        "companies": "中科院、高校"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "小而精：师生比高，资源充足",
+      "国际化：全英文教学，海外交流多",
+      "上海地理：国际化大都市，机会多"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "规模小：校友网络相对较弱"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yanzhao.shanghaitech.edu.cn/",
+      "college": "https://sist.shanghaitech.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=14430"
+    }
+  },
+  {
+    "name": "广东工业大学",
+    "college": "计算机学院",
+    "region": "广东省广州市",
+    "level": "双非 / 省重点 / 工科强校",
+    "grade": "B+",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "35%",
+        "companies": "华为广州、网易广州、微信"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "就业优势：珠三角IT行业认可度高",
+      "地理位置：广州，珠三角经济中心",
+      "性价比高：双非中就业较好的院校"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "竞争激烈：报考人数逐年增加"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yzw.gdut.edu.cn/",
+      "college": "https://cs.gdut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=11845"
+    }
+  },
+  {
+    "name": "江苏大学",
+    "college": "计算机科学与通信工程学院",
+    "region": "江苏省镇江市",
+    "level": "双非 / 省重点 / 综合强校",
+    "grade": "B",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "华为南京、中兴南京"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "15%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "综合强校：江苏省属实力较强",
+      "地理位置：长三角，靠近南京",
+      "性价比高：双非中竞争相对较小"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "地域局限：镇江，相比一线城市机会少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yz.ujs.edu.cn/",
+      "college": "https://cs.ujs.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10299"
+    }
+  },
+  {
+    "name": "浙江工业大学",
+    "college": "计算机科学与技术学院",
+    "region": "浙江省杭州市",
+    "level": "双非 / 省重点 / IT强校",
+    "grade": "B+",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": true,
+    "hasAI": false,
+    "tags": [
+      "2026改考408"
+    ],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "35%",
+        "companies": "阿里、网易、字节、腾讯"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "35%",
+        "companies": "海康威视、大华、新华三"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "25-38万",
+    "pros": [
+      "就业优势：浙江IT行业认可度高",
+      "地理位置：杭州，互联网之都",
+      "改考机遇：2026改考408，可能有抄底机会"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "竞争激烈：报考人数逐年增加"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://www.yz.zjut.edu.cn/",
+      "college": "https://cs.zjut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10337"
+    }
+  },
+  {
+    "name": "深圳大学",
+    "college": "计算机与软件学院",
+    "region": "广东省深圳市",
+    "level": "双非 / 省重点 / 特区高校",
+    "grade": "B+",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "40%",
+        "companies": "腾讯、字节、阿里、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "华为、中兴、大疆"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "10%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "5%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "28-42万",
+    "pros": [
+      "就业优势：深圳IT行业认可度高，腾讯目标校",
+      "地理位置：深圳，科技创新中心",
+      "发展迅速：深圳市全力支持，资源充足"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "生活成本高：深圳房价全国第一",
+      "竞争激烈：报考人数逐年增加"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yz.szu.edu.cn/",
+      "college": "https://csse.szu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10590"
+    }
+  },
+  {
+    "name": "燕山大学",
+    "college": "信息科学与工程学院",
+    "region": "河北省秦皇岛市",
+    "level": "双非 / 省重点 / 老牌强校",
+    "grade": "B",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085405",
+        "name": "软件工程",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "30%",
+        "companies": "华为秦皇岛、中兴秦皇岛"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "15%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "金融机构",
+        "percentage": "15%",
+        "companies": "银行、证券、基金"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "15%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "老牌强校：源于哈工大，底蕴深厚",
+      "性价比高：双非中竞争相对较小",
+      "环境优美：秦皇岛，海滨城市"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "地域局限：秦皇岛，相比一线城市机会少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://gs.ysu.edu.cn/",
+      "college": "https://ise.ysu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10216"
+    }
+  },
+  {
+    "name": "重庆邮电大学",
+    "college": "计算机科学与技术学院",
+    "region": "重庆市南岸区",
+    "level": "双非 / 省重点 / 通信强校",
+    "grade": "B",
+    "difficulty": "B+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 55,
+        "english": 60,
+        "course1": 90,
+        "course2": 90,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [
+      {
+        "direction": "互联网大厂",
+        "percentage": "25%",
+        "companies": "字节、阿里、腾讯、百度"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "30%",
+        "companies": "华为、中兴、爱立信"
+      },
+      {
+        "direction": "本地企业",
+        "percentage": "25%",
+        "companies": "长安汽车、重庆本地IT企业"
+      },
+      {
+        "direction": "AI企业",
+        "percentage": "10%",
+        "companies": "商汤、旷视、科大讯飞"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "海外名校"
+      }
+    ],
+    "salary": "20-32万",
+    "pros": [
+      "性价比高：分数线相对较低，竞争适中",
+      "就业优势：通信和IT行业认可度好",
+      "生活成本低：重庆房价、生活成本较低"
+    ],
+    "cons": [
+      "学历限制：双非，部分国企/公务员可能受限",
+      "学科实力一般：B学科",
+      "地域局限：西南，相比东部机会略少"
+    ],
+    "targetScore": 0,
+    "links": {
+      "graduate": "https://yjs.cqupt.edu.cn/",
+      "college": "https://cst.cqupt.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10617"
+    }
+  },
+  {
+    "name": "北京大学信息工程学院",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 347,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "370",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 347,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 357,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "北京大学计算机学院",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "S+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 340,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "350",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 340,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 350,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "北京工业大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "A+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 365,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 97
+      }
+    ],
+    "scoreLine": 365,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 375,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "南京师范大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "C",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 48,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 1
+      }
+    ],
+    "scoreLine": 48,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 58,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "大连海事大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "C",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 63,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 26
+      }
+    ],
+    "scoreLine": 63,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 73,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "上海大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "331",
+        "avgScore": "354",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 0,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "华东理工大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "A+",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 378,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 378,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 388,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  },
+  {
+    "name": "中南财经政法大学",
+    "college": "待补充",
+    "region": "待补充",
+    "level": "985 / 211",
+    "difficulty": "B",
+    "majors": [
+      {
+        "code": "081200",
+        "name": "计算机科学与技术",
+        "type": "学术型硕士",
+        "scoreLine": 0,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      }
+    ],
+    "scoreLine": 0,
+    "scoreHistory": [],
+    "is408Change": false,
+    "hasAI": false,
+    "tags": [],
+    "employment": [],
+    "salary": "待补充",
+    "pros": [],
+    "cons": [],
+    "targetScore": 0,
+    "links": {
+      "graduate": "",
+      "college": "",
+      "yz": ""
+    }
+  }
+]

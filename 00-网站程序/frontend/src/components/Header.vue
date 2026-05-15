@@ -137,7 +137,7 @@ const menuItems = computed(() => [
   border-radius: 12px;
   text-decoration: none;
   color: #666;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: normal;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
@@ -207,7 +207,7 @@ const menuItems = computed(() => [
 
 .streak {
   color: #FF6B6B;
-  font-weight: 600;
+  font-weight: normal;
 }
 
 .user-dropdown {
@@ -325,7 +325,7 @@ const menuItems = computed(() => [
   
   .nav-item {
     font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
     padding: 8px 14px;
     gap: 6px;

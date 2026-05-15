@@ -2,12 +2,13 @@
 import { ref, defineAsyncComponent } from 'vue'
 // 使用动态导入解决TypeScript默认导出识别问题
 const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
-const VocabularySystem = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
-const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
+const VocabularySystem = defineAsyncComponent(() => import('@/components/VocabularyLearning.vue'))
 const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/EnglishStudyPlan.vue'))
 const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/GrammarLearningCenter.vue'))
+const TranslationLearning = defineAsyncComponent(() => import('@/components/TranslationLearning.vue'))
+const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 
-const activeTab = ref('knowledge')
+const activeTab = ref('vocabulary')
 </script>
 
 <template>
@@ -19,10 +20,6 @@ const activeTab = ref('knowledge')
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="english-tabs">
-        <el-tab-pane label="知识点梳理" name="knowledge">
-          <KnowledgeStructure subject="english" />
-        </el-tab-pane>
-        
         <el-tab-pane label="真题阅读" name="reading">
           <ReadingPractice />
         </el-tab-pane>
@@ -32,101 +29,11 @@ const activeTab = ref('knowledge')
         </el-tab-pane>
         
         <el-tab-pane label="写作训练" name="writing">
-          <div class="writing-content">
-            <div class="writing-illustration">
-              <el-icon size="80" color="#9C27B0"><EditPen /></el-icon>
-            </div>
-            <h3>✍️ 写作训练系统</h3>
-            <p>提升英语写作能力和表达技巧</p>
-            
-            <div class="writing-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#FF6B6B"><Document /></el-icon>
-                <div>
-                  <h4>真题写作练习</h4>
-                  <p>历年真题写作题目和范文参考</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><DataAnalysis /></el-icon>
-                <div>
-                  <h4>智能评分系统</h4>
-                  <p>AI辅助写作评分和改进建议</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#2196F3"><Lightning /></el-icon>
-                <div>
-                  <h4>模板句型库</h4>
-                  <p>常用写作模板和高分句型积累</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#FF9800"><Collection /></el-icon>
-                <div>
-                  <h4>范文赏析</h4>
-                  <p>优秀范文学习和模仿练习</p>
-                </div>
-              </div>
-            </div>
-            
-            <el-button type="primary" size="large" @click="activeTab = 'knowledge'">
-              <el-icon><Collection /></el-icon>
-              前往知识点梳理
-            </el-button>
-          </div>
+          <WritingLearning />
         </el-tab-pane>
         
         <el-tab-pane label="翻译练习" name="translation">
-          <div class="translation-content">
-            <div class="translation-illustration">
-              <el-icon size="80" color="#FF9800"><Position /></el-icon>
-            </div>
-            <h3>🌐 翻译练习系统</h3>
-            <p>提升英汉互译能力和语言转换技巧</p>
-            
-            <div class="translation-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#FF6B6B"><Refresh /></el-icon>
-                <div>
-                  <h4>双向翻译训练</h4>
-                  <p>英译汉和汉译英双向练习</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><MagicStick /></el-icon>
-                <div>
-                  <h4>翻译技巧指导</h4>
-                  <p>专业翻译方法和技巧讲解</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#2196F3"><DataLine /></el-icon>
-                <div>
-                  <h4>评分反馈系统</h4>
-                  <p>翻译质量评估和改进建议</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#9C27B0"><Star /></el-icon>
-                <div>
-                  <h4>经典译文欣赏</h4>
-                  <p>名家译文学习和借鉴</p>
-                </div>
-              </div>
-            </div>
-            
-            <el-button type="primary" size="large" @click="activeTab = 'knowledge'">
-              <el-icon><Collection /></el-icon>
-              前往知识点梳理
-            </el-button>
-          </div>
+          <TranslationLearning />
         </el-tab-pane>
         
         <el-tab-pane label="学习计划" name="studyPlan">

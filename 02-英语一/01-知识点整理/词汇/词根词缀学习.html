@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>词根词缀学习 - 英语六级学习系统</title>
+    <meta name="description" content="英语词根词缀学习工具">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'FZCuHei';
+            src: url('./public/fonts/FZCuHei.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            font-family: 'FZCuHei', sans-serif;
+            font-weight: normal;
+            background: linear-gradient(to bottom right, #eff6ff, #c7d2fe);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <header class="bg-white shadow-sm sticky top-0 z-10">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="text-xl text-indigo-600">CET-6 词根词缀学习</div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors">首页</a></li>
+                        <li><a href="writing-guide.html" class="text-gray-600 hover:text-indigo-600 transition-colors">写作指导</a></li>
+                        <li><a href="template-practice.html" class="text-gray-600 hover:text-indigo-600 transition-colors">模板背诵</a></li>
+                        <li><a href="notes.html" class="text-gray-600 hover:text-indigo-600 transition-colors">笔记整理</a></li>
+                        <li><a href="roots.html" class="text-indigo-600">词根词缀</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl text-gray-800 mb-3">词根词缀学习</h1>
+                <p class="text-gray-600 text-lg">掌握词根词缀，轻松记忆更多单词</p>
+            </div>
+            
+            <!-- 搜索框 -->
+            <div class="bg-white rounded-2xl shadow-lg mb-8 transition-all duration-300 hover:shadow-xl">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1 max-w-md">
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    class="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                    placeholder="搜索词根词缀..."
+                                    id="search-input"
+                                    oninput="handleSearch(event)"
+                                />
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 词根词缀列表 -->
+            <div class="space-y-8" id="roots-container">
+                <!-- 动态生成内容 -->
+            </div>
+        </main>
+
+        <!-- 词根详情模态框 -->
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 id="modal-root" class="text-2xl text-gray-800"></h3>
+                            <p id="modal-meaning" class="text-gray-600 mt-1"></p>
+                        </div>
+                        <button 
+                            id="close-modal"
+                            class="text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="text-lg text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                            相关考研词汇
+                        </h4>
+                        
+                        <div id="modal-vocab-list" class="space-y-4">
+                            <!-- 动态生成内容 -->
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-end">
+                        <button
+                            id="close-modal-button"
+                            class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                        >
+                            关闭
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-gray-800 text-white py-6 mt-12">
+            <div class="container mx-auto px-4">
+                <div class="text-center text-sm">
+                    <p>CET-6 词根词缀学习系统 &copy; 2025</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 词根数据
+        const rootsData = [
+          // A
+          { letter: 'A', items: [
+            { id: 1, root: 'apt', meaning: '合适的' },
+            { id: 2, root: 'arch', meaning: '统治者，主要的' },
+            { id: 3, root: 'aug', meaning: '增长' }
+          ]},
+          
+          // B
+          { letter: 'B', items: [
+            { id: 4, root: 'bare', meaning: '贫瘠的' },
+            { id: 5, root: 'bene', meaning: '好的' },
+            { id: 6, root: 'bi', meaning: '二' },
+            { id: 7, root: 'bide', meaning: '停留' },
+            { id: 8, root: 'bul', meaning: '球' }
+          ]},
+          
+          // C
+          { letter: 'C', items: [
+            { id: 9, root: 'can', meaning: '管子' },
+            { id: 10, root: 'card', meaning: '心' },
+            { id: 11, root: 'ced', meaning: 'to do' },
+            { id: 12, root: 'cern', meaning: '区分' },
+            { id: 13, root: 'cert', meaning: '确定的，确信的' },
+            { id: 14, root: 'cept', meaning: '拿取' },
+            { id: 15, root: 'cens', meaning: '评定' },
+            { id: 16, root: 'cess', meaning: '走' },
+            { id: 17, root: 'cip', meaning: '拿取' },
+            { id: 18, root: 'cis', meaning: '砍，杀' },
+            { id: 19, root: 'cit', meaning: '叫喊' },
+            { id: 20, root: 'clam', meaning: '黏住' },
+            { id: 21, root: 'corp', meaning: '身体，主体' },
+            { id: 22, root: 'counter', meaning: '相反的' },
+            { id: 23, root: 'cre', meaning: '区分' },
+            { id: 24, root: 'crit', meaning: '判断，评论' },
+            { id: 25, root: 'cumb', meaning: '倾斜，躺' },
+            { id: 26, root: 'curs', meaning: '跑' },
+            { id: 27, root: 'cyn', meaning: '狗' }
+          ]},
+          
+          // D
+          { letter: 'D', items: [
+            { id: 28, root: 'dem', meaning: '人们' },
+            { id: 29, root: 'div', meaning: '上帝' },
+            { id: 30, root: 'dign', meaning: '值得尊敬的' },
+            { id: 31, root: 'doc', meaning: '教' },
+            { id: 32, root: 'dol', meaning: '感到悲痛' },
+            { id: 33, root: 'dors', meaning: '后背' }
+          ]},
+          
+          // E
+          { letter: 'E', items: [
+            { id: 34, root: 'empt', meaning: '拿取' }
+          ]},
+          
+          // F
+          { letter: 'F', items: [
+            { id: 35, root: 'fect', meaning: '去做' },
+            { id: 36, root: 'feit', meaning: '做' },
+            { id: 37, root: 'fess', meaning: '说话' },
+            { id: 38, root: 'fid', meaning: '信任' },
+            { id: 39, root: 'fix', meaning: '固定' },
+            { id: 40, root: 'fring', meaning: '打碎' },
+            { id: 41, root: 'fug', meaning: '逃跑' },
+            { id: 42, root: 'fut fus', meaning: '流动' }
+          ]},
+          
+          // G
+          { letter: 'G', items: [
+            { id: 43, root: 'greg', meaning: '人群' },
+            { id: 44, root: 'grip', meaning: '抓' }
+          ]},
+          
+          // H
+          { letter: 'H', items: [
+            { id: 45, root: 'heav', meaning: '举起' },
+            { id: 46, root: 'her', meaning: '粘，黏' },
+            { id: 47, root: 'hier', meaning: '神圣的' },
+            { id: 48, root: 'hum', meaning: '泥土' },
+            { id: 49, root: 'hypo', meaning: '在…之下' }
+          ]},
+          
+          // I
+          { letter: 'I', items: [
+            { id: 50, root: 'insul', meaning: '单一的' }
+          ]},
+          
+          // J
+          { letter: 'J', items: [
+            { id: 51, root: 'jac ject', meaning: '扔' },
+            { id: 52, root: 'jur', meaning: '发誓，法律' }
+          ]},
+          
+          // L
+          { letter: 'L', items: [
+            { id: 53, root: 'laps', meaning: '掉落' },
+            { id: 54, root: 'later', meaning: '边' },
+            { id: 55, root: 'lav', meaning: '洗，冲' },
+            { id: 56, root: 'lect', meaning: '读' },
+            { id: 57, root: 'len', meaning: '软的' },
+            { id: 58, root: 'lev', meaning: '提起，轻' },
+            { id: 59, root: 'lic', meaning: '允许' },
+            { id: 60, root: 'lu', meaning: '冲，洗' },
+            { id: 61, root: 'lubr', meaning: '滑的' },
+            { id: 62, root: 'lucr', meaning: '钱' },
+            { id: 63, root: 'lud', meaning: '玩，笑' },
+            { id: 64, root: 'ly', meaning: '结合，捆绑' }
+          ]},
+          
+          // M
+          { letter: 'M', items: [
+            { id: 65, root: 'mal', meaning: '坏，不良' },
+            { id: 66, root: 'man', meaning: '手' },
+            { id: 67, root: 'mand', meaning: '命令' },
+            { id: 68, root: 'mar', meaning: '战争' },
+            { id: 69, root: 'mea', meaning: '通过' },
+            { id: 70, root: 'mel', meaning: '甜的' },
+            { id: 71, root: 'mend', meaning: '错误' },
+            { id: 72, root: 'mens', meaning: '测量' },
+            { id: 73, root: 'meta', meaning: '改变，超越' },
+            { id: 74, root: 'migr', meaning: '移民' },
+            { id: 75, root: 'ming', meaning: '混合' },
+            { id: 76, root: 'mis', meaning: '发送' },
+            { id: 77, root: 'mod', meaning: '方式，尺度' },
+            { id: 78, root: 'mono', meaning: '一个' },
+            { id: 79, root: 'mpt', meaning: '拿取' }
+          ]},
+          
+          // N
+          { letter: 'N', items: [
+            { id: 80, root: 'nex', meaning: '捆绑' },
+            { id: 81, root: 'nic', meaning: '伤害' }
+          ]},
+          
+          // O
+          { letter: 'O', items: [
+            { id: 82, root: 'off', meaning: '脱离' },
+            { id: 83, root: 'onym', meaning: '名字' },
+            { id: 84, root: 'orn', meaning: '装饰' }
+          ]},
+          
+          // P
+          { letter: 'P', items: [
+            { id: 85, root: 'pact', meaning: '紧的' },
+            { id: 86, root: 'pall', meaning: '苍白的' },
+            { id: 87, root: 'pan', meaning: '全部的' },
+            { id: 88, root: 'par', meaning: '安排' },
+            { id: 89, root: 'para', meaning: '超越，靠近' },
+            { id: 90, root: 'parl', meaning: '谈话' },
+            { id: 91, root: 'part', meaning: '分开' },
+            { id: 92, root: 'pat', meaning: '感受，受折磨' },
+            { id: 93, root: 'patr', meaning: '爸爸，祖国' },
+            { id: 94, root: 'pir', meaning: '尝试，冒险' },
+            { id: 95, root: 'plex', meaning: '折叠' },
+            { id: 96, root: 'pli', meaning: '填满' },
+            { id: 97, root: 'plo', meaning: '折叠' },
+            { id: 98, root: 'plor', meaning: '大声呼喊' },
+            { id: 99, root: 'plu', meaning: '更多的' },
+            { id: 100, root: 'pos, pon', meaning: '放置' },
+            { id: 101, root: 'pot', meaning: '权利，力量' },
+            { id: 102, root: 'pris', meaning: '抓取' },
+            { id: 103, root: 'proof', meaning: '防…的' },
+            { id: 104, root: 'proto', meaning: '原始的' }
+          ]},
+          
+          // R
+          { letter: 'R', items: [
+            { id: 105, root: 'rama', meaning: '视野' },
+            { id: 106, root: 'ras', meaning: '摩擦' },
+            { id: 107, root: 'rat', meaning: '估计，估算' },
+            { id: 108, root: 'reck', meaning: '注意 留心' },
+            { id: 109, root: 'reg', meaning: '统治，控制' },
+            { id: 110, root: 'rid', meaning: '笑' },
+            { id: 111, root: 'robe', meaning: '衣服' },
+            { id: 112, root: 'rod', meaning: '咬' },
+            { id: 113, root: 'rog', meaning: '问，要' }
+          ]},
+          
+          // S
+          { letter: 'S', items: [
+            { id: 114, root: 'salv', meaning: '安全' },
+            { id: 115, root: 'san', meaning: '健康' },
+            { id: 116, root: 'scal', meaning: '梯子' },
+            { id: 117, root: 'scen', meaning: '地点，场面' },
+            { id: 118, root: 'script', meaning: '写' },
+            { id: 119, root: 'se', meaning: '分开' },
+            { id: 120, root: 'sen', meaning: '老的' },
+            { id: 121, root: 'sever', meaning: '严肃的 严格的' },
+            { id: 122, root: 'sol', meaning: '舒适' },
+            { id: 123, root: 'sort', meaning: '种类' },
+            { id: 124, root: 'sper', meaning: '希望' },
+            { id: 125, root: 'spic', meaning: '看' },
+            { id: 126, root: 'spir', meaning: '呼吸' },
+            { id: 127, root: 'spit', meaning: '恶意' },
+            { id: 128, root: 'stig', meaning: '刺' },
+            { id: 129, root: 'su', meaning: '跟随' }
+          ]},
+          
+          // T
+          { letter: 'T', items: [
+            { id: 130, root: 'tail', meaning: '切，剪' },
+            { id: 131, root: 'tang', meaning: '触摸' },
+            { id: 132, root: 'tard', meaning: '慢' },
+            { id: 133, root: 'tend', meaning: '伸展' },
+            { id: 134, root: 'test', meaning: '目击' },
+            { id: 135, root: 'ter', meaning: '三' },
+            { id: 136, root: 'tric', meaning: '花招，小障碍' },
+            { id: 137, root: 'trud', meaning: '刺，推' },
+            { id: 138, root: 'turb', meaning: '混乱' }
+          ]},
+          
+          // V
+          { letter: 'V', items: [
+            { id: 139, root: 'vac', meaning: '空' },
+            { id: 140, root: 'vag', meaning: '漫步' },
+            { id: 141, root: 'val', meaning: '价值；力量，力气' },
+            { id: 142, root: 'van', meaning: '空' },
+            { id: 143, root: 'veng', meaning: '惩罚' },
+            { id: 144, root: 'vent', meaning: '来' },
+            { id: 145, root: 'ver', meaning: '真的' },
+            { id: 146, root: 'vict', meaning: '征服' },
+            { id: 147, root: 'vol', meaning: '意志' },
+            { id: 148, root: 'vor', meaning: '吃' },
+            { id: 149, root: 'voy', meaning: '路' }
+          ]},
+          
+          // W
+          { letter: 'W', items: [
+            { id: 150, root: 'ward', meaning: '看管，看护' },
+            { id: 151, root: 'wr', meaning: '扭，转' }
+          ]}
+        ];
+
+        // 词根相关词汇数据
+        const rootVocabulary = {
+          'apt': [
+            { word: 'apt', meaning: '恰当的，易于…的', example: 'She is apt to forget things under pressure.' },
+            { word: 'aptitude', meaning: '天资，才能', example: 'He has an aptitude for learning languages.' },
+            { word: 'inept', meaning: '不适当的，无能的', example: 'His inept handling of the situation made things worse.' },
+            { word: 'adapt', meaning: '适应，改编', example: 'It\'s hard to adapt to a new culture.' },
+            { word: 'adaptive', meaning: '适应的，有适应能力的', example: 'Humans are highly adaptive creatures.' }
+          ],
+          'arch': [
+            { word: 'arch', meaning: '主要的，首席的', example: 'The archbishop blessed the congregation.' },
+            { word: 'architect', meaning: '建筑师', example: 'Frank Lloyd Wright was a famous architect.' },
+            { word: 'architecture', meaning: '建筑学，建筑风格', example: 'Gothic architecture is beautiful.' },
+            { word: 'archetype', meaning: '原型，范例', example: 'This character is the archetype of the hero.' },
+            { word: 'monarch', meaning: '君主', example: 'The monarch ruled for fifty years.' }
+          ],
+          'aug': [
+            { word: 'augment', meaning: '增加，增大', example: 'The company plans to augment its workforce.' },
+            { word: 'augmentation', meaning: '增加，增大', example: 'The augmentation in salary was welcome.' },
+            { word: 'auction', meaning: '拍卖', example: 'They sold the painting at auction.' },
+            { word: 'august', meaning: '威严的，令人敬畏的', example: 'The professor had an august presence.' }
+          ],
+          'bare': [
+            { word: 'bare', meaning: '赤裸的，仅仅的', example: 'She wore a bare dress to the beach.' },
+            { word: 'barely', meaning: '仅仅，几乎不', example: 'He barely passed the exam.' },
+            { word: 'barren', meaning: '贫瘠的，不毛的', example: 'The barren land could not support crops.' },
+            { word: 'barest', meaning: 'bare的最高级', example: 'In the barest sense, it means survival.' }
+          ],
+          'bene': [
+            { word: 'benefit', meaning: '利益，好处', example: 'Exercise has many health benefits.' },
+            { word: 'benevolent', meaning: '慈善的，仁慈的', example: 'He made a benevolent donation.' },
+            { word: 'beneficial', meaning: '有益的，有利的', example: 'A balanced diet is beneficial to health.' },
+            { word: 'benign', meaning: '良性的，温和的', example: 'The tumor was benign.' }
+          ],
+          'bi': [
+            { word: 'bicycle', meaning: '自行车', example: 'I ride my bicycle to work.' },
+            { word: 'bilingual', meaning: '会说两种语言的', example: 'She is bilingual in English and Spanish.' },
+            { word: 'bilateral', meaning: '双边的，两侧的', example: 'They signed a bilateral agreement.' },
+            { word: 'biology', meaning: '生物学', example: 'He studies marine biology.' },
+            { word: 'biography', meaning: '传记', example: 'I read his biography last week.' }
+          ],
+          'bide': [
+            { word: 'bide', meaning: '等待，居住', example: 'I will bide my time and wait for the right opportunity.' },
+            { word: 'abide', meaning: '遵守，忍受', example: 'We must abide by the rules.' },
+            { word: 'abiding', meaning: '持久的，始终不渝的', example: 'She has an abiding love for music.' }
+          ],
+          'bul': [
+            { word: 'bullet', meaning: '子弹', example: 'The gun fired a bullet.' },
+            { word: 'bulletin', meaning: '公告，公报', example: 'The school posted a bulletin.' },
+            { word: 'bull', meaning: '公牛', example: 'The bull charged at the matador.' },
+            { word: 'bulb', meaning: '球状物，灯泡', example: 'Change the light bulb, please.' }
+          ],
+          'can': [
+            { word: 'cancel', meaning: '取消，删去', example: 'They had to cancel the flight.' },
+            { word: 'cannon', meaning: '大炮', example: 'The cannon fired loudly.' },
+            { word: 'canvas', meaning: '帆布', example: 'The artist painted on canvas.' }
+          ],
+          'card': [
+            { word: 'cardiac', meaning: '心脏的', example: 'He suffered from cardiac arrest.' },
+            { word: 'cardinal', meaning: '主要的，基本的', example: 'Honesty is a cardinal virtue.' },
+            { word: 'card', meaning: '卡片', example: 'Please show your ID card.' }
+          ],
+          'ced': [
+            { word: 'precede', meaning: '领先于，先于', example: 'The introduction precedes the first chapter.' },
+            { word: 'proceed', meaning: '继续进行，前进', example: 'Let\'s proceed with the meeting.' },
+            { word: 'exceed', meaning: '超过，胜过', example: 'His performance exceeded expectations.' },
+            { word: 'recede', meaning: '后退，减弱', example: 'The flood waters began to recede.' }
+          ],
+          'cern': [
+            { word: 'concern', meaning: '关心，担心；有关的事', example: 'Her main concern is her children\'s education.' },
+            { word: 'discern', meaning: '辨别，识别', example: 'It\'s hard to discern the truth.' },
+            { word: 'discernible', meaning: '可辨别的', example: 'There was no discernible difference.' }
+          ],
+          'cert': [
+            { word: 'certain', meaning: '确定的，某些', example: 'I\'m certain about my decision.' },
+            { word: 'certificate', meaning: '证书', example: 'He received a certificate of completion.' },
+            { word: 'certify', meaning: '证明，证实', example: 'The document was certified by a notary.' }
+          ],
+          'cept': [
+            { word: 'concept', meaning: '概念，观念', example: 'I don\'t understand the concept.' },
+            { word: 'conceive', meaning: '构思，怀孕', example: 'She conceived a brilliant idea.' },
+            { word: 'perceive', meaning: '察觉，感知', example: 'I perceived a change in his attitude.' },
+            { word: 'reception', meaning: '接待，接收', example: 'The hotel reception was very welcoming.' }
+          ],
+          'cens': [
+            { word: 'censor', meaning: '审查，检查', example: 'The movie was censored for violence.' },
+            { word: 'census', meaning: '人口普查', example: 'The census takes place every ten years.' },
+            { word: 'censure', meaning: '谴责，指责', example: 'The senator faced public censure.' }
+          ],
+          'cess': [
+            { word: 'process', meaning: '过程，处理', example: 'The application process is lengthy.' },
+            { word: 'access', meaning: '通道，进入', example: 'The password gives you access.' },
+            { word: 'excess', meaning: '过度，过量', example: 'Eating in excess is unhealthy.' },
+            { word: 'recess', meaning: '休息时间，凹处', example: 'The students played during recess.' }
+          ],
+          'cip': [
+            { word: 'incipient', meaning: '初期的，开始的', example: 'The fire was still incipient.' },
+            { word: 'recipient', meaning: '接受者，接收器', example: 'She was the recipient of the award.' },
+            { word: 'emancipate', meaning: '解放，解除束缚', example: 'The slaves were emancipated.' }
+          ],
+          'cis': [
+            { word: 'decisive', meaning: '决定性的，果断的', example: 'His vote was decisive.' },
+            { word: 'precise', meaning: '精确的，准确的', example: 'Give me a precise time.' },
+            { word: 'concise', meaning: '简洁的，简明的', example: 'Please be concise in your answer.' }
+          ],
+          'cit': [
+            { word: 'excite', meaning: '使兴奋，激起', example: 'The news excited everyone.' },
+            { word: 'cite', meaning: '引用，引证', example: 'You must cite your sources.' },
+            { word: 'recite', meaning: '背诵，朗诵', example: 'The student recited a poem.' }
+          ],
+          'clam': [
+            { word: 'claim', meaning: '声称，要求', example: 'He claimed to be innocent.' },
+            { word: 'acclaim', meaning: '称赞，喝彩', example: 'The movie received acclaim.' },
+            { word: 'proclaim', meaning: '宣布，声明', example: 'The president proclaimed a holiday.' }
+          ],
+          'corp': [
+            { word: 'corporation', meaning: '公司，法人团体', example: 'He works for a multinational corporation.' },
+            { word: 'corps', meaning: '军团，队', example: 'He joined the Marine Corps.' },
+            { word: 'corpse', meaning: '尸体', example: 'The corpse was found by the river.' },
+            { word: 'incorporate', meaning: '合并，包含', example: 'The contract incorporates all terms.' }
+          ],
+          'counter': [
+            { word: 'counter', meaning: '柜台，反对', example: 'Place your order at the counter.' },
+            { word: 'counteract', meaning: '抵消，阻碍', example: 'The antidote will counteract the poison.' },
+            { word: 'encounter', meaning: '遭遇，遇到', example: 'We encountered difficulties.' }
+          ],
+          'cre': [
+            { word: 'create', meaning: '创造，创作', example: 'God created the world.' },
+            { word: 'creature', meaning: '生物，动物', example: 'Every creature has value.' },
+            { word: 'credible', meaning: '可信的，可靠的', example: 'That sounds credible.' }
+          ],
+          'crit': [
+            { word: 'criticize', meaning: '批评，评论', example: 'Don\'t criticize others unfairly.' },
+            { word: 'critique', meaning: '批判，评论', example: 'She wrote a critique of the novel.' },
+            { word: 'critical', meaning: '关键的，批评的', example: 'This is a critical moment.' }
+          ],
+          'cumb': [
+            { word: 'succumb', meaning: '屈服，死于', example: 'He succumbed to cancer.' },
+            { word: 'encumber', meaning: '妨碍，阻挠', example: 'Debt encumbers him.' },
+            { word: 'cumbersome', meaning: '笨重的，累赘的', example: 'The furniture is cumbersome to move.' }
+          ],
+          'curs': [
+            { word: 'cursor', meaning: '光标', example: 'Move the cursor to select text.' },
+            { word: 'course', meaning: '课程，过程', example: 'I\'m taking a computer course.' },
+            { word: 'discourse', meaning: '论述，谈话', example: 'His discourse was enlightening.' }
+          ],
+          'cyn': [
+            { word: 'cynical', meaning: '愤世嫉俗的，冷嘲的', example: 'He\'s cynical about politics.' },
+            { word: 'cynicism', meaning: '犬儒主义，愤世嫉俗', example: 'His cynicism hides deep hurt.' },
+            { word: 'cynic', meaning: '愤世嫉俗者', example: 'He became a cynic after his divorce.' }
+          ],
+          'dem': [
+            { word: 'democracy', meaning: '民主，民主制度', example: 'Democracy is based on freedom.' },
+            { word: 'democrat', meaning: '民主党人', example: 'He is a registered democrat.' },
+            { word: 'demographic', meaning: '人口统计的', example: 'The demographic has changed.' }
+          ],
+          'div': [
+            { word: 'divine', meaning: '神圣的，神的', example: 'The cathedral has divine beauty.' },
+            { word: 'divinity', meaning: '神性，神学', example: 'He studied divinity at university.' },
+            { word: 'dividend', meaning: '红利，股息', example: 'The dividend was higher this year.' }
+          ],
+          'dign': [
+            { word: 'dignity', meaning: '尊严，高贵', example: 'He maintained his dignity.' },
+            { word: 'dignified', meaning: '有威严的，体面的', example: 'She looked dignified in her uniform.' },
+            { word: 'indignant', meaning: '愤怒的，愤慨的', example: 'He was indignant at the accusation.' }
+          ],
+          'doc': [
+            { word: 'document', meaning: '文件，证件', example: 'Please sign this document.' },
+            { word: 'doctrine', meaning: '教义，学说', example: 'Marxist doctrine influenced him.' },
+            { word: 'docile', meaning: '温顺的，易教导的', example: 'The dog is very docile.' }
+          ],
+          'dol': [
+            { word: 'doleful', meaning: '悲伤的，忧愁的', example: 'She gave a doleful sigh.' },
+            { word: 'condole', meaning: '慰问，哀悼', example: 'I condoled with her on her loss.' }
+          ],
+          'dors': [
+            { word: 'dorsal', meaning: '背部的', example: 'The dorsal fin of a shark.' },
+            { word: 'endorse', meaning: '支持，背书', example: 'The candidate endorsed the policy.' }
+          ],
+          'empt': [
+            { word: 'empty', meaning: '空的', example: 'The glass is empty.' },
+            { word: 'exempt', meaning: '免除，豁免', example: 'Students are exempt from taxes.' },
+            { word: 'attempt', meaning: '尝试，企图', example: 'He attempted to climb the mountain.' }
+          ],
+          'fect': [
+            { word: 'perfect', meaning: '完美的', example: 'She gave a perfect performance.' },
+            { word: 'defect', meaning: '缺点，缺陷', example: 'Every product has its defects.' },
+            { word: 'effect', meaning: '效果，影响', example: 'The new law had a positive effect.' },
+            { word: 'effective', meaning: '有效的', example: 'This is an effective solution.' },
+            { word: 'affect', meaning: '影响', example: 'The rain will affect our plans.' }
+          ],
+          'feit': [
+            { word: 'feint', meaning: '假装，佯攻', example: 'The boxer made a feint to distract his opponent.' },
+            { word: 'feat', meaning: '技艺，功绩', example: 'Finishing the marathon was quite a feat.' }
+          ],
+          'fess': [
+            { word: 'confess', meaning: '承认，坦白', example: 'He confessed his guilt to the police.' },
+            { word: 'profess', meaning: '声称， profess', example: 'She professes to be an expert.' },
+            { word: 'profession', meaning: '职业，专业', example: 'Teaching is a noble profession.' }
+          ],
+          'fid': [
+            { word: 'confident', meaning: '自信的', example: 'She felt confident about the exam.' },
+            { word: 'confidence', meaning: '信心，信任', example: 'He has faith and confidence.' },
+            { word: 'diffident', meaning: '缺乏自信的', example: 'He was too diffident to speak up.' },
+            { word: 'fidelity', meaning: '忠诚，保真度', example: 'The dog showed great fidelity to its owner.' }
+          ],
+          'fix': [
+            { word: 'fix', meaning: '修理，固定', example: 'Can you fix my bike?' },
+            { word: 'fixture', meaning: '固定装置', example: 'The lights are permanent fixtures.' },
+            { word: 'prefix', meaning: '前缀', example: 'The prefix "un" means "not".' }
+          ],
+          'fring': [
+            { word: 'infringe', meaning: '侵犯，违反', example: 'Don\'t infringe on others\' rights.' },
+            { word: 'refrain', meaning: '避免，克制', example: 'Refrain from smoking here.' },
+            { word: 'suffrage', meaning: '选举权，投票权', example: 'Women fought for suffrage.' }
+          ],
+          'fug': [
+            { word: 'fugitive', meaning: '逃亡者', example: 'The fugitive was arrested.' },
+            { word: 'refuge', meaning: '避难所，庇护', example: 'The refugees sought refuge.' },
+            { word: 'subterfuge', meaning: '诡计，借口', example: 'He used subterfuge to escape.' }
+          ],
+          'fut fus': [
+            { word: 'fusion', meaning: '融合，合并', example: 'The fusion of cultures creates diversity.' },
+            { word: 'confuse', meaning: '使困惑，混淆', example: 'Don\'t confuse these two concepts.' },
+            { word: 'diffuse', meaning: '扩散，散开', example: 'Heat diffuses through the metal.' },
+            { word: 'infuse', meaning: '注入，泡制', example: 'Infuse the tea for five minutes.' }
+          ],
+          'greg': [
+            { word: 'aggregate', meaning: '聚集，合计', example: 'Aggregate the data for analysis.' },
+            { word: 'congregate', meaning: '聚集，集合', example: 'Birds congregate in the evening.' },
+            { word: 'gregarious', meaning: '群居的，爱社交的', example: 'Dogs are gregarious animals.' }
+          ],
+          'grip': [
+            { word: 'grip', meaning: '紧握，抓牢', example: 'Grip the handle firmly.' },
+            { word: 'gripe', meaning: '抱怨， gripe', example: 'He griped about the poor service.' }
+          ],
+          'heav': [
+            { word: 'heave', meaning: '举起，投掷', example: 'Heave the box onto the truck.' },
+            { word: 'heavy', meaning: '重的，沉重的', example: 'This suitcase is heavy.' }
+          ],
+          'her': [
+            { word: 'adhere', meaning: '粘附，坚持', example: 'Adhere to the rules strictly.' },
+            { word: 'coherent', meaning: '连贯的，一致的', example: 'Your argument should be coherent.' },
+            { word: 'hereditary', meaning: '遗传的，世袭的', example: 'Haemophilia is hereditary.' }
+          ],
+          'hier': [
+            { word: 'hierarchy', meaning: '等级制度', example: 'The company has a clear hierarchy.' },
+            { word: 'hierarchical', meaning: '分层的，等级制的', example: 'The organization has a hierarchical structure.' }
+          ],
+          'hum': [
+            { word: 'human', meaning: '人类的', example: 'Human nature is complex.' },
+            { word: 'humane', meaning: '人道的，仁慈的', example: 'The society ensures humane treatment.' },
+            { word: 'humble', meaning: '谦逊的，卑微的', example: 'He remained humble despite success.' }
+          ],
+          'hypo': [
+            { word: 'hypocrisy', meaning: '虚伪，伪善', example: 'His hypocrisy was obvious.' },
+            { word: 'hypothesis', meaning: '假设，假说', example: 'Scientists tested the hypothesis.' },
+            { word: 'hypothetical', meaning: '假设的，假想的', example: 'A hypothetical situation.' }
+          ],
+          'insul': [
+            { word: 'insulate', meaning: '隔离，绝缘', example: 'Insulate the walls to save energy.' },
+            { word: 'insulin', meaning: '胰岛素', example: 'Diabetics need insulin injections.' },
+            { word: 'peninsula', meaning: '半岛', example: 'Florida is a peninsula.' }
+          ],
+          'jac ject': [
+            { word: 'inject', meaning: '注射，注入', example: 'The doctor will inject the medicine.' },
+            { word: 'reject', meaning: '拒绝，驳回', example: 'The proposal was rejected.' },
+            { word: 'project', meaning: '项目，投射', example: 'This is a research project.' },
+            { word: 'eject', meaning: '弹出，驱逐', example: 'The pilot ejected from the plane.' }
+          ],
+          'jur': [
+            { word: 'jury', meaning: '陪审团', example: 'The jury delivered the verdict.' },
+            { word: 'jurisdiction', meaning: '司法权，管辖权', example: 'This court has jurisdiction.' },
+            { word: 'injure', meaning: '伤害，损害', example: 'He was injured in the accident.' },
+            { word: 'perjury', meaning: '伪证，伪誓', example: 'Perjury is a serious crime.' }
+          ],
+          'laps': [
+            { word: 'collapse', meaning: '倒塌，崩溃', example: 'The building collapsed in the earthquake.' },
+            { word: 'lapse', meaning: '失效， lapse', example: 'His driving license has lapsed.' }
+          ],
+          'later': [
+            { word: 'lateral', meaning: '侧面的，横向的', example: 'Make a lateral move in chess.' },
+            { word: 'collateral', meaning: '并行的，附属的', example: 'The bank required collateral.' }
+          ],
+          'lav': [
+            { word: 'lavish', meaning: '奢侈的，浪费的', example: 'They had a lavish wedding.' },
+            { word: 'lavatory', meaning: '洗手间', example: 'The lavatory needs cleaning.' }
+          ],
+          'lect': [
+            { word: 'collect', meaning: '收集', example: 'Collect stamps as a hobby.' },
+            { word: 'select', meaning: '选择', example: 'Select the best option.' },
+            { word: 'elect', meaning: '选举，选择', example: 'Citizens elect their representatives.' },
+            { word: 'lecture', meaning: '讲座，讲课', example: 'The professor gave a lecture.' }
+          ],
+          'len': [
+            { word: 'lenient', meaning: '宽容的，宽大的', example: 'The judge was lenient with the offender.' },
+            { word: 'dilate', meaning: '扩大，膨胀', example: 'The doctor dilated his pupils.' }
+          ],
+          'lev': [
+            { word: 'levitate', meaning: '使漂浮', example: 'Magicians levitate objects.' },
+            { word: 'elevate', meaning: '提升，举起', example: 'Elevate your feet when resting.' },
+            { word: 'lever', meaning: '杠杆', example: 'Use a lever to move heavy objects.' },
+            { word: 'levity', meaning: '轻浮，轻率', example: 'This matter requires seriousness, not levity.' }
+          ],
+          'lic': [
+            { word: 'license', meaning: '许可证', example: 'You need a driver\'s license.' },
+            { word: 'delicate', meaning: '精致的，脆弱的', example: 'Handle the vase delicately.' }
+          ],
+          'lu': [
+            { word: 'flush', meaning: '冲洗，脸红', example: 'Flush the toilet after use.' },
+            { word: 'elude', meaning: '逃避，躲避', example: 'The criminal eluded capture.' }
+          ],
+          'lubr': [
+            { word: 'lubricate', meaning: '润滑', example: 'Lubricate the engine regularly.' },
+            { word: 'lubricant', meaning: '润滑油', example: 'Use lubricant on the hinges.' }
+          ],
+          'lucr': [
+            { word: 'lucrative', meaning: '有利可图的', example: 'Investment banking is lucrative.' }
+          ],
+          'lud': [
+            { word: 'allude', meaning: '暗指，提及', example: 'He alluded to his past experiences.' },
+            { word: 'delude', meaning: '欺骗，蒙骗', example: 'Don\'t delude yourself with false hopes.' }
+          ],
+          'ly': [
+            { word: 'ally', meaning: '盟友，同盟', example: 'The country found a strong ally.' },
+            { word: 'rally', meaning: '集会，恢复', example: 'Supporters held a political rally.' }
+          ],
+          'mal': [
+            { word: 'malfunction', meaning: '故障，失灵', example: 'The machine malfunctioned.' },
+            { word: 'malice', meaning: '恶意，怨恨', example: 'His actions were motivated by malice.' },
+            { word: 'malady', meaning: '疾病，弊病', example: 'Pollution is a social malady.' }
+          ],
+          'man': [
+            { word: 'manual', meaning: '手工的，手册', example: 'Read the manual before operating.' },
+            { word: 'manufacture', meaning: '制造', example: 'Cars are manufactured in factories.' }
+          ],
+          'mand': [
+            { word: 'demand', meaning: '要求，需求', example: 'The job demands patience.' },
+            { word: 'command', meaning: '命令，指挥', example: 'The officer commanded the troops.' }
+          ],
+          'mar': [
+            { word: 'mar', meaning: '破坏，毁坏', example: 'Don\'t mar the reputation of others.' },
+            { word: 'marine', meaning: '海洋的', example: 'Marine life is diverse.' }
+          ],
+          'mea': [
+            { word: 'means', meaning: '方法，手段', example: 'We need more means to solve this.' },
+            { word: 'meaning', meaning: '意思，意义', example: 'What\'s the meaning of this word?' }
+          ],
+          'mel': [
+            { word: 'mellow', meaning: '柔和的，醇厚的', example: 'The mellow music relaxed him.' }
+          ],
+          'mend': [
+            { word: 'amend', meaning: '修改，改善', example: 'Amend the document before submission.' },
+            { word: 'mend', meaning: '修补，修理', example: 'Mend the torn clothes.' }
+          ],
+          'mens': [
+            { word: 'measure', meaning: '测量，措施', example: 'Measure twice, cut once.' },
+            { word: 'immense', meaning: '巨大的，广大的', example: 'The ocean is immense.' }
+          ],
+          'meta': [
+            { word: 'metaphor', meaning: '隐喻，比喻', example: 'Life is a journey - that\'s a metaphor.' },
+            { word: 'metabolism', meaning: '新陈代谢', example: 'Exercise boosts metabolism.' }
+          ],
+          'migr': [
+            { word: 'migrate', meaning: '迁移，移居', example: 'Birds migrate south in winter.' },
+            { word: 'emigrate', meaning: '移居国外', example: 'They emigrated to Canada.' },
+            { word: 'immigrant', meaning: '移民', example: 'Many immigrants seek better lives.' }
+          ],
+          'ming': [
+            { word: 'mingled', meaning: '混合的', example: 'Their voices were mingled in discussion.' },
+            { word: 'commingle', meaning: '混合，交融', example: 'Oil and water do not commingle.' }
+          ],
+          'mis': [
+            { word: 'mission', meaning: '使命，任务', example: 'Their mission is to help others.' },
+            { word: 'missile', meaning: '导弹', example: 'The missile was launched.' }
+          ],
+          'mod': [
+            { word: 'modern', meaning: '现代的', example: 'Modern technology changes lives.' },
+            { word: 'modest', meaning: '谦虚的，适度的', example: 'She is modest about her achievements.' },
+            { word: 'modify', meaning: '修改，改变', example: 'Modify your approach if needed.' }
+          ],
+          'mono': [
+            { word: 'monopoly', meaning: '垄断，专卖', example: 'The company has a monopoly.' },
+            { word: 'monologue', meaning: '独白', example: 'His monologue lasted twenty minutes.' }
+          ],
+          'mpt': [
+            { word: 'prompt', meaning: '提示，迅速的', example: 'The computer shows a prompt.' },
+            { word: 'attempt', meaning: '尝试，企图', example: 'He attempted to solve the puzzle.' }
+          ],
+          'nex': [
+            { word: 'annex', meaning: '附加， annex', example: 'The country annexed the territory.' },
+            { word: 'connect', meaning: '连接，联系', example: 'Connect the dots to form a picture.' }
+          ],
+          'nic': [
+            { word: 'noxious', meaning: '有害的，有毒的', example: 'Smoking is noxious to health.' },
+            { word: 'nuisance', meaning: '讨厌的人或事', example: 'The noise is a nuisance.' }
+          ],
+          'off': [
+            { word: 'offer', meaning: '提供，提议', example: 'I offer my services to you.' },
+            { word: 'sufficient', meaning: '足够的', example: 'We have sufficient food.' }
+          ],
+          'onym': [
+            { word: 'anonymous', meaning: '匿名的', example: 'The donor wishes to remain anonymous.' },
+            { word: 'synonym', meaning: '同义词', example: '"Big" is a synonym for "large".' }
+          ],
+          'orn': [
+            { word: 'adorn', meaning: '装饰， adorn', example: 'She adorned herself with jewelry.' },
+            { word: 'ornament', meaning: '装饰品', example: 'The tree was decorated with ornaments.' }
+          ],
+          'pact': [
+            { word: 'impact', meaning: '影响，冲击', example: 'The speech had a great impact.' },
+            { word: 'compact', meaning: '紧凑的，契约', example: 'The car is small but compact.' }
+          ],
+          'pall': [
+            { word: 'pallid', meaning: '苍白的，无生气的', example: 'His pallid face showed his illness.' }
+          ],
+          'pan': [
+            { word: 'panorama', meaning: '全景，概论', example: 'The mountain offered a fine panorama.' },
+            { word: 'panic', meaning: '恐慌', example: 'The fire caused panic among people.' }
+          ],
+          'par': [
+            { word: 'parade', meaning: '游行，炫耀', example: 'The soldiers marched in parade.' },
+            { word: 'compare', meaning: '比较', example: 'Compare the prices before buying.' }
+          ],
+          'para': [
+            { word: 'parallel', meaning: '平行的，并列的', example: 'The roads run parallel.' },
+            { word: 'paragraph', meaning: '段落', example: 'Read the third paragraph carefully.' }
+          ],
+          'parl': [
+            { word: 'parley', meaning: '会谈，谈判', example: 'The enemies agreed to parley.' },
+            { word: 'parlor', meaning: '客厅， parlor', example: 'Welcome to our parlor.' }
+          ],
+          'part': [
+            { word: 'part', meaning: '部分', example: 'This is just one part of the story.' },
+            { word: 'partial', meaning: '部分的，偏袒的', example: 'I only have partial information.' },
+            { word: 'depart', meaning: '离开， depart', example: 'The train will depart at noon.' }
+          ],
+          'pat': [
+            { word: 'compassion', meaning: '同情，怜悯', example: 'Show compassion to others.' },
+            { word: 'passion', meaning: '激情，热情', example: 'He has a passion for music.' }
+          ],
+          'patr': [
+            { word: 'patriot', meaning: '爱国者', example: 'He is a true patriot.' },
+            { word: 'patron', meaning: '赞助人，顾客', example: 'The arts depend on patrons.' },
+            { word: 'paternal', meaning: '父亲的，父系的', example: 'His paternal grandfather was a doctor.' }
+          ],
+          'pir': [
+            { word: 'aspirate', meaning: '渴望， aspirate', example: 'She aspires to become a doctor.' },
+            { word: 'conspire', meaning: '密谋， conspirate', example: 'The group conspired against the king.' }
+          ],
+          'plex': [
+            { word: 'complex', meaning: '复杂的', example: 'This is a complex problem.' },
+            { word: 'perplex', meaning: '使困惑，使复杂化', example: 'The riddle perplexed the students.' }
+          ],
+          'pli': [
+            { word: 'comply', meaning: '遵从， comply', example: 'All citizens must comply with laws.' },
+            { word: 'implex', meaning: '缠绕，使复杂', example: 'The wire became implex.' }
+          ],
+          'plo': [
+            { word: 'explore', meaning: '探索，勘探', example: 'Scientists explore outer space.' },
+            { word: 'implodent', meaning: '内爆的', example: 'The building had an implodent collapse.' }
+          ],
+          'plor': [
+            { word: 'deplorer', meaning: '强烈反对', example: 'Many deplorer the violence in media.' },
+            { word: 'exclaim', meaning: '呼喊，惊叫', example: 'She exclaimed with joy.' }
+          ],
+          'plu': [
+            { word: 'plumber', meaning: '水管工', example: 'Call a plumber to fix the leak.' },
+            { word: 'plentiful', meaning: '丰富的，大量的', example: 'The region has plentiful rainfall.' }
+          ],
+          'pos, pon': [
+            { word: 'position', meaning: '位置，职位', example: 'What\'s your position on this issue?' },
+            { word: 'compose', meaning: '组成，作曲', example: 'Water is composed of hydrogen and oxygen.' },
+            { word: 'opponent', meaning: '对手，反对者', example: 'The teams are opponents in the finals.' }
+          ],
+          'pot': [
+            { word: 'potential', meaning: '潜在的，潜力', example: 'She has potential as a leader.' },
+            { word: 'potent', meaning: '强有力的， potent', example: 'The medicine is very potent.' }
+          ],
+          'pris': [
+            { word: 'prison', meaning: '监狱', example: 'The criminal was sent to prison.' },
+            { word: 'enterprise', meaning: '企业，事业心', example: 'He started his own enterprise.' }
+          ],
+          'proof': [
+            { word: 'waterproof', meaning: '防水的', example: 'This jacket is waterproof.' },
+            { word: 'fireproof', meaning: '防火的', example: 'The safe is fireproof.' }
+          ],
+          'proto': [
+            { word: 'prototype', meaning: '原型，雏形', example: 'This is the prototype of our new product.' },
+            { word: 'protocol', meaning: '协议，礼仪', example: 'Follow diplomatic protocol.' }
+          ],
+          'rama': [
+            { word: 'diorama', meaning: '透视画，模型', example: 'The museum has a dinosaur diorama.' },
+            { word: 'panorama', meaning: '全景', example: 'The city looks beautiful from this panorama point.' }
+          ],
+          'ras': [
+            { word: 'erase', meaning: '擦掉，抹去', example: 'Erase your mistakes with a rubber.' },
+            { word: 'abrasive', meaning: '研磨的，刺激性的', example: 'Use an abrasive cleaner for tough stains.' }
+          ],
+          'rat': [
+            { word: 'rate', meaning: '比率，速度', example: 'The interest rate is rising.' },
+            { word: 'ratio', meaning: '比例，比率', example: 'The ratio of boys to girls is 2:1.' }
+          ],
+          'reck': [
+            { word: 'reckon', meaning: '认为，估计', example: 'I reckon it will rain today.' },
+            { word: 'wreck', meaning: '残骸，破坏', example: 'The shipwreck was found off the coast.' }
+          ],
+          'reg': [
+            { word: 'regulate', meaning: '调节，管理', example: 'The government regulates businesses.' },
+            { word: 'regular', meaning: '规律的，定期的', example: 'Take regular exercise for good health.' }
+          ],
+          'rid': [
+            { word: 'deride', meaning: '嘲笑，讥讽', example: 'Don\'t deride others\' efforts.' },
+            { word: 'ridiculous', meaning: '荒谬的，可笑的', example: 'His excuse was ridiculous.' }
+          ],
+          'robe': [
+            { word: 'robust', meaning: '强健的， robust', example: 'He has a robust constitution.' },
+            { word: 'arrogate', meaning: '冒称，霸占', example: 'He arrogated all the credit to himself.' }
+          ],
+          'rod': [
+            { word: 'corrode', meaning: '腐蚀，侵蚀', example: 'Acid corrodes metal.' },
+            { word: 'erosion', meaning: '侵蚀，磨损', example: 'Water causes erosion of soil.' }
+          ],
+          'rog': [
+            { word: 'arrogate', meaning: '冒称，霸占', example: 'He arrogated all the credit to himself.' },
+            { word: 'interrogate', meaning: '审问，询问', example: 'The detective interrogated the suspect.' }
+          ],
+          'salv': [
+            { word: 'salvation', meaning: '拯救，救助', example: 'The lifeguard provided salvation.' },
+            { word: 'salvage', meaning: '抢救， salvaged', example: 'They salvaged what they could from the wreck.' }
+          ],
+          'san': [
+            { word: 'sanitary', meaning: '卫生的，清洁的', example: 'The restaurant maintains sanitary conditions.' },
+            { word: 'sanitize', meaning: '消毒，使卫生', example: 'Sanitize your hands before eating.' }
+          ],
+          'scal': [
+            { word: 'escalate', meaning: '升级， escalator', example: 'The argument escalated into a fight.' },
+            { word: 'scalar', meaning: '标量的', example: 'Speed is a scalar quantity.' }
+          ],
+          'scen': [
+            { word: 'scene', meaning: '场景，景象', example: 'The crime scene was investigated.' },
+            { word: 'scenery', meaning: '风景，景色', example: 'The mountain scenery is breathtaking.' }
+          ],
+          'script': [
+            { word: 'script', meaning: '脚本，剧本', example: 'He wrote the script for the play.' },
+            { word: 'manuscript', meaning: '手稿，原稿', example: 'The author submitted his manuscript.' }
+          ],
+          'se': [
+            { word: 'separate', meaning: '分离，分开', example: 'Separate the eggs carefully.' },
+            { word: 'section', meaning: '部分，节', example: 'Read section three of the manual.' }
+          ],
+          'sen': [
+            { word: 'senior', meaning: '年长的，高级的', example: 'She is the senior manager.' },
+            { word: 'senate', meaning: '参议院', example: 'The bill passed the senate.' }
+          ],
+          'sever': [
+            { word: 'severe', meaning: '严重的，严厉的', example: 'There was severe weather damage.' },
+            { word: 'sever', meaning: '切断，断绝', example: 'The accident severed his leg.' }
+          ],
+          'sol': [
+            { word: 'sole', meaning: '唯一的', example: 'He was the sole survivor.' },
+            { word: 'console', meaning: '安慰，控制台', example: 'She tried to console the crying child.' }
+          ],
+          'sort': [
+            { word: 'sort', meaning: '种类，分类', example: 'What sort of music do you like?' },
+            { word: 'resort', meaning: ' resort，求助', example: 'Violence should be the last resort.' }
+          ],
+          'sper': [
+            { word: 'desperate', meaning: '绝望的，不顾一切的', example: 'He made a desperate attempt to escape.' },
+            { word: 'prosper', meaning: '繁荣， prosper', example: 'Business began to prosper again.' }
+          ],
+          'spic': [
+            { word: 'suspect', meaning: '怀疑，嫌疑人', example: 'Police suspect foul play.' },
+            { word: 'aspect', meaning: '方面，外观', example: 'Consider all aspects of the problem.' }
+          ],
+          'spir': [
+            { word: 'spirit', meaning: '精神，灵魂', example: 'Team spirit is important for success.' },
+            { word: 'aspire', meaning: '渴望，追求', example: 'She aspires to be a doctor.' },
+            { word: 'conspire', meaning: '密谋， conspirate', example: 'They conspire against the government.' }
+          ],
+          'spit': [
+            { word: 'spite', meaning: '恶意，怨恨', example: 'He did it out of spite.' },
+            { word: 'despite', meaning: '尽管', example: 'Despite the rain, we went out.' }
+          ],
+          'stig': [
+            { word: 'stigma', meaning: '耻辱，污名', example: 'There is a stigma attached to mental illness.' },
+            { word: 'instigate', meaning: '煽动， instigate', example: 'He instigated the rebellion.' }
+          ],
+          'su': [
+            { word: 'subsequent', meaning: '随后的，后来的', example: 'Subsequent events proved him right.' },
+            { word: 'sue', meaning: '起诉', example: 'He decided to sue for damages.' }
+          ],
+          'tail': [
+            { word: 'detail', meaning: '细节，详述', example: 'Pay attention to detail.' },
+            { word: 'retail', meaning: '零售', example: 'This store sells goods retail.' }
+          ],
+          'tang': [
+            { word: 'tangible', meaning: '有形的，切实的', example: 'We need tangible results.' },
+            { word: 'intangible', meaning: '无形的', example: 'Love is intangible.' }
+          ],
+          'tard': [
+            { word: 'tardy', meaning: '迟的， tardy', example: 'He was tardy for the meeting.' },
+            { word: 'retard', meaning: '延迟，阻碍', example: 'Don\'t retard the progress.' }
+          ],
+          'tend': [
+            { word: 'tend', meaning: '趋向，照料', example: 'Plants tend to grow toward light.' },
+            { word: 'attend', meaning: '出席，照顾', example: 'Please attend the meeting.' },
+            { word: 'extend', meaning: '延伸，扩展', example: 'Extend the deadline if needed.' }
+          ],
+          'test': [
+            { word: 'testimony', meaning: '证词， testimony', example: 'His testimony was crucial to the case.' },
+            { word: 'contest', meaning: '竞赛， contest', example: 'She won the beauty contest.' }
+          ],
+          'ter': [
+            { word: 'terminate', meaning: '终止，结束', example: 'The contract will terminate next month.' },
+            { word: 'terrain', meaning: '地形，地带', example: 'The terrain is difficult to navigate.' }
+          ],
+          'tric': [
+            { word: 'trick', meaning: '诡计，戏法', example: 'Don\'t fall for his tricks.' },
+            { word: 'intricate', meaning: '复杂的，错综的', example: 'The plot is intricate and fascinating.' }
+          ],
+          'trud': [
+            { word: 'intrude', meaning: '闯入，打扰', example: 'Don\'t intrude on their privacy.' },
+            { word: 'extrude', meaning: '挤出， extrude', example: 'The machine extrudes plastic shapes.' }
+          ],
+          'turb': [
+            { word: 'disturb', meaning: '打扰，扰乱', example: 'Please don\'t disturb me while I\'m working.' },
+            { word: 'turbulent', meaning: '动荡的， turbulent', example: 'The plane encountered turbulent air.' }
+          ],
+          'vac': [
+            { word: 'vacant', meaning: '空的，空缺的', example: 'The apartment has been vacant for months.' },
+            { word: 'evacuate', meaning: '疏散，撤离', example: 'Residents were evacuated from the building.' }
+          ],
+          'vag': [
+            { word: 'vagrant', meaning: '流浪汉', example: 'The vagrant asked for spare change.' },
+            { word: 'deviate', meaning: '偏离， deviate', example: 'Don\'t deviate from the plan.' }
+          ],
+          'val': [
+            { word: 'value', meaning: '价值，重视', example: 'Honesty is a core value.' },
+            { word: 'valid', meaning: '有效的，合理的', example: 'Your ticket is valid for one year.' }
+          ],
+          'van': [
+            { word: 'vanish', meaning: '消失， vanishing', example: 'The magician made the rabbit vanish.' },
+            { word: 'evanescent', meaning: '逐渐消失的', example: 'Youth is evanescent.' }
+          ],
+          'veng': [
+            { word: 'avenge', meaning: '报仇， avenged', example: 'He vowed to avenge his brother\'s death.' },
+            { word: 'vengeance', meaning: '复仇，报复', example: 'He sought vengeance for the wrong.' }
+          ],
+          'vent': [
+            { word: 'ventilate', meaning: '通风， ventilated', example: 'Open the windows to ventilate the room.' },
+            { word: 'adventure', meaning: '冒险，奇遇', example: 'They went on an adventure in the mountains.' }
+          ],
+          'ver': [
+            { word: 'verify', meaning: '核实，证实', example: 'Please verify your email address.' },
+            { word: 'verdict', meaning: '裁决，判决', example: 'The jury reached a unanimous verdict.' }
+          ],
+          'vict': [
+            { word: 'victory', meaning: '胜利', example: 'The team celebrated their victory.' },
+            { word: 'convict', meaning: '定罪，罪犯', example: 'The court will convict the defendant.' }
+          ],
+          'vol': [
+            { word: 'voluntary', meaning: '自愿的', example: 'This is a voluntary contribution.' },
+            { word: 'volunteer', meaning: '志愿者', example: 'She volunteers at the animal shelter.' }
+          ],
+          'vor': [
+            { word: 'voracious', meaning: '贪婪的， voracious', example: 'He is a voracious reader.' },
+            { word: 'devour', meaning: '吞食， devour', example: 'The fire devoured the building.' }
+          ],
+          'voy': [
+            { word: 'voyage', meaning: '航行， voyage', example: 'The voyage across the Atlantic took a week.' },
+            { word: 'envoy', meaning: '使者，外交官', example: 'The envoy delivered the message.' }
+          ],
+          'ward': [
+            { word: 'ward', meaning: '病房，监护', example: 'He stayed in the psychiatric ward.' },
+            { word: 'reward', meaning: '奖励，报答', example: 'Hard work leads to reward.' }
+          ],
+          'wr': [
+            { word: 'wrestle', meaning: '摔跤， wrestling', example: 'He wrestles professionally.' },
+            { word: 'wring', meaning: '拧， wring', example: 'Wring out the wet cloth.' }
+          ]
+        };
+
+        // 展开/折叠状态
+        const expandedSections = {};
+        
+        // 初始化所有部分为展开状态
+        rootsData.forEach(group => {
+          expandedSections[group.letter] = true;
+        });
+
+        // 切换章节展开/折叠
+        function toggleSection(letter) {
+          expandedSections[letter] = !expandedSections[letter];
+          renderRoots();
+        }
+
+        // 显示词根详情
+        function showRootDetails(root) {
+          document.getElementById('modal-root').innerHTML = `<span class="font-normal">${root.root}</span>`;
+          document.getElementById('modal-meaning').textContent = root.meaning;
+          
+          const vocabList = document.getElementById('modal-vocab-list');
+          vocabList.innerHTML = '';
+          
+          if (rootVocabulary[root.root]) {
+            rootVocabulary[root.root].forEach(vocab => {
+              const div = document.createElement('div');
+              div.className = 'p-4 bg-gray-50 rounded-xl border border-gray-200';
+              div.innerHTML = `
+                <div class="font-normal text-lg text-indigo-700">${vocab.word}</div>
+                <div class="text-gray-600 mt-1">${vocab.meaning}</div>
+                <div class="text-gray-500 text-sm mt-2 italic">"${vocab.example}"</div>
+              `;
+              vocabList.appendChild(div);
+            });
+          } else {
+            vocabList.innerHTML = '<div class="text-center py-8 text-gray-500">暂无相关词汇数据</div>';
+          }
+          
+          document.getElementById('modal').classList.remove('hidden');
+        }
+
+        // 关闭模态框
+        function closeModal() {
+          document.getElementById('modal').classList.add('hidden');
+        }
+
+        // 渲染词根列表
+        function renderRoots(searchTerm = '') {
+          const container = document.getElementById('roots-container');
+          
+          // 过滤数据
+          let filteredData = rootsData;
+          if (searchTerm) {
+            filteredData = rootsData.map(group => {
+              const filteredItems = group.items.filter(item => 
+                item.root.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                item.meaning.toLowerCase().includes(searchTerm.toLowerCase())
+              );
+              
+              return {
+                ...group,
+                items: filteredItems
+              };
+            }).filter(group => group.items.length > 0);
+          }
+
+          if (filteredData.length === 0) {
+            container.innerHTML = `
+              <div class="bg-white rounded-2xl shadow-lg p-12 text-center">
+                <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="mt-2 text-lg font-medium text-gray-900">未找到匹配的词根词缀</h3>
+                <p class="mt-1 text-gray-500">请尝试其他关键词</p>
+              </div>
+            `;
+            return;
+          }
+
+          let html = '';
+          filteredData.forEach(group => {
+            html += `
+              <div class="bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl overflow-hidden">
+                <div 
+                  class="px-6 py-4 bg-indigo-50 border-l-4 border-indigo-500 cursor-pointer flex justify-between items-center"
+                  onclick="toggleSection('${group.letter}')"
+                >
+                  <h3 class="text-lg text-gray-800 flex items-center">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mr-3 bg-indigo-100 text-indigo-800">
+                      ${group.letter} 类词根词缀
+                    </span>
+                    <span class="text-gray-600 text-base">共 ${group.items.length} 个</span>
+                  </h3>
+                  <svg 
+                    class="h-5 w-5 text-indigo-600 transform transition-transform ${expandedSections[group.letter] ? 'rotate-180' : ''}"
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                
+                ${expandedSections[group.letter] ? `
+                  <div class="p-6 bg-gradient-to-b from-white to-gray-50">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      ${group.items.map(item => `
+                        <div 
+                          class="rounded-2xl bg-gradient-to-br from-white to-gray-50 p-5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 group cursor-pointer"
+                          onclick="showRootDetails(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                        >
+                          <div class="mt-1">
+                            <p class="text-gray-800 font-normal text-lg">${item.root}</p>
+                            <p class="text-gray-600 mt-2 text-base">${item.meaning}</p>
+                          </div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          });
+          
+          container.innerHTML = html;
+        }
+
+        // 搜索功能
+        function handleSearch(e) {
+            renderRoots(e.target.value);
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            renderRoots();
+            
+            // 模态框关闭事件
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            document.getElementById('close-modal-button').addEventListener('click', closeModal);
+            
+            // 点击模态框外部关闭
+            document.getElementById('modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        });
+      </script>
+    </body>
+    </html>

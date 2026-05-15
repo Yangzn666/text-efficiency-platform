@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六级中译英词汇默写练习</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'FZCuHei';
+            src: url('./html-version/public/fonts/FZCuHei.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            font-family: 'FZCuHei', sans-serif;
+            font-weight: normal;
+            background: linear-gradient(to bottom right, #eff6ff, #c7d2fe);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+        
+        .flip-card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .flip-card-back {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .flip-card-front, .flip-card-back {
+                padding: 1rem;
+            }
+            
+            .flip-card-front .text-2xl, .flip-card-back .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            #chinese-meaning, #english-word {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .bg-white.rounded-2xl.shadow-xl.p-6 {
+                padding: 1rem;
+            }
+            
+            .grid.grid-cols-1.md\:grid-cols-2.gap-8.mb-8 {
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .flip-card.bg-white.rounded-2xl.shadow-lg.h-64 {
+                height: auto;
+                min-height: 200px;
+            }
+            
+            .flex.space-x-3 {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .flex.space-x-3 > button {
+                width: 100%;
+            }
+            
+            .text-3xl.md\:text-4xl {
+                font-size: 1.5rem;
+            }
+            
+            table.min-w-full {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            input#welcome-name {
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+            
+            button.px-4.py-2 {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .py-8 {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .mb-10 {
+                margin-bottom: 1rem;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1rem;
+            }
+            
+            .mb-6 {
+                margin-bottom: 1rem;
+            }
+            
+            .p-6 {
+                padding: 1rem;
+            }
+            
+            .p-5 {
+                padding: 1rem;
+            }
+            
+            .rounded-2xl {
+                border-radius: 1rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            /* 移动端特殊优化 */
+            .mobile-padding {
+                padding: 0.5rem;
+            }
+            
+            .mobile-margin {
+                margin: 0.5rem 0;
+            }
+            
+            .text-responsive {
+                font-size: 1rem;
+            }
+            
+            .btn-responsive {
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <header class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-3">六级中译英词汇默写练习</h1>
+                <p class="text-gray-600">通过中文含义默写英文词组，提升六级翻译和写作能力</p>
+            </header>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6 mb-8">
+                <div class="flex justify-between items-center mb-6 flex-wrap">
+                    <div class="text-lg font-semibold text-gray-800 mb-2">
+                        <span id="current-index">1</span>/<span id="total-count">0</span>
+                    </div>
+                    <div class="flex items-center space-x-4 flex-wrap">
+                        <div class="text-sm font-medium text-gray-700 mr-2 mb-2">
+                            正确: <span id="correct-count" class="text-green-600">0</span> | 
+                            错误: <span id="incorrect-count" class="text-red-600">0</span>
+                        </div>
+                        <button id="reset-btn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors btn-responsive">
+                            重置
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="progress-bar mb-8">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="flip-card bg-white rounded-2xl shadow-lg h-64 cursor-pointer" id="flashcard">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="text-sm font-medium mb-2 opacity-80">中文含义</div>
+                                <div id="chinese-meaning" class="text-2xl font-bold"></div>
+                                <div class="mt-4 text-sm opacity-80">点击翻转查看英文词组</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="text-sm font-medium mb-2 opacity-80">英文词组</div>
+                                <div id="english-word" class="text-2xl font-bold"></div>
+                                <div class="mt-4 text-sm opacity-80">点击返回默写练习</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">默写练习</h3>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="user-input">
+                                    请输入上面中文含义的英文词组：
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="user-input" 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-responsive"
+                                    placeholder="在此输入英文词组..."
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-3 flex-col sm:flex-row">
+                            <button id="check-btn" class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors btn-responsive">
+                                检查答案
+                            </button>
+                            <button id="next-btn" class="flex-1 bg-purple-600 text-white py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors btn-responsive mt-2 sm:mt-0">
+                                下一个
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="result-message" class="hidden p-4 rounded-lg mb-6"></div>
+                
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-5 border border-indigo-100">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                        练习提示
+                    </h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">•</span>
+                            <span>先尝试默写出英文词组，再点击卡片确认答案</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">•</span>
+                            <span>注意词组的拼写和固定搭配</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-indigo-600 mr-2">•</span>
+                            <span>记录错题，重点复习掌握不牢固的词组</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">六级高频词组列表</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">中文含义</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">英文词组</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">掌握状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vocabulary-list" class="bg-white divide-y divide-gray-200">
+                            <!-- 词汇列表将通过JavaScript动态生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 六级高频词汇词组数据
+        const vocabularyData = [
+            // 基础动词短语
+            {
+                chinese: "利用，占便宜",
+                english: "take advantage of"
+            },
+            {
+                chinese: "引起，导致",
+                english: "give rise to"
+            },
+            {
+                chinese: "应对，处理",
+                english: "cope with"
+            },
+            {
+                chinese: "归因于",
+                english: "be attributed to"
+            },
+            {
+                chinese: "致力于，承诺",
+                english: "be committed to"
+            },
+            {
+                chinese: "有助于，有利于",
+                english: "be conducive to"
+            },
+            {
+                chinese: "由...组成",
+                english: "be composed of"
+            },
+            {
+                chinese: "致力于，专用于",
+                english: "be dedicated to"
+            },
+            {
+                chinese: "缺乏",
+                english: "be deficient in"
+            },
+            {
+                chinese: "有权，有资格",
+                english: "be entitled to"
+            },
+            {
+                chinese: "易于，倾向于",
+                english: "be prone to"
+            },
+            {
+                chinese: "在...方面，就...而言",
+                english: "in terms of"
+            },
+            {
+                chinese: "在...中起关键作用",
+                english: "play a crucial role in"
+            },
+            {
+                chinese: "有影响，起作用",
+                english: "make a difference"
+            },
+            {
+                chinese: "必然，注定",
+                english: "be bound to"
+            },
+            {
+                chinese: "对...表示怀疑",
+                english: "cast doubt on"
+            },
+            {
+                chinese: "意识到，知道",
+                english: "be aware of"
+            },
+            {
+                chinese: "可能",
+                english: "be likely to"
+            },
+            {
+                chinese: "对...产生影响",
+                english: "have an impact on"
+            },
+            {
+                chinese: "配备有",
+                english: "be equipped with"
+            },
+            {
+                chinese: "促进，推进",
+                english: "promote"
+            },
+            {
+                chinese: "消除，排除",
+                english: "eliminate"
+            },
+            {
+                chinese: "强调",
+                english: "emphasize"
+            },
+            {
+                chinese: "实施，执行",
+                english: "implement"
+            },
+            {
+                chinese: "维持，保持",
+                english: "maintain"
+            },
+            {
+                chinese: "获得，获取",
+                english: "acquire"
+            },
+            {
+                chinese: "面临，面对",
+                english: "face"
+            },
+            {
+                chinese: "解决",
+                english: "resolve"
+            },
+            {
+                chinese: "提高，增强",
+                english: "enhance"
+            },
+            {
+                chinese: "减少，降低",
+                english: "reduce"
+            },
+            
+            // 常用表达
+            {
+                chinese: "以…自豪",
+                english: "take pride in"
+            },
+            {
+                chinese: "私下, 秘密地",
+                english: "in private"
+            },
+            {
+                chinese: "公开地",
+                english: "in public"
+            },
+            {
+                chinese: "禁止, 阻止",
+                english: "prohibit…from"
+            },
+            {
+                chinese: "故意",
+                english: "on purpose"
+            },
+            {
+                chinese: "在某种科目或学科上合格",
+                english: "be qualified in"
+            },
+            {
+                chinese: "在某种职业上合格",
+                english: "be qualified for"
+            },
+            {
+                chinese: "不可能的",
+                english: "out of the question"
+            },
+            {
+                chinese: "所谈及的",
+                english: "in question"
+            },
+            {
+                chinese: "毫无疑问",
+                english: "without question"
+            },
+            {
+                chinese: "随便地, 任意地, 胡乱地",
+                english: "at random"
+            },
+            {
+                chinese: "无法达到",
+                english: "beyond the reach of"
+            },
+            {
+                chinese: "向…问候",
+                english: "give one’s regards to sb."
+            },
+            {
+                chinese: "不顾,不考虑",
+                english: "regardless of"
+            },
+            {
+                chinese: "和…有关的",
+                english: "relevant to"
+            },
+            
+            // 翻译常用表达
+            {
+                chinese: "谋生",
+                english: "make a living"
+            },
+            {
+                chinese: "成功",
+                english: "make it"
+            },
+            {
+                chinese: "充分利用",
+                english: "make the best / most of"
+            },
+            {
+                chinese: "许多",
+                english: "many a"
+            },
+            {
+                chinese: "批改考卷",
+                english: "mark the papers"
+            },
+            {
+                chinese: "满足要求",
+                english: "meet one's needs"
+            },
+            {
+                chinese: "不妨",
+                english: "might as well"
+            },
+            {
+                chinese: "认错",
+                english: "mistake a for b"
+            },
+            {
+                chinese: "或多或少，有点",
+                english: "more or less"
+            },
+            {
+                chinese: "我请客",
+                english: "my treat"
+            },
+            {
+                chinese: "九死一生",
+                english: "narrow escape"
+            },
+            {
+                chinese: "必要",
+                english: "necessary to /for"
+            },
+            {
+                chinese: "隔壁的，在隔壁",
+                english: "next door"
+            },
+            {
+                chinese: "下一个，其次",
+                english: "next to"
+            },
+            {
+                chinese: "无疑地",
+                english: "no doubt"
+            },
+            {
+                chinese: "不少于……;不亚于",
+                english: "no less than"
+            },
+            {
+                chinese: "不再",
+                english: "no longer"
+            },
+            {
+                chinese: "至多，同……一样不",
+                english: "no more than"
+            },
+            {
+                chinese: "不再是别的，正是",
+                english: "none other than"
+            },
+            {
+                chinese: "只有，只不过",
+                english: "nothing but"
+            },
+            {
+                chinese: "时而，偶尔",
+                english: "now and then"
+            },
+            
+            // 更多翻译常用短语
+            {
+                chinese: "一想到…",
+                english: "at the thought of"
+            },
+            {
+                chinese: "就整体而论",
+                english: "as a whole"
+            },
+            {
+                chinese: "随心所欲",
+                english: "at will"
+            },
+            {
+                chinese: "富于，富有",
+                english: "be abundant in"
+            },
+            {
+                chinese: "能接近，进入，了解",
+                english: "access(to)"
+            },
+            {
+                chinese: "偶然地，意外",
+                english: "by accident"
+            },
+            {
+                chinese: "安全地",
+                english: "Without accident"
+            },
+            {
+                chinese: "自愿地，主动地",
+                english: "of one’s own accord"
+            },
+            {
+                chinese: "与…一致",
+                english: "in accord with"
+            },
+            {
+                chinese: "喘气,松口气;屏息",
+                english: "catch one's breath"
+            },
+            {
+                chinese: "引人注目",
+                english: "catch one's eye"
+            },
+            {
+                chinese: "看到,发现",
+                english: "catch sight of"
+            },
+            {
+                chinese: "生效;实施",
+                english: "come into effect"
+            },
+            {
+                chinese: "施行,实行,生效",
+                english: "come into operation"
+            },
+            {
+                chinese: "醒悟;苏醒",
+                english: "come to one's senses"
+            },
+            {
+                chinese: "实现",
+                english: "come true"
+            },
+            {
+                chinese: "要不住,忍不住",
+                english: "could not help"
+            },
+            {
+                chinese: "中断,打断",
+                english: "cut short"
+            },
+            {
+                chinese: "尽力,努力",
+                english: "do one's best"
+            },
+            {
+                chinese: "过得快活",
+                english: "enjoy oneself"
+            },
+            {
+                chinese: "爱上",
+                english: "fall in love with"
+            },
+            {
+                chinese: "找岔",
+                english: "find fault(with)"
+            },
+            {
+                chinese: "胜过,优于",
+                english: "gain an advantage over"
+            },
+            {
+                chinese: "得到,获得",
+                english: "get hold of"
+            },
+            {
+                chinese: "丢弃,摆脱",
+                english: "get rid of"
+            },
+            {
+                chinese: "战胜",
+                english: "get the best of"
+            },
+            {
+                chinese: "战胜,占上风",
+                english: "get the better of"
+            },
+            {
+                chinese: "会面,装配",
+                english: "get together"
+            },
+            {
+                chinese: "让路,让步",
+                english: "give way"
+            },
+            {
+                chinese: "无兴趣,不关心",
+                english: "indifferent to"
+            },
+            {
+                chinese: "愤慨",
+                english: "indignant with sb."
+            },
+            {
+                chinese: "级别低于,不如",
+                english: "inferior to"
+            },
+            {
+                chinese: "无……罪,无辜",
+                english: "innocent of"
+            },
+            {
+                chinese: "专心于",
+                english: "intent on"
+            },
+            {
+                chinese: "不可见的",
+                english: "invisible to"
+            },
+            {
+                chinese: "嫉妒",
+                english: "jealous of"
+            },
+            {
+                chinese: "爱好,很喜欢",
+                english: "keep on"
+            },
+            {
+                chinese: "对……有责任",
+                english: "liable for"
+            },
+            {
+                chinese: "易于",
+                english: "liable to"
+            },
+            {
+                chinese: "忠于",
+                english: "loyal to"
+            },
+            {
+                chinese: "生气,愤怒",
+                english: "mad at/with sb."
+            },
+            {
+                chinese: "因……发狂",
+                english: "mad with"
+            },
+            {
+                chinese: "挑剔,讲究",
+                english: "particular about"
+            },
+            {
+                chinese: "与……平等,类似",
+                english: "parallel to"
+            },
+            {
+                chinese: "独特的,独有的",
+                english: "peculiar to"
+            },
+            {
+                chinese: "有耐心",
+                english: "patient with"
+            },
+            {
+                chinese: "在……之前",
+                english: "prior to"
+            },
+            
+            // 工业化、城市化等社会经济发展相关词汇
+            {
+                chinese: "工业化",
+                english: "industrialization"
+            },
+            {
+                chinese: "城市化",
+                english: "urbanization"
+            },
+            {
+                chinese: "现代化",
+                english: "modernization"
+            },
+            {
+                chinese: "全球化",
+                english: "globalization"
+            },
+            {
+                chinese: "可持续发展",
+                english: "sustainable development"
+            },
+            {
+                chinese: "环境保护",
+                english: "environmental protection"
+            },
+            {
+                chinese: "全球变暖",
+                english: "global warming"
+            },
+            {
+                chinese: "温室效应",
+                english: "greenhouse effect"
+            },
+            {
+                chinese: "垃圾分类",
+                english: "garbage classification"
+            },
+            {
+                chinese: "碳中和",
+                english: "carbon neutralization"
+            },
+            {
+                chinese: "实现碳中和",
+                english: "achieve carbon neutrality"
+            },
+            {
+                chinese: "可再生能源",
+                english: "renewable resources"
+            },
+            {
+                chinese: "开发可再生能源",
+                english: "develop renewable resources"
+            },
+            {
+                chinese: "生态平衡",
+                english: "ecological balance"
+            },
+            {
+                chinese: "节能减排",
+                english: "energy conservation and emission reduction"
+            },
+            {
+                chinese: "绿色发展",
+                english: "green development"
+            },
+            {
+                chinese: "空气污染",
+                english: "air pollution"
+            },
+            {
+                chinese: "基础设施",
+                english: "infrastructure"
+            },
+            {
+                chinese: "城市人口",
+                english: "urban population"
+            },
+            {
+                chinese: "农村人口",
+                english: "rural population"
+            },
+            {
+                chinese: "人口激增",
+                english: "population explosion"
+            },
+            {
+                chinese: "第三产业",
+                english: "tertiary industry"
+            },
+            {
+                chinese: "过度工业化",
+                english: "over-industrialization"
+            },
+            {
+                chinese: "交通拥堵",
+                english: "traffic congestion"
+            },
+            {
+                chinese: "水资源短缺",
+                english: "water scarcity"
+            },
+            {
+                chinese: "环境恶化",
+                english: "environmental degradation"
+            },
+            {
+                chinese: "资源枯竭",
+                english: "resources exhaustion"
+            }
+        ];
+
+        // 应用状态
+        let currentIndex = 0;
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let masteredWords = new Set();
+
+        // DOM元素
+        const englishWordEl = document.getElementById('english-word');
+        const chineseMeaningEl = document.getElementById('chinese-meaning');
+        const userInputEl = document.getElementById('user-input');
+        const currentIndexEl = document.getElementById('current-index');
+        const totalCountEl = document.getElementById('total-count');
+        const correctCountEl = document.getElementById('correct-count');
+        const incorrectCountEl = document.getElementById('incorrect-count');
+        const progressFillEl = document.getElementById('progress-fill');
+        const flashcardEl = document.getElementById('flashcard');
+        const resultMessageEl = document.getElementById('result-message');
+        const checkBtn = document.getElementById('check-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const vocabularyListEl = document.getElementById('vocabulary-list');
+
+        // 初始化应用
+        function initApp() {
+            totalCountEl.textContent = vocabularyData.length;
+            renderVocabularyList();
+            showCurrentWord();
+            updateProgress();
+        }
+
+        // 显示当前词组
+        function showCurrentWord() {
+            if (currentIndex >= vocabularyData.length) {
+                // 完成所有练习
+                showCompletionMessage();
+                return;
+            }
+
+            const word = vocabularyData[currentIndex];
+            chineseMeaningEl.textContent = word.chinese;
+            englishWordEl.textContent = word.english;
+            userInputEl.value = '';
+            currentIndexEl.textContent = currentIndex + 1;
+            resultMessageEl.classList.add('hidden');
+            
+            // 重置卡片状态
+            flashcardEl.classList.remove('flipped');
+        }
+
+        // 更新进度条
+        function updateProgress() {
+            const progress = ((currentIndex) / vocabularyData.length) * 100;
+            progressFillEl.style.width = `${progress}%`;
+        }
+
+        // 更新计数器
+        function updateCounters() {
+            correctCountEl.textContent = correctCount;
+            incorrectCountEl.textContent = incorrectCount;
+        }
+
+        // 检查答案
+        function checkAnswer() {
+            const userAnswer = userInputEl.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswer = vocabularyData[currentIndex].english.toLowerCase().replace(/\s+/g, ' ');
+            
+            resultMessageEl.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            // 检查答案是否正确（允许部分匹配）
+            if (userAnswer === correctAnswer || correctAnswer.includes(userAnswer) && userAnswer.length > 0) {
+                // 答案正确
+                resultMessageEl.classList.add('bg-green-100', 'text-green-800');
+                resultMessageEl.innerHTML = `
+                    <div class="flex items-center">
+                        <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                        <span>回答正确！</span>
+                    </div>
+                `;
+                correctCount++;
+                masteredWords.add(currentIndex);
+            } else {
+                // 答案错误
+                resultMessageEl.classList.add('bg-red-100', 'text-red-800');
+                resultMessageEl.innerHTML = `
+                    <div class="flex items-start">
+                        <svg class="h-5 w-5 text-red-500 mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <div>回答错误！</div>
+                            <div class="text-sm mt-1">正确答案：<strong>${vocabularyData[currentIndex].english}</strong></div>
+                        </div>
+                    </div>
+                `;
+                incorrectCount++;
+            }
+            
+            updateCounters();
+            renderVocabularyList();
+        }
+
+        // 显示下一个词组
+        function showNextWord() {
+            currentIndex++;
+            if (currentIndex < vocabularyData.length) {
+                showCurrentWord();
+                updateProgress();
+            } else {
+                // 完成所有练习
+                showCompletionMessage();
+            }
+        }
+
+        // 显示完成消息
+        function showCompletionMessage() {
+            chineseMeaningEl.textContent = "练习完成！";
+            englishWordEl.textContent = `您已完成所有 ${vocabularyData.length} 个词组的练习`;
+            userInputEl.disabled = true;
+            checkBtn.disabled = true;
+            nextBtn.disabled = true;
+            
+            resultMessageEl.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            resultMessageEl.classList.add('bg-blue-100', 'text-blue-800');
+            resultMessageEl.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="h-5 w-5 text-blue-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span>恭喜！您已完成所有词汇练习。正确率：${Math.round((correctCount / vocabularyData.length) * 100)}%</span>
+                </div>
+            `;
+        }
+
+        // 重置练习
+        function resetPractice() {
+            currentIndex = 0;
+            correctCount = 0;
+            incorrectCount = 0;
+            masteredWords.clear();
+            userInputEl.disabled = false;
+            checkBtn.disabled = false;
+            nextBtn.disabled = false;
+            showCurrentWord();
+            updateProgress();
+            updateCounters();
+            renderVocabularyList();
+        }
+
+        // 渲染词汇列表
+        function renderVocabularyList() {
+            vocabularyListEl.innerHTML = vocabularyData.map((word, index) => `
+                <tr class="${index === currentIndex ? 'bg-indigo-50' : ''}">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${word.chinese}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${word.english}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        ${masteredWords.has(index) ? 
+                            '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">已掌握</span>' : 
+                            '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">待练习</span>'
+                        }
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // 事件监听器
+        flashcardEl.addEventListener('click', () => {
+            flashcardEl.classList.toggle('flipped');
+        });
+
+        checkBtn.addEventListener('click', checkAnswer);
+
+        nextBtn.addEventListener('click', showNextWord);
+
+        resetBtn.addEventListener('click', resetPractice);
+
+        // 初始化应用
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

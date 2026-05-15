@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记整理 - 英语六级学习系统</title>
+    <meta name="description" content="个人英语学习笔记整理工具">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/globals.css">
+    <style>
+        @font-face {
+            font-family: 'FZCuHei';
+            src: url('./public/fonts/FZCuHei.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            font-family: 'FZCuHei', sans-serif;
+            font-weight: normal;
+            background: linear-gradient(to bottom right, #eff6ff, #c7d2fe);
+            min-height: 100vh;
+        }
+        
+        .note-card {
+            transition: all 0.3s ease;
+        }
+        
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .expandable-section {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .expandable-section.expanded {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 9999px;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .word-tag {
+            background-color: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+        
+        .phrase-tag {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+        
+        .sentence-tag {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #facc15;
+        }
+        
+        .summary-tag {
+            background-color: #f3e8ff;
+            color: #7c3aed;
+            border: 1px solid #c4b5fd;
+        }
+        
+        .confusable-tag {
+            background-color: #ffe4e6;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 形近词分组样式 */
+        .confusable-group {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .confusable-group-header {
+            background-color: #f9fafb;
+            padding: 1rem 1.25rem;
+            border-radius: 1rem 1rem 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .confusable-group-content {
+            padding: 1.5rem;
+        }
+        
+        .confusable-word-card {
+            border-radius: 1rem;
+            background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .confusable-word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .confusable-word-content {
+            font-weight: bold;
+            font-size: 1.125rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .confusable-word-translation {
+            color: #4b5563;
+            font-size: 1rem;
+        }
+        
+        .confusable-word-tags {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .confusable-word-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: linear-gradient(to right, #fef3c7, #fde68a);
+            color: #92400e;
+            border: 1px solid #facc15;
+        }
+        
+        .delete-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .confusable-word-card:hover .delete-button {
+            opacity: 1;
+        }
+        
+        /* 词组、单词、句子卡片样式 */
+        .note-card-item {
+            border-radius: 1rem;
+            background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .note-card-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .note-card-content {
+            font-weight: bold;
+            font-size: 1.125rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .note-card-translation {
+            color: #4b5563;
+            font-size: 1rem;
+        }
+        
+        .note-card-tags {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .note-card-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: linear-gradient(to right, #e5e7eb, #d1d5db);
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        
+        .word-note-tag {
+            background: linear-gradient(to right, #dbeafe, #bfdbfe);
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+        
+        .phrase-note-tag {
+            background: linear-gradient(to right, #dcfce7, #bbf7d0);
+            color: #166534;
+            border: 1px solid #86efac;
+        }
+        
+        .sentence-note-tag {
+            background: linear-gradient(to right, #fef3c7, #fde68a);
+            color: #92400e;
+            border: 1px solid #facc15;
+        }
+        
+        .summary-note-tag {
+            background: linear-gradient(to right, #f3e8ff, #e9d5ff);
+            color: #7c3aed;
+            border: 1px solid #c4b5fd;
+        }
+        
+        .confusable-note-tag {
+            background: linear-gradient(to right, #ffe4e6, #fecaca);
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background: linear-gradient(to bottom right, #ffffff, #f9fafb);
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #c7d2fe;
+            max-width: 2xl;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-example {
+            background: linear-gradient(to right, #c7d2fe, #ddd6fe);
+            border-radius: 1rem;
+            border: 2px solid #c7d2fe;
+            padding: 1.5rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .modal-info {
+            background-color: #dbeafe;
+            border-radius: 0.75rem;
+            border: 1px solid #93c5fd;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <header class="bg-white shadow-sm sticky top-0 z-10">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="text-xl font-semibold text-indigo-600">CET-6 学习笔记</div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors">首页</a></li>
+                        <li><a href="writing-guide.html" class="text-gray-600 hover:text-indigo-600 transition-colors">写作指导</a></li>
+                        <li><a href="template-practice.html" class="text-gray-600 hover:text-indigo-600 transition-colors">模板背诵</a></li>
+                        <li><a href="notes.html" class="text-indigo-600 font-medium">笔记整理</a></li>
+                        <li><a href="roots.html" class="text-gray-600 hover:text-indigo-600 transition-colors">词根词缀</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-bold text-gray-800 mb-3">学习笔记整理</h1>
+                <p class="text-gray-600 text-lg">整理你的英语学习笔记，提高学习效率</p>
+            </div>
+            
+            <!-- 添加笔记表单 -->
+            <div class="bg-white rounded-2xl shadow-lg mb-8 note-card">
+                <div 
+                    class="px-6 py-4 bg-indigo-50 border-l-4 border-indigo-500 cursor-pointer flex justify-between items-center"
+                    onclick="toggleSection('form')"
+                >
+                    <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mr-3 bg-indigo-100 text-indigo-800">
+                            添加新笔记
+                        </span>
+                    </h2>
+                    <svg 
+                        class="h-5 w-5 text-indigo-600 toggle-icon"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                        id="form-toggle-icon"
+                    >
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                
+                <div id="form-section" class="expandable-section expanded">
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="note-type">
+                                        笔记类型
+                                    </label>
+                                    <select
+                                        id="note-type"
+                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                        onchange="updateFormFields()"
+                                    >
+                                        <option value="word">单词</option>
+                                        <option value="phrase">词组</option>
+                                        <option value="sentence">句子</option>
+                                        <option value="summary">总结</option>
+                                        <option value="confusable">形近词</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="note-content">
+                                        内容 *
+                                    </label>
+                                    <textarea
+                                        id="note-content"
+                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                        rows="3"
+                                        placeholder="输入单词、词组、句子或总结内容"
+                                    ></textarea>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="note-translation">
+                                        翻译/解释
+                                    </label>
+                                    <textarea
+                                        id="note-translation"
+                                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                        rows="2"
+                                        placeholder="输入翻译或解释说明"
+                                    ></textarea>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2">
+                                        标签
+                                    </label>
+                                    <div class="flex">
+                                        <input
+                                            type="text"
+                                            id="tag-input"
+                                            class="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                            placeholder="输入标签并按回车添加"
+                                            onkeypress="if(event.key === 'Enter') { event.preventDefault(); addTag(); }"
+                                        />
+                                        <button
+                                            class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition-colors duration-200 text-sm font-medium"
+                                            onclick="addTag()"
+                                        >
+                                            添加
+                                        </button>
+                                    </div>
+                                    <div class="mt-2 flex flex-wrap gap-2" id="tags-container">
+                                        <!-- Tags will be added here dynamically -->
+                                    </div>
+                                </div>
+                                
+                                <button
+                                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg text-sm"
+                                    onclick="addNoteFromForm()"
+                                >
+                                    添加笔记
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 笔记过滤和搜索 -->
+            <div class="bg-white rounded-2xl shadow-lg mb-8 note-card">
+                <div 
+                    class="px-6 py-4 bg-green-50 border-l-4 border-green-500 cursor-pointer flex justify-between items-center"
+                    onclick="toggleSection('search')"
+                >
+                    <h2 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mr-3 bg-green-100 text-green-800">
+                            笔记搜索
+                        </span>
+                    </h2>
+                    <svg 
+                        class="h-5 w-5 text-green-600 toggle-icon"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                        id="search-toggle-icon"
+                    >
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                
+                <div id="search-section" class="expandable-section expanded">
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div class="flex-1 max-w-md">
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        id="search-input"
+                                        class="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                        placeholder="搜索笔记内容..."
+                                        oninput="handleSearch()"
+                                    />
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 形近词专区 -->
+            <div class="bg-white rounded-2xl shadow-lg note-card mb-8">
+                <div 
+                    class="px-6 py-4 bg-white border-l-4 border-gray-300 cursor-pointer flex justify-between items-center"
+                    onclick="toggleSection('confusable')"
+                >
+                    <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mr-3 bg-white text-gray-800 border border-gray-200">
+                            形近词
+                        </span>
+                        <span class="text-gray-600 text-base" id="confusable-count">共 0 组</span>
+                    </h3>
+                    <svg 
+                        class="h-5 w-5 text-gray-600 toggle-icon"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                        id="confusable-toggle-icon"
+                    >
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                
+                <div id="confusable-section" class="expandable-section expanded" style="max-height: none; overflow-y: visible;">
+                    <div class="p-6">
+                        <div id="confusable-container">
+                            <!-- 形近词组将在这里动态加载 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 按类型分组的笔记列表 -->
+            <div class="space-y-8" id="notes-container">
+                <!-- 笔记将在这里动态加载 -->
+            </div>
+        </main>
+
+        <footer class="bg-gray-800 text-white py-6 mt-12">
+            <div class="container mx-auto px-4">
+                <div class="text-center text-sm">
+                    <p>CET-6 学习笔记系统 &copy; 2025</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 词组例句弹窗 -->
+    <div id="example-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="p-8">
+                <div class="modal-header">
+                    <div>
+                        <h3 class="text-3xl font-bold text-indigo-700 modal-title"></h3>
+                        <div class="w-20 h-1 bg-indigo-200 rounded-full"></div>
+                    </div>
+                    <button 
+                        onclick="closeExampleModal()"
+                        class="text-gray-400 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-red-50"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                        </svg>
+                        例句展示
+                    </h4>
+                    
+                    <div class="modal-example">
+                        <div class="text-gray-700 text-xl leading-relaxed modal-example-text">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-info mt-8">
+                        <svg class="w-6 h-6 mr-2 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-gray-600 text-base">
+                            点击卡片任意位置即可查看例句，帮助您更好地理解和记忆词组用法。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-center">
+                    <button
+                        onclick="closeExampleModal()"
+                        class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium text-lg"
+                    >
+                        确认理解
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 笔记数据
+        let notes = [
+            // 初始化一些示例笔记
+            {
+                id: 1,
+                type: 'word',
+                content: 'interest',
+                translation: '利益',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 2,
+                type: 'phrase',
+                content: 'sure enough',
+                translation: '果然',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 3,
+                type: 'sentence',
+                content: 'what distinguishes sb',
+                translation: '让某人与众不同的是',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 4,
+                type: 'phrase',
+                content: 'shot through with',
+                translation: '充满',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 5,
+                type: 'phrase',
+                content: 'see off',
+                translation: '摆脱',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 6,
+                type: 'phrase',
+                content: 'drawing on',
+                translation: '根据',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 7,
+                type: 'sentence',
+                content: 'not feel that way',
+                translation: '不要那样想',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 8,
+                type: 'phrase',
+                content: 'the brightest conclusion',
+                translation: '最乐观的结论',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 9,
+                type: 'phrase',
+                content: 'from generation to generation',
+                translation: '世代相传',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 10,
+                type: 'phrase',
+                content: 'broaden horizon',
+                translation: '开拓视野',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 11,
+                type: 'phrase',
+                content: 'pay attention to',
+                translation: '关注',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 12,
+                type: 'word',
+                content: 'field',
+                translation: '领域',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            {
+                id: 13,
+                type: 'sentence',
+                content: 'the script has flipped',
+                translation: '',
+                tags: [],
+                createdAt: '2023/12/01 10:30'
+            },
+            // 形近词笔记 - 按组组织
+            // 第一组: private, pirate
+            {
+                id: 14,
+                type: 'confusable',
+                group: 'private-pirate',
+                content: 'private',
+                translation: '私人的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 15,
+                type: 'confusable',
+                group: 'private-pirate',
+                content: 'pirate',
+                translation: '海盗，盗版的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二组: crow, crown, clown
+            {
+                id: 16,
+                type: 'confusable',
+                group: 'crow-crown-clown',
+                content: 'crow',
+                translation: '乌鸦',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 17,
+                type: 'confusable',
+                group: 'crow-crown-clown',
+                content: 'crown',
+                translation: '王冠',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 18,
+                type: 'confusable',
+                group: 'crow-crown-clown',
+                content: 'clown',
+                translation: '小丑',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三组: doze, dozen
+            {
+                id: 19,
+                type: 'confusable',
+                group: 'doze-dozen',
+                content: 'doze',
+                translation: '打瞌睡',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 20,
+                type: 'confusable',
+                group: 'doze-dozen',
+                content: 'dozen',
+                translation: '一打，十几个',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四组: gloom, groom
+            {
+                id: 21,
+                type: 'confusable',
+                group: 'gloom-groom',
+                content: 'gloom',
+                translation: '忧郁',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 22,
+                type: 'confusable',
+                group: 'gloom-groom',
+                content: 'groom',
+                translation: '打扮，梳毛',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五组: rush, lush
+            {
+                id: 23,
+                type: 'confusable',
+                group: 'rush-lush',
+                content: 'rush',
+                translation: '冲',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 24,
+                type: 'confusable',
+                group: 'rush-lush',
+                content: 'lush',
+                translation: '茂盛的，酒鬼',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六组: vow, mow
+            {
+                id: 25,
+                type: 'confusable',
+                group: 'vow-mow',
+                content: 'vow',
+                translation: '誓言，发誓',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 26,
+                type: 'confusable',
+                group: 'vow-mow',
+                content: 'mow',
+                translation: '割草',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七组: lump, lamp, lame, lamb
+            {
+                id: 27,
+                type: 'confusable',
+                group: 'lump-lamp-lame-lamb',
+                content: 'lump',
+                translation: '把…归并在一起',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 28,
+                type: 'confusable',
+                group: 'lump-lamp-lame-lamb',
+                content: 'lamp',
+                translation: '灯',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 29,
+                type: 'confusable',
+                group: 'lump-lamp-lame-lamb',
+                content: 'lame',
+                translation: '瘸的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 30,
+                type: 'confusable',
+                group: 'lump-lamp-lame-lamb',
+                content: 'lamb',
+                translation: '羊羔',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第八组: stalk, stall, stale
+            {
+                id: 31,
+                type: 'confusable',
+                group: 'stalk-stall-stale',
+                content: 'stalk',
+                translation: '茎',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 32,
+                type: 'confusable',
+                group: 'stalk-stall-stale',
+                content: 'stall',
+                translation: '货摊',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 33,
+                type: 'confusable',
+                group: 'stalk-stall-stale',
+                content: 'stale',
+                translation: '不新鲜的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第九组: strike, stride
+            {
+                id: 34,
+                type: 'confusable',
+                group: 'strike-stride',
+                content: 'strike',
+                translation: '打',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 35,
+                type: 'confusable',
+                group: 'strike-stride',
+                content: 'stride',
+                translation: '大步走',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十组: lodge, dodge
+            {
+                id: 36,
+                type: 'confusable',
+                group: 'lodge-dodge',
+                content: 'lodge',
+                translation: '乡间小屋',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 37,
+                type: 'confusable',
+                group: 'lodge-dodge',
+                content: 'dodge',
+                translation: '躲避，花招',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十一组: commence, commerce
+            {
+                id: 38,
+                type: 'confusable',
+                group: 'commence-commerce',
+                content: 'commence',
+                translation: '开始，着手',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 39,
+                type: 'confusable',
+                group: 'commence-commerce',
+                content: 'commerce',
+                translation: '商业',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十二组: cradle, scandal
+            {
+                id: 40,
+                type: 'confusable',
+                group: 'cradle-scandal',
+                content: 'cradle',
+                translation: '摇篮',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 41,
+                type: 'confusable',
+                group: 'cradle-scandal',
+                content: 'scandal',
+                translation: '丑闻',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十三组: vote, veto
+            {
+                id: 42,
+                type: 'confusable',
+                group: 'vote-veto',
+                content: 'vote',
+                translation: '投票',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 43,
+                type: 'confusable',
+                group: 'vote-veto',
+                content: 'veto',
+                translation: '否决',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十四组: slim, slum
+            {
+                id: 44,
+                type: 'confusable',
+                group: 'slim-slum',
+                content: 'slim',
+                translation: '苗条',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 45,
+                type: 'confusable',
+                group: 'slim-slum',
+                content: 'slum',
+                translation: '贫民窟',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十五组: petrol, patron
+            {
+                id: 46,
+                type: 'confusable',
+                group: 'petrol-patron',
+                content: 'petrol',
+                translation: '汽油',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 47,
+                type: 'confusable',
+                group: 'petrol-patron',
+                content: 'patron',
+                translation: '赞助人',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十六组: ballot, ballet
+            {
+                id: 48,
+                type: 'confusable',
+                group: 'ballot-ballet',
+                content: 'ballot',
+                translation: '无记名投票',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 49,
+                type: 'confusable',
+                group: 'ballot-ballet',
+                content: 'ballet',
+                translation: '芭蕾舞',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十七组: moral, morale, mortal
+            {
+                id: 50,
+                type: 'confusable',
+                group: 'moral-morale-mortal',
+                content: 'moral',
+                translation: '道德',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 51,
+                type: 'confusable',
+                group: 'moral-morale-mortal',
+                content: 'morale',
+                translation: '士气，精神面貌',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 52,
+                type: 'confusable',
+                group: 'moral-morale-mortal',
+                content: 'mortal',
+                translation: '凡人',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十八组: bail, bait
+            {
+                id: 53,
+                type: 'confusable',
+                group: 'bail-bait',
+                content: 'bail',
+                translation: '保释金',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 54,
+                type: 'confusable',
+                group: 'bail-bait',
+                content: 'bait',
+                translation: '给…上诱饵',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第十九组: tact, pact
+            {
+                id: 55,
+                type: 'confusable',
+                group: 'tact-pact',
+                content: 'tact',
+                translation: '得体',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 56,
+                type: 'confusable',
+                group: 'tact-pact',
+                content: 'pact',
+                translation: '协议',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十组: terrible, terrific
+            {
+                id: 57,
+                type: 'confusable',
+                group: 'terrible-terrific',
+                content: 'terrible',
+                translation: '糟糕的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 58,
+                type: 'confusable',
+                group: 'terrible-terrific',
+                content: 'terrific',
+                translation: '极好的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十一组: canoe, cane, crane
+            {
+                id: 59,
+                type: 'confusable',
+                group: 'canoe-cane-crane',
+                content: 'canoe',
+                translation: '独木舟',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 60,
+                type: 'confusable',
+                group: 'canoe-cane-crane',
+                content: 'cane',
+                translation: '茎，拐杖',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 61,
+                type: 'confusable',
+                group: 'canoe-cane-crane',
+                content: 'crane',
+                translation: '起重机，吊车',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十二组: pedal, peddle
+            {
+                id: 62,
+                type: 'confusable',
+                group: 'pedal-peddle',
+                content: 'pedal',
+                translation: '踏板',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 63,
+                type: 'confusable',
+                group: 'pedal-peddle',
+                content: 'peddle',
+                translation: '叫卖',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十三组: Anthony, attorney
+            {
+                id: 64,
+                type: 'confusable',
+                group: 'Anthony-attorney',
+                content: 'Anthony',
+                translation: '安东尼',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 65,
+                type: 'confusable',
+                group: 'Anthony-attorney',
+                content: 'attorney',
+                translation: '律师',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十四组: poker, poke
+            {
+                id: 66,
+                type: 'confusable',
+                group: 'poker-poke',
+                content: 'poker',
+                translation: '扑克牌',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 67,
+                type: 'confusable',
+                group: 'poker-poke',
+                content: 'poke',
+                translation: '捅',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十五组: scent, recent
+            {
+                id: 68,
+                type: 'confusable',
+                group: 'scent-recent',
+                content: 'scent',
+                translation: '香味',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 69,
+                type: 'confusable',
+                group: 'scent-recent',
+                content: 'recent',
+                translation: '憎恨',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十六组: expense, dispense
+            {
+                id: 70,
+                type: 'confusable',
+                group: 'expense-dispense',
+                content: 'expense',
+                translation: '花费',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 71,
+                type: 'confusable',
+                group: 'expense-dispense',
+                content: 'dispense',
+                translation: '分配',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十七组: segregate, propagate
+            {
+                id: 72,
+                type: 'confusable',
+                group: 'segregate-propagate',
+                content: 'segregate',
+                translation: '隔离',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 73,
+                type: 'confusable',
+                group: 'segregate-propagate',
+                content: 'propagate',
+                translation: '宣传',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十八组: beverage, benevolent
+            {
+                id: 74,
+                type: 'confusable',
+                group: 'beverage-benevolent',
+                content: 'beverage',
+                translation: '饮料',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 75,
+                type: 'confusable',
+                group: 'beverage-benevolent',
+                content: 'benevolent',
+                translation: '仁慈的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第二十九组: born, barn
+            {
+                id: 76,
+                type: 'confusable',
+                group: 'born-barn',
+                content: 'born',
+                translation: '出生',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 77,
+                type: 'confusable',
+                group: 'born-barn',
+                content: 'barn',
+                translation: '谷仓',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十组: achieve, archive
+            {
+                id: 78,
+                type: 'confusable',
+                group: 'achieve-archive',
+                content: 'achieve',
+                translation: '实现',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 79,
+                type: 'confusable',
+                group: 'achieve-archive',
+                content: 'archive',
+                translation: '档案',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十一组: overhaul, havoc
+            {
+                id: 80,
+                type: 'confusable',
+                group: 'overhaul-havoc',
+                content: 'overhaul',
+                translation: '检修，改造',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 81,
+                type: 'confusable',
+                group: 'overhaul-havoc',
+                content: 'havoc',
+                translation: '祸患，灾难',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十二组: loop, loot
+            {
+                id: 82,
+                type: 'confusable',
+                group: 'loop-loot',
+                content: 'loop',
+                translation: '环形',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 83,
+                type: 'confusable',
+                group: 'loop-loot',
+                content: 'loot',
+                translation: '抢劫，赃物',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十三组: synthetic, synthesis
+            {
+                id: 84,
+                type: 'confusable',
+                group: 'synthetic-synthesis',
+                content: 'synthetic',
+                translation: '合成的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 85,
+                type: 'confusable',
+                group: 'synthetic-synthesis',
+                content: 'synthesis',
+                translation: '综合',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十四组: tremble, tumble
+            {
+                id: 86,
+                type: 'confusable',
+                group: 'tremble-tumble',
+                content: 'tremble',
+                translation: '颤抖',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 87,
+                type: 'confusable',
+                group: 'tremble-tumble',
+                content: 'tumble',
+                translation: '跌倒，跌落',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十五组: sake, soak
+            {
+                id: 88,
+                type: 'confusable',
+                group: 'sake-soak',
+                content: 'sake',
+                translation: '目的，利益',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 89,
+                type: 'confusable',
+                group: 'sake-soak',
+                content: 'soak',
+                translation: '浸泡',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十六组: success, successive
+            {
+                id: 90,
+                type: 'confusable',
+                group: 'success-successive',
+                content: 'success',
+                translation: '成功',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 91,
+                type: 'confusable',
+                group: 'success-successive',
+                content: 'successive',
+                translation: '连续的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十七组: instance, stance
+            {
+                id: 92,
+                type: 'confusable',
+                group: 'instance-stance',
+                content: 'instance',
+                translation: '例子',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 93,
+                type: 'confusable',
+                group: 'instance-stance',
+                content: 'stance',
+                translation: '立场，态度',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十八组: haunt, hunt
+            {
+                id: 94,
+                type: 'confusable',
+                group: 'haunt-hunt',
+                content: 'haunt',
+                translation: '鬼魂',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 95,
+                type: 'confusable',
+                group: 'haunt-hunt',
+                content: 'hunt',
+                translation: '打猎',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第三十九组: coincide, concise
+            {
+                id: 96,
+                type: 'confusable',
+                group: 'coincide-concise',
+                content: 'coincide',
+                translation: '同时发生',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 97,
+                type: 'confusable',
+                group: 'coincide-concise',
+                content: 'concise',
+                translation: '简洁的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十组: deduce, seduce
+            {
+                id: 98,
+                type: 'confusable',
+                group: 'deduce-seduce',
+                content: 'deduce',
+                translation: '推理',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 99,
+                type: 'confusable',
+                group: 'deduce-seduce',
+                content: 'seduce',
+                translation: '引诱，勾引',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十一组: patrol, patriot
+            {
+                id: 100,
+                type: 'confusable',
+                group: 'patrol-patriot',
+                content: 'patrol',
+                translation: '巡逻',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 101,
+                type: 'confusable',
+                group: 'patrol-patriot',
+                content: 'patriot',
+                translation: '爱国者',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十二组: industrious, indigenous
+            {
+                id: 102,
+                type: 'confusable',
+                group: 'industrious-indigenous',
+                content: 'industrious',
+                translation: '勤劳的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 103,
+                type: 'confusable',
+                group: 'industrious-indigenous',
+                content: 'indigenous',
+                translation: '本土的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十三组: delete, deplete
+            {
+                id: 104,
+                type: 'confusable',
+                group: 'delete-deplete',
+                content: 'delete',
+                translation: '减少',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 105,
+                type: 'confusable',
+                group: 'delete-deplete',
+                content: 'deplete',
+                translation: '大量减少',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十四组: sob, sober
+            {
+                id: 106,
+                type: 'confusable',
+                group: 'sob-sober',
+                content: 'sob',
+                translation: '抽噎',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 107,
+                type: 'confusable',
+                group: 'sob-sober',
+                content: 'sober',
+                translation: '冷静，严肃',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十五组: consult, assault
+            {
+                id: 108,
+                type: 'confusable',
+                group: 'consult-assault',
+                content: 'consult',
+                translation: '咨询',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 109,
+                type: 'confusable',
+                group: 'consult-assault',
+                content: 'assault',
+                translation: '攻击，袭击',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十六组: encode, concede
+            {
+                id: 110,
+                type: 'confusable',
+                group: 'encode-concede',
+                content: 'encode',
+                translation: '编码',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 111,
+                type: 'confusable',
+                group: 'encode-concede',
+                content: 'concede',
+                translation: '承认',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十七组: blaze, bizarre
+            {
+                id: 112,
+                type: 'confusable',
+                group: 'blaze-bizarre',
+                content: 'blaze',
+                translation: '火焰',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 113,
+                type: 'confusable',
+                group: 'blaze-bizarre',
+                content: 'bizarre',
+                translation: '奇异的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十八组: immediate, mediate
+            {
+                id: 114,
+                type: 'confusable',
+                group: 'immediate-mediate',
+                content: 'immediate',
+                translation: '立刻',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 115,
+                type: 'confusable',
+                group: 'immediate-mediate',
+                content: 'mediate',
+                translation: '调停，调解',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第四十九组: promise, premise
+            {
+                id: 116,
+                type: 'confusable',
+                group: 'promise-premise',
+                content: 'promise',
+                translation: '承诺，保证',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 117,
+                type: 'confusable',
+                group: 'promise-premise',
+                content: 'premise',
+                translation: '前提',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十组: grid, grim, grin
+            {
+                id: 118,
+                type: 'confusable',
+                group: 'grid-grim-grin',
+                content: 'grid',
+                translation: '网格',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 119,
+                type: 'confusable',
+                group: 'grid-grim-grin',
+                content: 'grim',
+                translation: '严肃的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 120,
+                type: 'confusable',
+                group: 'grid-grim-grin',
+                content: 'grin',
+                translation: '咧嘴大笑',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十一组: elite, elicit
+            {
+                id: 121,
+                type: 'confusable',
+                group: 'elite-elicit',
+                content: 'elite',
+                translation: '精英',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 122,
+                type: 'confusable',
+                group: 'elite-elicit',
+                content: 'elicit',
+                translation: '引出，诱出',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十二组: iron, irony
+            {
+                id: 123,
+                type: 'confusable',
+                group: 'iron-irony',
+                content: 'iron',
+                translation: '铁',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 124,
+                type: 'confusable',
+                group: 'iron-irony',
+                content: 'irony',
+                translation: '讽刺的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十三组: reproach, approach
+            {
+                id: 125,
+                type: 'confusable',
+                group: 'reproach-approach',
+                content: 'reproach',
+                translation: '责备',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 126,
+                type: 'confusable',
+                group: 'reproach-approach',
+                content: 'approach',
+                translation: '方法',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十四组: hinge, mingle
+            {
+                id: 127,
+                type: 'confusable',
+                group: 'hinge-mingle',
+                content: 'hinge',
+                translation: '铰链',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 128,
+                type: 'confusable',
+                group: 'hinge-mingle',
+                content: 'mingle',
+                translation: '混合的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十五组: erect, eject
+            {
+                id: 129,
+                type: 'confusable',
+                group: 'erect-eject',
+                content: 'erect',
+                translation: '建造',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 130,
+                type: 'confusable',
+                group: 'erect-eject',
+                content: 'eject',
+                translation: '驱逐，弹出',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十六组: tranquil, transient
+            {
+                id: 131,
+                type: 'confusable',
+                group: 'tranquil-transient',
+                content: 'tranquil',
+                translation: '宁静的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 132,
+                type: 'confusable',
+                group: 'tranquil-transient',
+                content: 'transient',
+                translation: '短暂的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十七组: shuttle, shatter
+            {
+                id: 133,
+                type: 'confusable',
+                group: 'shuttle-shatter',
+                content: 'shuttle',
+                translation: '航天飞机',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 134,
+                type: 'confusable',
+                group: 'shuttle-shatter',
+                content: 'shatter',
+                translation: '使破灭',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十八组: preface, pretext
+            {
+                id: 135,
+                type: 'confusable',
+                group: 'preface-pretext',
+                content: 'preface',
+                translation: '前言',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 136,
+                type: 'confusable',
+                group: 'preface-pretext',
+                content: 'pretext',
+                translation: '借口',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第五十九组: endure, endorse
+            {
+                id: 137,
+                type: 'confusable',
+                group: 'endure-endorse',
+                content: 'endure',
+                translation: '忍受',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 138,
+                type: 'confusable',
+                group: 'endure-endorse',
+                content: 'endorse',
+                translation: '公开支持',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十组: tempt, attempt, contempt
+            {
+                id: 139,
+                type: 'confusable',
+                group: 'tempt-attempt-contempt',
+                content: 'tempt',
+                translation: '引诱',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 140,
+                type: 'confusable',
+                group: 'tempt-attempt-contempt',
+                content: 'attempt',
+                translation: '尝试',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 141,
+                type: 'confusable',
+                group: 'tempt-attempt-contempt',
+                content: 'contempt',
+                translation: '蔑视',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十一组: recruit, refute
+            {
+                id: 142,
+                type: 'confusable',
+                group: 'recruit-refute',
+                content: 'recruit',
+                translation: '招聘',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 143,
+                type: 'confusable',
+                group: 'recruit-refute',
+                content: 'refute',
+                translation: '反驳',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十二组: summon, summit
+            {
+                id: 144,
+                type: 'confusable',
+                group: 'summon-summit',
+                content: 'summon',
+                translation: '召唤',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 145,
+                type: 'confusable',
+                group: 'summon-summit',
+                content: 'summit',
+                translation: '山顶，顶峰',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十三组: whip, worship
+            {
+                id: 146,
+                type: 'confusable',
+                group: 'whip-worship',
+                content: 'whip',
+                translation: '鞭打',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 147,
+                type: 'confusable',
+                group: 'whip-worship',
+                content: 'worship',
+                translation: '敬奉',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十四组: hostage, hostile
+            {
+                id: 148,
+                type: 'confusable',
+                group: 'hostage-hostile',
+                content: 'hostage',
+                translation: '人质',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 149,
+                type: 'confusable',
+                group: 'hostage-hostile',
+                content: 'hostile',
+                translation: '敌意的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十五组: inhabit, inhibit
+            {
+                id: 150,
+                type: 'confusable',
+                group: 'inhabit-inhibit',
+                content: 'inhabit',
+                translation: '居住',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 151,
+                type: 'confusable',
+                group: 'inhabit-inhibit',
+                content: 'inhibit',
+                translation: '抑制',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十六组: texture, pasture
+            {
+                id: 152,
+                type: 'confusable',
+                group: 'texture-pasture',
+                content: 'texture',
+                translation: '质感',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 153,
+                type: 'confusable',
+                group: 'texture-pasture',
+                content: 'pasture',
+                translation: '牧场',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十七组: imitate, intimidate, intimate
+            {
+                id: 154,
+                type: 'confusable',
+                group: 'imitate-intimidate-intimate',
+                content: 'imitate',
+                translation: '模仿',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 155,
+                type: 'confusable',
+                group: 'imitate-intimidate-intimate',
+                content: 'intimidate',
+                translation: '恐吓，威胁',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 156,
+                type: 'confusable',
+                group: 'imitate-intimidate-intimate',
+                content: 'intimate',
+                translation: '亲密的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十八组: insult, insulate
+            {
+                id: 157,
+                type: 'confusable',
+                group: 'insult-insulate',
+                content: 'insult',
+                translation: '辱骂，控告',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 158,
+                type: 'confusable',
+                group: 'insult-insulate',
+                content: 'insulate',
+                translation: '使隔热',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第六十九组: context, contend
+            {
+                id: 159,
+                type: 'confusable',
+                group: 'context-contend',
+                content: 'context',
+                translation: '背景',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 160,
+                type: 'confusable',
+                group: 'context-contend',
+                content: 'contend',
+                translation: '声称，主张，竞争',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十组: tame, tamp
+            {
+                id: 161,
+                type: 'confusable',
+                group: 'tame-tamp',
+                content: 'tame',
+                translation: '驯化',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 162,
+                type: 'confusable',
+                group: 'tame-tamp',
+                content: 'tamp',
+                translation: '压实',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 补充遗漏的lame和lamp
+            {
+                id: 163,
+                type: 'confusable',
+                group: 'lame-lamp',
+                content: 'lame',
+                translation: '瘸的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 164,
+                type: 'confusable',
+                group: 'lame-lamp',
+                content: 'lamp',
+                translation: '灯',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十一组: pray, prey
+            {
+                id: 165,
+                type: 'confusable',
+                group: 'pray-prey',
+                content: 'pray',
+                translation: '祈祷',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 166,
+                type: 'confusable',
+                group: 'pray-prey',
+                content: 'prey',
+                translation: '捕食，猎物',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十二组: paradise, jeopardize
+            {
+                id: 167,
+                type: 'confusable',
+                group: 'paradise-jeopardize',
+                content: 'paradise',
+                translation: '天堂，乐土',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 168,
+                type: 'confusable',
+                group: 'paradise-jeopardize',
+                content: 'jeopardize',
+                translation: '使处于危险境地',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十三组: inherit, herd
+            {
+                id: 169,
+                type: 'confusable',
+                group: 'inherit-herd',
+                content: 'inherit',
+                translation: '继承',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 170,
+                type: 'confusable',
+                group: 'inherit-herd',
+                content: 'herd',
+                translation: '兽群，把…聚到一起',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十四组: prevent, prevalent
+            {
+                id: 171,
+                type: 'confusable',
+                group: 'prevent-prevalent',
+                content: 'prevent',
+                translation: '阻止',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 172,
+                type: 'confusable',
+                group: 'prevent-prevalent',
+                content: 'prevalent',
+                translation: '流行的',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 第七十五组: emit, omit
+            {
+                id: 173,
+                type: 'confusable',
+                group: 'emit-omit',
+                content: 'emit',
+                translation: '散发',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            {
+                id: 174,
+                type: 'confusable',
+                group: 'emit-omit',
+                content: 'omit',
+                translation: '省略，遗留',
+                tags: ['形近词'],
+                createdAt: '2023/12/01 10:35'
+            },
+            // 新增笔记
+            {
+                id: 175,
+                type: 'word',
+                content: 'enhanced',
+                translation: '增强',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 176,
+                type: 'word',
+                content: 'society',
+                translation: '社会',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 177,
+                type: 'word',
+                content: 'despite',
+                translation: '尽管',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 178,
+                type: 'word',
+                content: 'numerous',
+                translation: '大量的',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 179,
+                type: 'word',
+                content: 'pursue',
+                translation: '追求',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 180,
+                type: 'phrase',
+                content: 'rich in content',
+                translation: '内容丰富',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 181,
+                type: 'phrase',
+                content: 'elegant language',
+                translation: '优美的语言',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 182,
+                type: 'phrase',
+                content: 'widely beloved',
+                translation: '深受喜爱',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 183,
+                type: 'phrase',
+                content: 'pay more attention to',
+                translation: '更重视',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 184,
+                type: 'phrase',
+                content: 'place greater emphasis on',
+                translation: '或place greater emphasis on',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 185,
+                type: 'phrase',
+                content: 'environmental protection',
+                translation: '环境保护',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 186,
+                type: 'word',
+                content: 'influence',
+                translation: '影响',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 187,
+                type: 'word',
+                content: 'descendants',
+                translation: '后代',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 188,
+                type: 'phrase',
+                content: 'multiple skills',
+                translation: '多种技能',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 189,
+                type: 'word',
+                content: 'crucial',
+                translation: '重要的',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 190,
+                type: 'phrase',
+                content: 'highly competitive',
+                translation: '激烈竞争',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 191,
+                type: 'phrase',
+                content: 'widespread adoption',
+                translation: '普及',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 192,
+                type: 'word',
+                content: 'information',
+                translation: '信息',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 193,
+                type: 'phrase',
+                content: 'undergo significant changes',
+                translation: '正在发生巨大变化',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 194,
+                type: 'phrase',
+                content: 'take measures',
+                translation: '采取措施',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 195,
+                type: 'phrase',
+                content: 'in order to',
+                translation: '为了',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 196,
+                type: 'phrase',
+                content: 'carbon emissions',
+                translation: '二氧化碳排放',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 197,
+                type: 'phrase',
+                content: 'innovation in technology',
+                translation: '科技创新',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 198,
+                type: 'phrase',
+                content: 'quality of life',
+                translation: '生活质量',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 199,
+                type: 'phrase',
+                content: 'give it adequate importantance',
+                translation: '给予足够的重视',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 200,
+                type: 'word',
+                content: 'urbanization',
+                translation: '城市化',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 201,
+                type: 'phrase',
+                content: 'production efficiency',
+                translation: '生产效率',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 202,
+                type: 'word',
+                content: 'introduce',
+                translation: '引入',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 203,
+                type: 'word',
+                content: 'crisis',
+                translation: '危机',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 204,
+                type: 'word',
+                content: 'rest',
+                translation: '其余的人',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            },
+            {
+                id: 205,
+                type: 'word',
+                content: 'edge',
+                translation: '优势',
+                tags: [],
+                createdAt: '2023/12/02 10:00'
+            }
+        ];
+        
+        // 当前标签
+        let currentTags = [];
+        
+        // 词组例句数据
+        const phraseExamples = {
+            'sure enough': 'Sure enough, he arrived right on time.',
+            'shot through with': 'The report was shot through with inaccuracies.',
+            'see off': 'We went to the airport to see him off.',
+            'drawing on': 'Drawing on her experience, she solved the problem quickly.',
+            'the brightest conclusion': 'Despite the challenges, he remained optimistic and drew the brightest conclusion.',
+            'from generation to generation': 'Traditional crafts are passed down from generation to generation.',
+            'broaden horizon': 'Traveling can greatly broaden your horizon.',
+            'pay attention to': 'You should pay attention to the details.',
+            'the script has flipped': 'In the movie, the script has flipped the traditional roles.',
+            'rich in content': 'This book is rich in content and very informative.',
+            'elegant language': 'She expressed her ideas in elegant language.',
+            'widely beloved': 'This song is widely beloved by people of all ages.',
+            'pay more attention to': 'We should pay more attention to environmental protection.',
+            'place greater emphasis on': 'The school places greater emphasis on practical skills.',
+            'environmental protection': 'Environmental protection is everyone\'s responsibility.',
+            'multiple skills': 'Modern employees need multiple skills to succeed.',
+            'highly competitive': 'The job market is highly competitive nowadays.',
+            'widespread adoption': 'There has been widespread adoption of electric vehicles.',
+            'undergo significant changes': 'The industry has undergone significant changes in the past decade.',
+            'take measures': 'The government must take measures to control pollution.',
+            'in order to': 'He studied hard in order to pass the exam.',
+            'carbon emissions': 'Reducing carbon emissions is crucial for fighting climate change.',
+            'innovation in technology': 'Innovation in technology drives economic growth.',
+            'quality of life': 'Regular exercise improves the quality of life.',
+            'give it adequate importance': 'We must give adequate importance to mental health.',
+            'production efficiency': 'Automation has greatly improved production efficiency.'
+        };
+
+        // 切换展开/收起状态
+        function toggleSection(sectionId) {
+            const section = document.getElementById(`${sectionId}-section`);
+            const icon = document.getElementById(`${sectionId}-toggle-icon`);
+            
+            section.classList.toggle('expanded');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // 更新表单字段（根据笔记类型）
+        function updateFormFields() {
+            // 可以根据需要添加特定类型的字段
+        }
+
+        // 添加标签
+        function addTag() {
+            const tagInput = document.getElementById('tag-input');
+            const tagValue = tagInput.value.trim();
+            
+            if (tagValue && !currentTags.includes(tagValue)) {
+                currentTags.push(tagValue);
+                renderTags();
+                tagInput.value = '';
+            }
+        }
+
+        // 移除标签
+        function removeTag(tagToRemove) {
+            currentTags = currentTags.filter(tag => tag !== tagToRemove);
+            renderTags();
+        }
+
+        // 渲染标签
+        function renderTags() {
+            const tagsContainer = document.getElementById('tags-container');
+            tagsContainer.innerHTML = currentTags.map(tag => `
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                    ${tag}
+                    <button
+                        type="button"
+                        class="flex-shrink-0 ml-2 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-500 hover:bg-indigo-200 hover:text-indigo-600 focus:outline-none focus:bg-indigo-500 focus:text-white"
+                        onclick="removeTag('${tag}')"
+                    >
+                        <span class="text-xs">×</span>
+                    </button>
+                </span>
+            `).join('');
+        }
+
+        // 从表单添加笔记
+        function addNoteFromForm() {
+            const type = document.getElementById('note-type').value;
+            const content = document.getElementById('note-content').value.trim();
+            const translation = document.getElementById('note-translation').value.trim();
+            
+            if (!content) {
+                alert('请输入笔记内容');
+                return;
+            }
+            
+            const note = {
+                id: Date.now(),
+                type: type,
+                content: content,
+                translation: translation,
+                tags: [...currentTags],
+                createdAt: new Date().toLocaleString('zh-CN')
+            };
+            
+            notes.unshift(note);
+            saveNotes();
+            loadAllContent();
+            
+            // 清空表单
+            document.getElementById('note-content').value = '';
+            document.getElementById('note-translation').value = '';
+            currentTags = [];
+            renderTags();
+        }
+
+        // 删除笔记
+        function deleteNote(id) {
+            if (confirm('确定要删除这条笔记吗？')) {
+                notes = notes.filter(note => note.id !== id);
+                saveNotes();
+                loadAllContent();
+            }
+        }
+
+        // 保存笔记到本地存储
+        function saveNotes() {
+            localStorage.setItem('cet6-notes', JSON.stringify(notes));
+        }
+
+        // 搜索处理
+        function handleSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            loadNotesByType(searchTerm);
+        }
+
+        // 显示例句模态框
+        function showPhraseExample(phrase) {
+            const modal = document.getElementById('example-modal');
+            const title = modal.querySelector('.modal-title');
+            const exampleText = modal.querySelector('.modal-example-text');
+            
+            title.textContent = phrase;
+            
+            // 显示中文翻译和例句
+            const note = notes.find(n => n.content === phrase && n.type === 'phrase');
+            if (note && phraseExamples[phrase]) {
+                exampleText.innerHTML = `
+                    <div class="mb-4">
+                        <div class="text-gray-600 text-lg mb-2">例句中文含义：</div>
+                        <div class="text-gray-800 font-medium">${note.translation}</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-600 text-lg mb-2">英文例句：</div>
+                        <div class="text-gray-800">${phraseExamples[phrase]}</div>
+                    </div>
+                `;
+            } else {
+                exampleText.textContent = '暂无例句';
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        // 关闭例句模态框
+        function closeExampleModal() {
+            const modal = document.getElementById('example-modal');
+            modal.classList.add('hidden');
+        }
+
+        // 加载形近词并按组显示
+        function loadConfusableWords() {
+            const container = document.getElementById('confusable-container');
+            const countElement = document.getElementById('confusable-count');
+            
+            // 获取所有形近词
+            const confusableNotes = notes.filter(note => note.type === 'confusable');
+            
+            // 更新计数
+            const groups = {};
+            confusableNotes.forEach(note => {
+                if (!groups[note.group]) {
+                    groups[note.group] = [];
+                }
+                groups[note.group].push(note);
+            });
+            
+            countElement.textContent = `共 ${Object.keys(groups).length} 组`;
+            
+            // 渲染形近词组
+            let html = '';
+            
+            for (const groupId in groups) {
+                const groupNotes = groups[groupId];
+                html += `
+                    <div class="confusable-group">
+                        <div class="confusable-group-header" onclick="toggleConfusableGroup('${groupId}')">
+                            <span class="font-bold text-gray-800 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                ${groupId} (${groupNotes.length} 个)
+                            </span>
+                            <svg class="h-5 w-5 text-gray-600 transform transition-transform" 
+                                 id="confusable-arrow-${groupId}"
+                                 xmlns="http://www.w3.org/2000/svg" 
+                                 viewBox="0 0 20 20" 
+                                 fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="confusable-group-content" id="confusable-content-${groupId}" style="padding: 10px; max-height: none; overflow-y: visible;">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                ${groupNotes.map(note => `
+                                    <div class="confusable-word-card">
+                                        <button 
+                                            onclick="deleteNote(${note.id})"
+                                            class="delete-button text-gray-400 hover:text-red-500 transition-colors duration-200"
+                                            aria-label="删除笔记"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                        
+                                        <div class="confusable-word-content">${note.content}</div>
+                                        <div class="confusable-word-translation">${note.translation}</div>
+                                        
+                                        <div class="confusable-word-tags">
+                                            ${note.tags.map(tag => `
+                                                <span class="confusable-word-tag">
+                                                    ${tag}
+                                                </span>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            
+            // 默认展开所有组
+            for (const groupId in groups) {
+                const content = document.getElementById(`confusable-content-${groupId}`);
+                if (content) {
+                    content.style.maxHeight = 'none';
+                    content.style.overflowY = 'visible';
+                }
+                const arrow = document.getElementById(`confusable-arrow-${groupId}`);
+                if (arrow) {
+                    arrow.classList.add('rotate-180');
+                }
+            }
+        }
+
+        // 切换形近词组展开/收起
+        function toggleConfusableGroup(groupId) {
+            const content = document.getElementById(`confusable-content-${groupId}`);
+            const arrow = document.getElementById(`confusable-arrow-${groupId}`);
+            
+            content.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        // 按类型加载和显示笔记
+        function loadNotesByType(searchTerm = '') {
+            const container = document.getElementById('notes-container');
+            
+            // 过滤笔记
+            let filteredNotes = notes;
+            if (searchTerm) {
+                filteredNotes = notes.filter(note => 
+                    note.content.toLowerCase().includes(searchTerm) || 
+                    (note.translation && note.translation.toLowerCase().includes(searchTerm)) ||
+                    note.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // 按类型分组（排除形近词，因为已在专门区域显示）
+            const notesByType = {
+                'word': { label: '单词', notes: [], colorClass: 'bg-blue-50 border-l-4 border-blue-500' },
+                'phrase': { label: '词组', notes: [], colorClass: 'bg-green-50 border-l-4 border-green-500' },
+                'sentence': { label: '句子', notes: [], colorClass: 'bg-purple-50 border-l-4 border-purple-500' },
+                'summary': { label: '总结', notes: [], colorClass: 'bg-indigo-50 border-l-4 border-indigo-500' }
+            };
+            
+            filteredNotes.forEach(note => {
+                if (note.type !== 'confusable' && notesByType[note.type]) {
+                    notesByType[note.type].notes.push(note);
+                }
+            });
+            
+            // 渲染每个类型的笔记
+            let html = '';
+            
+            for (const type in notesByType) {
+                const typeData = notesByType[type];
+                if (typeData.notes.length > 0) {
+                    const colorClasses = {
+                        'word': 'bg-blue-100 text-blue-800',
+                        'phrase': 'bg-green-100 text-green-800',
+                        'sentence': 'bg-purple-100 text-purple-800',
+                        'summary': 'bg-indigo-100 text-indigo-800'
+                    };
+                    
+                    const typeIcons = {
+                        'word': 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+                        'phrase': 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z',
+                        'sentence': 'M13 10h5M4 19V5a2 2 0 012-2h6a2 2 0 012 2v6',
+                        'summary': 'M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01'
+                    };
+                    
+                    html += `
+                        <div class="bg-white rounded-2xl shadow-lg note-card">
+                            <div 
+                                class="px-6 py-4 cursor-pointer flex justify-between items-center ${typeData.colorClass}"
+                                onclick="toggleSection('${type}')"
+                            >
+                                <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mr-3 ${colorClasses[type]}">
+                                        ${typeData.label}
+                                    </span>
+                                    <span class="text-gray-600 text-base">共 ${typeData.notes.length} 条笔记</span>
+                                </h3>
+                                <svg 
+                                    class="h-5 w-5 transform transition-transform text-gray-600"
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    viewBox="0 0 20 20" 
+                                    fill="currentColor"
+                                    id="${type}-toggle-icon"
+                                >
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            
+                            <div id="${type}-section" class="expandable-section expanded">
+                                <div class="p-6 bg-gradient-to-b from-white to-gray-50">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                        ${typeData.notes.map(note => `
+                                            <div 
+                                                class="note-card-item"
+                                                ${note.type === 'phrase' ? `onclick="showPhraseExample('${note.content}')"` : ''}
+                                                style="cursor: ${note.type === 'phrase' ? 'pointer' : 'default'}"
+                                            >
+                                                <button 
+                                                    onclick="event.stopPropagation(); deleteNote(${note.id})"
+                                                    class="delete-button text-gray-400 hover:text-red-500 transition-colors duration-200"
+                                                    aria-label="删除笔记"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                                
+                                                <div class="note-card-content">${note.content}</div>
+                                                ${note.translation ? `<div class="note-card-translation">${note.translation}</div>` : ''}
+                                                
+                                                ${note.tags.length > 0 ? `
+                                                    <div class="note-card-tags">
+                                                        ${note.tags.map(tag => {
+                                                            let tagClass = 'note-card-tag';
+                                                            if (note.type === 'word') tagClass += ' word-note-tag';
+                                                            if (note.type === 'phrase') tagClass += ' phrase-note-tag';
+                                                            if (note.type === 'sentence') tagClass += ' sentence-note-tag';
+                                                            if (note.type === 'summary') tagClass += ' summary-note-tag';
+                                                            
+                                                            return `
+                                                                <span class="${tagClass}">
+                                                                    ${tag}
+                                                                </span>
+                                                            `;
+                                                        }).join('')}
+                                                    </div>
+                                                ` : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // 加载所有内容
+        function loadAllContent() {
+            loadConfusableWords();
+            loadNotesByType();
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllContent();
+            
+            // 点击模态框外部关闭
+            document.getElementById('example-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeExampleModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写作指导 - 英语六级作文学习系统</title>
+    <meta name="description" content="CET-6写作技巧和范文解析">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'FZCuHei';
+            src: url('./public/fonts/FZCuHei.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            font-family: 'FZCuHei', sans-serif;
+            font-weight: normal;
+            background: linear-gradient(to bottom right, #eff6ff, #c7d2fe);
+            min-height: 100vh;
+        }
+        
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+        
+        .prose {
+            max-width: none;
+        }
+        
+        .toc-active {
+            background-color: #eff6ff;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <header class="bg-white shadow-sm">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="text-xl text-indigo-600">CET-6 写作学习</div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="index.html" class="text-gray-600 hover:text-indigo-600">首页</a></li>
+                        <li><a href="writing-guide.html" class="text-indigo-600">写作指导</a></li>
+                        <li><a href="template-practice.html" class="text-gray-600 hover:text-indigo-600">模板背诵</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600">在线练习</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600">学习资源</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600">学习计划</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+            <h1 class="text-3xl text-gray-800 mb-8 text-center">写作指导</h1>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-1/4">
+                    <div class="bg-white rounded-xl shadow-sm p-6 mb-6 transition-all duration-300 hover:shadow-md">
+                        <h2 class="text-lg mb-4 text-indigo-700 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                            指导目录
+                        </h2>
+                        <ul class="space-y-3">
+                            <li>
+                                <a href="#writing-basics" class="flex items-center text-indigo-600 font-medium bg-indigo-50 px-3 py-2 rounded-lg transition-all duration-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    写作基础技巧
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#structure-analysis" class="flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                    文章结构分析
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#writing-skills" class="flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                    写作技巧要点
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#time-management" class="flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                    时间分配
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#word-count" class="flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                    字数控制
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#language-use" class="flex items-center text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                    语言运用
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-sm p-6 transition-all duration-300 hover:shadow-md">
+                        <h2 class="text-lg mb-4 text-indigo-700 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                            </svg>
+                            学习建议
+                        </h2>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            建议按照目录顺序学习，掌握基础后再进入高阶内容。每个部分都配有实际例子，帮助你更好地理解和应用。
+                        </p>
+                        <div class="mt-4 flex items-center text-xs text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                            </svg>
+                            学习时长建议：30-45分钟
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/4">
+                    <div class="bg-white rounded-xl shadow-sm p-8 transition-all duration-300 hover:shadow-md mb-8">
+                        <h2 class="text-2xl text-gray-800 mb-6 pb-2 border-b border-gray-100 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                            </svg>
+                            CET-6写作基础技巧
+                        </h2>
+                        
+                        <div class="prose max-w-none">
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
+                                <p class="text-gray-700">
+                                    大学英语六级考试的写作部分是测试学生用英语进行书面表达的能力。写作部分主要考查考生的英语表达能力和逻辑思维能力。
+                                </p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-4 mb-6">
+                                <h4 class="text-indigo-700 mb-2 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                    写作基础技巧概述
+                                </h4>
+                                <p class="text-gray-600 text-sm mb-3">掌握这些基础技巧是写出高质量作文的第一步：</p>
+                                <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                    <li>明确题目要求，确保内容切题</li>
+                                    <li>构建清晰的逻辑结构</li>
+                                    <li>使用恰当的语言表达思想</li>
+                                    <li>合理分配写作时间</li>
+                                    <li>仔细检查语法和拼写错误</li>
+                                </ul>
+                            </div>
+                            
+                            <h3 id="writing-basics" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                一、写作评分标准
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                CET-6写作评分主要从以下四个方面进行考量：
+                            </p>
+                            
+                            <div class="mb-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                                        <h4 class="text-indigo-700 mb-2 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            内容完整性 (30%)
+                                        </h4>
+                                        <p class="text-gray-600 text-sm mb-2">是否切题，是否涵盖了要点</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="font-medium text-gray-700 mb-1">高分示例：</p>
+                                            <p class="text-gray-600 italic">"The essay addresses all aspects of the topic and provides relevant examples to support the main arguments."</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                                        <h4 class="text-indigo-700 mb-2 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            组织结构 (25%)
+                                        </h4>
+                                        <p class="text-gray-600 text-sm mb-2">段落安排是否合理，逻辑是否清晰</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="font-medium text-gray-700 mb-1">高分示例：</p>
+                                            <p class="text-gray-600 italic">"Ideas are logically sequenced with smooth transitions between paragraphs."</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                                        <h4 class="text-indigo-700 mb-2 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            语言质量 (30%)
+                                        </h4>
+                                        <p class="text-gray-600 text-sm mb-2">词汇和语法是否准确丰富</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="font-medium text-gray-700 mb-1">高分示例：</p>
+                                            <p class="text-gray-600 italic">"Uses a wide range of vocabulary accurately and appropriately; demonstrates good control of grammar."</p>
+                                        </div>
+                                    </div>
+                                    <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                                        <h4 class="text-indigo-700 mb-2 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                            语言连贯性 (15%)
+                                        </h4>
+                                        <p class="text-gray-600 text-sm mb-2">句子之间是否衔接自然</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="font-medium text-gray-700 mb-1">高分示例：</p>
+                                            <p class="text-gray-600 italic">"Sentences are well-linked with appropriate cohesive devices; ideas flow smoothly."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
+                                    <h4 class="text-blue-700 mb-2 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        评分技巧
+                                    </h4>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                        <li>内容和语言质量占比最高，是提分关键</li>
+                                        <li>确保覆盖所有要点，避免偏题</li>
+                                        <li>使用多样化的句式和词汇展现语言能力</li>
+                                        <li>合理使用连接词保证文章流畅性</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded-r-lg">
+                                <h4 class="text-yellow-700 mb-2 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                    注意事项
+                                </h4>
+                                <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                    <li>字数控制在150-200词之间，过少或过多都会扣分</li>
+                                    <li>书写工整，卷面整洁，避免涂改</li>
+                                    <li>避免使用过于简单的词汇和句型</li>
+                                    <li>避免重复使用相同词汇，注意同义词替换</li>
+                                </ul>
+                            </div>
+                            
+                            <h3 id="structure-analysis" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                二、文章结构分析
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                CET-6作文通常采用三段式结构，各段落有明确的功能分工：
+                            </p>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h4 class="text-gray-800 mb-3 flex items-center">
+                                        <span class="bg-indigo-100 text-indigo-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-2">1</span>
+                                        第一段：引言段 (Introduction)
+                                    </h4>
+                                    <p class="text-gray-600 text-sm mb-3">
+                                        引言段的主要作用是引出话题并提出观点。通常包含以下要素：
+                                    </p>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1 mb-3">
+                                        <li>背景介绍：简要描述现象或问题</li>
+                                        <li>观点陈述：明确提出自己的立场或看法</li>
+                                    </ul>
+                                    <div class="bg-gray-50 p-3 rounded border text-sm">
+                                        <p class="font-medium text-gray-700 mb-1">常用句型：</p>
+                                        <p class="text-gray-600 italic">"Nowadays, ... has become a hot topic among people."</p>
+                                        <p class="text-gray-600 italic">"There is a growing concern over ..."</p>
+                                        <p class="text-gray-600 italic">"As far as I am concerned, I firmly believe that ..."</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h4 class="text-gray-800 mb-3 flex items-center">
+                                        <span class="bg-indigo-100 text-indigo-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-2">2</span>
+                                        第二段：主体段 (Body)
+                                    </h4>
+                                    <p class="text-gray-600 text-sm mb-3">
+                                        主体段是文章的核心部分，用于论证观点。通常包含以下要素：
+                                    </p>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1 mb-3">
+                                        <li>论点：清晰明确的分论点</li>
+                                        <li>论据：支撑论点的事实、例子或理由</li>
+                                        <li>论证：逻辑推理过程</li>
+                                    </ul>
+                                    <div class="bg-gray-50 p-3 rounded border text-sm">
+                                        <p class="font-medium text-gray-700 mb-1">常用句型：</p>
+                                        <p class="text-gray-600 italic">"To begin with, ..."</p>
+                                        <p class="text-gray-600 italic">"Furthermore, ..."</p>
+                                        <p class="text-gray-600 italic">"A good case in point is ..."</p>
+                                        <p class="text-gray-600 italic">"For example, ..."</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
+                                    <h4 class="text-gray-800 mb-3 flex items-center">
+                                        <span class="bg-indigo-100 text-indigo-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-2">3</span>
+                                        第三段：结论段 (Conclusion)
+                                    </h4>
+                                    <p class="text-gray-600 text-sm mb-3">
+                                        结论段总结全文并重申观点。通常包含以下要素：
+                                    </p>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1 mb-3">
+                                        <li>总结：简要回顾主要观点</li>
+                                        <li>重申：再次强调自己的立场</li>
+                                        <li>建议：提出建议或展望未来</li>
+                                    </ul>
+                                    <div class="bg-gray-50 p-3 rounded border text-sm">
+                                        <p class="font-medium text-gray-700 mb-1">常用句型：</p>
+                                        <p class="text-gray-600 italic">"In conclusion, ..."</p>
+                                        <p class="text-gray-600 italic">"Therefore, we should ..."</p>
+                                        <p class="text-gray-600 italic">"Only in this way can we ..."</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-green-50 to-teal-50 p-4 rounded-lg border border-green-100 mb-6">
+                                <h4 class="text-green-700 mb-2 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    结构要点
+                                </h4>
+                                <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                    <li>段落之间要有清晰的逻辑关系</li>
+                                    <li>每段内容要集中，避免一个段落包含多个主题</li>
+                                    <li>使用恰当的连接词保证段落间的连贯性</li>
+                                    <li>确保文章结构完整，不遗漏任何一部分</li>
+                                </ul>
+                            </div>
+                            
+                            <h3 id="writing-skills" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                三、写作技巧要点
+                            </h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-lg border border-blue-100">
+                                    <h4 class="text-indigo-700 mb-3 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                        词汇运用技巧
+                                    </h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">1</span>
+                                            <span class="text-gray-600 text-sm">使用高级词汇替换基础词汇</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">2</span>
+                                            <span class="text-gray-600 text-sm">注意词汇的准确性和恰当性</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">3</span>
+                                            <span class="text-gray-600 text-sm">合理使用同义词避免重复</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-5 rounded-lg border border-purple-100">
+                                    <h4 class="text-purple-700 mb-3 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                        句型运用技巧
+                                    </h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">1</span>
+                                            <span class="text-gray-600 text-sm">长短句结合，避免单调</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">2</span>
+                                            <span class="text-gray-600 text-sm">使用复合句提升语言层次</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-purple-100 text-purple-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">3</span>
+                                            <span class="text-gray-600 text-sm">适当使用倒装、强调等特殊句型</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-5 rounded-lg border border-amber-100 mb-6">
+                                <h4 class="text-amber-700 mb-3 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                    高级表达示例
+                                </h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-gray-700 text-sm font-medium mb-2">基础表达：</p>
+                                        <div class="bg-white p-3 rounded border text-sm mb-3">
+                                            <p class="text-gray-600">"This is very important."</p>
+                                        </div>
+                                        <p class="text-gray-700 text-sm font-medium mb-2">高级表达：</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="text-gray-600">"This is of great significance."</p>
+                                            <p class="text-gray-600">"This plays a pivotal role in..."</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-700 text-sm font-medium mb-2">基础表达：</p>
+                                        <div class="bg-white p-3 rounded border text-sm mb-3">
+                                            <p class="text-gray-600">"Many people think..."</p>
+                                        </div>
+                                        <p class="text-gray-700 text-sm font-medium mb-2">高级表达：</p>
+                                        <div class="bg-white p-3 rounded border text-sm">
+                                            <p class="text-gray-600">"A considerable number of people argue that..."</p>
+                                            <p class="text-gray-600">"There is a growing body of opinion suggesting that..."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 id="time-management" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                </svg>
+                                四、时间分配策略
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                合理的时间分配是写出高质量作文的关键。建议按以下方式分配时间：
+                            </p>
+                            
+                            <div class="mb-6">
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 text-center">
+                                        <div class="text-indigo-600 font-bold text-xl mb-1">5分钟</div>
+                                        <div class="text-gray-700 text-sm font-medium">审题与构思</div>
+                                        <p class="text-gray-600 text-xs mt-2">理解题目要求，确定文章结构</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-4 rounded-lg border border-green-100 text-center">
+                                        <div class="text-green-600 font-bold text-xl mb-1">15分钟</div>
+                                        <div class="text-gray-700 text-sm font-medium">正文写作</div>
+                                        <p class="text-gray-600 text-xs mt-2">完成三段式文章主体内容</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-lg border border-amber-100 text-center">
+                                        <div class="text-amber-600 font-bold text-xl mb-1">5分钟</div>
+                                        <div class="text-gray-700 text-sm font-medium">检查与修改</div>
+                                        <p class="text-gray-600 text-xs mt-2">检查语法、拼写和逻辑</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100 text-center">
+                                        <div class="text-purple-600 font-bold text-xl mb-1">5分钟</div>
+                                        <div class="text-gray-700 text-sm font-medium">誊写</div>
+                                        <p class="text-gray-600 text-xs mt-2">工整抄写到答题卡上</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-4 rounded-lg border border-indigo-100">
+                                    <h4 class="text-indigo-700 mb-2 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        时间管理要点
+                                    </h4>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                        <li>审题阶段要仔细，确保理解正确</li>
+                                        <li>写作阶段保持稳定节奏，避免前松后紧</li>
+                                        <li>检查阶段重点关注语法错误和拼写错误</li>
+                                        <li>誊写阶段保持字迹工整清晰</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 id="word-count" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                五、字数控制要点
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                CET-6作文要求字数在150-200词之间，合理的字数分配能让文章结构更均衡：
+                            </p>
+                            
+                            <div class="mb-6">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
+                                        <h4 class="text-indigo-700 mb-2">引言段 (30-40词)</h4>
+                                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                            <li>背景介绍 (15-20词)</li>
+                                            <li>观点陈述 (15-20词)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-4 rounded-lg border border-green-100">
+                                        <h4 class="text-green-700 mb-2">主体段 (90-120词)</h4>
+                                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                            <li>第一论点 (45-60词)</li>
+                                            <li>第二论点 (45-60词)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+                                        <h4 class="text-purple-700 mb-2">结论段 (30-40词)</h4>
+                                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                            <li>总结观点 (15-20词)</li>
+                                            <li>提出建议 (15-20词)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-lg border border-amber-100">
+                                    <h4 class="text-amber-700 mb-2 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        字数控制技巧
+                                    </h4>
+                                    <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                        <li>平时练习时养成计数习惯</li>
+                                        <li>掌握常见表达的词数</li>
+                                        <li>避免过长或过短的句子</li>
+                                        <li>在草稿纸上预先规划段落字数</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h3 id="language-use" class="text-xl text-gray-800 mt-8 mb-4 pb-2 border-b border-gray-100 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                </svg>
+                                六、语言运用要点
+                            </h3>
+                            
+                            <div class="mb-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-lg border border-blue-100">
+                                        <h4 class="text-indigo-700 mb-3 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                            </svg>
+                                            语法准确性
+                                        </h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start">
+                                                <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">1</span>
+                                                <span class="text-gray-600 text-sm">主谓一致</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">2</span>
+                                                <span class="text-gray-600 text-sm">时态语态正确</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="bg-indigo-100 text-indigo-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">3</span>
+                                                <span class="text-gray-600 text-sm">非谓语动词恰当使用</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-5 rounded-lg border border-green-100">
+                                        <h4 class="text-green-700 mb-3 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                            </svg>
+                                            词汇丰富性
+                                        </h4>
+                                        <ul class="space-y-2">
+                                            <li class="flex items-start">
+                                                <span class="bg-green-100 text-green-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">1</span>
+                                                <span class="text-gray-600 text-sm">避免重复使用相同词汇</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="bg-green-100 text-green-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">2</span>
+                                                <span class="text-gray-600 text-sm">使用恰当的连接词</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="bg-green-100 text-green-800 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 flex-shrink-0">3</span>
+                                                <span class="text-gray-600 text-sm">适当使用习语和短语</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gradient-to-r from-red-50 to-pink-50 p-5 rounded-lg border border-red-100">
+                                    <h4 class="text-red-700 mb-3 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        常见语言错误
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-gray-700 text-sm font-medium mb-2">语法错误：</p>
+                                            <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                                <li>主谓不一致</li>
+                                                <li>时态混乱</li>
+                                                <li>冠词误用</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-700 text-sm font-medium mb-2">词汇错误：</p>
+                                            <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                                                <li>词性误用</li>
+                                                <li>搭配不当</li>
+                                                <li>中式英语</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-gray-800 text-white py-6 mt-8">
+            <div class="container mx-auto px-4">
+                <div class="text-center text-sm">
+                    <p>CET-6 写作学习系统 &copy; 2025</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的目录高亮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('h3[id]');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('toc-active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('toc-active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

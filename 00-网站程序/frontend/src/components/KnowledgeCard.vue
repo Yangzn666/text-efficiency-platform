@@ -2196,6 +2196,557 @@ Cache块数 = 16KB / 32B = 512块</pre>
           </ul>
         </div>
       </template>
+      
+      <!-- 标志寄存器详解 -->
+      <template v-if="currentCard?.id === 'flagsRegister'">
+        <h3>💡 知识点卡片：标志寄存器详解</h3>
+        
+        <div class="card-section">
+          <h4>📖 什么是标志寄存器？</h4>
+          <ul>
+            <li><strong>定义</strong>：FLAGS（16位）/ EFLAGS（32位）/ RFLAGS（64位）是CPU中用于存储运算结果状态和控制CPU行为的特殊寄存器</li>
+            <li><strong>作用</strong>：记录算术/逻辑运算的结果特征，控制CPU的执行流程</li>
+            <li><strong>分类</strong>：分为<strong>状态标志位</strong>和<strong>控制标志位</strong>两大类</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔢 状态标志位（6个）⭐⭐⭐</h4>
+          <p style="color: #606266; margin-bottom: 12px;">反映最近一次运算结果的状态，由CPU自动设置，程序员可以读取但不能直接修改</p>
+          
+          <el-table :data="statusFlagsData" border stripe style="width: 100%">
+            <el-table-column prop="name" label="标志位" width="100" />
+            <el-table-column prop="fullName" label="全称" width="150" />
+            <el-table-column prop="condition" label="置1条件" />
+            <el-table-column prop="application" label="典型应用" width="150" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎛️ 控制标志位（3个）</h4>
+          <p style="color: #606266; margin-bottom: 12px;">控制CPU的特定行为，可以由程序员通过指令设置或清除</p>
+          
+          <el-table :data="controlFlagsData" border stripe style="width: 100%">
+            <el-table-column prop="name" label="标志位" width="100" />
+            <el-table-column prop="fullName" label="全称" width="150" />
+            <el-table-column prop="value1" label="=1时的行为" />
+            <el-table-column prop="value0" label="=0时的行为" />
+            <el-table-column prop="instruction" label="相关指令" width="120" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 标志寄存器结构（EFLAGS 32位）</h4>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 0.9em;">位位置：  31...22 21 20 19 18 17 16 15...12 11 10  9  8  7  6  5  4  3  2  1  0
+         | 保留  | ID | VIP|VIF|AC |VM |RF | 保留   | NT | IOPL | OF |DF |IF |TF |SF |ZF |  |AF |  |PF |  |CF |
+                                                                                      ↑状态标志位↑  ↑控制标志位↑</pre>
+          <p style="margin-top: 12px; color: #606266;"><strong>说明</strong>：</p>
+          <ul>
+            <li><strong>低12位</strong>：包含6个状态标志位和3个控制标志位（考研重点）</li>
+            <li><strong>高20位</strong>：系统标志位和控制位（操作系统使用，考研较少涉及）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 状态标志位详解</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">1. CF（Carry Flag）进位标志</h5>
+          <ul>
+            <li><strong>无符号数运算</strong>时，最高位产生进位或借位则CF=1</li>
+            <li><strong>示例</strong>：
+              <pre style="background: #f5f7fa; padding: 8px; border-radius: 4px; margin-top: 8px;">8位无符号数：255 + 1 = 256（溢出）
+11111111 + 00000001 = 1 00000000
+                        ↑ CF=1（有进位）</pre>
+            </li>
+            <li><strong>应用</strong>：多精度加法、无符号数比较</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">2. PF（Parity Flag）奇偶标志</h5>
+          <ul>
+            <li>运算结果<strong>最低8位</strong>中1的个数为偶数则PF=1</li>
+            <li><strong>示例</strong>：结果 = 01100101（3个1）→ PF=0（奇数个）</li>
+            <li><strong>应用</strong>：数据通信中的奇偶校验（现在很少用）</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">3. AF（Auxiliary Carry Flag）辅助进位标志</h5>
+          <ul>
+            <li>运算结果<strong>第3位向第4位</strong>产生进位或借位则AF=1</li>
+            <li><strong>应用</strong>：BCD码（二进制编码的十进制数）运算调整</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">4. ZF（Zero Flag）零标志 ⭐⭐⭐</h5>
+          <ul>
+            <li>运算结果为<strong>0</strong>则ZF=1，否则ZF=0</li>
+            <li><strong>示例</strong>：5 - 5 = 0 → ZF=1</li>
+            <li><strong>应用</strong>：判断相等、循环结束条件、条件跳转（JE/JZ）</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">5. SF（Sign Flag）符号标志 ⭐⭐⭐</h5>
+          <ul>
+            <li>运算结果的<strong>最高位</strong>（符号位）为1则SF=1（负数），为0则SF=0（正数）</li>
+            <li><strong>示例</strong>：结果 = 10000001 → SF=1（负数）</li>
+            <li><strong>应用</strong>：有符号数比较、判断正负</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">6. OF（Overflow Flag）溢出标志 ⭐⭐⭐</h5>
+          <ul>
+            <li><strong>有符号数运算</strong>时，结果超出表示范围则OF=1</li>
+            <li><strong>判断方法</strong>：
+              <ul>
+                <li>两个正数相加得负数 → OF=1</li>
+                <li>两个负数相加得正数 → OF=1</li>
+                <li>正数加负数 → OF=0（不会溢出）</li>
+              </ul>
+            </li>
+            <li><strong>示例</strong>：
+              <pre style="background: #f5f7fa; padding: 8px; border-radius: 4px; margin-top: 8px;">8位有符号数：127 + 1 = 128（溢出）
+01111111 + 00000001 = 10000000
+                        ↑ OF=1（正+正=负，溢出）</pre>
+            </li>
+            <li><strong>应用</strong>：有符号数运算的溢出检测</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ CF vs OF 的区别（必考点）⭐⭐⭐</h4>
+          <el-table :data="cfVsOfData" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="cf" label="CF（进位标志）" />
+            <el-table-column prop="of" label="OF（溢出标志）" />
+          </el-table>
+          
+          <div style="background: #fff7e6; padding: 12px; border-radius: 8px; border-left: 4px solid #faad14; margin-top: 12px;">
+            <p style="margin: 0; font-weight: bold; color: #fa8c16;">💡 记忆口诀："CF看无符号，OF看有符号"</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔧 控制标志位详解</h4>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">1. DF（Direction Flag）方向标志</h5>
+          <ul>
+            <li><strong>DF=0</strong>：字符串操作时地址<strong>递增</strong>（从低到高）</li>
+            <li><strong>DF=1</strong>：字符串操作时地址<strong>递减</strong>（从高到低）</li>
+            <li><strong>相关指令</strong>：CLD（清DF）、STD（置DF）</li>
+            <li><strong>应用</strong>：字符串复制、比较等操作的方向控制</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">2. IF（Interrupt Flag）中断标志</h5>
+          <ul>
+            <li><strong>IF=1</strong>：允许响应可屏蔽中断（INTR）</li>
+            <li><strong>IF=0</strong>：禁止响应可屏蔽中断</li>
+            <li><strong>相关指令</strong>：CLI（清IF）、STI（置IF）</li>
+            <li><strong>应用</strong>：临界区保护、中断控制</li>
+          </ul>
+          
+          <h5 style="margin-top: 16px; color: #409eff;">3. TF（Trap Flag）陷阱标志</h5>
+          <ul>
+            <li><strong>TF=1</strong>：进入<strong>单步调试</strong>模式，每执行一条指令产生一次调试异常</li>
+            <li><strong>TF=0</strong>：正常执行</li>
+            <li><strong>应用</strong>：调试器使用（如GDB、OllyDbg）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 经典例题解析 ⭐⭐⭐</h4>
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; border-left: 4px solid #409eff;">
+            <p style="margin: 0 0 12px 0;"><strong>题目</strong>：设AL=80H，BL=80H，执行ADD AL, BL后，SF、ZF、CF、OF的值分别是多少？</p>
+            
+            <p style="margin: 12px 0 8px 0; font-weight: bold; color: #409eff;">解题步骤：</p>
+            
+            <p style="margin: 8px 0;"><strong>Step 1：计算结果</strong></p>
+            <pre style="background: #f5f7fa; padding: 8px; border-radius: 4px;">80H + 80H = 100H
+10000000 + 10000000 = 1 00000000
+结果：AL=00H，有进位</pre>
+            
+            <p style="margin: 12px 0 8px 0;"><strong>Step 2：判断各标志位</strong></p>
+            <ul style="margin: 4px 0; padding-left: 20px;">
+              <li><strong>SF</strong>：结果最高位 = 0 → <span style="color: #4CAF50; font-weight: bold;">SF=0</span></li>
+              <li><strong>ZF</strong>：结果 = 00H → <span style="color: #4CAF50; font-weight: bold;">ZF=1</span></li>
+              <li><strong>CF</strong>：无符号数运算，有进位 → <span style="color: #4CAF50; font-weight: bold;">CF=1</span></li>
+              <li><strong>OF</strong>：有符号数运算，80H=-128，(-128)+(-128)=-256（溢出）→ <span style="color: #4CAF50; font-weight: bold;">OF=1</span></li>
+            </ul>
+            
+            <p style="margin: 12px 0 0 0; color: #4CAF50; font-weight: bold;">✅ 答案：SF=0, ZF=1, CF=1, OF=1</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 常见应用场景</h4>
+          <ol>
+            <li><strong>条件跳转</strong>：
+              <ul>
+                <li>JE/JZ（ZF=1）：相等/为零时跳转</li>
+                <li>JNE/JNZ（ZF=0）：不等/非零时跳转</li>
+                <li>JS（SF=1）：结果为负时跳转</li>
+                <li>JO（OF=1）：溢出时跳转</li>
+                <li>JB/JC（CF=1）：无符号数小于/有进位时跳转</li>
+              </ul>
+            </li>
+            <li><strong>比较指令 CMP</strong>：实质是做减法但不保存结果，只影响标志位</li>
+            <li><strong>循环控制</strong>：利用ZF判断循环是否结束</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点（408专业课）</h4>
+          <p>在《计算机组成原理》运算方法和运算器章节中：</p>
+          <ul>
+            <li>✅ 掌握6个状态标志位的含义和置位条件（必考选择题）</li>
+            <li>✅ 理解CF和OF的区别（无符号vs有符号）</li>
+            <li>✅ 能够根据运算结果判断各标志位的值</li>
+            <li>✅ 了解3个控制标志位的作用</li>
+            <li>✅ 能够分析标志位在条件跳转中的应用</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 通用寄存器的多功能特性 -->
+      <template v-if="currentCard?.id === 'generalPurposeRegisters'">
+        <h3>💡 知识点卡片：通用寄存器的多功能特性</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是“可编程指定多种功能”？</h4>
+          <p><strong>定义</strong>：通用寄存器虽然叫“通用”，但程序员可以根据需要将其用于不同的用途，包括：</p>
+          <ul>
+            <li><strong>数据寄存器</strong>：存放操作数、运算结果</li>
+            <li><strong>地址寄存器</strong>：存放内存地址（指针）</li>
+            <li><strong>计数器</strong>：循环计数（如ECX在x86中常用于LOOP指令）</li>
+            <li><strong>栈指针</strong>：管理栈顶（如ESP专用于栈指针）</li>
+            <li><strong>基址指针</strong>：访问栈帧中的局部变量（如EBP）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 x86架构的8个32位通用寄存器</h4>
+          <el-table :data="registerData" border stripe style="width: 100%">
+            <el-table-column prop="name" label="寄存器" width="100" />
+            <el-table-column prop="traditional" label="传统用途" width="150" />
+            <el-table-column prop="flexible" label="灵活用途" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 优点</h4>
+          <ul>
+            <li><strong>灵活性高</strong>：程序员可以根据需要自由分配寄存器用途</li>
+            <li><strong>减少访存</strong>：多用寄存器可以减少对内存的访问，提高速度</li>
+            <li><strong>优化空间大</strong>：编译器可以进行寄存器分配优化</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 理解通用寄存器的“通用”含义（可以编程指定多种功能）</li>
+            <li>✅ 知道某些寄存器有约定用途（如ESP、EBP）</li>
+            <li>✅ 了解寄存器数量对性能的影响（RISC通常有更多通用寄存器）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- IR对程序员透明 -->
+      <template v-if="currentCard?.id === 'irTransparency'">
+        <h3>💡 知识点卡片：为什么IR对程序员完全透明</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是“透明”？</h4>
+          <p><strong>透明的含义</strong>：在计算机体系结构中，“透明”意味着<strong>看不见、摸不着、无法直接访问</strong>。</p>
+          <p>说“IR对程序员透明”，意思是：</p>
+          <ul>
+            <li>❌ 程序员<strong>不能</strong>通过指令直接读取IR的内容</li>
+            <li>❌ 程序员<strong>不能</strong>通过指令直接修改IR的内容</li>
+            <li>✅ IR的内容完全由<strong>硬件自动控制</strong></li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 IR的工作流程</h4>
+          <div class="flow-diagram vertical">
+            <div class="flow-step">取指阶段</div>
+            <div class="flow-arrow">↓ 从内存取出指令</div>
+            <div class="flow-step highlight">IR（硬件自动加载）</div>
+            <div class="flow-arrow">↓ 控制器读取IR</div>
+            <div class="flow-step">译码阶段</div>
+            <div class="flow-arrow">↓ 执行指令</div>
+            <div class="flow-step">IR自动更新</div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>❓ 为什么IR要设计为透明？</h4>
+          <ul>
+            <li><strong>保证正确性</strong>：如果程序员可以修改IR，可能会破坏指令执行的正常流程</li>
+            <li><strong>简化编程</strong>：程序员只需关心程序逻辑，不需要管理底层硬件细节</li>
+            <li><strong>提高效率</strong>：硬件自动控制IR，速度快，无需软件干预</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🆚 哪些寄存器是透明的？哪些是可见的？</h4>
+          <ul>
+            <li><strong>透明的寄存器</strong>：IR、MAR、MDR（程序员无法直接访问）</li>
+            <li><strong>可见的寄存器</strong>：通用寄存器（EAX、EBX等）、PC（部分架构可访问）、PSW（可读取标志位）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》计算机系统概述章节中：</p>
+          <ul>
+            <li>✅ 理解“透明”的概念（看不见=透明）</li>
+            <li>✅ 知道IR、MAR、MDR对程序员透明</li>
+            <li>✅ 能够区分透明寄存器和可见寄存器</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 间址周期 -->
+      <template v-if="currentCard?.id === 'indirectCycle'">
+        <h3>💡 知识点卡片：间址周期详解</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是指令周期？</h4>
+          <p><strong>指令周期</strong>：CPU从主存中取出一条指令并执行完该指令所需的全部时间。</p>
+          <p>指令周期通常包含以下几个子周期：</p>
+          <ul>
+            <li><strong>取指周期（IF）</strong>：从内存取出指令</li>
+            <li><strong>间址周期（IND）</strong>：如果使用间接寻址，需要额外访问内存获取有效地址</li>
+            <li><strong>执行周期（EX）</strong>：执行指令的操作</li>
+            <li><strong>中断周期（INT）</strong>：如果有中断请求，处理中断</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 什么是间址周期？</h4>
+          <p><strong>间址周期</strong>：当指令使用<strong>间接寻址</strong>时，在取指周期之后、执行周期之前，需要额外的一个周期来访问内存获取操作数的<strong>真正地址</strong>。</p>
+          
+          <div class="flow-diagram vertical">
+            <div class="flow-step">取指周期</div>
+            <div class="flow-arrow">↓ 取出指令，得到地址ADDR</div>
+            <div class="flow-step highlight">间址周期</div>
+            <div class="flow-arrow">↓ 访问ADDR，得到真正地址EA</div>
+            <div class="flow-step">执行周期</div>
+            <div class="flow-arrow">↓ 访问EA，得到操作数</div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>⏱️ 间址周期的特点</h4>
+          <ul>
+            <li><strong>不是每条指令都有</strong>：只有使用间接寻址的指令才需要间址周期</li>
+            <li><strong>增加访存次数</strong>：间接寻址需要<strong>两次访存</strong>（一次取地址，一次取操作数）</li>
+            <li><strong>降低执行速度</strong>：相比直接寻址，间接寻址多了一次访存，速度更慢</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 不同寻址方式的访存次数对比</h4>
+          <el-table :data="memoryAccessData" border stripe style="width: 100%">
+            <el-table-column prop="mode" label="寻址方式" width="150" />
+            <el-table-column prop="accessCount" label="访存次数" width="120" />
+            <el-table-column prop="hasIndirectCycle" label="是否有间址周期" width="150" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 理解间址周期的定义和作用</li>
+            <li>✅ 知道间址周期只在间接寻址时出现</li>
+            <li>✅ 能够计算不同寻址方式的总访存次数</li>
+            <li>✅ 理解间址周期对性能的影响</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 汇编语言程序员可见的寄存器 -->
+      <template v-if="currentCard?.id === 'visibleRegisters'">
+        <h3>💡 知识点卡片：汇编语言程序员可见的寄存器</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是“可见”？</h4>
+          <p><strong>可见的含义</strong>：汇编语言程序员可以通过指令<strong>直接访问</strong>（读取或修改）的寄存器。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 汇编语言程序员可见的寄存器</h4>
+          <ul>
+            <li><strong>通用寄存器</strong>：EAX、EBX、ECX、EDX、ESI、EDI、EBP、ESP（x86架构）
+              <ul>
+                <li>可以直接用指令读写：MOV EAX, 100</li>
+              </ul>
+            </li>
+            <li><strong>程序计数器PC</strong>：
+              <ul>
+                <li>虽然不能直接读写，但可以通过跳转指令间接修改</li>
+                <li>在某些架构（如MIPS）中，PC是可见的</li>
+              </ul>
+            </li>
+            <li><strong>标志寄存器PSW/FLAGS</strong>：
+              <ul>
+                <li>可以通过条件跳转指令读取标志位（如JE、JZ）</li>
+                <li>某些标志位可以通过指令设置（如CLC清除CF）</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>❌ 汇编语言程序员不可见（透明）的寄存器</h4>
+          <ul>
+            <li><strong>指令寄存器IR</strong>：硬件自动控制，程序员无法访问</li>
+            <li><strong>存储器地址寄存器MAR</strong>：硬件自动使用，程序员无法访问</li>
+            <li><strong>存储器数据寄存器MDR</strong>：硬件自动使用，程序员无法访问</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 总结对比表</h4>
+          <el-table :data="visibilityData" border stripe style="width: 100%">
+            <el-table-column prop="register" label="寄存器" width="150" />
+            <el-table-column prop="visible" label="是否可见" width="100" />
+            <el-table-column prop="reason" label="原因" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》计算机系统概述章节中：</p>
+          <ul>
+            <li>✅ 能够区分可见寄存器和透明寄存器</li>
+            <li>✅ 知道通用寄存器、PC、PSW是可见的</li>
+            <li>✅ 知道IR、MAR、MDR是透明的</li>
+            <li>✅ 理解“可见”与“透明”的概念</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 指令按字边界对齐存放 -->
+      <template v-if="currentCard?.id === 'instructionAlignment'">
+        <h3>💡 知识点卡片：指令按字边界对齐存放详解</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是指令对齐？</h4>
+          <p><strong>定义</strong>：指令在内存中的起始地址必须是某个固定值（如4字节、8字节）的整数倍。</p>
+          <p>例如：字长为4字节（32位），则指令地址必须是4的倍数（0x0000、0x0004、0x0008...）</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 为什么要对齐？</h4>
+          <ul>
+            <li><strong>提高访存效率</strong>：对齐后一次访存即可读取完整指令
+              <ul>
+                <li>未对齐：可能需要两次访存（跨边界）</li>
+              </ul>
+            </li>
+            <li><strong>简化硬件设计</strong>：不需要处理跨边界访问的复杂情况</li>
+            <li><strong>避免性能损失</strong>：现代处理器对未对齐访问会有性能惩罚</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 对齐 vs 不对比示例</h4>
+          <pre style="background: #f5f7fa; padding: 12px; border-radius: 4px; overflow-x: auto;">假设字长4字节，指令长度4字节：
+
+✅ 对齐情况：
+地址      内容
+0x0000    指令1（4字节）→ 一次访存即可读取
+0x0004    指令2（4字节）→ 一次访存即可读取
+0x0008    指令3（4字节）→ 一次访存即可读取
+
+❌ 不对齐情况：
+地址      内容
+0x0000    指令1的前2字节
+0x0002    指令1的后2字节 + 指令2的前2字节 → 需要两次访存！
+0x0004    指令2的后2字节 + ...
+→ 效率低！</pre>
+        </div>
+        
+        <div class="card-section">
+          <h4>🌍 不同架构的对齐要求</h4>
+          <el-table :data="alignmentData" border stripe style="width: 100%">
+            <el-table-column prop="arch" label="架构" width="120" />
+            <el-table-column prop="requirement" label="对齐要求" width="200" />
+            <el-table-column prop="unalignedSupport" label="未对齐支持" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》指令系统章节中：</p>
+          <ul>
+            <li>✅ 理解指令对齐的定义和原因</li>
+            <li>✅ 知道对齐可以提高访存效率</li>
+            <li>✅ 了解不同架构的对齐要求</li>
+            <li>✅ 能够分析对齐与不对齐的性能差异</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 多周期CPU的特点 -->
+      <template v-if="currentCard?.id === 'multiCycleCPU'">
+        <h3>💡 知识点卡片：多周期CPU的特点</h3>
+        
+        <div class="card-section">
+          <h4>📌 什么是单周期和多周期CPU？</h4>
+          <ul>
+            <li><strong>单周期CPU</strong>：每条指令在一个时钟周期内完成
+              <ul>
+                <li>时钟周期长度 = 最长指令的执行时间</li>
+                <li>所有指令都占用相同的时间（即使简单指令也浪费）</li>
+              </ul>
+            </li>
+            <li><strong>多周期CPU</strong>：不同指令可以使用不同数量的时钟周期
+              <ul>
+                <li>简单指令（如ADD）：1-2个周期</li>
+                <li>复杂指令（如MUL、DIV）：多个周期</li>
+                <li>时钟周期长度 = 最短阶段的执行时间</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🆚 单周期 vs 多周期对比</h4>
+          <el-table :data="cpuComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比维度" width="150" />
+            <el-table-column prop="singleCycle" label="单周期CPU" />
+            <el-table-column prop="multiCycle" label="多周期CPU" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 多周期CPU的优点</h4>
+          <ul>
+            <li><strong>时钟频率更高</strong>：周期短，频率可以更高</li>
+            <li><strong>硬件利用率高</strong>：不同阶段可以复用硬件资源（如ALU）</li>
+            <li><strong>适合复杂指令</strong>：CISC架构常用多周期实现</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>❌ 多周期CPU的缺点</h4>
+          <ul>
+            <li><strong>控制复杂</strong>：需要状态机管理不同指令的执行阶段</li>
+            <li><strong>CPI不固定</strong>：不同指令的CPI不同，难以预测性能</li>
+            <li><strong>不利于流水线</strong>：多周期CPU通常不使用流水线（或者流水线深度较浅）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》中央处理器章节中：</p>
+          <ul>
+            <li>✅ 理解单周期和多周期CPU的区别</li>
+            <li>✅ 知道多周期CPU的优缺点</li>
+            <li>✅ 能够计算多周期CPU的CPI和性能</li>
+            <li>✅ 了解多周期CPU与CISC的关系</li>
+          </ul>
+        </div>
+      </template>
     </div>
     
     <template #footer>
@@ -2324,6 +2875,34 @@ const cardData = {
   raid: {
     id: 'raid',
     title: '💡 知识点卡片：RAID技术详解'
+  },
+  flagsRegister: {
+    id: 'flagsRegister',
+    title: '💡 知识点卡片：标志寄存器详解'
+  },
+  generalPurposeRegisters: {
+    id: 'generalPurposeRegisters',
+    title: '💡 知识点卡片：通用寄存器的多功能特性'
+  },
+  irTransparency: {
+    id: 'irTransparency',
+    title: '💡 知识点卡片：为什么IR对程序员完全透明'
+  },
+  indirectCycle: {
+    id: 'indirectCycle',
+    title: '💡 知识点卡片：间址周期详解'
+  },
+  visibleRegisters: {
+    id: 'visibleRegisters',
+    title: '💡 知识点卡片：汇编语言程序员可见的寄存器'
+  },
+  instructionAlignment: {
+    id: 'instructionAlignment',
+    title: '💡 知识点卡片：指令按字边界对齐存放详解'
+  },
+  multiCycleCPU: {
+    id: 'multiCycleCPU',
+    title: '💡 知识点卡片：多周期CPU的特点'
   }
 }
 
@@ -2580,6 +3159,82 @@ const readWriteComparisonData = [
 const localityMeasurementData = [
   { type: '时间局部性', measurement: '同一数据被重复访问的时间间隔', good: '间隔短，频繁访问' },
   { type: '空间局部性', measurement: '被访问数据的地址分布范围', good: '范围小，连续访问' }
+]
+
+// 标志寄存器相关数据
+const statusFlagsData = [
+  { name: 'CF', fullName: 'Carry Flag', condition: '无符号数运算最高位有进位/借位', application: '多精度加法' },
+  { name: 'PF', fullName: 'Parity Flag', condition: '结果最低8位中1的个数为偶数', application: '奇偶校验' },
+  { name: 'AF', fullName: 'Auxiliary Carry', condition: '第3位向第4位有进位/借位', application: 'BCD码调整' },
+  { name: 'ZF', fullName: 'Zero Flag', condition: '运算结果为0', application: '判断相等⭐⭐⭐' },
+  { name: 'SF', fullName: 'Sign Flag', condition: '结果最高位（符号位）为1', application: '判断正负⭐⭐⭐' },
+  { name: 'OF', fullName: 'Overflow Flag', condition: '有符号数运算结果溢出', application: '溢出检测⭐⭐⭐' }
+]
+
+const controlFlagsData = [
+  { name: 'DF', fullName: 'Direction Flag', value1: '字符串操作地址递减', value0: '字符串操作地址递增', instruction: 'CLD/STD' },
+  { name: 'IF', fullName: 'Interrupt Flag', value1: '允许响应中断', value0: '禁止响应中断', instruction: 'CLI/STI' },
+  { name: 'TF', fullName: 'Trap Flag', value1: '单步调试模式', value0: '正常执行', instruction: '调试器' }
+]
+
+const cfVsOfData = [
+  { aspect: '适用场景', cf: '无符号数运算', of: '有符号数运算' },
+  { aspect: '判断依据', cf: '最高位是否有进位/借位', of: '结果是否超出有符号数范围' },
+  { aspect: '溢出含义', cf: '无符号数溢出', of: '有符号数溢出' },
+  { aspect: '示例（8位）', cf: '255+1=256 → CF=1', of: '127+1=128 → OF=1' },
+  { aspect: '同时发生', cf: '可能同时为1', of: '例如：128+128 → CF=1, OF=1' }
+]
+
+// 通用寄存器数据
+const registerData = [
+  { name: 'EAX', traditional: '累加器', flexible: '算术运算、函数返回值' },
+  { name: 'EBX', traditional: '基址寄存器', flexible: '数据指针、基址寻址' },
+  { name: 'ECX', traditional: '计数器', flexible: '循环计数、字符串操作' },
+  { name: 'EDX', traditional: '数据寄存器', flexible: 'I/O指针、乘除法' },
+  { name: 'ESI', traditional: '源变址', flexible: '字符串源指针' },
+  { name: 'EDI', traditional: '目的变址', flexible: '字符串目的指针' },
+  { name: 'EBP', traditional: '基址指针', flexible: '栈帧基址、局部变量访问' },
+  { name: 'ESP', traditional: '栈指针', flexible: '栈顶管理（专用）' }
+]
+
+// 间址周期访存次数数据
+const memoryAccessData = [
+  { mode: '立即寻址', accessCount: '0次', hasIndirectCycle: '❌ 否' },
+  { mode: '寄存器寻址', accessCount: '0次', hasIndirectCycle: '❌ 否' },
+  { mode: '直接寻址', accessCount: '1次', hasIndirectCycle: '❌ 否' },
+  { mode: '间接寻址', accessCount: '2次', hasIndirectCycle: '✅ 是' },
+  { mode: '寄存器间接', accessCount: '1次', hasIndirectCycle: '❌ 否' },
+  { mode: '基址/变址/相对', accessCount: '1次', hasIndirectCycle: '❌ 否' }
+]
+
+// 可见性数据
+const visibilityData = [
+  { register: '通用寄存器', visible: '✅ 可见', reason: '可通过指令直接读写' },
+  { register: 'PC', visible: '✅ 可见', reason: '可通过跳转指令间接修改' },
+  { register: 'PSW/FLAGS', visible: '✅ 可见', reason: '可通过条件跳转读取标志位' },
+  { register: 'IR', visible: '❌ 透明', reason: '硬件自动控制，程序员无法访问' },
+  { register: 'MAR', visible: '❌ 透明', reason: '硬件自动使用，程序员无法访问' },
+  { register: 'MDR', visible: '❌ 透明', reason: '硬件自动使用，程序员无法访问' }
+]
+
+// 指令对齐数据
+const alignmentData = [
+  { arch: 'x86/x86-64', requirement: '建议对齐（非强制）', unalignedSupport: '✅ 支持，但性能降低' },
+  { arch: 'ARM（早期）', requirement: '严格对齐', unalignedSupport: '❌ 不支持，产生异常' },
+  { arch: 'ARMv7+', requirement: '建议对齐', unalignedSupport: '✅ 支持，但性能降低' },
+  { arch: 'MIPS', requirement: '严格对齐', unalignedSupport: '❌ 不支持，产生异常' },
+  { arch: 'RISC-V', requirement: '建议对齐', unalignedSupport: '部分支持' }
+]
+
+// 单周期vs多周期CPU对比数据
+const cpuComparisonData = [
+  { aspect: '时钟周期', singleCycle: '长（等于最长指令时间）', multiCycle: '短（等于最短阶段时间）' },
+  { aspect: 'CPI', singleCycle: '固定为1', multiCycle: '不固定（1~多个）' },
+  { aspect: '时钟频率', singleCycle: '低', multiCycle: '高' },
+  { aspect: '硬件利用率', singleCycle: '低（简单指令浪费）', multiCycle: '高（可复用硬件）' },
+  { aspect: '控制复杂度', singleCycle: '简单', multiCycle: '复杂（需要状态机）' },
+  { aspect: '典型应用', singleCycle: '简单嵌入式系统', multiCycle: 'CISC架构（x86）' },
+  { aspect: '流水线友好度', singleCycle: '好', multiCycle: '差' }
 ]
 
 function show(cardId: string = 'assembly') {

@@ -19,6 +19,7 @@ import PerformanceOptimizationView from '@/views/PerformanceOptimizationView.vue
 import SystemTestDeploymentView from '@/views/SystemTestDeploymentView.vue'
 import TaskManagementView from '@/views/TaskManagementView.vue'
 import IntensiveReadingView from '@/views/IntensiveReadingView.vue'
+import UniversitiesView from '@/views/UniversitiesView.vue'
 import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
@@ -155,6 +156,12 @@ const router = createRouter({
       name: 'intensive-reading',
       component: IntensiveReadingView,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/universities',
+      name: 'universities',
+      component: UniversitiesView,
+      meta: { requiresAuth: false }
     }
   ]
 })

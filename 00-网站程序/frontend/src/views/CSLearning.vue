@@ -22,6 +22,17 @@
         <span v-if="currentChapter">
           当前: 第{{ currentChapter.number }}章 - {{ currentChapter.title }}
         </span>
+        
+        <el-divider direction="vertical" />
+        
+        <el-button 
+          type="primary" 
+          size="small"
+          icon="Link"
+          @click="openVisualIndex"
+        >
+          408可视化学习
+        </el-button>
       </div>
     </div>
     
@@ -207,6 +218,11 @@ function toggleCurrentSection() {
   if (currentSection.value) {
     compositionStore.toggleSectionStudied(currentSection.value.id)
   }
+}
+
+// 打开408可视化学习网站
+const openVisualIndex = () => {
+  window.open('https://www.codebrick.tech/visual-index.html', '_blank')
 }
 </script>
 

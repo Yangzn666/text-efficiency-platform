@@ -1,8 +1,21 @@
 <template>
   <div class="cs408-progress-container">
     <div class="progress-header">
-      <h2 class="page-title">💻 408计算机专业课进度</h2>
-      <p class="page-subtitle">基础阶段：数据结构 → 组成原理 → 计算机网络 → 操作系统</p>
+      <div class="header-content">
+        <div>
+          <h2 class="page-title">💻 408计算机专业课进度</h2>
+          <p class="page-subtitle">基础阶段：数据结构 → 组成原理 → 计算机网络 → 操作系统</p>
+        </div>
+        <el-button 
+          type="success" 
+          size="large"
+          icon="Monitor"
+          @click="openVisualIndex"
+          class="visual-link-btn"
+        >
+          🎨 408可视化学习平台
+        </el-button>
+      </div>
     </div>
     
     <!-- 总体进度概览 -->
@@ -283,6 +296,11 @@ const goToSubjectLearning = (subjectId) => {
     console.warn(`路由未配置: ${subjectId}`)
   }
 }
+
+// 打开408可视化学习网站
+const openVisualIndex = () => {
+  window.open('https://www.codebrick.tech/visual-index.html', '_blank')
+}
 </script>
 
 <style scoped>
@@ -295,6 +313,32 @@ const goToSubjectLearning = (subjectId) => {
 .progress-header {
   text-align: center;
   margin-bottom: 40px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header-content > div:first-child {
+  flex: 1;
+  text-align: left;
+}
+
+.visual-link-btn {
+  white-space: nowrap;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease;
+}
+
+.visual-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
 }
 
 .page-title {

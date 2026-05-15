@@ -47,6 +47,7 @@ const routes = [
   { path: '/english', name: '英语一' },
   { path: '/politics', name: '政治' },
   { path: '/cs408', name: '408计算机' },
+  { path: '/universities', name: '🏫 院校查询' },
   { path: '/attention', name: '注意力' },
   { path: '/learning-path', name: '学习路径' },
   { path: '/analytics', name: '数据分析' },
@@ -122,11 +123,12 @@ body {
   color: #666;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: normal !important;
+  font-size: 1.15rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
+  font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
 }
 
 .nav button::before {
