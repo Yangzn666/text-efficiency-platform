@@ -27,5 +27,22 @@ export default defineConfig({
         additionalData: `@import "@/styles/variables.scss";`
       }
     }
+  },
+  build: {
+    // 代码分割优化
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // 将大型库单独打包
+          'element-plus': ['element-plus'],
+          'vue': ['vue', 'vue-router', 'pinia'],
+          'mermaid': ['mermaid']
+        }
+      }
+    },
+    // 使用默认esbuild压缩（更快）
+    minify: 'esbuild',
+    // chunk大小警告阈值
+    chunkSizeWarningLimit: 1000
   }
 })

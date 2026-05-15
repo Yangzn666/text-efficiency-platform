@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <!-- 全局加载指示器 -->
+    <div v-if="isLoading" class="global-loading">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">加载中...</p>
+    </div>
+    
     <div class="container">
       <header class="header">
         <h1>🎓 考研效率平台</h1>
@@ -27,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import TodoDashboard from '@/components/TodoDashboard.vue'
 import MathView from '@/views/MathView.vue'
@@ -40,6 +46,7 @@ import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
 import PsychologyView from '@/views/PsychologyView.vue'
 
 const currentRoute = ref('/')
+const isLoading = ref(true)
 
 const routes = [
   { path: '/', name: '首页' },
@@ -63,6 +70,13 @@ const goToRoute = (path) => {
 const goToSubject = (subject) => {
   router.push(`/${subject}`)
 }
+
+// 页面加载完成后隐藏加载指示器
+onMounted(() => {
+  setTimeout(() => {
+    isLoading.value = false
+  }, 500)
+})
 </script>
 
 <style>
@@ -280,6 +294,41 @@ body {
   color: rgba(255, 255, 255, 0.8);
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
+}
+
+/* 全局加载指示器 */
+.global-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: white;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 /* 响应式设计 */
