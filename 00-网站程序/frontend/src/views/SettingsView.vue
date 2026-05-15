@@ -170,7 +170,115 @@ const clearMockStudyData = async () => {
 }
 
 const exportData = () => {
-  ElMessage.success('数据导出功能开发中...')
+  try {
+    // 收集所有学习数据
+    const dataToExport = {
+      studyRecords: studyStore.studyRecords,
+      todos: JSON.parse(localStorage.getItem('todos') || '[]'),
+      vocabularyNotes: JSON.parse(localStorage.getItem('vocabularyNotes') || '[]'),
+      exportTime: new Date().toISOString(),
+      version: '1.0'
+    }
+    
+    // 转换为JSON字符串
+    const jsonString = JSON.stringify(dataToExport, null, 2)
+    
+    // 创建Blob对象
+    const blob = new Blob([jsonString], { type: 'application/json' })
+    
+    // 创建下载链接
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    
+    // 生成文件名（包含日期）
+    const dateStr = new Date().toISOString().split('T')[0]
+    link.download = `考研效率平台数据备份_${dateStr}.json`
+    
+    // 触发下载
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+    
+    ElMessage.success(`数据已导出！文件大小：${(blob.size / 1024).toFixed(2)} KB`)
+  } catch (error) {
+    console.error('导出失败:', error)
+    ElMessage.error('导出失败，请重试')
+  }
+}
+
+const importData = async () => {
+  try {
+    // 创建文件选择器
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.json'
+    
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+      
+      try {
+        // 读取文件内容
+        const text = await file.text()
+        const importedData = JSON.parse(text)
+        
+        // 验证数据格式
+        if (!importedData.studyRecords && !importedData.todos) {
+          throw new Error('无效的数据文件格式')
+        }
+        
+        // 确认导入
+        await ElMessageBox.confirm(
+          `导入后将覆盖当前数据，确定要继续吗？\n\n` +
+          `- 学习记录: ${importedData.studyRecords?.length || 0} 条\n` +
+          `- 待办事项: ${importedData.todos?.length || 0} 条\n` +
+          `- 词汇笔记: ${importedData.vocabularyNotes?.length || 0} 条`,
+          '确认导入',
+          {
+            confirmButtonText: '确定导入',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        )
+        
+        // 导入学习记录
+        if (importedData.studyRecords) {
+          localStorage.setItem('studyRecords', JSON.stringify(importedData.studyRecords))
+          await studyStore.initializeStudyData()
+        }
+        
+        // 导入待办事项
+        if (importedData.todos) {
+          localStorage.setItem('todos', JSON.stringify(importedData.todos))
+        }
+        
+        // 导入词汇笔记
+        if (importedData.vocabularyNotes) {
+          localStorage.setItem('vocabularyNotes', JSON.stringify(importedData.vocabularyNotes))
+        }
+        
+        ElMessage.success('数据导入成功！页面将刷新...')
+        
+        // 刷新页面
+        setTimeout(() => {
+          window.location.reload()
+        }, 1500)
+        
+      } catch (parseError) {
+        console.error('解析失败:', parseError)
+        ElMessage.error('文件格式错误，请选择正确的备份文件')
+      }
+    }
+    
+    input.click()
+  } catch (error) {
+    if (error !== 'cancel') {
+      console.error('导入失败:', error)
+      ElMessage.error('导入失败，请重试')
+    }
+  }
 }
 
 const changePassword = async () => {
@@ -481,11 +589,19 @@ const getThemeColor = (theme: string) => {
               <h3>💾 数据管理</h3>
               <div class="data-actions">
                 <div class="action-item">
-                  <el-button @click="exportData" size="large">
+                  <el-button @click="exportData" size="large" type="success">
                     <el-icon><Download /></el-icon>
                     导出学习数据
                   </el-button>
-                  <div class="action-desc">将学习记录导出为文件</div>
+                  <div class="action-desc">将学习记录导出为JSON文件</div>
+                </div>
+                
+                <div class="action-item">
+                  <el-button @click="importData" size="large" type="primary">
+                    <el-icon><Upload /></el-icon>
+                    导入学习数据
+                  </el-button>
+                  <div class="action-desc">从备份文件恢复学习进度</div>
                 </div>
                 
                 <div class="action-item" v-if="studyStore.studyRecords.length > 0">
