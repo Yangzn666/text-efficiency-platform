@@ -5,7 +5,8 @@ import { fileURLToPath } from 'url'
 
 export default defineConfig({
   plugins: [vue()],
-  base: './', // 使用相对路径，兼容各种部署环境
+  // 根据环境动态设置base路径
+  base: process.env.NODE_ENV === 'production' ? '/text-efficiency-platform/' : '/',
   resolve: {
     alias: {
       '@': resolve(fileURLToPath(new URL('./', import.meta.url)), 'src')
