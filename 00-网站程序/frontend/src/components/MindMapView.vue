@@ -40,7 +40,10 @@
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useCompositionStore } from '@/stores/composition'
 import { ZoomIn, ZoomOut, FullScreen } from '@element-plus/icons-vue'
-import mermaid from 'mermaid'
+// 异步加载mermaid，减小主包体积
+import type Mermaid from 'mermaid'
+
+const mermaidModule = ref<typeof Mermaid | null>(null)
 
 const compositionStore = useCompositionStore()
 const mermaidRef = ref<HTMLElement | null>(null)
@@ -48,6 +51,20 @@ const loading = ref(false)
 const error = ref('')
 const isFullscreen = ref(false)
 const currentZoom = ref(1)
+
+// 初始化mermaid
+const initMermaid = async () => {
+  if (!mermaidModule.value) {
+    const module = await import('mermaid')
+    mermaidModule.value = module.default
+    module.default.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose'
+    })
+  }
+  return mermaidModule.value
+}
 
 const currentChapterId = computed(() => compositionStore.currentChapterId)
 const currentSectionId = computed(() => compositionStore.currentSectionId)
@@ -70,23 +87,8 @@ const currentMindMap = computed(() => {
   return chapter.value?.mindMap || ''
 })
 
-// 初始化Mermaid
-mermaid.initialize({
-  startOnLoad: false,
-  theme: 'default',
-  themeVariables: {
-    fontSize: '28px',
-    fontFamily: 'FZCuHei, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-  },
-  flowchart: {
-    useMaxWidth: true,
-    htmlLabels: true,
-    curve: 'basis',
-    padding: 15,
-    nodeSpacing: 20,
-    rankSpacing: 30,
-  }
-})
+// 初始化Mermaid（已移至initMermaid函数中异步加载）
+// mermaid.initialize({ ... }) - 在 initMermaid 中调用
 
 // 渲染思维导图
 const renderMindMap = async () => {
@@ -101,6 +103,13 @@ const renderMindMap = async () => {
   error.value = ''
   
   try {
+    // 初始化mermaid（异步加载）
+    const mermaidLib = await initMermaid()
+    
+    if (!mermaidLib) {
+      throw new Error('mermaid库加载失败')
+    }
+    
     // 清空容器
     mermaidRef.value.innerHTML = ''
     
@@ -108,7 +117,7 @@ const renderMindMap = async () => {
     const id = `mindmap-${Date.now()}`
     
     // 渲染Mermaid
-    const { svg } = await mermaid.render(id, currentMindMap.value)
+    const { svg } = await mermaidLib.render(id, currentMindMap.value)
     
     // 插入SVG
     mermaidRef.value.innerHTML = svg

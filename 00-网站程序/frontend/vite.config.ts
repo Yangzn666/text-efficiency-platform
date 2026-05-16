@@ -42,8 +42,8 @@ export default defineConfig({
           // 将大型库单独打包
           'element-plus': ['element-plus'],
           'vue-vendor': ['vue', 'vue-router', 'pinia'],
-          'utils': ['axios', 'dayjs', 'localforage'],
-          'mermaid': ['mermaid']
+          'utils': ['axios', 'dayjs', 'localforage']
+          // mermaid和cytoscape使用动态导入，不在此处声明
         },
         // 减小chunk大小
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -56,6 +56,10 @@ export default defineConfig({
     // chunk大小警告阈值
     chunkSizeWarningLimit: 500,
     // 启用CSS代码分割
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    // 启用gzip压缩
+    reportCompressedSize: true,
+    // 移除sourcemap，减小体积
+    sourcemap: false
   }
 })

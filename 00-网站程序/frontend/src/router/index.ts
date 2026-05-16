@@ -1,25 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
-import AuthView from '@/views/AuthView.vue'
-import AttentionView from '@/views/AttentionViewIntegrated.vue'
-import LearningPathView from '@/views/LearningPathView.vue'
-import PsychologyView from '@/views/PsychologyView.vue'
-import CS408View from '@/views/CS408View.vue'
-import CSLearningView from '@/views/CSLearning.vue'
-import DSLearningView from '@/views/DSLearning.vue'
-import NetworkLearningView from '@/views/NetworkLearning.vue'
-import WrongProblemsView from '@/views/WrongProblemsView.vue'
-import MathView from '@/views/MathView.vue'
-import MathHomeView from '@/views/MathHomeView.vue'
-import EnglishView from '@/views/EnglishView.vue'
-import PoliticsView from '@/views/PoliticsView.vue'
-import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
-import UXOptimizationView from '@/views/UXOptimizationView.vue'
-import PerformanceOptimizationView from '@/views/PerformanceOptimizationView.vue'
-import SystemTestDeploymentView from '@/views/SystemTestDeploymentView.vue'
-import TaskManagementView from '@/views/TaskManagementView.vue'
-import IntensiveReadingView from '@/views/IntensiveReadingView.vue'
-import UniversitiesView from '@/views/UniversitiesView.vue'
+// 使用动态导入实现路由懒加载
+const HomeView = () => import('@/views/HomeView.vue')
+const AuthView = () => import('@/views/AuthView.vue')
+const AttentionView = () => import('@/views/AttentionViewIntegrated.vue')
+const LearningPathView = () => import('@/views/LearningPathView.vue')
+const PsychologyView = () => import('@/views/PsychologyView.vue')
+const CS408View = () => import('@/views/CS408View.vue')
+const CSLearningView = () => import('@/views/CSLearning.vue')
+const DSLearningView = () => import('@/views/DSLearning.vue')
+const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
+const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
+const MathView = () => import('@/views/MathView.vue')
+const MathHomeView = () => import('@/views/MathHomeView.vue')
+const EnglishView = () => import('@/views/EnglishView.vue')
+const PoliticsView = () => import('@/views/PoliticsView.vue')
+const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
+const UXOptimizationView = () => import('@/views/UXOptimizationView.vue')
+const PerformanceOptimizationView = () => import('@/views/PerformanceOptimizationView.vue')
+const SystemTestDeploymentView = () => import('@/views/SystemTestDeploymentView.vue')
+const TaskManagementView = () => import('@/views/TaskManagementView.vue')
+const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
+const UniversitiesView = () => import('@/views/UniversitiesView.vue')
 import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
