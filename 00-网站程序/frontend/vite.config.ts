@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 
 export default defineConfig({
   plugins: [vue()],
+  base: './', // 使用相对路径，兼容各种部署环境
   resolve: {
     alias: {
       '@': resolve(fileURLToPath(new URL('./', import.meta.url)), 'src')
@@ -28,6 +29,10 @@ export default defineConfig({
       }
     }
   },
+  esbuild: {
+    // 生产环境移除console和debugger
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : []
+  },
   build: {
     // 代码分割优化
     rollupOptions: {
@@ -35,14 +40,21 @@ export default defineConfig({
         manualChunks: {
           // 将大型库单独打包
           'element-plus': ['element-plus'],
-          'vue': ['vue', 'vue-router', 'pinia'],
+          'vue-vendor': ['vue', 'vue-router', 'pinia'],
+          'utils': ['axios', 'dayjs', 'localforage'],
           'mermaid': ['mermaid']
-        }
+        },
+        // 减小chunk大小
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     },
     // 使用默认esbuild压缩（更快）
     minify: 'esbuild',
     // chunk大小警告阈值
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 500,
+    // 启用CSS代码分割
+    cssCodeSplit: true
   }
 })
