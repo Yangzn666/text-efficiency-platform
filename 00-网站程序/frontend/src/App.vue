@@ -73,9 +73,15 @@ const goToSubject = (subject) => {
 
 // 页面加载完成后隐藏加载指示器
 onMounted(() => {
-  setTimeout(() => {
+  // 等待路由准备好后再隐藏加载指示器
+  router.isReady().then(() => {
+    setTimeout(() => {
+      isLoading.value = false
+    }, 300)
+  }).catch(() => {
+    // 如果出错，也隐藏加载指示器
     isLoading.value = false
-  }, 500)
+  })
 })
 </script>
 

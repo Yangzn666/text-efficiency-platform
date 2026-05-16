@@ -187,22 +187,31 @@ export const useStudyStore = defineStore('study', () => {
   const initializeStudyData = async () => {
     isLoading.value = true
     try {
-      // 从后端API加载数据（直接读取JSON文件）
+      // 从后端 API加载数据（直接读取JSON文件）
       try {
-        console.log('🔄 从后端API加载学习数据...')
-        const response = await fetch('http://localhost:3001/api/study-data')
-        
+        console.log('🔄 从后端 API加载学习数据...')
+          
+        // 添加超时控制（3秒）
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 3000)
+          
+        const response = await fetch('http://localhost:3001/api/study-data', {
+          signal: controller.signal
+        })
+          
+        clearTimeout(timeoutId)
+          
         if (response.ok) {
           const result = await response.json()
-          
+            
           if (result.success && result.data) {
             console.log('✅ 成功加载学习数据')
-            
+              
             if (result.data.studyRecords) {
               studyRecords.value = result.data.studyRecords
               console.log(`📊 加载了 ${result.data.studyRecords.length} 条学习记录`)
             }
-            
+              
             if (result.data.subjectProgress) {
               subjectProgress.value = result.data.subjectProgress
               console.log('📈 加载了科目进度数据')
@@ -214,7 +223,12 @@ export const useStudyStore = defineStore('study', () => {
           console.error('❌ API请求失败:', response.status)
         }
       } catch (error) {
-        console.error('❌ 加载学习数据失败:', error)
+        // 静默失败，不影响页面加载
+        if (error instanceof DOMException && error.name === 'AbortError') {
+          console.warn('⚠️  API请求超时，使用本地数据')
+        } else {
+          console.warn('⚠️  无法连接后端 API，使用本地数据')
+        }
       }
     } finally {
       isLoading.value = false
