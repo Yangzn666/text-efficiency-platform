@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent } from 'vue'
-// 使用动态导入解决TypeScript默认导出识别问题
-const CodeTraining = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
-const MindMap = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
-const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
-const CS408ProgressTracker = defineAsyncComponent(() => import('@/components/CS408ProgressTracker.vue'))
+import { ref } from 'vue'
+// 使用同步导入避免GitHub Pages动态加载问题
+import CodeTraining from '@/components/PlaceholderComponent.vue'
+import MindMap from '@/components/PlaceholderComponent.vue'
+import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
+import CS408ProgressTracker from '@/components/CS408ProgressTracker.vue'
 
 const activeTab = ref('progress')
 </script>
