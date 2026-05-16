@@ -104,7 +104,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 24px; /* 与主容器保持一致的左右内边距 */
+  padding: 0;
 }
 
 .header {
@@ -133,6 +133,9 @@ body {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
 }
 
 .nav button {
@@ -149,6 +152,8 @@ body {
   position: relative;
   overflow: hidden;
   font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav button::before {
@@ -199,8 +204,9 @@ body {
 
 .main-content {
   flex: 1;
-  padding: 0 20px;
+  padding: 20px;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .home-page {
@@ -337,46 +343,116 @@ body {
   font-weight: 500;
 }
 
-/* 响应式设计 */
+/* 响应式设计 - 平板 */
+@media (max-width: 1024px) {
+  .nav button {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+/* 响应式设计 - 手机 */
 @media (max-width: 768px) {
   .header {
-    padding: 20px 15px;
-    border-radius: 0 0 15px 15px;
+    padding: 15px 10px;
+    border-radius: 0;
+    margin-bottom: 0;
   }
   
   .header h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
   }
   
   .nav {
-    gap: 8px;
+    gap: 6px;
+    justify-content: flex-start;
+    padding: 8px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .nav button {
-    padding: 8px 12px;
-    font-size: 0.75rem;
+    padding: 8px 14px;
+    font-size: 0.85rem;
     border-radius: 8px;
+    flex-shrink: 0;
+  }
+  
+  .main-content {
+    padding: 10px;
+  }
+  
+  .subject-page, .page {
+    padding: 15px 10px;
+    border-radius: 15px;
   }
   
   .hero h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .features {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 15px;
+    padding: 0;
+  }
+  
+  .feature-card {
+    padding: 20px;
+  }
+  
+  .footer {
+    padding: 15px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* 响应式设计 - 小屏手机 */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 8px;
+  }
+  
+  .header h1 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  
+  .nav {
+    gap: 5px;
+    padding: 6px 8px;
+  }
+  
+  .nav button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 6px;
   }
   
   .main-content {
-    padding: 20px 15px;
+    padding: 8px;
   }
   
   .subject-page, .page {
-    padding: 20px 15px;
+    padding: 12px 8px;
+    border-radius: 12px;
+  }
+  
+  .feature-card {
+    padding: 15px;
+  }
+  
+  .feature-card .icon {
+    font-size: 2rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.1rem;
   }
 }
 </style>

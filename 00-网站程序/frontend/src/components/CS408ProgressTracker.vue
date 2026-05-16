@@ -312,7 +312,7 @@ const openVisualIndex = () => {
 
 .progress-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .header-content {
@@ -342,31 +342,33 @@ const openVisualIndex = () => {
 }
 
 .page-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #333;
   margin-bottom: 10px;
+  word-break: break-word;
 }
 
 .page-subtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #666;
+  word-break: break-word;
 }
 
 .progress-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .overview-card {
   background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   transition: transform 0.3s ease;
 }
 
@@ -375,7 +377,8 @@ const openVisualIndex = () => {
 }
 
 .card-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  flex-shrink: 0;
 }
 
 .card-content {
@@ -384,8 +387,8 @@ const openVisualIndex = () => {
 
 .card-content h3 {
   color: #333;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
 }
 
 .progress-numbers {
@@ -396,18 +399,18 @@ const openVisualIndex = () => {
 }
 
 .current {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #4CAF50;
 }
 
 .separator {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #999;
 }
 
 .total {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #999;
 }
 
@@ -429,9 +432,10 @@ const openVisualIndex = () => {
 }
 
 .subject-name {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #FF9800;
+  word-break: break-word;
 }
 
 .subject-status {
@@ -441,10 +445,10 @@ const openVisualIndex = () => {
 
 .subjects-section {
   background: white;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .section-header {
@@ -455,20 +459,20 @@ const openVisualIndex = () => {
 
 .section-header h3 {
   color: #333;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .subjects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
 }
 
 .subject-card {
   background: #f8f9fa;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 15px;
   transition: all 0.3s ease;
 }
 
@@ -540,7 +544,8 @@ const openVisualIndex = () => {
 }
 
 .subject-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  flex-shrink: 0;
 }
 
 .subject-info {
@@ -737,16 +742,150 @@ const openVisualIndex = () => {
 }
 
 @media (max-width: 768px) {
+  .cs408-progress-container {
+    padding: 10px;
+  }
+  
+  .progress-header {
+    margin-bottom: 20px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .header-content > div:first-child {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  
+  .page-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .visual-link-btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+  
   .progress-overview {
     grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .overview-card {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+  }
+  
+  .card-content h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .current {
+    font-size: 1.8rem;
+  }
+  
+  .separator {
+    font-size: 1.1rem;
+  }
+  
+  .total {
+    font-size: 1.1rem;
+  }
+  
+  .subject-name {
+    font-size: 1.1rem;
+  }
+  
+  .subjects-section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .section-header h3 {
+    font-size: 1.1rem;
   }
   
   .subjects-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .subject-card {
+    padding: 12px;
+  }
+  
+  .subject-icon {
+    font-size: 1.8rem;
+  }
+  
+  .subject-info h4 {
+    font-size: 1rem;
+  }
+  
+  .subject-desc {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs408-progress-container {
+    padding: 8px;
   }
   
   .page-title {
-    font-size: 2rem;
+    font-size: 1.3rem;
+  }
+  
+  .page-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .overview-card {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .card-icon {
+    font-size: 1.8rem;
+  }
+  
+  .card-content h3 {
+    font-size: 0.95rem;
+  }
+  
+  .current {
+    font-size: 1.5rem;
+  }
+  
+  .subject-card {
+    padding: 10px;
+  }
+  
+  .subject-icon {
+    font-size: 1.5rem;
+  }
+  
+  .subject-info h4 {
+    font-size: 0.95rem;
+  }
+  
+  .subject-desc {
+    font-size: 0.8rem;
   }
 }
 </style>

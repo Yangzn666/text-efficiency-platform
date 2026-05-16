@@ -266,23 +266,114 @@ body {
   border-radius: 2px;
 }
 
-/* Responsive Design */
+/* Responsive Design - 平板 */
+@media (max-width: 1024px) {
+  .page-title {
+    font-size: var(--font-size-xxl);
+  }
+}
+
+/* Responsive Design - 手机 */
 @media (max-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .container {
+    padding: 0;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .page-title::after {
+    width: 60px;
+  }
+  
+  .card {
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 12px;
+  }
+  
+  .card-header {
+    padding: 12px 15px;
+  }
+  
+  .card-content {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .card-subtitle {
+    font-size: var(--font-size-xs);
   }
   
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 12px;
   }
   
   .home-container {
-    padding: 15px;
+    padding: 10px;
+  }
+  
+  .nav-items {
+    gap: 12px;
+  }
+  
+  .nav-item {
+    padding: 6px 16px;
+    font-size: var(--font-size-xs);
   }
   
   .welcome-title {
-    font-size: 2em;
+    font-size: 1.5em;
+  }
+}
+
+/* Responsive Design - 小屏手机 */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .page-title::after {
+    width: 50px;
+    height: 3px;
+  }
+  
+  .card {
+    border-radius: var(--border-radius-md);
+  }
+  
+  .card-header {
+    padding: 10px 12px;
+  }
+  
+  .card-content {
+    padding: 12px;
+  }
+  
+  .card-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .nav-item {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+  
+  .welcome-title {
+    font-size: 1.3em;
   }
 }
 
