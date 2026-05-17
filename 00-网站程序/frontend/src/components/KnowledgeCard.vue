@@ -2814,6 +2814,98 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
+      <!-- ALU与总线的连接方式 -->
+      <template v-if="currentCard?.id === 'aluBusConnection'">
+        <h3>💡 知识点卡片：ALU与总线的连接方式</h3>
+        
+        <div class="card-section">
+          <h4>🔍 ALU的基本功能</h4>
+          <ul>
+            <li><strong>ALU（算术逻辑单元）</strong>：执行算术运算和逻辑运算的核心部件</li>
+            <li><strong>算术运算</strong>：加法、减法、乘法、除法等</li>
+            <li><strong>逻辑运算</strong>：与、或、非、异或、移位等</li>
+            <li><strong>比较操作</strong>：大于、小于、等于等</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 ALU与总线的三种连接方式</h4>
+          
+          <h5>(1) 单总线结构</h5>
+          <ul>
+            <li><strong>连接方式</strong>：ALU的两个输入端都连接到同一条总线上</li>
+            <li><strong>工作流程</strong>：
+              <ol>
+                <li>第一个操作数从寄存器送到总线，暂存到ALU的一个输入寄存器</li>
+                <li>第二个操作数从寄存器送到总线，直接进入ALU的另一个输入端</li>
+                <li>ALU执行运算，结果送回总线</li>
+              </ol>
+            </li>
+            <li><strong>优点</strong>：结构简单，成本低</li>
+            <li><strong>缺点</strong>：需要两个时钟周期才能完成一次运算</li>
+          </ul>
+          
+          <h5>(2) 双总线结构</h5>
+          <ul>
+            <li><strong>连接方式</strong>：ALU的两个输入端分别连接到两条不同的总线</li>
+            <li><strong>工作流程</strong>：
+              <ol>
+                <li>两个操作数同时从寄存器送到两条总线</li>
+                <li>ALU同时接收两个操作数并执行运算</li>
+                <li>结果通过第三条总线送回寄存器</li>
+              </ol>
+            </li>
+            <li><strong>优点</strong>：只需一个时钟周期即可完成运算，速度快</li>
+            <li><strong>缺点</strong>：需要更多的总线和寄存器，成本较高</li>
+          </ul>
+          
+          <h5>(3) 三总线结构</h5>
+          <ul>
+            <li><strong>连接方式</strong>：ALU的两个输入端和输出端各有一条专用总线</li>
+            <li><strong>工作流程</strong>：
+              <ol>
+                <li>两个操作数同时通过两条输入总线送到ALU</li>
+                <li>ALU执行运算</li>
+                <li>结果通过输出总线直接送回寄存器</li>
+              </ol>
+            </li>
+            <li><strong>优点</strong>：速度最快，并行度最高</li>
+            <li><strong>缺点</strong>：硬件成本最高，连线复杂</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三种连接方式对比</h4>
+          <el-table :data="aluConnectionComparison" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="single" label="单总线" width="120" />
+            <el-table-column prop="double" label="双总线" width="120" />
+            <el-table-column prop="triple" label="三总线" width="120" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 考研重点</h4>
+          <ul>
+            <li>✅ 理解三种连接方式的工作原理和时序</li>
+            <li>✅ 掌握单总线需要2个周期，双/三总线只需1个周期</li>
+            <li>✅ 能够根据性能需求选择合适的连接方式</li>
+            <li>✅ 理解总线数量与成本、速度的权衡关系</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 实际应用</h4>
+          <p>现代高性能处理器通常采用：</p>
+          <ul>
+            <li><strong>内部</strong>：多总线结构（类似三总线），提高并行度</li>
+            <li><strong>外部</strong>：系统总线可能采用单总线或双总线，降低成本</li>
+            <li><strong>RISC架构</strong>：倾向于使用多总线，追求高性能</li>
+            <li><strong>CISC架构</strong>：可能使用单总线，注重成本控制</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- 第6章：总线系统 -->
       
       <!-- 总线带宽计算 -->
@@ -3352,6 +3444,10 @@ const cardData = {
     id: 'dedicatedDatapath',
     title: '💡 知识点卡片：专用数据通路结构'
   },
+  aluBusConnection: {
+    id: 'aluBusConnection',
+    title: '💡 知识点卡片：ALU与总线的连接方式'
+  },
   addressingModes: {
     id: 'addressingModes',
     title: '💡 知识点卡片：8种数据寻址方式完全指南'
@@ -3432,6 +3528,15 @@ const dedicatedPathComparison = [
   { aspect: '灵活性', dedicated: '差（固定用途）', general: '好（通用性强）' },
   { aspect: '设计难度', dedicated: '复杂（需规划）', general: '简单（标准化）' },
   { aspect: '适用场景', dedicated: '高性能CPU', general: '一般系统' }
+]
+
+const aluConnectionComparison = [
+  { aspect: '总线数量', single: '1条', double: '2条', triple: '3条' },
+  { aspect: '运算周期', single: '2个周期', double: '1个周期', triple: '1个周期' },
+  { aspect: '硬件成本', single: '最低', double: '中等', triple: '最高' },
+  { aspect: '速度', single: '最慢', double: '较快', triple: '最快' },
+  { aspect: '复杂度', single: '最简单', double: '中等', triple: '最复杂' },
+  { aspect: '应用场景', single: '低成本系统', double: '一般系统', triple: '高性能系统' }
 ]
 
 const icComparisonData = [
