@@ -3139,6 +3139,315 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
+      <!-- 微程序、微指令、微操作、微命令 -->
+      <template v-if="currentCard?.id === 'microConcepts'">
+        <h3>💡 知识点卡片：微程序、微指令、微操作、微命令</h3>
+        
+        <div class="card-section">
+          <h4>🔍 四个概念的层级关系</h4>
+          <div class="formula-box">
+            <strong>层级结构（从大到小）：</strong><br>
+            微程序 > 微指令 > 微操作 > 微命令<br><br>
+            <strong>包含关系：</strong><br>
+            1个微程序 = 多条微指令序列<br>
+            1条微指令 = 多个微操作（并行）<br>
+            1个微操作 = 1个微命令
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 详细定义</h4>
+          
+          <h5>(1) 微命令（Micro Command）</h5>
+          <ul>
+            <li><strong>定义</strong>：控制信号，直接控制硬件部件的动作</li>
+            <li><strong>示例</strong>：PC_out（PC输出）、MAR_in（MAR输入）、ALU_add（ALU加法）</li>
+            <li><strong>特点</strong>：最基本的控制单元，不可再分</li>
+          </ul>
+          
+          <h5>(2) 微操作（Micro Operation）</h5>
+          <ul>
+            <li><strong>定义</strong>：由微命令控制的硬件动作</li>
+            <li><strong>示例</strong>：PC的内容送到MAR、ALU执行加法运算</li>
+            <li><strong>特点</strong>：一个微操作对应一个微命令</li>
+          </ul>
+          
+          <h5>(3) 微指令（Micro Instruction）</h5>
+          <ul>
+            <li><strong>定义</strong>：一组可以并行执行的微操作的集合</li>
+            <li><strong>示例</strong>：{PC_out, MAR_in, Mem_read} 同时执行</li>
+            <li><strong>特点</strong>：存储在控制存储器中，一个字长</li>
+          </ul>
+          
+          <h5>(4) 微程序（Micro Program）</h5>
+          <ul>
+            <li><strong>定义</strong>：实现一条机器指令的微指令序列</li>
+            <li><strong>示例</strong>：ADD指令的微程序可能包含5条微指令</li>
+            <li><strong>特点</strong>：存放在控制存储器（CM）中</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 实例说明</h4>
+          <p><strong>以取指周期为例：</strong></p>
+          <ol>
+            <li><strong>微程序</strong>：取指微程序（实现取指功能）</li>
+            <li><strong>微指令1</strong>：PC → MAR, PC + 1 → PC</li>
+            <li><strong>微指令2</strong>：Mem[MAR] → MDR, MDR → IR</li>
+            <li><strong>微操作</strong>：PC_out（微命令）→ PC内容送到总线（微操作）</li>
+            <li><strong>微命令</strong>：PC_out、MAR_in、Mem_read等具体控制信号</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 掌握四个概念的层级关系和包含关系（必考选择题）</li>
+            <li>✅ 理解微指令中可以包含多个并行的微操作</li>
+            <li>✅ 知道微程序存储在控制存储器（CM）中</li>
+            <li>✅ 能够分析给定机器指令对应的微程序流程</li>
+          </ul>
+          
+          <p><strong>常见考题</strong>：一条机器指令对应多少个微程序？</p>
+          <p><strong>答案</strong>：一条机器指令对应一个微程序，该微程序由多条微指令组成。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>💡 类比理解</h4>
+          <p>可以用做菜来类比：</p>
+          <ul>
+            <li><strong>微命令</strong>：打开煤气、点火、放油（具体动作）</li>
+            <li><strong>微操作</strong>：点火这个动作本身</li>
+            <li><strong>微指令</strong>：同时打开煤气+点火+放油（一组并行操作）</li>
+            <li><strong>微程序</strong>：炒菜的完整步骤序列（加热→放菜→翻炒→出锅）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- CPU控制器的三个组成部分 -->
+      <template v-if="currentCard?.id === 'cpuController'">
+        <h3>💡 知识点卡片：CPU控制器的三个组成部分</h3>
+        
+        <div class="card-section">
+          <h4>🔍 CPU控制器的组成</h4>
+          <p>CPU控制器主要由以下三个部分组成：</p>
+          
+          <h5>(1) 程序计数器（PC, Program Counter）</h5>
+          <ul>
+            <li><strong>功能</strong>：存放下一条要执行的指令的地址</li>
+            <li><strong>特点</strong>：具有自动递增功能，取指后PC = PC + 1</li>
+            <li><strong>作用</strong>：保证指令的顺序执行</li>
+          </ul>
+          
+          <h5>(2) 指令寄存器（IR, Instruction Register）</h5>
+          <ul>
+            <li><strong>功能</strong>：存放当前正在执行的指令</li>
+            <li><strong>特点</strong>：从内存取出指令后存入IR</li>
+            <li><strong>作用</strong>：供译码器分析指令的操作码和地址码</li>
+          </ul>
+          
+          <h5>(3) 指令译码器（ID, Instruction Decoder）</h5>
+          <ul>
+            <li><strong>功能</strong>：对IR中的指令进行译码，产生控制信号</li>
+            <li><strong>特点</strong>：识别操作码，确定指令类型</li>
+            <li><strong>作用</strong>：生成微命令序列，控制各部件协调工作</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三者的工作流程</h4>
+          <ol>
+            <li><strong>取指</strong>：根据PC的值从内存取出指令 → 送入IR</li>
+            <li><strong>译码</strong>：ID对IR中的指令进行译码 → 产生控制信号</li>
+            <li><strong>执行</strong>：根据控制信号执行指令</li>
+            <li><strong>更新PC</strong>：PC自动递增，指向下一条指令</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 掌握CPU控制器的三个组成部分及其功能（必考选择题）</li>
+            <li>✅ 理解PC、IR、ID在指令执行过程中的作用</li>
+            <li>✅ 知道PC具有自动递增功能</li>
+            <li>✅ 理解指令译码器产生控制信号的作用</li>
+          </ul>
+          
+          <p><strong>常见考题</strong>：CPU控制器由哪三部分组成？</p>
+          <p><strong>答案</strong>：程序计数器（PC）、指令寄存器（IR）、指令译码器（ID）。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>💡 补充说明</h4>
+          <p>除了这三个核心部件，控制器还包括：</p>
+          <ul>
+            <li><strong>时序发生器</strong>：产生时钟信号和节拍信号</li>
+            <li><strong>微命令形成部件</strong>：根据译码结果生成微命令序列</li>
+            <li><strong>中断机构</strong>：处理中断请求</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- Flynn分类法详解 -->
+      <template v-if="currentCard?.id === 'flynnClassification'">
+        <h3>💡 知识点卡片：Flynn分类法详解</h3>
+        
+        <div class="card-section">
+          <h4>🔍 什么是Flynn分类法？</h4>
+          <ul>
+            <li><strong>定义</strong>：根据指令流和数据流的数量对计算机体系结构进行分类的方法</li>
+            <li><strong>提出者</strong>：Michael J. Flynn（1966年）</li>
+            <li><strong>分类依据</strong>：指令流（Instruction Stream）和数据流（Data Stream）的数量</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 四种类型</h4>
+          <el-table :data="flynnTypes" border stripe style="width: 100%">
+            <el-table-column prop="type" label="类型" width="100" />
+            <el-table-column prop="full" label="全称" width="250" />
+            <el-table-column prop="description" label="说明" />
+            <el-table-column prop="example" label="示例" width="150" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 掌握四种类型的名称和特点（必考选择题）</li>
+            <li>✅ 理解SISD是传统串行计算机，SIMD是向量处理器</li>
+            <li>✅ 知道MIMD是现代多核处理器的架构</li>
+            <li>✅ MISD在实际中很少使用</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 超线程技术详解 -->
+      <template v-if="currentCard?.id === 'hyperThreading'">
+        <h3>💡 知识点卡片：超线程技术详解</h3>
+        
+        <div class="card-section">
+          <h4>🔍 什么是超线程？</h4>
+          <ul>
+            <li><strong>定义</strong>：在一个物理核心上模拟出多个逻辑核心的技术</li>
+            <li><strong>目的</strong>：提高CPU的资源利用率和吞吐量</li>
+            <li><strong>原理</strong>：当一个线程等待时，切换到另一个线程执行</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 优点与缺点</h4>
+          <ul>
+            <li><strong>优点</strong>：提高并行度、改善资源利用率、提升吞吐量（约30%）</li>
+            <li><strong>缺点</strong>：增加复杂度、可能降低单线程性能、功耗略增</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 理解超线程与多核的区别（超线程是逻辑核心，多核是物理核心）</li>
+            <li>✅ 知道Intel是首个实现超线程技术的厂商</li>
+            <li>✅ 理解超线程通过时间片轮转提高资源利用率</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 刷新存储器（DRAM刷新） -->
+      <template v-if="currentCard?.id === 'refreshMemory'">
+        <h3>💡 知识点卡片：刷新存储器（DRAM刷新）</h3>
+        
+        <div class="card-section">
+          <h4>🔍 为什么需要刷新？</h4>
+          <ul>
+            <li><strong>原因</strong>：DRAM使用电容存储数据，电容会漏电，数据会逐渐丢失</li>
+            <li><strong>刷新周期</strong>：通常2ms-64ms需要刷新一次</li>
+            <li><strong>刷新方式</strong>：定期读取并重写数据，恢复电荷</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三种刷新方式</h4>
+          <ul>
+            <li><strong>集中刷新</strong>：在规定时间内集中刷新所有行，期间不能访问内存</li>
+            <li><strong>分散刷新</strong>：将刷新操作分散到每个存取周期中</li>
+            <li><strong>异步刷新</strong>：结合前两者，在空闲时刷新，最常用</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 理解DRAM需要刷新的原因（电容漏电）</li>
+            <li>✅ 掌握三种刷新方式的特点</li>
+            <li>✅ 知道SRAM不需要刷新（使用触发器存储）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- I/O接口的功能 -->
+      <template v-if="currentCard?.id === 'ioInterface'">
+        <h3>💡 知识点卡片：I/O接口的功能</h3>
+        
+        <div class="card-section">
+          <h4>🔍 I/O接口的主要功能</h4>
+          <ol>
+            <li><strong>数据缓冲</strong>：解决CPU与I/O设备速度不匹配的问题</li>
+            <li><strong>信号转换</strong>：进行电平转换、串并转换等</li>
+            <li><strong>设备选择</strong>：通过地址译码选择特定的I/O设备</li>
+            <li><strong>命令译码</strong>：接收并解释CPU发出的控制命令</li>
+            <li><strong>状态反馈</strong>：向CPU报告设备的工作状态（忙、闲、错误等）</li>
+            <li><strong>中断管理</strong>：向CPU发出中断请求</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 掌握I/O接口的六大功能（常考简答题）</li>
+            <li>✅ 理解数据缓冲的作用（速度匹配）</li>
+            <li>✅ 知道I/O接口是CPU与外设之间的桥梁</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- I/O端口与接口的关系 -->
+      <template v-if="currentCard?.id === 'ioPortInterface'">
+        <h3>💡 知识点卡片：I/O端口与接口的关系</h3>
+        
+        <div class="card-section">
+          <h4>🔍 基本概念</h4>
+          <ul>
+            <li><strong>I/O端口</strong>：I/O接口中的寄存器，用于数据传输和控制</li>
+            <li><strong>I/O接口</strong>：连接CPU和I/O设备的完整电路，包含多个端口</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 端口的类型</h4>
+          <ul>
+            <li><strong>数据端口</strong>：传输数据（输入/输出）</li>
+            <li><strong>状态端口</strong>：读取设备状态</li>
+            <li><strong>控制端口</strong>：发送控制命令</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 关系总结</h4>
+          <p><strong>I/O接口 ⊃ I/O端口</strong></p>
+          <p>一个I/O接口包含多个I/O端口，端口是接口的组成部分。</p>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 理解端口和接口的区别与联系</li>
+            <li>✅ 掌握三种端口的功能</li>
+            <li>✅ 知道端口有独立的地址（端口地址）</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- 第6章：总线系统 -->
       
       <!-- 总线带宽计算 -->
@@ -3831,6 +4140,13 @@ const memoryComparison = [
   { aspect: '类型', cm: 'ROM（只读）', mainMem: 'RAM（可读可写）' },
   { aspect: '内容', cm: '微程序', mainMem: '用户程序和数据' },
   { aspect: '可见性', cm: '对用户透明', mainMem: '用户可直接访问' }
+]
+
+const flynnTypes = [
+  { type: 'SISD', full: 'Single Instruction Single Data', description: '单指令流单数据流，传统串行计算机', example: '普通PC' },
+  { type: 'SIMD', full: 'Single Instruction Multiple Data', description: '单指令流多数据流，向量处理器', example: 'GPU、向量机' },
+  { type: 'MISD', full: 'Multiple Instruction Single Data', description: '多指令流单数据流，实际很少使用', example: '容错系统' },
+  { type: 'MIMD', full: 'Multiple Instruction Multiple Data', description: '多指令流多数据流，现代多核处理器', example: '多核CPU、集群' }
 ]
 
 const icComparisonData = [
