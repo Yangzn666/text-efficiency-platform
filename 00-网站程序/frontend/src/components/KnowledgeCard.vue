@@ -2989,6 +2989,90 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
+      <!-- 时间周期与操作关系 -->
+      <template v-if="currentCard?.id === 'timePeriods'">
+        <h3>💡 知识点卡片：时间周期与操作关系</h3>
+        
+        <div class="card-section">
+          <h4>🔍 三种时间周期的定义</h4>
+          
+          <h5>(1) 时钟周期（Clock Cycle）</h5>
+          <ul>
+            <li><strong>定义</strong>：CPU主频的倒数，是CPU工作的最小时间单位</li>
+            <li><strong>计算公式</strong>：时钟周期 = 1 / 主频</li>
+            <li><strong>示例</strong>：主频2GHz，时钟周期 = 1/2GHz = 0.5ns</li>
+            <li><strong>别名</strong>：T状态、节拍</li>
+          </ul>
+          
+          <h5>(2) 机器周期（Machine Cycle）</h5>
+          <ul>
+            <li><strong>定义</strong>：CPU访问存储器一次所需要的时间</li>
+            <li><strong>组成</strong>：由若干个时钟周期组成</li>
+            <li><strong>示例</strong>：取指周期、间址周期、执行周期、中断周期</li>
+            <li><strong>别名</strong>：CPU周期、总线周期</li>
+          </ul>
+          
+          <h5>(3) 指令周期（Instruction Cycle）</h5>
+          <ul>
+            <li><strong>定义</strong>：CPU从内存取出一条指令并执行完这条指令所需的全部时间</li>
+            <li><strong>组成</strong>：由若干个机器周期组成</li>
+            <li><strong>示例</strong>：一条ADD指令可能需要1-2个机器周期，一条MUL指令可能需要3-5个机器周期</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三者的关系</h4>
+          <div class="formula-box">
+            <strong>层级关系：</strong><br>
+            指令周期 ≥ 机器周期 ≥ 时钟周期<br><br>
+            <strong>数量关系：</strong><br>
+            1个指令周期 = N个机器周期<br>
+            1个机器周期 = M个时钟周期<br><br>
+            <strong>举例：</strong><br>
+            如果主频 = 1GHz，则：<br>
+            时钟周期 = 1ns<br>
+            机器周期 = 4ns（假设）<br>
+            指令周期 = 8ns（简单指令）或 20ns（复杂指令）
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 各周期对应的操作</h4>
+          <el-table :data="periodOperations" border stripe style="width: 100%">
+            <el-table-column prop="period" label="周期类型" width="120" />
+            <el-table-column prop="operations" label="包含的操作" />
+            <el-table-column prop="duration" label="典型时长" width="120" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 考研重点</h4>
+          <ul>
+            <li>✅ 掌握三种周期的定义和层级关系（必考选择题）</li>
+            <li>✅ 能够根据主频计算时钟周期</li>
+            <li>✅ 理解指令周期由多个机器周期组成，机器周期由多个时钟周期组成</li>
+            <li>✅ 知道不同指令的指令周期长度可能不同</li>
+          </ul>
+          
+          <p><strong>常见考题</strong>：某CPU主频为2GHz，每个机器周期包含4个时钟周期，平均每条指令需要2.5个机器周期，求该CPU的CPI和平均指令执行时间。</p>
+          <p><strong>解答</strong>：<br>
+          时钟周期 = 1/2GHz = 0.5ns<br>
+          机器周期 = 4 × 0.5ns = 2ns<br>
+          CPI = 2.5<br>
+          平均指令执行时间 = 2.5 × 2ns = 5ns</p>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 实际应用意义</h4>
+          <ul>
+            <li><strong>性能评估</strong>：通过CPI（每条指令周期数）评估CPU性能</li>
+            <li><strong>时序设计</strong>：设计控制器时需要确定每个操作的时序</li>
+            <li><strong>流水线优化</strong>：将指令周期分解为多个阶段，实现并行执行</li>
+            <li><strong>功耗管理</strong>：降低主频可以延长时钟周期，减少功耗</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- 第6章：总线系统 -->
       
       <!-- 总线带宽计算 -->
@@ -3535,6 +3619,10 @@ const cardData = {
     id: 'tristateGate',
     title: '💡 知识点卡片：三态门详解'
   },
+  timePeriods: {
+    id: 'timePeriods',
+    title: '💡 知识点卡片：时间周期与操作关系'
+  },
   addressingModes: {
     id: 'addressingModes',
     title: '💡 知识点卡片：8种数据寻址方式完全指南'
@@ -3630,6 +3718,12 @@ const gateComparison = [
   { type: '普通门', states: '两种（0和1）', feature: '只能输出高电平或低电平' },
   { type: '三态门', states: '三种（0、1和Z）', feature: '可以增加高阻态，实现总线共享' },
   { type: '集电极开路门', states: '两种（0和1）', feature: '可以实现线与逻辑，需要上拉电阻' }
+]
+
+const periodOperations = [
+  { period: '时钟周期', operations: 'CPU内部最基本操作（如寄存器传输、ALU运算）', duration: '0.5-1ns' },
+  { period: '机器周期', operations: '取指、间址、执行、中断等完整步骤', duration: '2-4ns' },
+  { period: '指令周期', operations: '完整执行一条指令的所有步骤', duration: '4-20ns' }
 ]
 
 const icComparisonData = [
