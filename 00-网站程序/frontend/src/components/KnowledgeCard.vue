@@ -3623,6 +3623,38 @@ const cardData = {
     id: 'timePeriods',
     title: '💡 知识点卡片：时间周期与操作关系'
   },
+  microprogramMemory: {
+    id: 'microprogramMemory',
+    title: '💡 知识点卡片：微程序存储器是CPU的一部分'
+  },
+  microConcepts: {
+    id: 'microConcepts',
+    title: '💡 知识点卡片：微程序、微指令、微操作、微命令'
+  },
+  cpuController: {
+    id: 'cpuController',
+    title: '💡 知识点卡片：CPU控制器的三个组成部分'
+  },
+  flynnClassification: {
+    id: 'flynnClassification',
+    title: '💡 知识点卡片：Flynn分类法详解'
+  },
+  hyperThreading: {
+    id: 'hyperThreading',
+    title: '💡 知识点卡片：超线程技术详解'
+  },
+  refreshMemory: {
+    id: 'refreshMemory',
+    title: '💡 知识点卡片：刷新存储器（DRAM刷新）'
+  },
+  ioInterface: {
+    id: 'ioInterface',
+    title: '💡 知识点卡片：I/O接口的功能'
+  },
+  ioPortInterface: {
+    id: 'ioPortInterface',
+    title: '💡 知识点卡片：I/O端口与接口的关系'
+  },
   addressingModes: {
     id: 'addressingModes',
     title: '💡 知识点卡片：8种数据寻址方式完全指南'
