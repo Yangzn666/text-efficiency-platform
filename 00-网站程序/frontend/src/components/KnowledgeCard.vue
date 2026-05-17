@@ -3073,6 +3073,72 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
+      <!-- 微程序存储器是CPU的一部分 -->
+      <template v-if="currentCard?.id === 'microprogramMemory'">
+        <h3>💡 知识点卡片：微程序存储器是CPU的一部分</h3>
+        
+        <div class="card-section">
+          <h4>🔍 什么是微程序存储器？</h4>
+          <ul>
+            <li><strong>定义</strong>：存储微程序的专用存储器，也称为控制存储器（CM, Control Memory）</li>
+            <li><strong>位置</strong>：位于CPU内部，属于控制器的一部分</li>
+            <li><strong>作用</strong>：存储所有机器指令对应的微程序</li>
+            <li><strong>特点</strong>：只读存储器（ROM），速度快，容量小</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 微程序存储器的特点</h4>
+          <ul>
+            <li><strong>速度快</strong>：访问速度与CPU工作速度匹配，通常比主存快得多</li>
+            <li><strong>容量小</strong>：只存储微程序，不需要存储用户数据和程序</li>
+            <li><strong>只读性</strong>：通常是ROM或PROM，出厂时写入，运行时只读</li>
+            <li><strong>固定性</strong>：微程序由CPU设计者预先编写，用户不能修改</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 为什么微程序存储器是CPU的一部分？</h4>
+          <ol>
+            <li><strong>物理位置</strong>：集成在CPU芯片内部，与控制器紧密连接</li>
+            <li><strong>功能归属</strong>：属于控制器的组成部分，用于实现指令的解释执行</li>
+            <li><strong>访问速度</strong>：需要与CPU时钟同步，必须内置才能保证速度</li>
+            <li><strong>独立性</strong>：独立于主存储器，不占用内存地址空间</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 微程序存储器 vs 主存储器</h4>
+          <el-table :data="memoryComparison" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="cm" label="微程序存储器（CM）" width="180" />
+            <el-table-column prop="mainMem" label="主存储器" width="180" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 理解微程序存储器的作用和位置（必考选择题）</li>
+            <li>✅ 掌握微程序存储器与主存储器的区别</li>
+            <li>✅ 知道微程序存储器是ROM，存储的是微程序而非用户程序</li>
+            <li>✅ 理解为什么微程序存储器必须是CPU的一部分（速度要求）</li>
+          </ul>
+          
+          <p><strong>常见考题</strong>：微程序存放在哪里？</p>
+          <p><strong>答案</strong>：微程序存放在CPU内部的控制存储器（CM）中，CM是CPU控制器的一部分。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>💡 实际应用</h4>
+          <ul>
+            <li><strong>CISC处理器</strong>：广泛使用微程序技术，如Intel x86系列</li>
+            <li><strong>可编程性</strong>：某些处理器支持微码更新（Microcode Update），可以修复bug</li>
+            <li><strong>性能优化</strong>：通过优化微程序可以提高指令执行效率</li>
+          </ul>
+        </div>
+      </template>
+      
       <!-- 第6章：总线系统 -->
       
       <!-- 总线带宽计算 -->
@@ -3756,6 +3822,15 @@ const periodOperations = [
   { period: '时钟周期', operations: 'CPU内部最基本操作（如寄存器传输、ALU运算）', duration: '0.5-1ns' },
   { period: '机器周期', operations: '取指、间址、执行、中断等完整步骤', duration: '2-4ns' },
   { period: '指令周期', operations: '完整执行一条指令的所有步骤', duration: '4-20ns' }
+]
+
+const memoryComparison = [
+  { aspect: '位置', cm: 'CPU内部（控制器）', mainMem: 'CPU外部（主板上）' },
+  { aspect: '速度', cm: '非常快（与CPU同步）', mainMem: '较慢（需要等待）' },
+  { aspect: '容量', cm: '很小（几KB）', mainMem: '很大（几GB）' },
+  { aspect: '类型', cm: 'ROM（只读）', mainMem: 'RAM（可读可写）' },
+  { aspect: '内容', cm: '微程序', mainMem: '用户程序和数据' },
+  { aspect: '可见性', cm: '对用户透明', mainMem: '用户可直接访问' }
 ]
 
 const icComparisonData = [
