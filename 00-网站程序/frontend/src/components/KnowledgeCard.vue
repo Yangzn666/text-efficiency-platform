@@ -2906,6 +2906,89 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
+      <!-- 三态门详解 -->
+      <template v-if="currentCard?.id === 'tristateGate'">
+        <h3>💡 知识点卡片：三态门详解</h3>
+        
+        <div class="card-section">
+          <h4>🔍 什么是三态门？</h4>
+          <ul>
+            <li><strong>定义</strong>：一种具有三种输出状态的逻辑门电路</li>
+            <li><strong>三种状态</strong>：
+              <ol>
+                <li><strong>高电平（1）</strong>：输出逻辑高电平</li>
+                <li><strong>低电平（0）</strong>：输出逻辑低电平</li>
+                <li><strong>高阻态（Z）</strong>：输出端与电路断开，相当于开路</li>
+              </ol>
+            </li>
+            <li><strong>别名</strong>：三态缓冲器、三态输出门</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 三态门的工作原理</h4>
+          <ul>
+            <li><strong>控制端（EN）</strong>：使能信号，决定输出状态
+              <ul>
+                <li>EN = 1：正常工作，输出等于输入</li>
+                <li>EN = 0：高阻态，输出与电路断开</li>
+              </ul>
+            </li>
+            <li><strong>数据端（D）</strong>：输入数据</li>
+            <li><strong>输出端（Q）</strong>：输出结果（0、1或Z）</li>
+          </ul>
+          
+          <div class="formula-box">
+            <strong>真值表：</strong><br>
+            EN = 1, D = 0 → Q = 0<br>
+            EN = 1, D = 1 → Q = 1<br>
+            EN = 0, D = X → Q = Z（高阻态）
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 三态门的主要作用</h4>
+          <ol>
+            <li><strong>总线共享</strong>：多个设备可以连接到同一条总线上，通过控制EN信号实现分时复用</li>
+            <li><strong>避免冲突</strong>：当某个设备不使用时，进入高阻态，不会影响其他设备</li>
+            <li><strong>双向传输</strong>：配合两个三态门可以实现数据的双向传输</li>
+            <li><strong>隔离保护</strong>：高阻态可以隔离不同部分的电路，防止相互干扰</li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 在计算机中的应用</h4>
+          <ul>
+            <li><strong>寄存器输出</strong>：寄存器的输出端使用三态门，控制何时将数据送到总线</li>
+            <li><strong>存储器芯片</strong>：多个存储芯片共享数据总线，通过片选信号控制三态门</li>
+            <li><strong>I/O接口</strong>：I/O端口的数据传输使用三态门实现双向通信</li>
+            <li><strong>总线驱动器</strong>：增强总线驱动能力，同时提供隔离功能</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <ul>
+            <li>✅ 理解三态门的三种状态及其含义</li>
+            <li>✅ 掌握三态门在总线结构中的作用（实现多设备共享）</li>
+            <li>✅ 能够分析多个三态门连接到同一总线时的控制逻辑</li>
+            <li>✅ 理解高阻态的作用：避免总线冲突，实现分时复用</li>
+          </ul>
+          
+          <p><strong>常见考题</strong>：为什么总线上的设备输出需要使用三态门？</p>
+          <p><strong>答案</strong>：因为多个设备共享同一条总线，如果两个设备同时输出不同的电平会导致短路。使用三态门可以让不使用的设备进入高阻态，避免冲突。</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>💡 与普通门的区别</h4>
+          <el-table :data="gateComparison" border stripe style="width: 100%">
+            <el-table-column prop="type" label="门的类型" width="120" />
+            <el-table-column prop="states" label="输出状态" width="200" />
+            <el-table-column prop="feature" label="特点" />
+          </el-table>
+        </div>
+      </template>
+      
       <!-- 第6章：总线系统 -->
       
       <!-- 总线带宽计算 -->
@@ -3448,6 +3531,10 @@ const cardData = {
     id: 'aluBusConnection',
     title: '💡 知识点卡片：ALU与总线的连接方式'
   },
+  tristateGate: {
+    id: 'tristateGate',
+    title: '💡 知识点卡片：三态门详解'
+  },
   addressingModes: {
     id: 'addressingModes',
     title: '💡 知识点卡片：8种数据寻址方式完全指南'
@@ -3537,6 +3624,12 @@ const aluConnectionComparison = [
   { aspect: '速度', single: '最慢', double: '较快', triple: '最快' },
   { aspect: '复杂度', single: '最简单', double: '中等', triple: '最复杂' },
   { aspect: '应用场景', single: '低成本系统', double: '一般系统', triple: '高性能系统' }
+]
+
+const gateComparison = [
+  { type: '普通门', states: '两种（0和1）', feature: '只能输出高电平或低电平' },
+  { type: '三态门', states: '三种（0、1和Z）', feature: '可以增加高阻态，实现总线共享' },
+  { type: '集电极开路门', states: '两种（0和1）', feature: '可以实现线与逻辑，需要上拉电阻' }
 ]
 
 const icComparisonData = [
