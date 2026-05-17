@@ -2747,6 +2747,489 @@ Cache块数 = 16KB / 32B = 512块</pre>
           </ul>
         </div>
       </template>
+      
+      <!-- 第五章知识卡片 -->
+      
+      <!-- 专用数据通路结构 -->
+      <template v-if="currentCard?.id === 'dedicatedDatapath'">
+        <h3>💡 知识点卡片：专用数据通路结构</h3>
+        
+        <div class="card-section">
+          <h4>🔍 什么是专用数据通路？</h4>
+          <ul>
+            <li><strong>定义</strong>：为特定指令或操作专门设计的数据传输路径，而非使用通用总线</li>
+            <li><strong>对比</strong>：与单总线、双总线等通用总线结构相对</li>
+            <li><strong>应用场景</strong>：高性能处理器、流水线CPU、RISC架构</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✅ 优点</h4>
+          <ul>
+            <li><strong>速度快</strong>：直接连接源和目的，无需经过总线仲裁</li>
+            <li><strong>并行度高</strong>：多个专用通路可同时工作，提高吞吐量</li>
+            <li><strong>延迟低</strong>：减少等待时间，适合流水线设计</li>
+            <li><strong>确定性</strong>：数据传输时间可预测，便于时序分析</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>❌ 缺点</h4>
+          <ul>
+            <li><strong>成本高</strong>：需要更多的连线和逻辑电路，占用芯片面积</li>
+            <li><strong>灵活性差</strong>：只能用于特定操作，难以扩展新功能</li>
+            <li><strong>设计复杂</strong>：需要仔细规划每条通路的用途</li>
+            <li><strong>功耗大</strong>：更多的电路意味着更高的功耗</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 专用通路 vs 通用总线对比</h4>
+          <el-table :data="dedicatedPathComparison" border stripe style="width: 100%">
+            <el-table-column prop="aspect" label="对比项" width="120" />
+            <el-table-column prop="dedicated" label="专用数据通路" width="180" />
+            <el-table-column prop="general" label="通用总线" width="180" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🎯 典型应用场景</h4>
+          <ol>
+            <li><strong>ALU专用通路</strong>：寄存器文件到ALU的直接连接，用于算术运算</li>
+            <li><strong>LOAD/STORE通路</strong>：专门的地址计算和数据传输通路</li>
+            <li><strong>分支目标通路</strong>：快速计算分支目标地址</li>
+            <li><strong>Forwarding通路</strong>：旁路技术中的专用数据转发路径</li>
+          </ol>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>📝 考研重点</h4>
+          <p>在《计算机组成原理》数据通路章节中，专用数据通路是重要考点：</p>
+          <ul>
+            <li>✅ 理解专用通路与通用总线的权衡（速度vs成本）</li>
+            <li>✅ 掌握专用通路在流水线中的应用</li>
+            <li>✅ 能够分析给定指令集需要的专用通路数量</li>
+            <li>✅ 理解现代处理器如何混合使用专用通路和通用总线</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 第6章：总线系统 -->
+      
+      <!-- 总线带宽计算 -->
+      <template v-if="currentCard?.id === 'busBandwidth'">
+        <h3>📊 总线带宽计算详解</h3>
+        
+        <div class="card-section">
+          <h4>🔑 核心公式</h4>
+          <div class="formula-box">
+            <strong>总线带宽 = 总线宽度 × 总线频率 / 8</strong>
+          </div>
+          <ul>
+            <li><strong>总线宽度</strong>：数据总线的位数（单位：bit）</li>
+            <li><strong>总线频率</strong>：总线的工作频率（单位：Hz）</li>
+            <li><strong>除以8</strong>：将bit转换为Byte（1 Byte = 8 bit）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📝 例题详解</h4>
+          <p><strong>题目</strong>：某总线宽度为32位，总线频率为100MHz，求总线带宽。</p>
+          
+          <div class="solution-steps">
+            <p><strong>解答步骤：</strong></p>
+            <ol>
+              <li>代入公式：总线带宽 = 32 bit × 100 MHz / 8</li>
+              <li>计算：= 32 × 100 × 10⁶ / 8 Byte/s</li>
+              <li>= 400 × 10⁶ Byte/s</li>
+              <li>= <strong>400 MB/s</strong></li>
+            </ol>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 常见单位换算</h4>
+          <el-table :data="unitConversions" border stripe style="width: 100%">
+            <el-table-column prop="from" label="原始单位" width="150" />
+            <el-table-column prop="to" label="目标单位" width="150" />
+            <el-table-column prop="conversion" label="换算关系" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎯 考研重点</h4>
+          <ul>
+            <li>✅ 总线带宽计算公式必考（选择题或计算题）</li>
+            <li>✅ 注意单位换算：bit → Byte（除以8）</li>
+            <li>✅ 地址总线宽度决定可寻址空间（2^n）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 总线仲裁对比 -->
+      <template v-if="currentCard?.id === 'busArbitration'">
+        <h3>⚖️ 三种总线仲裁方式详细对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 综合对比表</h4>
+          <el-table :data="arbitrationComparison" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="chain" label="链式查询" />
+            <el-table-column prop="counter" label="计数器定时" />
+            <el-table-column prop="independent" label="独立请求" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 链式查询方式</h4>
+          <ul>
+            <li><strong>原理</strong>：所有设备串联，BG信号依次传递</li>
+            <li><strong>优先级</strong>：固定（离仲裁器近的优先级高）</li>
+            <li><strong>优点</strong>：结构简单，控制线少（3根）</li>
+            <li><strong>缺点</strong>：可靠性差（单点故障），速度慢</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 计数器定时查询方式</h4>
+          <ul>
+            <li><strong>原理</strong>：仲裁器内部计数器依次查询设备</li>
+            <li><strong>优先级</strong>：可设置（循环或固定）</li>
+            <li><strong>优点</strong>：优先级灵活，可靠性较好</li>
+            <li><strong>缺点</strong>：控制线较多，速度中等</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 独立请求方式（最常用）</h4>
+          <ul>
+            <li><strong>原理</strong>：每个设备有独立的BR和BG线</li>
+            <li><strong>优先级</strong>：可编程（软件动态调整）</li>
+            <li><strong>优点</strong>：速度最快（并行查询），优先级灵活</li>
+            <li><strong>缺点</strong>：控制线多（2n根），仲裁器复杂</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“链式简单但慢，计数灵活中等，独立快速但线多”</strong></p>
+        </div>
+      </template>
+      
+      <!-- 总线定时对比 -->
+      <template v-if="currentCard?.id === 'busTiming'">
+        <h3>⏱️ 同步vs异步总线定时对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 对比表</h4>
+          <el-table :data="timingComparison" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="sync" label="同步通信" />
+            <el-table-column prop="async" label="异步通信" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 同步通信</h4>
+          <ul>
+            <li><strong>特点</strong>：共享时钟信号，固定时序</li>
+            <li><strong>优点</strong>：速度快，控制简单</li>
+            <li><strong>缺点</strong>：要求所有设备速度一致</li>
+            <li><strong>应用</strong>：CPU与内存之间（速度快且稳定）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🤝 异步通信（握手方式）</h4>
+          <ul>
+            <li><strong>不互锁</strong>：主设备发完就不等，从设备收到就应答（最快但不安全）</li>
+            <li><strong>半互锁</strong>：主设备等待从设备应答，从设备发完就不等（中等）</li>
+            <li><strong>全互锁</strong>：双方都等待对方确认（最慢但最安全）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“同步靠时钟，异步靠握手”</strong></p>
+        </div>
+      </template>
+      
+      <!-- 总线标准对比 -->
+      <template v-if="currentCard?.id === 'busStandards'">
+        <h3>🔌 常见总线标准对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 总线标准对比表</h4>
+          <el-table :data="busStandardsTable" border stripe style="width: 100%">
+            <el-table-column prop="standard" label="标准" width="100" />
+            <el-table-column prop="year" label="推出年份" width="100" />
+            <el-table-column prop="type" label="类型" width="100" />
+            <el-table-column prop="bandwidth" label="带宽" />
+            <el-table-column prop="application" label="典型应用" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 PCI总线</h4>
+          <ul>
+            <li><strong>推出时间</strong>：1993年（Intel）</li>
+            <li><strong>类型</strong>：并行总线</li>
+            <li><strong>带宽</strong>：32位@33MHz = 133 MB/s</li>
+            <li><strong>特点</strong>：即插即用，多主控</li>
+            <li><strong>应用</strong>：早期PC扩展卡（声卡、网卡）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 USB总线</h4>
+          <ul>
+            <li><strong>USB 2.0</strong>：480 Mbps（60 MB/s）</li>
+            <li><strong>USB 3.0</strong>：5 Gbps（625 MB/s）</li>
+            <li><strong>USB 3.1</strong>：10 Gbps（1.25 GB/s）</li>
+            <li><strong>特点</strong>：热插拔，通用性强</li>
+            <li><strong>应用</strong>：键盘、鼠标、U盘、移动硬盘</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 PCIe总线（现代主流）</h4>
+          <ul>
+            <li><strong>类型</strong>：串行总线（高速）</li>
+            <li><strong>PCIe 3.0 x16</strong>：约16 GB/s</li>
+            <li><strong>PCIe 4.0 x16</strong>：约32 GB/s</li>
+            <li><strong>特点</strong>：点对点连接，可扩展性强</li>
+            <li><strong>应用</strong>：显卡、NVMe SSD、高速网卡</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎯 发展趋势</h4>
+          <p><strong>并行总线 → 串行总线</strong>（PCI → PCIe，PATA → SATA）</p>
+          <p>原因：串行总线抗干扰能力强，适合高频传输</p>
+        </div>
+      </template>
+      
+      <!-- 第7章：输入输出系统 -->
+      
+      <!-- I/O编址方式对比 -->
+      <template v-if="currentCard?.id === 'ioAddressing'">
+        <h3>📍 I/O端口编址方式对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 统一编址 vs 独立编址</h4>
+          <el-table :data="addressingComparison" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="unified" label="统一编址" />
+            <el-table-column prop="separate" label="独立编址" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 统一编址（存储器映射I/O）</h4>
+          <ul>
+            <li><strong>特点</strong>：I/O端口与内存地址统一编址</li>
+            <li><strong>指令</strong>：使用相同的访存指令（如MOV）</li>
+            <li><strong>优点</strong>：指令丰富，编程方便</li>
+            <li><strong>缺点</strong>：占用内存地址空间</li>
+            <li><strong>应用</strong>：ARM、MIPS、PowerPC等RISC架构</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 独立编址（I/O映射I/O）</h4>
+          <ul>
+            <li><strong>特点</strong>：I/O端口有独立的地址空间</li>
+            <li><strong>指令</strong>：使用专门的I/O指令（如IN、OUT）</li>
+            <li><strong>优点</strong>：不占用内存空间，清晰区分</li>
+            <li><strong>缺点</strong>：指令种类少，编程稍复杂</li>
+            <li><strong>应用</strong>：x86架构</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆技巧</h4>
+          <p><strong>“统一用MOV，独立用IN/OUT”</strong></p>
+          <p>x86是独立编址的代表，ARM是统一编址的代表</p>
+        </div>
+      </template>
+      
+      <!-- 中断处理流程 -->
+      <template v-if="currentCard?.id === 'interruptProcess'">
+        <h3>🔔 中断处理完整流程</h3>
+        
+        <div class="card-section">
+          <h4>📋 中断处理四阶段</h4>
+          <div class="flow-diagram vertical">
+            <div class="flow-step">1. 中断请求</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">2. 中断响应</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">3. 中断服务</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">4. 中断返回</div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 详细流程</h4>
+          <ol>
+            <li><strong>中断请求</strong>：I/O设备完成后发出INTR信号</li>
+            <li><strong>中断响应</strong>：
+              <ul>
+                <li>CPU检查IF标志位（是否允许中断）</li>
+                <li>保存断点（PC值压栈）</li>
+                <li>保存现场（寄存器值压栈）</li>
+                <li>关中断</li>
+                <li>转入中断服务程序</li>
+              </ul>
+            </li>
+            <li><strong>中断服务</strong>：
+              <ul>
+                <li>保护现场（保存更多寄存器）</li>
+                <li>执行中断服务（如读取数据）</li>
+                <li>恢复现场</li>
+                <li>开中断</li>
+              </ul>
+            </li>
+            <li><strong>中断返回</strong>：
+              <ul>
+                <li>IRET指令弹出PC值</li>
+                <li>返回被中断的程序继续执行</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 关键要点</h4>
+          <ul>
+            <li><strong>关中断</strong>：保护临界区，防止嵌套中断</li>
+            <li><strong>中断嵌套</strong>：高优先级中断可以打断低优先级中断</li>
+            <li><strong>中断屏蔽</strong>：通过IMR寄存器动态设置优先级</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎯 考研重点</h4>
+          <p>中断处理流程是必考大题！需要能够画出流程图并解释每个步骤。</p>
+        </div>
+      </template>
+      
+      <!-- DMA传送过程 -->
+      <template v-if="currentCard?.id === 'dmaProcess'">
+        <h3>🚀 DMA传送过程详解</h3>
+        
+        <div class="card-section">
+          <h4>📋 DMA传送三阶段</h4>
+          <div class="flow-diagram vertical">
+            <div class="flow-step">1. 预处理阶段（CPU初始化）</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step highlight">2. 数据传送阶段（DMA控制）</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">3. 后处理阶段（中断通知CPU）</div>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 详细流程</h4>
+          <ol>
+            <li><strong>预处理阶段</strong>（CPU参与）：
+              <ul>
+                <li>设置内存起始地址</li>
+                <li>设置传输数据量（字节数或字数）</li>
+                <li>设置传输方向（读/写）</li>
+                <li>启动DMA控制器</li>
+              </ul>
+            </li>
+            <li><strong>数据传送阶段</strong>（DMA控制）：
+              <ul>
+                <li>DMA向CPU发出总线请求（HOLD）</li>
+                <li>CPU释放总线控制权（HLDA）</li>
+                <li>DMA获得总线控制权</li>
+                <li>DMA直接控制数据传输（周期窃取）</li>
+                <li>每传输一个数据，地址递增，计数器减1</li>
+                <li>计数器为0时，传输完成</li>
+              </ul>
+            </li>
+            <li><strong>后处理阶段</strong>（CPU参与）：
+              <ul>
+                <li>DMA发出中断请求</li>
+                <li>CPU响应中断，执行中断服务程序</li>
+                <li>检查和处理（如错误处理）</li>
+                <li>中断返回，CPU继续执行原程序</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        
+        <div class="card-section">
+          <h4>⚠️ 关键概念</h4>
+          <ul>
+            <li><strong>周期窃取（Cycle Stealing）</strong>：DMA每次传输一个数据后释放总线给CPU</li>
+            <li><strong>CPU在DMA期间</strong>：不能访问内存，但可以执行内部操作（寄存器运算）</li>
+            <li><strong>DMA控制器组成</strong>：地址寄存器、数据计数器、命令寄存器、状态寄存器</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎯 考研重点</h4>
+          <p>DMA传送过程是必考大题！重点掌握三个阶段和周期窃取的概念。</p>
+        </div>
+      </template>
+      
+      <!-- 三种I/O方式对比 -->
+      <template v-if="currentCard?.id === 'ioComparison'">
+        <h3>⚖️ 三种I/O控制方式全面对比</h3>
+        
+        <div class="card-section">
+          <h4>📊 综合对比表（必背！）</h4>
+          <el-table :data="ioComparisonTable" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="polling" label="程序查询" />
+            <el-table-column prop="interrupt" label="中断驱动" />
+            <el-table-column prop="dma" label="DMA" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 程序查询方式</h4>
+          <ul>
+            <li><strong>CPU参与度</strong>：最高（全程轮询等待）</li>
+            <li><strong>CPU利用率</strong>：最低 ❌</li>
+            <li><strong>硬件复杂度</strong>：最低 ✅</li>
+            <li><strong>适用场景</strong>：简单嵌入式系统</li>
+            <li><strong>典型设备</strong>：极低速设备</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 中断驱动方式</h4>
+          <ul>
+            <li><strong>CPU参与度</strong>：中等（每个数据中断一次）</li>
+            <li><strong>CPU利用率</strong>：较高 ✅</li>
+            <li><strong>硬件复杂度</strong>：中等（需要中断控制器）</li>
+            <li><strong>适用场景</strong>：中低速、小批量数据传输</li>
+            <li><strong>典型设备</strong>：键盘、鼠标、打印机</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔍 DMA方式</h4>
+          <ul>
+            <li><strong>CPU参与度</strong>：最低（只初始化+后处理）</li>
+            <li><strong>CPU利用率</strong>：最高 ✅✅✅</li>
+            <li><strong>硬件复杂度</strong>：最高 ❌（需要DMA控制器）</li>
+            <li><strong>适用场景</strong>：高速、大批量数据传输</li>
+            <li><strong>典型设备</strong>：硬盘、网卡、显卡</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“查询最笨CPU累，中断并行效率高，DMA大批量最快”</strong></p>
+          <p><strong>“键鼠用中断，硬网用DMA，简单用查询”</strong></p>
+        </div>
+      </template>
     </div>
     
     <template #footer>
@@ -2862,7 +3345,12 @@ const cardData = {
   },
   extendedOpcode: {
     id: 'extendedOpcode',
-    title: '💡 知识点卡片：扩展操作码技术详解'
+    title: '💡 知识点卡片：扩展操作码技术'
+  },
+  // 第五章知识卡片
+  dedicatedDatapath: {
+    id: 'dedicatedDatapath',
+    title: '💡 知识点卡片：专用数据通路结构'
   },
   addressingModes: {
     id: 'addressingModes',
@@ -2935,6 +3423,15 @@ const comparisonData = [
   { aspect: '速度', vacuum: '慢（毫秒级）', transistor: '快（微秒级）', improvement: '提升1000倍' },
   { aspect: '寿命', vacuum: '短（易烧坏）', transistor: '长（不易损坏）', improvement: '提升100倍' },
   { aspect: '可靠性', vacuum: '差', transistor: '高', improvement: '提升100倍' }
+]
+
+const dedicatedPathComparison = [
+  { aspect: '速度', dedicated: '快（直接连接）', general: '慢（需仲裁）' },
+  { aspect: '并行度', dedicated: '高（多路同时）', general: '低（分时复用）' },
+  { aspect: '成本', dedicated: '高（更多连线）', general: '低（共享资源）' },
+  { aspect: '灵活性', dedicated: '差（固定用途）', general: '好（通用性强）' },
+  { aspect: '设计难度', dedicated: '复杂（需规划）', general: '简单（标准化）' },
+  { aspect: '适用场景', dedicated: '高性能CPU', general: '一般系统' }
 ]
 
 const icComparisonData = [
@@ -3235,6 +3732,68 @@ const cpuComparisonData = [
   { aspect: '控制复杂度', singleCycle: '简单', multiCycle: '复杂（需要状态机）' },
   { aspect: '典型应用', singleCycle: '简单嵌入式系统', multiCycle: 'CISC架构（x86）' },
   { aspect: '流水线友好度', singleCycle: '好', multiCycle: '差' }
+]
+
+// 第6章：总线系统相关数据
+
+// 单位换算表
+const unitConversions = [
+  { from: '1 Byte', to: '8 bit', conversion: '1 B = 8 b' },
+  { from: '1 KB', to: '1024 B', conversion: '1 KB = 1024 B = 8192 bit' },
+  { from: '1 MB', to: '1024 KB', conversion: '1 MB = 1024 KB = 1,048,576 B' },
+  { from: '1 GHz', to: '1000 MHz', conversion: '1 GHz = 10⁹ Hz' },
+  { from: '1 MHz', to: '1000 KHz', conversion: '1 MHz = 10⁶ Hz' }
+]
+
+// 总线仲裁对比表
+const arbitrationComparison = [
+  { item: '控制线数量', chain: '少（3根）✅', counter: '中等（~log₂n根）', independent: '多（2n根）❌' },
+  { item: '响应速度', chain: '慢 ❌', counter: '中等', independent: '快 ✅✅✅' },
+  { item: '优先级灵活性', chain: '固定 ❌', counter: '可设置 ✅', independent: '灵活 ✅✅' },
+  { item: '可靠性', chain: '差 ❌', counter: '好 ✅', independent: '好 ✅✅' },
+  { item: '电路复杂度', chain: '简单 ✅', counter: '中等', independent: '复杂 ❌' },
+  { item: '扩充性', chain: '容易 ✅', counter: '容易', independent: '困难 ❌' }
+]
+
+// 总线定时对比表
+const timingComparison = [
+  { item: '同步信号', sync: '共享时钟信号', async: '握手信号（REQ/ACK）' },
+  { item: '速度', sync: '快 ⚡⚡⚡', async: '较慢 ⚡' },
+  { item: '设备要求', sync: '所有设备速度一致', async: '可适应不同速度' },
+  { item: '控制复杂度', sync: '简单', async: '复杂' },
+  { item: '应用场景', sync: 'CPU与内存之间', async: 'CPU与慢速I/O设备' }
+]
+
+// 总线标准对比表
+const busStandardsTable = [
+  { standard: 'PCI', year: '1993', type: '并行', bandwidth: '133-533 MB/s', application: '早期扩展卡' },
+  { standard: 'USB 2.0', year: '2000', type: '串行', bandwidth: '60 MB/s', application: '键盘鼠标U盘' },
+  { standard: 'USB 3.0', year: '2008', type: '串行', bandwidth: '625 MB/s', application: '移动硬盘' },
+  { standard: 'PCIe 3.0', year: '2010', type: '串行', bandwidth: '~1 GB/s (x1)', application: '显卡SSD' },
+  { standard: 'SATA 3.0', year: '2009', type: '串行', bandwidth: '600 MB/s', application: '机械硬盘SSD' }
+]
+
+// 第7章：输入输出系统相关数据
+
+// I/O编址方式对比表
+const addressingComparison = [
+  { item: '地址空间', unified: '与内存统一', separate: '独立空间' },
+  { item: '指令类型', unified: '访存指令（MOV）', separate: '专用I/O指令（IN/OUT）' },
+  { item: '指令丰富度', unified: '丰富 ✅', separate: '较少 ❌' },
+  { item: '占用内存', unified: '是 ❌', separate: '否 ✅' },
+  { item: '编程难度', unified: '简单 ✅', separate: '稍复杂' },
+  { item: '典型架构', unified: 'ARM/MIPS', separate: 'x86' }
+]
+
+// 三种I/O方式对比表
+const ioComparisonTable = [
+  { item: 'CPU参与度', polling: '最高（全程参与）', interrupt: '中等（每个数据中断）', dma: '最低（只初始化+后处理）' },
+  { item: 'CPU利用率', polling: '最低 ❌', interrupt: '较高 ✅', dma: '最高 ✅✅✅' },
+  { item: '硬件复杂度', polling: '最低 ✅', interrupt: '中等', dma: '最高 ❌' },
+  { item: '实时性', polling: '最差 ❌', interrupt: '好 ✅', dma: '好 ✅' },
+  { item: '适用设备', polling: '极低速设备', interrupt: '中低速设备', dma: '高速设备' },
+  { item: '数据批量', polling: '小批量', interrupt: '小批量', dma: '大批量' },
+  { item: '典型应用', polling: '简单嵌入式', interrupt: '键鼠打印机', dma: '硬盘网卡' }
 ]
 
 function show(cardId: string = 'assembly') {
