@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LearningPathVisualizer from '@/components/LearningPathVisualizer.vue'
+import ReviewDashboard from '@/components/ReviewDashboard.vue'
+import LearningAnalytics from '@/components/LearningAnalytics.vue'
+import GamificationDashboard from '@/components/GamificationDashboard.vue'
 
 const activeTab = ref('visualizer')
 </script>
@@ -18,84 +21,16 @@ const activeTab = ref('visualizer')
           <LearningPathVisualizer />
         </el-tab-pane>
         
-        <el-tab-pane label="智能推荐" name="recommendation">
-          <div class="recommendation-content">
-            <div class="ai-illustration">
-              <el-icon size="80" color="#4CAF50"><MagicStick /></el-icon>
-            </div>
-            <h3>🤖 智能学习推荐</h3>
-            <p>基于您的学习情况和进度，提供个性化学习建议</p>
-            
-            <div class="recommendation-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#FF6B6B"><TrendCharts /></el-icon>
-                <div>
-                  <h4>进度分析</h4>
-                  <p>深度分析学习进度，识别薄弱环节</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><Lightning /></el-icon>
-                <div>
-                  <h4>优化建议</h4>
-                  <p>根据遗忘曲线调整复习计划</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#2196F3"><Target /></el-icon>
-                <div>
-                  <h4>目标规划</h4>
-                  <p>制定科学合理的阶段性目标</p>
-                </div>
-              </div>
-            </div>
-            
-            <el-button type="primary" size="large" disabled>
-              智能推荐系统开发中...
-            </el-button>
-          </div>
+        <el-tab-pane label="复习提醒" name="review">
+          <ReviewDashboard />
         </el-tab-pane>
         
         <el-tab-pane label="学习报告" name="report">
-          <div class="report-content">
-            <div class="report-illustration">
-              <el-icon size="80" color="#FF9800"><DataAnalysis /></el-icon>
-            </div>
-            <h3>📊 学习数据分析</h3>
-            <p>全面了解学习情况，发现提升空间</p>
-            
-            <div class="report-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#9C27B0"><PieChart /></el-icon>
-                <div>
-                  <h4>时间分布</h4>
-                  <p>各科目学习时间占比分析</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#E91E63"><BarChart /></el-icon>
-                <div>
-                  <h4>效率趋势</h4>
-                  <p>学习效率变化趋势图表</p>
-                </div>
-              </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#00BCD4"><Calendar /></el-icon>
-                <div>
-                  <h4>习惯分析</h4>
-                  <p>学习时间规律和习惯分析</p>
-                </div>
-              </div>
-            </div>
-            
-            <el-button type="primary" size="large" disabled>
-              学习报告系统开发中...
-            </el-button>
-          </div>
+          <LearningAnalytics />
+        </el-tab-pane>
+        
+        <el-tab-pane label="成就中心" name="gamification">
+          <GamificationDashboard />
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -230,6 +165,11 @@ const activeTab = ref('visualizer')
     padding: 12px;
   }
   
+  .page-header {
+    margin-bottom: 30px;
+    padding: 20px 0;
+  }
+  
   .page-title {
     font-size: 1.8em;
   }
@@ -240,22 +180,134 @@ const activeTab = ref('visualizer')
   
   .tab-navigation {
     padding: 15px;
+    border-radius: 15px;
+  }
+  
+  .path-tabs :deep(.el-tabs__header) {
+    margin-bottom: 20px;
+  }
+  
+  .path-tabs :deep(.el-tabs__item) {
+    padding: 0 15px;
+    font-size: 0.95em;
+    height: 50px;
+    line-height: 50px;
+  }
+  
+  .recommendation-content, .report-content {
+    padding: 30px 15px;
+  }
+  
+  .recommendation-content h3, .report-content h3 {
+    font-size: 1.6em;
+  }
+  
+  .recommendation-content p, .report-content p {
+    font-size: 1em;
+    margin-bottom: 30px;
   }
   
   .recommendation-features, .report-features {
     grid-template-columns: 1fr;
     gap: 15px;
+    margin-bottom: 30px;
   }
   
   .feature-card {
     flex-direction: column;
     text-align: center;
     gap: 12px;
+    padding: 20px;
+  }
+  
+  .feature-card h4 {
+    font-size: 1.15em;
+  }
+  
+  .feature-card p {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .learning-path-page {
+    padding: 8px;
+  }
+  
+  .page-header {
+    margin-bottom: 20px;
+    padding: 15px 0;
+  }
+  
+  .page-title {
+    font-size: 1.5em;
+  }
+  
+  .page-subtitle {
+    font-size: 0.9em;
+  }
+  
+  .tab-navigation {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  
+  .path-tabs :deep(.el-tabs__header) {
+    margin-bottom: 15px;
   }
   
   .path-tabs :deep(.el-tabs__item) {
-    padding: 0 12px;
+    padding: 0 10px;
+    font-size: 0.85em;
+    height: 45px;
+    line-height: 45px;
+  }
+  
+  .recommendation-content, .report-content {
+    padding: 20px 10px;
+  }
+  
+  .ai-illustration, .report-illustration {
+    margin-bottom: 20px;
+  }
+  
+  .ai-illustration .el-icon,
+  .report-illustration .el-icon {
+    font-size: 60px !important;
+  }
+  
+  .recommendation-content h3, .report-content h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  
+  .recommendation-content p, .report-content p {
     font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+  
+  .recommendation-features, .report-features {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card {
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .feature-card h4 {
+    font-size: 1.05em;
+    margin-bottom: 8px;
+  }
+  
+  .feature-card p {
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+  
+  .feature-card .el-button {
+    width: 100%;
   }
 }
 </style>

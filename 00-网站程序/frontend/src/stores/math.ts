@@ -49,9 +49,40 @@ interface FormulaCard {
   masteryLevel: number
 }
 
+// 新增：章节元数据接口
+interface ChapterMetadata {
+  id: string
+  order: number
+  title: string
+  estimatedHours: number
+  difficulty: '基础' | '核心' | '进阶' | '难点'
+  importance: number  // 1-5
+  prerequisites: string[]
+  keyTopics: string[]
+  markdownFile: string
+  pdfReference: string
+}
+
+// 新增：公式卡片数据接口（来自formulas.json）
+interface FormulaData {
+  id: string
+  name: string
+  latex: string
+  description: string
+  application: string
+  difficulty: '基础' | '进阶' | '难点'
+}
+
+// 扩展MathChapter接口
+interface ExtendedMathChapter extends MathChapter {
+  metadata?: ChapterMetadata
+  contentFile?: string
+  subject?: string  // '高等数学' | '线性代数' | '概率论'
+}
+
 export const useMathStore = defineStore('math', () => {
   // 状态
-  const chapters = ref<MathChapter[]>([])
+  const chapters = ref<ExtendedMathChapter[]>([])
   const problems = ref<MathProblem[]>([])
   const wrongProblems = ref<WrongProblem[]>([])
   const formulaCards = ref<FormulaCard[]>([])
@@ -319,6 +350,106 @@ export const useMathStore = defineStore('math', () => {
     }
   }
 
+  // 新增：从metadata.json加载章节数据
+  const loadChaptersFromMetadata = async () => {
+    try {
+      // 从public目录加载metadata.json
+      const response = await fetch('/data/math/higher-math/metadata.json')
+      if (!response.ok) {
+        throw new Error('无法加载metadata.json')
+      }
+      
+      const metadata = await response.json()
+      
+      // 清除现有数据
+      chapters.value = []
+      
+      // 转换metadata为MathChapter格式
+      for (const ch of metadata.chapters) {
+        const chapter: ExtendedMathChapter = {
+          id: ch.id,
+          title: ch.title,
+          order: ch.order,
+          estimatedTime: ch.estimatedHours * 60,  // 转为分钟
+          difficulty: ch.difficulty === '核心' ? '进阶' : ch.difficulty,
+          prerequisites: ch.prerequisites,
+          keyPoints: ch.keyTopics,
+          practiceProblems: [],
+          completed: false,
+          masteryLevel: 0,
+          lastStudied: '',
+          subject: '高等数学',
+          metadata: ch,
+          contentFile: ch.markdownFile
+        }
+        chapters.value.push(chapter)
+      }
+      
+      await saveMathData()
+      console.log('成功从metadata.json加载', chapters.value.length, '个章节')
+    } catch (error) {
+      console.error('加载章节元数据失败:', error)
+      throw error
+    }
+  }
+
+  // 新增：加载章节Markdown内容
+  const loadChapterContent = async (chapterId: string): Promise<string> => {
+    const chapter = chapters.value.find(ch => ch.id === chapterId)
+    if (!chapter || !chapter.contentFile) {
+      console.warn('章节不存在或没有contentFile:', chapterId)
+      return ''
+    }
+    
+    try {
+      const response = await fetch(`/data/math/higher-math/${chapter.contentFile}`)
+      if (!response.ok) {
+        throw new Error(`无法加载章节内容: ${chapter.contentFile}`)
+      }
+      return await response.text()
+    } catch (error) {
+      console.error('加载章节内容失败:', error)
+      return ''
+    }
+  }
+
+  // 新增：加载公式卡片数据
+  const loadFormulasFromJson = async () => {
+    try {
+      const response = await fetch('/data/math/higher-math/formulas.json')
+      if (!response.ok) {
+        throw new Error('无法加载formulas.json')
+      }
+      
+      const data = await response.json()
+      
+      // 清空现有公式卡片
+      formulaCards.value = []
+      
+      // 转换为FormulaCard格式
+      Object.keys(data).forEach(chapterId => {
+        const chapterData = data[chapterId]
+        chapterData.formulas.forEach((f: FormulaData) => {
+          const card: FormulaCard = {
+            id: f.id,
+            category: chapterData.title,
+            title: f.name,
+            formula: f.latex,
+            description: f.description,
+            examples: [f.application],
+            masteryLevel: 0
+          }
+          formulaCards.value.push(card)
+        })
+      })
+      
+      await saveMathData()
+      console.log('成功加载', formulaCards.value.length, '个公式卡片')
+    } catch (error) {
+      console.error('加载公式卡片失败:', error)
+    }
+  }
+
   const initializeMathData = async () => {
     isLoading.value = true
     try {
@@ -326,6 +457,18 @@ export const useMathStore = defineStore('math', () => {
       const storedProblems = localStorage.getItem('mathProblems')
       const storedWrong = localStorage.getItem('mathWrongProblems')
       const storedFormulas = localStorage.getItem('mathFormulaCards')
+      
+      // 优先尝试从metadata.json加载数据
+      if (!storedChapters || storedChapters === '[]') {
+        try {
+          await loadChaptersFromMetadata()
+          await loadFormulasFromJson()
+          console.log('从metadata.json加载成功')
+          return
+        } catch (error) {
+          console.error('从metadata.json加载失败，尝试加载localStorage数据:', error)
+        }
+      }
       
       if (storedChapters) {
         const parsedChapters = JSON.parse(storedChapters)
@@ -354,7 +497,16 @@ export const useMathStore = defineStore('math', () => {
   }
 
   const loadSampleData = async () => {
-    // 添加示例章节（基于最新的完整依赖关系）
+    // 保留现有的示例数据加载逻辑作为后备
+    // 但优先使用新的metadata.json加载方式
+    try {
+      await loadChaptersFromMetadata()
+      return
+    } catch (error) {
+      console.error('从metadata.json加载失败，使用示例数据:', error)
+    }
+
+    // 原有的示例数据加载逻辑（保留作为后备）
     const sampleChapters: Omit<MathChapter, 'id' | 'completed' | 'masteryLevel' | 'lastStudied' | 'practiceProblems'>[] = [
       {
         title: '函数、极限、连续',
@@ -586,6 +738,11 @@ export const useMathStore = defineStore('math', () => {
     getRecommendedProblems,
     generateStudyPlan,
     saveMathData,
-    initializeMathData
+    initializeMathData,
+    
+    // 新增方法
+    loadChaptersFromMetadata,
+    loadChapterContent,
+    loadFormulasFromJson
   }
 })

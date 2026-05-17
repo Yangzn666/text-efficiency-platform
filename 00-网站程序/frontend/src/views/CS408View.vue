@@ -90,6 +90,7 @@ const activeTab = ref('progress')
   height: 50px;
   line-height: 50px;
   color: #666;
+  white-space: nowrap;
 }
 
 .cs408-tabs :deep(.el-tabs__item.is-active) {
@@ -171,18 +172,25 @@ const activeTab = ref('progress')
 @media (max-width: 768px) {
   .cs408-container {
     padding: 12px;
+    max-width: 100%;
+  }
+  
+  .page-header {
+    padding: 20px;
+    border-radius: 15px;
   }
   
   .page-title {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
   
   .page-subtitle {
-    font-size: 1em;
+    font-size: 0.9em;
   }
   
   .tab-navigation {
     padding: 15px;
+    border-radius: 12px;
   }
   
   .knowledge-features {
@@ -194,11 +202,60 @@ const activeTab = ref('progress')
     flex-direction: column;
     text-align: center;
     gap: 12px;
+    padding: 15px;
   }
   
   .cs408-tabs :deep(.el-tabs__item) {
-    padding: 0 12px;
-    font-size: 0.9em;
+    padding: 0 10px;
+    font-size: 0.85em;
+    height: 45px;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cs408-container {
+    padding: 8px;
+  }
+  
+  .page-header {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .page-title {
+    font-size: 1.4em;
+  }
+  
+  .page-subtitle {
+    font-size: 0.8em;
+  }
+  
+  .tab-navigation {
+    padding: 10px;
+  }
+  
+  .cs408-tabs :deep(.el-tabs__header) {
+    margin-bottom: 15px;
+  }
+  
+  .cs408-tabs :deep(.el-tabs__item) {
+    padding: 0 8px;
+    font-size: 0.8em;
+    height: 40px;
+    line-height: 40px;
+  }
+  
+  .knowledge-content {
+    padding: 20px 10px;
+  }
+  
+  .knowledge-content h3 {
+    font-size: 1.4em;
+  }
+  
+  .knowledge-content p {
+    font-size: 0.95em;
   }
 }
 </style>

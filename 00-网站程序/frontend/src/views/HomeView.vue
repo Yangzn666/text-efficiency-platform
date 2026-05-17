@@ -1371,47 +1371,161 @@ onUnmounted(() => {
   
   .dashboard-header {
     padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .header-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
   }
   
   .logo-section {
     gap: 10px;
+    justify-content: center;
   }
   
   .logo-icon {
     font-size: 1.8em;
   }
   
+  .logo-text {
+    text-align: center;
+  }
+  
   .logo-text .main-title {
     font-size: 1.3em;
+    white-space: nowrap;
+  }
+  
+  .logo-text .subtitle {
+    font-size: 0.75em;
+    white-space: nowrap;
+    letter-spacing: 1px;
   }
   
   .countdown-card {
-    padding: 16px;
+    width: 100%;
+    padding: 12px;
+    min-width: auto;
+  }
+  
+  .countdown-header {
+    margin-bottom: 12px;
+  }
+  
+  .countdown-header h3 {
+    font-size: 1em;
+  }
+  
+  .exam-date {
+    font-size: 0.7em;
+    padding: 3px 8px;
+  }
+  
+  .countdown-numbers {
+    gap: 4px;
+  }
+  
+  .time-unit {
+    padding: 0 2px;
   }
   
   .time-value {
-    font-size: 1.4em;
+    font-size: 1.2em;
+  }
+  
+  .time-unit-text {
+    font-size: 0.7em;
+  }
+  
+  .time-separator {
+    font-size: 1.2em;
+    margin: 0 2px;
+  }
+  
+  .stats-cards {
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
   }
   
   .stat-card {
-    padding: 12px;
+    flex: 1 1 calc(50% - 5px);
+    min-width: calc(50% - 5px);
+    padding: 10px;
+  }
+  
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3em;
+  }
+  
+  .stat-number {
+    font-size: 1.2em;
+  }
+  
+  .stat-label {
+    font-size: 0.7em;
+  }
+  
+  .main-content-grid {
+    grid-template-columns: 1fr;
+    padding: 0 12px 12px 12px;
+    gap: 12px;
+  }
+  
+  .left-panel,
+  .center-panel,
+  .right-panel {
+    order: 0;
   }
   
   .card-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 12px 16px 8px;
+  }
+  
+  .card-title {
+    font-size: 1.2em;
+  }
+  
+  .card-content {
+    padding: 12px 16px;
   }
   
   .todo-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 12px;
   }
   
   .todo-actions {
     opacity: 1;
     align-self: flex-end;
+  }
+  
+  .sidebar-card {
+    border-radius: 12px;
+  }
+  
+  .quick-actions .action-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .action-btn {
+    padding: 12px 8px;
+    font-size: 0.9em;
   }
 }
 

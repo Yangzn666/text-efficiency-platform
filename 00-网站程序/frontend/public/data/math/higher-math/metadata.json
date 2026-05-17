@@ -1,0 +1,156 @@
+{
+  "chapters": [
+    {
+      "id": "ch01",
+      "order": 1,
+      "title": "函数 极限 连续",
+      "estimatedHours": 10,
+      "difficulty": "基础",
+      "importance": 5,
+      "prerequisites": [],
+      "keyTopics": [
+        "函数性质",
+        "极限概念",
+        "极限计算",
+        "连续性",
+        "间断点"
+      ],
+      "markdownFile": "chapter01-函数极限连续.md",
+      "pdfReference": "01-极限与连续.pdf"
+    },
+    {
+      "id": "ch02",
+      "order": 2,
+      "title": "一元函数微分学",
+      "estimatedHours": 8,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["ch01"],
+      "keyTopics": [
+        "导数定义",
+        "求导法则",
+        "微分中值定理",
+        "导数应用"
+      ],
+      "markdownFile": "chapter02-一元函数微分学.md",
+      "pdfReference": "02-导数与微分.pdf"
+    },
+    {
+      "id": "ch03",
+      "order": 3,
+      "title": "一元函数积分学",
+      "estimatedHours": 8,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["ch02"],
+      "keyTopics": [
+        "不定积分",
+        "定积分",
+        "积分方法",
+        "积分应用"
+      ],
+      "markdownFile": "chapter03-一元函数积分学.md",
+      "pdfReference": "03-一元函数积分学.pdf"
+    },
+    {
+      "id": "ch04",
+      "order": 4,
+      "title": "常微分方程",
+      "estimatedHours": 2,
+      "difficulty": "基础",
+      "importance": 3,
+      "prerequisites": ["ch02", "ch03"],
+      "keyTopics": [
+        "一阶微分方程",
+        "二阶线性微分方程",
+        "高阶线性微分方程"
+      ],
+      "markdownFile": "chapter04-常微分方程.md",
+      "pdfReference": "04-微分方程.pdf"
+    },
+    {
+      "id": "ch05",
+      "order": 5,
+      "title": "多元函数微分学",
+      "estimatedHours": 5,
+      "difficulty": "进阶",
+      "importance": 4,
+      "prerequisites": ["ch02"],
+      "keyTopics": [
+        "多元函数概念",
+        "偏导数",
+        "全微分",
+        "多元函数极值"
+      ],
+      "markdownFile": "chapter05-多元函数微分学.md",
+      "pdfReference": "05-多元函数微分学.pdf"
+    },
+    {
+      "id": "ch06",
+      "order": 6,
+      "title": "二重积分",
+      "estimatedHours": 3,
+      "difficulty": "进阶",
+      "importance": 4,
+      "prerequisites": ["ch03", "ch05"],
+      "keyTopics": [
+        "二重积分概念",
+        "计算方法",
+        "坐标变换",
+        "应用"
+      ],
+      "markdownFile": "chapter06-二重积分.md",
+      "pdfReference": "06-二重积分.pdf"
+    },
+    {
+      "id": "ch07",
+      "order": 7,
+      "title": "无穷级数",
+      "estimatedHours": 5,
+      "difficulty": "难点",
+      "importance": 4,
+      "prerequisites": ["ch02", "ch03"],
+      "keyTopics": [
+        "数项级数",
+        "幂级数",
+        "傅里叶级数",
+        "敛散性判别"
+      ],
+      "markdownFile": "chapter07-无穷级数.md",
+      "pdfReference": "07-无穷级数.pdf"
+    },
+    {
+      "id": "ch08",
+      "order": 8,
+      "title": "空间解析几何",
+      "estimatedHours": 1,
+      "difficulty": "基础",
+      "importance": 2,
+      "prerequisites": [],
+      "keyTopics": [
+        "向量代数",
+        "空间直线与平面",
+        "二次曲面"
+      ],
+      "markdownFile": "chapter08-空间解析几何.md",
+      "pdfReference": "08-空间解析几何.pdf"
+    },
+    {
+      "id": "ch09",
+      "order": 9,
+      "title": "多元积分学",
+      "estimatedHours": 4,
+      "difficulty": "难点",
+      "importance": 4,
+      "prerequisites": ["ch03", "ch05", "ch06"],
+      "keyTopics": [
+        "三重积分",
+        "曲线积分",
+        "曲面积分",
+        "场论初步"
+      ],
+      "markdownFile": "chapter09-多元积分学.md",
+      "pdfReference": "09-多元积分学及其应用.pdf"
+    }
+  ]
+}

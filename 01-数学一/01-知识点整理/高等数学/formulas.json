@@ -1,0 +1,113 @@
+{
+  "ch01": {
+    "title": "函数 极限 连续",
+    "formulas": [
+      {
+        "id": "f01-01",
+        "name": "第一个重要极限",
+        "latex": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1",
+        "description": "用于三角函数极限计算的基础公式",
+        "application": "求极限、证明题",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-02",
+        "name": "第二个重要极限",
+        "latex": "\\lim_{x \\to \\infty} \\left(1 + \\frac{1}{x}\\right)^x = e",
+        "description": "自然对数底e的定义式",
+        "application": "指数型极限计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-03",
+        "name": "等价无穷小关系",
+        "latex": "x \\to 0 时，\\sin x \\sim x, \\tan x \\sim x, \\arcsin x \\sim x, \\arctan x \\sim x, \\ln(1+x) \\sim x, e^x - 1 \\sim x, 1 - \\cos x \\sim \\frac{1}{2}x^2",
+        "description": "常用等价无穷小替换公式",
+        "application": "极限计算的快速方法",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-04",
+        "name": "洛必达法则",
+        "latex": "\\lim_{x \\to x_0} \\frac{f(x)}{g(x)} = \\lim_{x \\to x_0} \\frac{f'(x)}{g'(x)} \\quad (\\frac{0}{0} \\text{或} \\frac{\\infty}{\\infty} \\text{型})",
+        "description": "处理未定式极限的重要方法",
+        "application": "0/0型、∞/∞型极限计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-05",
+        "name": "泰勒公式（麦克劳林公式）",
+        "latex": "f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\cdots + \\frac{f^{(n)}(0)}{n!}x^n + o(x^n)",
+        "description": "函数在某点的多项式逼近",
+        "application": "极限计算、近似计算、不等式证明",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "ch02": {
+    "title": "一元函数微分学",
+    "formulas": [
+      {
+        "id": "f02-01",
+        "name": "导数定义",
+        "latex": "f'(x_0) = \\lim_{\\Delta x \\to 0} \\frac{f(x_0 + \\Delta x) - f(x_0)}{\\Delta x}",
+        "description": "函数在某点处变化率的精确定义",
+        "application": "导数计算、证明题",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-02",
+        "name": "乘法求导法则",
+        "latex": "[u(x)v(x)]' = u'(x)v(x) + u(x)v'(x)",
+        "description": "两个函数乘积的求导公式",
+        "application": "复合函数求导",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-03",
+        "name": "链式法则",
+        "latex": "\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}",
+        "description": "复合函数求导的核心法则",
+        "application": "复合函数求导",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-04",
+        "name": "拉格朗日中值定理",
+        "latex": "f(b) - f(a) = f'(\\xi)(b - a), \\quad \\xi \\in (a, b)",
+        "description": "连接函数值与导数值的重要定理",
+        "application": "不等式证明、方程根的讨论",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "ch03": {
+    "title": "一元函数积分学",
+    "formulas": [
+      {
+        "id": "f03-01",
+        "name": "牛顿-莱布尼茨公式",
+        "latex": "\\int_{a}^{b} f(x)dx = F(b) - F(a)",
+        "description": "定积分与原函数的关系",
+        "application": "定积分计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-02",
+        "name": "分部积分公式",
+        "latex": "\\int u dv = uv - \\int v du",
+        "description": "处理乘积函数积分的重要方法",
+        "application": "x·e^x dx, ∫x·sin x dx等",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-03",
+        "name": "换元积分公式",
+        "latex": "\\int f[\\varphi(x)]\\varphi'(x)dx = \\int f(u)du \\quad (u = \\varphi(x))",
+        "description": "通过变量替换简化积分计算",
+        "application": "复合函数积分",
+        "difficulty": "基础"
+      }
+    ]
+  }
+}
