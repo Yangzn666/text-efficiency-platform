@@ -19,12 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
           cache-dependency-path: 00-网站程序/frontend/package-lock.json
 
@@ -34,6 +34,8 @@ jobs:
           npm ci
 
       - name: Build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
         run: |
           cd 00-网站程序/frontend
           npm run build
@@ -54,5 +56,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

@@ -269,6 +269,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { buildApiUrl } from '@/utils/apiConfig'
 import { 
   ArrowLeft, 
   Reading, 
@@ -389,7 +390,7 @@ onMounted(async () => {
   
   // 从 API加载文章数据
   try {
-    const response = await fetch('http://localhost:3001/api/reading-questions')
+    const response = await fetch(buildApiUrl('/api/reading-questions'))
     if (response.ok) {
       const data = await response.json()
       const questions = data.questions || []

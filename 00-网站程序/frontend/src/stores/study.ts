@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import localforage from 'localforage'
 import { usePsychologyStore } from './psychology'
+import { buildApiUrl } from '@/utils/apiConfig'
 
 interface StudyRecord {
   id: string
@@ -195,7 +196,7 @@ export const useStudyStore = defineStore('study', () => {
         const controller = new AbortController()
         const timeoutId = setTimeout(() => controller.abort(), 3000)
           
-        const response = await fetch('http://localhost:3001/api/study-data', {
+        const response = await fetch(buildApiUrl('/api/study-data'), {
           signal: controller.signal
         })
           

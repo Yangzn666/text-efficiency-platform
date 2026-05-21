@@ -441,6 +441,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
+import { buildApiUrl } from '@/utils/apiConfig'
 
 // 数据状态
 const selectedYear = ref('all')
@@ -839,7 +840,7 @@ onMounted(async () => {
   // 从后端API加载数据（直接读取JSON文件）
   try {
     console.log('🔄 从后端API加载英语真题...')
-    const response = await fetch('http://localhost:3001/api/reading-questions')
+    const response = await fetch(buildApiUrl('/api/reading-questions'))
     
     if (response.ok) {
       const data = await response.json()
