@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { useStudyStore } from './study'
-import { useAttentionStore } from './attention'
+// import { useStudyStore } from './study'
+// import { useAttentionStore } from './attention'
 import { useTodoStore } from './todos'
-import { useLearningPathStore } from './learningPath'
+// import { useLearningPathStore } from './learningPath'
 
 interface IntegrationPoints {
   todos: number
@@ -59,10 +59,10 @@ export interface StreakInfo {
 
 export const usePsychologyStore = defineStore('psychology', () => {
   // 引入其他store
-  const studyStore = useStudyStore()
-  const attentionStore = useAttentionStore()
+  // const studyStore = useStudyStore()
+  // const attentionStore = useAttentionStore()
   const todoStore = useTodoStore()
-  const learningPathStore = useLearningPathStore()
+  // const learningPathStore = useLearningPathStore()
   
   // 状态
   const cognitiveRecords = ref<CognitiveRecord[]>([])
@@ -216,7 +216,7 @@ export const usePsychologyStore = defineStore('psychology', () => {
   }
 
   // 成就系统相关方法
-  const checkAchievements = (points: number, reason: string) => {
+  const checkAchievements = (_points: number, _reason: string) => {
     // 这里可以添加具体的成就解锁逻辑
     const newAchievements: Achievement[] = []
     

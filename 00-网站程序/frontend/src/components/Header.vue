@@ -17,11 +17,10 @@ const handleLogout = () => {
 const menuItems = computed(() => [
   { name: '首页', icon: 'HomeFilled', route: '/' },
   { name: '注意力管理', icon: 'Timer', route: '/attention' },
-  { name: '学习计划', icon: 'Document', route: '/learning-path' },
+  { name: '学习路径', icon: 'Document', route: '/learning-path' },
   { name: '计组学习', icon: 'Cpu', route: '/cs408/composition' },
   { name: '错题本', icon: 'DocumentChecked', route: '/wrong-problems' },
-  { name: '统计数据', icon: 'DataAnalysis', route: '/stats' },
-  { name: '设置', icon: 'Setting', route: '/settings' }
+  { name: '统计数据', icon: 'DataAnalysis', route: '/stats' }
 ])
 </script>
 

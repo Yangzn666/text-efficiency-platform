@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { Lock, Check, Notification, Timer } from '@element-plus/icons-vue'
 import PomodoroTimer from '@/components/PomodoroTimer.vue'
 import DistractionControl from '@/components/DistractionControl.vue'
 import { useAttentionStore } from '@/stores/attention'
@@ -43,7 +44,7 @@ onMounted(() => {
                 <span>仅允许学习相关应用</span>
               </div>
               <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><VolumeOff /></el-icon>
+                <el-icon size="24" color="#4CAF50"><Notification /></el-icon>
                 <span>屏蔽通知和消息</span>
               </div>
               <div class="feature-card">

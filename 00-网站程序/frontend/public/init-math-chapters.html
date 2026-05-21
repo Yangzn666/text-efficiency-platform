@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始化数学强化章节框架</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .result p {
+            color: #333;
+            line-height: 1.8;
+            margin: 8px 0;
+        }
+        
+        .chapter-list {
+            margin-top: 20px;
+        }
+        
+        .chapter-item {
+            padding: 12px 16px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .chapter-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .chapter-hours {
+            color: #666;
+            font-size: 13px;
+            margin-left: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 初始化数学强化章节框架</h1>
+        <p class="subtitle">根据武忠祥强化课程大纲，创建9章完整框架</p>
+        
+        <button class="btn" onclick="initializeChapters()">
+            🚀 开始初始化
+        </button>
+        
+        <button class="btn btn-secondary" onclick="window.location.href='http://localhost:5173/math/reinforcement/topics'">
+            📖 查看知识点
+        </button>
+        
+        <div id="result" class="result">
+            <h3>✅ 初始化完成</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function initializeChapters() {
+            // 强化阶段完整章节结构
+            const chapterStructure = [
+                {
+                    chapter: '第一章 函数 极限 连续',
+                    hours: 10,
+                    topics: [
+                        { id: 'ch1-functions', topicName: '函数 极限 连续', questionTypes: ['概念题', '计算题', '综合题'] }
+                    ]
+                },
+                {
+                    chapter: '第二章 一元函数微分学',
+                    hours: 8,
+                    topics: [
+                        { id: 'ch2-derivative', topicName: '一元函数微分学', questionTypes: ['概念题', '计算题', '证明题', '综合题'] }
+                    ]
+                },
+                {
+                    chapter: '第三章 一元函数积分学',
+                    hours: 8,
+                    topics: [
+                        { id: 'ch3-integral', topicName: '一元函数积分学', questionTypes: ['计算题', '应用题', '证明题'] }
+                    ]
+                },
+                {
+                    chapter: '第四章 常微分方程',
+                    hours: 2,
+                    topics: [
+                        { id: 'ch4-ode', topicName: '常微分方程', questionTypes: ['计算题', '应用题'] }
+                    ]
+                },
+                {
+                    chapter: '第五章 多元函数微分学',
+                    hours: 5,
+                    topics: [
+                        { id: 'ch5-multivar-diff', topicName: '多元函数微分学', questionTypes: ['概念题', '计算题', '综合题'] }
+                    ]
+                },
+                {
+                    chapter: '第六章 二重积分',
+                    hours: 3,
+                    topics: [
+                        { id: 'ch6-double-integral', topicName: '二重积分', questionTypes: ['计算题', '应用题'] }
+                    ]
+                },
+                {
+                    chapter: '第七章 无穷级数',
+                    hours: 5,
+                    topics: [
+                        { id: 'ch7-series', topicName: '无穷级数', questionTypes: ['概念题', '计算题', '证明题'] }
+                    ]
+                },
+                {
+                    chapter: '第八章 空间解析几何及其应用',
+                    hours: 1,
+                    topics: [
+                        { id: 'ch8-geometry', topicName: '空间解析几何及其应用', questionTypes: ['计算题', '应用题'] }
+                    ]
+                },
+                {
+                    chapter: '第九章 多元积分学及其应用',
+                    hours: 4,
+                    topics: [
+                        { id: 'ch9-multivar-integral', topicName: '多元积分学及其应用', questionTypes: ['计算题', '应用题', '综合题'] }
+                    ]
+                }
+            ]
+
+            // 获取或创建store
+            const storageKey = 'math-reinforcement-data'
+            let data = JSON.parse(localStorage.getItem(storageKey) || '{}')
+            
+            if (!data.topics) {
+                data.topics = []
+            }
+
+            // 创建笔记模板
+            function createNoteTemplate(topicName) {
+                return `# ${topicName}
+
+## 本章内容概要
+
+> 本章笔记待补充...
+
+## 核心知识点
+
+### 1. 基本概念
+- 待补充
+
+### 2. 重要公式
+- 待补充
+
+### 3. 解题方法
+- 待补充
+
+### 4. 典型例题
+- 待补充
+
+### 5. 易错点总结
+- 待补充
+
+## 学习建议
+
+1. 重点掌握基本概念和公式
+2. 大量练习典型题型
+3. 总结解题思路和技巧
+4. 注意常见错误和陷阱
+
+---
+*最后更新: ${new Date().toLocaleDateString('zh-CN')}*
+`
+            }
+
+            // 检查并添加知识点
+            let createdCount = 0
+            chapterStructure.forEach(chapter => {
+                chapter.topics.forEach(topic => {
+                    const exists = data.topics.find(t => t.id === topic.id)
+                    
+                    if (!exists) {
+                        data.topics.push({
+                            id: topic.id,
+                            topicName: topic.topicName,
+                            subject: '高等数学',
+                            chapter: chapter.chapter,
+                            questionTypes: topic.questionTypes,
+                            importanceLevel: 'high',
+                            estimatedStudyTime: chapter.hours * 3,
+                            actualStudyTime: 0,
+                            lectureCount: 0,
+                            practiceCount: 0,
+                            masteryLevel: 0,
+                            masteryDetails: {
+                                conceptUnderstand: 0,
+                                methodMaster: 0,
+                                calculationSpeed: 0,
+                                comprehensiveAbility: 0
+                            },
+                            wrongProblemCount: 0,
+                            notes: createNoteTemplate(topic.topicName),
+                            studyRecords: [],
+                            nextReviewDate: new Date().toISOString().split('T')[0],
+                            needsSpecialTraining: false
+                        })
+                        createdCount++
+                    }
+                })
+            })
+
+            // 保存到localStorage
+            localStorage.setItem(storageKey, JSON.stringify(data))
+
+            // 显示结果
+            const resultDiv = document.getElementById('result')
+            const resultContent = document.getElementById('resultContent')
+            
+            resultContent.innerHTML = `
+                <p>✅ 成功创建 <strong>${createdCount}</strong> 个知识点</p>
+                <div class="chapter-list">
+                    ${chapterStructure.map(ch => `
+                        <div class="chapter-item">
+                            <span class="chapter-name">${ch.chapter}</span>
+                            <span class="chapter-hours">${ch.hours}学时</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <p style="margin-top: 20px; color: #667eea; font-weight: 600;">
+                    💡 现在可以访问知识点页面开始编写笔记了！
+                </p>
+            `
+            
+            resultDiv.classList.add('show')
+        }
+    </script>
+</body>
+</html>

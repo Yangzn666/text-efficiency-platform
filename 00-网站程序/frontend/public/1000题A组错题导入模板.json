@@ -1,0 +1,44 @@
+[
+  {
+    "questionType": "选择题",
+    "problemSource": "1000题A组",
+    "subject": "高等数学",
+    "chapter": "第一章 函数 极限 连续",
+    "title": "第1题 - 函数定义域",
+    "content": "已知 $f(x+1)$ 的定义域为 $[0,a]$，求 $f(x)$ 的定义域",
+    "mistakeType": ["概念不清"],
+    "mistakeAnalysis": "混淆了'f(x+1)的定义域'和'f(x)的定义域'的概念，没有理解自变量的替换关系",
+    "correctSolution": "解：$0 \\leq x+1 \\leq a \\Rightarrow -1 \\leq x \\leq a-1$\n这里的 x 是 f 的自变量，所以 $f(x)$ 定义域为 $[1, a+1]$",
+    "keyTechnique": "复合函数定义域求解时，要明确哪个是自变量，注意内层函数的值域必须在外层函数定义域内",
+    "difficulty": "基础",
+    "priority": "medium"
+  },
+  {
+    "questionType": "填空题",
+    "problemSource": "1000题A组",
+    "subject": "高等数学",
+    "chapter": "第一章 函数 极限 连续",
+    "title": "第2题 - 奇偶性判断",
+    "content": "判断 $f(x) = \\ln(x + \\sqrt{1+x^2})$ 的奇偶性",
+    "mistakeType": ["计算错误"],
+    "mistakeAnalysis": "计算f(-x)时符号处理出错，没有正确化简对数表达式",
+    "correctSolution": "解：定义域为 R，关于原点对称\n$f(-x) = \\ln(-x + \\sqrt{1+x^2}) = \\ln\\frac{1}{x+\\sqrt{1+x^2}} = -\\ln(x+\\sqrt{1+x^2}) = -f(x)$\n故为奇函数",
+    "keyTechnique": "奇偶性判断第一步必看定义域是否对称，然后计算f(-x)并化简",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "1000题A组",
+    "subject": "高等数学",
+    "chapter": "第一章 函数 极限 连续",
+    "title": "第3题 - 单调性证明",
+    "content": "证明：若f'(x)>0在(a,b)内恒成立，则f(x)在(a,b)内严格递增",
+    "mistakeType": ["思路错误"],
+    "mistakeAnalysis": "没有联想到使用拉格朗日中值定理，试图用定义法证明但过程复杂",
+    "correctSolution": "证：任取x₁<x₂∈(a,b)，由拉格朗日中值定理\n$f(x_2)-f(x_1) = f'(\\xi)(x_2-x_1)$，其中ξ∈(x₁,x₂)\n因f'(ξ)>0，x₂-x₁>0，故f(x₂)>f(x₁)",
+    "keyTechnique": "涉及导数和单调性的证明，优先考虑拉格朗日中值定理",
+    "difficulty": "中等",
+    "priority": "medium"
+  }
+]

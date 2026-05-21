@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LearningPathVisualizer from '@/components/LearningPathVisualizer.vue'
+import PersonalizedLearningPath from '@/components/PersonalizedLearningPath.vue'
 import ReviewDashboard from '@/components/ReviewDashboard.vue'
 import LearningAnalytics from '@/components/LearningAnalytics.vue'
 import GamificationDashboard from '@/components/GamificationDashboard.vue'
+import DailyPlanGenerator from '@/components/DailyPlanGenerator.vue'
+import WeaknessAnalysis from '@/components/WeaknessAnalysis.vue'
 
-const activeTab = ref('visualizer')
+const activeTab = ref('personalized')
 </script>
 
 <template>
@@ -17,6 +20,18 @@ const activeTab = ref('visualizer')
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="path-tabs">
+        <el-tab-pane label="个性化路径" name="personalized">
+          <PersonalizedLearningPath />
+        </el-tab-pane>
+        
+        <el-tab-pane label="每日计划" name="daily-plan">
+          <DailyPlanGenerator />
+        </el-tab-pane>
+        
+        <el-tab-pane label="弱项分析" name="weakness">
+          <WeaknessAnalysis />
+        </el-tab-pane>
+        
         <el-tab-pane label="路径可视化" name="visualizer">
           <LearningPathVisualizer />
         </el-tab-pane>

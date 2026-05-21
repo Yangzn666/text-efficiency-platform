@@ -133,39 +133,134 @@
           文章整体分析
         </div>
 
-        <div class="analysis-cards">
+        <!-- 可折叠分析卡片 -->
+        <el-collapse v-model="activeCollapse" class="analysis-collapse">
           <!-- 主题思想 -->
-          <div class="analysis-card theme-card">
-            <h4> 主题思想</h4>
-            <p>{{ articleTheme }}</p>
-          </div>
+          <el-collapse-item name="theme" class="collapse-item">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">🎯</span>
+                <span class="title-text">主题思想</span>
+              </div>
+            </template>
+            <div class="collapse-content theme-content">
+              <p>{{ articleTheme || '暂无数据' }}</p>
+            </div>
+          </el-collapse-item>
 
           <!-- 文章结构 -->
-          <div class="analysis-card structure-card">
-            <h4> 文章结构</h4>
-            <pre>{{ articleStructure }}</pre>
-          </div>
+          <el-collapse-item name="structure" class="collapse-item">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">📐</span>
+                <span class="title-text">文章结构</span>
+              </div>
+            </template>
+            <div class="collapse-content structure-content">
+              <pre>{{ articleStructure || '暂无数据' }}</pre>
+            </div>
+          </el-collapse-item>
 
           <!-- 写作手法 -->
-          <div class="analysis-card technique-card">
-            <h4> 写作手法</h4>
-            <ul>
-              <li v-for="(technique, tIdx) in writingTechniques" :key="tIdx">
-                {{ technique }}
-              </li>
-            </ul>
-          </div>
+          <el-collapse-item name="techniques" class="collapse-item">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">✍️</span>
+                <span class="title-text">写作手法</span>
+                <el-tag size="small" type="success" class="count-tag">{{ writingTechniques.length }}条</el-tag>
+              </div>
+            </template>
+            <div class="collapse-content">
+              <div class="technique-list">
+                <div class="technique-item" v-for="(technique, tIdx) in writingTechniques" :key="tIdx">
+                  <span class="technique-index">{{ tIdx + 1 }}</span>
+                  <span class="technique-text">{{ technique }}</span>
+                </div>
+                <div v-if="writingTechniques.length === 0" class="empty-tip">暂无数据</div>
+              </div>
+            </div>
+          </el-collapse-item>
 
           <!-- 阅读策略 -->
-          <div class="analysis-card strategy-card">
-            <h4> 阅读策略建议</h4>
-            <ul>
-              <li v-for="(strategy, sIdx) in readingStrategies" :key="sIdx">
-                {{ strategy }}
-              </li>
-            </ul>
-          </div>
-        </div>
+          <el-collapse-item name="strategies" class="collapse-item">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">💡</span>
+                <span class="title-text">阅读策略建议</span>
+                <el-tag size="small" type="warning" class="count-tag">{{ readingStrategies.length }}条</el-tag>
+              </div>
+            </template>
+            <div class="collapse-content">
+              <div class="strategy-list">
+                <div class="strategy-item" v-for="(strategy, sIdx) in readingStrategies" :key="sIdx">
+                  <span class="strategy-index">{{ sIdx + 1 }}</span>
+                  <span class="strategy-text">{{ strategy }}</span>
+                </div>
+                <div v-if="readingStrategies.length === 0" class="empty-tip">暂无数据</div>
+              </div>
+            </div>
+          </el-collapse-item>
+
+          <!-- 核心词汇 -->
+          <el-collapse-item name="vocabulary" class="collapse-item" v-if="keyVocabulary.length > 0">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">📚</span>
+                <span class="title-text">核心词汇</span>
+                <el-tag size="small" type="danger" class="count-tag">{{ keyVocabulary.length }}词</el-tag>
+              </div>
+            </template>
+            <div class="collapse-content">
+              <div class="vocab-grid-compact">
+                <div class="vocab-card" v-for="(vocab, vIdx) in keyVocabulary" :key="vIdx">
+                  <div class="vocab-header">
+                    <span class="vocab-word">{{ vocab.word }}</span>
+                    <span class="vocab-meaning">{{ vocab.meaning }}</span>
+                  </div>
+                  <div class="vocab-context">{{ vocab.context }}</div>
+                </div>
+              </div>
+            </div>
+          </el-collapse-item>
+
+          <!-- 语法要点 -->
+          <el-collapse-item name="grammar" class="collapse-item" v-if="grammarPoints.length > 0">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon"></span>
+                <span class="title-text">语法要点</span>
+                <el-tag size="small" type="info" class="count-tag">{{ grammarPoints.length }}点</el-tag>
+              </div>
+            </template>
+            <div class="collapse-content">
+              <div class="grammar-grid">
+                <div class="grammar-card" v-for="(point, gIdx) in grammarPoints" :key="gIdx">
+                  <span class="grammar-icon">🔍</span>
+                  <span class="grammar-text">{{ point }}</span>
+                </div>
+              </div>
+            </div>
+          </el-collapse-item>
+
+          <!-- 考研技巧 -->
+          <el-collapse-item name="tips" class="collapse-item" v-if="examTips.length > 0">
+            <template #title>
+              <div class="collapse-title">
+                <span class="title-icon">🏆</span>
+                <span class="title-text">考研技巧</span>
+                <el-tag size="small" type="primary" class="count-tag">{{ examTips.length }}条</el-tag>
+              </div>
+            </template>
+            <div class="collapse-content">
+              <div class="tips-grid">
+                <div class="tip-card" v-for="(tip, eIdx) in examTips" :key="eIdx">
+                  <div class="tip-number">{{ eIdx + 1 }}</div>
+                  <div class="tip-text">{{ tip }}</div>
+                </div>
+              </div>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
       </div>
     </div>
   </div>
@@ -191,12 +286,18 @@ import {
 const route = useRoute()
 const router = useRouter()
 
-// 题型和年份
+// 题型、年份和Text编号
 const section = ref(route.query.section as string || 'Use of English')
 const year = ref(parseInt(route.query.year as string) || 2005)
+const textNum = ref(route.query.text ? parseInt(route.query.text as string) : null)
 
 // 页面标题
 const pageTitle = computed(() => {
+  if (section.value === 'Traditional Reading') {
+    return textNum.value 
+      ? `${year.value}年考研英语一 · 传统阅读 Text ${textNum.value} 精读`
+      : `${year.value}年考研英语一 · 传统阅读精读`
+  }
   const sectionName = section.value === 'Use of English' ? '完型填空' : '新题型'
   return `${year.value}年考研英语一 · ${sectionName}精读`
 })
@@ -206,290 +307,172 @@ const highlightKeywords = (text: string) => {
   return text
 }
 
-// 文章内容（完整原文 - 根据20道完型填空题还原）
-const articleContent = ref(`<p style="line-height: 2.2; text-align: justify; font-size: 1.15em; color: #333;">
-  Humans are often thought to be insensitive smellers compared with animals, but this is largely because, unlike animals, we stand upright. This means that our noses are limited to perceiving those smells which float through the air, missing the majority of smells which stick to surfaces. In fact, though, we are extremely sensitive to smells, even if we do not generally realize it. Our noses are capable of detecting human smells even when these are diluted to far below one part in one million. Strangely, some people find that they can smell one type of flower but not another, whereas others are sensitive to the smells of both flowers. This may be because some people do not have the genes necessary to generate particular smell receptors in the nose. These receptors are the cells which sense smells and send messages to the brain. However, it has been found that even people insensitive to a certain smell at first can suddenly become sensitive to it when exposed to it often enough. The explanation for insensitivity to smell seems to be that the brain finds it inefficient to keep all smell receptors working all the time but can create new receptors if necessary. This may also explain why we are not usually sensitive to our own smells—we are not aware of the usual smell of our own house—but we notice new smells when we visit someone else's. The brain finds it best to keep smell receptors available for unfamiliar and emergency signals such as the smell of smoke, which might indicate the danger of fire.
-</p>`)
+// 文章内容（根据URL参数动态加载）
+const articleContent = ref('')
 
-// 逐句解析数据（增强版）
-const sentenceList = ref([
-  {
-    english: 'Humans are often thought to be insensitive smellers compared with animals, but this is largely because, unlike animals, we stand upright.',
-    chinese: '与动物相比，人类通常被认为是嗅觉不敏感的，但这主要是因为，与动物不同，我们是直立行走的。',
-    vocabulary: [
-      { word: 'insensitive', meaning: '不敏感的', usage: 'in-（否定前缀）+ sensitive（敏感的）' },
-      { word: 'compared with', meaning: '与...相比', usage: '固定搭配' },
-      { word: 'largely', meaning: '主要地', usage: 'largely because = 主要是因为' },
-      { word: 'unlike', meaning: '与...不同', usage: '介词，表对比' }
-    ],
-    grammar: '主句 + 原因状语从句，<strong>compared with animals</strong> 是过去分词短语作状语，表比较',
-    structure: `主句: Humans are often thought to be insensitive smellers
-  |
-  +-- 状语: compared with animals（与动物相比）
-  |
-  +-- 原因状语从句: but this is largely because...
-      |
-      +-- 插入语: unlike animals（与动物不同）
-      |
-      +-- 从句内容: we stand upright（我们直立行走）`,
-    logic: '对比关系：人类 vs 动物（compared with / unlike）',
-    examPoints: ['比较结构', '原因状语从句', '过去分词作状语', '插入语']
-  },
-  {
-    english: 'This means that our noses are limited to perceiving those smells which float through the air, missing the majority of smells which stick to surfaces.',
-    chinese: '这意味着我们的鼻子仅限于感知那些在空气中漂浮的气味，错过了大部分附着在表面的气味。',
-    vocabulary: [
-      { word: 'be limited to', meaning: '仅限于', usage: 'to是介词，后接动名词' },
-      { word: 'perceive', meaning: '感知，察觉', usage: 'perceive sth = 感知某物' },
-      { word: 'float through', meaning: '漂浮通过', usage: 'float through the air' },
-      { word: 'missing', meaning: '错过，漏掉', usage: 'miss的现在分词' },
-      { word: 'stick to', meaning: '附着在...上', usage: 'stick to surfaces' }
-    ],
-    grammar: '宾语从句 + 两个定语从句，<strong>which</strong>引导的定语从句分别修饰smells',
-    structure: `主句: This means that...
-  |
-  +-- 宾语从句: our noses are limited to perceiving those smells
-      |
-      +-- 定语从句1: which float through the air（修饰第一个smells）
-      |
-      +-- 现在分词: missing the majority of smells（伴随状语）
-          |
-          +-- 定语从句2: which stick to surfaces（修饰第二个smells）`,
-    logic: '因果关系：站立 → 鼻子功能受限 → 错过表面气味',
-    examPoints: ['宾语从句', '定语从句', '现在分词作状语', 'be limited to']
-  },
-  {
-    english: 'In fact, though, we are extremely sensitive to smells, even if we do not generally realize it.',
-    chinese: '事实上，我们对气味极其敏感，即使我们通常没有意识到这一点。',
-    vocabulary: [
-      { word: 'in fact', meaning: '事实上', usage: '转折信号词' },
-      { word: 'though', meaning: '然而', usage: '副词，放在句中表转折' },
-      { word: 'extremely', meaning: '极其地', usage: 'extremely sensitive = 极其敏感' },
-      { word: 'even if', meaning: '即使', usage: '引导让步状语从句' },
-      { word: 'realize', meaning: '意识到', usage: 'realize it = 意识到这一点' }
-    ],
-    grammar: '让步状语从句，<strong>In fact</strong>和<strong>though</strong>双重转折，<strong>even if</strong>引导让步状语',
-    structure: `转折句: In fact, though, we are extremely sensitive to smells
-  |
-  +-- 双重转折信号: In fact + though（强调转折）
-  |
-  +-- 让步状语从句: even if we do not generally realize it
-      |
-      +-- 让步关系: 虽然没意识到，但确实敏感`,
-    logic: '转折关系：In fact 引出与上文相反的观点',
-    examPoints: ['让步状语从句', '转折信号词', 'even if用法', '副词though']
-  },
-  {
-    english: 'Our noses are capable of detecting human smells even when these are diluted to far below one part in one million.',
-    chinese: '我们的鼻子能够察觉到人类的气味，即使这些气味被稀释到远低于百万分之一。',
-    vocabulary: [
-      { word: 'be capable of', meaning: '有能力做', usage: '后接动名词' },
-      { word: 'detect', meaning: '探测，察觉', usage: 'detect sth = 察觉某物' },
-      { word: 'diluted', meaning: '稀释的', usage: 'dilute的过去分词' },
-      { word: 'one part in one million', meaning: '百万分之一', usage: '比例表达' }
-    ],
-    grammar: '让步状语从句，<strong>even when</strong>引导让步，<strong>these</strong>指代smells',
-    structure: `主句: Our noses are capable of detecting human smells
-  |
-  +-- 让步状语从句: even when these are diluted to far below one part in one million
-      |
-      +-- 被动语态: are diluted（被稀释）
-      |
-      +-- 程度副词: far below（远低于）`,
-    logic: '让步关系：即使气味极淡，也能察觉',
-    examPoints: ['be capable of', '让步状语从句', '被动语态', '比例表达']
-  },
-  {
-    english: 'Strangely, some people find that they can smell one type of flower but not another, whereas others are sensitive to the smells of both flowers.',
-    chinese: '奇怪的是，有些人发现他们只能闻到一种花的气味，而另一些人对两种花都敏感。',
-    vocabulary: [
-      { word: 'strangely', meaning: '奇怪的是', usage: '副词，引出令人惊讶的事实' },
-      { word: 'whereas', meaning: '然而，但是', usage: '表对比，连接两个并列句' }
-    ],
-    grammar: '宾语从句 + 对比结构，<strong>whereas</strong>连接两个对比的句子',
-    structure: `主句: some people find that...
-  |
-  +-- 宾语从句1: they can smell one type of flower but not another
-  |
-  +-- 对比连词: whereas（然而）
-  |
-  +-- 对比句2: others are sensitive to the smells of both flowers`,
-    logic: '对比关系：some people vs others（whereas）',
-    examPoints: ['whereas用法', '宾语从句', '对比结构']
-  },
-  {
-    english: 'This may be because some people do not have the genes necessary to generate particular smell receptors in the nose.',
-    chinese: '这可能是因为有些人缺乏在鼻腔中产生特定气味感受器所需的基因。',
-    vocabulary: [
-      { word: 'gene', meaning: '基因', usage: 'have the genes for 有...的基因' },
-      { word: 'generate', meaning: '产生，生成', usage: 'generate electricity 发电' },
-      { word: 'particular', meaning: '特定的，特别的', usage: 'a particular type 某种特定类型' },
-      { word: 'receptor', meaning: '感受器，受体', usage: 'smell receptors 嗅觉感受器' }
-    ],
-    grammar: '<strong>主句：</strong>This may be because...<br><strong>表语从句：</strong>some people do not have the genes...<br><strong>后置定语：</strong>necessary to generate...（修饰genes）',
-    structure: `主句: This(主语) + may be(系动词) + because从句(表语)
-    ↓
-表语从句: some people(主语) + do not have(谓语) + the genes(宾语)
-    ↓
-后置定语: necessary(形容词) + to generate particular smell receptors(不定式) + in the nose(地点状语)`,
-    logic: '因果解释：解释前一句提到的个体差异的原因',
-    examPoints: ['This is because... 这是因为...', 'necessary to do sth', '后置定语形容词短语', 'particular 特定的']
-  },
-  {
-    english: 'These receptors are the cells which sense smells and send messages to the brain.',
-    chinese: '这些感受器是感知气味并向大脑发送信息的细胞。',
-    vocabulary: [
-      { word: 'cell', meaning: '细胞', usage: 'nerve cells 神经细胞' },
-      { word: 'message', meaning: '信息，消息', usage: 'send messages 发送信息' }
-    ],
-    grammar: '<strong>主句：</strong>These receptors are the cells<br><strong>定语从句：</strong>which sense smells and send messages to the brain（修饰cells）',
-    structure: `主句: These receptors(主语) + are(系动词) + the cells(表语)
-    ↓
-定语从句: which(关系代词，作主语) + sense smells(谓语1) + and(并列连词) + send messages(谓语2) + to the brain(状语)`,
-    logic: '定义说明：解释什么是感受器',
-    examPoints: ['定语从句 which 引导', '并列谓语 sense...and send...', 'send messages to 向...发送信息']
-  },
-  {
-    english: 'However, it has been found that even people insensitive to a certain smell at first can suddenly become sensitive to it when exposed to it often enough.',
-    chinese: '然而，研究发现，即使是起初对某种气味不敏感的人，在经常接触后也可能突然变得敏感。',
-    vocabulary: [
-      { word: 'however', meaning: '然而，但是', usage: '用于句首表示转折' },
-      { word: 'certain', meaning: '某种，确定的', usage: 'a certain type 某种类型' },
-      { word: 'expose', meaning: '暴露，接触', usage: 'be exposed to 接触到...' }
-    ],
-    grammar: '<strong>转折副词：</strong>However,<br><strong>形式主语：</strong>it has been found that...<br><strong>真正主语：</strong>that 从句<br><strong>让步状语：</strong>even people insensitive to a certain smell at first<br><strong>时间状语从句：</strong>when exposed to it often enough',
-    structure: `转折: However(然而)
-    ↓
-主句: it(形式主语) + has been found(被动谓语) + that从句(真正主语)
-    ↓
-that从句: even people(主语) + insensitive to...(后置定语) + can become(谓语) + sensitive(表语)
-    ↓
-时间状语: when(当) + exposed to it(过去分词短语) + often enough(状语)`,
-    logic: '转折 + 补充：虽然有些人天生不敏感，但可以通过接触变得敏感',
-    examPoints: ['it has been found that 研究发现', 'even 即使', '后置定语形容词短语', 'when exposed to 当接触时（省略句）']
-  },
-  {
-    english: 'The explanation for insensitivity to smell seems to be that the brain finds it inefficient to keep all smell receptors working all the time but can create new receptors if necessary.',
-    chinese: '对嗅觉不敏感的解释似乎是，大脑认为让所有嗅觉感受器一直工作是不高效的，但在必要时可以创造新的感受器。',
-    vocabulary: [
-      { word: 'explanation', meaning: '解释，说明', usage: 'the explanation for... ...的解释' },
-      { word: 'inefficient', meaning: '效率低的', usage: 'inefficient method 低效的方法' },
-      { word: 'create', meaning: '创造，创建', usage: 'create new things 创造新事物' }
-    ],
-    grammar: '<strong>主句：</strong>The explanation...seems to be that...<br><strong>表语从句：</strong>that the brain finds it inefficient...<br><strong>形式宾语：</strong>it（指代后面的不定式）<br><strong>真正宾语：</strong>to keep all smell receptors working all the time<br><strong>宾语补足语：</strong>working<br><strong>并列谓语：</strong>but can create new receptors<br><strong>条件状语：</strong>if necessary',
-    structure: `主句: The explanation(主语) + for insensitivity to smell(定语) + seems to be(系动词) + that从句(表语)
-    ↓
-表语从句: the brain(主语) + finds(谓语) + it(形式宾语) + inefficient(宾补) + to keep...(真正宾语)
-    ↓
-不定式短语: to keep(不定式) + all smell receptors(宾语) + working(宾补) + all the time(状语)
-    ↓
-并列谓语: but(转折) + can create(谓语) + new receptors(宾语)
-    ↓
-条件状语: if necessary(如果需要)`,
-    logic: '科学解释：从大脑工作效率角度解释嗅觉不敏感的原因',
-    examPoints: ['The explanation for... ...的解释', 'seem to be 似乎是', 'find it + adj + to do 发现做某事...', 'keep sb/sth doing 让...一直做', 'if necessary 如果有必要']
-  },
-  {
-    english: 'This may also explain why we are not usually sensitive to our own smells—we are not aware of the usual smell of our own house—but we notice new smells when we visit someone else\'s.',
-    chinese: '这也可以解释为什么我们通常对自己的气味不敏感——我们觉察不到自己房子的平常气味——但当我们拜访别人家时，我们会注意到新的气味。',
-    vocabulary: [
-      { word: 'aware', meaning: '意识到的，知道的', usage: 'be aware of 意识到...' },
-      { word: 'notice', meaning: '注意到', usage: 'notice something 注意到某事' }
-    ],
-    grammar: '<strong>主句：</strong>This may also explain why...<br><strong>宾语从句：</strong>why we are not usually sensitive to our own smells<br><strong>插入语（破折号）：</strong>—we are not aware of the usual smell of our own house—<br><strong>转折分句：</strong>but we notice new smells<br><strong>时间状语从句：</strong>when we visit someone else\'s',
-    structure: `主句: This(主语) + may also explain(谓语) + why从句(宾语)
-    ↓
-宾语从句: why(疑问副词) + we(主语) + are not sensitive(系表结构) + to our own smells(状语)
-    ↓
-插入语: we(主语) + are not aware of(谓语) + the usual smell(宾语) + of our own house(定语)
-    ↓
-转折分句: but(转折) + we(主语) + notice(谓语) + new smells(宾语)
-    ↓
-时间状语: when(当) + we(主语) + visit(谓语) + someone else's(宾语，省略house)`,
-    logic: '举例说明：用日常生活中的例子来说明前面的理论',
-    examPoints: ['explain why 解释为什么', 'be aware of 意识到', 'someone else\'s 别人的（所有格）', '破折号插入语的用法']
-  },
-  {
-    english: 'The brain finds it best to keep smell receptors available for unfamiliar and emergency signals such as the smell of smoke, which might indicate the danger of fire.',
-    chinese: '大脑认为最好让嗅觉感受器保持可用状态，以应对不熟悉和紧急的信号，例如烟味，这可能预示着火灾的危险。',
-    vocabulary: [
-      { word: 'available', meaning: '可用的，可获得的', usage: 'keep sth available 保持某物可用' },
-      { word: 'unfamiliar', meaning: '不熟悉的', usage: 'un-（否定前缀）+ familiar（熟悉的）' },
-      { word: 'emergency', meaning: '紧急情况', usage: 'emergency signal 紧急信号' },
-      { word: 'indicate', meaning: '表明，暗示', usage: 'indicate danger 预示危险' }
-    ],
-    grammar: '<strong>主句：</strong>The brain finds it best to keep...<br><strong>形式宾语：</strong>it<br><strong>真正宾语：</strong>to keep smell receptors available...<br><strong>宾语补足语：</strong>available<br><strong>目的状语：</strong>for unfamiliar and emergency signals<br><strong>举例：</strong>such as the smell of smoke<br><strong>非限制性定语从句：</strong>which might indicate the danger of fire（修饰smoke）',
-    structure: `主句: The brain(主语) + finds(谓语) + it(形式宾语) + best(宾补) + to keep...(真正宾语)
-    ↓
-不定式短语: to keep(不定式) + smell receptors(宾语) + available(宾补) + for...(目的状语)
-    ↓
-举例说明: such as(例如) + the smell of smoke(例子)
-    ↓
-定语从句: which(关系代词，指代smoke) + might indicate(谓语) + the danger of fire(宾语)`,
-    logic: '总结：解释大脑为何要让感受器保持可用状态——为了应对紧急情况',
-    examPoints: ['find it + adj + to do', 'keep sth + adj 保持某物处于某种状态', 'such as 例如', 'which 引导非限制性定语从句', 'indicate 表明']
-  }
-])
+// 逐句解析数据（暂时为空，需要根据实际文章从后端加载）
+const sentenceList = ref<any[]>([])
 
-// 文章主题
-const articleTheme = ref('本文探讨了人类嗅觉能力的真相，反驳了“人类嗅觉不敏感”的传统观点。文章首先指出人类直立行走导致鼻子功能受限，只能感知空气中的气味而无法感知表面的气味。然后通过科学证据表明，人类其实对气味极其敏感，即使浓度低至百万分之一也能察觉。文章进一步解释了个体差异的原因（基因不同），以及大脑的高效调节机制（不会让所有感受器同时工作，但能在必要时创造新的感受器）。最后总结：大脑保持嗅觉感受器的可用状态，是为了应对不熟悉和紧急的信号（如烟味预示火灾危险）。')
+// 文章主题（暂时为空，需要从后端加载）
+const articleTheme = ref('')
 
-// 文章结构
-const articleStructure = ref(`第一部分（第1-2句）：提出传统观点并解释原因
-  ├─ 传统观点：人类嗅觉不如动物灵敏
-  ├─ 转折说明：但这主要是因为人类直立行走
-  └─ 结果分析：鼻子只能感知空气中的气味，错过表面气味
+// 文章结构（暂时为空，需要从后端加载）
+const articleStructure = ref('')
 
-第二部分（第3-4句）：转折论证，揭示真相
-  ├─ 事实反驳：事实上，人类嗅觉极其敏感
-  ├─ 让步说明：即使我们没有意识到
-  └─ 数据支撑：能察觉到稀释到百万分之一的气味
+// 写作手法（暂时为空，需要从后端加载）
+const writingTechniques = ref<any[]>([])
 
-第三部分（第5-7句）：解释个体差异
-  ├─ 现象描述：有些人对某些花的气味不敏感
-  ├─ 对比说明：而另一些人对两种花都敏感
-  ├─ 原因分析：缺乏产生特定感受器的基因
-  ├─ 定义说明：感受器是感知气味并向大脑发送信息的细胞
-  └─ 补充发现：起初不敏感的人可以通过接触变得敏感
+// 阅读策略（暂时为空，需要从后端加载）
+const readingStrategies = ref<any[]>([])
 
-第四部分（第8-10句）：科学解释大脑机制
-  ├─ 效率原则：大脑认为让所有感受器一直工作不高效
-  ├─ 适应能力：可以在必要时创造新的感受器
-  ├─ 生活实例：对自己房子的气味不敏感，但对别人家的新气味敏感
-  └─ 总结升华：大脑保持感受器可用，以应对紧急信号（如烟味预示火灾）`) 
+// 核心词汇
+const keyVocabulary = ref<any[]>([])
 
-// 写作手法
-const writingTechniques = ref([
-  '对比论证（compared with / whereas）：人类 vs 动物的嗅觉能力；有些人 vs 另一些人',
-  '转折论证（but / In fact / However）：先提出错误观点，再用事实反驳',
-  '让步论证（even if / even when）：承认一个事实，引出更重要的观点',
-  '因果分析（because / This means that / The explanation for...）：层层递进解释原因',
-  '举例说明（such as）：用烟味预示火灾的例子说明紧急信号的重要性',
-  '数据支撑（one part in one million）：引用具体数据增强说服力',
-  '插入语用法（—we are not aware of...—）：用破折号插入补充说明',
-  '形式主语/宾语结构（it has been found that / finds it inefficient to）：使句子更加简洁' 
-])
+// 语法要点
+const grammarPoints = ref<any[]>([])
 
-// 阅读策略
-const readingStrategies = ref([
-  '关注转折词：but, however, in fact, actually 等往往引出作者真实观点',
-  '识别让步结构：although/though/even if 引导的句子是次要信息，主句才是重点',
-  '注意对比信号：compared with, in contrast, whereas 提示比较关系',
-  '抓住主题句：段落首句通常是主题句，概括本段核心内容',
-  '理解长难句：先找主干（主谓宾），再分析修饰成分（定语从句、状语从句等）',
-  '注意指代关系：it, this, that, these 等代词指代的内容往往在前文',
-  '识别逻辑关系：因果（because）、转折（but）、让步（even if）、对比（whereas）',
-  '关注科学术语：gene, receptor, detect, dilute 等专业词汇的理解'
-])
+// 考研技巧
+const examTips = ref<any[]>([])
+
+// 折叠面板激活项（默认展开主题思想和文章结构）
+const activeCollapse = ref(['theme', 'structure'])
 
 // 返回
 const goBack = () => {
   router.back()
 }
 
+// 加载精读分析数据
+const loadIntensiveReadingData = async (actualTextNum: number | null = null) => {
+  try {
+    // 构建数据key
+    let dataKey = `${year.value}-${section.value}`
+    if (section.value === 'Traditional Reading') {
+      const textNumToUse = actualTextNum !== null ? actualTextNum : textNum.value
+      if (textNumToUse) {
+        dataKey += `-${textNumToUse}`
+      }
+    }
+    
+    console.log('加载精读数据, key:', dataKey)
+    
+    const response = await fetch(`http://localhost:3001/api/intensive-reading?key=${encodeURIComponent(dataKey)}`)
+    if (response.ok) {
+      const data = await response.json()
+      
+      if (data.intensiveReading) {
+        const reading = data.intensiveReading
+        articleTheme.value = reading.theme || ''
+        articleStructure.value = reading.structure || ''
+        writingTechniques.value = reading.writingTechniques || []
+        readingStrategies.value = reading.readingStrategies || []
+        keyVocabulary.value = reading.keyVocabulary || []
+        grammarPoints.value = reading.grammarPoints || []
+        examTips.value = reading.examTips || []
+        
+        console.log('✅ 精读数据加载成功')
+      } else {
+        console.log('⚠️ 精读数据不存在')
+      }
+    } else {
+      console.log('⚠️ 精读数据API返回错误:', response.status)
+    }
+  } catch (error) {
+    console.error(' 加载精读数据失败:', error)
+  }
+}
+
 // 加载数据
 onMounted(async () => {
-  console.log(`✅ 精读页面加载完成：${section.value} - ${year.value}年`)
+  console.log(`✅ 精读页面加载完成：${section.value} - ${year.value}年`, textNum.value ? `Text ${textNum.value}` : '')
+  console.log('URL参数:', route.query)
+  
+  // 从 API加载文章数据
+  try {
+    const response = await fetch('http://localhost:3001/api/reading-questions')
+    if (response.ok) {
+      const data = await response.json()
+      const questions = data.questions || []
+      
+      console.log('总题目数:', questions.length)
+      
+      // 根据题型、年份和Text编号查找文章
+      let article = ''
+      if (section.value === 'Traditional Reading') {
+        if (textNum.value) {
+          // 传统阅读：查找特定Text的文章
+          console.log('查找条件: Traditional Reading, year:', year.value, ', textNum:', textNum.value)
+          const targetQuestion = questions.find((q: any) => 
+            q.section === 'Traditional Reading' && 
+            q.year === year.value && 
+            q.textNumber === textNum.value &&
+            q.article
+          )
+          if (targetQuestion) {
+            article = targetQuestion.article
+            console.log('✅ 找到传统阅读文章, length:', article.length)
+          } else {
+            console.log('❌ 未找到匹配的传统阅读文章')
+          }
+        } else {
+          // 没有指定Text,查找该年份任意一个有文章的传统阅读题目
+          console.log('未指定Text,查找该年份任意传统阅读文章')
+          const targetQuestion = questions.find((q: any) => 
+            q.section === 'Traditional Reading' && 
+            q.year === year.value &&
+            q.article
+          )
+          if (targetQuestion) {
+            article = targetQuestion.article
+            console.log('✅ 找到传统阅读文章, textNumber:', targetQuestion.textNumber, ', length:', article.length)
+          } else {
+            console.log('❌ 未找到匹配的传统阅读文章')
+          }
+        }
+      } else if (section.value === 'Use of English') {
+        // 完型填空：查找该年份的文章
+        console.log('查找条件: Use of English, year:', year.value)
+        const targetQuestion = questions.find((q: any) => 
+          q.section === 'Use of English' && 
+          q.year === year.value &&
+          q.article
+        )
+        if (targetQuestion) {
+          article = targetQuestion.article
+          console.log('✅ 找到完型填空文章, length:', article.length)
+        } else {
+          console.log('❌ 未找到匹配的完型填空文章')
+        }
+      } else {
+        console.log('⚠️ 未提供text参数或题型不匹配')
+      }
+      
+      if (article) {
+        // 添加内联样式确保缩进生效
+        let styledArticle = article.replace(/<p>/g, '<p style="text-indent: 2em; margin: 0.8em 0;">')
+        
+        // 只对完形填空添加空格样式，传统阅读的<u>是强调标记
+        if (section.value === 'Use of English') {
+          styledArticle = styledArticle.replace(/<u>/g, '<u style="display: inline-block; min-width: 2.5em; text-align: center; color: #e74c3c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #e74c3c; margin: 0 0.1em; padding: 0 0.2em;">')
+        }
+        
+        articleContent.value = styledArticle
+        console.log('✅ 文章加载成功')
+        
+        // 加载精读分析数据，传递实际找到的文章信息
+        const actualTextNum = section.value === 'Traditional Reading' && !textNum.value 
+          ? (questions.find((q: any) => q.section === 'Traditional Reading' && q.year === year.value && q.article)?.textNumber || null)
+          : textNum.value
+        loadIntensiveReadingData(actualTextNum)
+      } else {
+        articleContent.value = '<p style="color: #999; text-align: center; padding: 40px;">暂无文章数据,请在题目数据中添加article字段</p>'
+        console.log('⚠️ 未找到文章数据')
+      }
+    }
+  } catch (error) {
+    console.error('❌ 加载文章失败:', error)
+    articleContent.value = '<p style="color: #f56c6c; text-align: center; padding: 40px;">加载失败,请检查后端服务是否启动</p>'
+  }
   
   // TODO: 后续可以从后端API加载更详细的精读数据
   // try {
@@ -568,6 +551,25 @@ onMounted(async () => {
   line-height: 2;
   font-size: 1.1em;
   color: #333;
+}
+
+/* 段落缩进 - 使用深度选择器 */
+.article-content :deep(p) {
+  text-indent: 2em;
+  margin: 0.8em 0;
+}
+
+/* 完形填空空格样式 - 使用深度选择器 */
+.article-content :deep(u) {
+  display: inline-block;
+  min-width: 2.5em;
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #e74c3c;
+  margin: 0 0.1em;
+  padding: 0 0.2em;
 }
 
 .sentence-analysis {
@@ -845,43 +847,280 @@ onMounted(async () => {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.analysis-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* 折叠面板样式 */
+.analysis-collapse {
+  margin-top: 20px;
+  border: none;
+  background: transparent;
 }
 
-.analysis-card h4 {
-  color: #667eea;
-  margin: 0 0 15px 0;
-  font-size: 1.15em;
+.analysis-collapse :deep(.el-collapse-item) {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.analysis-collapse :deep(.el-collapse-item:hover) {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.analysis-collapse :deep(.el-collapse-item__header) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 16px 20px;
+  border: none;
+  height: auto;
+  line-height: 1.5;
+}
+
+.analysis-collapse :deep(.el-collapse-item__arrow) {
+  color: white;
+  font-size: 1.2em;
+}
+
+.collapse-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.title-icon {
+  font-size: 1.4em;
+}
+
+.title-text {
+  flex: 1;
+}
+
+.count-tag {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  color: white !important;
   font-weight: 600;
 }
 
-.analysis-card p,
-.analysis-card pre,
-.analysis-card ul {
-  margin: 0;
-  line-height: 1.9;
+.collapse-content {
+  padding: 20px;
+  background: white;
+}
+
+.theme-content p {
+  line-height: 2;
+  font-size: 1.15em;
   color: #2c3e50;
+  text-align: justify;
 }
 
-.analysis-card pre {
+.structure-content pre {
   font-family: 'Courier New', monospace;
-  font-size: 0.95em;
+  font-size: 1.05em;
+  line-height: 2;
+  color: #2c3e50;
+  background: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
   white-space: pre-wrap;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 12px;
-  border-radius: 6px;
-  line-height: 1.8;
+  margin: 0;
 }
 
-.analysis-card ul {
-  padding-left: 20px;
+/* 写作手法列表 */
+.technique-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.analysis-card li {
-  margin-bottom: 10px;
-  line-height: 1.8;
+.technique-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border-radius: 8px;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.technique-index {
+  background: white;
+  color: #f5576c;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* 阅读策略列表 */
+.strategy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.strategy-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+  border-radius: 8px;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.strategy-index {
+  background: white;
+  color: #fa709a;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* 核心词汇网格（紧凑版） */
+.vocab-grid-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.vocab-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.vocab-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.vocab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.vocab-word {
+  font-size: 1.15em;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.vocab-meaning {
+  font-size: 0.95em;
+  opacity: 0.95;
+  text-align: right;
+}
+
+.vocab-context {
+  font-size: 0.9em;
+  opacity: 0.9;
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 语法要点网格 */
+.grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.grammar-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  border-radius: 10px;
+  font-size: 1em;
+  line-height: 1.7;
+  color: #2c3e50;
+  box-shadow: 0 3px 10px rgba(252, 182, 159, 0.2);
+  transition: transform 0.3s;
+}
+
+.grammar-card:hover {
+  transform: translateX(4px);
+}
+
+.grammar-icon {
+  font-size: 1.3em;
+  flex-shrink: 0;
+}
+
+.grammar-text {
+  flex: 1;
+}
+
+/* 考研技巧网格 */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tip-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(168, 237, 234, 0.2);
+  transition: transform 0.3s;
+}
+
+.tip-card:hover {
+  transform: scale(1.02);
+}
+
+.tip-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.tip-text {
+  flex: 1;
+  line-height: 1.7;
+  color: #2c3e50;
+  font-size: 1em;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
 }
 
 /* 响应式设计 */
@@ -896,7 +1135,9 @@ onMounted(async () => {
     padding: 20px;
   }
 
-  .analysis-cards {
+  .vocab-grid-compact,
+  .grammar-grid,
+  .tips-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1030,5 +1271,25 @@ onMounted(async () => {
   .sentence-vocabulary {
     flex-direction: column;
   }
+}
+</style>
+
+<style>
+/* 全局样式 - 用于v-html渲染的内容 */
+.intensive-reading .article-content p {
+  text-indent: 2em !important;
+  margin: 0.8em 0 !important;
+}
+
+.intensive-reading .article-content u {
+  display: inline-block !important;
+  min-width: 2.5em !important;
+  text-align: center !important;
+  color: #e74c3c !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  border-bottom: 2px solid #e74c3c !important;
+  margin: 0 0.1em !important;
+  padding: 0 0.2em !important;
 }
 </style>

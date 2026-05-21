@@ -16,6 +16,42 @@ const readingQuestionsRouter = require('./routes/reading-questions')
 // 注册API路由（必须在static之前）
 app.use('/api/reading-questions', readingQuestionsRouter)
 
+// 获取精读分析数据
+app.get('/api/intensive-reading', (req, res) => {
+  try {
+    const key = req.query.key
+    if (!key) {
+      return res.status(400).json({ error: '请提供key参数' })
+    }
+    
+    const dataPath = path.join(__dirname, 'data/intensive-reading-analysis.json')
+    
+    if (!fs.existsSync(dataPath)) {
+      return res.status(404).json({ error: '精读数据文件不存在' })
+    }
+    
+    const data = fs.readFileSync(dataPath, 'utf-8')
+    const intensiveReadingData = JSON.parse(data)
+    
+    const readingData = intensiveReadingData[key]
+    
+    if (readingData) {
+      res.json({
+        success: true,
+        intensiveReading: readingData
+      })
+    } else {
+      res.status(404).json({ 
+        error: '未找到该文章的分析数据',
+        key: key 
+      })
+    }
+  } catch (error) {
+    console.error('读取精读数据失败:', error)
+    res.status(500).json({ error: '读取数据失败' })
+  }
+})
+
 // 静态文件服务
 app.use(express.static(path.join(__dirname, '../frontend/dist')))
 

@@ -136,7 +136,7 @@ export const useCS408Store = defineStore('cs408', () => {
     }
   }
 
-  const runTestCase = (problemId: string, userSolution: string) => {
+  const runTestCase = (problemId: string, _userSolution: string) => {
     const problem = codeProblems.value.find(p => p.id === problemId)
     if (!problem) return { passed: 0, total: 0, results: [] }
 

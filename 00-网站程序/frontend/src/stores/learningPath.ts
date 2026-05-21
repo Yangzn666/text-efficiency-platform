@@ -729,7 +729,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
     })
     
     const score = Math.round((correctCount / questions.length) * 100)
-    const duration = (Date.now() - currentAssessment.value.startTime) / 1000 / 60 // 分钟
+    // const duration = (Date.now() - currentAssessment.value.startTime) / 1000 / 60 // 分钟
     
     // 评估水平
     let overallLevel: 'beginner' | 'intermediate' | 'advanced'
@@ -1370,7 +1370,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         category: 'study',
         condition: (store) => {
           const totalTime = Object.values(store.studyStore.subjectStats)
-            .reduce((sum, stat) => sum + stat.totalTime, 0)
+            .reduce((sum: number, stat: any) => sum + stat.totalTime, 0)
           return totalTime >= 600 // 10小时 = 600分钟
         },
         unlocked: false,
@@ -1384,7 +1384,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         category: 'study',
         condition: (store) => {
           const totalTime = Object.values(store.studyStore.subjectStats)
-            .reduce((sum, stat) => sum + stat.totalTime, 0)
+            .reduce((sum: number, stat: any) => sum + stat.totalTime, 0)
           return totalTime >= 3000 // 50小时
         },
         unlocked: false,
@@ -1398,7 +1398,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         category: 'study',
         condition: (store) => {
           const totalTime = Object.values(store.studyStore.subjectStats)
-            .reduce((sum, stat) => sum + stat.totalTime, 0)
+            .reduce((sum: number, stat: any) => sum + stat.totalTime, 0)
           return totalTime >= 6000 // 100小时
         },
         unlocked: false,
@@ -1445,8 +1445,8 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         icon: '✅',
         category: 'milestone',
         condition: (store) => {
-          return store.learningPaths.some(path => 
-            path.chapters.some(chapter => chapter.completed)
+          return store.learningPaths.some((path: any) => 
+            path.chapters.some((chapter: any) => chapter.completed)
           )
         },
         unlocked: false,
@@ -1459,7 +1459,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         icon: '🎓',
         category: 'milestone',
         condition: (store) => {
-          return store.learningPaths.some(path => 
+          return store.learningPaths.some((path: any) => 
             path.status === 'completed'
           )
         },
@@ -1475,7 +1475,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         icon: '⭐',
         category: 'mastery',
         condition: (store) => {
-          return store.masteryRecords.some(record => record.masteryScore >= 90)
+          return store.masteryRecords.some((record: any) => record.masteryScore >= 90)
         },
         unlocked: false,
         xpReward: 150
@@ -1487,7 +1487,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
         icon: '🌟',
         category: 'mastery',
         condition: (store) => {
-          return store.masteryRecords.filter(record => record.masteryScore >= 90).length >= 5
+          return store.masteryRecords.filter((record: any) => record.masteryScore >= 90).length >= 5
         },
         unlocked: false,
         xpReward: 400
@@ -1705,7 +1705,7 @@ export const useLearningPathStore = defineStore('learningPath', () => {
     return tasks
   }
 
-  const generateDailyTasks = (date: string): PlannedTask[] => {
+  const generateDailyTasks = (_date: string): PlannedTask[] => {
     const tasks: PlannedTask[] = []
     const activePath = activePaths.value[0] // 简化处理，取第一个活跃路径
     

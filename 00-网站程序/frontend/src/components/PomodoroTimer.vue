@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useAttentionStore } from '@/stores/attention'
 import { ElMessage } from 'element-plus'
 
@@ -105,7 +105,7 @@ onUnmounted(() => {
 })
 
 // 监听状态变化
-watch(() => attentionStore.timerState, (newState) => {
+watch(() => attentionStore.timerState, (newState: string) => {
   if (newState === 'running') {
     startTimer()
   } else if (newState === 'idle' || newState === 'completed') {

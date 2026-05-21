@@ -298,42 +298,6 @@ export const useStudyStore = defineStore('study', () => {
     }
   }
 
-  const calculateCurrentStreak = () => {
-    if (studyRecords.value.length === 0) {
-      currentStreak.value = 0
-      return
-    }
-    
-    const sortedRecords = [...studyRecords.value].sort((a, b) => 
-      new Date(b.date).getTime() - new Date(a.date).getTime()
-    )
-    
-    const today = new Date().toISOString().split('T')[0]
-    let streak = 0
-    let currentDate = new Date(today)
-    
-    // 检查是否有今天的学习记录
-    const hasTodayRecord = sortedRecords.some(record => record.date === today)
-    
-    if (!hasTodayRecord) {
-      currentDate.setDate(currentDate.getDate() - 1)
-    }
-    
-    // 向前计算连续天数
-    while (true) {
-      const dateString = currentDate.toISOString().split('T')[0]
-      const hasRecord = sortedRecords.some(record => record.date === dateString)
-      
-      if (hasRecord) {
-        streak++
-        currentDate.setDate(currentDate.getDate() - 1)
-      } else {
-        break
-      }
-    }
-    
-    currentStreak.value = streak
-  }
 
   // 更新学习统计数据
   const updateStudyStats = async (stats: { 

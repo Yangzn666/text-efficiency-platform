@@ -8,8 +8,8 @@
     <!-- 题型标签切换 -->
     <div class="section-tabs">
       <el-tabs v-model="activeSection" type="card" size="large">
-        <!-- 已删除传统阅读，只保留完型填空和新题型 -->
-        <el-tab-pane label="✍️ 完型填空" name="Use of English"></el-tab-pane>
+        <el-tab-pane label=" 传统阅读" name="Traditional Reading"></el-tab-pane>
+        <el-tab-pane label="️ 完型填空" name="Use of English"></el-tab-pane>
         <el-tab-pane label="📝 新题型" name="New Question Types"></el-tab-pane>
       </el-tabs>
     </div>
@@ -153,39 +153,172 @@
       </div>
     </div>
 
-    <!-- 完型填空 -->
-    <div v-if="activeSection === 'Use of English' && clozeQuestions.length > 0" class="cloze-section">
-      <div class="cloze-header">
-        <h3 class="cloze-title"> {{ clozeYear }}年考研英语一 Use of English</h3>
-        <p class="cloze-subtitle">完形填空 · 共{{ clozeQuestions.length }}题 · 满分10分</p>
-      </div>
-
-      <!-- 完型填空大题容器（可折叠，包含原文和题目） -->
-      <div class="cloze-year-group">
+    <!-- 传统阅读 -->
+    <div v-if="activeSection === 'Traditional Reading'" class="traditional-reading-section">
+      <!-- 按年份和Text分组 -->
+      <div 
+        v-for="year in traditionalReadingYears" 
+        :key="year"
+        class="year-group"
+      >
         <div 
           class="year-header"
-          :class="{ 'expanded': expandedCloze }"
-          @click="expandedCloze = !expandedCloze"
+          :class="{ 'expanded': expandedTraditionalYears.includes(year) }"
+          @click="toggleTraditionalYear(year)"
         >
-          <el-icon class="expand-icon" :class="{ 'rotated': expandedCloze }">
+          <el-icon class="expand-icon" :class="{ 'rotated': expandedTraditionalYears.includes(year) }">
             <ArrowRight />
           </el-icon>
-          <span class="year-text">{{ clozeYear }}年完型填空</span>
-          <el-tag type="info" size="small">{{ clozeQuestions.length }}题</el-tag>
+          <span class="year-text">{{ year }}年考研英语一 · 传统阅读</span>
           <el-button 
             type="warning" 
             size="small"
-            @click.stop="openIntensiveReading('Use of English', clozeYear)"
+            @click.stop="openIntensiveReading('Traditional Reading', year)"
           >
-             精读
+            📖 精读
           </el-button>
         </div>
 
-        <div v-show="expandedCloze" class="year-content">
+        <div v-show="expandedTraditionalYears.includes(year)" class="year-content">
+          <!-- 按Text分组 -->
+          <div 
+            v-for="textNum in getTextNumbersByYear(year)" 
+            :key="textNum"
+            class="text-group"
+          >
+            <div class="text-header">
+              <h4 class="text-title">Text {{ textNum }}</h4>
+              <el-tag type="info" size="small">5题</el-tag>
+              <el-button 
+                type="warning" 
+                size="small"
+                @click.stop="openIntensiveReadingForText(year, textNum)"
+              >
+                 精读
+              </el-button>
+            </div>
+
+            <!-- 文章原文 -->
+            <div class="article-section">
+              <div class="section-title">📄 文章原文</div>
+              <div class="article-content" v-html="getArticleByYearAndText(year, textNum)"></div>
+            </div>
+
+            <!-- 题目列表 -->
+            <div class="questions-list">
+              <div 
+                v-for="question in getQuestionsByYearAndText(year, textNum)" 
+                :key="question.number"
+                class="question-card"
+              >
+                <!-- 题目信息 -->
+                <div class="question-meta">
+                  <el-tag size="small">{{ question.year }}年</el-tag>
+                  <el-tag size="small" type="warning">Text {{ question.textNumber }}</el-tag>
+                  <el-tag size="small" type="warning">第{{ question.number }}题</el-tag>
+                  <el-tag v-if="question.userAnswer" :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" size="small">
+                    {{ question.userAnswer === question.correctAnswer ? '✓ 正确' : '✗ 错误' }}
+                  </el-tag>
+                </div>
+
+                <!-- 题干 -->
+                <div class="question-stem">
+                  {{ question.stem }}
+                </div>
+
+                <!-- 选项 -->
+                <div v-if="question.options && question.options.length > 0" class="options-list">
+                  <div 
+                    v-for="option in question.options" 
+                    :key="option.label"
+                    class="option-item"
+                    :class="{ 
+                      'correct': option.label === question.correctAnswer,
+                      'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer
+                    }"
+                  >
+                    <span class="option-label">{{ option.label }}.</span>
+                    <span class="option-text">{{ option.text }}</span>
+                    <el-icon v-if="option.label === question.correctAnswer" class="correct-icon">
+                      <CircleCheck />
+                    </el-icon>
+                    <el-icon v-if="question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer" class="wrong-icon">
+                      <CircleClose />
+                    </el-icon>
+                  </div>
+                </div>
+
+                <!-- 答案对比 -->
+                <div class="answer-comparison">
+                  <div class="user-answer" v-if="question.userAnswer">
+                    <span class="label">你的答案：</span>
+                    <span :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span>
+                  </div>
+                  <div class="correct-answer">
+                    <span class="label">正确答案：</span>
+                    <span class="answer">{{ question.correctAnswer }}</span>
+                  </div>
+                </div>
+
+                <!-- 答案解析 -->
+                <div class="analysis-section">
+                  <h5>📖 答案解析：</h5>
+                  <p>{{ question.analysis }}</p>
+                </div>
+
+                <!-- 错误选项分析 -->
+                <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis-section">
+                  <h5 class="error-title">❌ 为什么你选的答案不对</h5>
+                  <div class="error-item">
+                    <span class="error-label">你选了 {{ question.userAnswer }}：</span>
+                    <span class="error-explanation">{{ question.errorAnalysis[question.userAnswer] || '该选项不符合语境' }}</span>
+                  </div>
+                </div>
+
+                <!-- 解题技巧 -->
+                <div v-if="question.tips" class="tips-section">
+                  <h5>🎯 解题技巧：</h5>
+                  <p>{{ question.tips }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 完型填空 -->
+    <div v-if="activeSection === 'Use of English'" class="cloze-section">
+      <!-- 按年份分组 -->
+      <div 
+        v-for="year in clozeYears" 
+        :key="year"
+        class="cloze-year-group"
+      >
+        <div 
+          class="year-header"
+          :class="{ 'expanded': expandedClozeYears.includes(year) }"
+          @click="toggleClozeYear(year)"
+        >
+          <el-icon class="expand-icon" :class="{ 'rotated': expandedClozeYears.includes(year) }">
+            <ArrowRight />
+          </el-icon>
+          <span class="year-text">{{ year }}年考研英语一 · 完形填空</span>
+          <el-tag type="info" size="small">{{ getClozeQuestionsByYear(year).length }}题</el-tag>
+          <el-button 
+            type="warning" 
+            size="small"
+            @click.stop="openIntensiveReading('Use of English', year)"
+          >
+            📖 精读
+          </el-button>
+        </div>
+
+        <div v-show="expandedClozeYears.includes(year)" class="year-content">
           <!-- 文章原文 -->
           <div class="article-section">
             <div class="section-title"> 文章原文</div>
-            <div class="article-content" v-html="clozeArticle"></div>
+            <div class="article-content" v-html="getClozeArticleByYear(year)"></div>
           </div>
 
           <!-- 题目列表 -->
@@ -193,7 +326,7 @@
             <div class="section-title">❓ 题目</div>
             
             <div 
-              v-for="(question, idx) in clozeQuestions" 
+              v-for="(question, idx) in getClozeQuestionsByYear(year)" 
               :key="idx"
               class="cloze-question-item"
             >
@@ -314,20 +447,22 @@ const selectedYear = ref('all')
 const selectedQuestionType = ref('all')
 const allQuestions = ref<any[]>([]) // 初始化为空数组
 const expandedGroups = ref<string[]>([]) // 默认全部折叠
-const activeSection = ref<'Use of English' | 'New Question Types'>('Use of English')
+const activeSection = ref<'Traditional Reading' | 'Use of English' | 'New Question Types'>('Traditional Reading')
 const expandedCloze = ref(false) // 完型填空大题默认折叠
+const expandedClozeYears = ref<number[]>([]) // 完型填空展开的年份
+const expandedTraditionalYears = ref<number[]>([]) // 传统阅读展开的年份
 
-// 可用年份（2010-2025）
-const availableYears = Array.from({ length: 16 }, (_, i) => 2010 + i).reverse()
+// 可用年份（2005-2025）
+const availableYears = Array.from({ length: 21 }, (_, i) => 2005 + i).reverse()
 
-// 过滤后的题目（只保留完型填空和新题型，删除传统阅读）
+// 过滤后的题目（包含传统阅读、完型填空和新题型）
 const filteredQuestions = computed(() => {
   if (!allQuestions.value || allQuestions.value.length === 0) {
     return []
   }
   
   let questions = allQuestions.value.filter(q => 
-    q.section === 'Use of English' || q.section === 'New Question Types'
+    q.section === 'Traditional Reading' || q.section === 'Use of English' || q.section === 'New Question Types'
   )
   
   // 按年份过滤
@@ -375,6 +510,103 @@ const clozeYear = computed(() => {
   }
   return clozeQuestions.value[0].year
 })
+
+// 完型填空覆盖的年份
+const clozeYears = computed(() => {
+  if (!clozeQuestions.value || clozeQuestions.value.length === 0) {
+    return []
+  }
+  const years = new Set(clozeQuestions.value.map(q => q.year))
+  return Array.from(years).sort((a, b) => b - a) // 降序排列
+})
+
+// 获取某年的完型填空题目
+const getClozeQuestionsByYear = (year: number) => {
+  return clozeQuestions.value.filter(q => q.year === year)
+}
+
+// 切换完型填空年份展开/收起
+const toggleClozeYear = (year: number) => {
+  const idx = expandedClozeYears.value.indexOf(year)
+  if (idx > -1) {
+    expandedClozeYears.value.splice(idx, 1)
+  } else {
+    expandedClozeYears.value.push(year)
+  }
+}
+
+// 生成某年的完型填空文章（带空格标记）
+const getClozeArticleByYear = (year: number) => {
+  const questions = getClozeQuestionsByYear(year)
+  if (questions.length === 0) return ''
+  
+  // 尝试从第一个题目中获取article字段
+  const firstQuestion = questions[0]
+  if (firstQuestion.article) {
+    return firstQuestion.article
+  }
+  
+  // 如果没有article字段，返回提示信息
+  return '<p style="color: #666; line-height: 2; text-align: justify;">' +
+    `请导入${year}年完型填空的文章原文</p>`
+}
+
+// 传统阅读相关（Traditional Reading）
+const traditionalQuestions = computed(() => {
+  if (!filteredQuestions.value || filteredQuestions.value.length === 0) {
+    return []
+  }
+  return filteredQuestions.value.filter(q => q.section === 'Traditional Reading')
+})
+
+// 传统阅读覆盖的年份
+const traditionalReadingYears = computed(() => {
+  if (!traditionalQuestions.value || traditionalQuestions.value.length === 0) {
+    return []
+  }
+  const years = new Set(traditionalQuestions.value.map(q => q.year))
+  return Array.from(years).sort((a, b) => b - a) // 降序排列
+})
+
+// 获取某年的Text编号列表
+const getTextNumbersByYear = (year: number) => {
+  const questions = traditionalQuestions.value.filter(q => q.year === year)
+  const textNums = new Set(questions.map(q => q.textNumber))
+  return Array.from(textNums).sort((a, b) => a - b)
+}
+
+// 获取某年某Text的题目
+const getQuestionsByYearAndText = (year: number, textNum: number) => {
+  return traditionalQuestions.value.filter(
+    q => q.year === year && q.textNumber === textNum
+  ).sort((a, b) => a.number - b.number)
+}
+
+// 获取某年某Text的文章原文
+const getArticleByYearAndText = (year: number, textNum: number) => {
+  const questions = getQuestionsByYearAndText(year, textNum)
+  if (questions.length === 0) return ''
+  
+  // 尝试从第一个题目中获取article字段
+  const firstQuestion = questions[0]
+  if (firstQuestion.article) {
+    return firstQuestion.article
+  }
+  
+  // 如果没有article字段，返回提示信息
+  return '<p style="color: #666; line-height: 2; text-align: justify;">' +
+    `请导入${year}年Text ${textNum}的文章原文</p>`
+}
+
+// 切换传统阅读年份展开/收起
+const toggleTraditionalYear = (year: number) => {
+  const idx = expandedTraditionalYears.value.indexOf(year)
+  if (idx > -1) {
+    expandedTraditionalYears.value.splice(idx, 1)
+  } else {
+    expandedTraditionalYears.value.push(year)
+  }
+}
 
 // 展开的题目索引列表
 const expandedQuestions = ref<number[]>([])
@@ -548,12 +780,15 @@ const importQuestions = () => {
 const showImportGuide = () => {
   alert(`📋 JSON导入格式示例：
 
+传统阅读（Traditional Reading）：
 [
   {
     "year": 2025,
-    "passage": 1,
-    "number": 1,
+    "section": "Traditional Reading",
+    "textNumber": 1,
+    "number": 21,
     "type": "细节题",
+    "article": "<p>文章第一段...</p><p>文章第二段...</p>",
     "stem": "题干内容...",
     "options": [
       {"label": "A", "text": "选项A"},
@@ -563,19 +798,41 @@ const showImportGuide = () => {
     ],
     "correctAnswer": "A",
     "analysis": "答案解析...",
-    "tips": "解题技巧...",
-    "location": "原文定位..."
+    "tips": "解题技巧..."
   }
 ]
 
-必填字段：year, type, stem, correctAnswer
-选填字段：passage, number, options, analysis, tips, location`)
+完型填空（Use of English）：
+[
+  {
+    "year": 2025,
+    "section": "Use of English",
+    "number": 1,
+    "type": "逻辑关系",
+    "article": "<p>文章第一段...</p><p>文章第二段...</p>",
+    "stem": "Humans are often thought to be insensitive smellers...",
+    "options": [...],
+    "correctAnswer": "C",
+    "analysis": "答案解析..."
+  }
+]
+
+必填字段：year, section, type, stem, correctAnswer
+选填字段：textNumber（传统阅读用）, number, article, options, analysis, tips, errorAnalysis
+
+注意：article字段可以包含HTML标签，用于格式化文章内容`)
 }
 
 // 打开精读页面
 const openIntensiveReading = (section: string, year: number) => {
   // 跳转到精读页面，传递题型和年份参数
   window.location.href = `/intensive-reading?section=${encodeURIComponent(section)}&year=${year}`
+}
+
+// 打开特定Text的精读页面
+const openIntensiveReadingForText = (year: number, textNum: number) => {
+  // 跳转到精读页面，传递题型、年份和Text编号
+  window.location.href = `/intensive-reading?section=Traditional%20Reading&year=${year}&text=${textNum}`
 }
 
 onMounted(async () => {
@@ -985,6 +1242,24 @@ onMounted(async () => {
   text-align: justify;
 }
 
+.article-content p {
+  text-indent: 2em;
+  margin: 0.8em 0;
+}
+
+/* 完形填空空格样式 */
+.article-content u {
+  display: inline-block;
+  min-width: 2.5em;
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #e74c3c;
+  margin: 0 0.1em;
+  padding: 0 0.2em;
+}
+
 .section-title {
   font-size: 1.3em;
   font-weight: bold;
@@ -1298,26 +1573,6 @@ onMounted(async () => {
   margin: 0 auto;
 }
 
-.cloze-header {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 25px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  color: white;
-}
-
-.cloze-title {
-  font-size: 1.6em;
-  margin: 0 0 8px 0;
-}
-
-.cloze-subtitle {
-  font-size: 0.95em;
-  margin: 0;
-  opacity: 0.9;
-}
-
 /* 文章区域 */
 .article-section {
   background: #f8f9fa;
@@ -1331,6 +1586,24 @@ onMounted(async () => {
   line-height: 2.2;
   color: #333;
   text-align: justify;
+}
+
+.article-content p {
+  text-indent: 2em;
+  margin: 0.8em 0;
+}
+
+/* 完形填空空格样式 */
+.article-content u {
+  display: inline-block;
+  min-width: 2.5em;
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #e74c3c;
+  margin: 0 0.1em;
+  padding: 0 0.2em;
 }
 
 .section-title {
@@ -1555,6 +1828,84 @@ onMounted(async () => {
   
   .cloze-title {
     font-size: 1.3em;
+  }
+}
+
+/* 传统阅读样式 */
+.traditional-reading-section {
+  margin-top: 20px;
+}
+
+.year-group {
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.year-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.year-header:hover {
+  opacity: 0.95;
+}
+
+.year-header .expand-icon {
+  transition: transform 0.3s;
+  font-size: 1.2em;
+}
+
+.year-header .expand-icon.rotated {
+  transform: rotate(90deg);
+}
+
+.year-text {
+  font-size: 1.2em;
+  font-weight: 600;
+  flex: 1;
+}
+
+.year-content {
+  padding: 20px;
+}
+
+.text-group {
+  margin-bottom: 30px;
+}
+
+.text-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.text-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .year-text {
+    font-size: 1em;
+  }
+  
+  .text-title {
+    font-size: 1.1em;
   }
 }
 </style>

@@ -60,7 +60,7 @@ const subjectConfigs: Record<string, SubjectConfig> = {
   cs408: {
     name: '计算机专业课',
     color: '#96CEB4',
-    description: '数据结构、计算机组成原理、操作系统、计算机网络',
+    description: '数据结构 · 组成原理 · 操作系统 · 计算机网络',
     categories: ['数据结构', '组成原理', '操作系统', '计算机网络']
   }
 }
@@ -259,13 +259,28 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="knowledge-structure">
+  <div class="knowledge-structure" :class="{ 'cs408-mode': props.subject === 'cs408' }">
     <!-- 顶部信息 -->
     <div class="header-section">
       <h2 class="subject-title" :style="{ color: currentConfig.color }">
         📚 {{ currentConfig.name }}知识体系
       </h2>
       <p class="subject-description">{{ currentConfig.description }}</p>
+      
+      <!-- CS408专用提示 -->
+      <div v-if="props.subject === 'cs408'" class="cs408-tip">
+        <el-alert
+          title="💡 使用建议"
+          type="info"
+          :closable="false"
+          show-icon
+        >
+          <template #default>
+            <p>上方快速入口卡片可直接进入各科目详细学习页面，包含完整的章节导航、思维导图和知识点文档。</p>
+            <p>本区域提供知识点概览，方便快速浏览和搜索。</p>
+          </template>
+        </el-alert>
+      </div>
     </div>
 
     <!-- 搜索和筛选 -->
@@ -422,6 +437,20 @@ onMounted(async () => {
   padding: 35px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* CS408模式下的特殊样式 */
+.knowledge-structure.cs408-mode {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+}
+
+.cs408-tip {
+  margin-top: 20px;
+}
+
+.cs408-tip :deep(.el-alert) {
+  border-radius: 12px;
 }
 
 .header-section {

@@ -6,6 +6,7 @@ import { Timer, DataAnalysis, Guide, MagicStick, Plus } from '@element-plus/icon
 import MonthlyCalendar from '@/components/MonthlyCalendar.vue'
 import DailyPlanCard from '@/components/DailyPlanCard.vue'
 import StudyStats from '@/components/StudyStats.vue'
+import SimpleMoodTracker from '@/components/SimpleMoodTracker.vue'
 import { useStudyStore } from '@/stores/study'
 import { useTodoStore } from '@/stores/todos'
 import { useTaskStore } from '@/stores/tasks'
@@ -582,6 +583,11 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- 心情打卡 -->
+        <div class="sidebar-card mood-card">
+          <SimpleMoodTracker />
         </div>
 
         <!-- 学习成就 -->
@@ -1263,6 +1269,20 @@ onUnmounted(() => {
 
 .action-icon {
   font-size: 1.5em;
+}
+
+/* 心情打卡卡片 */
+.mood-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mood-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
 /* 空状态 */

@@ -67,8 +67,8 @@
           class="record-item"
         >
           <div class="record-time">
-            <div class="record-date">{{ formatDate(record.createdAt) }}</div>
-            <div class="record-clock">{{ formatTime(record.createdAt) }}</div>
+            <div class="record-date">{{ formatDate(record.date || record.createdAt) }}</div>
+            <div class="record-clock">{{ extractTimeFromContent(record.content) || formatTime(record.createdAt) }}</div>
           </div>
           
           <div class="record-content">
@@ -264,11 +264,28 @@ const formatTime = (dateStr: string) => {
   return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
 }
 
+// 从content中提取时间（例如：“背单词（12:00-12:15）”）
+const extractTimeFromContent = (content: string) => {
+  if (!content) return ''
+  // 匹配括号中的时间格式：HH:MM-HH:MM
+  const match = content.match(/（(\d{1,2}:\d{2})-(\d{1,2}:\d{2})）/)
+  if (match) {
+    return match[1] // 返回开始时间
+  }
+  return ''
+}
+
 // 显示的学习记录（最近10条或全部）
 const displayRecords = computed(() => {
-  const sorted = [...studyStore.studyRecords].sort((a, b) => 
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  )
+  // 按日期降序排序，优先按date字段，再按createdAt
+  const sorted = [...studyStore.studyRecords].sort((a, b) => {
+    // 先比较日期
+    if (a.date !== b.date) {
+      return b.date.localeCompare(a.date)
+    }
+    // 日期相同，比较创建时间
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  })
   return showAllRecords.value ? sorted : sorted.slice(0, 10)
 })
 

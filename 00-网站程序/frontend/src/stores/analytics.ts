@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { useUserStore } from './user'
-import { useAttentionStore } from './attention'
-import { useLearningPathStore } from './learningPath'
-import { usePsychologyStore } from './psychology'
+// import { useUserStore } from './user'
+// import { useAttentionStore } from './attention'
+// import { useLearningPathStore } from './learningPath'
+// import { usePsychologyStore } from './psychology'
 import { useCS408Store } from './cs408'
 import { useMathStore } from './math'
 import { useEnglishStore } from './english'
@@ -45,10 +45,10 @@ export const useAnalyticsStore = defineStore('analytics', () => {
   const isLoading = ref(false)
 
   // 获取其他store的数据
-  const userStore = useUserStore()
-  const attentionStore = useAttentionStore()
-  const learningPathStore = useLearningPathStore()
-  const psychologyStore = usePsychologyStore()
+  // const userStore = useUserStore()
+  // const attentionStore = useAttentionStore()
+  // const learningPathStore = useLearningPathStore()
+  // const psychologyStore = usePsychologyStore()
   const cs408Store = useCS408Store()
   const mathStore = useMathStore()
   const englishStore = useEnglishStore()
@@ -271,7 +271,7 @@ export const useAnalyticsStore = defineStore('analytics', () => {
     }
   }
 
-  const calculateGoalsAchieved = (week: string, sessions: StudySession[]) => {
+  const calculateGoalsAchieved = (_week: string, sessions: StudySession[]) => {
     // 简单的目标达成计算逻辑
     const weeklyGoal = 20 * 60 // 20小时每周
     const actualTime = sessions.reduce((sum, s) => sum + s.duration, 0)

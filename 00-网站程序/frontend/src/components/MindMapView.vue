@@ -39,13 +39,24 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useCompositionStore } from '@/stores/composition'
+import { useDataStructureStore } from '@/stores/dataStructure'
 import { ZoomIn, ZoomOut, FullScreen } from '@element-plus/icons-vue'
 // 异步加载mermaid，减小主包体积
 import type Mermaid from 'mermaid'
 
+const props = defineProps<{
+  subject?: 'composition' | 'datastructure'
+}>()
+
 const mermaidModule = ref<typeof Mermaid | null>(null)
 
+// 根据subject参数选择对应的store
 const compositionStore = useCompositionStore()
+const dataStructureStore = useDataStructureStore()
+
+const activeStore = computed(() => {
+  return props.subject === 'datastructure' ? dataStructureStore : compositionStore
+})
 const mermaidRef = ref<HTMLElement | null>(null)
 const loading = ref(false)
 const error = ref('')
@@ -66,11 +77,11 @@ const initMermaid = async () => {
   return mermaidModule.value
 }
 
-const currentChapterId = computed(() => compositionStore.currentChapterId)
-const currentSectionId = computed(() => compositionStore.currentSectionId)
-const chapters = computed(() => compositionStore.chapters)
-const chapter = computed(() => compositionStore.currentChapter)
-const section = computed(() => compositionStore.currentSection)
+const currentChapterId = computed(() => activeStore.value.currentChapterId)
+const currentSectionId = computed(() => activeStore.value.currentSectionId)
+const chapters = computed(() => activeStore.value.chapters)
+const chapter = computed(() => activeStore.value.currentChapter)
+const section = computed(() => activeStore.value.currentSection)
 
 // 防抖定时器
 let renderTimer: ReturnType<typeof setTimeout> | null = null
@@ -140,7 +151,7 @@ const renderMindMap = async () => {
 
 // 切换章节
 const switchChapter = (chapterId: string) => {
-  compositionStore.currentChapterId = chapterId
+  activeStore.value.currentChapterId = chapterId
 }
 
 // 自动适配容器

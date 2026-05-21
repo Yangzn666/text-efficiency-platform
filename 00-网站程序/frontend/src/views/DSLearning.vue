@@ -34,7 +34,7 @@
       
       <!-- 中间：思维导图 -->
       <div class="mindmap-panel">
-        <MindMapView />
+        <MindMapView subject="datastructure" />
       </div>
       
       <!-- 右侧：知识点文档 -->

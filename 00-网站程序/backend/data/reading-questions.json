@@ -5,6 +5,7 @@
       "section": "Use of English",
       "number": 1,
       "type": "逻辑关系",
+      "article": "<p>The human nose is an underrated tool. Humans are often thought to be insensitive smellers compared with animals, <u> 1 </u> this is largely because, <u> 2 </u> animals, we stand upright. This means that our noses are <u> 3 </u> to perceiving those smells which float through the air, <u> 4 </u> the majority of smells which stick to surfaces. In fact, <u> 5 </u>, we are extremely sensitive to smells, <u> 6 </u> we do not generally realize it. Our noses are capable of <u> 7 </u> human smells even when these are <u> 8 </u> to far below one part in one million.</p><p>Strangely, some people find that they can smell one type of flower but not another <u> 9 </u> others are sensitive to the smells of both flowers. This may be because some people do not have the genes necessary to generate <u> 10 </u> smell receptors in the nose. These receptors are the cells which sense smells and send <u> 11 </u> to the brain. However, it has been found that even people insensitive to a certain smell <u> 12 </u> can suddenly become sensitive to it when <u> 13 </u> to it often enough.</p><p>The explanation for insensitivity to smell seems to be that the brain finds it <u> 14 </u> to keep all smell receptors working all the time but can <u> 15 </u> new receptors if necessary. This may <u> 16 </u> explain why we are not usually sensitive to our own smells—we simply do not need to be. We are not <u> 17 </u> of the usual smell of our own house, but we <u> 18 </u> new smells when we visit someone else's. The brain finds it best to keep smell receptors <u> 19 </u> for unfamiliar and emergency signals <u> 20 </u> the smell of smoke, which might indicate the danger of fire.</p>",
       "stem": "Humans are often thought to be insensitive smellers compared with animals, ___ this is largely because...",
       "options": [
         {
@@ -629,7 +630,183 @@
       "analysis": "such as表示'例如'，用于举例。句意：例如烟味，可能预示着火灾的危险。",
       "tips": "such as用于举例说明前面的'unfamiliar and emergency signals'。similar to类似于，along with和...一起，aside from除...之外。",
       "location": "第十句末尾"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 21,
+      "type": "推理题",
+      "article": "<p>Everybody loves a fat pay rise. Yet pleasure at your own can vanish if you learn that a colleague has been given a bigger one. Indeed, if he has a reputation for slacking, you might even be outraged. Such behaviour is regarded as \"all too human\", with the underlying assumption that other animals would not be capable of this finely developed sense of grievance. But a study by Sarah Brosnan and Frans de Waal of Emory University in Atlanta, Georgia, which has just been published in <em>Nature</em>, suggests that <u>it is all too monkey</u>, as well.</p><p>The researchers studied the behaviour of female brown capuchin monkeys. They look cute. They are good-natured, co-operative creatures, and they share their food readily. Above all, like their female human counterparts, they tend to pay much closer attention to the value of \"goods and services\" than males.</p><p>Such characteristics make them perfect candidates for Dr. Brosnan's and Dr. de Waal's study. The researchers spent two years teaching their monkeys to exchange tokens for food. Normally, the monkeys were happy enough to exchange pieces of rock for slices of cucumber. However, when two monkeys were placed in separate but adjoining chambers, so that each could observe what the other was getting in return for its rock, their behaviour became markedly different.</p><p>In the world of capuchins, grapes are luxury goods (and much preferable to cucumbers). So when one monkey was handed a grape in exchange for her token, the second was reluctant to hand hers over for a mere piece of cucumber. And if one received a grape without having to provide her token in exchange at all, the other either tossed her own token at the researcher or out of the chamber, or refused to accept the slice of cucumber. Indeed, the mere presence of a grape in the other chamber (without an actual monkey to eat it) was enough to induce resentment in a female capuchin.</p><p>The researchers suggest that capuchin monkeys, like humans, are guided by social emotions. In the wild, they are a cooperative, group-living species. Such cooperation is likely to be stable only when each animal feels it is not being cheated. Feelings of righteous indignation, it seems, are not the preserve of people alone. Refusing a lesser reward completely makes these feelings abundantly clear to other members of the group. However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.</p>",
+      "stem": "In the opening paragraph, the author introduces his topic by",
+      "options": [
+        {
+          "label": "A",
+          "text": "posing a contrast."
+        },
+        {
+          "label": "B",
+          "text": "justifying an assumption."
+        },
+        {
+          "label": "C",
+          "text": "making a comparison."
+        },
+        {
+          "label": "D",
+          "text": "explaining a phenomenon."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "作者在第一段通过比较人类和猴子的行为来引入主题。开头说人类喜欢加薪,但如果同事加薪更多会不高兴,然后引出研究表明猴子也有类似行为('it is all too monkey')。这是典型的比较手法。",
+      "errorAnalysis": {
+        "A": "posing a contrast表示'提出对比',强调两者的对立或差异。但本文不是强调人类和猴子的对立,而是通过比较发现相似性。",
+        "B": "justifying an assumption表示'证明假设的合理性',但作者不是在证明某个假设,而是通过比较引入主题。",
+        "D": "explaining a phenomenon表示'解释现象',虽然文章确实涉及现象,但作者引入主题的手法是通过比较人和猴子的相似性,而不是直接解释现象。"
+      },
+      "tips": "注意作者引入话题的手法:先说人类的行为,然后说研究表明猴子也一样,这是典型的比较(comparison)手法。contrast强调差异,comparison强调相似。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 22,
+      "type": "词义题",
+      "stem": "The statement 'it is all too monkey' (Last line, Paragraph 1) implies that",
+      "options": [
+        {
+          "label": "A",
+          "text": "monkeys are also outraged by slack rivals."
+        },
+        {
+          "label": "B",
+          "text": "resenting unfairness is also monkeys' nature."
+        },
+        {
+          "label": "C",
+          "text": "monkeys, like humans, tend to be jealous of each other."
+        },
+        {
+          "label": "D",
+          "text": "no animals other than monkeys can develop such emotions."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "'it is all too monkey'是对前面'all too human'的呼应,意思是'这也太猴子了',暗示这种行为不仅人类有,猴子也有。文章第一段提到'other animals would not be capable of this finely developed sense of grievance',但研究表明猴子也有这种情感,所以D选项正确:除了猴子,没有其他动物能发展出这种情感。",
+      "errorAnalysis": {
+        "A": "文章没有提到猴子对'laziness/slack'的同事感到愤怒,而是对不公平待遇感到不满。",
+        "B": "虽然猴子确实对不公平感到不满,但这个选项没有准确理解'all too monkey'的含义。这个短语强调的是猴子也有这种情感,而不是在定义猴子的本性。",
+        "C": "jealous(嫉妒)不准确。文章强调的是对不公平待遇的愤怒(resentment/indignation),而不是嫉妒。猴子不满是因为受到了不公平对待,而不是嫉妒对方得到更多。"
+      },
+      "tips": "理解'all too monkey'是对'all too human'的呼应,暗示猴子也有人类才被认为有的情感。注意区分jealousy(嫉妒)和resentment of unfairness(对不公平的愤怒)。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 23,
+      "type": "细节题",
+      "stem": "Female capuchin monkeys were chosen for the research most probably because they are",
+      "options": [
+        {
+          "label": "A",
+          "text": "more inclined to weigh what they get."
+        },
+        {
+          "label": "B",
+          "text": "attentive to researchers' instructions."
+        },
+        {
+          "label": "C",
+          "text": "nice in both appearance and temperament."
+        },
+        {
+          "label": "D",
+          "text": "more generous than their male companions."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "C",
+      "analysis": "第二段最后一句明确说明:'Above all, like their female human counterparts, they tend to pay much closer attention to the value of goods and services than males.' 意思是雌性卷尾猴更倾向于关注'商品和服务'的价值,即更会权衡得失。",
+      "errorAnalysis": {
+        "B": "文章没有提到雌性猴子更关注研究者的指令。",
+        "C": "虽然第二段提到'They look cute. They are good-natured',但这是描述性内容,不是选择它们做研究的主要原因。'",
+        "D": "文章没有比较雌雄猴子的慷慨程度,而是比较它们对价值的关注度。"
+      },
+      "tips": "注意'Above all'(最重要的是)这个信号词,后面的内容就是选择雌性猴子的主要原因。weigh what they get = pay attention to the value of goods and services。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 24,
+      "type": "细节题",
+      "stem": "Dr. Brosnan and Dr. de Waal have eventually found in their study that the monkey",
+      "options": [
+        {
+          "label": "A",
+          "text": "prefer grapes to cucumbers."
+        },
+        {
+          "label": "B",
+          "text": "can be taught to exchange things."
+        },
+        {
+          "label": "C",
+          "text": "will not be cooperative if feeling cheated."
+        },
+        {
+          "label": "D",
+          "text": "are unhappy when separated from others."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "第四段描述了实验结果:当一只猴子看到另一只猴子得到葡萄(更好的奖励)而自己只得到黄瓜时,它会拒绝合作(tossed her token away or refused to accept cucumber)。最后一段也明确指出:'Such cooperation is likely to be stable only when each animal feels it is not being cheated.' 这表明猴子在感到被欺骗或不公平对待时会拒绝合作。",
+      "errorAnalysis": {
+        "A": "虽然猴子确实更喜欢葡萄,但这只是实验设计的一部分,不是研究的主要发现。",
+        "B": "猴子可以被教交换东西是实验的前提条件,不是研究的最终发现。",
+        "D": "文章没有提到猴子被分开时不开心。实验确实将猴子放在相邻但分开的房间,但重点是它们能看到对方的待遇,而不是分离本身。"
+      },
+      "tips": "注意问题问的是'eventually found'(最终发现),即研究的主要结论。实验的核心发现是猴子对不公平待遇的反应,而不是它们的偏好或能力。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 25,
+      "type": "推理题",
+      "stem": "What can we infer from the last paragraph?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Monkeys can be trained to develop social emotions."
+        },
+        {
+          "label": "B",
+          "text": "Human indignation evolved from an uncertain source."
+        },
+        {
+          "label": "C",
+          "text": "Animals usually show their feelings openly as humans do."
+        },
+        {
+          "label": "D",
+          "text": "Cooperation among monkeys remains stable only in the wild."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "最后一段最后一句是关键:'whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.' 意思是这种公平感是独立进化而来的,还是来自3500万年前的共同祖先,目前还是未解之谜。这暗示人类的不公平感(义愤)来源不确定。",
+      "errorAnalysis": {
+        "A": "文章说猴子像人类一样被社会情感引导,但没有说可以通过训练发展社会情感。",
+        "C": "文章没有说动物通常像人类一样公开表达情感。实际上,文章说猴子通过拒绝较少的奖励来'明确地'表达不满,但不能推断出'通常'都这样。",
+        "D": "文章说在野外合作可能稳定,但没有说'只有在野外'才稳定。"
+      },
+      "tips": "最后一段的关键信息是'unanswered question'(未解之谜),暗示来源不确定。indignation = righteous indignation = 义愤,对不公平的愤怒。"
     }
   ],
-  "lastUpdated": "2026-05-07T13:56:52.011Z"
+  "lastUpdated": "2026-05-21T19:15:00.000Z"
 }

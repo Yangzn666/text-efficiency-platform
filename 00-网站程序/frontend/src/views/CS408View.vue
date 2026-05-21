@@ -5,6 +5,7 @@ import CodeTraining from '@/components/PlaceholderComponent.vue'
 import MindMap from '@/components/PlaceholderComponent.vue'
 import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
 import CS408ProgressTracker from '@/components/CS408ProgressTracker.vue'
+import CS408QuickEntry from '@/components/CS408QuickEntry.vue'
 
 const activeTab = ref('progress')
 </script>
@@ -23,7 +24,13 @@ const activeTab = ref('progress')
         </el-tab-pane>
         
         <el-tab-pane label="知识点梳理" name="knowledge">
-          <KnowledgeStructure subject="cs408" />
+          <div class="knowledge-section">
+            <!-- 快速入口卡片 -->
+            <CS408QuickEntry />
+            
+            <!-- 详细知识点结构 -->
+            <KnowledgeStructure subject="cs408" />
+          </div>
         </el-tab-pane>
         
         <el-tab-pane label="代码实战" name="code">
@@ -108,6 +115,12 @@ const activeTab = ref('progress')
   text-align: center;
   padding: 40px 20px;
   color: #666;
+}
+
+.knowledge-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .knowledge-illustration {

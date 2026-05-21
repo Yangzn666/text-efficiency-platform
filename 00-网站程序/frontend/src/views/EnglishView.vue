@@ -8,7 +8,7 @@ const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/Gr
 const TranslationLearning = defineAsyncComponent(() => import('@/components/TranslationLearning.vue'))
 const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 
-const activeTab = ref('vocabulary')
+const activeTab = ref('reading')
 </script>
 
 <template>

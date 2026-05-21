@@ -43,7 +43,6 @@ import CS408View from '@/views/CS408View.vue'
 import AttentionView from '@/views/AttentionViewIntegrated.vue'
 import LearningPathView from '@/views/LearningPathView.vue'
 import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
-import PsychologyView from '@/views/PsychologyView.vue'
 
 const currentRoute = ref('/')
 const isLoading = ref(true)
@@ -57,14 +56,16 @@ const routes = [
   { path: '/universities', name: '🏫 院校查询' },
   { path: '/attention', name: '注意力' },
   { path: '/learning-path', name: '学习路径' },
-  { path: '/analytics', name: '数据分析' },
-  { path: '/psychology', name: '心理干预' }
+  { path: '/analytics', name: '数据分析' }
 ]
 
 const router = useRouter()
 
 const goToRoute = (path) => {
-  router.push(path)
+  console.log('导航到:', path)
+  router.push(path).catch(err => {
+    console.error('路由跳转失败:', err)
+  })
 }
 
 const goToSubject = (subject) => {

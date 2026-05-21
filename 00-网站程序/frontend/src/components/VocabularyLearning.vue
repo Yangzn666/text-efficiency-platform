@@ -1717,6 +1717,237 @@ const confusableGroups = [
       { content: 'illusion', translation: '错觉，幻觉' },
       { content: 'illustration', translation: '插图，说明' }
     ]
+  },
+  // 新增形近词组
+  {
+    id: 79,
+    title: 'contract vs contradict vs extractive vs contrary vs contempt',
+    words: [
+      { content: 'contract', translation: '合同' },
+      { content: 'contradict', translation: '反驳，否认' },
+      { content: 'extractive', translation: '提取物' },
+      { content: 'contrary', translation: '相反的' },
+      { content: 'contempt', translation: '鄙视' }
+    ]
+  },
+  {
+    id: 80,
+    title: 'stupid vs stipulate',
+    words: [
+      { content: 'stupid', translation: '愚蠢的' },
+      { content: 'stipulate', translation: '规定' }
+    ]
+  },
+  {
+    id: 81,
+    title: 'promise vs premise vs compromise',
+    words: [
+      { content: 'promise', translation: '承诺' },
+      { content: 'premise', translation: '前提' },
+      { content: 'compromise', translation: '妥协' }
+    ]
+  },
+  {
+    id: 82,
+    title: 'simulate vs stipulate',
+    words: [
+      { content: 'simulate', translation: '模拟，模仿' },
+      { content: 'stipulate', translation: '规定' }
+    ]
+  },
+  {
+    id: 83,
+    title: 'narrative vs native',
+    words: [
+      { content: 'narrative', translation: '叙事的' },
+      { content: 'native', translation: '本地的' }
+    ]
+  },
+  {
+    id: 84,
+    title: 'stem vs stew',
+    words: [
+      { content: 'stem', translation: '秆，茎，阻止，源于' },
+      { content: 'stew', translation: '炖菜' }
+    ]
+  },
+  {
+    id: 85,
+    title: 'enterprise vs entertain',
+    words: [
+      { content: 'enterprise', translation: '企业' },
+      { content: 'entertain', translation: '使快乐' }
+    ]
+  },
+  {
+    id: 86,
+    title: 'monotonous vs monopoly',
+    words: [
+      { content: 'monotonous', translation: '单调的' },
+      { content: 'monopoly', translation: '垄断' }
+    ]
+  },
+  {
+    id: 87,
+    title: 'badge vs budget',
+    words: [
+      { content: 'badge', translation: '徽章' },
+      { content: 'budget', translation: '预算' }
+    ]
+  },
+  {
+    id: 88,
+    title: 'beacon vs beckon vs bacon',
+    words: [
+      { content: 'beacon', translation: '灯塔' },
+      { content: 'beckon', translation: '示意，引诱' },
+      { content: 'bacon', translation: '培根' }
+    ]
+  },
+  {
+    id: 89,
+    title: 'boil vs spoil',
+    words: [
+      { content: 'boil', translation: '沸腾，煮熟' },
+      { content: 'spoil', translation: '破坏，溺爱，变质' }
+    ]
+  },
+  {
+    id: 90,
+    title: 'indignant vs diligent',
+    words: [
+      { content: 'indignant', translation: '愤怒的' },
+      { content: 'diligent', translation: '勤奋的' }
+    ]
+  },
+  {
+    id: 91,
+    title: 'epoch vs episode',
+    words: [
+      { content: 'epoch', translation: '时代，纪元' },
+      { content: 'episode', translation: '一段经历，小插曲' }
+    ]
+  },
+  {
+    id: 92,
+    title: 'extinguish vs distinguished',
+    words: [
+      { content: 'extinguish', translation: '熄灭，毁灭' },
+      { content: 'distinguished', translation: '杰出的' }
+    ]
+  },
+  {
+    id: 93,
+    title: 'support vs suppose',
+    words: [
+      { content: 'support', translation: '支持' },
+      { content: 'suppose', translation: '推断' }
+    ]
+  },
+  {
+    id: 94,
+    title: 'nation vs notion',
+    words: [
+      { content: 'nation', translation: '国家' },
+      { content: 'notion', translation: '观念' }
+    ]
+  },
+  {
+    id: 95,
+    title: 'travel vs travail vs trivial',
+    words: [
+      { content: 'travel', translation: '旅游' },
+      { content: 'travail', translation: '艰苦劳动' },
+      { content: 'trivial', translation: '琐碎的，微不足道的' }
+    ]
+  },
+  {
+    id: 96,
+    title: 'regular vs regulate',
+    words: [
+      { content: 'regular', translation: '有规律的' },
+      { content: 'regulate', translation: '管理，约束' }
+    ]
+  },
+  {
+    id: 97,
+    title: 'instinct vs distinct',
+    words: [
+      { content: 'instinct', translation: '本能，天性' },
+      { content: 'distinct', translation: '截然不同的' }
+    ]
+  },
+  {
+    id: 98,
+    title: 'assumption vs consumption',
+    words: [
+      { content: 'assumption', translation: '假设' },
+      { content: 'consumption', translation: '消耗 (量)，消费' }
+    ]
+  },
+  {
+    id: 99,
+    title: 'swing vs wing',
+    words: [
+      { content: 'swing', translation: '(使) 摆动；(使) 转弯' },
+      { content: 'wing', translation: '翅膀；机翼' }
+    ]
+  },
+  {
+    id: 100,
+    title: 'involve vs revolve',
+    words: [
+      { content: 'involve', translation: '需要，包含' },
+      { content: 'revolve', translation: '旋转' }
+    ]
+  },
+  {
+    id: 101,
+    title: 'successive vs success',
+    words: [
+      { content: 'successive', translation: '连续的' },
+      { content: 'success', translation: '成功，胜利' }
+    ]
+  },
+  {
+    id: 102,
+    title: 'shutter vs shatter',
+    words: [
+      { content: 'shutter', translation: '快门' },
+      { content: 'shatter', translation: '(使) 破碎；使 (希望等) 破灭' }
+    ]
+  },
+  {
+    id: 103,
+    title: 'empire vs expire',
+    words: [
+      { content: 'empire', translation: '帝国；企业集团' },
+      { content: 'expire', translation: '(协议等) 到期，失效；死亡' }
+    ]
+  },
+  {
+    id: 104,
+    title: 'defeat vs feat',
+    words: [
+      { content: 'defeat', translation: '击败' },
+      { content: 'feat', translation: '壮举，技艺' }
+    ]
+  },
+  {
+    id: 105,
+    title: 'quarrel vs squirrel',
+    words: [
+      { content: 'quarrel', translation: '争吵' },
+      { content: 'squirrel', translation: '松鼠' }
+    ]
+  },
+  {
+    id: 106,
+    title: 'nominate vs nominal',
+    words: [
+      { content: 'nominate', translation: '提名；任命，指定' },
+      { content: 'nominal', translation: '名义上的；象征性的，很少的' }
+    ]
   }
 ]
 

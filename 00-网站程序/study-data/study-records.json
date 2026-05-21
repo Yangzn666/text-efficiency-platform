@@ -535,6 +535,411 @@
       "content": "计组第六章学习（16:30-16:55）",
       "type": "study",
       "createdAt": "2026-05-17T16:30:00.000Z"
+    },
+    {
+      "id": "record_20260517_2",
+      "date": "2026-05-17",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "数学武忠祥第一章强化（18:00-18:25）",
+      "type": "study",
+      "createdAt": "2026-05-17T18:00:00.000Z"
+    },
+    {
+      "id": "record_20260517_3",
+      "date": "2026-05-17",
+      "subject": "数学一",
+      "duration": 40,
+      "content": "数学武忠祥第一章强化（18:30-19:10）",
+      "type": "study",
+      "createdAt": "2026-05-17T18:30:00.000Z"
+    },
+    {
+      "id": "record_20260517_4",
+      "date": "2026-05-17",
+      "subject": "其他",
+      "duration": 25,
+      "content": "更新网站功能（19:30-19:55）",
+      "type": "study",
+      "createdAt": "2026-05-17T19:30:00.000Z"
+    },
+    {
+      "id": "record_20260517_5",
+      "date": "2026-05-17",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "数学强化第一章（20:00-20:25）",
+      "type": "study",
+      "createdAt": "2026-05-17T20:00:00.000Z"
+    },
+    {
+      "id": "record_20260517_6",
+      "date": "2026-05-17",
+      "subject": "数学一",
+      "duration": 35,
+      "content": "高数武忠祥强化第一章（20:30-21:05）",
+      "type": "study",
+      "createdAt": "2026-05-17T20:30:00.000Z"
+    },
+    {
+      "id": "record_20260517_7",
+      "date": "2026-05-17",
+      "subject": "英语一",
+      "duration": 25,
+      "content": "背单词（21:10-21:35）",
+      "type": "study",
+      "createdAt": "2026-05-17T21:10:00.000Z"
+    },
+    {
+      "id": "record_20260517_8",
+      "date": "2026-05-17",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "计组第六章学习（23:00-23:25）",
+      "type": "study",
+      "createdAt": "2026-05-17T23:00:00.000Z"
+    },
+    {
+      "id": "record_20260518_1",
+      "date": "2026-05-18",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "计组第七章学习（14:45-15:10）",
+      "type": "study",
+      "createdAt": "2026-05-18T14:45:00.000Z"
+    },
+    {
+      "id": "record_20260518_2",
+      "date": "2026-05-18",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "计组第七章学习（15:15-15:40）",
+      "type": "study",
+      "createdAt": "2026-05-18T15:15:00.000Z"
+    },
+    {
+      "id": "record_20260518_3",
+      "date": "2026-05-18",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "计组第七章学习并完成全部内容（15:45-16:10）",
+      "type": "study",
+      "createdAt": "2026-05-18T15:45:00.000Z"
+    },
+    {
+      "id": "record_20260518_4",
+      "date": "2026-05-18",
+      "subject": "其他",
+      "duration": 25,
+      "content": "完善网站功能（16:20-16:45）",
+      "type": "study",
+      "createdAt": "2026-05-18T16:20:00.000Z"
+    },
+    {
+      "id": "record_20260518_5",
+      "date": "2026-05-18",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "武忠祥高数第一章强化（19:00-19:25）",
+      "type": "study",
+      "createdAt": "2026-05-18T19:00:00.000Z"
+    },
+    {
+      "id": "record_20260518_6",
+      "date": "2026-05-18",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "武忠祥高数第一章强化（19:30-19:55）",
+      "type": "study",
+      "createdAt": "2026-05-18T19:30:00.000Z"
+    },
+    {
+      "id": "record_20260518_7",
+      "date": "2026-05-18",
+      "subject": "408专业课",
+      "duration": 60,
+      "content": "计组第七章完成，计组基础轮全部结束（14:45-16:10）",
+      "type": "study",
+      "createdAt": "2026-05-18T16:10:00.000Z"
+    },
+    {
+      "id": "record_20260429_1",
+      "date": "2026-04-29",
+      "subject": "网站开发",
+      "duration": 25,
+      "content": "更新网站功能 - 优化操作系统知识点排版，完善第1-5章内容，添加详细表格、代码示例和考点标注",
+      "type": "study",
+      "createdAt": "2026-04-29T03:30:00.000Z"
+    },
+    {
+      "id": "record_20260429_2",
+      "date": "2026-04-29",
+      "subject": "英语一",
+      "duration": 15,
+      "content": "背单词 - 日常单词记忆练习",
+      "type": "study",
+      "createdAt": "2026-04-29T04:00:00.000Z"
+    },
+    {
+      "id": "record_20260519_1",
+      "date": "2026-05-19",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "操作系统第一章学习（13:30-13:55）",
+      "type": "study",
+      "createdAt": "2026-05-19T13:30:00.000Z"
+    },
+    {
+      "id": "record_20260519_2",
+      "date": "2026-05-19",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "操作系统第一章学习（14:00-14:25）",
+      "type": "study",
+      "createdAt": "2026-05-19T14:00:00.000Z"
+    },
+    {
+      "id": "record_20260519_3",
+      "date": "2026-05-19",
+      "subject": "408专业课",
+      "duration": 25,
+      "content": "操作系统第一章学习（14:30-14:55）",
+      "type": "study",
+      "createdAt": "2026-05-19T14:30:00.000Z"
+    },
+    {
+      "id": "record_20260519_4",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "武忠祥高数第一章强化（15:45-16:10）",
+      "type": "study",
+      "createdAt": "2026-05-19T15:45:00.000Z"
+    },
+    {
+      "id": "record_20260519_5",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "武忠祥高数第一章强化（16:30-16:55）",
+      "type": "study",
+      "createdAt": "2026-05-19T16:30:00.000Z"
+    },
+    {
+      "id": "record_20260519_6",
+      "date": "2026-05-19",
+      "subject": "其他",
+      "duration": 25,
+      "content": "更新网站功能（11:30-11:55）",
+      "type": "study",
+      "createdAt": "2026-05-19T11:30:00.000Z"
+    },
+    {
+      "id": "record_20260519_7",
+      "date": "2026-05-19",
+      "subject": "英语一",
+      "duration": 15,
+      "content": "背单词（12:00-12:15）",
+      "type": "study",
+      "createdAt": "2026-05-19T12:00:00.000Z"
+    },
+    {
+      "id": "record_20260519_8",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化（18:00-18:25）",
+      "type": "study",
+      "createdAt": "2026-05-19T18:00:00.000Z"
+    },
+    {
+      "id": "record_20260519_9",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化（18:30-18:55）",
+      "type": "study",
+      "createdAt": "2026-05-19T18:30:00.000Z"
+    },
+    {
+      "id": "record_20260519_10",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "概率论强化（19:15-19:40）",
+      "type": "study",
+      "createdAt": "2026-05-19T19:15:00.000Z"
+    },
+    {
+      "id": "record_20260519_11",
+      "date": "2026-05-19",
+      "subject": "数学一",
+      "duration": 40,
+      "content": "概率论强化（19:45-20:25）",
+      "type": "study",
+      "createdAt": "2026-05-19T19:45:00.000Z"
+    },
+    {
+      "id": "record_20260519_12",
+      "date": "2026-05-19",
+      "subject": "其他",
+      "duration": 25,
+      "content": "维护网站功能（20:50-21:15）",
+      "type": "study",
+      "createdAt": "2026-05-19T20:50:00.000Z"
+    },
+    {
+      "id": "record_20260520_1",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "上午学习（9:30-9:55）",
+      "type": "study",
+      "createdAt": "2026-05-20T09:30:00.000Z"
+    },
+    {
+      "id": "record_20260520_2",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "上午学习（10:00-10:25）",
+      "type": "study",
+      "createdAt": "2026-05-20T10:00:00.000Z"
+    },
+    {
+      "id": "record_20260520_3",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 32,
+      "content": "上午学习（10:30-11:02）",
+      "type": "study",
+      "createdAt": "2026-05-20T10:30:00.000Z"
+    },
+    {
+      "id": "record_20260520_4",
+      "date": "2026-05-20",
+      "subject": "英语一",
+      "duration": 25,
+      "content": "背单词（11:45-12:10）",
+      "type": "study",
+      "createdAt": "2026-05-20T11:45:00.000Z"
+    },
+    {
+      "id": "record_20260520_5",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 25,
+      "content": "下午学习（13:55-14:20）",
+      "type": "study",
+      "createdAt": "2026-05-20T13:55:00.000Z"
+    },
+    {
+      "id": "record_20260520_6",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 35,
+      "content": "高数强化第一章（14:40-15:15）",
+      "type": "study",
+      "createdAt": "2026-05-20T14:40:00.000Z"
+    },
+    {
+      "id": "record_20260520_1",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 40,
+      "content": "第一章强化学习（15:40-16:20）",
+      "type": "study",
+      "createdAt": "2026-05-20T15:40:00.000Z"
+    },
+    {
+      "id": "record_20260520_2",
+      "date": "2026-05-20",
+      "subject": "英语一",
+      "duration": 15,
+      "content": "背单词（17:20-17:35）",
+      "type": "study",
+      "createdAt": "2026-05-20T17:20:00.000Z"
+    },
+    {
+      "id": "record_20260520_7",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 20,
+      "content": "高数第一章强化（17:50-18:10）",
+      "type": "study",
+      "createdAt": "2026-05-20T17:50:00.000Z"
+    },
+    {
+      "id": "record_20260520_8",
+      "date": "2026-05-20",
+      "subject": "数学一",
+      "duration": 55,
+      "content": "高数第一章强化（18:40-19:35）",
+      "type": "study",
+      "createdAt": "2026-05-20T18:40:00.000Z"
+    },
+    {
+      "id": "record_20260520_9",
+      "date": "2026-05-20",
+      "subject": "408专业课",
+      "duration": 30,
+      "content": "操作系统第一章学习（20:30-21:00）",
+      "type": "study",
+      "createdAt": "2026-05-20T20:30:00.000Z"
+    },
+    {
+      "id": "record_20260521_1",
+      "date": "2026-05-21",
+      "subject": "英语一",
+      "duration": 16,
+      "content": "背单词（13:30-13:46）",
+      "type": "study",
+      "createdAt": "2026-05-21T13:30:00.000Z"
+    },
+    {
+      "id": "record_20260521_2",
+      "date": "2026-05-21",
+      "subject": "数学一",
+      "duration": 90,
+      "content": "高数第一章强化（14:00-15:30）",
+      "type": "study",
+      "createdAt": "2026-05-21T14:00:00.000Z"
+    },
+    {
+      "id": "record_20260521_3",
+      "date": "2026-05-21",
+      "subject": "数学一",
+      "duration": 75,
+      "content": "1000题B组高数第一讲（16:00-17:15）",
+      "type": "practice",
+      "createdAt": "2026-05-21T16:00:00.000Z"
+    },
+    {
+      "id": "record_20260521_5",
+      "date": "2026-05-21",
+      "subject": "英语一",
+      "duration": 45,
+      "content": "倒装句和独立主格结构学习 - 掌握完全倒装和不完全倒装、常见倒装触发词（否定词/only/so等）、虚拟语气倒装、独立主格的七种形式、with复合结构，完成20道专项练习（倒装句正确率50%，独立主格正确率80%）",
+      "type": "study",
+      "createdAt": "2026-05-21T18:30:00.000Z"
+    },
+    {
+      "id": "record_20260521_6",
+      "date": "2026-05-21",
+      "subject": "英语一",
+      "duration": 60,
+      "content": "刷2005年阅读真题（19:30-20:30）",
+      "type": "practice",
+      "createdAt": "2026-05-21T19:30:00.000Z"
+    },
+    {
+      "id": "record_20260521_7",
+      "date": "2026-05-21",
+      "subject": "英语一",
+      "duration": 17,
+      "content": "背单词（20:43-21:00）",
+      "type": "study",
+      "createdAt": "2026-05-21T20:43:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -557,16 +962,16 @@
       "completionRate": 16.67
     },
     "英语一": {
-      "totalTime": 473,
-      "lastStudyDate": "2026-05-16",
+      "totalTime": 651,
+      "lastStudyDate": "2026-05-21",
       "weeklyGoal": 300,
-      "completionRate": 157.67
+      "completionRate": 217
     },
     "数学一": {
-      "totalTime": 275,
-      "lastStudyDate": "2026-05-11",
+      "totalTime": 855,
+      "lastStudyDate": "2026-05-21",
       "weeklyGoal": 300,
-      "completionRate": 91.67
+      "completionRate": 285
     },
     "408计算机": {
       "totalTime": 290,
@@ -575,16 +980,16 @@
       "completionRate": 96.67
     },
     "408专业课": {
-      "totalTime": 150,
-      "lastStudyDate": "2026-05-17",
+      "totalTime": 355,
+      "lastStudyDate": "2026-05-20",
       "weeklyGoal": 300,
-      "completionRate": 50
+      "completionRate": 118.33
     },
     "其他": {
-      "totalTime": 105,
-      "lastStudyDate": "2026-05-16",
+      "totalTime": 155,
+      "lastStudyDate": "2026-05-19",
       "weeklyGoal": 300,
-      "completionRate": 35
+      "completionRate": 51.67
     }
   }
 }

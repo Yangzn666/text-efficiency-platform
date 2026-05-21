@@ -202,10 +202,11 @@ const subjects = ref([
     id: 'computer-org',
     name: '计算机组成原理',
     icon: '🔧',
-    status: 'in-progress',
+    status: 'completed',
     phase: '基础阶段',
     description: '数据的表示和运算、存储系统、指令系统、中央处理器、总线、输入输出系统',
-    startDate: '2026-05-01'
+    startDate: '2026-05-01',
+    completedDate: '2026-05-18'
   },
   {
     id: 'computer-network',
@@ -219,9 +220,10 @@ const subjects = ref([
     id: 'operating-system',
     name: '操作系统',
     icon: '⚙️',
-    status: 'pending',
+    status: 'in-progress',
     phase: '基础阶段',
-    description: '操作系统基本概念、进程管理、内存管理、文件管理、输入输出管理'
+    description: '操作系统基本概念、进程管理、内存管理、文件管理、输入输出管理',
+    startDate: '2026-05-19'
   }
 ])
 
@@ -287,7 +289,7 @@ const goToSubjectLearning = (subjectId) => {
     'data-structure': '/cs408/datastructure',
     'computer-org': '/cs408/composition',
     'computer-network': '/cs408/network',
-    'operating-system': '/cs408/operating'
+    'operating-system': '/cs408/os'
   }
   const route = routeMap[subjectId]
   if (route) {
@@ -300,6 +302,16 @@ const goToSubjectLearning = (subjectId) => {
 // 打开408可视化学习网站
 const openVisualIndex = () => {
   window.open('https://www.codebrick.tech/visual-index.html', '_blank')
+}
+
+// 进入计组学习模块
+const goToCompositionLearning = () => {
+  router.push('/cs408/composition')
+}
+
+// 进入操作系统学习模块
+const goToOSLearning = () => {
+  router.push('/cs408/os')
 }
 </script>
 

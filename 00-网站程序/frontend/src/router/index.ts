@@ -1,17 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 使用动态导入实现路由懒加载
 const HomeView = () => import('@/views/HomeView.vue')
-const AuthView = () => import('@/views/AuthView.vue')
-const AttentionView = () => import('@/views/AttentionViewIntegrated.vue')
+const AttentionView = () => import('@/views/AttentionViewNew.vue')
 const LearningPathView = () => import('@/views/LearningPathView.vue')
 const PsychologyView = () => import('@/views/PsychologyView.vue')
 const CS408View = () => import('@/views/CS408View.vue')
 const CSLearningView = () => import('@/views/CSLearning.vue')
 const DSLearningView = () => import('@/views/DSLearning.vue')
 const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
+const OSLearningView = () => import('@/views/OSLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
 const MathView = () => import('@/views/MathView.vue')
-const MathHomeView = () => import('@/views/MathHomeView.vue')
+// 数学强化阶段组件
+const ReinforcementDashboard = () => import('@/components/ReinforcementDashboard.vue')
+const TopicReinforcementView = () => import('@/components/TopicReinforcementView.vue')
+const SpecialTrainingCenter = () => import('@/components/SpecialTrainingCenter.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
@@ -21,7 +24,6 @@ const SystemTestDeploymentView = () => import('@/views/SystemTestDeploymentView.
 const TaskManagementView = () => import('@/views/TaskManagementView.vue')
 const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
-import { useUserStore } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -91,6 +93,16 @@ const router = createRouter({
       }
     },
     {
+      path: '/cs408/os',
+      name: 'cs-os',
+      component: OSLearningView,
+      meta: { 
+        requiresAuth: true,
+        title: '操作系统',
+        subject: '操作系统'
+      }
+    },
+    {
       path: '/wrong-problems',
       name: 'wrong-problems',
       component: WrongProblemsView,
@@ -102,14 +114,54 @@ const router = createRouter({
     {
       path: '/math',
       name: 'math',
-      component: MathHomeView,
-      meta: { requiresAuth: true }
+      component: ReinforcementDashboard,
+      meta: { 
+        requiresAuth: true,
+        title: '数学强化学习'
+      }
     },
     {
       path: '/math/detail',
       name: 'math-detail',
       component: MathView,
       meta: { requiresAuth: true }
+    },
+    // 数学强化阶段路由
+    {
+      path: '/math/reinforcement',
+      name: 'math-reinforcement-dashboard',
+      component: ReinforcementDashboard,
+      meta: { 
+        requiresAuth: true,
+        title: '数学强化学习仪表盘'
+      }
+    },
+    {
+      path: '/math/reinforcement/topics',
+      name: 'math-reinforcement-topics',
+      component: TopicReinforcementView,
+      meta: { 
+        requiresAuth: true,
+        title: '知识点强化管理'
+      }
+    },
+    {
+      path: '/math/reinforcement/topics/:id',
+      name: 'math-reinforcement-topic-detail',
+      component: TopicReinforcementView,
+      meta: { 
+        requiresAuth: true,
+        title: '知识点详情'
+      }
+    },
+    {
+      path: '/math/reinforcement/special-training',
+      name: 'math-reinforcement-special-training',
+      component: SpecialTrainingCenter,
+      meta: { 
+        requiresAuth: true,
+        title: '专题突破中心'
+      }
     },
     {
       path: '/english',
