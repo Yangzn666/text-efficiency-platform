@@ -150,6 +150,10 @@
             <div class="legend-level level-2"></div>
             <div class="legend-level level-3"></div>
             <div class="legend-level level-4"></div>
+            <div class="legend-level level-5"></div>
+            <div class="legend-level level-6"></div>
+            <div class="legend-level level-7"></div>
+            <div class="legend-level level-8"></div>
           </div>
           <span>多</span>
         </div>
@@ -361,10 +365,14 @@ const heatmapDays = computed(() => {
 // 获取热力图等级
 const getHeatmapClass = (minutes: number) => {
   if (minutes === 0) return 'level-0'
-  if (minutes < 60) return 'level-1'
-  if (minutes < 120) return 'level-2'
-  if (minutes < 180) return 'level-3'
-  return 'level-4'
+  if (minutes < 60) return 'level-1'      // <1小时：轻微学习
+  if (minutes < 120) return 'level-2'     // 1-2小时：短时学习
+  if (minutes < 180) return 'level-3'     // 2-3小时：中等学习
+  if (minutes < 240) return 'level-4'     // 3-4小时：较好学习
+  if (minutes < 300) return 'level-5'     // 4-5小时：长时间学习
+  if (minutes < 360) return 'level-6'     // 5-6小时：超长学习
+  if (minutes < 480) return 'level-7'     // 6-8小时：极长学习
+  return 'level-8'                         // ≥8小时：超负荷学习（考研标准）
 }
 
 onMounted(() => {
@@ -707,10 +715,14 @@ onMounted(() => {
       }
       
       &.level-0 { background: #ebedf0; }
-      &.level-1 { background: #9be9a8; }
-      &.level-2 { background: #40c463; }
-      &.level-3 { background: #30a14e; }
-      &.level-4 { background: #216e39; }
+      &.level-1 { background: #c6e48b; }
+      &.level-2 { background: #9be9a8; }
+      &.level-3 { background: #7bc96f; }
+      &.level-4 { background: #40c463; }
+      &.level-5 { background: #30a14e; }
+      &.level-6 { background: #248a3d; }
+      &.level-7 { background: #216e39; }
+      &.level-8 { background: #16512b; }
       
       .cell-content {
         display: flex;
