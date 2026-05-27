@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 // 使用动态导入解决TypeScript默认导出识别问题
 const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
 const VocabularySystem = defineAsyncComponent(() => import('@/components/VocabularyLearning.vue'))
@@ -8,7 +9,16 @@ const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/Gr
 const TranslationLearning = defineAsyncComponent(() => import('@/components/TranslationLearning.vue'))
 const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 
+const route = useRoute()
 const activeTab = ref('reading')
+
+// 在组件挂载时检查路由参数，激活对应的tab
+onMounted(() => {
+  const tabParam = route.query.tab as string
+  if (tabParam && ['reading', 'vocabulary', 'writing', 'translation', 'studyPlan', 'grammarCenter'].includes(tabParam)) {
+    activeTab.value = tabParam
+  }
+})
 </script>
 
 <template>

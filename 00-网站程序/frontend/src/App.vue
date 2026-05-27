@@ -40,7 +40,7 @@ import MathView from '@/views/MathView.vue'
 import EnglishView from '@/views/EnglishView.vue'
 import PoliticsView from '@/views/PoliticsView.vue'
 import CS408View from '@/views/CS408View.vue'
-import AttentionView from '@/views/AttentionViewIntegrated.vue'
+import StudyMethodsView from '@/views/StudyMethodsView.vue'
 import LearningPathView from '@/views/LearningPathView.vue'
 import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
 
@@ -54,7 +54,7 @@ const routes = [
   { path: '/politics', name: '政治' },
   { path: '/cs408', name: '408计算机' },
   { path: '/universities', name: '🏫 院校查询' },
-  { path: '/attention', name: '注意力' },
+  { path: '/study-methods', name: '学习方法' },
   { path: '/learning-path', name: '学习路径' },
   { path: '/analytics', name: '数据分析' }
 ]

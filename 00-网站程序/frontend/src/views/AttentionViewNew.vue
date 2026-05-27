@@ -1,13 +1,42 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useAttentionStore } from '@/stores/attention'
 import { ElMessage } from 'element-plus'
-import { Play, Pause, Close, Timer, WarningFilled, DataLine } from '@element-plus/icons-vue'
+import { VideoPlay, VideoPause, Close, DataLine } from '@element-plus/icons-vue'
 
 const attentionStore = useAttentionStore()
 const selectedSubject = ref('')
 const showDistractionModal = ref(false)
 const distractionType = ref('')
+
+// 定时器引用
+let timerInterval: ReturnType<typeof setInterval> | null = null
+
+// 启动定时器
+const startTimer = () => {
+  if (timerInterval) return
+  
+  timerInterval = setInterval(() => {
+    attentionStore.tick()
+  }, 1000)
+}
+
+// 停止定时器
+const stopTimer = () => {
+  if (timerInterval) {
+    clearInterval(timerInterval)
+    timerInterval = null
+  }
+}
+
+// 监听计时器状态变化
+watch(() => attentionStore.timerState, (newState) => {
+  if (newState === 'running') {
+    startTimer()
+  } else {
+    stopTimer()
+  }
+})
 
 const subjects = [
   { label: '408计算机科学综合', value: '408计算机科学综合', color: '#409EFF' },
@@ -101,6 +130,15 @@ const recordDistraction = (type: string) => {
 
 onMounted(() => {
   attentionStore.initializeAttentionData()
+  
+  // 如果有进行中的会话，启动定时器
+  if (attentionStore.timerState === 'running') {
+    startTimer()
+  }
+})
+
+onUnmounted(() => {
+  stopTimer()
 })
 </script>
 
@@ -171,13 +209,13 @@ onMounted(() => {
           @click="startSession"
           :disabled="!selectedSubject"
         >
-          <el-icon><Play /></el-icon>
+          <el-icon><VideoPlay /></el-icon>
           <span>开始专注</span>
         </button>
 
         <template v-else>
           <button class="btn btn-pause" @click="togglePause">
-            <el-icon><Pause /></el-icon>
+            <el-icon><VideoPause /></el-icon>
             <span>{{ attentionStore.timerState === 'running' ? '暂停' : '继续' }}</span>
           </button>
           

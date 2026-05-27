@@ -34,7 +34,7 @@
       
       <!-- 中间：思维导图 -->
       <div class="mindmap-panel">
-        <MindMapView />
+        <MindMapView subject="network" />
       </div>
       
       <!-- 右侧：知识点文档 -->
@@ -94,7 +94,11 @@ const wrongProblemsRef = ref()
 
 // 监听当前小节变化
 watch(currentSection, (newSection) => {
-  console.log('当前小节切换为:', newSection?.id, newSection?.title)
+  if (newSection) {
+    console.log('✅ 当前小节:', newSection.id, newSection.title)
+  } else {
+    console.warn(' 当前小节为 undefined')
+  }
 })
 
 // 知识卡片引用
@@ -136,6 +140,12 @@ const toggleCurrentSection = () => {
 // 组件挂载时设置默认思维导图
 onMounted(() => {
   console.log('网络学习页面已加载')
+  
+  // 初始化：选中第一章的第一个小节
+  if (networkStore.chapters.length > 0 && networkStore.chapters[0].sections.length > 0) {
+    networkStore.selectChapter(networkStore.chapters[0].id)
+    console.log('✅ 初始化选中章节:', networkStore.chapters[0].title)
+  }
 })
 </script>
 

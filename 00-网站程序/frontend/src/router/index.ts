@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 使用动态导入实现路由懒加载
 const HomeView = () => import('@/views/HomeView.vue')
-const AttentionView = () => import('@/views/AttentionViewNew.vue')
+const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
 const LearningPathView = () => import('@/views/LearningPathView.vue')
 const PsychologyView = () => import('@/views/PsychologyView.vue')
 const CS408View = () => import('@/views/CS408View.vue')
@@ -24,6 +24,13 @@ const SystemTestDeploymentView = () => import('@/views/SystemTestDeploymentView.
 const TaskManagementView = () => import('@/views/TaskManagementView.vue')
 const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
+// 翻译模块子页面
+const TranslationPhrasesView = () => import('@/views/TranslationPhrasesView.vue')
+const TranslationVocabularyView = () => import('@/views/TranslationVocabularyView.vue')
+const TranslationPatternsView = () => import('@/views/TranslationPatternsView.vue')
+const TranslationExamsView = () => import('@/views/TranslationExamsView.vue')
+const TranslationTipsView = () => import('@/views/TranslationTipsView.vue')
+const TranslationMistakesView = () => import('@/views/TranslationMistakesView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,9 +46,9 @@ const router = createRouter({
       // component: AuthView
     // },
     {
-      path: '/attention',
-      name: 'attention',
-      component: AttentionView,
+      path: '/study-methods',
+      name: 'study-methods',
+      component: StudyMethodsView,
       meta: { requiresAuth: true }
     },
     {
@@ -215,6 +222,43 @@ const router = createRouter({
       name: 'universities',
       component: UniversitiesView,
       meta: { requiresAuth: false }
+    },
+    // 翻译模块子路由
+    {
+      path: '/translation/phrases',
+      name: 'translation-phrases',
+      component: TranslationPhrasesView,
+      meta: { requiresAuth: true, title: '翻译词组积累' }
+    },
+    {
+      path: '/translation/vocabulary',
+      name: 'translation-vocabulary',
+      component: TranslationVocabularyView,
+      meta: { requiresAuth: true, title: '核心词汇积累' }
+    },
+    {
+      path: '/translation/patterns',
+      name: 'translation-patterns',
+      component: TranslationPatternsView,
+      meta: { requiresAuth: true, title: '万能句型积累' }
+    },
+    {
+      path: '/translation/exams',
+      name: 'translation-exams',
+      component: TranslationExamsView,
+      meta: { requiresAuth: true, title: '真题实战训练' }
+    },
+    {
+      path: '/translation/tips',
+      name: 'translation-tips',
+      component: TranslationTipsView,
+      meta: { requiresAuth: true, title: '翻译技巧讲义' }
+    },
+    {
+      path: '/translation/mistakes',
+      name: 'translation-mistakes',
+      component: TranslationMistakesView,
+      meta: { requiresAuth: true, title: '错题本' }
     }
   ]
 })

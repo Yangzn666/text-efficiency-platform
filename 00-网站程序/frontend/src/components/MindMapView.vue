@@ -40,12 +40,13 @@
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useCompositionStore } from '@/stores/composition'
 import { useDataStructureStore } from '@/stores/dataStructure'
+import { useNetworkStore } from '@/stores/network'
 import { ZoomIn, ZoomOut, FullScreen } from '@element-plus/icons-vue'
 // 异步加载mermaid，减小主包体积
 import type Mermaid from 'mermaid'
 
 const props = defineProps<{
-  subject?: 'composition' | 'datastructure'
+  subject?: 'composition' | 'datastructure' | 'network'
 }>()
 
 const mermaidModule = ref<typeof Mermaid | null>(null)
@@ -53,9 +54,12 @@ const mermaidModule = ref<typeof Mermaid | null>(null)
 // 根据subject参数选择对应的store
 const compositionStore = useCompositionStore()
 const dataStructureStore = useDataStructureStore()
+const networkStore = useNetworkStore()
 
 const activeStore = computed(() => {
-  return props.subject === 'datastructure' ? dataStructureStore : compositionStore
+  if (props.subject === 'datastructure') return dataStructureStore
+  if (props.subject === 'network') return networkStore
+  return compositionStore
 })
 const mermaidRef = ref<HTMLElement | null>(null)
 const loading = ref(false)

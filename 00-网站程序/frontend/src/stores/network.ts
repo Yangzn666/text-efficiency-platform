@@ -1905,7 +1905,16 @@ Content-Length: 1234
   
   const currentSection = computed(() => {
     if (!currentChapter.value) return null
-    return currentChapter.value.sections.find(sec => sec.id === currentSectionId.value)
+    const section = currentChapter.value.sections.find(sec => sec.id === currentSectionId.value)
+    
+    // 如果找不到匹配的小节（章节和小节不匹配），自动选择当前章节的第一个小节
+    if (!section && currentChapter.value.sections.length > 0) {
+      console.warn('小节ID不匹配，自动切换到章节的第一个小节')
+      currentSectionId.value = currentChapter.value.sections[0].id
+      return currentChapter.value.sections[0]
+    }
+    
+    return section
   })
   
   const overallProgress = computed(() => {

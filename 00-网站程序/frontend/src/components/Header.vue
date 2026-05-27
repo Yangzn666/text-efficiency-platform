@@ -16,7 +16,7 @@ const handleLogout = () => {
 
 const menuItems = computed(() => [
   { name: '首页', icon: 'HomeFilled', route: '/' },
-  { name: '注意力管理', icon: 'Timer', route: '/attention' },
+  { name: '学习方法', icon: 'Reading', route: '/study-methods' },
   { name: '学习路径', icon: 'Document', route: '/learning-path' },
   { name: '计组学习', icon: 'Cpu', route: '/cs408/composition' },
   { name: '错题本', icon: 'DocumentChecked', route: '/wrong-problems' },
