@@ -16,9 +16,21 @@ Designed for postgraduate entrance exam students to combat procrastination and a
 - **Security**: JWT Authentication, Bcrypt
 
 ## 📸 UI Showcase
-*(Please replace the following placeholders with your actual screenshots)*
 
-| Dashboard | Pomodoro Timer | Achievement System |
+### 🎯 核心功能展示
+
+| 数据看板 | 词汇积累 | 知识图谱 |
 | :---: | :---: | :---: |
-| ![Dashboard](./assets/dashboard.png) | ![Timer](./assets/timer.png) | ![Achievements](./assets/achievements.png) |
+| ![Dashboard](./assets/dashboard.png) | ![词汇积累](./assets/vocabulary.png) | ![知识图谱](./assets/knowledge.png) |
+
+| 学习指南 | 数据分析 |
+| :---: | :---: |
+| ![学习指南](./assets/study_guide.png) | ![数据分析](./assets/analytics.png) |
+
+**功能亮点**：
+-  **数据看板**：集成学习热力图、趋势分析、番茄钟计时，可视化学习进度
+- 📚 **词汇积累**：高频词组卡片化展示，支持分类筛选和例句学习
+- 🧠 **知识图谱**：思维导图 + 知识点详解，支持错题本和进度追踪
+- 📖 **学习指南**：四轮复习规划（基础→强化→真题→冲刺），科学备考路径
+- 📈 **数据分析**：多维度学习统计，科目分布饼图、效率趋势分析
 
