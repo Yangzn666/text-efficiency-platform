@@ -1156,6 +1156,60 @@
       "content": "英语翻译词组单词学习（20:45-21:40）",
       "type": "study",
       "createdAt": "2026-05-27T20:45:00.000Z"
+    },
+    {
+      "id": "record_20260528_1",
+      "date": "2026-05-28",
+      "subject": "其他",
+      "duration": 120,
+      "content": "制作简历（11:30-13:30）",
+      "type": "study",
+      "createdAt": "2026-05-28T11:30:00.000Z"
+    },
+    {
+      "id": "record_20260528_2",
+      "date": "2026-05-28",
+      "subject": "英语一",
+      "duration": 30,
+      "content": "背单词（16:00-16:30）",
+      "type": "study",
+      "createdAt": "2026-05-28T16:00:00.000Z"
+    },
+    {
+      "id": "record_20260528_3",
+      "date": "2026-05-28",
+      "subject": "数学一",
+      "duration": 60,
+      "content": "做1000题高数强化第三章（20:00-21:00）",
+      "type": "practice",
+      "createdAt": "2026-05-28T20:00:00.000Z"
+    },
+    {
+      "id": "record_20260529_1",
+      "date": "2026-05-29",
+      "subject": "数学一",
+      "duration": 120,
+      "content": "1000题B组高数前四讲完成（遇到难题，连续5题不会做，已学习解析）",
+      "type": "practice",
+      "createdAt": "2026-05-29T14:00:00.000Z"
+    },
+    {
+      "id": "record_20260529_2",
+      "date": "2026-05-29",
+      "subject": "其他",
+      "duration": 30,
+      "content": "制作简历（15:00-15:30）",
+      "type": "study",
+      "createdAt": "2026-05-29T15:00:00.000Z"
+    },
+    {
+      "id": "record_20260529_3",
+      "date": "2026-05-29",
+      "subject": "数学一",
+      "duration": 60,
+      "content": "1000讲高数第四讲习题（15:30-16:30）",
+      "type": "practice",
+      "createdAt": "2026-05-29T15:30:00.000Z"
     }
   ],
   "subjectProgress": {
@@ -1178,16 +1232,16 @@
       "completionRate": 16.67
     },
     "英语一": {
-      "totalTime": 1013,
-      "lastStudyDate": "2026-05-27",
+      "totalTime": 1043,
+      "lastStudyDate": "2026-05-28",
       "weeklyGoal": 300,
-      "completionRate": 337.67
+      "completionRate": 347.67
     },
     "数学一": {
-      "totalTime": 1785,
-      "lastStudyDate": "2026-05-27",
+      "totalTime": 1905,
+      "lastStudyDate": "2026-05-29",
       "weeklyGoal": 300,
-      "completionRate": 595
+      "completionRate": 635
     },
     "408计算机": {
       "totalTime": 454,
@@ -1202,10 +1256,10 @@
       "completionRate": 118.33
     },
     "其他": {
-      "totalTime": 185,
-      "lastStudyDate": "2026-05-26",
+      "totalTime": 335,
+      "lastStudyDate": "2026-05-29",
       "weeklyGoal": 300,
-      "completionRate": 61.67
+      "completionRate": 111.67
     }
   }
 }

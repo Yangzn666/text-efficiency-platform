@@ -22,8 +22,8 @@
             :color="getProgressColor(mathProgress)"
             :stroke-width="12"
           />
-          <p class="progress-text">正在学习第一章 (10学时)</p>
-          <p class="progress-detail">1000题B组: 未开始</p>
+          <p class="progress-text">已完成第二章 (18学时)</p>
+          <p class="progress-detail">1000题B组: 前四讲已完成</p>
         </div>
       </div>
 
@@ -206,7 +206,7 @@ const router = useRouter()
 const store = useMathReinforcementStore()
 
 // 根据真实课程进度计算
-const mathProgress = ref(0) // 高数第一章正在听，0%
+const mathProgress = ref(Math.round(18 / 46 * 100)) // 高数已完成前两章18学时，18/46 = 39%
 const linearProgress = ref(0) // 待补充
 const probProgress = ref(Math.round(9 / 21 * 100)) // 概率论 9/21 = 43%
 

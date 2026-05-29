@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-// import localforage from 'localforage'
+import localforage from 'localforage'
 
 interface MathChapter {
   id: string

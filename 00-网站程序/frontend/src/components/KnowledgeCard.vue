@@ -2748,87 +2748,6 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
       </template>
       
-      <!-- 为什么修改寄存器指令是特权指令 -->
-      <template v-if="currentCard?.id === 'privilegedInstruction'">
-        <h3>💡 知识点卡片：为什么修改寄存器指令是特权指令</h3>
-        
-        <div class="card-section">
-          <h4>📌 什么是特权指令？</h4>
-          <ul>
-            <li><strong>定义</strong>：只能在核心态（内核态）执行的指令</li>
-            <li><strong>限制</strong>：用户程序执行特权指令会引发异常</li>
-            <li><strong>例子</strong>：I/O指令、启动设备指令、修改寄存器指令</li>
-          </ul>
-        </div>
-        
-        <div class="card-section">
-          <h4>🔒 为什么修改寄存器指令必须是特权指令？</h4>
-          
-          <h5>1. 安全性考虑 ⭐⭐⭐</h5>
-          <ul>
-            <li>某些寄存器控制着CPU的运行模式和内存访问权限</li>
-            <li>如果用户程序可以随意修改这些寄存器，就能突破操作系统的安全限制</li>
-            <li><strong>例如</strong>：修改PSW可以从用户态切换到核心态，获得完全控制权</li>
-          </ul>
-          
-          <h5>2. 系统稳定性 ⭐⭐⭐</h5>
-          <ul>
-            <li>基址寄存器和限长寄存器定义了进程的地址空间范围</li>
-            <li>如果用户程序可以修改它们，就可能访问其他进程的内存或内核空间</li>
-            <li>这会导致数据混乱、程序崩溃甚至系统瘫痪</li>
-          </ul>
-          
-          <h5>3. 资源管理 ⭐⭐</h5>
-          <ul>
-            <li>操作系统需要统一管理硬件资源</li>
-            <li>如果每个用户程序都能直接操作硬件寄存器，会造成资源冲突</li>
-            <li><strong>例如</strong>：多个程序同时修改I/O控制器寄存器会导致设备工作异常</li>
-          </ul>
-        </div>
-        
-        <div class="card-section">
-          <h4>⚠️ 哪些寄存器是特权的？</h4>
-          <el-table :data="privilegedRegisters" border stripe style="width: 100%">
-            <el-table-column prop="register" label="寄存器名称" width="180" />
-            <el-table-column prop="function" label="功能" />
-            <el-table-column prop="risk" label="风险" width="200" />
-          </el-table>
-        </div>
-        
-        <div class="card-section">
-          <h4>✅ 正确的做法：通过系统调用</h4>
-          <div class="flow-diagram vertical">
-            <div class="flow-step">用户程序</div>
-            <div class="flow-arrow">↓ [发起系统调用]</div>
-            <div class="flow-step highlight">陷入核心态</div>
-            <div class="flow-arrow">↓ [操作系统处理]</div>
-            <div class="flow-step">修改寄存器</div>
-            <div class="flow-arrow">↓ [返回结果]</div>
-            <div class="flow-step">回到用户态</div>
-          </div>
-          
-          <div class="code-example">
-            <p><strong>示例代码：</strong></p>
-            <pre>// ❌ 错误：用户程序不能直接修改PSW
-MOV PSW, #0x8000  ; 这会引发异常！
-
-// ✅ 正确：通过系统调用间接修改
-syscall(SCHEDULE) ; 请求操作系统进行进程调度</pre>
-          </div>
-        </div>
-        
-        <div class="card-section importance">
-          <h4>🎓 考研重点</h4>
-          <p>在《操作系统》第一章中，理解特权指令的概念非常重要：</p>
-          <ul>
-            <li>✅ 掌握特权指令的定义和典型例子</li>
-            <li>✅ 理解为什么某些指令必须是特权的</li>
-            <li>✅ 掌握用户态和核心态的切换机制</li>
-            <li>✅ 能够分析具体场景下是否需要特权指令</li>
-          </ul>
-        </div>
-      </template>
-      
       <!-- 第五章知识卡片 -->
       
       <!-- 专用数据通路结构 -->
@@ -4123,56 +4042,6 @@ const cardData = {
     id: 'raid',
     title: '💡 知识点卡片：RAID技术详解'
   },
-  // 数据结构知识卡片
-  linearList: {
-    id: 'linearList',
-    title: '💡 知识点卡片：顺序表 vs 链表'
-  },
-  stackQueue: {
-    id: 'stackQueue',
-    title: '💡 知识点卡片：栈与队列对比'
-  },
-  binaryTree: {
-    id: 'binaryTree',
-    title: '💡 知识点卡片：二叉树遍历算法'
-  },
-  graphTraversal: {
-    id: 'graphTraversal',
-    title: '💡 知识点卡片：图的遍历（BFS vs DFS）'
-  },
-  searchAlgorithms: {
-    id: 'searchAlgorithms',
-    title: '💡 知识点卡片：查找算法对比'
-  },
-  sortAlgorithms: {
-    id: 'sortAlgorithms',
-    title: '💡 知识点卡片：排序算法全面对比'
-  },
-  // 数据结构知识卡片
-  linearList: {
-    id: 'linearList',
-    title: '💡 知识点卡片：顺序表 vs 链表'
-  },
-  stackQueue: {
-    id: 'stackQueue',
-    title: '💡 知识点卡片：栈与队列对比'
-  },
-  binaryTree: {
-    id: 'binaryTree',
-    title: '💡 知识点卡片：二叉树遍历算法'
-  },
-  graphTraversal: {
-    id: 'graphTraversal',
-    title: '💡 知识点卡片：图的遍历（BFS vs DFS）'
-  },
-  searchAlgorithms: {
-    id: 'searchAlgorithms',
-    title: '💡 知识点卡片：查找算法对比'
-  },
-  sortAlgorithms: {
-    id: 'sortAlgorithms',
-    title: '💡 知识点卡片：排序算法全面对比'
-  },
   flagsRegister: {
     id: 'flagsRegister',
     title: '💡 知识点卡片：标志寄存器详解'
@@ -4200,11 +4069,6 @@ const cardData = {
   multiCycleCPU: {
     id: 'multiCycleCPU',
     title: '💡 知识点卡片：多周期CPU的特点'
-  },
-  // 操作系统知识卡片
-  privilegedInstruction: {
-    id: 'privilegedInstruction',
-    title: '💡 知识点卡片：为什么修改寄存器指令是特权指令'
   }
 }
 
@@ -4583,15 +4447,6 @@ const cpuComparisonData = [
   { aspect: '控制复杂度', singleCycle: '简单', multiCycle: '复杂（需要状态机）' },
   { aspect: '典型应用', singleCycle: '简单嵌入式系统', multiCycle: 'CISC架构（x86）' },
   { aspect: '流水线友好度', singleCycle: '好', multiCycle: '差' }
-]
-
-// 特权寄存器数据
-const privilegedRegisters = [
-  { register: 'PSW（程序状态字）', function: '包含CPU当前模式（用户态/核心态）、条件码等', risk: '修改后可突破权限限制' },
-  { register: '基址寄存器', function: '定义内存访问的起始地址', risk: '可访问其他进程或内核空间' },
-  { register: '限长寄存器', function: '定义内存访问的长度限制', risk: '可越界访问内存' },
-  { register: '中断向量表寄存器', function: '指向中断处理程序的入口', risk: '可劫持中断处理' },
-  { register: 'I/O端口寄存器', function: '控制外部设备的操作', risk: '可直接操作硬件设备' }
 ]
 
 // 第6章：总线系统相关数据

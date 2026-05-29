@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const HomeView = () => import('@/views/HomeView.vue')
 const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
 const LearningPathView = () => import('@/views/LearningPathView.vue')
+const EnergyView = () => import('@/views/EnergyView.vue')
 const PsychologyView = () => import('@/views/PsychologyView.vue')
 const CS408View = () => import('@/views/CS408View.vue')
 const CSLearningView = () => import('@/views/CSLearning.vue')
@@ -55,6 +56,12 @@ const router = createRouter({
       path: '/learning-path',
       name: 'learning-path',
       component: LearningPathView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/energy',
+      name: 'energy',
+      component: EnergyView,
       meta: { requiresAuth: true }
     },
     {

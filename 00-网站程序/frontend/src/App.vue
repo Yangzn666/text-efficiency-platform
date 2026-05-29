@@ -56,6 +56,7 @@ const routes = [
   { path: '/universities', name: '🏫 院校查询' },
   { path: '/study-methods', name: '学习方法' },
   { path: '/learning-path', name: '学习路径' },
+  { path: '/energy', name: '⚡ 学习能量' },
   { path: '/analytics', name: '数据分析' }
 ]
 

@@ -1,51 +1,31 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import LearningPathVisualizer from '@/components/LearningPathVisualizer.vue'
 import PersonalizedLearningPath from '@/components/PersonalizedLearningPath.vue'
-import ReviewDashboard from '@/components/ReviewDashboard.vue'
-import LearningAnalytics from '@/components/LearningAnalytics.vue'
-import GamificationDashboard from '@/components/GamificationDashboard.vue'
 import DailyPlanGenerator from '@/components/DailyPlanGenerator.vue'
-import WeaknessAnalysis from '@/components/WeaknessAnalysis.vue'
+import LearningOverview from '@/components/LearningOverview.vue'
 
-const activeTab = ref('personalized')
+const activeTab = ref('overview')
 </script>
 
 <template>
   <div class="learning-path-page">
     <div class="page-header">
-      <h1 class="page-title">个性化学习路径</h1>
-      <p class="page-subtitle">智能规划，循序渐进，高效学习</p>
+      <h1 class="page-title">学习路径规划</h1>
+      <p class="page-subtitle">智能规划每日学习任务，循序渐进高效备考</p>
     </div>
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="path-tabs">
-        <el-tab-pane label="个性化路径" name="personalized">
+        <el-tab-pane label="📊 学习概览" name="overview">
+          <LearningOverview />
+        </el-tab-pane>
+        
+        <el-tab-pane label="📈 学习进度" name="personalized">
           <PersonalizedLearningPath />
         </el-tab-pane>
         
-        <el-tab-pane label="每日计划" name="daily-plan">
+        <el-tab-pane label="📅 今日计划" name="daily-plan">
           <DailyPlanGenerator />
-        </el-tab-pane>
-        
-        <el-tab-pane label="弱项分析" name="weakness">
-          <WeaknessAnalysis />
-        </el-tab-pane>
-        
-        <el-tab-pane label="路径可视化" name="visualizer">
-          <LearningPathVisualizer />
-        </el-tab-pane>
-        
-        <el-tab-pane label="复习提醒" name="review">
-          <ReviewDashboard />
-        </el-tab-pane>
-        
-        <el-tab-pane label="学习报告" name="report">
-          <LearningAnalytics />
-        </el-tab-pane>
-        
-        <el-tab-pane label="成就中心" name="gamification">
-          <GamificationDashboard />
         </el-tab-pane>
       </el-tabs>
     </div>
