@@ -170,13 +170,6 @@
             <ArrowRight />
           </el-icon>
           <span class="year-text">{{ year }}年考研英语一 · 传统阅读</span>
-          <el-button 
-            type="warning" 
-            size="small"
-            @click.stop="openIntensiveReading('Traditional Reading', year)"
-          >
-            📖 精读
-          </el-button>
         </div>
 
         <div v-show="expandedTraditionalYears.includes(year)" class="year-content">
@@ -186,8 +179,15 @@
             :key="textNum"
             class="text-group"
           >
-            <div class="text-header">
-              <h4 class="text-title">Text {{ textNum }}</h4>
+            <div 
+              class="text-header"
+              :class="{ 'expanded': isTextExpanded(year, textNum) }"
+              @click="toggleText(year, textNum)"
+            >
+              <el-icon class="expand-icon" :class="{ 'rotated': isTextExpanded(year, textNum) }">
+                <ArrowRight />
+              </el-icon>
+              <h4 class="text-title">Text {{ textNum }} - {{ getTextTitle(year, textNum) }}</h4>
               <el-tag type="info" size="small">5题</el-tag>
               <el-button 
                 type="warning" 
@@ -197,6 +197,8 @@
                  精读
               </el-button>
             </div>
+
+            <div v-show="isTextExpanded(year, textNum)" class="text-content">
 
             <!-- 文章原文 -->
             <div class="article-section">
@@ -283,6 +285,7 @@
               </div>
             </div>
           </div>
+            </div>
         </div>
       </div>
     </div>
@@ -452,6 +455,7 @@ const activeSection = ref<'Traditional Reading' | 'Use of English' | 'New Questi
 const expandedCloze = ref(false) // 完型填空大题默认折叠
 const expandedClozeYears = ref<number[]>([]) // 完型填空展开的年份
 const expandedTraditionalYears = ref<number[]>([]) // 传统阅读展开的年份
+const expandedTexts = ref<string[]>([]) // 传统阅读展开的Text（格式："year-textNum"）
 
 // 可用年份（2005-2025）
 const availableYears = Array.from({ length: 21 }, (_, i) => 2005 + i).reverse()
@@ -583,6 +587,16 @@ const getQuestionsByYearAndText = (year: number, textNum: number) => {
   ).sort((a, b) => a.number - b.number)
 }
 
+// 获取某年某Text的标题
+const getTextTitle = (year: number, textNum: number) => {
+  const questions = getQuestionsByYearAndText(year, textNum)
+  if (questions.length === 0) return '未知文章'
+  
+  // 从第一道题中获取title字段
+  const firstQuestion = questions[0]
+  return firstQuestion.title || '未知文章'
+}
+
 // 获取某年某Text的文章原文
 const getArticleByYearAndText = (year: number, textNum: number) => {
   const questions = getQuestionsByYearAndText(year, textNum)
@@ -607,6 +621,22 @@ const toggleTraditionalYear = (year: number) => {
   } else {
     expandedTraditionalYears.value.push(year)
   }
+}
+
+// 切换Text展开/收起
+const toggleText = (year: number, textNum: number) => {
+  const key = `${year}-${textNum}`
+  const idx = expandedTexts.value.indexOf(key)
+  if (idx > -1) {
+    expandedTexts.value.splice(idx, 1)
+  } else {
+    expandedTexts.value.push(key)
+  }
+}
+
+// 检查Text是否展开
+const isTextExpanded = (year: number, textNum: number) => {
+  return expandedTexts.value.includes(`${year}-${textNum}`)
 }
 
 // 展开的题目索引列表
@@ -846,8 +876,42 @@ onMounted(async () => {
       const data = await response.json()
       
       if (data.questions && data.questions.length > 0) {
-        allQuestions.value = data.questions
+        // 尝试从localStorage读取用户作答记录
+        const savedAnswers = localStorage.getItem('readingUserAnswers')
+        const userAnswersMap = savedAnswers ? JSON.parse(savedAnswers) : {}
+        
+        console.log('📝 localStorage中的作答记录:', userAnswersMap)
+        
+        // 合并用户答案到题目数据中
+        allQuestions.value = data.questions.map((question: any) => {
+          const questionKey = `${question.year}-${question.section}-${question.textNumber}-${question.number}`
+          
+          // 优先使用localStorage中的答案，如果没有则使用JSON文件中的userAnswer
+          const localAnswer = userAnswersMap[questionKey]
+          const jsonAnswer = question.userAnswer || ''
+          
+          if (localAnswer) {
+            console.log(`题目 ${questionKey}: localStorage=${localAnswer}, JSON=${jsonAnswer}, 最终=${localAnswer}`)
+            return { ...question, userAnswer: localAnswer }
+          } else if (jsonAnswer) {
+            console.log(`题目 ${questionKey}: 使用JSON中的答案 ${jsonAnswer}`)
+            return { ...question, userAnswer: jsonAnswer }
+          }
+          
+          return question
+        })
+        
         console.log(`✅ 成功加载 ${data.questions.length} 道题目`)
+        console.log(`📝 已合并 ${Object.keys(userAnswersMap).length} 条作答记录`)
+        
+        // 打印Text3的题目答案
+        const text3Questions = allQuestions.value.filter(q => q.year === 2005 && q.section === 'Traditional Reading' && q.textNumber === 3)
+        console.log('📖 Text3题目答案:', text3Questions.map(q => ({
+          number: q.number,
+          userAnswer: q.userAnswer,
+          correctAnswer: q.correctAnswer,
+          isCorrect: q.userAnswer === q.correctAnswer
+        })))
       } else {
         console.warn('⚠️  API返回数据为空')
       }
@@ -1306,6 +1370,50 @@ onMounted(async () => {
 .year-content {
   margin-top: 15px;
   padding-left: 10px;
+}
+
+/* Text折叠样式 */
+.text-group {
+  margin-bottom: 15px;
+}
+
+.text-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+
+.text-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.text-header .expand-icon {
+  color: white;
+  transition: transform 0.3s;
+}
+
+.text-header .expand-icon.rotated {
+  transform: rotate(90deg);
+}
+
+.text-title {
+  font-size: 1.15em;
+  font-weight: bold;
+  flex: 1;
+  margin: 0;
+}
+
+.text-content {
+  margin-top: 12px;
+  padding-left: 8px;
 }
 
 /* 完型填空题目项 */
@@ -1896,7 +2004,7 @@ onMounted(async () => {
 .text-title {
   font-size: 1.3em;
   font-weight: 600;
-  color: #333;
+  color: white;
   margin: 0;
 }
 

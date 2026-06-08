@@ -1,0 +1,184 @@
+{
+  "2005-Traditional Reading-2": {
+    "theme": "本文通过吸烟问题的历史教训（由于怀疑科学证据而导致1000万人早逝），警示人们在全球变暖问题上不要重蹈覆辙。作者呼吁政府应该基于科学的最佳判断采取立法行动，而不是无休止地要求更多研究而不采取实际行动。",
+    "structure": "第一段：回顾历史——吸烟问题的教训（怀疑者声称证据不足→1000万人早逝）\n第二段：引出当前——全球变暖问题的相似模式（科学家警告→专家小组确认人为因素→Bruce Alberts强调科学是指南）\n第三段：类比论证——全球变暖正在重演吸烟问题的危险模式（各方声音声称科学不完整→等证据100%确定再行动是危险游戏）\n第四段：批评现状——政府顾问不认真对待全球变暖（继续要求更多研究→paralysis by analysis）\n第五段：提出解决方案——研究不够，需要立法行动（如果政府不行动→国会应该帮助→举例Byrd法案）",
+    "writingTechniques": [
+      "类比论证：将吸烟问题与全球变暖问题进行类比，用历史教训警示当前问题",
+      "引用权威：引用National Academy of Sciences专家小组和Bruce Alberts的话增强说服力",
+      "对比手法：Instead of a plan of action（不采取行动）vs continue to press for more research（继续要求研究）",
+      "比喻修辞：take out an insurance policy（买保险）比喻提前防范措施",
+      "修辞问句：开头用Do you remember...引起读者共鸣和回忆",
+      "短语造词：paralysis by analysis（分析导致瘫痪）精准概括过度研究不行动的现象"
+    ],
+    "readingStrategies": [
+      "关注类比词parallels, just as, like等，理解作者论证逻辑",
+      "注意态度词：dangerous game, prudent, inadequate，把握作者立场",
+      "区分不同角色：scientists, doubters, supporters, advisers，避免混淆观点",
+      "抓住关键句：Instead of..., If...won't..., But research alone is inadequate",
+      "理解短语含义：paralysis by analysis, take the legislative initiative",
+      "注意破折号作用：解释说明前文内容"
+    ],
+    "keyVocabulary": [
+      {
+        "word": "inconclusive",
+        "meaning": "非决定性的，无说服力的",
+        "context": "the evidence was inconclusive（证据不是决定性的）"
+      },
+      {
+        "word": "parallel",
+        "meaning": "相似之处，平行",
+        "context": "There are upsetting parallels today（今天有令人不安的相似之处）"
+      },
+      {
+        "word": "panel",
+        "meaning": "专家小组",
+        "context": "a panel from the National Academy of Sciences（国家科学院的专家小组）"
+      },
+      {
+        "word": "enlist",
+        "meaning": "征募，获得...的帮助",
+        "context": "enlisted by the White House（受白宫委托）"
+      },
+      {
+        "word": "prudent",
+        "meaning": "谨慎的，精明的",
+        "context": "a prudent people would take out an insurance policy now（谨慎的人们现在会买保险）"
+      },
+      {
+        "word": "paralysis",
+        "meaning": "瘫痪",
+        "context": "paralysis by analysis（分析导致瘫痪）"
+      },
+      {
+        "word": "legislative",
+        "meaning": "立法的",
+        "context": "take the legislative initiative（采取立法行动）"
+      },
+      {
+        "word": "inadequate",
+        "meaning": "不充分的",
+        "context": "research alone is inadequate（仅靠研究是不够的）"
+      },
+      {
+        "word": "steward",
+        "meaning": "管理者，管家",
+        "context": "responsible stewards of the planet（地球的负责任管理者）"
+      },
+      {
+        "word": "incentive",
+        "meaning": "激励，刺激",
+        "context": "offer financial incentives（提供经济激励）"
+      }
+    ],
+    "grammarPoints": [
+      "定语从句：when引导的定语从句修饰all those years",
+      "宾语从句：argued that..., insisted that..., tell us that...（多个that从句并列）",
+      "形式主语：it is critical that...（it是形式主语，that从句是真正主语）",
+      "非限制性定语从句：which would offer financial incentives...（修饰bill）",
+      "条件状语从句：If the Administration won't take...（if引导条件句）",
+      "倒装结构：not...until...（直到...才...）的变体用法",
+      "插入语：as scientists in one wave after another...（as引导的插入成分）"
+    ],
+    "examTips": [
+      "类比题解题技巧：找出两者的相似点，理解类比目的（用历史警示现在）",
+      "词义题解题技巧：根据上下文理解短语含义（paralysis by analysis = 过度分析导致不行动）",
+      "细节题定位技巧：注意题干关键词（supporters, Bruce Alberts, Administration）",
+      "态度题判断技巧：关注形容词和副词（dangerous, prudent, inadequate）",
+      "推理题解题技巧：理解作者写作意图（用吸烟教训警示全球变暖）",
+      "长难句分析技巧：找出主句和从句，理解句子骨架",
+      "角色区分技巧：注意不同人物的观点（scientists vs doubters vs advisers）",
+      "同义替换技巧：legislative initiative = legislative measures（立法行动=立法措施）"
+    ]
+  },
+  "2005-Traditional Reading-3": {
+    "theme": "本文探讨了梦的功能和意义，特别是梦在情绪调节中的作用。文章介绍了从弗洛伊德的理论到现代神经科学研究的演变，重点介绍了Rosalind Cartwright的研究，她发现人们可以有意识地控制梦境，特别是控制那些反复出现的噩梦。",
+    "structure": "第一段：梦的传统认知与现代观点——从弗洛伊德的'潜意识欲望'到神经科学的'情绪恒温器'，Cartwright提出梦可以被控制\n第二段：脑成像证据——REM睡眠时大脑活跃度与清醒时相当，边缘系统（情绪脑）活跃而前额叶皮层（理智脑）相对安静\n第三段：梦与情绪的联系——对焦虑和抑郁患者尤为重要，Cartwright发现反复噩梦患者可以学会控制梦境\n第四段：控制梦境的实践方法——醒来→想象更好的结局→重新入睡，通过练习大脑学会在梦中选择不同路径\n第五段：是否需要分析每个梦——持续噩梦值得寻求帮助，但对大多数人来说梦只是处理白天情绪的方式",
+    "writingTechniques": [
+      "引用权威：引用Freud、Cartwright、Nofzinger、Dement等多位专家的观点",
+      "比喻修辞：emotional thermostat（情绪恒温器）生动形象地说明梦的情绪调节功能",
+      "对比手法：limbic system活跃 vs prefrontal cortex安静，说明梦中情绪主导",
+      "渐进论证：从理论（Freud）→证据（脑成像）→应用（控制梦境）→建议（寻求帮助的时机）",
+      "直接引语：多次使用专家原话增强可信度和生动性",
+      "让步转折：There's probably no reason...But if...（虽然不需要分析每个梦，但...）"
+    ],
+    "readingStrategies": [
+      "关注专家观点：Cartwright是核心人物，她的研究是文章重点",
+      "理解专业术语：REM sleep, limbic system, prefrontal cortex",
+      "注意转折词：But, While, Though，把握作者态度",
+      "区分不同理论：Freud（潜意识）vs neurologists（神经修复）vs researchers（情绪调节）",
+      "理解因果关系：bad dreams→work through emotions→can learn to control",
+      "把握文章基调：科学客观，既有理论又有实践建议"
+    ],
+    "keyVocabulary": [
+      {
+        "word": "thermostat",
+        "meaning": "恒温器，调节器",
+        "context": "emotional thermostat（情绪调节器）"
+      },
+      {
+        "word": "harness",
+        "meaning": "利用，驾驭",
+        "context": "mental events can be harnessed（心理活动可以被利用）"
+      },
+      {
+        "word": "limbic",
+        "meaning": "边缘的（大脑边缘系统）",
+        "context": "the limbic system（边缘系统，情绪脑）"
+      },
+      {
+        "word": "prefrontal",
+        "meaning": "前额的（大脑前额叶皮层）",
+        "context": "the prefrontal cortex（前额叶皮层，理智中心）"
+      },
+      {
+        "word": "recurring",
+        "meaning": "反复出现的， recurring bad dreams（反复出现的噩梦）",
+        "context": "patients who suffer from recurring bad dreams（患有反复噩梦的患者）"
+      },
+      {
+        "word": "visualize",
+        "meaning": "想象，可视化",
+        "context": "visualize a better ending（想象一个更好的结局）"
+      },
+      {
+        "word": "persistent",
+        "meaning": "持续的，顽固的",
+        "context": "persistent bad dreams（持续的噩梦）"
+      },
+      {
+        "word": "underlying",
+        "meaning": "潜在的，根本的",
+        "context": "underlying anxieties（潜在的焦虑）"
+      },
+      {
+        "word": "nightmare",
+        "meaning": "噩梦",
+        "context": "recurring nightmares（反复出现的噩梦）"
+      },
+      {
+        "word": "suspend",
+        "meaning": "暂停，中止",
+        "context": "logic is suspended（逻辑被暂停）"
+      }
+    ],
+    "grammarPoints": [
+      "定语从句：where logic is suspended（where引导定语从句修饰world）",
+      "同位语：Freud formulated his revolutionary theory that dreams were...（that引导同位语从句）",
+      "插入语：says Rosalind Cartwright, chair of psychology...（插入语说明说话人身份）",
+      "非限制性定语从句：which would offer financial incentives...（which引导非限制性定语从句）",
+      "条件状语从句：If you don't like it, change it.（if引导条件句）",
+      "让步状语从句：while the brain is off-line（while引导让步状语）",
+      "宾语从句：found that they can learn to control their dreams（that引导宾语从句）"
+    ],
+    "examTips": [
+      "细节题定位技巧：注意题干关键词（Cartwright, emotional thermostat, recurring bad dreams）",
+      "词义题解题技巧：根据上下文理解比喻含义（thermostat = 调节器）",
+      "推理题解题技巧：理解作者写作意图（介绍梦的情绪调节功能和控制方法）",
+      "标题题解题技巧：把握文章主旨（Dream of Control最贴切）",
+      "观点题解题技巧：区分不同专家的观点（Freud vs Cartwright）",
+      "长难句分析技巧：找出主句和从句，特别注意插入语和同位语",
+      "同义替换技巧：emotional thermostat = adjust emotions（情绪调节）",
+      "因果题解题技巧：理解bad dreams→process emotions→control的关系链"
+    ]
+  }
+}

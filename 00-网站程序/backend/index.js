@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 
 // 中间件配置
 app.use(cors())
@@ -24,7 +24,7 @@ app.get('/api/intensive-reading', (req, res) => {
       return res.status(400).json({ error: '请提供key参数' })
     }
     
-    const dataPath = path.join(__dirname, 'data/intensive-reading-analysis.json')
+    const dataPath = path.join(__dirname, 'data/intensive-reading.json')
     
     if (!fs.existsSync(dataPath)) {
       return res.status(404).json({ error: '精读数据文件不存在' })

@@ -1,5 +1,5 @@
 <template>
-  <div class="intensive-reading">
+  <div class="intensive-reading" :class="{ 'use-of-english': section === 'Use of English' }">
     <!-- 返回按钮 -->
     <div class="back-bar">
       <el-button @click="goBack" size="large">
@@ -22,7 +22,7 @@
       <div class="article-section">
         <div class="section-title">
           <el-icon><Document /></el-icon>
-          文章原文（带空格标记）
+          {{ section === 'Use of English' ? '文章原文（带空格标记）' : '文章原文' }}
         </div>
         <div class="article-content" v-html="articleContent"></div>
       </div>
@@ -561,7 +561,7 @@ onMounted(async () => {
 }
 
 /* 完形填空空格样式 - 使用深度选择器 */
-.article-content :deep(u) {
+.use-of-english .article-content :deep(u) {
   display: inline-block;
   min-width: 2.5em;
   text-align: center;
@@ -1282,7 +1282,8 @@ onMounted(async () => {
   margin: 0.8em 0 !important;
 }
 
-.intensive-reading .article-content u {
+/* 只对完形填空应用空格样式 */
+.intensive-reading.use-of-english .article-content u {
   display: inline-block !important;
   min-width: 2.5em !important;
   text-align: center !important;

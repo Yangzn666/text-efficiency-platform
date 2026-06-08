@@ -7,7 +7,7 @@ const VocabularySystem = defineAsyncComponent(() => import('@/components/Vocabul
 const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/EnglishStudyPlan.vue'))
 const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/GrammarLearningCenter.vue'))
 const TranslationLearning = defineAsyncComponent(() => import('@/components/TranslationLearning.vue'))
-const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
+const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning-Premium.vue'))
 
 const route = useRoute()
 const activeTab = ref('reading')

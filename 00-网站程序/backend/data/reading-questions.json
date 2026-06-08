@@ -635,6 +635,7 @@
       "year": 2005,
       "section": "Traditional Reading",
       "textNumber": 1,
+      "title": "猴子的公平感研究",
       "number": 21,
       "type": "推理题",
       "article": "<p>Everybody loves a fat pay rise. Yet pleasure at your own can vanish if you learn that a colleague has been given a bigger one. Indeed, if he has a reputation for slacking, you might even be outraged. Such behaviour is regarded as \"all too human\", with the underlying assumption that other animals would not be capable of this finely developed sense of grievance. But a study by Sarah Brosnan and Frans de Waal of Emory University in Atlanta, Georgia, which has just been published in <em>Nature</em>, suggests that <u>it is all too monkey</u>, as well.</p><p>The researchers studied the behaviour of female brown capuchin monkeys. They look cute. They are good-natured, co-operative creatures, and they share their food readily. Above all, like their female human counterparts, they tend to pay much closer attention to the value of \"goods and services\" than males.</p><p>Such characteristics make them perfect candidates for Dr. Brosnan's and Dr. de Waal's study. The researchers spent two years teaching their monkeys to exchange tokens for food. Normally, the monkeys were happy enough to exchange pieces of rock for slices of cucumber. However, when two monkeys were placed in separate but adjoining chambers, so that each could observe what the other was getting in return for its rock, their behaviour became markedly different.</p><p>In the world of capuchins, grapes are luxury goods (and much preferable to cucumbers). So when one monkey was handed a grape in exchange for her token, the second was reluctant to hand hers over for a mere piece of cucumber. And if one received a grape without having to provide her token in exchange at all, the other either tossed her own token at the researcher or out of the chamber, or refused to accept the slice of cucumber. Indeed, the mere presence of a grape in the other chamber (without an actual monkey to eat it) was enough to induce resentment in a female capuchin.</p><p>The researchers suggest that capuchin monkeys, like humans, are guided by social emotions. In the wild, they are a cooperative, group-living species. Such cooperation is likely to be stable only when each animal feels it is not being cheated. Feelings of righteous indignation, it seems, are not the preserve of people alone. Refusing a lesser reward completely makes these feelings abundantly clear to other members of the group. However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.</p>",
@@ -806,7 +807,363 @@
         "D": "文章说在野外合作可能稳定,但没有说'只有在野外'才稳定。"
       },
       "tips": "最后一段的关键信息是'unanswered question'(未解之谜),暗示来源不确定。indignation = righteous indignation = 义愤,对不公平的愤怒。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "title": "吸烟与全球变暖的类比",
+      "number": 26,
+      "type": "细节题",
+      "article": "<p>Do you remember all those years when scientists argued that smoking would kill us but the doubters insisted that we didn't know for sure? That the evidence was inconclusive, the science uncertain? That the antismoking lobby was out to destroy our way of life and the government should stay out of the way? Lots of Americans bought that nonsense, and over three decades, some 10 million smokers went to early graves.</p><p>There are upsetting parallels today, as scientists in one wave after another try to awaken us to the growing threat of global warming. The latest was a panel from the National Academy of Sciences, enlisted by the White House, to tell us that the Earth's atmosphere is definitely warming and that the problem is largely man-made. The clear message is that we should get moving to protect ourselves. The president of the National Academy, Bruce Alberts, added this key point in the preface to the panel's report: \"Science never has all the answers. But science does provide us with the best available guide to the future, and it is critical that our nation and the world base important policies on the best judgments that science can provide concerning the future consequences of present actions.\"</p><p>Just as on smoking, voices now come from many quarters insisting that the science about global warming is incomplete, that it's OK to keep pouring fumes into the air until we know for sure. This is a dangerous game: by the time 100 percent of the evidence is in, it may be too late. With the risks obvious and growing, a prudent people would take out an insurance policy now.</p><p>Fortunately, the White House is starting to pay attention. But it's obvious that a majority of the president's advisers still don't take global warming seriously. Instead of a plan of action, they continue to press for more research—a classic case of \"paralysis by analysis.\"</p><p>To serve as responsible stewards of the planet, we must press forward on deeper atmospheric and oceanic research. But research alone is inadequate. If the Administration won't take the legislative initiative, Congress should help to begin fashioning conservation measures. A bill by Democratic Senator Robert Byrd of West Virginia, which would offer financial incentives for private industry, is a promising start. Many see that the country is getting ready to build lots of new power plants to meet our energy needs. If we are ever going to protect the atmosphere, it is crucial that those new plants be environmentally sound.</p>",
+      "stem": "An argument made by supporters of smoking was that",
+      "options": [
+        {
+          "label": "A",
+          "text": "there was no scientific evidence of the correlation between smoking and death."
+        },
+        {
+          "label": "B",
+          "text": "the number of early deaths of smokers in the past decades was insignificant."
+        },
+        {
+          "label": "C",
+          "text": "people had the freedom to choose their own way of life."
+        },
+        {
+          "label": "D",
+          "text": "antismoking people were usually talking nonsense."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "第一段中吸烟支持者的论点是：'the antismoking lobby was out to destroy our way of life and the government should stay out of the way'（反吸烟游说团体是要破坏我们的生活方式，政府应该不要干预）。这表明他们认为人们有选择自己生活方式的自由，政府不应该干涉。C选项'people had the freedom to choose their own way of life'（人们有自由选择自己生活方式的权利）准确概括了这一论点。",
+      "stepByStep": "【Step 1】读题干找关键词：'supporters of smoking'（吸烟支持者）的'argument'（论点）。\n【Step 2】回文定位：第一段提到'antismoking lobby was out to destroy our way of life and the government should stay out of the way'。\n【Step 3】同义替换：'destroy our way of life'和'government should stay out'说明支持者认为政府不应该干预生活方式，即人们有选择自由。\n【Step 4】排除干扰：A选项混淆了doubters和supporters；D选项nonsense指的是doubters的论点。",
+      "errorAnalysis": {
+        "A": "文章说的是doubters（怀疑者）认为证据不是决定性的（inconclusive），而不是完全没有科学证据。而且这是怀疑者的观点，不是supporters（支持者）的论点。",
+        "B": "文章提到10 million smokers went to early graves，并没有说这个数字insignificant（不重要）。",
+        "D": "是Lots of Americans bought that nonsense（很多美国人相信了那些胡话），不是antismoking people在说胡话。nonsense指的是前面doubters的论点。"
+      },
+      "tips": "注意区分supporters of smoking（吸烟支持者）和antismoking lobby（反吸烟游说团体）。定位第一段第三句，'our way of life'和'government should stay out of the way'是关键信息，暗示生活方式选择的自由。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 27,
+      "type": "细节题",
+      "stem": "According to Bruce Alberts, science can serve as",
+      "options": [
+        {
+          "label": "A",
+          "text": "a protector."
+        },
+        {
+          "label": "B",
+          "text": "a judge."
+        },
+        {
+          "label": "C",
+          "text": "a critic."
+        },
+        {
+          "label": "D",
+          "text": "a guide."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "第二段中Bruce Alberts在报告前言中说：'But science does provide us with the best available guide to the future'（但科学确实为我们提供了通向未来的最佳指南）。这里明确指出science serve as a guide（科学作为指南）。",
+      "errorAnalysis": {
+        "A": "protector（保护者）不是原文表达。文章说的是science提供guide，我们要用这个guide来protect ourselves。",
+        "B": "judge（法官）不符合原文。science提供的是guide和judgments（判断），但science本身不是judge。",
+        "C": "critic（批评家）不是原文的意思。虽然科学可能批评某些行为，但这不是Bruce Alberts强调的角色。"
+      },
+      "tips": "直接定位第二段Bruce Alberts的话，'science does provide us with the best available guide to the future'是原文重现。serve as = provide us with = 作为、充当。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 28,
+      "type": "词义题",
+      "stem": "What does the author mean by 'paralysis by analysis' (Last line, Paragraph 4)?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Endless studies kill action."
+        },
+        {
+          "label": "B",
+          "text": "Careful investigation reveals truth."
+        },
+        {
+          "label": "C",
+          "text": "Prudent planning hinders progress."
+        },
+        {
+          "label": "D",
+          "text": "Extensive research helps decision-making."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "第四段最后一句'Instead of a plan of action, they continue to press for more research—a classic case of paralysis by analysis'（他们没有制定行动计划，而是继续要求进行更多研究——这是典型的'分析导致瘫痪'）。paralysis by analysis意思是过度分析、不断研究而导致无法采取行动。A选项'Endless studies kill action'（无休止的研究扼杀了行动）完美诠释了这个短语的含义。",
+      "stepByStep": "【Step 1】读题干找定位：'paralysis by analysis'在第四段最后一行。\n【Step 2】看上下文：前面是'Instead of a plan of action, they continue to press for more research'（不采取行动计划，反而继续要求更多研究）。\n【Step 3】理解短语：paralysis=瘫痪，analysis=分析，字面意思是'分析太多导致瘫痪'。\n【Step 4】同义替换：Endless studies=press for more research，kill action=paralysis。",
+      "errorAnalysis": {
+        "B": "Careful investigation reveals truth（仔细调查揭示真相）是正面意义，而原文是负面批评，说不断研究却不行动。",
+        "C": "Prudent planning（谨慎计划）不是原文要表达的。原文批评的是press for more research（要求更多研究）而不采取行动。",
+        "D": "Extensive research helps decision-making（广泛研究有助于决策）是正面评价，与原文的批评态度相反。"
+      },
+      "tips": "paralysis = 瘫痪，analysis = 分析。理解这个短语的字面意思：因为过度分析而瘫痪（无法行动）。注意instead of a plan of action（而不是行动计划）这个对比，强调应该行动却在研究。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 29,
+      "type": "细节题",
+      "stem": "According to the author, what should the Administration do about global warming?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Offer aid to build cleaner power plants."
+        },
+        {
+          "label": "B",
+          "text": "Raise public awareness of conservation."
+        },
+        {
+          "label": "C",
+          "text": "Press for further scientific research."
+        },
+        {
+          "label": "D",
+          "text": "Take some legislative measures."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "第五段明确指出：'If the Administration won't take the legislative initiative, Congress should help to begin fashioning conservation measures.'（如果政府不采取立法行动，国会应该帮助开始制定保护措施。）作者建议Administration（政府/行政当局）应该take the legislative initiative（采取立法行动）。D选项'Take some legislative measures'（采取一些立法措施）与此一致。",
+      "errorAnalysis": {
+        "A": "文章提到Senator Byrd的法案会为private industry提供financial incentives，但这不是作者建议Administration做的事情。",
+        "B": "Raise public awareness（提高公众意识）不是作者的主要建议。作者强调的是legislative initiative（立法行动）。",
+        "C": "Press for further scientific research（要求更多科学研究）正是作者在第四段批评的做法（paralysis by analysis），不是建议。"
+      },
+      "tips": "定位第五段第二句，legislative initiative = legislative measures（立法措施）。注意作者的观点：research alone is inadequate（仅靠研究是不够的），需要legislative action（立法行动）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 30,
+      "type": "推理题",
+      "stem": "The author associates the issue of global warming with that of smoking because",
+      "options": [
+        {
+          "label": "A",
+          "text": "they both suffered from the government's negligence."
+        },
+        {
+          "label": "B",
+          "text": "a lesson from the latter is applicable to the former."
+        },
+        {
+          "label": "C",
+          "text": "the outcome of the latter aggravates the former."
+        },
+        {
+          "label": "D",
+          "text": "both of them have turned from bad to worse."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "作者将吸烟问题与全球变暖问题相联系，是因为两者有相似的模式和教训。第二段开头说'There are upsetting parallels today'（今天有令人不安的相似之处），然后通过吸烟的历史教训（很多人因为怀疑科学证据而早期死亡）来警示全球变暖问题。作者认为我们应该从吸烟问题中吸取教训，不要重蹈覆辙。B选项'a lesson from the latter is applicable to the former'（从后者（吸烟）中得到的教训适用于前者（全球变暖））准确概括了作者的意图。",
+      "errorAnalysis": {
+        "A": "虽然文章确实提到政府在两个问题上的不作为，但这不是作者进行类比的主要原因。作者的重点是从历史教训中学习。",
+        "C": "the outcome of the latter aggravates the former（后者的结果加剧了前者）不符合事实。吸烟和全球变暖之间没有直接的因果关系。",
+        "D": "both of them have turned from bad to worse（两者都变得越来越糟）虽然是事实，但不是作者进行类比的目的。作者是为了用吸烟的教训来警示全球变暖问题。"
+      },
+      "tips": "理解类比的目的：latter（后者）= smoking，former（前者）= global warming。作者用吸烟的历史教训（人们因为怀疑科学而付出了10 million early graves的代价）来警示我们现在面对全球变暖不应该重犯同样的错误。注意第三段'This is a dangerous game'和'a prudent people would take out an insurance policy now'。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "title": "睡眠与梦的情绪调节功能",
+      "number": 31,
+      "type": "细节题",
+      "article": "<p>Of all the <u>components</u> of a good night's sleep, dreams seem to be least within our control. In dreams, a window opens into a world where logic is suspended and dead people speak. A century ago, Freud formulated his revolutionary theory that dreams were the disguised shadows of our unconscious desires and fears; by the late 1970s, neurologists had switched to thinking of them as just 'mental noise' —the random byproducts of the neural-repair work that goes on during sleep. Now researchers suspect that dreams are part of the mind's emotional <u>thermostat</u>, regulating moods while the brain is 'off-line.' And one leading authority says that these intensely powerful mental events can be not only harnessed but actually brought under conscious control, to help us sleep and feel better. 'It's your dream,' says Rosalind Cartwright, chair of psychology at Chicago's Medical Center. 'If you don't like it, change it.'</p><p>Evidence from brain imaging supports this view. The brain is as active during REM (rapid eye movement) sleep—when most vivid dreams occur—as it is when fully awake, says Dr. Eric Nofzinger at the University of Pittsburgh. But not all parts of the brain are equally involved; the <u>limbic</u> system (the 'emotional brain') is especially active, while the prefrontal cortex (the center of intellect and reasoning) is relatively quiet. 'We wake up from dreams happy or depressed, and those feelings can stay with us all day,' says Stanford sleep researcher Dr. William Dement.</p><p>The link between dreams and emotions shows up among the patients in Cartwright's clinic. Most people seem to have more bad dreams early in the night, progressing toward happier ones before <u>awakening</u>, suggesting that they are working through <u>negative</u> feelings generated <u>during the day</u>. Because our conscious mind is occupied with daily life we don't always think about the emotional significance of the day's <u>events</u>—until, it appears, we begin to dream.</p><p>And this process need not be left to the unconscious. Cartwright believes one can exercise conscious control over <u>recurring</u> bad dreams. As soon as you awaken, <u>identify</u> what is <u>upsetting</u> about the dream. Visualize how you would like it to end instead; the next time it occurs, try to wake up just enough to control its course. With much <u>practice</u> people can learn to, literally, do it in their sleep.</p><p>At the end of the day, there's probably little reason to pay attention to our dreams at all unless they keep us from sleeping or 'we wake up in a panic,' Cartwright says. Terrorism, economic uncertainties and general feelings of <u>insecurity have increased</u> people's anxiety. Those suffering from persistent nightmares should seek help from a <u>therapist</u>. For the rest of us, the brain has its ways of working through bad feelings. Sleep—or rather dream—on it and you'll feel better in the morning.</p>",
+      "stem": "Researchers have come to believe that dreams",
+      "options": [
+        {
+          "label": "A",
+          "text": "can be modified in their courses."
+        },
+        {
+          "label": "B",
+          "text": "are susceptible to emotional changes."
+        },
+        {
+          "label": "C",
+          "text": "reflect our innermost desires and fears."
+        },
+        {
+          "label": "D",
+          "text": "are a random outcome of neural repairs."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "根据第一段And one leading authority says that these intensely powerful mental events can be not only harnessed but actually brought under conscious control（一位权威人士表示，这些强大的心理活动不仅可以被利用，而且实际上可以被有意识地控制），研究者认为梦可以在其过程中被修改。[A]正确。[B]易受情绪影响不准确，[C]反映内心欲望和恐惧是弗洛伊德的观点，[D]神经修复的随机产物是1970年代的观点。",
+      "errorAnalysis": {
+        "B": "文章说梦调节情绪，而不是梦本身易受情绪影响。",
+        "C": "这是弗洛伊德100年前的观点，不是现在研究者的观点。",
+        "D": "这是1970年代神经学家的观点，已被新研究取代。"
+      },
+      "tips": "注意区分不同时期研究者的观点：Freud（100年前）→ neurologists（1970年代）→ Now researchers（现在）。题干问的是have come to believe（已经逐渐相信），指现在的观点。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 32,
+      "type": "推理题",
+      "stem": "By referring to the limbic system, the author intends to show",
+      "options": [
+        {
+          "label": "A",
+          "text": "its function in our dreams."
+        },
+        {
+          "label": "B",
+          "text": "the mechanism of REM sleep."
+        },
+        {
+          "label": "C",
+          "text": "the relation of dreams to emotions."
+        },
+        {
+          "label": "D",
+          "text": "its difference from the prefrontal cortex."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "第二段提到the limbic system (the 'emotional brain') is especially active（边缘系统，即'情绪脑'，特别活跃），作者提及limbic system是为了说明梦与情绪的关系。[C]正确。[A]不准确，[B]不是主要目的，[D]只是对比说明。",
+      "errorAnalysis": {
+        "A": "虽然提到了功能，但核心是说明梦与情绪的关系。",
+        "B": "REM睡眠机制不是主要目的。",
+        "D": "与前额叶皮层的差异是为了说明情绪脑和理智脑的对比，不是主要目的。"
+      },
+      "tips": "注意括号中的解释：'emotional brain'（情绪脑），这直接点明了limbic system与情绪的关系。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 33,
+      "type": "细节题",
+      "stem": "The negative feelings generated during the day tend to",
+      "options": [
+        {
+          "label": "A",
+          "text": "aggravate in our unconscious mind."
+        },
+        {
+          "label": "B",
+          "text": "develop into happy dreams."
+        },
+        {
+          "label": "C",
+          "text": "persist till the time we fall asleep."
+        },
+        {
+          "label": "D",
+          "text": "show up in dreams early at night."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "根据第三段Most people seem to have more bad dreams early in the night（大多数人似乎在夜间较早时做更多的噩梦），白天的负面情绪倾向于在夜间早期出现在梦中。[D]正确。[A]加重不符合文意，[B]发展成快乐的梦不准确，[C]持续到入睡时间错误。",
+      "errorAnalysis": {
+        "A": "文章没有说负面情绪在潜意识中加重。",
+        "B": "文章说夜间后期趋向于更快乐的梦，但白天的负面情绪首先出现在夜间早期的梦中。",
+        "C": "负面情绪不是在入睡时持续，而是在梦中出现。"
+      },
+      "tips": "注意时间线索：early in the night（夜间早期）→ progressing toward happier ones（趋向更快乐的梦）→ before awakening（醒来前）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 34,
+      "type": "推理题",
+      "stem": "Cartwright seems to suggest that",
+      "options": [
+        {
+          "label": "A",
+          "text": "waking up in time is essential to the ridding of bad dreams."
+        },
+        {
+          "label": "B",
+          "text": "visualizing bad dreams helps bring them under control."
+        },
+        {
+          "label": "C",
+          "text": "dreams should be left to their natural progression."
+        },
+        {
+          "label": "D",
+          "text": "dreaming may not entirely belong to the unconscious."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "根据第四段And this process need not be left to the unconscious（这个过程不一定留给潜意识），Cartwright认为做梦不一定完全属于潜意识，人们可以有意识地控制梦境。[D]正确。[A]及时醒来不是核心观点，[B]想象噩梦有助于控制不够准确，[C]梦应该自然发展与文意相反。",
+      "errorAnalysis": {
+        "A": "虽然提到醒来，但核心是控制梦境，不是强调及时醒来。",
+        "B": "是想象更好的结局，不是想象噩梦本身。",
+        "C": "Cartwright主张可以控制梦境，不是任其自然发展。"
+      },
+      "tips": "注意关键词：need not be left to the unconscious（不一定留给潜意识）= may not entirely belong to the unconscious（可能不完全属于潜意识）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 35,
+      "type": "推理题",
+      "stem": "What advice might Cartwright give to those who sometimes have bad dreams?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lead your life as usual."
+        },
+        {
+          "label": "B",
+          "text": "Seek professional help."
+        },
+        {
+          "label": "C",
+          "text": "Exercise conscious control."
+        },
+        {
+          "label": "D",
+          "text": "Avoid anxiety in the daytime."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "B",
+      "analysis": "根据最后一段For the rest of us, the brain has its ways of working through bad feelings. Sleep—or rather dream—on it and you'll feel better in the morning.（对于我们其他人来说，大脑有它自己的方式来处理不好的感觉。睡一觉——或者更确切地说做梦——第二天早上你会感觉更好），Cartwright建议偶尔做噩梦的人正常生活即可。[A]正确。[B]寻求专业帮助是针对持续做噩梦的人，[C]有意识控制是方法但不是给偶尔做噩梦者的建议，[D]避免白天焦虑不是她的建议。",
+      "errorAnalysis": {
+        "B": "Those suffering from persistent nightmares should seek help from a therapist是针对持续噩梦患者，不是偶尔做噩梦的人。",
+        "C": "有意识控制是针对recurring bad dreams（反复出现的噩梦），不是偶尔的。",
+        "D": "文章没有建议避免白天焦虑，而是说大脑会通过梦来处理。"
+      },
+      "tips": "注意区分对象：those who sometimes have bad dreams（偶尔做噩梦的人）→ Lead your life as usual（正常生活）；those suffering from persistent nightmares（持续做噩梦的人）→ seek help from a therapist（寻求治疗师帮助）。"
     }
   ],
-  "lastUpdated": "2026-05-21T19:15:00.000Z"
+  "lastUpdated": "2026-06-04T00:00:00.000Z"
 }

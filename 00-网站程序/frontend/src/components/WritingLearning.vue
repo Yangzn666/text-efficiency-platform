@@ -1,164 +1,156 @@
 <template>
-  <div class="writing-learning">
-    <div class="page-header">
-      <h2>✍️ 写作学习系统</h2>
-      <p>写作指导 + 模板背诵 + 高分句型</p>
-    </div>
-
-    <!-- 选项卡切换 -->
-    <div class="tab-switcher">
-      <button 
-        :class="['tab-btn', { active: activeTab === 'guide' }]" 
-        @click="activeTab = 'guide'"
-      >
-        写作指导
-      </button>
-      <button 
-        :class="['tab-btn', { active: activeTab === 'templates' }]" 
-        @click="activeTab = 'templates'"
-      >
-        模板背诵
-      </button>
-      <button 
-        :class="['tab-btn', { active: activeTab === 'phrases' }]" 
-        @click="activeTab = 'phrases'"
-      >
-        高分句型
-      </button>
-    </div>
-
-    <!-- 写作指导 -->
-    <div v-if="activeTab === 'guide'" class="guide-section">
-      <div class="guide-list">
-        <div 
-          v-for="guide in writingGuides" 
-          :key="guide.id"
-          class="guide-card"
-          @click="showGuideDetail(guide)"
-        >
-          <div class="guide-icon">{{ guide.icon }}</div>
-          <h3>{{ guide.title }}</h3>
-          <p>{{ guide.description }}</p>
-        </div>
-      </div>
-
-      <!-- 写作指导详情弹窗 -->
-      <el-dialog 
-        v-model="guideDetailVisible" 
-        :title="selectedGuide?.title"
-        width="800px"
-      >
-        <div v-if="selectedGuide" class="guide-detail">
-          <div class="guide-content" v-html="selectedGuide.content"></div>
-        </div>
-      </el-dialog>
-    </div>
-
-    <!-- 模板背诵 -->
-    <div v-if="activeTab === 'templates'" class="templates-section">
-      <div class="templates-toolbar">
-        <el-select v-model="templateFilter" placeholder="选择模板类型" clearable style="width: 200px;">
-          <el-option label="图表作文" value="chart" />
-          <el-option label="话题论述" value="topic" />
-          <el-option label="书信" value="letter" />
-        </el-select>
-        <el-button type="primary" @click="showAddTemplateDialog">
-          <el-icon><Plus /></el-icon>
-          添加模板
-        </el-button>
-      </div>
-
-      <div class="templates-list">
-        <div 
-          v-for="template in filteredTemplates" 
-          :key="template.id"
-          class="template-card"
-        >
-          <div class="template-header">
-            <span :class="['template-type', template.type]">{{ getTypeLabel(template.type) }}</span>
-            <div class="template-actions">
-              <el-button size="small" @click="toggleTemplateContent(template.id)">
-                {{ template.showContent ? '收起' : '展开' }}
-              </el-button>
-              <el-button size="small" type="danger" @click="deleteTemplate(template.id)">
-                <el-icon><Delete /></el-icon>
-              </el-button>
-            </div>
+  <div class="writing-learning-premium">
+    <!-- Hero Section: 视觉冲击区 -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">✍️ Writing Mastery</h1>
+        <p class="hero-subtitle">Master English Writing in 5 Days | 六级作文冲刺系统</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">核心模板</span>
           </div>
-          
-          <div v-if="template.showContent" class="template-content">
-            <div class="template-title">{{ template.title }}</div>
-            <div class="template-text">{{ template.content }}</div>
-            
-            <div class="template-usage">
-              <strong>使用说明：</strong>
-              <p>{{ template.usage }}</p>
-            </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">高分句型</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">实战练习</span>
           </div>
         </div>
       </div>
-
-      <el-empty v-if="filteredTemplates.length === 0" description="暂无模板" />
-
-      <!-- 添加模板弹窗 -->
-      <el-dialog 
-        v-model="addTemplateVisible" 
-        title="添加模板"
-        width="700px"
-      >
-        <el-form :model="templateForm" label-width="100px">
-          <el-form-item label="类型">
-            <el-select v-model="templateForm.type" placeholder="请选择类型">
-              <el-option label="图表作文" value="chart" />
-              <el-option label="话题论述" value="topic" />
-              <el-option label="书信" value="letter" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="标题">
-            <el-input v-model="templateForm.title" placeholder="模板标题" />
-          </el-form-item>
-          <el-form-item label="内容">
-            <el-input 
-              v-model="templateForm.content" 
-              type="textarea" 
-              :rows="6"
-              placeholder="请输入模板内容"
-            />
-          </el-form-item>
-          <el-form-item label="使用说明">
-            <el-input 
-              v-model="templateForm.usage" 
-              type="textarea" 
-              :rows="3"
-              placeholder="请输入使用说明"
-            />
-          </el-form-item>
-        </el-form>
-        <template #footer>
-          <el-button @click="addTemplateVisible = false">取消</el-button>
-          <el-button type="primary" @click="saveTemplate">保存</el-button>
-        </template>
-      </el-dialog>
     </div>
 
-    <!-- 高分句型 -->
-    <div v-if="activeTab === 'phrases'" class="phrases-section">
-      <div class="phrases-list">
+    <!-- Main Navigation: 高级标签切换 -->
+    <div class="premium-tabs">
+      <button 
+        :class="['tab-pill', { active: activeTab === 'frameworks' }]" 
+        @click="activeTab = 'frameworks'"
+      >
+        <span class="tab-icon">🏗️</span>
+        <span class="tab-text">框架模板</span>
+      </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'sentences' }]" 
+        @click="activeTab = 'sentences'"
+      >
+        <span class="tab-icon">💎</span>
+        <span class="tab-text">万能句型</span>
+      </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'practice' }]" 
+        @click="activeTab = 'practice'"
+      >
+        <span class="tab-icon">⚡</span>
+        <span class="tab-text">实战演练</span>
+      </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'examples' }]" 
+        @click="activeTab = 'examples'"
+      >
+        <span class="tab-icon">📖</span>
+        <span class="tab-text">范文库</span>
+      </button>
+    </div>
+
+    <!-- Tab 1: 框架模板 (Frameworks) -->
+    <div v-if="activeTab === 'frameworks'" class="content-section frameworks-section">
+      <div class="section-header">
+        <h2>三大核心框架 | Three Core Frameworks</h2>
+        <p class="section-desc">掌握议论文/图表/书信的结构骨架，考场快速搭建</p>
+      </div>
+
+      <div class="frameworks-grid">
         <div 
-          v-for="category in phraseCategories" 
+          v-for="framework in frameworks" 
+          :key="framework.id"
+          class="framework-card"
+          :class="{ expanded: expandedFramework === framework.id }"
+          @click="toggleFramework(framework.id)"
+        >
+          <div class="framework-header">
+            <div class="framework-badge" :class="framework.type">{{ framework.badge }}</div>
+            <h3>{{ framework.title }}</h3>
+            <p class="framework-subtitle">{{ framework.subtitle }}</p>
+          </div>
+
+          <div class="framework-body" v-show="expandedFramework === framework.id">
+            <div class="structure-flow">
+              <div 
+                v-for="(step, index) in framework.structure" 
+                :key="index"
+                class="flow-step"
+              >
+                <div class="step-indicator">{{ index + 1 }}</div>
+                <div class="step-content">
+                  <h4>{{ step.title }}</h4>
+                  <p>{{ step.description }}</p>
+                  <div class="step-examples">
+                    <div v-for="(example, idx) in step.examples" :key="idx" class="example-line">
+                      <span class="example-en">{{ example.en }}</span>
+                      <span class="example-cn">{{ example.cn }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="framework-tips">
+              <strong>💡 使用要点：</strong>
+              <ul>
+                <li v-for="tip in framework.tips" :key="tip">{{ tip }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="framework-footer">
+            <span class="expand-hint">{{ expandedFramework === framework.id ? '点击收起 ↑' : '点击展开详情 ↓' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: 万能句型 (Sentences) -->
+    <div v-if="activeTab === 'sentences'" class="content-section sentences-section">
+      <div class="section-header">
+        <h2>高分句型库 | Premium Sentence Bank</h2>
+        <p class="section-desc">按功能分类，即拿即用，提升语言档次</p>
+      </div>
+
+      <div class="sentences-categories">
+        <div 
+          v-for="category in sentenceCategories" 
           :key="category.id"
-          class="phrase-category"
+          class="sentence-category"
         >
-          <h3 class="category-title">{{ category.icon }} {{ category.title }}</h3>
-          <div class="phrases-grid">
+          <div class="category-header">
+            <span class="category-icon">{{ category.icon }}</span>
+            <h3>{{ category.title }}</h3>
+            <span class="category-count">{{ category.sentences.length }} 句</span>
+          </div>
+
+          <div class="sentences-list">
             <div 
-              v-for="phrase in category.phrases" 
-              :key="phrase.id"
-              class="phrase-card"
-              @click="showPhraseDetail(phrase)"
+              v-for="sentence in category.sentences" 
+              :key="sentence.id"
+              class="sentence-card"
+              @click="showSentenceDetail(sentence)"
             >
-              <div class="phrase-text">{{ phrase.english }}</div>
-              <div class="phrase-meaning">{{ phrase.chinese }}</div>
+              <div class="sentence-main">
+                <div class="sentence-en">{{ sentence.english }}</div>
+                <div class="sentence-cn">{{ sentence.chinese }}</div>
+              </div>
+              <div class="sentence-tags">
+                <span 
+                  v-for="tag in sentence.tags" 
+                  :key="tag" 
+                  class="tag"
+                  :class="tag"
+                >
+                  {{ tagLabel(tag) }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -166,35 +158,245 @@
 
       <!-- 句型详情弹窗 -->
       <el-dialog 
-        v-model="phraseDetailVisible" 
-        :title="'句型详解'"
-        width="700px"
+        v-model="sentenceDetailVisible" 
+        title="句型详解 | Sentence Breakdown"
+        width="750px"
+        class="sentence-detail-dialog"
       >
-        <div v-if="selectedPhrase" class="phrase-detail">
-          <div class="detail-english">
-            <strong>英文：</strong>{{ selectedPhrase.english }}
+        <div v-if="selectedSentence" class="sentence-breakdown">
+          <div class="breakdown-section original">
+            <h4>原句 | Original</h4>
+            <p class="original-text">{{ selectedSentence.english }}</p>
           </div>
-          <div class="detail-chinese">
-            <strong>中文：</strong>{{ selectedPhrase.chinese }}
+          
+          <div class="breakdown-section translation">
+            <h4>翻译 | Translation</h4>
+            <p>{{ selectedSentence.chinese }}</p>
           </div>
-          <div v-if="selectedPhrase.examples && selectedPhrase.examples.length > 0" class="detail-examples">
-            <h4>例句</h4>
+
+          <div class="breakdown-section structure">
+            <h4>结构分析 | Structure</h4>
+            <div class="structure-highlight" v-html="selectedSentence.structure"></div>
+          </div>
+
+          <div v-if="selectedSentence.examples && selectedSentence.examples.length > 0" class="breakdown-section examples">
+            <h4>应用场景 | Usage Examples</h4>
             <div 
-              v-for="(example, index) in selectedPhrase.examples" 
+              v-for="(example, index) in selectedSentence.examples" 
               :key="index"
-              class="example-item"
+              class="usage-example"
             >
-              <div class="example-text">{{ example }}</div>
+              <div class="example-context">{{ example.context }}</div>
+              <div class="example-sentence">{{ example.sentence }}</div>
+            </div>
+          </div>
+
+          <div class="breakdown-section tips">
+            <h4>⚠️ 注意事项</h4>
+            <ul>
+              <li v-for="tip in selectedSentence.tips" :key="tip">{{ tip }}</li>
+            </ul>
+          </div>
+        </div>
+      </el-dialog>
+    </div>
+
+    <!-- Tab 3: 实战演练 (Practice) -->
+    <div v-if="activeTab === 'practice'" class="content-section practice-section">
+      <div class="section-header">
+        <h2>限时实战训练 | Timed Practice</h2>
+        <p class="section-desc">模拟考场环境，30分钟完成一篇作文</p>
+      </div>
+
+      <div class="practice-controls">
+        <div class="timer-display">
+          <span class="timer-label">剩余时间</span>
+          <span class="timer-value">{{ formatTime(remainingTime) }}</span>
+        </div>
+        <div class="control-buttons">
+          <el-button 
+            v-if="!isPracticing" 
+            type="primary" 
+            size="large"
+            @click="startPractice"
+          >
+            🚀 开始练习
+          </el-button>
+          <el-button 
+            v-else 
+            type="danger" 
+            size="large"
+            @click="stopPractice"
+          >
+            ⏹️ 结束练习
+          </el-button>
+        </div>
+      </div>
+
+      <div class="practice-workspace" v-if="currentTopic">
+        <div class="topic-card">
+          <div class="topic-header">
+            <span class="topic-type" :class="currentTopic.type">{{ currentTopic.typeLabel }}</span>
+            <span class="topic-year">{{ currentTopic.year }}</span>
+          </div>
+          <h3 class="topic-title">{{ currentTopic.title }}</h3>
+          <div class="topic-content" v-html="currentTopic.content"></div>
+          <div class="topic-requirements">
+            <strong>要求：</strong>{{ currentTopic.requirements }}
+          </div>
+        </div>
+
+        <div class="writing-area">
+          <textarea 
+            v-model="userEssay" 
+            placeholder="在此输入你的作文...&#10;&#10;建议结构：&#10;第一段：引出话题 + 表明立场&#10;第二段：论证理由（2-3个论点）&#10;第三段：总结 + 建议/展望"
+            class="essay-textarea"
+            :disabled="!isPracticing"
+          ></textarea>
+          <div class="word-count">
+            字数：{{ wordCount }} / 建议 150-200 词
+          </div>
+        </div>
+
+        <div class="quick-reference">
+          <h4>📌 快速参考</h4>
+          <div class="reference-cards">
+            <div class="ref-card">
+              <h5>开头句型</h5>
+              <ul>
+                <li>Recently, the issue of ___ has aroused wide concern.</li>
+                <li>From my perspective, I firmly believe that...</li>
+              </ul>
+            </div>
+            <div class="ref-card">
+              <h5>论证连接</h5>
+              <ul>
+                <li>First and foremost, ...</li>
+                <li>Furthermore, ...</li>
+                <li>Last but not least, ...</li>
+              </ul>
+            </div>
+            <div class="ref-card">
+              <h5>结尾总结</h5>
+              <ul>
+                <li>In conclusion, ...</li>
+                <li>It is high time that we took effective measures to...</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <el-empty v-else description="点击上方按钮开始练习" />
+    </div>
+
+    <!-- Tab 4: 范文库 (Examples) -->
+    <div v-if="activeTab === 'examples'" class="content-section examples-section">
+      <div class="section-header">
+        <h2>高分范文库 | Model Essays</h2>
+        <p class="section-desc">历年真题范文 + 详细解析</p>
+      </div>
+
+      <div class="examples-filter">
+        <el-select v-model="exampleFilter" placeholder="筛选类型" clearable style="width: 180px;">
+          <el-option label="议论文" value="argumentative" />
+          <el-option label="图表作文" value="chart" />
+          <el-option label="书信" value="letter" />
+        </el-select>
+        <el-select v-model="yearFilter" placeholder="年份" clearable style="width: 120px;">
+          <el-option label="2025" value="2025" />
+          <el-option label="2024" value="2024" />
+          <el-option label="2023" value="2023" />
+        </el-select>
+      </div>
+
+      <div class="examples-list">
+        <div 
+          v-for="example in filteredExamples" 
+          :key="example.id"
+          class="example-card"
+          @click="showExampleDetail(example)"
+        >
+          <div class="example-preview">
+            <div class="example-meta">
+              <span class="example-type" :class="example.type">{{ example.typeLabel }}</span>
+              <span class="example-year">{{ example.year }}</span>
+              <span class="example-score">⭐ {{ example.score }}/15</span>
+            </div>
+            <h3 class="example-title">{{ example.title }}</h3>
+            <p class="example-excerpt">{{ example.excerpt }}</p>
+          </div>
+          <div class="example-action">
+            <el-button type="primary" size="small">查看详情 →</el-button>
+          </div>
+        </div>
+      </div>
+
+      <el-empty v-if="filteredExamples.length === 0" description="暂无范文" />
+
+      <!-- 范文详情弹窗 -->
+      <el-dialog 
+        v-model="exampleDetailVisible" 
+        title="范文详解"
+        width="900px"
+        class="example-detail-dialog"
+      >
+        <div v-if="selectedExample" class="example-full">
+          <div class="example-header-info">
+            <span class="example-type" :class="selectedExample.type">{{ selectedExample.typeLabel }}</span>
+            <span class="example-year">{{ selectedExample.year }}</span>
+            <span class="example-score">⭐ {{ selectedExample.score }}/15</span>
+          </div>
+
+          <div class="example-essay">
+            <h4>范文原文</h4>
+            <div class="essay-text" v-html="selectedExample.fullEssay"></div>
+          </div>
+
+          <div class="example-analysis">
+            <h4>📊 亮点分析</h4>
+            <div class="analysis-points">
+              <div 
+                v-for="(point, index) in selectedExample.highlights" 
+                :key="index"
+                class="highlight-point"
+              >
+                <span class="point-number">{{ index + 1 }}</span>
+                <div class="point-content">
+                  <strong>{{ point.category }}</strong>
+                  <p>{{ point.description }}</p>
+                  <div class="point-example" v-if="point.example">
+                    <em>示例：</em>{{ point.example }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-vocabulary">
+            <h4>📚 高分词汇</h4>
+            <div class="vocab-list">
+              <div 
+                v-for="(word, index) in selectedExample.vocabulary" 
+                :key="index"
+                class="vocab-item"
+              >
+                <span class="vocab-word">{{ word.word }}</span>
+                <span class="vocab-meaning">{{ word.meaning }}</span>
+              </div>
             </div>
           </div>
         </div>
       </el-dialog>
     </div>
 
-    <!-- 使用提示 -->
-    <div class="usage-tips">
-      <el-icon><InfoFilled /></el-icon>
-      <span>💡 使用建议：先学方法，再背模板，每周至少写一篇作文，对照范文找差距</span>
+    <!-- Footer Tips -->
+    <div class="premium-tips">
+      <div class="tips-icon">💡</div>
+      <div class="tips-content">
+        <strong>5天冲刺建议：</strong>
+        <span>每天练习1篇 → 对照范文找差距 → 背诵3个万能句型 → 默写1个框架</span>
+      </div>
     </div>
   </div>
 </template>
