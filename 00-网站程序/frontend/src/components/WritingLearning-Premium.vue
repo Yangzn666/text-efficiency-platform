@@ -2262,9 +2262,9 @@ function showExampleDetail(example: any) {
 }
 
 .example-type {
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 20px;
-  font-size: 0.85em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -2273,33 +2273,35 @@ function showExampleDetail(example: any) {
 .example-type.letter { background: #e8f5e9; color: #388E3C; }
 
 .example-year {
-  padding: 6px 14px;
+  padding: 8px 18px;
   background: #f0f0f0;
   border-radius: 20px;
-  font-size: 0.85em;
-  color: #666;
+  font-size: 1em;
+  color: #555;
   font-weight: 600;
 }
 
 .example-score {
-  padding: 6px 14px;
+  padding: 8px 18px;
   background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
   border-radius: 20px;
-  font-size: 0.85em;
+  font-size: 1em;
   color: #333;
   font-weight: 700;
 }
 
 .example-title {
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: #333;
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .example-excerpt {
-  color: #666;
-  font-size: 0.95em;
-  line-height: 1.6;
+  color: #555;
+  font-size: 1.05em;
+  line-height: 1.8;
   margin: 0;
 }
 
@@ -2309,7 +2311,8 @@ function showExampleDetail(example: any) {
 
 /* Example Detail Dialog */
 .example-full {
-  padding: 10px;
+  padding: 15px;
+  font-size: 1.05em;
 }
 
 .example-header-info {
@@ -2322,21 +2325,24 @@ function showExampleDetail(example: any) {
 }
 
 .example-essay {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .example-essay h4 {
   color: #667eea;
-  margin: 0 0 15px 0;
-  font-size: 1.2em;
+  margin: 0 0 18px 0;
+  font-size: 1.4em;
+  font-weight: 700;
 }
 
 .essay-text {
-  padding: 20px;
+  padding: 25px;
   background: #f8f9fa;
-  border-radius: 12px;
-  line-height: 2;
+  border-radius: 14px;
+  line-height: 2.2;
   color: #333;
+  font-size: 1.15em;
+  letter-spacing: 0.3px;
 }
 
 .essay-text p {
@@ -2344,34 +2350,36 @@ function showExampleDetail(example: any) {
 }
 
 .example-analysis {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .example-analysis h4 {
   color: #667eea;
-  margin: 0 0 20px 0;
-  font-size: 1.2em;
+  margin: 0 0 25px 0;
+  font-size: 1.4em;
+  font-weight: 700;
 }
 
 .analysis-points {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .highlight-point {
   display: flex;
-  gap: 15px;
-  padding: 18px;
-  background: #f8f9fa;
-  border-radius: 12px;
+  gap: 18px;
+  padding: 22px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 14px;
   border-left: 4px solid #667eea;
+  line-height: 1.8;
 }
 
 .point-number {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-radius: 50%;
@@ -2379,61 +2387,68 @@ function showExampleDetail(example: any) {
   align-items: center;
   justify-content: center;
   font-weight: 700;
+  font-size: 1.1em;
 }
 
 .point-content strong {
   display: block;
   color: #333;
-  margin-bottom: 8px;
-  font-size: 1.05em;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+  font-weight: 700;
 }
 
 .point-content p {
-  color: #666;
-  margin: 0 0 10px 0;
-  line-height: 1.6;
+  color: #555;
+  margin: 0 0 12px 0;
+  line-height: 1.8;
+  font-size: 1.05em;
 }
 
 .point-example {
-  padding: 10px 12px;
+  padding: 12px 15px;
   background: white;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #667eea;
   font-style: italic;
-  font-size: 0.95em;
+  font-size: 1.05em;
+  line-height: 1.7;
 }
 
 .example-vocabulary h4 {
   color: #667eea;
-  margin: 0 0 20px 0;
-  font-size: 1.2em;
+  margin: 0 0 25px 0;
+  font-size: 1.4em;
+  font-weight: 700;
 }
 
 .vocab-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .vocab-item {
-  padding: 12px 15px;
-  background: #f8f9fa;
-  border-radius: 10px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  line-height: 1.7;
 }
 
 .vocab-word {
-  font-weight: 600;
+  font-weight: 700;
   color: #667eea;
-  font-size: 1.05em;
+  font-size: 1.15em;
 }
 
 .vocab-meaning {
-  color: #666;
-  font-size: 0.9em;
+  color: #555;
+  font-size: 1.05em;
 }
 
 /* Footer Tips */
