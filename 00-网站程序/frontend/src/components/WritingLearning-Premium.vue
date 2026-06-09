@@ -98,6 +98,20 @@ const frameworks = [
         ]
       }
     ],
+    mnemonic: '引表论总',
+    mnemonicDesc: '引（引出话题）→ 表（表明立场）→ 论（论证理由）→ 总（总结展望）',
+    logicChain: {
+      level1: '表面现象（what）- 描述题目给出的现象或问题',
+      level2: '深层原因（how）- 分析现象背后的原因或机制',
+      level3: '本质影响（why it matters）- 探讨对个人/社会的深远影响'
+    },
+    writingTips: [
+      '✅ 开头段必须明确表明立场（支持/反对/中立）',
+      '✅ 每段只论证一个理由，不要堆砌多个观点',
+      '✅ 使用对立假想敌增强说服力',
+      '❌ 避免中式英语开头（With the development of society...）',
+      '❌ 不要使用过于绝对的词汇（always/never）'
+    ],
     tips: [
       '观点要明确，不要模棱两可',
       '每个论点都要有具体例子支撑',
@@ -136,6 +150,20 @@ const frameworks = [
           { en: 'Therefore, it is advisable to...', cn: '因此，建议...' }
         ]
       }
+    ],
+    mnemonic: '描析预',
+    mnemonicDesc: '描（描述数据）→ 析（分析原因）→ 预（预测趋势/建议）',
+    logicChain: {
+      level1: '数据描述（what）- 客观呈现图表中的关键信息',
+      level2: '原因分析（how）- 解释数据变化背后的原因',
+      level3: '趋势预测（why it matters）- 推断未来发展或提出建议'
+    },
+    writingTips: [
+      '✅ 选择2-3个关键数据点，不要罗列所有数据',
+      '✅ 使用比较句型（higher than/increased by）',
+      '✅ 数据描述用过去时，预测用将来时',
+      '❌ 避免主观臆断，保持客观描述',
+      '❌ 不要忽略图表标题和单位'
     ],
     tips: [
       '不要罗列所有数据，选择关键趋势',
@@ -176,6 +204,20 @@ const frameworks = [
           { en: 'Looking forward to your early reply.', cn: '期待您的早日回复。' }
         ]
       }
+    ],
+    mnemonic: '目内结',
+    mnemonicDesc: '目（说明目的）→ 内（具体内容）→ 结（结尾致谢）',
+    logicChain: {
+      level1: '写信目的（what）- 清楚说明为什么写这封信',
+      level2: '具体内容（how）- 分点陈述核心信息',
+      level3: '礼貌结尾（why it matters）- 表达期望或感谢'
+    },
+    writingTips: [
+      '✅ 开头直接说明写信目的',
+      '✅ 正文分点陈述（Firstly/Secondly/Finally）',
+      '✅ 语气礼貌得体，符合书信规范',
+      '❌ 不要遗漏题目要求的任何要点',
+      '❌ 避免口语化表达'
     ],
     tips: [
       '注意书信格式（称呼、署名）',
@@ -1199,9 +1241,37 @@ function showExampleDetail(example: any) {
             <div class="framework-badge" :class="framework.type">{{ framework.badge }}</div>
             <h3>{{ framework.title }}</h3>
             <p class="framework-subtitle">{{ framework.subtitle }}</p>
+            
+            <!-- 口诀记忆 -->
+            <div class="mnemonic-box">
+              <span class="mnemonic-icon"></span>
+              <span class="mnemonic-text">{{ framework.mnemonic }}</span>
+              <span class="mnemonic-desc">{{ framework.mnemonicDesc }}</span>
+            </div>
           </div>
 
           <div class="framework-body" v-show="expandedFramework === framework.id">
+            <!-- 三级递进法 -->
+            <div class="logic-chain-box">
+              <h4>📊 三级递进法（深化立意）</h4>
+              <div class="chain-levels">
+                <div class="chain-level level-1">
+                  <span class="level-badge">一级</span>
+                  <span class="level-text">{{ framework.logicChain.level1 }}</span>
+                </div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-level level-2">
+                  <span class="level-badge">二级</span>
+                  <span class="level-text">{{ framework.logicChain.level2 }}</span>
+                </div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-level level-3">
+                  <span class="level-badge">三级</span>
+                  <span class="level-text">{{ framework.logicChain.level3 }}</span>
+                </div>
+              </div>
+            </div>
+
             <div class="structure-flow">
               <div 
                 v-for="(step, index) in framework.structure" 
@@ -1223,29 +1293,18 @@ function showExampleDetail(example: any) {
             </div>
 
             <div class="framework-tips">
-              <strong>💡 使用要点：</strong>
-              <ul>
-                <li v-for="tip in framework.tips" :key="tip">{{ tip }}</li>
-              </ul>
+              <strong> 使用要点（Writing Tips）：</strong>
+              <div class="writing-tips-list">
+                <div v-for="(tip, index) in framework.writingTips" :key="index" class="tip-item">
+                  {{ tip }}
+                </div>
+              </div>
               
-              <!-- 记忆贴士 -->
-              <div class="memory-tip">
-                <strong>🧠 记忆技巧：</strong>
-                <p v-if="framework.id === 1">
-                  <strong>口诀：</strong>“引表论总” - 引出话题→表明立场→论证理由→总结展望<br>
-                  <strong>联想：</strong>想象你在演讲：先说主题(引)，再站队(表)，然后讲道理(论)，最后收尾(总)<br>
-                  <strong>关键词：</strong>Recently... / From my perspective... / First...Furthermore...Last... / In conclusion...
-                </p>
-                <p v-if="framework.id === 2">
-                  <strong>口诀：</strong>“描析预” - 描述数据→分析原因→预测趋势<br>
-                  <strong>联想：</strong>像天气预报：先看图表(描)，再解释为什么(析)，最后预测未来(预)<br>
-                  <strong>关键词：</strong>As shown... / Several factors... / It can be predicted...
-                </p>
-                <p v-if="framework.id === 3">
-                  <strong>口诀：</strong>“目内结” - 目的→内容→结尾<br>
-                  <strong>联想：</strong>写信三步骤：为何写(目)→写什么(内)→怎么结束(结)<br>
-                  <strong>关键词：</strong>I am writing to... / Firstly...Secondly...Finally... / I would appreciate...
-                </p>
+              <div class="original-tips">
+                <strong>💡 注意事项：</strong>
+                <ul>
+                  <li v-for="tip in framework.tips" :key="tip">{{ tip }}</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -2027,6 +2086,126 @@ function showExampleDetail(example: any) {
 .strategy-item span {
   color: #555;
   font-size: 1em;
+}
+
+/* Mnemonic Box */
+.mnemonic-box {
+  margin-top: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-radius: 12px;
+  border-left: 4px solid #FF9800;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mnemonic-icon {
+  font-size: 1.5em;
+}
+
+.mnemonic-text {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #E65100;
+  font-family: 'Georgia', serif;
+  letter-spacing: 2px;
+}
+
+.mnemonic-desc {
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* Logic Chain Box */
+.logic-chain-box {
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-radius: 15px;
+  border-left: 4px solid #9C27B0;
+}
+
+.logic-chain-box h4 {
+  font-size: 1.2em;
+  color: #6A1B9A;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+}
+
+.chain-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chain-level {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 18px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.level-badge {
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.level-text {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.chain-arrow {
+  text-align: center;
+  font-size: 1.5em;
+  color: #9C27B0;
+  font-weight: 700;
+}
+
+/* Writing Tips List */
+.writing-tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tip-item {
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.7;
+  border-left: 3px solid #4CAF50;
+}
+
+.original-tips {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px dashed #ddd;
+}
+
+.original-tips ul {
+  margin: 10px 0 0 0;
+  padding-left: 20px;
+}
+
+.original-tips li {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 8px;
 }
 
 /* Frameworks - Single Column Layout */
