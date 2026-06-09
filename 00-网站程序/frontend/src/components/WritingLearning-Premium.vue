@@ -1675,27 +1675,29 @@ function showExampleDetail(example: any) {
   line-height: 1.7;
 }
 
-/* Frameworks Grid */
+/* Frameworks - Single Column Layout */
 .frameworks-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .framework-card {
   background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid transparent;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .framework-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
   border-color: #667eea;
 }
 
@@ -1851,19 +1853,21 @@ function showExampleDetail(example: any) {
   font-weight: 500;
 }
 
-/* Sentences Section */
+/* Sentences - Single Column Layout */
 .sentences-categories {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 45px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .sentence-category {
   background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  line-height: 1.7;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
 }
 
 .category-header {
@@ -1897,26 +1901,26 @@ function showExampleDetail(example: any) {
 }
 
 .sentences-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .sentence-card {
-  padding: 22px;
-  background: #f8f9fa;
-  border-radius: 12px;
+  padding: 25px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
-  line-height: 1.7;
+  border: 2px solid #e9ecef;
+  line-height: 1.8;
 }
 
 .sentence-card:hover {
   background: white;
   border-color: #667eea;
-  transform: translateX(5px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.15);
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
 }
 
 .sentence-main {
@@ -2182,16 +2186,17 @@ function showExampleDetail(example: any) {
 }
 
 .reference-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .ref-card {
-  padding: 18px;
-  background: #f8f9fa;
-  border-radius: 12px;
+  padding: 22px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 14px;
   border-left: 4px solid #667eea;
+  line-height: 1.7;
 }
 
 .ref-card h5 {
@@ -2206,38 +2211,42 @@ function showExampleDetail(example: any) {
 }
 
 .ref-card li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: #666;
-  font-size: 0.9em;
-  line-height: 1.5;
+  font-size: 0.95em;
+  line-height: 1.7;
 }
 
-/* Examples Section */
+/* Examples - Single Column Layout */
 .examples-filter {
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 18px;
+  margin-bottom: 30px;
   justify-content: center;
 }
 
 .examples-list {
-  display: grid;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .example-card {
-  padding: 25px;
+  padding: 30px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  line-height: 1.8;
 }
 
 .example-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
   border-color: #667eea;
 }
 
@@ -2532,23 +2541,27 @@ function showExampleDetail(example: any) {
 }
 
 .memory-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 45px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .memory-card {
   background: white;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.8;
 }
 
 .memory-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .memory-card.mnemonic {
@@ -2577,8 +2590,9 @@ function showExampleDetail(example: any) {
 
 .card-desc {
   color: #666;
-  margin: 0 0 20px 0;
-  line-height: 1.6;
+  margin: 0 0 25px 0;
+  line-height: 1.8;
+  font-size: 1.05em;
 }
 
 .memory-card .examples {
@@ -2588,12 +2602,13 @@ function showExampleDetail(example: any) {
 }
 
 .example-item {
-  padding: 12px;
-  background: #f5f5f5;
-  border-radius: 8px;
+  padding: 15px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  line-height: 1.7;
 }
 
 .example-item strong {
