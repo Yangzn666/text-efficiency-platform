@@ -361,7 +361,9 @@ const sentenceCategories = [
           { context: '科技话题', sentence: 'With the rapid development of technology, our lives have changed dramatically.' },
           { context: '教育话题', sentence: 'With the rapid development of online education, learning has become more accessible.' }
         ],
-        tips: ['适用于大多数话题开头', 'development后可接不同领域']
+        tips: ['适用于大多数话题开头', 'development后可接不同领域'],
+        memoryTip: '"快速发展"句式 - 火箭升空联想：随着火箭升空（快速发展），视野变广（话题引入）',
+        usage: '适用于描述趋势性现象的开头，避免用于具体事件'
       },
       {
         id: 2,
@@ -373,7 +375,9 @@ const sentenceCategories = [
           { context: '环保话题', sentence: 'Nowadays, environmental protection has become a matter of public concern.' },
           { context: '健康话题', sentence: 'Nowadays, mental health has become a hot topic among young people.' }
         ],
-        tips: ['hot topic更口语化', 'matter of public concern更正式']
+        tips: ['hot topic更口语化', 'matter of public concern更正式'],
+        memoryTip: '"如今热门"句式 - 🔥火焰联想：nowadays像火焰一样燃烧，hot topic就是热点话题',
+        usage: '适用于社会热点话题，强调话题的时效性和公众关注度'
       },
       {
         id: 3,
@@ -385,7 +389,9 @@ const sentenceCategories = [
           { context: '教育重要性', sentence: 'It is universally acknowledged that education is the key to success.' },
           { context: '健康重要性', sentence: 'It is universally acknowledged that health is wealth.' }
         ],
-        tips: ['语气强烈，用于公认事实', '避免用于有争议的观点']
+        tips: ['语气强烈，用于公认事实', '避免用于有争议的观点'],
+        memoryTip: '"众所周知"句式 - 地球联想：universal=全球，acknowledged=承认，全球都承认的事实',
+        usage: '用于引出公认真理或常识，增强权威性，不可用于争议性观点'
       }
     ]
   },
@@ -1590,6 +1596,16 @@ function showExampleDetail(example: any) {
               <div class="example-context">{{ example.context }}</div>
               <div class="example-sentence">{{ example.sentence }}</div>
             </div>
+          </div>
+
+          <div v-if="selectedSentence.memoryTip" class="breakdown-section memory-tip">
+            <h4>🧠 记忆技巧 | Memory Tip</h4>
+            <p>{{ selectedSentence.memoryTip }}</p>
+          </div>
+
+          <div v-if="selectedSentence.usage" class="breakdown-section usage-note">
+            <h4>📝 使用场景 | Usage Notes</h4>
+            <p>{{ selectedSentence.usage }}</p>
           </div>
 
           <div class="breakdown-section tips">
@@ -2875,6 +2891,51 @@ function showExampleDetail(example: any) {
   color: #667eea;
   font-size: 0.9em;
   font-weight: 500;
+}
+
+/* Memory Tip Section */
+.memory-tip {
+  padding: 20px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 12px;
+  border-left: 4px solid #2196F3;
+  margin-bottom: 20px;
+}
+
+.memory-tip h4 {
+  font-size: 1.1em;
+  color: #1565C0;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.memory-tip p {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Usage Note Section */
+.usage-note {
+  padding: 20px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-radius: 12px;
+  border-left: 4px solid #4CAF50;
+}
+
+.usage-note h4 {
+  font-size: 1.1em;
+  color: #2E7D32;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.usage-note p {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.7;
+  margin: 0;
 }
 
 /* Sentences - Single Column Layout */
