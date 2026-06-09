@@ -808,7 +808,9 @@ function getMemoryUsage(sentence: any): string {
 const isPracticing = ref(false)
 const remainingTime = ref(1800) // 30分钟 = 1800秒
 const userEssay = ref('')
+const autoSaveStatus = ref('')
 let timer: any = null
+let autoSaveTimer: any = null
 
 const practiceTopics = [
   {
@@ -927,6 +929,7 @@ function startPractice() {
   isPracticing.value = true
   remainingTime.value = 1800
   userEssay.value = ''
+  autoSaveStatus.value = '💾 已启用自动保存'
   // 随机选择一个题目
   currentTopic.value = practiceTopics[Math.floor(Math.random() * practiceTopics.length)]
   
@@ -939,6 +942,25 @@ function startPractice() {
       alert('时间到！请停止写作。')
     }
   }, 1000)
+  
+  // 启动自动保存（每30秒保存一次）
+  autoSaveTimer = setInterval(() => {
+    if (userEssay.value.trim().length > 0) {
+      const draft = {
+        topic: currentTopic.value?.title,
+        content: userEssay.value,
+        wordCount: wordCount.value,
+        timestamp: new Date().toISOString()
+      }
+      localStorage.setItem('writing-draft', JSON.stringify(draft))
+      autoSaveStatus.value = '✅ 已自动保存 (' + formatTime(remainingTime.value) + ')'
+      
+      // 2秒后清除提示
+      setTimeout(() => {
+        autoSaveStatus.value = '💾 自动保存中...'
+      }, 2000)
+    }
+  }, 30000)
 }
 
 function stopPractice() {
@@ -947,6 +969,11 @@ function stopPractice() {
     clearInterval(timer)
     timer = null
   }
+  if (autoSaveTimer) {
+    clearInterval(autoSaveTimer)
+    autoSaveTimer = null
+  }
+  autoSaveStatus.value = ''
   
   // 保存练习记录
   if (userEssay.value.trim().length > 0) {
@@ -960,6 +987,15 @@ function stopPractice() {
     const records = JSON.parse(localStorage.getItem('writing-practice-records') || '[]')
     records.push(practiceRecord)
     localStorage.setItem('writing-practice-records', JSON.stringify(records))
+    
+    // 最后一次保存草稿
+    const draft = {
+      topic: currentTopic.value?.title,
+      content: userEssay.value,
+      wordCount: wordCount.value,
+      timestamp: new Date().toISOString()
+    }
+    localStorage.setItem('writing-draft', JSON.stringify(draft))
   }
 }
 
@@ -1695,30 +1731,49 @@ function showExampleDetail(example: any) {
         </div>
 
         <div class="quick-reference">
-          <h4>📌 快速参考</h4>
+          <h4>📌 快速参考 | Quick Reference</h4>
           <div class="reference-cards">
             <div class="ref-card">
-              <h5>开头句型</h5>
+              <h5>开头句型 | Opening</h5>
               <ul>
-                <li>Recently, the issue of ___ has aroused wide concern.</li>
-                <li>From my perspective, I firmly believe that...</li>
+                <li><strong>With the rapid development of</strong> technology/society, ...</li>
+                <li><strong>Nowadays,</strong> ___ has become a hot topic.</li>
+                <li><strong>It is universally acknowledged that</strong> ...</li>
+                <li><strong>Recently, the issue of</strong> ___ <strong>has aroused wide concern.</strong></li>
               </ul>
             </div>
             <div class="ref-card">
-              <h5>论证连接</h5>
+              <h5>论证连接 | Transitions</h5>
               <ul>
-                <li>First and foremost, ...</li>
-                <li>Furthermore, ...</li>
-                <li>Last but not least, ...</li>
+                <li><strong>First and foremost,</strong> ...</li>
+                <li><strong>Furthermore / Moreover,</strong> ...</li>
+                <li><strong>Last but not least,</strong> ...</li>
+                <li><strong>On the one hand,</strong> ... <strong>On the other hand,</strong> ...</li>
+                <li><strong>However / Nevertheless,</strong> ...</li>
               </ul>
             </div>
             <div class="ref-card">
-              <h5>结尾总结</h5>
+              <h5>结尾总结 | Conclusion</h5>
               <ul>
-                <li>In conclusion, ...</li>
-                <li>It is high time that we took effective measures to...</li>
+                <li><strong>In conclusion / To sum up,</strong> ...</li>
+                <li><strong>It is high time that we took</strong> effective measures to...</li>
+                <li><strong>Taking all these factors into consideration,</strong> ...</li>
+                <li><strong>Therefore, it is advisable to</strong> ...</li>
               </ul>
             </div>
+            <div class="ref-card ref-card-highlight">
+              <h5>💡 深度论证技巧</h5>
+              <ul>
+                <li>三级递进：what → how → why it matters</li>
+                <li>对立假想敌：Some may argue that..., but...</li>
+                <li>举例论证：Take ___ as an example</li>
+                <li>因果分析：This is mainly because...</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="auto-save-indicator" v-if="isPracticing">
+            <span class="save-status">{{ autoSaveStatus }}</span>
           </div>
         </div>
       </div>
@@ -3324,6 +3379,40 @@ function showExampleDetail(example: any) {
   color: #666;
   font-size: 0.95em;
   line-height: 1.7;
+}
+
+.ref-card-highlight {
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+  border-left-color: #FFC107;
+}
+
+.ref-card-highlight h5 {
+  color: #F57F17;
+}
+
+/* Auto Save Indicator */
+.auto-save-indicator {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-radius: 10px;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.save-status {
+  color: #2E7D32;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* Examples - Single Column Layout */
