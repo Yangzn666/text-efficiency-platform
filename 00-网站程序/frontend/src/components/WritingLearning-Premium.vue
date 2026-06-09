@@ -228,6 +228,115 @@ const frameworks = [
   }
 ]
 
+// ========== Tab 3: Argumentation Methods - 深度论证方法 ==========
+const argumentationMethods = {
+  imaginaryOpponent: {
+    title: '找对立假想敌',
+    subtitle: '增强说服力的终极武器',
+    description: '通过设想对立观点并反驳，让你的论证无懈可击',
+    steps: [
+      {
+        step: 1,
+        title: '提出自己的观点',
+        example: 'I believe that online education is beneficial for students.'
+      },
+      {
+        step: 2,
+        title: '设想对立观点',
+        example: 'However, some people argue that online education lacks interaction.'
+      },
+      {
+        step: 3,
+        title: '反驳对立观点',
+        example: 'While this concern is valid, modern technology has addressed this issue through video conferencing and discussion forums.'
+      },
+      {
+        step: 4,
+        title: '强化自己的立场',
+        example: 'Therefore, the advantages of online education far outweigh its disadvantages.'
+      }
+    ],
+    templates: [
+      'Some people may argue that..., but...',
+      'While it is true that..., we cannot ignore that...',
+      'Admittedly, ..., however...',
+      'Critics may claim that..., yet...'
+    ]
+  },
+  threeLevelProgression: {
+    title: '三级递进法',
+    subtitle: '从表面到本质的深度论证',
+    description: '通过what→how→why it matters三层递进，让立意深刻',
+    levels: [
+      {
+        level: 1,
+        name: '一级：表面现象（What）',
+        description: '描述题目给出的现象或问题',
+        example: 'Teachers impart knowledge to students.'
+      },
+      {
+        level: 2,
+        name: '二级：深层原因（How）',
+        description: '分析现象背后的原因或机制',
+        example: 'They teach students how to think critically and solve problems independently.'
+      },
+      {
+        level: 3,
+        name: '三级：本质影响（Why it matters）',
+        description: '探讨对个人/社会的深远影响',
+        example: 'Ultimately, teachers shape students\' character and values, preparing them to become responsible citizens.'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        title: '修改前（浅层）',
+        content: 'Teachers are important. They teach us knowledge. We should respect them.'
+      },
+      after: {
+        title: '修改后（深度）',
+        content: 'Teachers do more than transmit facts; they cultivate our ability to think independently. More importantly, through their dedication and passion, they inspire us to pursue excellence and become better versions of ourselves.'
+      }
+    }
+  },
+  fiveContinuationMethods: {
+    title: '五种续写法',
+    subtitle: '解决写作卡壳问题',
+    description: '当你不知道下一句写什么时，使用以下5种方法',
+    methods: [
+      {
+        name: '方法1：找对立假想敌',
+        description: '提出一个可能的反对意见，然后反驳',
+        template: 'Some might argue that..., but...',
+        example: 'Some might argue that technology isolates people, but in reality, it connects us across geographical boundaries.'
+      },
+      {
+        name: '方法2：举三种例子',
+        description: '从三个不同角度举例（个人/社会/历史）',
+        template: 'For instance, at the individual level... At the societal level... Historically...',
+        example: 'For instance, at the individual level, reading expands our horizons. At the societal level, it promotes cultural understanding. Historically, great thinkers have always been avid readers.'
+      },
+      {
+        name: '方法3：高分例证三标准',
+        description: '具体（specific）+ 相关（relevant）+ 简洁（concise）',
+        template: 'Take ___ as an example. ... This illustrates that...',
+        example: 'Take Elon Musk as an example. Despite numerous failures, he persisted in developing reusable rockets. This illustrates that perseverance is the key to success.'
+      },
+      {
+        name: '方法4：同义替换',
+        description: '用不同的词表达同一个意思，避免重复',
+        template: 'In other words, ... / That is to say, ... / To put it differently, ...',
+        example: 'Technology has transformed our lives. In other words, the way we live, work, and communicate has been fundamentally changed by digital innovation.'
+      },
+      {
+        name: '方法5：车辘话来回说',
+        description: '从不同角度重申同一个观点（正反对比）',
+        template: 'On the one hand, ... On the other hand, ...',
+        example: 'On the one hand, competition drives innovation. On the other hand, it may also lead to excessive stress. Therefore, we need to strike a balance.'
+      }
+    ]
+  }
+}
+
 function toggleFramework(id: number) {
   expandedFramework.value = expandedFramework.value === id ? null : id
 }
@@ -1316,7 +1425,94 @@ function showExampleDetail(example: any) {
       </div>
     </div>
 
-    <!-- Tab 2: Sentences -->
+    <!-- Tab 3: Argumentation Methods - 深度论证 -->
+    <div v-if="activeTab === 'argumentation'" class="content-section argumentation-section">
+      <div class="section-header">
+        <h2> 深度论证方法 | Advanced Argumentation</h2>
+        <p class="section-desc">掌握高级论证技巧，让文章逻辑更严密、立意更深刻</p>
+      </div>
+
+      <!-- 对立假想敌 -->
+      <div class="argumentation-card">
+        <div class="card-header">
+          <h3>{{ argumentationMethods.imaginaryOpponent.title }}</h3>
+          <span class="card-subtitle">{{ argumentationMethods.imaginaryOpponent.subtitle }}</span>
+        </div>
+        <p class="card-desc">{{ argumentationMethods.imaginaryOpponent.description }}</p>
+        
+        <div class="steps-flow">
+          <div v-for="s in argumentationMethods.imaginaryOpponent.steps" :key="s.step" class="step-card">
+            <div class="step-number">{{ s.step }}</div>
+            <div class="step-info">
+              <strong>{{ s.title }}</strong>
+              <code>{{ s.example }}</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="templates-box">
+          <h4> 常用模板句式：</h4>
+          <div class="template-list">
+            <code v-for="(t, i) in argumentationMethods.imaginaryOpponent.templates" :key="i">{{ t }}</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- 三级递进法 -->
+      <div class="argumentation-card">
+        <div class="card-header">
+          <h3>{{ argumentationMethods.threeLevelProgression.title }}</h3>
+          <span class="card-subtitle">{{ argumentationMethods.threeLevelProgression.subtitle }}</span>
+        </div>
+        <p class="card-desc">{{ argumentationMethods.threeLevelProgression.description }}</p>
+        
+        <div class="levels-flow">
+          <div v-for="lvl in argumentationMethods.threeLevelProgression.levels" :key="lvl.level" class="level-card">
+            <div class="level-badge">{{ lvl.name }}</div>
+            <p class="level-desc">{{ lvl.description }}</p>
+            <code class="level-example">{{ lvl.example }}</code>
+          </div>
+        </div>
+
+        <div class="before-after-comparison">
+          <div class="comparison-box before">
+            <h4>{{ argumentationMethods.threeLevelProgression.beforeAfter.before.title }}</h4>
+            <code>{{ argumentationMethods.threeLevelProgression.beforeAfter.before.content }}</code>
+          </div>
+          <div class="comparison-arrow">→</div>
+          <div class="comparison-box after">
+            <h4>{{ argumentationMethods.threeLevelProgression.beforeAfter.after.title }}</h4>
+            <code>{{ argumentationMethods.threeLevelProgression.beforeAfter.after.content }}</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- 五种续写法 -->
+      <div class="argumentation-card">
+        <div class="card-header">
+          <h3>{{ argumentationMethods.fiveContinuationMethods.title }}</h3>
+          <span class="card-subtitle">{{ argumentationMethods.fiveContinuationMethods.subtitle }}</span>
+        </div>
+        <p class="card-desc">{{ argumentationMethods.fiveContinuationMethods.description }}</p>
+        
+        <div class="methods-grid">
+          <div v-for="(m, i) in argumentationMethods.fiveContinuationMethods.methods" :key="i" class="method-card">
+            <h4>{{ m.name }}</h4>
+            <p class="method-desc">{{ m.description }}</p>
+            <div class="method-template">
+              <strong>模板：</strong>
+              <code>{{ m.template }}</code>
+            </div>
+            <div class="method-example">
+              <strong>示例：</strong>
+              <p>{{ m.example }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Sentences -->
     <div v-if="activeTab === 'sentences'" class="content-section sentences-section">
       <div class="section-header">
         <h2>高分句型库 | Premium Sentence Bank</h2>
@@ -2206,6 +2402,301 @@ function showExampleDetail(example: any) {
   color: #555;
   line-height: 1.8;
   margin-bottom: 8px;
+}
+
+/* Argumentation Section */
+.argumentation-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.argumentation-card {
+  background: white;
+  border-radius: 20px;
+  padding: 35px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+}
+
+.card-header {
+  margin-bottom: 15px;
+}
+
+.card-header h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+}
+
+.card-subtitle {
+  display: block;
+  color: #667eea;
+  font-size: 1.05em;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  color: #555;
+  font-size: 1.05em;
+  margin: 0 0 25px 0;
+  line-height: 1.7;
+}
+
+/* Steps Flow */
+.steps-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.step-card {
+  display: flex;
+  gap: 15px;
+  padding: 18px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+.step-info {
+  flex: 1;
+}
+
+.step-info strong {
+  display: block;
+  color: #333;
+  font-size: 1.05em;
+  margin-bottom: 8px;
+}
+
+.step-info code {
+  display: block;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 8px;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* Templates Box */
+.templates-box {
+  padding: 20px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-radius: 12px;
+  border-left: 4px solid #FF9800;
+}
+
+.templates-box h4 {
+  font-size: 1.1em;
+  color: #E65100;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.template-list code {
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* Levels Flow */
+.levels-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.level-card {
+  padding: 20px;
+  background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #9C27B0;
+}
+
+.level-card .level-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.95em;
+  margin-bottom: 10px;
+}
+
+.level-desc {
+  color: #555;
+  font-size: 1.05em;
+  margin: 0 0 12px 0;
+  line-height: 1.7;
+}
+
+.level-example {
+  display: block;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* Before-After Comparison */
+.before-after-comparison {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.comparison-box {
+  flex: 1;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.comparison-box h4 {
+  font-size: 1.1em;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.comparison-box.before h4 {
+  color: #D32F2F;
+}
+
+.comparison-box.after h4 {
+  color: #388E3C;
+}
+
+.comparison-box code {
+  display: block;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.comparison-arrow {
+  font-size: 2em;
+  color: #667eea;
+  font-weight: 700;
+}
+
+/* Methods Grid */
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.method-card {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.method-card:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.method-card h4 {
+  font-size: 1.1em;
+  color: #333;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.method-desc {
+  color: #555;
+  font-size: 0.95em;
+  margin: 0 0 15px 0;
+  line-height: 1.6;
+}
+
+.method-template {
+  margin-bottom: 12px;
+}
+
+.method-template strong {
+  display: block;
+  color: #333;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+}
+
+.method-template code {
+  display: block;
+  padding: 8px 10px;
+  background: white;
+  border-radius: 6px;
+  color: #667eea;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.method-example {
+  margin-top: 12px;
+}
+
+.method-example strong {
+  display: block;
+  color: #333;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+}
+
+.method-example p {
+  color: #555;
+  font-size: 0.9em;
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
 }
 
 /* Frameworks - Single Column Layout */
