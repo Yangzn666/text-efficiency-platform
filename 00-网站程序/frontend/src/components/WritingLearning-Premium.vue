@@ -1,7 +1,65 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-const activeTab = ref('frameworks')
+const activeTab = ref('grading-standards')
+
+// ========== 核心理念：基于一线教师教学体系 ==========
+// 三大核心原则：
+// 1. 阅卷标准导向 - 第一印象、避免低级错误
+// 2. 三段式结构 - 引表论总（议论文）、描析预（图表）、目内结（书信）
+// 3. 深度论证 - 三级递进法（what→how→why it matters）
+
+// ========== Tab 1: Grading Standards - 阅卷标准与基本原则 ==========
+const gradingStandards = {
+  firstImpression: {
+    title: '第一印象至关重要',
+    items: [
+      { icon: '✨', text: '干净整洁：卷面整洁，无涂改痕迹' },
+      { icon: '📐', text: '大方得体：字体工整，段落分明' },
+      { icon: '✍️', text: '干净漂亮：书写清晰，布局合理' }
+    ],
+    tip: '字迹工整至少能多拿1-2分！'
+  },
+  wordCount: {
+    title: '字数要求',
+    content: '建议150字左右（实际上没人会数，但少于120会被扣分）',
+    range: '控制在130-180字之间最为稳妥',
+    warning: '写得太长反而容易出错'
+  },
+  timeManagement: {
+    title: '时间分配（总共30分钟）',
+    breakdown: [
+      { phase: '审题', time: '3分钟', task: '仔细阅读题目，圈出关键词' },
+      { phase: '构思', time: '2分钟', task: '确定中心论点，列提纲' },
+      { phase: '写作', time: '20分钟', task: '正式写作，注意逻辑连贯' },
+      { phase: '检查', time: '5分钟', task: '检查拼写、语法、标点' }
+    ]
+  },
+  avoidErrors: {
+    title: '必须避免的低级错误（区分14分和11分的关键）',
+    basic: [
+      { error: '主谓一致', example: 'The list of items are... ❌ → is... ✅' },
+      { error: '时态统一', example: '全文时态保持一致' },
+      { error: '拼写准确', example: '常见单词拼写无误' },
+      { error: '标点规范', example: '逗号、句号使用得当' }
+    ],
+    advanced: [
+      { error: '句子不完整', example: '缺少主语或谓语' },
+      { error: '逻辑连接词误用', example: 'however/therefore使用不当' },
+      { error: '中式英语表达', example: 'With the development of society...' },
+      { error: '词汇重复率过高', example: '连续使用important/think等词' }
+    ]
+  },
+  noErrorStrategy: {
+    title: '如何做到“不犯错”？',
+    strategies: [
+      { strategy: '写简单句', desc: '宁可写短句，不要写复杂但错误的长句' },
+      { strategy: '用熟悉词', desc: '优先使用自己掌握牢固的词汇' },
+      { strategy: '反复检查', desc: '写完后再读一遍，重点检查动词形式和名词单复数' },
+      { strategy: '避免创新', desc: '不要用生僻词或不确定的语法结构' }
+    ]
+  }
+}
 
 // ========== Tab 1: Frameworks Data ==========
 const expandedFramework = ref<number | null>(1)
@@ -1001,25 +1059,32 @@ function showExampleDetail(example: any) {
     <!-- Premium Tabs -->
     <div class="premium-tabs">
       <button 
+        :class="['tab-pill', { active: activeTab === 'grading-standards' }]" 
+        @click="activeTab = 'grading-standards'"
+      >
+        <span class="tab-icon">📋</span>
+        <span class="tab-text">阅卷标准</span>
+      </button>
+      <button 
         :class="['tab-pill', { active: activeTab === 'frameworks' }]" 
         @click="activeTab = 'frameworks'"
       >
         <span class="tab-icon">🏗️</span>
-        <span class="tab-text">框架模板</span>
+        <span class="tab-text">三大框架</span>
+      </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'argumentation' }]" 
+        @click="activeTab = 'argumentation'"
+      >
+        <span class="tab-icon"></span>
+        <span class="tab-text">深度论证</span>
       </button>
       <button 
         :class="['tab-pill', { active: activeTab === 'sentences' }]" 
         @click="activeTab = 'sentences'"
       >
         <span class="tab-icon">💎</span>
-        <span class="tab-text">万能句型</span>
-      </button>
-      <button 
-        :class="['tab-pill', { active: activeTab === 'practice' }]" 
-        @click="activeTab = 'practice'"
-      >
-        <span class="tab-icon">⚡</span>
-        <span class="tab-text">实战演练</span>
+        <span class="tab-text">功能句库</span>
       </button>
       <button 
         :class="['tab-pill', { active: activeTab === 'examples' }]" 
@@ -1028,9 +1093,94 @@ function showExampleDetail(example: any) {
         <span class="tab-icon">📖</span>
         <span class="tab-text">范文库</span>
       </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'practice' }]" 
+        @click="activeTab = 'practice'"
+      >
+        <span class="tab-icon">⚡</span>
+        <span class="tab-text">实战演练</span>
+      </button>
     </div>
 
-    <!-- Tab 1: Frameworks -->
+    <!-- Tab 1: Grading Standards - 阅卷标准 -->
+    <div v-if="activeTab === 'grading-standards'" class="content-section grading-section">
+      <div class="section-header">
+        <h2>📋 阅卷标准与基本原则 | Grading Standards</h2>
+        <p class="section-desc">了解评分规则，避免低级错误，稳拿基础分</p>
+      </div>
+
+      <!-- 第一印象 -->
+      <div class="grading-card first-impression">
+        <h3>{{ gradingStandards.firstImpression.title }}</h3>
+        <div class="impression-items">
+          <div v-for="item in gradingStandards.firstImpression.items" :key="item.text" class="impression-item">
+            <span class="item-icon">{{ item.icon }}</span>
+            <span class="item-text">{{ item.text }}</span>
+          </div>
+        </div>
+        <div class="grading-tip">💡 {{ gradingStandards.firstImpression.tip }}</div>
+      </div>
+
+      <!-- 字数要求 -->
+      <div class="grading-card word-count">
+        <h3>{{ gradingStandards.wordCount.title }}</h3>
+        <p class="word-content">{{ gradingStandards.wordCount.content }}</p>
+        <div class="word-range">✅ {{ gradingStandards.wordCount.range }}</div>
+        <div class="word-warning">⚠️ {{ gradingStandards.wordCount.warning }}</div>
+      </div>
+
+      <!-- 时间分配 -->
+      <div class="grading-card time-management">
+        <h3>{{ gradingStandards.timeManagement.title }}</h3>
+        <div class="time-breakdown">
+          <div v-for="phase in gradingStandards.timeManagement.breakdown" :key="phase.phase" class="time-phase">
+            <div class="phase-info">
+              <span class="phase-name">{{ phase.phase }}</span>
+              <span class="phase-time">{{ phase.time }}</span>
+            </div>
+            <p class="phase-task">{{ phase.task }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 避免错误 -->
+      <div class="grading-card avoid-errors">
+        <h3>{{ gradingStandards.avoidErrors.title }}</h3>
+        
+        <div class="error-category">
+          <h4>基础语法错误</h4>
+          <div class="error-list">
+            <div v-for="err in gradingStandards.avoidErrors.basic" :key="err.error" class="error-item">
+              <strong>{{ err.error }}：</strong>
+              <code>{{ err.example }}</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-category">
+          <h4>高级错误（影响得分上限）</h4>
+          <div class="error-list">
+            <div v-for="err in gradingStandards.avoidErrors.advanced" :key="err.error" class="error-item">
+              <strong>{{ err.error }}：</strong>
+              <code>{{ err.example }}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 不犯错策略 -->
+      <div class="grading-card no-error-strategy">
+        <h3>{{ gradingStandards.noErrorStrategy.title }}</h3>
+        <div class="strategy-list">
+          <div v-for="strat in gradingStandards.noErrorStrategy.strategies" :key="strat.strategy" class="strategy-item">
+            <strong>{{ strat.strategy }}：</strong>
+            <span>{{ strat.desc }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Frameworks -->
     <div v-if="activeTab === 'frameworks'" class="content-section frameworks-section">
       <div class="section-header">
         <h2>三大核心框架 | Three Core Frameworks</h2>
@@ -1669,10 +1819,214 @@ function showExampleDetail(example: any) {
 }
 
 .section-desc {
-  color: #666;
+  color: #555;
   font-size: 1.1em;
   margin: 0;
   line-height: 1.7;
+}
+
+/* Grading Standards Section */
+.grading-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grading-card {
+  background: white;
+  border-radius: 20px;
+  padding: 35px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+}
+
+.grading-card h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin: 0 0 25px 0;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+  line-height: 1.4;
+}
+
+/* First Impression */
+.impression-items {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.impression-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.item-icon {
+  font-size: 1.8em;
+}
+
+.item-text {
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.7;
+}
+
+.grading-tip {
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border-radius: 10px;
+  border-left: 4px solid #FF9800;
+  color: #E65100;
+  font-weight: 600;
+  font-size: 1.05em;
+}
+
+/* Word Count */
+.word-content {
+  color: #555;
+  font-size: 1.05em;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.word-range {
+  padding: 12px 18px;
+  background: #e8f5e9;
+  border-radius: 10px;
+  color: #2E7D32;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.word-warning {
+  padding: 12px 18px;
+  background: #ffebee;
+  border-radius: 10px;
+  color: #C62828;
+  font-weight: 600;
+}
+
+/* Time Management */
+.time-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.time-phase {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.phase-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.phase-name {
+  font-weight: 700;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.phase-time {
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.phase-task {
+  color: #555;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 1em;
+}
+
+/* Avoid Errors */
+.error-category {
+  margin-bottom: 25px;
+}
+
+.error-category:last-child {
+  margin-bottom: 0;
+}
+
+.error-category h4 {
+  font-size: 1.2em;
+  color: #333;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.error-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.error-item {
+  padding: 15px 18px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  line-height: 1.7;
+}
+
+.error-item strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.error-item code {
+  display: block;
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 8px;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* No Error Strategy */
+.strategy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.strategy-item {
+  padding: 18px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #4CAF50;
+  line-height: 1.7;
+}
+
+.strategy-item strong {
+  color: #2E7D32;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+.strategy-item span {
+  color: #555;
+  font-size: 1em;
 }
 
 /* Frameworks - Single Column Layout */
