@@ -1790,7 +1790,7 @@ function showExampleDetail(example: any) {
           </div>
 
           <div class="example-analysis">
-            <h4>📊 亮点分析</h4>
+            <h4>📊 亮点分析 | Writing Highlights</h4>
             <div class="analysis-points">
               <div 
                 v-for="(point, index) in selectedExample.highlights" 
@@ -1810,7 +1810,7 @@ function showExampleDetail(example: any) {
           </div>
 
           <div class="example-vocabulary">
-            <h4>📚 高分词汇</h4>
+            <h4>📚 高分词汇 | Advanced Vocabulary</h4>
             <div class="vocab-list">
               <div 
                 v-for="(word, index) in selectedExample.vocabulary" 
@@ -1819,6 +1819,30 @@ function showExampleDetail(example: any) {
               >
                 <span class="vocab-word">{{ word.word }}</span>
                 <span class="vocab-meaning">{{ word.meaning }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="writing-tips-section">
+            <h4>💡 写作建议 | Writing Tips</h4>
+            <div class="tips-grid">
+              <div class="tip-card do-tip">
+                <span class="tip-icon"></span>
+                <strong>值得借鉴</strong>
+                <ul>
+                  <li>学习文章的结构布局</li>
+                  <li>掌握连接词的使用技巧</li>
+                  <li>积累高分词汇和表达</li>
+                </ul>
+              </div>
+              <div class="tip-card avoid-tip">
+                <span class="tip-icon"></span>
+                <strong>避免模仿</strong>
+                <ul>
+                  <li>不要死记硬背整篇文章</li>
+                  <li>避免使用过于复杂的句式</li>
+                  <li>注意语境的适用性</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -3534,6 +3558,83 @@ function showExampleDetail(example: any) {
 .vocab-meaning {
   color: #555;
   font-size: 1.05em;
+}
+
+/* Writing Tips Section */
+.writing-tips-section {
+  margin-top: 30px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tip-card {
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.tip-card strong {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.tip-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tip-card li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  color: #555;
+  line-height: 1.6;
+}
+
+.do-tip {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-left: 4px solid #4CAF50;
+}
+
+.do-tip .tip-icon::before {
+  content: '✅';
+  position: absolute;
+  left: 0;
+}
+
+.do-tip li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.avoid-tip {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border-left: 4px solid #F44336;
+}
+
+.avoid-tip .tip-icon::before {
+  content: '⚠️';
+  position: absolute;
+  left: 0;
+}
+
+.avoid-tip li::before {
+  content: '✗';
+  position: absolute;
+  left: 0;
+  color: #F44336;
+  font-weight: bold;
 }
 
 /* Footer Tips */
