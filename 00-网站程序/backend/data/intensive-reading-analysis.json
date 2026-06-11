@@ -150,5 +150,105 @@
       "语法结构：注意从句类型和连接词",
       "语篇理解：把握文章整体逻辑脉络"
     ]
+  },
+  "2005-Traditional Reading-4": {
+    "theme": "本文探讨了正式英语衰落的现象及其原因。语言学家McWhorter认为,1960年代反文化的胜利导致了正式英语的衰落,但这是语言发展的自然过程,虽然令人惋惜但不可避免。文章通过对比俄罗斯人和意大利人对语言的重视,以及'纸盘vs瓷器'的比喻,表达了作者对这一现象的复杂态度。",
+    "structure": "第一段：引出话题\n  ├─ 现象描述：美国人不再期望精通英语\n  ├─ McWhorter观点：归因于1960年代反文化\n  └─ 关键句：sees...as responsible for(因果方向!)\n\n第二段：核心观点⭐\n  ├─ 澄清立场：这不是批评教育衰退\n  ├─ 专业背景：语言历史和变化专家\n  └─ 核心论点：'whom'消失是natural(自然的)\n\n第三段：现象描述\n  ├─ 因果关系：'做自己'导致正式语言死亡\n  ├─ 今昔对比：1960s前后写作风格变化\n  └─ 关键对比：talking vs speaking, spontaneity vs craft\n\n第四段：澄清误解\n  ├─ 承认事实：所有语言都能表达复杂思想\n  ├─ 双重否定：not arguing + no longer think = 仍能思考\n  └─ 核心观点：说话方式≠思维能力\n\n第五段：态度表达\n  ├─ 平行结构：俄罗斯人(memorized)+意大利人(elaborate)\n  ├─ 作者态度：grieving over loss of beautiful(惋惜美好)\n  └─ 比喻总结：paper plates vs china(临时随意vs永久正式)",
+    "writingTechniques": [
+      "对比论证：1960s前后、talking vs speaking、paper plates vs china",
+      "引用权威：引用McWhorter的书和观点增强说服力",
+      "类比手法：用古英语格词尾消失类比'whom'消失",
+      "比喻修辞：paper plates instead of china形象生动",
+      "平行结构：俄罗斯人和意大利人的例子形成对称",
+      "双重否定：not arguing...no longer think straight表达肯定"
+    ],
+    "readingStrategies": [
+      "关注因果词：responsible for提示因果方向(第36题考点)",
+      "识别对比结构：A vs B建立对比表找规律(第37题考点)",
+      "破解双重否定：not+no=肯定(第38题考点)",
+      "挖掘深层含义：memorized/elaborate暗示effort(第39题考点)",
+      "理解比喻意义：paper plates=临时随意,主旨看全文(第40题考点)",
+      "注意关键词：natural是全文核心,贯穿始终"
+    ],
+    "keyVocabulary": [
+      {
+        "word": "command",
+        "meaning": "精通、掌握(语言)",
+        "context": "command the English language with skill"
+      },
+      {
+        "word": "aspire to",
+        "meaning": "渴望、追求",
+        "context": "aspire to such command themselves"
+      },
+      {
+        "word": "controversialist",
+        "meaning": "有争议的人物",
+        "context": "a linguist and controversialist"
+      },
+      {
+        "word": "counter-culture",
+        "meaning": "反文化",
+        "context": "triumph of 1960s counter-culture"
+      },
+      {
+        "word": "permissive",
+        "meaning": "放纵的、宽容的",
+        "context": "the permissive 1960s"
+      },
+      {
+        "word": "regrettable",
+        "meaning": "令人遗憾的",
+        "context": "no more regrettable than..."
+      },
+      {
+        "word": "cult",
+        "meaning": "崇拜、狂热信仰",
+        "context": "the cult of the authentic and the personal"
+      },
+      {
+        "word": "elevated tone",
+        "meaning": "高雅语调",
+        "context": "sought an elevated tone"
+      },
+      {
+        "word": "spontaneity",
+        "meaning": "自然流露、自发性",
+        "context": "spontaneity over craft"
+      },
+      {
+        "word": "craft",
+        "meaning": "精心雕琢、技艺",
+        "context": "talking triumphing over...craft"
+      },
+      {
+        "word": "elaborate",
+        "meaning": "精心制作的、复杂的",
+        "context": "elaborate speech"
+      },
+      {
+        "word": "inevitable",
+        "meaning": "不可避免的",
+        "context": "probably an inevitable one"
+      }
+    ],
+    "grammarPoints": [
+      "倒装句：Nor do they aspire...=They do not aspire either",
+      "形式宾语：sees...to be natural(no more regrettable than...)",
+      "比较结构：no more...than...(不比...更...)",
+      "双重否定：He is not arguing...that we can no longer think straight",
+      "插入语：whether in speech or in writing / as many do",
+      "定语从句：the trend that Mr. McWhorter documents",
+      "同位语：John McWhorter, a linguist and controversialist..."
+    ],
+    "examTips": [
+      "细节题：找准因果方向,responsible for是关键(第36题)",
+      "词义题：建立对比表,talking vs speaking找规律(第37题)",
+      "推理题：破解双重否定,警惕比较级无中生有(第38题)",
+      "推理题：memorized/elaborate暗示effort,选appreciation(第39题)",
+      "主旨题：paper plates比喻理解,排除以偏概全选项(第40题)",
+      "常见陷阱：因果颠倒、比较级无中生有、偷换概念、表面理解",
+      "记忆口诀：找因果看方向、找对比建表格、双重否定负负正"
+    ]
   }
 }

@@ -6,8 +6,13 @@ const activeTab = ref('grading-standards')
 // ========== 核心理念：基于一线教师教学体系 ==========
 // 三大核心原则：
 // 1. 阅卷标准导向 - 第一印象、避免低级错误
-// 2. 三段式结构 - 引表论总（议论文）、描析预（图表）、目内结（书信）
+// 2. 灵活结构 - 提供思维框架而非固定模板
 // 3. 深度论证 - 三级递进法（what→how→why it matters）
+// 
+// ⚠️ 重要提醒：避免明显套模板！
+// - 不要每篇都用Recently, the issue of... has aroused wide concern
+// - 不要机械使用First and foremost/Furthermore/Last but not least
+// - 要多样化表达，自然流畅才是高分关键
 
 // ========== Tab 1: Grading Standards - 阅卷标准与基本原则 ==========
 const gradingStandards = {
@@ -680,6 +685,170 @@ const sentenceCategories = [
   }
 ]
 
+// ========== Tab 7: Anti-Template Strategies - 去模板化写作策略 ==========
+const antiTemplateStrategies = {
+  warning: {
+    title: '⚠️ 为什么套模板会得低分？',
+    reasons: [
+      '阅卷老师每天看数百篇作文，能一眼识别模板痕迹',
+      '模板语言与个人表达风格不匹配，显得生硬',
+      '过度依赖模板导致思维僵化，无法灵活应对不同题目',
+      '高分作文的关键是"自然流畅"而非"机械套用"'
+    ]
+  },
+  openingVariations: {
+    title: '开头多样化表达（避免都用Recently...）',
+    strategies: [
+      {
+        name: '策略1：现象描述法',
+        examples: [
+          'In contemporary society, ___ has become an increasingly prominent issue.',
+          'The phenomenon of ___ has sparked heated debates in recent years.',
+          'With the advent of ___, our daily lives have undergone profound changes.'
+        ],
+        tip: '用contemporary/prominent/sparked等词替换常见的wide concern'
+      },
+      {
+        name: '策略2：对比引入法',
+        examples: [
+          'While some people embrace ___, others remain skeptical about its benefits.',
+          'The traditional view holds that ___, but modern perspectives suggest otherwise.',
+          'There is a growing consensus that ___, yet dissenting voices persist.'
+        ],
+        tip: '通过对比展现思辨能力，比单一陈述更有深度'
+      },
+      {
+        name: '策略3：数据/事实引入法',
+        examples: [
+          'According to a recent survey, over 60% of respondents believe that ___.',
+          'Statistics reveal that ___ has increased by 50% in the past decade.',
+          'A case study conducted by Harvard University shows that ___.'
+        ],
+        tip: '引用具体数据或研究，增强说服力（可以虚构但要合理）'
+      },
+      {
+        name: '策略4：问题引导法',
+        examples: [
+          'Have you ever wondered why ___ has become so prevalent?',
+          'What lies behind the rapid growth of ___?',
+          'Is ___ a blessing or a curse? This question deserves careful consideration.'
+        ],
+        tip: '用问句吸引读者注意，但全文只能出现1-2个问句'
+      }
+    ]
+  },
+  transitionVariations: {
+    title: '连接词多样化（避免机械使用First/Furthermore/Last）',
+    categories: [
+      {
+        name: '递进关系（替换Furthermore）',
+        alternatives: [
+          'Moreover / In addition / Besides',
+          'What\'s more / Equally important',
+          'Another compelling argument is that...',
+          'Not only does ___..., but it also...'
+        ]
+      },
+      {
+        name: '转折关系（替换However）',
+        alternatives: [
+          'Nevertheless / Nonetheless',
+          'On the contrary / Conversely',
+          'Despite this / In spite of this',
+          'Yet / Still / Even so'
+        ]
+      },
+      {
+        name: '因果关系（替换Therefore）',
+        alternatives: [
+          'Consequently / As a result',
+          'Hence / Thus',
+          'For this reason / Due to this',
+          'This explains why...'
+        ]
+      },
+      {
+        name: '举例论证（替换For example）',
+        alternatives: [
+          'To illustrate / To demonstrate',
+          'A case in point is...',
+          'Consider the case of...',
+          '___ serves as a prime example.'
+        ]
+      }
+    ]
+  },
+  conclusionVariations: {
+    title: '结尾多样化（避免都用In conclusion...）',
+    strategies: [
+      {
+        name: '策略1：重申+升华',
+        examples: [
+          'To sum up, while ___ presents challenges, its benefits are undeniable. What matters most is how we harness its potential responsibly.',
+          'In essence, the key to addressing ___ lies not in rejection, but in balanced and thoughtful integration.'
+        ],
+        tip: '不仅总结，还要提升到更高层面'
+      },
+      {
+        name: '策略2：展望未来',
+        examples: [
+          'Looking ahead, it is imperative that we strike a balance between ___ and ___.',
+          'As we move forward, the challenge will be to preserve ___ while embracing ___.',
+          'The future of ___ depends largely on our collective willingness to ___.'
+        ],
+        tip: '用Looking ahead/As we move forward替代简单的In the future'
+      },
+      {
+        name: '策略3：呼吁行动',
+        examples: [
+          'It is high time that we took concrete actions to address this pressing issue.',
+          'Only through collaborative efforts can we hope to overcome these challenges.',
+          'The responsibility falls on each of us to contribute to a better ___.'
+        ],
+        tip: '强调紧迫性和责任感，增强感染力'
+      }
+    ]
+  },
+  vocabularyUpgrade: {
+    title: '词汇升级对照表（避免重复使用简单词）',
+    upgrades: [
+      { basic: 'important', advanced: ['crucial', 'vital', 'paramount', 'indispensable'] },
+      { basic: 'good', advanced: ['beneficial', 'advantageous', 'favorable', 'positive'] },
+      { basic: 'bad', advanced: ['detrimental', 'adverse', 'harmful', 'negative'] },
+      { basic: 'think', advanced: ['argue', 'maintain', 'contend', 'assert'] },
+      { basic: 'show', advanced: ['demonstrate', 'illustrate', 'reveal', 'indicate'] },
+      { basic: 'get', advanced: ['obtain', 'acquire', 'gain', 'attain'] },
+      { basic: 'help', advanced: ['facilitate', 'assist', 'aid', 'contribute to'] },
+      { basic: 'change', advanced: ['transform', 'alter', 'modify', 'reshape'] }
+    ]
+  },
+  naturalFlow: {
+    title: '如何让文章更自然流畅？',
+    tips: [
+      {
+        tip: '1. 避免每段开头都用连接词',
+        explanation: '不是每段都要First/Furthermore，有时直接陈述观点更自然'
+      },
+      {
+        tip: '2. 句式长短结合',
+        explanation: '不要全是长句或全是短句，交替使用增加节奏感'
+      },
+      {
+        tip: '3. 适当使用插入语',
+        explanation: '如", however,", ", in fact,", ", surprisingly," 增加口语化感觉'
+      },
+      {
+        tip: '4. 避免绝对化表达',
+        explanation: '用may/might/could代替must/should，用some/many代替all/every'
+      },
+      {
+        tip: '5. 前后呼应',
+        explanation: '结尾要回应开头的观点，形成闭环，但不要简单重复'
+      }
+    ]
+  }
+}
+
 function tagLabel(tag: string): string {
   const labels: Record<string, string> = {
     universal: '通用',
@@ -1293,6 +1462,13 @@ function showExampleDetail(example: any) {
         <span class="tab-icon">⚡</span>
         <span class="tab-text">实战演练</span>
       </button>
+      <button 
+        :class="['tab-pill', { active: activeTab === 'anti-template' }]" 
+        @click="activeTab = 'anti-template'"
+      >
+        <span class="tab-icon"></span>
+        <span class="tab-text">去模板化</span>
+      </button>
     </div>
 
     <!-- Tab 1: Grading Standards - 阅卷标准 -->
@@ -1903,6 +2079,127 @@ function showExampleDetail(example: any) {
           </div>
         </div>
       </el-dialog>
+    </div>
+
+    <!-- Tab 7: Anti-Template Strategies - 去模板化写作策略 -->
+    <div v-if="activeTab === 'anti-template'" class="content-section anti-template-section">
+      <div class="section-header">
+        <h2>🚫 去模板化写作指南 | Anti-Template Writing</h2>
+        <p class="section-desc">避免机械套用，打造自然流畅的高分作文</p>
+      </div>
+
+      <!-- Warning Box -->
+      <div class="warning-box">
+        <h3>{{ antiTemplateStrategies.warning.title }}</h3>
+        <ul>
+          <li v-for="(reason, index) in antiTemplateStrategies.warning.reasons" :key="index">
+            {{ reason }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Opening Variations -->
+      <div class="strategy-card">
+        <h3>{{ antiTemplateStrategies.openingVariations.title }}</h3>
+        <div class="strategies-grid">
+          <div 
+            v-for="(strategy, index) in antiTemplateStrategies.openingVariations.strategies" 
+            :key="index"
+            class="strategy-item"
+          >
+            <h4>{{ strategy.name }}</h4>
+            <ul class="example-list">
+              <li v-for="(example, idx) in strategy.examples" :key="idx">
+                {{ example }}
+              </li>
+            </ul>
+            <div class="strategy-tip">
+              <strong>💡 提示：</strong>{{ strategy.tip }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transition Variations -->
+      <div class="strategy-card">
+        <h3>{{ antiTemplateStrategies.transitionVariations.title }}</h3>
+        <div class="transition-categories">
+          <div 
+            v-for="(category, index) in antiTemplateStrategies.transitionVariations.categories" 
+            :key="index"
+            class="category-box"
+          >
+            <h4>{{ category.name }}</h4>
+            <ul>
+              <li v-for="(alt, idx) in category.alternatives" :key="idx">
+                {{ alt }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conclusion Variations -->
+      <div class="strategy-card">
+        <h3>{{ antiTemplateStrategies.conclusionVariations.title }}</h3>
+        <div class="strategies-grid">
+          <div 
+            v-for="(strategy, index) in antiTemplateStrategies.conclusionVariations.strategies" 
+            :key="index"
+            class="strategy-item"
+          >
+            <h4>{{ strategy.name }}</h4>
+            <ul class="example-list">
+              <li v-for="(example, idx) in strategy.examples" :key="idx">
+                {{ example }}
+              </li>
+            </ul>
+            <div class="strategy-tip">
+              <strong>💡 提示：</strong>{{ strategy.tip }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vocabulary Upgrade -->
+      <div class="strategy-card">
+        <h3>{{ antiTemplateStrategies.vocabularyUpgrade.title }}</h3>
+        <div class="vocab-upgrade-table">
+          <table>
+            <thead>
+              <tr>
+                <th>基础词汇</th>
+                <th>升级替换</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in antiTemplateStrategies.vocabularyUpgrade.upgrades" :key="index">
+                <td class="basic-word">{{ item.basic }}</td>
+                <td class="advanced-words">
+                  <span v-for="(word, idx) in item.advanced" :key="idx" class="upgrade-tag">
+                    {{ word }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Natural Flow Tips -->
+      <div class="strategy-card">
+        <h3>{{ antiTemplateStrategies.naturalFlow.title }}</h3>
+        <div class="flow-tips">
+          <div 
+            v-for="(tip, index) in antiTemplateStrategies.naturalFlow.tips" 
+            :key="index"
+            class="flow-tip-item"
+          >
+            <strong>{{ tip.tip }}</strong>
+            <p>{{ tip.explanation }}</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer Tips -->
@@ -4077,5 +4374,206 @@ function showExampleDetail(example: any) {
     padding: 12px 20px;
     font-size: 0.9em;
   }
+}
+
+/* Anti-Template Section */
+.warning-box {
+  padding: 25px;
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border-radius: 15px;
+  border-left: 5px solid #F44336;
+  margin-bottom: 30px;
+}
+
+.warning-box h3 {
+  color: #D32F2F;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.warning-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.warning-box li {
+  padding: 10px 0;
+  padding-left: 30px;
+  position: relative;
+  color: #555;
+  line-height: 1.7;
+}
+
+.warning-box li::before {
+  content: '⚠️';
+  position: absolute;
+  left: 0;
+}
+
+.strategy-card {
+  margin-bottom: 30px;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.strategy-card h3 {
+  color: #667eea;
+  margin-bottom: 25px;
+  font-size: 1.4em;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.strategies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.strategy-item {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+}
+
+.strategy-item h4 {
+  color: #764ba2;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.example-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.example-list li {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background: white;
+  border-radius: 8px;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+  border: 1px solid #e0e0e0;
+}
+
+.strategy-tip {
+  margin-top: 15px;
+  padding: 12px 15px;
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+  border-radius: 8px;
+  color: #F57F17;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.transition-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.category-box {
+  padding: 20px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 12px;
+  border-left: 4px solid #2196F3;
+}
+
+.category-box h4 {
+  color: #1976D2;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.category-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.category-box li {
+  padding: 8px 0;
+  color: #555;
+  line-height: 1.7;
+  font-size: 0.95em;
+}
+
+.vocab-upgrade-table {
+  overflow-x: auto;
+}
+
+.vocab-upgrade-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.vocab-upgrade-table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.vocab-upgrade-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.basic-word {
+  font-weight: 600;
+  color: #F44336;
+  background: #ffebee;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.advanced-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.upgrade-tag {
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  color: #2E7D32;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.flow-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flow-tip-item {
+  padding: 20px;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-radius: 12px;
+  border-left: 4px solid #9C27B0;
+}
+
+.flow-tip-item strong {
+  display: block;
+  color: #7B1FA2;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.flow-tip-item p {
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
 }
 </style>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2006年考研英语一 · 完形填空</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 20px;
+            color: #1a1a1a;
+        }
+
+        .exam-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* 考试头部 */
+        .exam-header {
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 25px 40px;
+            text-align: center;
+            border-bottom: 3px double #1a1a1a;
+        }
+
+        .exam-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .exam-header .subtitle {
+            font-size: 1.05em;
+            color: #555;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .exam-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .exam-info span {
+            padding: 6px 18px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        /* 题目说明 */
+        .directions {
+            background: #fafafa;
+            padding: 18px 40px;
+            border-left: 3px solid #1a1a1a;
+            margin: 20px 40px;
+        }
+
+        .directions h2 {
+            color: #1a1a1a;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .directions p {
+            color: #333;
+            line-height: 1.7;
+            font-size: 1em;
+        }
+
+        /* 双栏布局 */
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        /* 左侧文章区域 */
+        .article-section {
+            padding: 30px 40px;
+            background: white;
+            border-right: 2px solid #e0e0e0;
+        }
+
+        .article-content {
+            font-size: 1.1em;
+            line-height: 2;
+            color: #1a1a1a;
+            text-align: justify;
+        }
+
+        .article-content p {
+            text-indent: 2em;
+            margin: 0.8em 0;
+        }
+
+        /* 完形填空空格样式 */
+        .blank {
+            display: inline-block;
+            min-width: 2.5em;
+            text-align: center;
+            color: #c0392b;
+            font-weight: bold;
+            border-bottom: 2px solid #c0392b;
+            margin: 0 0.1em;
+        }
+
+        /* 右侧选项区域 */
+        .options-section {
+            padding: 30px 40px;
+            background: #fafafa;
+            overflow-y: auto;
+            max-height: 900px;
+        }
+
+        .options-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .option-item {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+
+        .option-number {
+            display: inline-block;
+            width: 25px;
+            font-weight: bold;
+            color: #1a1a1a;
+            text-align: right;
+            margin-right: 12px;
+        }
+
+        .option-choices {
+            display: inline;
+        }
+
+        .choice-item {
+            display: inline-block;
+            min-width: 120px;
+            margin-right: 8px;
+        }
+
+        .choice-label {
+            font-weight: normal;
+            color: #333;
+            margin-right: 3px;
+        }
+
+        /* 页脚 */
+        .exam-footer {
+            text-align: center;
+            padding: 20px;
+            background: #fafafa;
+            color: #666;
+            font-size: 0.85em;
+            border-top: 1px solid #ddd;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1100px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .article-section {
+                border-right: none;
+                border-bottom: 2px solid #e0e0e0;
+            }
+
+            .options-section {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .exam-header {
+                padding: 20px;
+            }
+
+            .exam-header h1 {
+                font-size: 1.4em;
+            }
+
+            .exam-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .directions {
+                margin: 15px 20px;
+                padding: 15px;
+            }
+
+            .article-section,
+            .options-section {
+                padding: 20px;
+            }
+
+            .option-choices {
+                grid-template-columns: 1fr;
+                padding-left: 0;
+            }
+        }
+
+        /* 打印优化 */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .exam-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .exam-header {
+                border-bottom: 2px solid #000;
+            }
+
+            .two-column-layout {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="exam-container">
+        <!-- 考试头部 -->
+        <div class="exam-header">
+            <h1>Section I Use of English</h1>
+            <div class="subtitle">2006年全国硕士研究生入学统一考试英语（一）</div>
+            <div class="exam-info">
+                <span>⏱️ 建议用时：15分钟</span>
+                <span>📝 满分：10分</span>
+                <span>📊 共20题</span>
+            </div>
+        </div>
+
+        <!-- 题目说明 -->
+        <div class="directions">
+            <h2>Directions:</h2>
+            <p>Read the following text. Choose the best word(s) for each numbered blank and mark [A], [B], [C] or [D] on ANSWER SHEET 1. (10 points)</p>
+        </div>
+
+        <!-- 文章内容 -->
+        <div class="two-column-layout">
+            <!-- 左侧文章 -->
+            <div class="article-section">
+                <div class="article-content">
+                    <p>The homeless make up a growing percentage of America's population. <span class="blank">__1__</span> homelessness has reached such proportions that local government can't possibly <span class="blank">__2__</span>. To help homeless people <span class="blank">__3__</span> independence, the federal government must support job training programs, <span class="blank">__4__</span> the minimum wage, and fund more low-cost housing.</p>
+
+                    <p><span class="blank">__5__</span> everyone agrees on the numbers of Americans who are homeless. Estimates <span class="blank">__6__</span> anywhere from 600,000 to 3 million. <span class="blank">__7__</span> the figure may vary, analysts do agree on another matter: that the number of the homeless is <span class="blank">__8__</span>. One of the federal government's studies <span class="blank">__9__</span> that the number of the homeless will reach nearly 19 million by the end of this decade.</p>
+
+                    <p>Finding ways to <span class="blank">__10__</span> this growing homeless population has become increasingly difficult. <span class="blank">__11__</span> when homeless individuals manage to find a <span class="blank">__12__</span> that will give them three meals a day and a place to sleep at night, a good number still spend the bulk of each day <span class="blank">__13__</span> the street. Part of the problem is that many homeless adults are addicted to alcohol or drugs. And a significant number of the homeless have serious mental disorders. Many others, <span class="blank">__14__</span> not addicted or mentally ill, simply lack the everyday <span class="blank">__15__</span> skills need to turn their lives <span class="blank">__16__</span>. Boston Globe reporter Chris Reidy notes that the situation will improve only when there are <span class="blank">__17__</span> programs that address the many needs of the homeless. <span class="blank">__18__</span> Edward Blotkowsk, director of community service at Bentley College in Massachusetts, <span class="blank">__19__</span> it, "There has to be <span class="blank">__20__</span> of programs. What we need is a package deal."</p>
+                </div>
+            </div>
+
+            <!-- 右侧选项 -->
+            <div class="options-section">
+                <div class="options-title">Options</div>
+
+            <div class="option-item">
+                <span class="option-number">1.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> Indeed</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> Likewise</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> Therefore</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> Furthermore</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">2.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> stand</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> cope</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> approve</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> retain</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">3.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> in</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> for</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> with</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> toward</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">4.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> raise</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> add</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> take</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> keep</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">5.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> generally</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> almost</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> hardly</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> not</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">6.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> cover</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> change</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> range</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> differ</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">7.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> Now that</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> Although</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> Provided</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> Except that</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">8.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> inflating</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> expanding</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> increasing</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> extending</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">9.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> predicts</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> displays</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> proves</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> discovers</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">10.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> assist</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> track</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> sustain</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> dismiss</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">11.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> Hence</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> But</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> Even</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> Only</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">12.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> lodging</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> shelter</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> dwelling</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> house</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">13.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> searching</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> strolling</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> crowding</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> wandering</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">14.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> when</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> once</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> while</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> whereas</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">15.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> life</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> existence</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> survival</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> maintenance</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">16.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> around</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> over</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> on</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> up</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">17.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> complex</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> comprehensive</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> complementary</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> compensating</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">18.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> So</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> Since</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> As</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> Thus</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">19.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> puts</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> interprets</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> assumes</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> makes</span>
+                </span>
+            </div>
+
+            <div class="option-item">
+                <span class="option-number">20.</span>
+                <span class="option-choices">
+                    <span class="choice-item"><span class="choice-label">[A]</span> supervision</span>
+                    <span class="choice-item"><span class="choice-label">[B]</span> manipulation</span>
+                    <span class="choice-item"><span class="choice-label">[C]</span> regulation</span>
+                    <span class="choice-item"><span class="choice-label">[D]</span> coordination</span>
+                </span>
+            </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="exam-footer">
+            <p>© 2006 National Postgraduate Entrance Examination | 仅供学习参考使用</p>
+        </div>
+    </div>
+</body>
+</html>

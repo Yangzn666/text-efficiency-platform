@@ -143,6 +143,105 @@
               <p>{{ question.tips }}</p>
             </div>
 
+            <!--  新手详细解析（如果有） -->
+            <div v-if="question.detailedAnalysis" class="detailed-analysis-section">
+              <el-divider />
+              <h4 class="detailed-title">📚 新手详解版</h4>
+              
+              <!-- 文章结构分析 -->
+              <div v-if="question.detailedAnalysis.articleStructure" class="detail-block">
+                <h5>️ 文章结构分析</h5>
+                <div class="structure-list">
+                  <div 
+                    v-for="(para, idx) in question.detailedAnalysis.articleStructure" 
+                    :key="idx"
+                    class="structure-item"
+                    :class="{ 'key-paragraph': para.keyPoint.includes('⭐') }"
+                  >
+                    <span class="para-num">第{{ para.paragraph }}段:</span>
+                    <span class="para-content">{{ para.content }}</span>
+                    <el-tag v-if="para.keyPoint.includes('⭐')" type="warning" size="small">关键段落</el-tag>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 关键词汇表 -->
+              <div v-if="question.detailedAnalysis.vocabulary && question.detailedAnalysis.vocabulary.length > 0" class="detail-block">
+                <h5>📖 核心词汇表</h5>
+                <div class="vocab-grid">
+                  <div 
+                    v-for="(word, idx) in question.detailedAnalysis.vocabulary" 
+                    :key="idx"
+                    class="vocab-item"
+                  >
+                    <strong class="vocab-word">{{ word.word }}</strong>
+                    <span class="vocab-meaning">{{ word.meaning }}</span>
+                    <span v-if="word.example" class="vocab-example">例: {{ word.example }}</span>
+                    <span v-if="word.note" class="vocab-note">({{ word.note }})</span>
+                    <span v-if="word.contrast" class="vocab-contrast">对比: {{ word.contrast }}</span>
+                    <span v-if="word.context" class="vocab-context">语境: {{ word.context }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 解题步骤 -->
+              <div v-if="question.detailedAnalysis.questionBreakdown" class="detail-block">
+                <h5>🔍 解题步骤详解</h5>
+                <div class="steps-list">
+                  <div v-if="question.detailedAnalysis.questionBreakdown.step1" class="step-item">
+                    <span class="step-icon">1️</span>
+                    <span>{{ question.detailedAnalysis.questionBreakdown.step1 }}</span>
+                  </div>
+                  <div v-if="question.detailedAnalysis.questionBreakdown.step2" class="step-item">
+                    <span class="step-icon">2️⃣</span>
+                    <span>{{ question.detailedAnalysis.questionBreakdown.step2 }}</span>
+                  </div>
+                  <div v-if="question.detailedAnalysis.questionBreakdown.step3" class="step-item">
+                    <span class="step-icon">3️⃣</span>
+                    <span>{{ question.detailedAnalysis.questionBreakdown.step3 }}</span>
+                  </div>
+                  <div v-if="question.detailedAnalysis.questionBreakdown.step4" class="step-item">
+                    <span class="step-icon">4️⃣</span>
+                    <span>{{ question.detailedAnalysis.questionBreakdown.step4 }}</span>
+                  </div>
+                  <div v-if="question.detailedAnalysis.questionBreakdown.elimination" class="elimination-list">
+                    <div v-for="(item, idx) in question.detailedAnalysis.questionBreakdown.elimination" :key="idx" class="elimination-item">
+                      {{ item }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 常见陷阱 -->
+              <div v-if="question.detailedAnalysis.commonTraps && question.detailedAnalysis.commonTraps.length > 0" class="detail-block">
+                <h5>️ 常见陷阱提醒</h5>
+                <div class="traps-list">
+                  <div v-for="(trap, idx) in question.detailedAnalysis.commonTraps" :key="idx" class="trap-item">
+                    {{ trap }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 记忆技巧 -->
+              <div v-if="question.detailedAnalysis.memoryTechnique" class="detail-block memory-block">
+                <h5>🧠 记忆技巧</h5>
+                <div class="memory-content">
+                  <div v-if="question.detailedAnalysis.memoryTechnique.method" class="memory-method">
+                    <strong>方法:</strong> {{ question.detailedAnalysis.memoryTechnique.method }}
+                  </div>
+                  <div v-if="question.detailedAnalysis.memoryTechnique.explanation" class="memory-explanation">
+                    <strong>解释:</strong> {{ question.detailedAnalysis.memoryTechnique.explanation }}
+                  </div>
+                  <div v-if="question.detailedAnalysis.memoryTechnique.keyword" class="memory-keyword">
+                    <strong>关键词:</strong> {{ question.detailedAnalysis.memoryTechnique.keyword }}
+                  </div>
+                  <div v-if="question.detailedAnalysis.memoryTechnique.visualAid" class="memory-visual">
+                    <strong>可视化:</strong> {{ question.detailedAnalysis.memoryTechnique.visualAid }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- 定位句 -->
             <div v-if="question.location" class="location-section">
               <h5>📍 原文定位：</h5>
@@ -1238,6 +1337,189 @@ onMounted(async () => {
   border-radius: 6px;
   color: #666;
   font-style: italic;
+}
+
+/* 新手详细解析区域 */
+.detailed-analysis-section {
+  margin-top: 25px;
+  padding-top: 20px;
+}
+
+.detailed-title {
+  color: #FF6B35 !important;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.detail-block {
+  background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
+  border-left: 4px solid #FF6B35;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.detail-block h5 {
+  color: #FF6B35 !important;
+  font-size: 1.1em;
+  margin: 0 0 15px 0;
+  font-weight: bold;
+}
+
+/* 文章结构列表 */
+.structure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.structure-item {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ffe0c0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.structure-item.key-paragraph {
+  border: 2px solid #FF6B35;
+  background: #fff9f5;
+}
+
+.para-num {
+  font-weight: bold;
+  color: #FF6B35;
+  min-width: 60px;
+}
+
+.para-content {
+  flex: 1;
+  color: #333;
+}
+
+/* 词汇网格 */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.vocab-item {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ffe0c0;
+}
+
+.vocab-word {
+  color: #FF6B35;
+  font-size: 1.1em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.vocab-meaning {
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.vocab-example,
+.vocab-note,
+.vocab-contrast,
+.vocab-context {
+  color: #666;
+  font-size: 0.9em;
+  display: block;
+  margin-top: 3px;
+}
+
+/* 解题步骤列表 */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-item {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #ffe0c0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.step-icon {
+  font-size: 1.2em;
+  min-width: 30px;
+}
+
+.elimination-list {
+  margin-top: 10px;
+  padding-left: 40px;
+}
+
+.elimination-item {
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #F44336;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+/* 常见陷阱列表 */
+.traps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trap-item {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #F44336;
+  color: #666;
+}
+
+/* 记忆技巧块 */
+.memory-block {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e6f5ff 100%) !important;
+  border-left-color: #2196F3 !important;
+}
+
+.memory-block h5 {
+  color: #2196F3 !important;
+}
+
+.memory-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.memory-method,
+.memory-explanation,
+.memory-keyword,
+.memory-visual {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #b3e5fc;
+}
+
+.memory-method strong,
+.memory-explanation strong,
+.memory-keyword strong,
+.memory-visual strong {
+  color: #2196F3;
+  margin-right: 8px;
 }
 
 /* 题型标签切换 */

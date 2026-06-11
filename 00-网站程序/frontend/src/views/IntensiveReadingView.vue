@@ -357,7 +357,7 @@ const loadIntensiveReadingData = async (actualTextNum: number | null = null) => 
     
     console.log('加载精读数据, key:', dataKey)
     
-    const response = await fetch(`http://localhost:3001/api/intensive-reading?key=${encodeURIComponent(dataKey)}`)
+    const response = await fetch(`http://localhost:6902/api/intensive-reading?key=${encodeURIComponent(dataKey)}`)
     if (response.ok) {
       const data = await response.json()
       

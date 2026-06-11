@@ -1163,6 +1163,593 @@
         "D": "文章没有建议避免白天焦虑，而是说大脑会通过梦来处理。"
       },
       "tips": "注意区分对象：those who sometimes have bad dreams（偶尔做噩梦的人）→ Lead your life as usual（正常生活）；those suffering from persistent nightmares（持续做噩梦的人）→ seek help from a therapist（寻求治疗师帮助）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "title": "正式英语的衰落与语言演变",
+      "number": 36,
+      "type": "细节题",
+      "article": "<p>Americans no longer expect public figures, whether in speech or in writing, to command the English language with skill and gift. Nor do they aspire to such command themselves. In his latest book, <em>Doing Our Own Thing: The Degradation of Language and Music and Why We Should, Like, Care</em>, John McWhorter, a linguist and controversialist of mixed liberal and conservative views, sees the triumph of 1960s counter-culture as responsible for the decline of formal English.</p><p>Blaming the permissive 1960s is nothing new, but this is not yet another criticism against the decline in education. Mr. McWhorter's academic speciality is language history and change, and he sees the gradual disappearance of 'whom', for example, to be natural and no more regrettable than the loss of the case-endings of Old English.</p><p>But the cult of the authentic and the personal, 'doing our own thing', has spelt the death of formal speech, writing, poetry and music. While even the modestly educated sought an elevated tone when they put pen to paper before the 1960s, even the most well regarded writing since then has sought to capture spoken English on the page. Equally, in poetry, the highly personal, performative genre is the only form that could claim real liveliness. In both oral and written English, talking is triumphing over speaking, spontaneity over craft.</p><p>Illustrated with an entertaining array of examples from both high and low culture, the trend that Mr. McWhorter documents is unmistakable. But it is less clear, to take the question of his subtitle, why we should, like, care. As a linguist, he acknowledges that all varieties of human language, including non-standard ones like Black English, can be powerfully expressive—there exists no language or dialect in the world that cannot convey complex ideas. He is not arguing, as many do, that we can no longer think straight because we do not talk proper.</p><p>Russians have a deep love for their own language and carry large chunks of memorized poetry in their heads, while Italian politicians tend to elaborate speech that would seem old-fashioned to most English-speakers. Mr. McWhorter acknowledges that formal language is not strictly necessary, and proposes no radical education reforms—he is really grieving over the loss of something beautiful more than useful. We now take our English 'on paper plates instead of china'. A shame, perhaps, but probably an inevitable one.</p>",
+      "stem": "According to McWhorter, the decline of formal English",
+      "options": [
+        {
+          "label": "A",
+          "text": "is inevitable in radical education reforms."
+        },
+        {
+          "label": "B",
+          "text": "is but all too natural in language development."
+        },
+        {
+          "label": "C",
+          "text": "has caused the controversy over the counter-culture."
+        },
+        {
+          "label": "D",
+          "text": "brought about changes in public attitudes in the 1960s."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "D",
+      "analysis": "第二段明确指出McWhorter认为'whom'的逐渐消失是自然的(natural),就像古英语格词尾的消失一样不值得遗憾。这表明他认为正式英语的衰落在语言发展中是自然的。B选项正确。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题:美国人不再期望公众人物精通英语,McWhorter认为这是1960年代反文化胜利的结果",
+            "keyPoint": "提出核心观点:反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "McWhorter的专业背景和他的核心观点:语言变化是自然的",
+            "keyPoint": "⭐关键段落!他看到'whom'的消失是natural(自然的)"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因:'做自己的事'这种个人主义文化导致了正式语言的死亡",
+            "keyPoint": "talking(随意交谈)胜过speaking(正式演讲)"
+          },
+          {
+            "paragraph": 4,
+            "content": "McWhorter承认所有语言变体都有表现力,不认为说话不规范会导致思维混乱",
+            "keyPoint": "反驳常见误解:语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "用俄罗斯人和意大利人的例子对比,说明McWhorter真正哀悼的是失去美丽的东西",
+            "keyPoint": "paper plates(实用)vs china(美丽)的类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "command",
+            "meaning": "精通,掌握(语言)",
+            "example": "command the English language = 精通英语"
+          },
+          {
+            "word": "aspire to",
+            "meaning": "渴望,追求",
+            "example": "aspire to such command = 渴望达到这样的水平"
+          },
+          {
+            "word": "controversialist",
+            "meaning": "有争议的人物",
+            "note": "controversial(有争议的)+ist(人)"
+          },
+          {
+            "word": "counter-culture",
+            "meaning": "反主流文化",
+            "context": "1960年代的反文化运动"
+          },
+          {
+            "word": "permissive",
+            "meaning": "放纵的,宽容的",
+            "example": "permissive 1960s = 放纵的1960年代"
+          },
+          {
+            "word": "case-endings",
+            "meaning": "格词尾",
+            "note": "古英语的名词变格词尾,现代英语已消失"
+          },
+          {
+            "word": "cult",
+            "meaning": "崇拜,狂热信仰",
+            "example": "the cult of the authentic = 对真实性的崇拜"
+          },
+          {
+            "word": "spontaneity",
+            "meaning": "自发性,自然流露",
+            "contrast": "vs craft(技巧,精心制作)"
+          },
+          {
+            "word": "elaborate",
+            "meaning": "精心制作的,复杂的",
+            "example": "elaborate speech = 精心准备的演讲"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:题干问'McWhorter认为正式英语的衰落...',需要找到McWhorter的观点",
+          "step2": "🔍找关键词:在第二段找到'he sees...to be natural'(他认为...是自然的)",
+          "step3": "✅匹配:B选项'all too natural'(完全自然的)与原文'natural'完美对应",
+          "step4": "❌排除其他选项:",
+          "elimination": [
+            "A选项错在最后一段'proposes no radical education reforms'(没有提出激进改革)",
+            "C选项因果关系颠倒:是反文化→导致→正式英语衰落,不是反过来",
+            "D选项也是因果颠倒:1960年代态度变化→导致→正式英语衰落"
+          ]
+        },
+        "commonTraps": [
+          "️ 陷阱1:因果关系颠倒 - 注意谁导致谁(responsible for)",
+          "⚠️ 陷阱2:偷换概念 - 'radical education reforms'出现在文中,但说的是'没有提出'",
+          "⚠️ 陷阱3:过度推断 - 文中说'natural',不要自己添加'in language development'以外的内容"
+        ],
+        "memoryTechnique": {
+          "method": "【自然演变联想法】",
+          "explanation": "把语言想象成河流,会自然流淌和改变。'whom'消失就像古英语格词尾消失一样,是语言发展的自然过程,不值得遗憾。",
+          "keyword": "natural = 自然的 = all too natural(完全自然的)",
+          "visualAid": "🌊 语言像河流 → 自然流动 → 词汇消失是正常的 → natural"
+        }
+      },
+      "errorAnalysis": {
+        "A": "最后一段说McWhorter没有提出激进的教育改革(proposes no radical education reforms),所以A错误。",
+        "C": "第一段说1960年代反文化的胜利导致了正式英语的衰落,而不是反过来。因果关系搞反了。",
+        "D": "不是正式英语的衰落带来了公众态度的变化,而是1960年代的反文化(公众态度变化)导致了正式英语的衰落。因果关系颠倒。"
+      },
+      "tips": "定位第二段:'he sees the gradual disappearance of whom...to be natural'。注意natural这个词,对应B选项的all too natural。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 37,
+      "type": "词义题",
+      "stem": "The word 'talking' (Line 6, Paragraph 3) denotes",
+      "options": [
+        {
+          "label": "A",
+          "text": "modesty."
+        },
+        {
+          "label": "B",
+          "text": "personality."
+        },
+        {
+          "label": "C",
+          "text": "liveliness."
+        },
+        {
+          "label": "D",
+          "text": "informality."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "B",
+      "analysis": "第三段讨论的是正式语言的死亡和口语化表达的兴起。'talking is triumphing over speaking, spontaneity over craft'中,talking与speaking形成对比,spontaneity(自发性)与craft(技巧)形成对比。根据上下文,talking代表的是非正式的、随意的表达方式。D选项informality(非正式性)正确。",
+      "errorAnalysis": {
+        "A": "modesty(谦虚)与文意无关。文章讨论的是正式与非正式,不是谦虚与否。",
+        "B": "personality(个性)不准确。虽然文章提到personal(个人的),但talking强调的是非正式的表达方式,而不是个性。",
+        "C": "liveliness(生动活泼)在文中出现过('claim real liveliness'),但这是描述诗歌的特点,不是talking的含义。talking强调的是随意、非正式。"
+      },
+      "tips": "理解对比关系:talking vs speaking = informal vs formal; spontaneity vs craft = 自然流露 vs 精心雕琢。talking代表非正式的口头表达。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "美国人不再期望精通英语"
+          },
+          {
+            "paragraph": 2,
+            "content": "McWhorter观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "⭐关键段落!",
+            "keyPoint": "talking vs speaking的对比"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "文化对比",
+            "keyPoint": "paper plates vs china类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "authentic",
+            "meaning": "真实的,真诚的",
+            "example": "the cult of the authentic = 对真实性的崇拜"
+          },
+          {
+            "word": "elevated tone",
+            "meaning": "高雅的语调",
+            "context": "正式写作的特点"
+          },
+          {
+            "word": "performative",
+            "meaning": "表演性的",
+            "note": "指诗歌需要朗诵表演"
+          },
+          {
+            "word": "spontaneity",
+            "meaning": "自发性",
+            "contrast": "vs craft(精心制作)"
+          },
+          {
+            "word": "triumph over",
+            "meaning": "胜过,战胜",
+            "example": "talking triumphs over speaking"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第三段第6行'talking is triumphing over speaking'",
+          "step2": "找对比:talking vs speaking, spontaneity vs craft",
+          "step3": "✅理解:talking=随意交谈(非正式), speaking=正式演讲",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(modesty谦虚):文中没提到谦虚的概念",
+            "B(personality个性):虽然提到personal,但强调的是表达方式,不是个性",
+            "C(liveliness生动):文中说诗歌有liveliness,但不是talking的含义"
+          ]
+        },
+        "commonTraps": [
+          "️ 陷阱1:看到personal就选personality - 要注意上下文,talking强调的是表达方式",
+          "⚠️ 陷阱2:混淆不同段落的词汇 - liveliness在第三段形容诗歌,不是talking的意思",
+          "⚠️ 陷阱3:忽视对比结构 - talking vs speaking是关键线索"
+        ],
+        "memoryTechnique": {
+          "method": "【对比配对法】",
+          "explanation": "建立对比表:talking(随意)=informal, speaking(正式)=formal。就像聊天vs演讲的区别。",
+          "keyword": "talking = 聊天、闲谈 → 轻松随意 → informality(非正式性)",
+          "visualAid": "💬 talking(聊天) vs 🎤 speaking(演讲) = informal vs formal"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 38,
+      "type": "推理题",
+      "stem": "To which of the following statements would McWhorter most likely agree?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Logical thinking is not necessarily related to the way we talk."
+        },
+        {
+          "label": "B",
+          "text": "Black English can be more expressive than standard English."
+        },
+        {
+          "label": "C",
+          "text": "Non-standard varieties of human language are just as entertaining."
+        },
+        {
+          "label": "D",
+          "text": "Of all the varieties, standard English can best convey complex ideas."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "B",
+      "analysis": "第四段最后一句:'He is not arguing, as many do, that we can no longer think straight because we do not talk proper.'意思是McWhorter不认为我们因为说话不规范就不能清晰思考。这暗示逻辑思维不一定与说话方式相关。A选项正确。",
+      "errorAnalysis": {
+        "B": "第四段说所有语言变体(包括黑人英语)都可以很有表现力(powerfully expressive),但没有说黑人英语比标准英语更有表现力。比较级错误。",
+        "C": "entertaining(有趣的)在第四段出现过('an entertaining array of examples'),但那是形容例子的,不是说语言变体本身有趣。",
+        "D": "第四段明确说'there exists no language or dialect in the world that cannot convey complex ideas'(世界上没有不能传达复杂思想的语言或方言),所以D错误。"
+      },
+      "tips": "定位第四段最后一句,理解双重否定:not arguing...that we can no longer think straight = 认为我们可以清晰思考,即使说话不规范。think straight = logical thinking。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "⭐关键段落!",
+            "keyPoint": "所有语言都有表现力"
+          },
+          {
+            "paragraph": 5,
+            "content": "文化对比",
+            "keyPoint": "哀悼失去美丽的东西"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "acknowledge",
+            "meaning": "承认",
+            "example": "he acknowledges that..."
+          },
+          {
+            "word": "powerfully expressive",
+            "meaning": "很有表现力的",
+            "context": "形容各种语言变体"
+          },
+          {
+            "word": "think straight",
+            "meaning": "清晰思考",
+            "note": "straight=清晰的,直接的"
+          },
+          {
+            "word": "talk proper",
+            "meaning": "说话规范",
+            "contrast": "vs talk improper(说话不规范)"
+          },
+          {
+            "word": "convey complex ideas",
+            "meaning": "传达复杂思想",
+            "example": "所有语言都能做到"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第四段最后一句'He is not arguing...that we can no longer think straight'",
+          "step2": "理解双重否定:not arguing + no longer = 认为可以",
+          "step3": "✅转换:不认为我们不能清晰思考 = 认为我们能清晰思考(即使说话不规范)",
+          "step4": "❌排除:",
+          "elimination": [
+            "B(more expressive比较级):原文说'都可以很有表现力',没有比较谁更强",
+            "C(entertaining有趣的):entertaining形容的是examples,不是language varieties",
+            "D(best convey最好传达):原文明确说'没有不能传达的语言',所以没有'最好'"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:比较级陷阱 - 看到more/better/than要警惕,原文没比较就别选",
+          "⚠️ 陷阱2:偷换主语 - entertaining修饰的是examples,不是languages",
+          "⚠️ 陷阱3:双重否定理解错误 - not...no = 肯定,要学会转换"
+        ],
+        "memoryTechnique": {
+          "method": "【双重否定破解法】",
+          "explanation": "not arguing(不认为) + no longer think straight(不能再清晰思考) = 认为我们可以清晰思考",
+          "keyword": "think straight = logical thinking(逻辑思维)",
+          "visualAid": "🔄 not...no = ✅ 肯定 | 说话不规范 ≠ 思维不清晰"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 39,
+      "type": "推理题",
+      "stem": "The description of Russians' love of memorizing poetry shows the author's",
+      "options": [
+        {
+          "label": "A",
+          "text": "interest in their language."
+        },
+        {
+          "label": "B",
+          "text": "appreciation of their efforts."
+        },
+        {
+          "label": "C",
+          "text": "admiration for their memory."
+        },
+        {
+          "label": "D",
+          "text": "contempt for their old-fashionedness."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "A",
+      "analysis": "第五段用俄罗斯人热爱背诵诗歌和意大利政治家的华丽演讲作为例子,说明不同文化对正式语言的重视。'memorized poetry'(背诵诗歌)和'elaborate speech'(精心雕琢的演讲)都暗示了**努力和用心**。作者通过这些正面例子表达了对这种文化努力的欣赏(appreciation of their efforts)。B选项正确。",
+      "errorAnalysis": {
+        "A": "interest in their language(对他们语言的兴趣)不够准确。作者不是在表达'兴趣',而是在赞赏他们为保持语言传统所付出的努力。",
+        "C": "admiration for their memory(钦佩他们的记忆力)偏离重点。重点是他们对语言的热爱和努力,不是记忆力本身。",
+        "D": "contempt(蔑视)完全错误。作者是正面描述,没有贬低的意思。"
+      },
+      "tips": "理解例子的作用:俄罗斯人和意大利人的例子都是在说对语言的用心和努力(memorized/elaborate),与McWhorter的观点形成对比。appreciation of efforts = 赞赏他们的努力付出。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "⭐关键段落!",
+            "keyPoint": "俄罗斯人和意大利人的例子"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "memorize",
+            "meaning": "背诵,记住",
+            "example": "memorized poetry = 背诵的诗歌"
+          },
+          {
+            "word": "elaborate",
+            "meaning": "精心制作的",
+            "example": "elaborate speech = 精心准备的演讲"
+          },
+          {
+            "word": "appreciation",
+            "meaning": "欣赏,赞赏",
+            "note": "比interest程度更深"
+          },
+          {
+            "word": "contempt",
+            "meaning": "蔑视,轻视",
+            "antonym": "admiration(钦佩)"
+          },
+          {
+            "word": "old-fashioned",
+            "meaning": "过时的,守旧的",
+            "context": "意大利政治家的演讲显得过时"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第五段'Russians have a deep love...and carry large chunks of memorized poetry'",
+          "step2": "找关键词:memorized(背诵)暗示努力和付出",
+          "step3": "✅理解:作者用正面例子表达对这种文化努力的欣赏(appreciation)",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(interest兴趣):太浅层,只是'感兴趣',没有体现作者的正面评价和赞赏",
+            "C(memory记忆力):偏离重点,重点是热爱和努力,不是记忆力好",
+            "D(contempt蔑视):完全相反,作者是正面态度"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:把客观描述当主观评价 - interest太中性,不够准确",
+          "⚠️ 陷阱2:关注表面词汇 - 看到memorized就想到memory,忽略了背后的努力含义",
+          "⚠️ 陷阱3:忽视情感色彩 - 作者是正面赞赏,不是中立或负面"
+        ],
+        "memoryTechnique": {
+          "method": "【关键词定位法】",
+          "explanation": "memorized(需要努力背诵) + elaborate(需要用心准备) = efforts(努力付出)",
+          "keyword": "memorized/elaborate → effort → appreciation of efforts",
+          "visualAid": "📚 memorized(背诵) + 🎨 elaborate(精心) = 💪 efforts(努力) → 👍 appreciation(赞赏)"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 40,
+      "type": "类比题",
+      "stem": "According to the last paragraph, 'paper plates' is to 'china' as",
+      "options": [
+        {
+          "label": "A",
+          "text": "'temporary' is to 'permanent'."
+        },
+        {
+          "label": "B",
+          "text": "'radical' is to 'conservative'."
+        },
+        {
+          "label": "C",
+          "text": "'functional' is to 'artistic'."
+        },
+        {
+          "label": "D",
+          "text": "'humble' is to 'noble'."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "最后一段说McWhorter承认正式语言不是严格必要的(not strictly necessary),他真正哀悼的是失去了一些美丽的东西(loss of something beautiful more than useful)。'paper plates'(纸盘子)代表实用的、功能性的,'china'(瓷器)代表美丽的、艺术性的。这个类比强调从功能性向艺术性的转变,C选项正确。",
+      "errorAnalysis": {
+        "A": "temporary vs permanent(临时vs永久)不准确。纸盘子和瓷器的区别不在于使用时间长短,而在于功能和美感。",
+        "B": "radical vs conservative(激进vs保守)与文意无关。文章没有讨论激进或保守的问题。",
+        "D": "humble vs noble(卑微vs高贵)有阶级色彩,不符合文意。文章强调的是实用与美感的对比,不是社会地位。"
+      },
+      "tips": "理解关键句:'grieving over the loss of something beautiful more than useful'(哀悼失去的是美丽而非实用的东西)。paper plates = functional/useful, china = beautiful/artistic。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "⭐关键段落!",
+            "keyPoint": "paper plates vs china的类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "grieve over",
+            "meaning": "为...感到悲伤",
+            "example": "grieving over the loss = 为失去而悲伤"
+          },
+          {
+            "word": "beautiful more than useful",
+            "meaning": "美丽多于实用",
+            "note": "强调美感价值"
+          },
+          {
+            "word": "inevitable",
+            "meaning": "不可避免的",
+            "synonym": "unavoidable"
+          },
+          {
+            "word": "functional",
+            "meaning": "功能性的,实用的",
+            "contrast": "vs artistic(艺术性的)"
+          },
+          {
+            "word": "artistic",
+            "meaning": "艺术性的,美观的",
+            "example": "china represents artistic value"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "定位:最后一段'grieving over the loss of something beautiful more than useful'",
+          "step2": "🔍理解类比:paper plates(纸盘子)=实用,functional; china(瓷器)=美丽,artistic",
+          "step3": "✅匹配:C选项'functional is to artistic'(功能性对艺术性)完美对应",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(temporary vs permanent临时vs永久):不准确,区别在于功能和美感,不在使用时间",
+            "B(radical vs conservative激进vs保守):与文意无关,文章没讨论激进保守",
+            "D(humble vs noble卑微vs高贵):有阶级色彩,不符合文意"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:表面理解 - 只看到纸盘子和瓷器的物理属性,没理解象征意义",
+          "⚠️ 陷阱2:过度联想 - 加入阶级观念(humble/noble),超出原文范围",
+          "⚠️ 陷阱3:忽视关键句 - 'beautiful more than useful'是解题核心"
+        ],
+        "memoryTechnique": {
+          "method": "【功能vs美感联想法】",
+          "explanation": "纸盘子=便宜实用用完就扔,瓷器=精美昂贵值得收藏。就像快餐vs高级餐厅的区别。",
+          "keyword": "paper plates=functional(实用), china=artistic(艺术)",
+          "visualAid": "🍽️ paper plates(实用) : 🏺 china(美丽) = functional : artistic"
+        }
+      }
     }
   ],
   "lastUpdated": "2026-06-04T00:00:00.000Z"
