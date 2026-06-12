@@ -354,332 +354,374 @@ const sentenceCategories = [
   {
     id: 1,
     icon: '🔝',
-    title: '开头引入 | Opening',
+    title: '开头引入 | Opening (去模板化版)',
     sentences: [
       {
         id: 1,
-        english: 'With the rapid development of technology/society/economy, ...',
-        chinese: '随着科技/社会/经济的快速发展，...',
+        english: 'In contemporary society, ___ has emerged as a focal point of public discourse.',
+        chinese: '在当代社会，___已成为公众讨论的焦点。',
         tags: ['universal', 'formal'],
-        structure: '<strong>With the rapid development of</strong> [主题], [主句].',
+        structure: '<strong>In contemporary society,</strong> [话题] <strong>has emerged as a focal point of public discourse.</strong>',
         examples: [
-          { context: '科技话题', sentence: 'With the rapid development of technology, our lives have changed dramatically.' },
-          { context: '教育话题', sentence: 'With the rapid development of online education, learning has become more accessible.' }
+          { context: '科技话题', sentence: 'In contemporary society, artificial intelligence has emerged as a focal point of public discourse.' },
+          { context: '教育话题', sentence: 'In contemporary society, educational equity has emerged as a focal point of public discourse.' }
         ],
-        tips: ['适用于大多数话题开头', 'development后可接不同领域'],
-        memoryTip: '"快速发展"句式 - 火箭升空联想：随着火箭升空（快速发展），视野变广（话题引入）',
-        usage: '适用于描述趋势性现象的开头，避免用于具体事件'
+        tips: ['用contemporary替代recently', 'emerged as比become更生动', 'discourse比concern更学术'],
+        memoryTip: '"当代焦点"句式 - 🎯靶心联想：contemporary=当代靶心，focal point=焦点，精准命中话题',
+        usage: '万能开头，适合80%议论文题目，避免使用烂俗的Recently...has aroused wide concern'
       },
       {
         id: 2,
-        english: 'Nowadays, ___ has become a hot topic / a matter of public concern.',
-        chinese: '如今，___已成为热门话题/公众关注的问题。',
-        tags: ['current', 'social'],
-        structure: '<strong>Nowadays,</strong> [话题] <strong>has become</strong> [a hot topic/a matter of public concern].',
+        english: 'While opinions diverge on ___, a growing consensus recognizes its profound implications.',
+        chinese: '尽管人们对___看法分歧，但越来越多的人认识到其深远影响。',
+        tags: ['contrast', 'balanced'],
+        structure: '<strong>While opinions diverge on</strong> [话题], <strong>a growing consensus recognizes</strong> [影响].',
         examples: [
-          { context: '环保话题', sentence: 'Nowadays, environmental protection has become a matter of public concern.' },
-          { context: '健康话题', sentence: 'Nowadays, mental health has become a hot topic among young people.' }
+          { context: '社交媒体', sentence: 'While opinions diverge on social media regulation, a growing consensus recognizes its profound implications for privacy.' },
+          { context: '远程办公', sentence: 'While opinions diverge on remote work policies, a growing consensus recognizes their profound implications for work-life balance.' }
         ],
-        tips: ['hot topic更口语化', 'matter of public concern更正式'],
-        memoryTip: '"如今热门"句式 - 🔥火焰联想：nowadays像火焰一样燃烧，hot topic就是热点话题',
-        usage: '适用于社会热点话题，强调话题的时效性和公众关注度'
+        tips: ['diverge比vary更正式', 'consensus强调共识', 'implications比impact更深层'],
+        memoryTip: '"分歧共识"句式 - ⚖️天平联想：一边是opinions diverge（分歧），另一边是growing consensus（共识）',
+        usage: '适合有争议的话题，展现辩证思维，避免单一的Recently...句式'
       },
       {
         id: 3,
-        english: 'It is universally acknowledged that ...',
-        chinese: '众所周知，...',
-        tags: ['formal', 'emphasis'],
-        structure: '<strong>It is universally acknowledged that</strong> [观点].',
+        english: 'The advent of ___ has precipitated a paradigm shift in how we perceive ___.',
+        chinese: '___的出现引发了我们对___认知的范式转变。',
+        tags: ['trend', 'academic'],
+        structure: '<strong>The advent of</strong> [事物A] <strong>has precipitated a paradigm shift in how we perceive</strong> [事物B].',
         examples: [
-          { context: '教育重要性', sentence: 'It is universally acknowledged that education is the key to success.' },
-          { context: '健康重要性', sentence: 'It is universally acknowledged that health is wealth.' }
+          { context: '互联网', sentence: 'The advent of the internet has precipitated a paradigm shift in how we perceive information access.' },
+          { context: 'AI技术', sentence: 'The advent of AI technology has precipitated a paradigm shift in how we perceive human creativity.' }
         ],
-        tips: ['语气强烈，用于公认事实', '避免用于有争议的观点'],
-        memoryTip: '"众所周知"句式 - 地球联想：universal=全球，acknowledged=承认，全球都承认的事实',
-        usage: '用于引出公认真理或常识，增强权威性，不可用于争议性观点'
+        tips: ['advent比development更精确', 'precipitated比caused更学术', 'paradigm shift是高级表达'],
+        memoryTip: '"范式转变"句式 - 🔄循环箭头联想：advent=出现→precipitated=引发→paradigm shift=范式转变',
+        usage: '适合科技/社会发展类话题，展现学术深度，避免平庸的With the development of...'
       }
     ]
   },
   {
     id: 2,
     icon: '️',
-    title: '论证过渡 | Transition',
+    title: '论证过渡 | Transition (去模板化版)',
     sentences: [
       {
         id: 4,
-        english: 'On the one hand, ... On the other hand, ...',
-        chinese: '一方面...另一方面...',
-        tags: ['contrast', 'balanced'],
-        structure: '<strong>On the one hand,</strong> [观点1]. <strong>On the other hand,</strong> [观点2].',
+        english: 'What deserves special attention is that...',
+        chinese: '值得特别关注的是...',
+        tags: ['emphasis', 'progressive'],
+        structure: '[前一句]. <strong>What deserves special attention is that</strong> [深入观点].',
         examples: [
-          { context: '科技利弊', sentence: 'On the one hand, technology brings convenience. On the other hand, it also causes problems.' }
+          { context: '科技影响', sentence: 'Technology has transformed communication. What deserves special attention is that it has also reshaped our cognitive patterns.' }
         ],
-        tips: ['用于对比两种观点', '确保两方面平衡论述']
+        tips: ['比Furthermore更有层次感', 'deserves special attention强调重要性'],
+        memoryTip: '"值得关注"句式 - 🔍放大镜联想：deserves=值得，special attention=特别关注→放大细节',
+        usage: '用于深化论证，引出更深层次的分析，避免机械使用First/Furthermore'
       },
       {
         id: 5,
-        english: 'Furthermore / Moreover / In addition, ...',
-        chinese: '此外/而且/另外，...',
-        tags: ['addition', 'progressive'],
-        structure: '[前一句]. <strong>Furthermore/Moreover/In addition,</strong> [补充观点].',
+        english: 'Not only does ___..., but it also...',
+        chinese: '不仅...，而且...',
+        tags: ['addition', 'emphasis'],
+        structure: '<strong>Not only does</strong> [主语] [动词], <strong>but it also</strong> [动词].',
         examples: [
-          { context: '递进论证', sentence: 'Reading expands our knowledge. Furthermore, it improves our critical thinking skills.' }
+          { context: '教育价值', sentence: 'Not only does education expand knowledge, but it also cultivates critical thinking.' }
         ],
-        tips: ['三个词可互换', 'furthermore最正式']
+        tips: ['倒装句结构（does提前）', '语气强烈，展现语言功底'],
+        memoryTip: '"不仅而且"句式 - ➕加号联想：not only=第一个加号，but also=第二个加号→双重强调',
+        usage: '适合递进论证，展现句式多样性，避免单调的Moreover/In addition'
       },
       {
         id: 6,
-        english: 'However / Nevertheless, ...',
-        chinese: '然而/尽管如此，...',
-        tags: ['contrast', '转折'],
-        structure: '[前一句]. <strong>However/Nevertheless,</strong> [转折观点].',
+        english: 'Admittedly, ..., yet this concern can be mitigated by...',
+        chinese: '诚然，...，但这一担忧可以通过...来缓解。',
+        tags: ['contrast', 'balanced'],
+        structure: '<strong>Admittedly,</strong> [对立观点], <strong>yet this concern can be mitigated by</strong> [反驳方式].',
         examples: [
-          { context: '转折论证', sentence: 'Technology has many benefits. However, it also poses challenges to privacy.' }
+          { context: 'AI就业', sentence: 'Admittedly, AI may replace certain jobs, yet this concern can be mitigated by reskilling the workforce.' }
         ],
-        tips: ['nevertheless比however更正式', '用于引入相反观点']
+        tips: ['⭐⭐⭐高分技巧：对立假想敌', 'mitigated比solved更精确', '展现辩证思维'],
+        memoryTip: '"诚然但是"句式 - ⚔️剑盾联想：Admittedly=盾牌（承认对方），yet=剑（反驳）→攻防兼备',
+        usage: '这是阅卷老师最喜欢看到的辩证论证，必背！避免单一的However转折'
       }
     ]
   },
   {
     id: 3,
     icon: '✅',
-    title: '结论总结 | Conclusion',
+    title: '结论总结 | Conclusion (去模板化版)',
     sentences: [
       {
         id: 7,
-        english: 'In conclusion / To sum up, ...',
-        chinese: '总之/总而言之，...',
-        tags: ['summary', 'final'],
-        structure: '<strong>In conclusion/To sum up,</strong> [总结观点].',
+        english: 'In essence, the key to addressing ___ lies not in ___, but in ___.',
+        chinese: '本质上，解决___的关键不在于___，而在于___。',
+        tags: ['comprehensive', 'balanced'],
+        structure: '<strong>In essence, the key to addressing</strong> [问题] <strong>lies not in</strong> [错误方式], <strong>but in</strong> [正确方式].',
         examples: [
-          { context: '环保总结', sentence: 'In conclusion, we should take immediate action to protect the environment.' }
+          { context: '环保问题', sentence: 'In essence, the key to addressing climate change lies not in rejecting technology, but in harnessing it responsibly.' }
         ],
-        tips: ['in conclusion更常用', 'to sum up稍显口语']
+        tips: ['In essence比In conclusion更有深度', 'not in...but in...展现辩证思维'],
+        memoryTip: '"本质关键"句式 - 🗝️钥匙联想：essence=本质精华，key=钥匙→找到解决问题的钥匙',
+        usage: '适合复杂话题的总结，展现思辨深度，避免简单的In conclusion重申'
       },
       {
         id: 8,
-        english: 'Taking all these factors into consideration, ...',
-        chinese: '综合考虑所有因素，...',
-        tags: ['comprehensive', 'formal'],
-        structure: '<strong>Taking all these factors into consideration,</strong> [结论].',
+        english: 'Looking ahead, it is imperative that we strike a balance between ___ and ___.',
+        chinese: '展望未来，我们必须在___和___之间取得平衡。',
+        tags: ['trend', 'action'],
+        structure: '<strong>Looking ahead, it is imperative that we strike a balance between</strong> [方面A] <strong>and</strong> [方面B].',
         examples: [
-          { context: '综合结论', sentence: 'Taking all these factors into consideration, I believe that online learning will play an increasingly important role.' }
+          { context: '科技发展', sentence: 'Looking ahead, it is imperative that we strike a balance between innovation and ethical considerations.' }
         ],
-        tips: ['显得思考全面', '适合复杂话题']
+        tips: ['imperative比important更紧迫', 'strike a balance是地道表达'],
+        memoryTip: '"展望未来"句式 - 🔭望远镜联想：looking ahead=向前看，strike balance=天平→平衡未来',
+        usage: '适合科技/社会发展类话题的结尾，避免平庸的In the future'
       },
       {
         id: 9,
-        english: 'It is high time that we took effective measures to ...',
-        chinese: '是时候采取有效措施来...',
-        tags: ['urgent', 'action'],
-        structure: '<strong>It is high time that we took effective measures to</strong> [行动].',
+        english: 'Only through concerted efforts can we hope to ___,' ,
+        chinese: '只有通过共同努力，我们才能希望___。',
+        tags: ['urgent', 'collective'],
+        structure: '<strong>Only through concerted efforts can we hope to</strong> [目标].',
         examples: [
-          { context: '呼吁行动', sentence: 'It is high time that we took effective measures to reduce pollution.' }
+          { context: '社会问题', sentence: 'Only through concerted efforts can we hope to bridge the gap between rich and poor.' }
         ],
-        tips: ['虚拟语气（took不是take）', '表达紧迫感']
+        tips: ['concerted强调协同合作', '倒装句结构增强语气'],
+        memoryTip: '"共同努力"句式 - 🤝握手联想：concerted=协力的，efforts=努力→携手共进',
+        usage: '适合呼吁集体行动的话题，避免老套的We should take measures'
       }
     ]
   },
   {
     id: 4,
     icon: '📈',
-    title: '数据描述 | Data Description',
+    title: '数据描述 | Data Description (去模板化版)',
     sentences: [
       {
         id: 10,
-        english: 'The number/percentage has increased/decreased significantly.',
-        chinese: '数量/百分比显著增长/下降。',
+        english: 'The data reveals a striking upward/downward trajectory in ___.',
+        chinese: '数据显示___呈现出显著的上升/下降趋势。',
         tags: ['trend', 'chart'],
-        structure: '<strong>The number/percentage</strong> [of某物] <strong>has increased/decreased significantly.</strong>',
+        structure: '<strong>The data reveals a striking</strong> [upward/downward] <strong>trajectory in</strong> [主题].',
         examples: [
-          { context: '增长描述', sentence: 'The number of college students has increased significantly in recent years.' }
+          { context: '增长描述', sentence: 'The data reveals a striking upward trajectory in online education enrollment.' }
         ],
-        tips: ['significantly可替换为dramatically/sharply', '注意时态用完成时']
+        tips: ['trajectory比trend更精确', 'striking强调显著性', 'reveals比shows更学术'],
+        memoryTip: '"轨迹趋势"句式 - 📈曲线图联想：trajectory=飞行轨迹→数据的变化路径',
+        usage: '适合图表作文，避免平庸的has increased significantly'
       },
       {
         id: 11,
-        english: 'Compared with ___, ___ is higher/lower.',
-        chinese: '与___相比，___更高/更低。',
+        english: 'In stark contrast to ___, ___ exhibits a markedly different pattern.',
+        chinese: '与___形成鲜明对比的是，___呈现出明显不同的模式。',
         tags: ['comparison', 'chart'],
-        structure: '<strong>Compared with</strong> [对比对象1], [对比对象2] <strong>is higher/lower.</strong>',
+        structure: '<strong>In stark contrast to</strong> [对比对象1], [对比对象2] <strong>exhibits a markedly different pattern.</strong>',
         examples: [
-          { context: '对比描述', sentence: 'Compared with 2010, the unemployment rate in 2020 is lower.' }
+          { context: '对比描述', sentence: 'In stark contrast to urban areas, rural regions exhibit a markedly different consumption pattern.' }
         ],
-        tips: ['用于两个时间点或群体对比', 'higher/lower可替换为greater/smaller']
+        tips: ['stark contrast强调强烈对比', 'exhibits比shows更正式', 'pattern比trend更全面'],
+        memoryTip: '"鲜明对比"句式 - ⚖️天平倾斜联想：stark=鲜明的，contrast=对比→天平两端差异巨大',
+        usage: '适合两个群体或时间点的对比，避免简单的Compared with...is higher'
       },
       {
         id: 12,
-        english: 'It accounts for ___ percent of the total.',
-        chinese: '它占总数的___百分比。',
+        english: 'This figure constitutes approximately ___% of the overall total.',
+        chinese: '这一数字约占总体总数的___%。',
         tags: ['proportion', 'chart'],
-        structure: '[某物] <strong>accounts for</strong> [数字] percent <strong>of the total.</strong>',
+        structure: '[某物] <strong>constitutes approximately</strong> [数字]% <strong>of the overall total.</strong>',
         examples: [
-          { context: '比例描述', sentence: 'Renewable energy accounts for 25 percent of the total energy consumption.' }
+          { context: '比例描述', sentence: 'Renewable energy constitutes approximately 30% of the overall energy mix.' }
         ],
-        tips: ['account for=占据/构成', '可用于饼图描述']
+        tips: ['constitutes比accounts for更正式', 'approximately比about更学术'],
+        memoryTip: '"构成比例"句式 - 🥧饼图分块联想：constitutes=构成，approximately=大约→饼图中的一块',
+        usage: '适合饼图或占比描述，避免重复使用accounts for'
       }
     ]
   },
   {
     id: 5,
     icon: '💎',
-    title: '高级替换 | Advanced Substitution',
+    title: '高级替换 | Advanced Substitution (去模板化版)',
     sentences: [
       {
         id: 13,
-        english: 'Instead of "good", use: beneficial / advantageous / favorable',
-        chinese: '用beneficial/advantageous/favorable替换good',
+        english: 'Instead of "important", use: pivotal / instrumental / paramount',
+        chinese: '用pivotal/instrumental/paramount替换important',
         tags: ['vocabulary', 'upgrade'],
-        structure: 'Replace <del>good</del> with <ins>beneficial/advantageous/favorable</ins>',
+        structure: 'Replace <del>important</del> with <ins>pivotal/instrumental/paramount</ins>',
         examples: [
-          { context: '原句', sentence: 'Exercise is good for health.' },
-          { context: '升级', sentence: 'Exercise is beneficial to health.' }
+          { context: '原句', sentence: 'Education is important for success.' },
+          { context: '升级', sentence: 'Education plays a pivotal role in achieving success.' }
         ],
-        tips: ['beneficial最通用', 'advantageous强调优势', 'favorable强调有利条件']
+        tips: ['pivotal强调关键转折点', 'instrumental强调工具性作用', 'paramount强调至高无上'],
+        memoryTip: '"关键重要"句式 - 🗝️钥匙联想：pivotal=枢纽，instrumental=乐器/工具→关键要素',
+        usage: '避免重复使用crucial/vital，这三个词更少见且精准'
       },
       {
         id: 14,
-        english: 'Instead of "think", use: argue / maintain / contend',
-        chinese: '用argue/maintain/contend替换think',
+        english: 'Instead of "think/believe", use: contend / posit / assert',
+        chinese: '用contend/posit/assert替换think/believe',
         tags: ['vocabulary', 'academic'],
-        structure: 'Replace <del>I think</del> with <ins>I argue/maintain/contend that</ins>',
+        structure: 'Replace <del>I think/believe</del> with <ins>I contend/posit/assert that</ins>',
         examples: [
-          { context: '原句', sentence: 'I think that education is important.' },
-          { context: '升级', sentence: 'I argue that education plays a crucial role.' }
+          { context: '原句', sentence: 'I believe that technology benefits society.' },
+          { context: '升级', sentence: 'I contend that technology serves as a catalyst for social progress.' }
         ],
-        tips: ['argue最常用', 'maintain强调坚持观点', 'contend更正式']
+        tips: ['contend强调辩论立场', 'posi提出假设', 'assert强调断言'],
+        memoryTip: '"主张认为"句式 - 🎤麦克风联想：contend=争论，posit=提出，assert=断言→学术表达',
+        usage: '适合学术写作，展现词汇深度，避免平庸的argue/maintain'
       },
       {
         id: 15,
-        english: 'Instead of "important", use: crucial / vital / indispensable',
-        chinese: '用crucial/vital/indispensable替换important',
-        tags: ['vocabulary', 'emphasis'],
-        structure: 'Replace <del>important</del> with <ins>crucial/vital/indispensable</ins>',
+        english: 'Instead of "help/improve", use: facilitate / bolster / catalyze',
+        chinese: '用facilitate/bolster/catalyze替换help/improve',
+        tags: ['vocabulary', 'action'],
+        structure: 'Replace <del>help/improve</del> with <ins>facilitate/bolster/catalyze</ins>',
         examples: [
-          { context: '原句', sentence: 'Water is important for life.' },
-          { context: '升级', sentence: 'Water is indispensable for life.' }
+          { context: '原句', sentence: 'Technology helps people communicate better.' },
+          { context: '升级', sentence: 'Technology facilitates seamless communication across geographical barriers.' }
         ],
-        tips: ['crucial强调关键性', 'vital强调生命攸关', 'indispensable强调不可或缺']
+        tips: ['facilitate强调促进过程', 'bolster强调支撑加强', 'catalyze强调催化加速'],
+        memoryTip: '"促进提升"句式 - ⚡闪电联想：facilitate=使便利，bolster=支撑，catalyze=催化→能量提升',
+        usage: '避免重复使用promote/enhance，这三个词更具动态感'
       }
     ]
   },
   {
     id: 6,
     icon: '🎯',
-    title: '举例论证 | Examples',
+    title: '举例论证 | Examples (去模板化版)',
     sentences: [
       {
         id: 16,
-        english: 'For instance / For example, ...',
-        chinese: '例如，...',
-        tags: ['example', 'universal'],
-        structure: '[观点]. <strong>For instance/For example,</strong> [具体例子].',
+        english: 'To illustrate this point, consider the case of...',
+        chinese: '为了说明这一点，考虑...的案例。',
+        tags: ['example', 'emphasis'],
+        structure: '<strong>To illustrate this point, consider the case of</strong> [例子].',
         examples: [
-          { context: '科技例子', sentence: 'Many technologies have improved our lives. For instance, smartphones allow us to communicate instantly.' }
+          { context: '科技例子', sentence: 'To illustrate this point, consider the case of Tesla\'s disruption of the automotive industry.' }
         ],
-        tips: ['for instance更正式', 'for example更常用']
+        tips: ['To illustrate比For example更正式', 'consider the case of引导具体案例'],
+        memoryTip: '"案例说明"句式 - 🔍放大镜联想：illustrate=阐明，case=案例→聚焦具体实例',
+        usage: '适合引入详细案例，避免平庸的For instance'
       },
       {
         id: 17,
-        english: 'Take ... as an example.',
-        chinese: '以...为例。',
-        tags: ['example', 'emphasis'],
-        structure: '<strong>Take</strong> [例子] <strong>as an example.</strong>',
+        english: 'A compelling illustration of this is...',
+        chinese: '对此的一个有力说明是...',
+        tags: ['example', 'formal'],
+        structure: '<strong>A compelling illustration of this is</strong> [例子].',
         examples: [
-          { context: '教育例子', sentence: 'Online learning has many advantages. Take Coursera as an example.' }
+          { context: '教育例子', sentence: 'A compelling illustration of this is Finland\'s education reform in the 1990s.' }
         ],
-        tips: ['用于引入具体案例', '语气较强']
+        tips: ['compelling强调说服力', 'illustration比example更生动'],
+        memoryTip: '"有力说明"句式 - 💪肌肉联想：compelling=引人注目的，illustration=图示→强有力的证据',
+        usage: '适合学术写作，展现词汇丰富度，避免重复使用example'
       },
       {
         id: 18,
-        english: 'A case in point is ...',
-        chinese: '一个恰当的例子是...',
-        tags: ['example', 'formal'],
-        structure: '<strong>A case in point is</strong> [例子].',
+        english: '___ serves as a paradigmatic example of this phenomenon.',
+        chinese: '___是这一现象的典型例证。',
+        tags: ['example', 'academic'],
+        structure: '[例子] <strong>serves as a paradigmatic example of</strong> [现象].',
         examples: [
-          { context: '环保例子', sentence: 'Environmental problems are serious. A case in point is air pollution in big cities.' }
+          { context: '环保例子', sentence: 'The Paris Agreement serves as a paradigmatic example of international climate cooperation.' }
         ],
-        tips: ['非常正式的表迖', '适合学术写作']
+        tips: ['paradigmatic强调典型性', 'serves as比is更正式'],
+        memoryTip: '"典型例证"句式 - 🏆奖杯联想：paradigmatic=典范的，example=例子→模范案例',
+        usage: '适合引入经典案例，展现学术深度，避免简单的Take...as an example'
       }
     ]
   },
   {
     id: 7,
     icon: '⚖️',
-    title: '因果分析 | Cause & Effect',
+    title: '因果分析 | Cause & Effect (去模板化版)',
     sentences: [
       {
         id: 19,
-        english: 'This is mainly because ...',
-        chinese: '这主要是因为...',
+        english: 'This phenomenon can be attributed to a confluence of factors, chief among which is...',
+        chinese: '这一现象可归因于多种因素的汇聚，其中最主要的是...',
         tags: ['cause', 'explanation'],
-        structure: '[现象]. <strong>This is mainly because</strong> [原因].',
+        structure: '<strong>This phenomenon can be attributed to a confluence of factors, chief among which is</strong> [主要原因].',
         examples: [
-          { context: '解释原因', sentence: 'Many people prefer online shopping. This is mainly because it is more convenient.' }
+          { context: '解释原因', sentence: 'The rise of remote work can be attributed to a confluence of factors, chief among which is technological advancement.' }
         ],
-        tips: ['直接说明原因', 'mainly可省略']
+        tips: ['confluence强调多因素汇聚', 'chief among which是高级定语从句', '比mainly because更学术'],
+        memoryTip: '"多因汇聚"句式 - 🌊河流汇合联想：confluence=汇流，factors=因素→多条河流汇聚成主因',
+        usage: '适合复杂现象的原因分析，避免简单的This is because'
       },
       {
         id: 20,
-        english: 'As a result / Consequently, ...',
-        chinese: '因此/结果是，...',
-        tags: ['effect', 'result'],
-        structure: '[原因]. <strong>As a result/Consequently,</strong> [结果].',
+        english: 'The ramifications of this extend far beyond ___, affecting ___ in profound ways.',
+        chinese: '其影响远不止___，还以深刻的方式影响着___。',
+        tags: ['effect', 'impact'],
+        structure: '<strong>The ramifications of this extend far beyond</strong> [范围A], <strong>affecting</strong> [范围B] <strong>in profound ways.</strong>',
         examples: [
-          { context: '说明结果', sentence: 'He studied hard every day. As a result, he passed the exam with high scores.' }
+          { context: '说明结果', sentence: 'The ramifications of AI extend far beyond automation, affecting employment structures in profound ways.' }
         ],
-        tips: ['consequently更正式', 'as a result更常用']
+        tips: ['ramifications比consequences更深层', 'extend far beyond强调影响广泛'],
+        memoryTip: '"深远影响"句式 - 🌊波纹扩散联想：ramifications=分支后果，extend far beyond→波纹扩散到远处',
+        usage: '适合描述连锁反应或长期影响，避免平庸的As a result'
       },
       {
         id: 21,
-        english: 'Due to / Owing to ..., ...',
-        chinese: '由于...，...',
-        tags: ['cause', 'formal'],
-        structure: '<strong>Due to/Owing to</strong> [原因], [结果].',
+        english: 'Underpinning this trend is the fundamental shift in...',
+        chinese: '支撑这一趋势的是...的根本性转变。',
+        tags: ['cause', 'deep'],
+        structure: '<strong>Underpinning this trend is the fundamental shift in</strong> [深层原因].',
         examples: [
-          { context: '正式表达', sentence: 'Due to the rapid development of technology, our lives have changed dramatically.' }
+          { context: '深层分析', sentence: 'Underpinning this trend is the fundamental shift in consumer preferences toward sustainability.' }
         ],
-        tips: ['due to和owing to可互换', '后接名词或名词短语']
+        tips: ['Underpinning强调底层支撑', 'fundamental shift强调根本性变化', '倒装句结构'],
+        memoryTip: '"底层支撑"句式 - 🏛️建筑地基联想：underpinning=支撑基础，fundamental=根本的→地基层',
+        usage: '适合深入分析现象背后的本质原因，展现思辨深度'
       }
     ]
   },
   {
     id: 8,
     icon: '💡',
-    title: '建议措施 | Suggestions',
+    title: '建议措施 | Suggestions (去模板化版)',
     sentences: [
       {
         id: 22,
-        english: 'It is advisable to ...',
-        chinese: '建议...',
-        tags: ['suggestion', 'formal'],
-        structure: '<strong>It is advisable to</strong> [建议内容].',
+        english: 'It is incumbent upon ___ to take proactive steps toward...',
+        chinese: '___有责任采取积极措施朝着...迈进。',
+        tags: ['suggestion', 'responsibility'],
+        structure: '<strong>It is incumbent upon</strong> [责任主体] <strong>to take proactive steps toward</strong> [目标].',
         examples: [
-          { context: '提建议', sentence: 'It is advisable to start preparing for the exam early.' }
+          { context: '提建议', sentence: 'It is incumbent upon governments to take proactive steps toward carbon neutrality.' }
         ],
-        tips: ['比should更正式', '适合书面语']
+        tips: ['incumbent upon强调责任担当', 'proactive比effective更主动', '比advisable更正式'],
+        memoryTip: '"责任担当"句式 - 🎯靶心联想：incumbent=责无旁贷的，proactive=主动的→瞄准目标行动',
+        usage: '适合呼吁政府或机构承担责任，避免平庸的We should'
       },
       {
         id: 23,
-        english: 'We should take effective measures to ...',
-        chinese: '我们应该采取有效措施来...',
-        tags: ['action', 'urgent'],
-        structure: '<strong>We should take effective measures to</strong> [行动].',
+        english: 'A multifaceted approach encompassing ___ and ___ is warranted.',
+        chinese: '需要一种包含___和___的多层面方法。',
+        tags: ['action', 'comprehensive'],
+        structure: '<strong>A multifaceted approach encompassing</strong> [方面A] <strong>and</strong> [方面B] <strong>is warranted.</strong>',
         examples: [
-          { context: '呼吁行动', sentence: 'We should take effective measures to protect the environment.' }
+          { context: '呼吁行动', sentence: 'A multifaceted approach encompassing policy reform and public education is warranted to address this issue.' }
         ],
-        tips: ['强调行动的必要性', 'effective可替换为immediate']
+        tips: ['multifaceted强调多层面', 'encompassing比including更全面', 'warranted强调必要性'],
+        memoryTip: '"多层面方法"句式 - 🧩拼图联想：multifaceted=多方面的，encompassing=包含→拼凑完整方案',
+        usage: '适合复杂问题的解决方案，展现系统性思维，避免简单的take measures'
       },
       {
         id: 24,
-        english: 'Only by doing ... can we ...',
-        chinese: '只有通过...我们才能...',
-        tags: ['condition', 'emphasis'],
-        structure: '<strong>Only by</strong> [方式] <strong>can we</strong> [结果].',
+        english: 'Only by fostering a culture of ___ can we hope to achieve ___.',
+        chinese: '只有通过培养___的文化，我们才能希望实现___。',
+        tags: ['condition', 'cultural'],
+        structure: '<strong>Only by fostering a culture of</strong> [文化/理念] <strong>can we hope to achieve</strong> [目标].',
         examples: [
-          { context: '强调条件', sentence: 'Only by working hard can we achieve our goals.' }
+          { context: '强调条件', sentence: 'Only by fostering a culture of innovation can we hope to achieve sustainable economic growth.' }
         ],
-        tips: ['倒装句结构', '语气强烈，强调唯一途径']
+        tips: ['fostering强调培育过程', 'culture of强调文化氛围', '倒装句增强语气'],
+        memoryTip: '"文化培育"句式 - 🌱种子发芽联想：fostering=培育，culture=文化→种子长成大树',
+        usage: '适合强调长期文化建设，避免机械的Only by...can we'
       }
     ]
   }
@@ -885,90 +927,90 @@ function showSentenceDetail(sentence: any) {
 // 记忆技巧函数
 function getMemoryMnemonic(sentence: any): string {
   const mnemonics: Record<number, string> = {
-    1: '“随着发” - With the rapid development of...（随着...的快速发展）',
-    2: '“如今热” - Nowadays...has become a hot topic（如今...成热门）',
-    3: '“众所周” - It is universally acknowledged that（众所周知）',
-    4: '“一方另” - On the one hand...On the other hand（一方面...另一方面）',
-    5: '“此外而” - Furthermore/Moreover/In addition（此外/而且/另外）',
-    6: '“然而尽” - However/Nevertheless（然而/尽管如此）',
-    7: '“总之总” - In conclusion/To sum up（总之/总而言之）',
-    8: '“综合考” - Taking all these factors into consideration（综合考虑）',
-    9: '“是时候” - It is high time that we took...（是时候...）',
-    10: '“数增减” - The number has increased/decreased（数量增长/下降）',
-    11: '“相比高” - Compared with...is higher/lower（与...相比更高/低）',
-    12: '“占百分” - It accounts for...percent（占...百分比）',
-    13: '“好替换” - good→beneficial/advantageous（好的替换词）',
-    14: '“想替换” - think→argue/maintain/contend（想的替换词）',
-    15: '“重替换” - important→crucial/vital/indispensable（重要的替换词）',
-    16: '“例如举” - For instance/For example（例如/举例）',
-    17: '“以为例” - Take...as an example（以...为例）',
-    18: '“恰当例” - A case in point is...（一个恰当的例子是）',
-    19: '“主要因” - This is mainly because（这主要是因为）',
-    20: '“因此结” - As a result/Consequently（因此/结果是）',
-    21: '“由于因” - Due to/Owing to（由于/因为）',
-    22: '“建议宜” - It is advisable to（建议/适宜）',
-    23: '“采措施” - take effective measures to（采取有效措施）',
-    24: '“只有才” - Only by...can we（只有...才能）'
+    1: '“当代焦点” - In contemporary society...has emerged as a focal point（在当代社会...已成为焦点）',
+    2: '“分歧共识” - While opinions diverge...a growing consensus recognizes（尽管分歧...但共识认可）',
+    3: '“范式转变” - The advent of...has precipitated a paradigm shift（...的出现引发范式转变）',
+    4: '“值得关注” - What deserves special attention is that（值得特别关注的是）',
+    5: '“不仅而且” - Not only does..., but it also...（倒装句：不仅...而且）',
+    6: '“诚然但是” - Admittedly..., yet this concern can be mitigated by（诚然...但可通过...缓解）⭐高分',
+    7: '“本质关键” - In essence, the key lies not in..., but in...（本质关键在于不是...而是）',
+    8: '“展望未来” - Looking ahead, it is imperative to strike a balance（展望未来必须平衡）',
+    9: '“共同努力” - Only through concerted efforts can we（只有通过共同努力才能）',
+    10: '“轨迹趋势” - The data reveals a striking trajectory（数据显示显著轨迹）',
+    11: '“鲜明对比” - In stark contrast to..., ...exhibits a different pattern（与...形成鲜明对比）',
+    12: '“构成比例” - This figure constitutes approximately...%（这一数字约占...%）',
+    13: '“关键重要” - important→pivotal/instrumental/paramount（重要的升级词）',
+    14: '“主张认为” - think/believe→contend/posit/assert（认为的学术表达）',
+    15: '“促进提升” - help/improve→facilitate/bolster/catalyze（帮助/提升的动态词）',
+    16: '“案例说明” - To illustrate this point, consider the case of（为说明这点，考虑...案例）',
+    17: '“有力说明” - A compelling illustration of this is（对此的有力说明是）',
+    18: '“典型例证” - ...serves as a paradigmatic example（...是典型例证）',
+    19: '“多因汇聚” - attributed to a confluence of factors, chief among which is（归因于多因素汇聚，主因是）',
+    20: '“深远影响” - ramifications extend far beyond..., affecting...（影响远不止...还影响）',
+    21: '“底层支撑” - Underpinning this trend is the fundamental shift（支撑趋势的是根本转变）',
+    22: '“责任担当” - It is incumbent upon...to take proactive steps（...有责任采取积极措施）',
+    23: '“多层面法” - A multifaceted approach encompassing...is warranted（需要包含...的多层面方法）',
+    24: '“文化培育” - Only by fostering a culture of...can we（只有培养...文化才能）'
   }
   return mnemonics[sentence.id] || '记住句型结构和关键词'
 }
 
 function getMemoryAssociation(sentence: any): string {
   const associations: Record<number, string> = {
-    1: '想象火箭发射🚀：With the rapid development（随着快速发展）→ 火箭升空',
-    2: '想象热搜榜🔥：Nowadays...hot topic（如今...热门话题）→ 上热搜',
-    3: '想象全班点头👥：universally acknowledged（众所周知）→ 大家都同意',
-    4: '想象天平⚖️：on the one hand...on the other hand → 两边平衡',
-    5: '想象搭积木🧱：Furthermore（此外）→ 再加一块',
-    6: '想象转弯🔄：However（然而）→ 方向改变',
-    7: '想象句号⭕：In conclusion（总之）→ 画龙点睛',
-    8: '想象拼图🧩：Taking all factors（综合考虑）→ 拼凑完整',
-    9: '想象闹钟⏰：It is high time（是时候了）→ 时间紧迫',
-    10: '想象箭头📈：increased/decreased（增长/下降）→ 上下箭头',
-    11: '想象比较📊：Compared with（与...相比）→ 左右对比',
-    12: '想象饼图🥧：accounts for percent（占百分比）→ 饼图分块',
-    13: '想象升级⭐：good→beneficial → 普通变高级',
-    14: '想象辩论🎤：think→argue → 从想法到论证',
-    15: '想象钻石💎：important→crucial → 重要变关键',
-    16: '想象手指👉：For example（例如）→  pointing举例',
-    17: '想象放大镜🔍：Take...as example → 聚焦案例',
-    18: '想象靶心🎯：A case in point → 精准例子',
-    19: '想象问号❓：This is because → 解释原因',
-    20: '想象结果✅：As a result → 因果关系',
-    21: '想象链条🔗：Due to → 因果连接',
-    22: '想象灯泡💡：advisable → 好主意',
-    23: '想象工具箱🛠️：take measures → 采取措施',
-    24: '想象钥匙🔑：Only by...can we → 唯一方法'
+    1: '想象靶心🎯：contemporary society（当代社会）→ focal point（焦点）→ 精准命中话题',
+    2: '想象天平⚖️：opinions diverge（分歧）←→ growing consensus（共识）→ 平衡观点',
+    3: '想象循环箭头🔄：advent（出现）→ precipitated（引发）→ paradigm shift（范式转变）',
+    4: '想象放大镜🔍：deserves special attention（值得特别关注）→ 放大细节深入分析',
+    5: '想象加号➕：Not only（第一个加号）+ but also（第二个加号）→ 双重强调',
+    6: '想象剑盾⚔️：Admittedly（盾牌承认）→ yet（剑反驳）→ mitigated（缓解）→ 攻防兼备⭐',
+    7: '想象钥匙🗝️：In essence（本质）→ key（钥匙）→ not in...but in...（不是...而是）→ 找到关键',
+    8: '想象望远镜🔭：Looking ahead（向前看）→ strike balance（天平平衡）→ 未来展望',
+    9: '想象握手🤝：concerted efforts（协力努力）→ hope to achieve（希望实现）→ 携手共进',
+    10: '想象曲线图📈：data reveals（数据揭示）→ striking trajectory（显著轨迹）→ 趋势变化',
+    11: '想象倾斜天平⚖️：stark contrast（鲜明对比）→ markedly different（明显不同）→ 差异巨大',
+    12: '想象饼图分块🥧：constitutes（构成）→ approximately（大约）→ % of total（占总数的百分比）',
+    13: '想象钥匙🗝️：important→pivotal（枢纽）/instrumental（工具）/paramount（至高）→ 升级表达',
+    14: '想象麦克风🎤：contend（争论）/posit（提出）/assert（断言）→ 学术表达观点',
+    15: '想象闪电⚡：facilitate（促进）/bolster（支撑）/catalyze（催化）→ 动态能量提升',
+    16: '想象放大镜🔍：To illustrate（阐明）→ consider the case（考虑案例）→ 聚焦实例',
+    17: '想象肌肉💪：compelling（引人注目的）→ illustration（图示）→ 强有力的证据',
+    18: '想象奖杯🏆：paradigmatic（典范的）→ example（例子）→ 模范案例',
+    19: '想象河流汇合🌊：confluence（汇流）→ factors（因素）→ chief among which（主因）→ 多因汇聚',
+    20: '想象波纹扩散🌊：ramifications（分支后果）→ extend far beyond（远不止）→ 影响深远',
+    21: '想象建筑地基🏛️：Underpinning（支撑基础）→ fundamental shift（根本转变）→ 地基层',
+    22: '想象靶心🎯：incumbent upon（责无旁贷）→ proactive steps（积极措施）→ 瞄准目标行动',
+    23: '想象拼图🧩：multifaceted（多方面的）→ encompassing（包含）→ 拼凑完整方案',
+    24: '想象种子发芽🌱：fostering（培育）→ culture（文化）→ achieve（实现）→ 种子长成大树'
   }
   return associations[sentence.id] || '联想句型的实际应用场景'
 }
 
 function getMemoryUsage(sentence: any): string {
   const usages: Record<number, string> = {
-    1: '适用：所有话题开头，万能句型',
-    2: '适用：社会热点、时事话题',
-    3: '适用：公认事实、科学真理',
-    4: '适用：对比两种观点、利弊分析',
-    5: '适用：递进论证、补充论点',
-    6: '适用：转折、引入相反观点',
-    7: '适用：结尾总结、重申观点',
-    8: '适用：复杂话题、综合结论',
-    9: '适用：呼吁行动、表达紧迫',
-    10: '适用：图表作文、数据描述',
-    11: '适用：图表作文、对比分析',
-    12: '适用：图表作文、比例描述',
-    13: '适用：词汇升级、避免重复',
-    14: '适用：学术写作、表达观点',
-    15: '适用：强调重要性、提升档次',
-    16: '适用：举例论证、支撑论点',
-    17: '适用：引入具体案例',
-    18: '适用：正式写作、学术文章',
-    19: '适用：解释原因、因果分析',
-    20: '适用：说明结果、因果连接',
-    21: '适用：正式表达、书面语',
-    22: '适用：提建议、正式场合',
-    23: '适用：呼吁行动、解决问题',
-    24: '适用：强调条件、倒装句式'
+    1: '适用：万能开头，适合80%议论文题目，避免烂俗的Recently...句式',
+    2: '适用：有争议的话题，展现辩证思维，避免单一陈述',
+    3: '适用：科技/社会发展类话题，展现学术深度',
+    4: '适用：深化论证，引出更深层次分析，避免机械使用Furthermore',
+    5: '适用：递进论证，展现句式多样性，避免单调的Moreover',
+    6: '适用：⭐⭐⭐高分技巧！对立假想敌，阅卷老师最爱看到的辩证论证',
+    7: '适用：复杂话题总结，展现思辨深度，避免简单In conclusion重申',
+    8: '适用：科技/社会发展类结尾，避免平庸的In the future',
+    9: '适用：呼吁集体行动，避免老套的We should take measures',
+    10: '适用：图表作文趋势描述，避免平庸的has increased significantly',
+    11: '适用：两个群体或时间点强烈对比，避免简单的Compared with',
+    12: '适用：饼图或占比描述，避免重复使用accounts for',
+    13: '适用：词汇升级，避免重复使用crucial/vital，这三个词更少见',
+    14: '适用：学术写作表达观点，避免平庸的argue/maintain',
+    15: '适用：动态表达促进/提升，避免重复使用promote/enhance',
+    16: '适用：引入详细案例，避免平庸的For instance',
+    17: '适用：学术写作展现词汇丰富度，避免重复使用example',
+    18: '适用：引入经典案例，展现学术深度，避免Take...as an example',
+    19: '适用：复杂现象原因分析，避免简单的This is because',
+    20: '适用：描述连锁反应或长期影响，避免平庸的As a result',
+    21: '适用：深入分析现象背后的本质原因，展现思辨深度',
+    22: '适用：呼吁政府或机构承担责任，避免平庸的We should',
+    23: '适用：复杂问题解决方案，展现系统性思维，避免take measures',
+    24: '适用：强调长期文化建设，避免机械的Only by...can we'
   }
   return usages[sentence.id] || '根据句型特点灵活使用'
 }
