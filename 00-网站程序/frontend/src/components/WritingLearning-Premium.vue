@@ -252,107 +252,201 @@ const frameworks = [
 // ========== Tab 3: Argumentation Methods - 深度论证方法 ==========
 const argumentationMethods = {
   imaginaryOpponent: {
-    title: '找对立假想敌',
-    subtitle: '增强说服力的终极武器',
-    description: '通过设想对立观点并反驳，让你的论证无懈可击',
+    title: '⭐⭐⭐ 对立假想敌技巧',
+    subtitle: '阅卷老师最喜爱的辩证论证',
+    description: '通过设想并反驳对立观点，展现思辨深度，这是13-15分作文的必备技巧',
     steps: [
       {
         step: 1,
         title: '提出自己的观点',
-        example: 'I believe that online education is beneficial for students.'
+        example: 'I believe that online education is beneficial for students.',
+        tip: '明确表达立场，使用I believe/I maintain/I contend等'
       },
       {
         step: 2,
-        title: '设想对立观点',
-        example: 'However, some people argue that online education lacks interaction.'
+        title: '设想对立观点（Admittedly）',
+        example: 'Admittedly, some critics argue that online education lacks face-to-face interaction.',
+        tip: '用Admittedly/Some may argue/Critics claim引入对立观点，展现客观性'
       },
       {
         step: 3,
-        title: '反驳对立观点',
-        example: 'While this concern is valid, modern technology has addressed this issue through video conferencing and discussion forums.'
+        title: '反驳对立观点（However）',
+        example: 'However, this concern can be mitigated by interactive platforms and virtual classrooms.',
+        tip: '用However/Nevertheless转折，指出对立观点的局限性或提供解决方案'
       },
       {
         step: 4,
-        title: '强化自己的立场',
-        example: 'Therefore, the advantages of online education far outweigh its disadvantages.'
+        title: '强化自己的立场（Therefore）',
+        example: 'Therefore, the advantages of online education far outweigh its disadvantages.',
+        tip: '用Therefore/Thus/Hence重申立场，形成完整闭环'
       }
     ],
     templates: [
-      'Some people may argue that..., but...',
+      'Admittedly, some critics argue that..., however, this concern can be addressed by...',
       'While it is true that..., we cannot ignore that...',
-      'Admittedly, ..., however...',
-      'Critics may claim that..., yet...'
+      'Some may claim that..., yet evidence suggests otherwise...',
+      'Despite the argument that..., the reality is that...'
+    ],
+    advancedPatterns: [
+      {
+        pattern: '承认+限定',
+        example: 'Admittedly, [对立观点] to some extent, but this does not negate the fact that [你的观点].'
+      },
+      {
+        pattern: '让步+转折',
+        example: 'While [对立观点] may hold water in certain cases, it fails to account for [你的论据].'
+      },
+      {
+        pattern: '对比+强调',
+        example: 'Unlike [对立观点] suggests, [你的观点] is supported by overwhelming evidence.'
+      }
     ]
   },
   threeLevelProgression: {
-    title: '三级递进法',
-    subtitle: '从表面到本质的深度论证',
-    description: '通过what→how→why it matters三层递进，让立意深刻',
+    title: '📈 三级递进论证法',
+    subtitle: '从现象到本质的深度挖掘',
+    description: '通过what→how→why it matters三层递进，让立意深刻，避免浅层论述',
     levels: [
       {
         level: 1,
         name: '一级：表面现象（What）',
-        description: '描述题目给出的现象或问题',
-        example: 'Teachers impart knowledge to students.'
+        description: '描述题目给出的现象或问题，用contemporary/emerged as等高级表达',
+        example: 'In contemporary society, teachers play a pivotal role in education.',
+        tip: '用In contemporary society/has emerged as替代Recently...has become'
       },
       {
         level: 2,
-        name: '二级：深层原因（How）',
-        description: '分析现象背后的原因或机制',
-        example: 'They teach students how to think critically and solve problems independently.'
+        name: '二级：深层原因/机制（How）',
+        description: '分析现象背后的原因或运作机制，用Not only...but also/What deserves special attention',
+        example: 'What deserves special attention is that teachers do more than transmit facts; they cultivate critical thinking skills.',
+        tip: '用What deserves special attention/Not only does...but it also深化论证'
       },
       {
         level: 3,
-        name: '三级：本质影响（Why it matters）',
-        description: '探讨对个人/社会的深远影响',
-        example: 'Ultimately, teachers shape students\' character and values, preparing them to become responsible citizens.'
+        name: '三级：本质影响/意义（Why it matters）',
+        description: '探讨对个人/社会的深远影响，用In essence/Ramifications extend far beyond',
+        example: 'In essence, the ramifications of quality education extend far beyond academic success, shaping responsible citizens.',
+        tip: '用In essence the key lies not in...but in.../ramifications extend far beyond展现思辨深度'
       }
     ],
     beforeAfter: {
       before: {
-        title: '修改前（浅层）',
+        title: '❌ 修改前（浅层论述）',
         content: 'Teachers are important. They teach us knowledge. We should respect them.'
       },
       after: {
-        title: '修改后（深度）',
-        content: 'Teachers do more than transmit facts; they cultivate our ability to think independently. More importantly, through their dedication and passion, they inspire us to pursue excellence and become better versions of ourselves.'
+        title: '✅ 修改后（深度论证）',
+        content: 'In contemporary society, teachers play a pivotal role in education. What deserves special attention is that they do more than transmit facts; they cultivate our ability to think independently. In essence, the ramifications of quality teaching extend far beyond academic success, ultimately shaping responsible citizens who contribute to societal progress.'
       }
-    }
+    },
+    practicalExamples: [
+      {
+        topic: '科技对生活的影响',
+        level1: 'With the rapid advancement of technology, our daily lives have been transformed.',
+        level2: 'Not only does technology enhance efficiency, but it also reshapes how we communicate and work.',
+        level3: 'In essence, the key to harnessing technology lies not in resisting change, but in adapting proactively to maximize its benefits while mitigating potential risks.'
+      },
+      {
+        topic: '环境保护的重要性',
+        level1: 'Environmental degradation has emerged as a focal point of public concern in recent years.',
+        level2: 'What deserves special attention is that pollution not only threatens ecosystems but also jeopardizes human health.',
+        level3: 'Ultimately, the ramifications of environmental neglect extend far beyond current generations, affecting the sustainability of future societies.'
+      }
+    ]
   },
   fiveContinuationMethods: {
-    title: '五种续写法',
+    title: '💡 五种续写技巧',
     subtitle: '解决写作卡壳问题',
-    description: '当你不知道下一句写什么时，使用以下5种方法',
+    description: '当你不知道下一句写什么时，使用以下5种方法继续论证',
     methods: [
       {
-        name: '方法1：找对立假想敌',
+        name: '方法1：对立假想敌',
         description: '提出一个可能的反对意见，然后反驳',
-        template: 'Some might argue that..., but...',
-        example: 'Some might argue that technology isolates people, but in reality, it connects us across geographical boundaries.'
+        template: 'Admittedly, some might argue that..., but...',
+        example: 'Admittedly, some might argue that technology isolates people, but in reality, it connects us across geographical boundaries.',
+        tip: '⭐⭐⭐高分技巧，必用！'
       },
       {
-        name: '方法2：举三种例子',
+        name: '方法2：三级递进',
+        description: '从what→how→why it matters深化论证',
+        template: '[现象]. What deserves special attention is that [深入分析]. In essence, [本质影响].',
+        example: 'Online education has become prevalent. What deserves special attention is that it democratizes access to knowledge. In essence, it bridges the educational gap between urban and rural areas.',
+        tip: '展现思辨深度，避免浅层论述'
+      },
+      {
+        name: '方法3：多维度举例',
         description: '从三个不同角度举例（个人/社会/历史）',
-        template: 'For instance, at the individual level... At the societal level... Historically...',
-        example: 'For instance, at the individual level, reading expands our horizons. At the societal level, it promotes cultural understanding. Historically, great thinkers have always been avid readers.'
+        template: 'At the individual level... At the societal level... Historically...',
+        example: 'At the individual level, reading expands horizons. At the societal level, it promotes cultural understanding. Historically, great thinkers have always been avid readers.',
+        tip: '展现论证的全面性'
       },
       {
-        name: '方法3：高分例证三标准',
-        description: '具体（specific）+ 相关（relevant）+ 简洁（concise）',
-        template: 'Take ___ as an example. ... This illustrates that...',
-        example: 'Take Elon Musk as an example. Despite numerous failures, he persisted in developing reusable rockets. This illustrates that perseverance is the key to success.'
-      },
-      {
-        name: '方法4：同义替换',
+        name: '方法4：同义替换重申',
         description: '用不同的词表达同一个意思，避免重复',
         template: 'In other words, ... / That is to say, ... / To put it differently, ...',
-        example: 'Technology has transformed our lives. In other words, the way we live, work, and communicate has been fundamentally changed by digital innovation.'
+        example: 'Technology has transformed our lives. In other words, the way we live, work, and communicate has been fundamentally changed by digital innovation.',
+        tip: '增加文章层次感，避免单调'
       },
       {
-        name: '方法5：车辘话来回说',
-        description: '从不同角度重申同一个观点（正反对比）',
-        template: 'On the one hand, ... On the other hand, ...',
-        example: 'On the one hand, competition drives innovation. On the other hand, it may also lead to excessive stress. Therefore, we need to strike a balance.'
+        name: '方法5：正反对比论证',
+        description: '从正反两个角度重申同一个观点',
+        template: 'On the one hand, ... On the other hand, ... Therefore, ...',
+        example: 'On the one hand, competition drives innovation. On the other hand, it may lead to excessive stress. Therefore, we need to strike a balance.',
+        tip: '展现辩证思维，增强说服力'
+      }
+    ]
+  },
+  causalAnalysis: {
+    title: '🔍 因果分析法',
+    subtitle: '深入剖析现象背后的原因',
+    description: '通过多层次原因分析，展现论证深度，避免简单的This is because',
+    techniques: [
+      {
+        name: '多因素汇聚法',
+        template: 'This phenomenon can be attributed to a confluence of factors, chief among which is [主要原因].',
+        example: 'The rise of remote work can be attributed to a confluence of factors, chief among which is technological advancement.',
+        tip: '用confluence of factors替代Several factors，用chief among which突出主因'
+      },
+      {
+        name: '底层支撑法',
+        template: 'Underpinning this trend is the fundamental shift in [深层原因].',
+        example: 'Underpinning this trend is the fundamental shift in consumer preferences toward sustainability.',
+        tip: '用Underpinning强调底层支撑，fundamental shift强调根本性变化'
+      },
+      {
+        name: '连锁反应法',
+        template: 'The ramifications of [原因] extend far beyond [范围A], affecting [范围B] in profound ways.',
+        example: 'The ramifications of AI extend far beyond automation, affecting employment structures in profound ways.',
+        tip: '用ramifications替代consequences，extend far beyond强调影响广泛'
+      }
+    ],
+    commonMistakes: [
+      { wrong: 'This is mainly because technology is developing fast.', right: 'This phenomenon can be attributed to a confluence of factors, chief among which is rapid technological advancement.' },
+      { wrong: 'Due to social media, people communicate less.', right: 'The widespread adoption of social media has precipitated a paradigm shift in interpersonal communication patterns.' }
+    ]
+  },
+  comparativeAnalysis: {
+    title: '⚖️ 对比分析法',
+    subtitle: '通过对比凸显论点',
+    description: '运用对比手法增强论证力度，避免平庸的Compared with...is higher',
+    techniques: [
+      {
+        name: '鲜明对比法',
+        template: 'In stark contrast to [对象A], [对象B] exhibits a markedly different pattern.',
+        example: 'In stark contrast to urban areas, rural regions exhibit a markedly different consumption pattern.',
+        tip: '用stark contrast强调强烈对比，markedly different强调明显差异'
+      },
+      {
+        name: '今昔对比法',
+        template: 'Unlike in the past when [过去情况], contemporary society witnesses [现在情况].',
+        example: 'Unlike in the past when information was scarce, contemporary society witnesses an unprecedented abundance of data.',
+        tip: '用Unlike in the past when引入过去，contemporary society witnesses描述现在'
+      },
+      {
+        name: '理想现实对比',
+        template: 'While the ideal scenario suggests [理想情况], the reality is that [现实情况].',
+        example: 'While the ideal scenario suggests equal educational opportunities, the reality is that significant disparities persist.',
+        tip: '用While the ideal scenario suggests引入理想，the reality is that揭示现实'
       }
     ]
   }
@@ -1656,6 +1750,9 @@ function showExampleDetail(example: any) {
             <div class="level-badge">{{ lvl.name }}</div>
             <p class="level-desc">{{ lvl.description }}</p>
             <code class="level-example">{{ lvl.example }}</code>
+            <div v-if="lvl.tip" class="technique-tip" style="margin-top: 12px;">
+              💡 {{ lvl.tip }}
+            </div>
           </div>
         </div>
 
@@ -1668,6 +1765,29 @@ function showExampleDetail(example: any) {
           <div class="comparison-box after">
             <h4>{{ argumentationMethods.threeLevelProgression.beforeAfter.after.title }}</h4>
             <code>{{ argumentationMethods.threeLevelProgression.beforeAfter.after.content }}</code>
+          </div>
+        </div>
+
+        <div class="practical-examples-box">
+          <h4>📝 实战案例展示</h4>
+          <div class="examples-list">
+            <div v-for="(example, i) in argumentationMethods.threeLevelProgression.practicalExamples" :key="i" class="example-case">
+              <h5>{{ example.topic }}</h5>
+              <div class="case-levels">
+                <div class="case-level level-1">
+                  <span class="level-label">一级：</span>
+                  <p>{{ example.level1 }}</p>
+                </div>
+                <div class="case-level level-2">
+                  <span class="level-label">二级：</span>
+                  <p>{{ example.level2 }}</p>
+                </div>
+                <div class="case-level level-3">
+                  <span class="level-label">三级：</span>
+                  <p>{{ example.level3 }}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1691,6 +1811,78 @@ function showExampleDetail(example: any) {
             <div class="method-example">
               <strong>示例：</strong>
               <p>{{ m.example }}</p>
+            </div>
+            <div v-if="m.tip" class="method-tip">
+              {{ m.tip }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 因果分析法 -->
+      <div class="argumentation-card">
+        <div class="card-header">
+          <h3>{{ argumentationMethods.causalAnalysis.title }}</h3>
+          <span class="card-subtitle">{{ argumentationMethods.causalAnalysis.subtitle }}</span>
+        </div>
+        <p class="card-desc">{{ argumentationMethods.causalAnalysis.description }}</p>
+        
+        <div class="techniques-list">
+          <div v-for="(tech, i) in argumentationMethods.causalAnalysis.techniques" :key="i" class="technique-item">
+            <h4>{{ tech.name }}</h4>
+            <div class="technique-template">
+              <strong>模板：</strong>
+              <code>{{ tech.template }}</code>
+            </div>
+            <div class="technique-example">
+              <strong>示例：</strong>
+              <p>{{ tech.example }}</p>
+            </div>
+            <div v-if="tech.tip" class="technique-tip">
+              💡 {{ tech.tip }}
+            </div>
+          </div>
+        </div>
+
+        <div class="common-mistakes-box">
+          <h4>❌ 常见错误 vs ✅ 正确表达</h4>
+          <div class="mistake-comparison">
+            <div v-for="(mistake, i) in argumentationMethods.causalAnalysis.commonMistakes" :key="i" class="mistake-pair">
+              <div class="wrong-expression">
+                <span class="label">❌ 错误：</span>
+                <code>{{ mistake.wrong }}</code>
+              </div>
+              <div class="arrow">→</div>
+              <div class="right-expression">
+                <span class="label">✅ 正确：</span>
+                <code>{{ mistake.right }}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 对比分析法 -->
+      <div class="argumentation-card">
+        <div class="card-header">
+          <h3>{{ argumentationMethods.comparativeAnalysis.title }}</h3>
+          <span class="card-subtitle">{{ argumentationMethods.comparativeAnalysis.subtitle }}</span>
+        </div>
+        <p class="card-desc">{{ argumentationMethods.comparativeAnalysis.description }}</p>
+        
+        <div class="techniques-list">
+          <div v-for="(tech, i) in argumentationMethods.comparativeAnalysis.techniques" :key="i" class="technique-item">
+            <h4>{{ tech.name }}</h4>
+            <div class="technique-template">
+              <strong>模板：</strong>
+              <code>{{ tech.template }}</code>
+            </div>
+            <div class="technique-example">
+              <strong>示例：</strong>
+              <p>{{ tech.example }}</p>
+            </div>
+            <div v-if="tech.tip" class="technique-tip">
+              💡 {{ tech.tip }}
             </div>
           </div>
         </div>
@@ -3278,6 +3470,258 @@ function showExampleDetail(example: any) {
   color: #555;
   font-size: 0.9em;
   margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.method-tip {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+  border-left: 3px solid #FFC107;
+  border-radius: 6px;
+  color: #F57F17;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+/* Techniques List */
+.techniques-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.technique-item {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+}
+
+.technique-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+}
+
+.technique-item h4 {
+  font-size: 1.15em;
+  color: #333;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.technique-template {
+  margin-bottom: 12px;
+}
+
+.technique-template strong {
+  display: block;
+  color: #333;
+  font-size: 0.95em;
+  margin-bottom: 8px;
+}
+
+.technique-template code {
+  display: block;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 8px;
+  color: #667eea;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.technique-example {
+  margin-bottom: 12px;
+}
+
+.technique-example strong {
+  display: block;
+  color: #333;
+  font-size: 0.95em;
+  margin-bottom: 8px;
+}
+
+.technique-example p {
+  color: #555;
+  font-size: 0.95em;
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.technique-tip {
+  padding: 10px 15px;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-left: 3px solid #4CAF50;
+  border-radius: 8px;
+  color: #2E7D32;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Common Mistakes Box */
+.common-mistakes-box {
+  padding: 25px;
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border-radius: 12px;
+  border-left: 5px solid #F44336;
+}
+
+.common-mistakes-box h4 {
+  font-size: 1.2em;
+  color: #C62828;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.mistake-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mistake-pair {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.wrong-expression,
+.right-expression {
+  flex: 1;
+}
+
+.wrong-expression .label,
+.right-expression .label {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.wrong-expression .label {
+  color: #D32F2F;
+}
+
+.right-expression .label {
+  color: #388E3C;
+}
+
+.wrong-expression code,
+.right-expression code {
+  display: block;
+  padding: 10px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.wrong-expression code {
+  color: #D32F2F;
+  background: #ffebee;
+}
+
+.right-expression code {
+  color: #388E3C;
+  background: #e8f5e9;
+}
+
+.mistake-pair .arrow {
+  font-size: 1.5em;
+  color: #667eea;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Practical Examples Box */
+.practical-examples-box {
+  margin-top: 25px;
+  padding: 25px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 12px;
+  border-left: 5px solid #2196F3;
+}
+
+.practical-examples-box h4 {
+  font-size: 1.2em;
+  color: #1565C0;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+}
+
+.examples-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.example-case {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.example-case h5 {
+  font-size: 1.1em;
+  color: #333;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.case-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-level {
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+}
+
+.case-level.level-1 {
+  border-left-color: #FF9800;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffffff 100%);
+}
+
+.case-level.level-2 {
+  border-left-color: #4CAF50;
+  background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+}
+
+.case-level.level-3 {
+  border-left-color: #9C27B0;
+  background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
+}
+
+.case-level .level-label {
+  display: inline-block;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9em;
+  margin-right: 8px;
+}
+
+.case-level p {
+  display: inline;
+  color: #555;
+  font-size: 0.95em;
   line-height: 1.6;
   font-style: italic;
 }
