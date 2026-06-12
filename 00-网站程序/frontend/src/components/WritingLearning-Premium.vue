@@ -75,53 +75,56 @@ const frameworks = [
     type: 'argumentative',
     badge: '议论文',
     title: 'Argumentative Essay',
-    subtitle: '议论文/观点类（最常考）',
+    subtitle: '议论文/观点类（最常考）- 去模板化版',
     structure: [
       {
         title: '第一段：引出话题 + 表明立场',
-        description: '2-3句话，明确表达你的观点',
+        description: '2-3句话，明确表达你的观点（避免Recently...has aroused wide concern）',
         examples: [
-          { en: 'Recently, the issue of ___ has aroused wide concern.', cn: '最近，___问题引起了广泛关注。' },
-          { en: 'From my perspective, I firmly believe that...', cn: '在我看来，我坚信...' }
+          { en: 'In contemporary society, ___ has emerged as a focal point of public discourse.', cn: '在当代社会，___已成为公众讨论的焦点。（替代Recently...）' },
+          { en: 'While opinions diverge on ___, a growing consensus recognizes its profound implications.', cn: '尽管人们对___看法分歧，但越来越多的人认识到其深远影响。（对比引入）' },
+          { en: 'From my perspective, I firmly believe that [立场]. This view is grounded in the following considerations.', cn: '在我看来，我坚信[立场]。这一观点基于以下考量。' }
         ]
       },
       {
         title: '第二段：论证理由（2-3个论点）',
-        description: '每点用First/Furthermore/Last连接，提供具体例子',
+        description: '使用多样化连接词，避免机械的First/Furthermore/Last',
         examples: [
-          { en: 'First and foremost, ...', cn: '首先且最重要的是...' },
-          { en: 'Furthermore, ...', cn: '此外，...' },
-          { en: 'Last but not least, ...', cn: '最后但同样重要的是...' }
+          { en: 'What deserves special attention is that [论点1]. To illustrate, [具体例子].', cn: '值得特别关注的是[论点1]。举例来说，[具体例子]。（替代First and foremost）' },
+          { en: 'Not only does [主语] [动词], but it also [动词].', cn: '不仅[主语][动词]，而且[动词]。（倒装句，替代Furthermore）' },
+          { en: 'Admittedly, some critics argue that [对立观点]. However, this concern can be mitigated by [反驳方式].', cn: '诚然，一些批评者认为[对立观点]。然而，这一担忧可以通过[反驳方式]来缓解。（⭐⭐⭐对立假想敌技巧）' }
         ]
       },
       {
         title: '第三段：总结 + 建议/展望',
-        description: '重申观点，提出建议或未来展望',
+        description: '重申观点并升华，避免简单的In conclusion...',
         examples: [
-          { en: 'In conclusion, ...', cn: '总之，...' },
-          { en: 'It is high time that we took effective measures to...', cn: '是时候采取有效措施来...' }
+          { en: 'In essence, the key to addressing ___ lies not in ___, but in ___.', cn: '本质上，解决___的关键不在于___，而在于___。（替代In conclusion）' },
+          { en: 'Looking ahead, it is imperative that we strike a balance between [方面A] and [方面B].', cn: '展望未来，我们必须在[方面A]和[方面B]之间取得平衡。（展望未来）' },
+          { en: 'Only through concerted efforts can we hope to [目标].', cn: '只有通过共同努力，我们才能希望[目标]。（呼吁行动）' }
         ]
       }
     ],
     mnemonic: '引表论总',
-    mnemonicDesc: '引（引出话题）→ 表（表明立场）→ 论（论证理由）→ 总（总结展望）',
+    mnemonicDesc: '引（引出现代焦点）→ 表（辩证表明立场）→ 论（深度论证+对立假想敌）→ 总（本质关键/展望未来）',
     logicChain: {
-      level1: '表面现象（what）- 描述题目给出的现象或问题',
-      level2: '深层原因（how）- 分析现象背后的原因或机制',
-      level3: '本质影响（why it matters）- 探讨对个人/社会的深远影响'
+      level1: '表面现象（what）- 用contemporary/emerged as focal point描述现象',
+      level2: '深层原因（how）- 用Not only...but also/What deserves special attention深化论证',
+      level3: '本质影响（why it matters）- 用对立假想敌技巧展现思辨深度'
     },
     writingTips: [
-      '✅ 开头段必须明确表明立场（支持/反对/中立）',
-      '✅ 每段只论证一个理由，不要堆砌多个观点',
-      '✅ 使用对立假想敌增强说服力',
+      '✅ 开头用In contemporary society或While opinions diverge替代Recently...',
+      '✅ 论证用What deserves special attention/Not only does替代First/Furthermore',
+      '✅ 必用对立假想敌技巧（Admittedly...However...）展现辩证思维',
+      '✅ 结尾用In essence the key lies not in...but in...替代In conclusion',
       '❌ 避免中式英语开头（With the development of society...）',
-      '❌ 不要使用过于绝对的词汇（always/never）'
+      '❌ 不要机械使用First and foremost/Furthermore/Last but not least'
     ],
     tips: [
-      '观点要明确，不要模棱两可',
+      '观点要明确，但要展现辩证思维',
       '每个论点都要有具体例子支撑',
-      '使用高级词汇替换简单词（good→beneficial）',
-      '注意段落间的逻辑连接词'
+      '使用高级词汇替换简单词（important→pivotal/instrumental）',
+      '连接词要多样化，避免重复使用同一个词'
     ]
   },
   {
@@ -129,51 +132,58 @@ const frameworks = [
     type: 'chart',
     badge: '图表作文',
     title: 'Chart/Graph Description',
-    subtitle: '图表/数据类',
+    subtitle: '图表/数据类 - 去模板化版',
     structure: [
       {
         title: '第一段：描述图表趋势',
-        description: '客观描述数据变化，不加入主观判断',
+        description: '客观描述数据变化，避免As is clearly shown in the chart...',
         examples: [
-          { en: 'As is clearly shown in the chart, ...', cn: '如图表所示，...' },
-          { en: 'The percentage of ___ increased/decreased from ___ to ___.', cn: '___的百分比从___增加到/减少到___。' }
+          { en: 'The data reveals a striking upward/downward trajectory in [主题] from [时间A] to [时间B].', cn: '数据显示[主题]从[时间A]到[时间B]呈现出显著的上升/下降趋势。（替代As is clearly shown）' },
+          { en: 'According to the statistics, [关键数据点1] witnessed a dramatic increase/decrease from [数值1] to [数值2].', cn: '根据统计数据，[关键数据点1]从[数值1]急剧增加/减少到[数值2]。' },
+          { en: 'In stark contrast to [对比对象1], [对比对象2] exhibits a markedly different pattern.', cn: '与[对比对象1]形成鲜明对比的是，[对比对象2]呈现出明显不同的模式。'
+ }
         ]
       },
       {
         title: '第二段：分析原因',
-        description: '解释数据变化的可能原因',
+        description: '解释数据变化的可能原因，避免On the one hand...On the other hand...',
         examples: [
-          { en: 'Several factors contribute to this phenomenon.', cn: '几个因素导致了这一现象。' },
-          { en: 'On the one hand, ... On the other hand, ...', cn: '一方面...另一方面...' }
+          { en: 'This phenomenon can be attributed to a confluence of factors, chief among which is [主要原因].', cn: '这一现象可归因于多种因素的汇聚，其中最主要的是[主要原因]。（替代Several factors contribute to）' },
+          { en: 'Underpinning this trend is the fundamental shift in [深层原因].', cn: '支撑这一趋势的是[深层原因]的根本性转变。（深入分析）' },
+          { en: 'What deserves special attention is that [深入分析]. In other words, [换种说法重申].', cn: '值得特别关注的是[深入分析]。换句话说，[换种说法重申]。（三级递进）'
+ }
         ]
       },
       {
         title: '第三段：预测/建议',
-        description: '基于数据分析做出预测或提出建议',
+        description: '基于数据分析做出预测或提出建议，避免Therefore, it is advisable to...',
         examples: [
-          { en: 'Based on the analysis above, it can be predicted that...', cn: '基于以上分析，可以预测...' },
-          { en: 'Therefore, it is advisable to...', cn: '因此，建议...' }
+          { en: 'Based on the current trajectory, it is reasonable to predict that this trend will continue in the foreseeable future.', cn: '基于当前轨迹，可以合理预测这一趋势在可预见的未来将持续。（替代Based on the analysis above）' },
+          { en: 'It is incumbent upon [责任主体] to take proactive steps toward [目标].', cn: '[责任主体]有责任采取积极措施朝着[目标]迈进。（替代it is advisable to）' },
+          { en: 'A multifaceted approach encompassing [方面A] and [方面B] is warranted.', cn: '需要一种包含[方面A]和[方面B]的多层面方法。（系统性建议）'
+ }
         ]
       }
     ],
     mnemonic: '描析预',
-    mnemonicDesc: '描（描述数据）→ 析（分析原因）→ 预（预测趋势/建议）',
+    mnemonicDesc: '描（用striking trajectory描述数据）→ 析（用confluence of factors分析原因）→ 预（用incumbent upon提出建议）',
     logicChain: {
-      level1: '数据描述（what）- 客观呈现图表中的关键信息',
-      level2: '原因分析（how）- 解释数据变化背后的原因',
-      level3: '趋势预测（why it matters）- 推断未来发展或提出建议'
+      level1: '数据描述（what）- 用reveals a striking trajectory/exhibits a different pattern客观呈现',
+      level2: '原因分析（how）- 用attributed to a confluence of factors/Underpinning this trend深入分析',
+      level3: '趋势预测（why it matters）- 用incumbent upon/multifaceted approach提出系统性建议'
     },
     writingTips: [
+      '✅ 用The data reveals a striking trajectory替代As is clearly shown in the chart',
+      '✅ 用This phenomenon can be attributed to a confluence of factors替代Several factors contribute to',
       '✅ 选择2-3个关键数据点，不要罗列所有数据',
-      '✅ 使用比较句型（higher than/increased by）',
-      '✅ 数据描述用过去时，预测用将来时',
+      '✅ 使用比较句型（In stark contrast to/witnessed a dramatic increase）',
       '❌ 避免主观臆断，保持客观描述',
       '❌ 不要忽略图表标题和单位'
     ],
     tips: [
       '不要罗列所有数据，选择关键趋势',
-      '使用比较和对比的表达方式',
-      '时态要正确（过去数据用过去时）',
+      '使用比较和对比的表达方式（stark contrast/markedly different）',
+      '时态要正确（过去数据用过去时，预测用将来时）',
       '避免主观臆断，保持客观描述'
     ]
   },
@@ -182,51 +192,57 @@ const frameworks = [
     type: 'letter',
     badge: '书信',
     title: 'Letter Writing',
-    subtitle: '书信/应用文（通知、建议信等）',
+    subtitle: '书信/应用文（通知、建议信等）- 去模板化版',
     structure: [
       {
         title: '开头：说明写信目的',
-        description: '直接表明写信意图',
+        description: '直接表明写信意图，避免I am writing to express my concern about...',
         examples: [
-          { en: 'I am writing to express my concern about...', cn: '我写此信是为了表达我对...的关注。' },
-          { en: 'I would like to offer some suggestions regarding...', cn: '我想就...提供一些建议。' }
+          { en: 'I am writing to bring to your attention a matter of considerable importance regarding [事由].', cn: '我写此信是为了提请您注意关于[事由]的一个相当重要的问题。（替代express my concern about）' },
+          { en: 'It is with great enthusiasm that I submit this letter to propose [建议主题].', cn: '我怀着极大的热情提交此信，提出[建议主题]。（更正式的表达）' },
+          { en: 'As a [身份], I feel compelled to share my perspectives on [话题].', cn: '作为一名[身份]，我觉得有必要分享我对[话题]的看法。'
+ }
         ]
       },
       {
         title: '正文：具体内容（分点陈述）',
-        description: '清晰列出要点，逻辑分明',
+        description: '清晰列出要点，避免机械的Firstly/Secondly/Finally',
         examples: [
-          { en: 'Firstly, ...', cn: '首先，...' },
-          { en: 'Secondly, ...', cn: '其次，...' },
-          { en: 'Finally, ...', cn: '最后，...' }
+          { en: 'To begin with, [要点1]. This issue has caused [影响], which is far from satisfactory.', cn: '首先，[要点1]。这个问题已经造成了[影响]，远不能令人满意。（替代Firstly）' },
+          { en: 'What merits further consideration is [要点2]. By addressing this, we can [预期效果].', cn: '值得进一步考虑的是[要点2]。通过解决这个问题，我们可以[预期效果]。（替代Secondly）' },
+          { en: 'Last but certainly not least, [要点3]. Such measures are essential for [目标].', cn: '最后但同样重要的是[要点3]。这些措施对于[目标]至关重要。（替代Finally）'
+ }
         ]
       },
       {
         title: '结尾：期待回复/感谢',
-        description: '礼貌结束，表达期望',
+        description: '礼貌结束，表达期望，避免Looking forward to your early reply',
         examples: [
-          { en: 'I would appreciate it if you could take my suggestions into consideration.', cn: '如果您能考虑我的建议，我将不胜感激。' },
-          { en: 'Looking forward to your early reply.', cn: '期待您的早日回复。' }
+          { en: 'I would greatly appreciate your prompt attention to this matter and look forward to your favorable response.', cn: '我将非常感谢您对此事的及时处理，并期待您的积极回应。（替代Looking forward to）' },
+          { en: 'Thank you for considering my suggestions. I remain at your disposal for any further discussion.', cn: '感谢您考虑我的建议。我随时准备进行进一步的讨论。（更正式的表达）' },
+          { en: 'Your consideration of these matters would be highly valued, and I eagerly await your insights.', cn: '您对这些事项的考虑将受到高度重视，我热切期待您的见解。'
+ }
         ]
       }
     ],
     mnemonic: '目内结',
-    mnemonicDesc: '目（说明目的）→ 内（具体内容）→ 结（结尾致谢）',
+    mnemonicDesc: '目（用bring to your attention说明目的）→ 内（用What merits further consideration分点陈述）→ 结（用greatly appreciate表达感谢）',
     logicChain: {
-      level1: '写信目的（what）- 清楚说明为什么写这封信',
-      level2: '具体内容（how）- 分点陈述核心信息',
-      level3: '礼貌结尾（why it matters）- 表达期望或感谢'
+      level1: '写信目的（what）- 用bring to your attention/feel compelled to清楚说明',
+      level2: '具体内容（how）- 用To begin with/What merits further consideration分点陈述',
+      level3: '礼貌结尾（why it matters）- 用greatly appreciate/remain at your disposal表达期望'
     },
     writingTips: [
-      '✅ 开头直接说明写信目的',
-      '✅ 正文分点陈述（Firstly/Secondly/Finally）',
+      '✅ 开头用bring to your attention a matter of considerable importance替代express my concern about',
+      '✅ 正文用What merits further consideration替代Secondly',
+      '✅ 结尾用greatly appreciate your prompt attention替代Looking forward to',
       '✅ 语气礼貌得体，符合书信规范',
       '❌ 不要遗漏题目要求的任何要点',
       '❌ 避免口语化表达'
     ],
     tips: [
       '注意书信格式（称呼、署名）',
-      '语气要礼貌得体',
+      '语气要礼貌得体（使用would/appreciate等委婉词）',
       '内容要完整，涵盖所有要点',
       '字数控制在100-120词左右'
     ]
