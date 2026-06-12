@@ -2123,122 +2123,482 @@ function showExampleDetail(example: any) {
       </el-dialog>
     </div>
 
-    <!-- Tab 7: Anti-Template Strategies - 去模板化写作策略 -->
+    <!-- Tab 7: Anti-Template Strategies - 去模板化写作策略（考前终极模板） -->
     <div v-if="activeTab === 'anti-template'" class="content-section anti-template-section">
       <div class="section-header">
-        <h2>🚫 去模板化写作指南 | Anti-Template Writing</h2>
-        <p class="section-desc">避免机械套用，打造自然流畅的高分作文</p>
+        <h2>🎯 六级作文考前终极模板 | Ultimate Exam Template</h2>
+        <p class="section-desc">半固定框架 + 多样化选项 = 既好背又不会撞车（预期13-15分）</p>
       </div>
 
-      <!-- Warning Box -->
+      <!-- Usage Instructions -->
       <div class="warning-box">
-        <h3>{{ antiTemplateStrategies.warning.title }}</h3>
+        <h3>⚠️ 使用说明 | Important Guidelines</h3>
         <ul>
-          <li v-for="(reason, index) in antiTemplateStrategies.warning.reasons" :key="index">
-            {{ reason }}
-          </li>
+          <li><strong>不要死记硬背整段</strong>，要记住“结构+关键句型”</li>
+          <li><strong>每个部分至少准备2个选项</strong>，考试时根据题目选择</li>
+          <li><strong>重点背诵加粗标记的内容</strong>，其他理解即可</li>
+          <li><strong>考前一周每天默写一遍</strong>，确保熟练度</li>
         </ul>
       </div>
 
-      <!-- Opening Variations -->
+      <!-- Part 1: Opening -->
       <div class="strategy-card">
-        <h3>{{ antiTemplateStrategies.openingVariations.title }}</h3>
+        <h3>📝 第一段：开头 + 立场（约60词）| Paragraph 1: Opening & Stance</h3>
+        
+        <h4 style="margin-top: 25px;">🎨 开头句（4选1，背熟2个）</h4>
         <div class="strategies-grid">
-          <div 
-            v-for="(strategy, index) in antiTemplateStrategies.openingVariations.strategies" 
-            :key="index"
-            class="strategy-item"
-          >
-            <h4>{{ strategy.name }}</h4>
-            <ul class="example-list">
-              <li v-for="(example, idx) in strategy.examples" :key="idx">
-                {{ example }}
-              </li>
-            </ul>
-            <div class="strategy-tip">
-              <strong>💡 提示：</strong>{{ strategy.tip }}
+          <div class="strategy-item">
+            <h4>选项A：现象描述法（万能型，适合80%题目）</h4>
+            <div class="example-sentence">
+              In contemporary society, [话题] has become an increasingly prominent issue that warrants our attention.
+            </div>
+            <p class="translation">在当代社会，[话题]已成为一个日益突出的问题，值得我们关注。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项B：对比引入法（适合有争议的话题）</h4>
+            <div class="example-sentence">
+              While opinions vary regarding [话题], a growing number of people recognize its significance in modern life.
+            </div>
+            <p class="translation">尽管人们对[话题]的看法不一，但越来越多的人认识到它在现代生活中的重要性。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项C：趋势描述法（适合科技/社会发展类）</h4>
+            <div class="example-sentence">
+              With the rapid advancement of [领域], [话题] has emerged as a focal point of public concern.
+            </div>
+            <p class="translation">随着[领域]的快速发展，[话题]已成为公众关注的焦点。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项D：问题引导法（适合教育/道德类）</h4>
+            <div class="example-sentence">
+              The question of whether [陈述问题] has sparked heated debates among scholars and practitioners alike.
+            </div>
+            <p class="translation">关于是否[陈述问题]的问题，在学者和从业者中引发了激烈争论。</p>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 30px;">💡 立场表达（2选1，背熟1个）</h4>
+        <div class="strategies-grid">
+          <div class="strategy-item">
+            <h4>选项A：明确支持/反对</h4>
+            <div class="example-sentence">
+              From my perspective, I firmly believe that [你的立场]. This view is grounded in the following considerations.
+            </div>
+            <p class="translation">在我看来，我坚信[你的立场]。这一观点基于以下考量。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项B：辩证看待（⭐更稳妥，推荐）</h4>
+            <div class="example-sentence">
+              While acknowledging both merits and drawbacks, I maintain that [你的立场] serves as a more balanced approach.
+            </div>
+            <p class="translation">虽然承认其优缺点并存，但我认为[你的立场]是更为平衡的做法。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: Body Paragraph -->
+      <div class="strategy-card highlight-card">
+        <h3>⭐⭐⭐ 第二段：论证主体（约120词）| Paragraph 2: Argumentation (CORE)</h3>
+        <p class="card-subtitle">这是核心段落，决定分数高低！</p>
+        
+        <h4 style="margin-top: 25px;">🏗️ 论证结构模板</h4>
+        
+        <div class="argumentation-structure">
+          <div class="arg-level">
+            <h5>第一层：提出主要论点</h5>
+            <div class="example-sentence">
+              First and foremost, [论点1]. To illustrate, [具体例子或数据]. This clearly demonstrates that [解释说明].
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Transition Variations -->
-      <div class="strategy-card">
-        <h3>{{ antiTemplateStrategies.transitionVariations.title }}</h3>
-        <div class="transition-categories">
-          <div 
-            v-for="(category, index) in antiTemplateStrategies.transitionVariations.categories" 
-            :key="index"
-            class="category-box"
-          >
-            <h4>{{ category.name }}</h4>
-            <ul>
-              <li v-for="(alt, idx) in category.alternatives" :key="idx">
-                {{ alt }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Conclusion Variations -->
-      <div class="strategy-card">
-        <h3>{{ antiTemplateStrategies.conclusionVariations.title }}</h3>
-        <div class="strategies-grid">
-          <div 
-            v-for="(strategy, index) in antiTemplateStrategies.conclusionVariations.strategies" 
-            :key="index"
-            class="strategy-item"
-          >
-            <h4>{{ strategy.name }}</h4>
-            <ul class="example-list">
-              <li v-for="(example, idx) in strategy.examples" :key="idx">
-                {{ example }}
-              </li>
-            </ul>
-            <div class="strategy-tip">
-              <strong>💡 提示：</strong>{{ strategy.tip }}
+          
+          <div class="arg-level">
+            <h5>第二层：深化论证（三级递进）</h5>
+            <div class="example-sentence">
+              Furthermore, [论点2]. What deserves special mention is that [深入分析]. In other words, [换种说法重申].
             </div>
           </div>
+          
+          <div class="arg-level star-level">
+            <h5>第三层：对立假想敌技巧（⭐⭐⭐高分必杀技）</h5>
+            <div class="example-sentence">
+              Admittedly, some critics argue that [对立观点]. However, this concern can be addressed by [反驳方式]. Therefore, [强化你的立场].
+            </div>
+            <p class="highlight-tip">💡 这是阅卷老师最喜欢看到的辩证论证，必背！</p>
+          </div>
         </div>
-      </div>
 
-      <!-- Vocabulary Upgrade -->
-      <div class="strategy-card">
-        <h3>{{ antiTemplateStrategies.vocabularyUpgrade.title }}</h3>
-        <div class="vocab-upgrade-table">
+        <h4 style="margin-top: 30px;">🔧 连接词多样化库（每类背2-3个）</h4>
+        <div class="transition-table">
           <table>
             <thead>
               <tr>
-                <th>基础词汇</th>
-                <th>升级替换</th>
+                <th>类别</th>
+                <th>基础款</th>
+                <th>升级款（推荐）</th>
+                <th>高级款</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in antiTemplateStrategies.vocabularyUpgrade.upgrades" :key="index">
-                <td class="basic-word">{{ item.basic }}</td>
-                <td class="advanced-words">
-                  <span v-for="(word, idx) in item.advanced" :key="idx" class="upgrade-tag">
-                    {{ word }}
-                  </span>
-                </td>
+              <tr>
+                <td><strong>递进</strong></td>
+                <td>Furthermore</td>
+                <td class="recommended">Moreover / Additionally</td>
+                <td>What's more striking is that...</td>
+              </tr>
+              <tr>
+                <td><strong>转折</strong></td>
+                <td>However</td>
+                <td class="recommended">Nevertheless / Conversely</td>
+                <td>Be that as it may...</td>
+              </tr>
+              <tr>
+                <td><strong>因果</strong></td>
+                <td>Therefore</td>
+                <td class="recommended">Consequently / As a result</td>
+                <td>Hence, it follows that...</td>
+              </tr>
+              <tr>
+                <td><strong>举例</strong></td>
+                <td>For example</td>
+                <td class="recommended">To illustrate / A case in point is</td>
+                <td>Take ___ as an instance</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Natural Flow Tips -->
+      <!-- Part 3: Conclusion -->
       <div class="strategy-card">
-        <h3>{{ antiTemplateStrategies.naturalFlow.title }}</h3>
+        <h3>🎬 第三段：结尾总结（约50词）| Paragraph 3: Conclusion</h3>
+        
+        <h4 style="margin-top: 25px;">结尾策略（3选1，背熟2个）</h4>
+        <div class="strategies-grid">
+          <div class="strategy-item">
+            <h4>选项A：重申+升华（⭐最稳妥）</h4>
+            <div class="example-sentence">
+              In conclusion, while [话题] poses certain challenges, its potential benefits are undeniable. What matters most is how we harness it responsibly to serve human progress.
+            </div>
+            <p class="translation">总之，虽然[话题]带来某些挑战，但其潜在益处不可否认。最重要的是我们如何负责任地利用它来服务人类进步。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项B：展望未来（适合科技/发展类）</h4>
+            <div class="example-sentence">
+              Looking ahead, it is imperative that we strike a balance between [方面A] and [方面B]. Only through concerted efforts can we ensure a sustainable future.
+            </div>
+            <p class="translation">展望未来，我们必须在[方面A]和[方面B]之间取得平衡。只有通过共同努力，我们才能确保可持续的未来。</p>
+          </div>
+          <div class="strategy-item">
+            <h4>选项C：呼吁行动（适合社会问题类）</h4>
+            <div class="example-sentence">
+              Given the urgency of this issue, immediate action is warranted. It is high time that we took concrete steps to address [具体问题].
+            </div>
+            <p class="translation">鉴于这个问题的紧迫性，立即采取行动是必要的。是时候采取具体措施来解决[具体问题]了。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Sentence Patterns -->
+      <div class="strategy-card">
+        <h3>🌟 高级句型库（10句必背）| 10 Must-Memorize Advanced Patterns</h3>
+        <div class="advanced-patterns">
+          <div class="pattern-item">
+            <h4>1️⃣ 倒装句（强调唯一性）</h4>
+            <div class="example-sentence">Only by [方式] can we [结果].</div>
+            <p class="pattern-example">例：Only by continuous learning can we adapt to rapid changes.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>2️⃣ 虚拟语气（表达建议）</h4>
+            <div class="example-sentence">It is high time that we [过去式动词]...</div>
+            <p class="pattern-example">例：It is high time that we took action to protect the environment.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>3️⃣ Not only...but also（并列强调）</h4>
+            <div class="example-sentence">Not only does [主语] [动词], but it also [动词].</div>
+            <p class="pattern-example">例：Not only does AI improve efficiency, but it also creates new opportunities.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>4️⃣ 定语从句（补充说明）</h4>
+            <div class="example-sentence">[名词], which [从句], plays a crucial role in [领域].</div>
+            <p class="pattern-example">例：Education, which shapes our worldview, plays a crucial role in personal development.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>5️⃣ 分词作状语（简洁表达）</h4>
+            <div class="example-sentence">[动词-ing形式], [主句].</div>
+            <p class="pattern-example">例：Facing unprecedented challenges, we must remain optimistic.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>6️⃣ 强调句（突出重点）</h4>
+            <div class="example-sentence">It is [被强调部分] that [其余部分].</div>
+            <p class="pattern-example">例：It is through collaboration that we achieve breakthroughs.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>7️⃣ 让步状语从句（辩证思维）</h4>
+            <div class="example-sentence">Despite/Although [让步条件], [主句].</div>
+            <p class="pattern-example">例：Despite the initial difficulties, the project ultimately succeeded.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>8️⃣ 比较级最高级</h4>
+            <div class="example-sentence">Nothing is more [形容词] than [名词].</div>
+            <p class="pattern-example">例：Nothing is more valuable than lifelong learning.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>9️⃣ 同位语（解释说明）</h4>
+            <div class="example-sentence">[名词], [同位语解释], [谓语].</div>
+            <p class="pattern-example">例：Artificial intelligence, a revolutionary technology, is reshaping industries.</p>
+          </div>
+          <div class="pattern-item">
+            <h4>🔟 条件句（假设推理）</h4>
+            <div class="example-sentence">Were it not for [条件], [结果].</div>
+            <p class="pattern-example">例：Were it not for government support, many startups would fail.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vocabulary Upgrade Table -->
+      <div class="strategy-card">
+        <h3>📊 词汇升级对照表 | Vocabulary Upgrade Chart</h3>
+        <div class="vocab-upgrade-table">
+          <table>
+            <thead>
+              <tr>
+                <th>基础词</th>
+                <th>升级替换（按优先级）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="basic-word">important</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">crucial</span>
+                  <span class="upgrade-tag priority-1">vital</span>
+                  <span class="upgrade-tag priority-2">paramount</span>
+                  <span class="upgrade-tag priority-2">indispensable</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">good</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">beneficial</span>
+                  <span class="upgrade-tag priority-1">advantageous</span>
+                  <span class="upgrade-tag priority-2">favorable</span>
+                  <span class="upgrade-tag priority-2">positive</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">bad</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">detrimental</span>
+                  <span class="upgrade-tag priority-1">adverse</span>
+                  <span class="upgrade-tag priority-2">unfavorable</span>
+                  <span class="upgrade-tag priority-2">negative</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">many</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">numerous</span>
+                  <span class="upgrade-tag priority-1">a multitude of</span>
+                  <span class="upgrade-tag priority-2">countless</span>
+                  <span class="upgrade-tag priority-2">myriad</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">think</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">maintain</span>
+                  <span class="upgrade-tag priority-1">contend</span>
+                  <span class="upgrade-tag priority-2">assert</span>
+                  <span class="upgrade-tag priority-2">argue</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">help</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">facilitate</span>
+                  <span class="upgrade-tag priority-1">promote</span>
+                  <span class="upgrade-tag priority-2">foster</span>
+                  <span class="upgrade-tag priority-2">assist</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">change</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">transform</span>
+                  <span class="upgrade-tag priority-1">reshape</span>
+                  <span class="upgrade-tag priority-2">revolutionize</span>
+                  <span class="upgrade-tag priority-2">alter</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="basic-word">problem</td>
+                <td class="advanced-words">
+                  <span class="upgrade-tag priority-1">challenge</span>
+                  <span class="upgrade-tag priority-1">obstacle</span>
+                  <span class="upgrade-tag priority-2">dilemma</span>
+                  <span class="upgrade-tag priority-2">issue</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="usage-tip">
+          <strong>💡 使用技巧：</strong>
+          <ul>
+            <li>每个词记住前2个升级词即可</li>
+            <li>同一篇文章中不要重复使用同一个高级词</li>
+            <li>确保语境合适再使用</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Time Management -->
+      <div class="strategy-card">
+        <h3>⏰ 考场时间分配（30分钟）| Exam Time Allocation</h3>
+        <div class="time-allocation">
+          <div class="time-item">
+            <div class="time-phase">审题构思</div>
+            <div class="time-duration">3分钟</div>
+            <div class="time-task">确定类型、选择开头/结尾策略、列出3个论点</div>
+          </div>
+          <div class="time-item">
+            <div class="time-phase">起草大纲</div>
+            <div class="time-duration">2分钟</div>
+            <div class="time-task">写出关键词和连接词，规划段落结构</div>
+          </div>
+          <div class="time-item">
+            <div class="time-phase">正式写作</div>
+            <div class="time-duration">20分钟</div>
+            <div class="time-task">按照模板快速成文，注意字迹工整</div>
+          </div>
+          <div class="time-item">
+            <div class="time-phase">检查修改</div>
+            <div class="time-duration">5分钟</div>
+            <div class="time-task">查拼写、语法、标点，确保无低级错误</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklist -->
+      <div class="strategy-card">
+        <h3>✅ 考前Checklist | Pre-Exam Checklist</h3>
+        <div class="checklist-section">
+          <h4>必须背熟的：</h4>
+          <ul class="checklist">
+            <li>☐ 2个开头句（建议选A和B）</li>
+            <li>☐ 1个立场表达（建议选B辩证型）</li>
+            <li>☐ 对立假想敌四步法结构</li>
+            <li>☐ 2个结尾策略（建议选A和B）</li>
+            <li>☐ 10个高级句型中的5个（倒装、虚拟、not only、定语从句、强调句）</li>
+            <li>☐ 8组词汇升级的前2个替换词</li>
+          </ul>
+          
+          <h4 style="margin-top: 20px;">需要理解的：</h4>
+          <ul class="checklist">
+            <li>☐ 三级递进论证法（what→how→why）</li>
+            <li>☐ 连接词多样化库（每类知道2-3个）</li>
+            <li>☐ 图表作文基本结构</li>
+            <li>☐ 书信作文格式</li>
+          </ul>
+          
+          <h4 style="margin-top: 20px;">考前一晚：</h4>
+          <ul class="checklist">
+            <li>☐ 默写完整模板一遍</li>
+            <li>☐ 用真题练习套用模板1次</li>
+            <li>☐ 检查是否有拼写错误记忆</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Usage Tips -->
+      <div class="strategy-card">
+        <h3>💡 模板使用技巧 | Template Usage Tips</h3>
         <div class="flow-tips">
-          <div 
-            v-for="(tip, index) in antiTemplateStrategies.naturalFlow.tips" 
-            :key="index"
-            class="flow-tip-item"
-          >
-            <strong>{{ tip.tip }}</strong>
-            <p>{{ tip.explanation }}</p>
+          <div class="flow-tip-item">
+            <strong>1. 个性化改造</strong>
+            <p>将模板中的 [话题] 替换为具体题目关键词；根据自己的英语水平调整句子复杂度；加入1-2个你熟悉的真实例子</p>
+          </div>
+          <div class="flow-tip-item">
+            <strong>2. 句式变换</strong>
+            <p>不要每篇都用同样的开头；交替使用简单句和复杂句；适当使用插入语增加层次感</p>
+          </div>
+          <div class="flow-tip-item">
+            <strong>3. 避免同质化的关键</strong>
+            <p><strong>开头多样化：</strong>根据题目类型选择不同开头策略<br>
+            <strong>连接词轮换：</strong>这次用Moreover，下次用What's more striking<br>
+            <strong>结尾灵活：</strong>科技类用展望，社会类用呼吁<br>
+            <strong>词汇不重复：</strong>同一篇文章中important/crucial/vital轮换使用</p>
+          </div>
+          <div class="flow-tip-item">
+            <strong>4. 实战演练建议</strong>
+            <p><strong>第1周：</strong>熟悉模板结构，每天默写1遍<br>
+            <strong>第2周：</strong>用5道真题练习套用，不限时<br>
+            <strong>第3周：</strong>限时30分钟完成2篇作文<br>
+            <strong>第4周：</strong>模拟考试环境，完整练习3次</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expected Results -->
+      <div class="strategy-card success-card">
+        <h3>🎯 预期效果 | Expected Results</h3>
+        <div class="expected-results">
+          <h4>使用本模板的优势：</h4>
+          <ul class="advantage-list">
+            <li>✅ <strong>结构清晰：</strong>三段式逻辑严密，阅卷老师一目了然</li>
+            <li>✅ <strong>表达多样：</strong>每个部分都有多个选项，避免千篇一律</li>
+            <li>✅ <strong>亮点突出：</strong>10个高级句型足以展现语言功底</li>
+            <li>✅ <strong>易于掌握：</strong>只需背熟核心框架，无需死记整段</li>
+            <li>✅ <strong>灵活应变：</strong>可根据题目特点自由组合</li>
+          </ul>
+          
+          <h4 style="margin-top: 25px;">分数分布预估：</h4>
+          <div class="score-breakdown">
+            <div class="score-item">
+              <span class="score-label">内容完整性</span>
+              <span class="score-value">4-5分</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">语言准确性</span>
+              <span class="score-value">3-4分</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">表达多样性</span>
+              <span class="score-value">3-4分</span>
+            </div>
+            <div class="score-item">
+              <span class="score-label">逻辑连贯性</span>
+              <span class="score-value">3-4分</span>
+            </div>
+            <div class="score-item total-score">
+              <span class="score-label">总分</span>
+              <span class="score-value">13-15分</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common Mistakes -->
+      <div class="strategy-card warning-card">
+        <h3>⚠️ 常见误区警示 | Common Mistakes to Avoid</h3>
+        <div class="mistakes-comparison">
+          <div class="mistake-column wrong">
+            <h4>❌ 错误做法</h4>
+            <ul>
+              <li>完全照搬模板，不根据题目调整</li>
+              <li>强行使用所有高级句型，显得生硬</li>
+              <li>忽视字数要求，写得太少或太多</li>
+              <li>只背模板，不练习实际应用</li>
+            </ul>
+          </div>
+          <div class="mistake-column right">
+            <h4>✅ 正确做法</h4>
+            <ul>
+              <li>理解模板逻辑，灵活运用</li>
+              <li>精选2-3个高级句型自然融入</li>
+              <li>严格控制字数在150-200词</li>
+              <li>至少用5道真题进行实战演练</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -4617,5 +4977,323 @@ function showExampleDetail(example: any) {
   color: #555;
   line-height: 1.7;
   margin: 0;
+}
+
+/* ========== Ultimate Exam Template Styles ========== */
+.highlight-card {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+  border-left: 5px solid #FFC107;
+}
+
+.card-subtitle {
+  color: #F57C00;
+  font-size: 1.1em;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.translation {
+  color: #666;
+  font-size: 0.95em;
+  margin-top: 10px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.argumentation-structure {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.arg-level {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #2196F3;
+}
+
+.arg-level h5 {
+  color: #1976D2;
+  margin: 0 0 12px 0;
+  font-size: 1.1em;
+}
+
+.star-level {
+  background: linear-gradient(135deg, #fff9e6 0%, #ffe082 100%);
+  border-left-color: #FF9800;
+}
+
+.highlight-tip {
+  color: #E65100;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 10px;
+  background: rgba(255, 152, 0, 0.1);
+  border-radius: 8px;
+}
+
+.transition-table {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.transition-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transition-table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.transition-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.recommended {
+  background: #e8f5e9;
+  color: #2E7D32;
+  font-weight: 600;
+}
+
+.advanced-patterns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.pattern-item {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  border-left: 4px solid #9C27B0;
+}
+
+.pattern-item h4 {
+  color: #7B1FA2;
+  margin: 0 0 12px 0;
+  font-size: 1.05em;
+}
+
+.pattern-example {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.priority-1 {
+  background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%) !important;
+  color: #1B5E20 !important;
+  font-weight: 600 !important;
+}
+
+.priority-2 {
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%) !important;
+  color: #F57F17 !important;
+}
+
+.usage-tip {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f3e5f5;
+  border-radius: 10px;
+  border-left: 4px solid #9C27B0;
+}
+
+.usage-tip ul {
+  margin: 10px 0 0 20px;
+  color: #555;
+}
+
+.time-allocation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.time-item {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.time-phase {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #1976D2;
+  margin-bottom: 10px;
+}
+
+.time-duration {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #F44336;
+  margin-bottom: 10px;
+}
+
+.time-task {
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+.checklist-section h4 {
+  color: #333;
+  margin: 20px 0 10px 0;
+  font-size: 1.1em;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.success-card {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-left: 5px solid #4CAF50;
+}
+
+.expected-results h4 {
+  color: #2E7D32;
+  margin: 0 0 15px 0;
+}
+
+.advantage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.advantage-list li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 10px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.score-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.score-item {
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.score-label {
+  color: #555;
+  font-weight: 500;
+}
+
+.score-value {
+  color: #4CAF50;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.total-score {
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  color: white;
+}
+
+.total-score .score-label,
+.total-score .score-value {
+  color: white;
+}
+
+.warning-card {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border-left: 5px solid #F44336;
+}
+
+.mistakes-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mistake-column {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+.mistake-column.wrong {
+  border-top: 4px solid #F44336;
+}
+
+.mistake-column.right {
+  border-top: 4px solid #4CAF50;
+}
+
+.mistake-column h4 {
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+}
+
+.mistake-column.wrong h4 {
+  color: #D32F2F;
+}
+
+.mistake-column.right h4 {
+  color: #388E3C;
+}
+
+.mistake-column ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #555;
+}
+
+.mistake-column li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .mistakes-comparison {
+    grid-template-columns: 1fr;
+  }
+  
+  .advanced-patterns {
+    grid-template-columns: 1fr;
+  }
+  
+  .time-allocation {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
