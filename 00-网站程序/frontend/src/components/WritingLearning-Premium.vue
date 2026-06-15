@@ -1887,7 +1887,14 @@ function showExampleDetail(example: any) {
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- 高级连接词详解 -->
+      <div class="argumentation-card advanced-connectors">
+        <div class="card-header">
+          <h3> 四大高级连接词详解 | Advanced Connectors Masterclass</h3>
+          <span class="card-subtitle">从基础款到高级款的跨越，让文章更有层次感</span>
+        </div>
+        <p class="card-desc">这四个句式是阅卷老师眼中的“亮点句型”，掌握它们能让你的文章从11分跃升至14分！</p>
 
     <!-- Tab 4: Sentences -->
     <div v-if="activeTab === 'sentences'" class="content-section sentences-section">

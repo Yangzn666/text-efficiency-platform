@@ -2096,32 +2096,92 @@ export const useLearningPathStore = defineStore('learningPath', () => {
   const createPersonalizedPaths = async () => {
     console.log('📐 创建数学一学习路径...')
     
-    // 数学一：高数和线代基础已完成，概率论强化进行中（35%）
-    // 根据经验贴：张宇36讲每讲2-4小时，每天3-4小时；宋浩概率论
+    // 数学一：高数和线代基础已完成，概率论强化进行中（前三章已完成）
+    // 根据经验贴：方浩强化讲义共9章，已完成第1-3章
     const mathChapters = [
       {
-        title: '概率论强化（宋浩，剩余6章）',
+        title: '概率论强化 - 第四章：随机变量的数字特征',
         order: 1,
-        estimatedTime: 2700, // 6章×7.5小时(看课4h+做题3.5h)，每天4小时≈17天
+        estimatedTime: 450, // 约7.5小时(看课4h+做题3.5h)
         dependencies: []
       },
       {
-        title: '高等数学强化复习（张宇36讲，18讲）',
+        title: '概率论强化 - 第五章：大数定律/中心极限定理',
         order: 2,
-        estimatedTime: 4320, // 18讲×4小时(看课2.5h+做题1.5h)，每天3小时≈24天
+        estimatedTime: 360, // 约6小时
         dependencies: ['1']
       },
       {
-        title: '线性代数强化复习（9讲）',
+        title: '概率论强化 - 第六章：数理统计的基本概念',
         order: 3,
-        estimatedTime: 2160, // 9讲×4小时(看课2.5h+做题1.5h)，每天3小时≈12天
-        dependencies: ['1']
+        estimatedTime: 420, // 约7小时
+        dependencies: ['2']
+      },
+      {
+        title: '高等数学强化复习（武忠祥，剩余章节）',
+        order: 4,
+        estimatedTime: 4320, // 18讲×4小时(看课2.5h+做题1.5h)，每天3小时≈24天
+        dependencies: ['3']
+      },
+      {
+        title: '线性代数强化 - 第一章：行列式',
+        order: 5,
+        estimatedTime: 180, // 约3小时
+        dependencies: ['4']
+      },
+      {
+        title: '线性代数强化 - 第二章：矩阵运算、分块矩阵',
+        order: 6,
+        estimatedTime: 240, // 约4小时
+        dependencies: ['5']
+      },
+      {
+        title: '线性代数强化 - 第三章：矩阵的秩与向量组',
+        order: 7,
+        estimatedTime: 270, // 约4.5小时
+        dependencies: ['6']
+      },
+      {
+        title: '线性代数强化 - 第四章：向量组、广义初等变换进阶',
+        order: 8,
+        estimatedTime: 300, // 约5小时
+        dependencies: ['7']
+      },
+      {
+        title: '线性代数强化 - 第六章：线性方程组解的判定、解AX=B',
+        order: 9,
+        estimatedTime: 300, // 约5小时
+        dependencies: ['8']
+      },
+      {
+        title: '线性代数强化 - 第七章：抽象方程、公共解与同解问题',
+        order: 10,
+        estimatedTime: 270, // 约4.5小时
+        dependencies: ['9']
+      },
+      {
+        title: '线性代数强化 - 第八章：特征值特征向量与相似理论',
+        order: 11,
+        estimatedTime: 360, // 约6小时
+        dependencies: ['10']
+      },
+      {
+        title: '线性代数强化 - 第九章：实对称阵&二次型',
+        order: 12,
+        estimatedTime: 300, // 约5小时
+        dependencies: ['11']
+      },
+      {
+        title: '线性代数强化 - 第十章：二次型进阶',
+        order: 13,
+        estimatedTime: 240, // 约4小时
+        dependencies: ['12']
       },
       {
         title: '真题训练（近10年）',
-        order: 4,
+        order: 14,
         estimatedTime: 3000, // 10套×5小时(做题3h+复盘2h)，每天1套≈10天
-        dependencies: ['1', '2', '3']
+        dependencies: ['4', '13']
       }
     ]
     
