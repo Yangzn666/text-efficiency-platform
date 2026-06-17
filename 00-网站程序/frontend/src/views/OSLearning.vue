@@ -162,6 +162,24 @@ const md = new MarkdownIt({
   }
 })
 
+// 自定义标题渲染，添加绿色样式
+const defaultH3Renderer = md.renderer.rules.heading_open
+const defaultH4Renderer = md.renderer.rules.heading_open
+
+md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+  const token = tokens[idx]
+  if (token.tag === 'h3' || token.tag === 'h4') {
+    // 为h3和h4添加绿色样式类
+    token.attrJoin('class', 'section-heading')
+  }
+  // 使用默认渲染器
+  const defaultRenderer = token.tag === 'h3' ? defaultH3Renderer : defaultH4Renderer
+  if (typeof defaultRenderer === 'function') {
+    return defaultRenderer(tokens, idx, options, env, self)
+  }
+  return self.renderToken(tokens, idx, options)
+}
+
 const renderedMarkdown = computed(() => {
   if (!currentSection.value) {
     console.warn('currentSection为空')
@@ -523,6 +541,25 @@ onMounted(() => {
     background: #ecf5ff;
     padding: 2px 4px;
     border-radius: 3px;
+  }
+}
+
+/* 章节标题绿色样式 */
+.knowledge-content :deep(.section-heading) {
+  color: #67c23a !important;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    background: #67c23a;
+    margin-right: 8px;
+    vertical-align: middle;
+    border-radius: 2px;
   }
 }
 

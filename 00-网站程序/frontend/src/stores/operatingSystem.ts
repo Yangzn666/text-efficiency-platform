@@ -2219,7 +2219,8 @@ ps aux | grep chrome  # 管道符 |
 **定义**：保存当前进程的上下文，恢复新进程的上下文
 
 **过程**：
-```
+
+\`\`\`
 1. 保存当前进程的PCB（寄存器、PC等）
     ↓
 2. 将当前进程移入相应队列
@@ -2229,7 +2230,7 @@ ps aux | grep chrome  # 管道符 |
 4. 恢复新进程的PCB
     ↓
 5. 跳转到新进程的断点继续执行
-```
+\`\`\`
 
 **💡 进程上下文（Process Context）**
 
@@ -2689,9 +2690,9 @@ remainder section;
    - 避免竞态条件（Race Condition）
 
 3. **常见实现**
-   - POSIX线程：`pthread_mutex_t`
-   - Java：`synchronized`关键字、`ReentrantLock`
-   - C++：`std::mutex`
+   - POSIX线程：\`pthread_mutex_t\`
+   - Java：\`synchronized\`关键字、\`ReentrantLock\`
+   - C++：\`std::mutex\`
 
 **互斥锁 vs 信号量**：
 
@@ -2950,8 +2951,8 @@ philosopher(i) {
 2. **条件变量（Condition Variable）**
    - **作用**：允许进程在管程内等待某个条件成立
    - **操作**：
-     - `wait(cond)`：释放管程锁，进入等待队列
-     - `signal(cond)`：唤醒一个等待该条件的进程
+     - \`wait(cond)\`：释放管程锁，进入等待队列
+     - \`signal(cond)\`：唤醒一个等待该条件的进程
    
 3. **管程 vs 信号量**
 
