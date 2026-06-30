@@ -38,7 +38,15 @@
       </div>
       
       <!-- 右侧：知识点文档 -->
-      <div class="knowledge-panel">
+      <div class="knowledge-panel" :class="{ 'expanded': isKnowledgePanelExpanded }">
+        <!-- 展开/收起按钮 -->
+        <div class="panel-toggle-btn" @click="toggleKnowledgePanel" :title="isKnowledgePanelExpanded ? '收起面板' : '展开面板'">
+          <el-icon :size="18">
+            <DArrowLeft v-if="isKnowledgePanelExpanded" />
+            <DArrowRight v-else />
+          </el-icon>
+        </div>
+              
         <!-- 标签页切换 -->
         <el-tabs v-model="activePanel" class="knowledge-tabs">
           <el-tab-pane label="知识点" name="knowledge">
@@ -81,6 +89,7 @@ import KnowledgeCard from '@/components/KnowledgeCard.vue'
 import NetworkWrongProblems from '@/components/NetworkWrongProblems.vue'
 import MarkdownIt from 'markdown-it'
 import { ElMessage } from 'element-plus'
+import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 
 const networkStore = useNetworkStore()
 
@@ -92,12 +101,28 @@ const overallProgress = computed(() => networkStore.overallProgress)
 const activePanel = ref('knowledge')
 const wrongProblemsRef = ref()
 
-// 监听当前小节变化
+// 右侧面板展开/收起状态
+const isKnowledgePanelExpanded = ref(false)
+
+// 切换右侧面板展开/收起
+const toggleKnowledgePanel = () => {
+  isKnowledgePanelExpanded.value = !isKnowledgePanelExpanded.value
+}
+
+// 监听当前小节变化，切换时滚动到顶部
 watch(currentSection, (newSection) => {
   if (newSection) {
     console.log('✅ 当前小节:', newSection.id, newSection.title)
+    
+    // 切换章节时，将右侧知识点面板滚动到顶部
+    setTimeout(() => {
+      const tabsContent = document.querySelector('.knowledge-tabs .el-tabs__content')
+      if (tabsContent) {
+        tabsContent.scrollTop = 0
+      }
+    }, 50)
   } else {
-    console.warn(' 当前小节为 undefined')
+    console.warn('⚠️ 当前小节为 undefined')
   }
 })
 
@@ -235,7 +260,44 @@ onMounted(() => {
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+      
+      &.expanded {
+        width: 65%;
+        max-width: 900px;
+        min-width: 600px;
+      }
+      
+      .panel-toggle-btn {
+        position: absolute;
+        left: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 48px;
+        background: linear-gradient(to right, #f0f5ff, #fff);
+        border: 1px solid #d9d9d9;
+        border-right: none;
+        border-radius: 6px 0 0 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #1890ff;
+        transition: all 0.3s;
+        z-index: 10;
+        box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
+        
+        &:hover {
+          background: linear-gradient(to right, #1890ff, #40a9ff);
+          color: #fff;
+          border-color: #1890ff;
+          width: 20px;
+          left: -20px;
+          box-shadow: -3px 0 8px rgba(24, 144, 255, 0.3);
+        }
+      }
       
       .knowledge-tabs {
         height: 100%;
@@ -286,8 +348,8 @@ onMounted(() => {
       
       .knowledge-content {
         line-height: 1.8;
-        color: #606266;
-        font-size: 14px;
+        color: #262626;
+        font-size: 15px;
         
         :deep(h2) {
           font-size: 20px;
@@ -307,22 +369,27 @@ onMounted(() => {
         
         :deep(h4) {
           font-size: 15px;
-          color: #606266;
+          color: #262626;
           margin-top: 16px;
           margin-bottom: 8px;
         }
         
         :deep(p) {
           margin: 8px 0;
+          color: #262626;
         }
         
         :deep(ul), :deep(ol) {
           padding-left: 24px;
           margin: 8px 0;
+          line-height: 1.8;
+          color: #262626;
+          font-size: 15px;
         }
         
         :deep(li) {
           margin: 4px 0;
+          color: #262626;
         }
         
         :deep(table) {

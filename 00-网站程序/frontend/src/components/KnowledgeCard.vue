@@ -3864,6 +3864,619 @@ Cache块数 = 16KB / 32B = 512块</pre>
           <p><strong>“键鼠用中断，硬网用DMA，简单用查询”</strong></p>
         </div>
       </template>
+      
+      <!-- 码分复用（CDM）完全指南 -->
+      <template v-if="currentCard?.id === 'cdm'">
+        <h3>💡 知识点卡片：码分复用（CDM）完全指南</h3>
+        
+        <div class="card-section">
+          <h4>📌 CDM的核心原理</h4>
+          <p><strong>核心思想</strong>：每个用户使用不同的<strong>码片序列（Chip Sequence）</strong>，可以在同一时间、同一频率上传输数据</p>
+          
+          <div class="importance">
+            <h5>关键特性：</h5>
+            <ul>
+              <li>✅ <strong>同时同频传输</strong>：所有用户在同一时间使用相同的频段</li>
+              <li>✅ <strong>正交性</strong>：不同用户的码片序列相互正交（内积为0）</li>
+              <li>✅ <strong>抗干扰能力强</strong>：即使有其他用户信号，也能正确解码</li>
+              <li>✅ <strong>保密性好</strong>：不知道码片序列就无法解码</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔢 实现步骤详解</h4>
+          
+          <h5>（1）码片序列的要求</h5>
+          <p>每个用户被分配一个唯一的<strong>m位码片序列</strong>，必须满足：</p>
+          <ol>
+            <li><strong>归一化条件</strong>：码片序列与自身的内积 = 1
+              <ul><li>S · S = 1</li></ul>
+            </li>
+            <li><strong>正交条件</strong>：不同用户的码片序列内积 = 0
+              <ul><li>S · T = 0（S ≠ T）</li></ul>
+            </li>
+            <li><strong>反码关系</strong>：码片序列的反码与自身内积 = -1
+              <ul><li>S · (-S) = -1</li></ul>
+            </li>
+          </ol>
+          
+          <div class="example-box">
+            <p><strong>举例</strong>（4位码片序列）：</p>
+            <p>用户A的码片序列：S = (+1, +1, +1, -1)</p>
+            <p>用户B的码片序列：T = (+1, -1, +1, +1)</p>
+            <p><strong>验证正交性</strong>：</p>
+            <p>S · T = (+1)(+1) + (+1)(-1) + (+1)(+1) + (-1)(+1) = 1 - 1 + 1 - 1 = 0 ✅</p>
+          </div>
+          
+          <h5>（2）发送过程</h5>
+          <p><strong>规则</strong>：</p>
+          <ul>
+            <li>发送比特 <strong>1</strong> → 发送码片序列 <strong>S</strong></li>
+            <li>发送比特 <strong>0</strong> → 发送码片序列的反码 <strong>-S</strong></li>
+          </ul>
+          
+          <h5>（3）接收过程（解码）</h5>
+          <p><strong>解码公式</strong>：</p>
+          <div class="formula-box">
+            <p>接收到的信号 · 目标用户的码片序列 / m = 原始比特</p>
+          </div>
+          <p>其中：</p>
+          <ul>
+            <li>m：码片序列的长度</li>
+            <li>结果 = +1 → 原始比特为 1</li>
+            <li>结果 = -1 → 原始比特为 0</li>
+            <li>结果 = 0 → 该用户未发送数据</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🧮 解码示例详解</h4>
+          <p>假设两个用户A和B同时发送：</p>
+          <ul>
+            <li>用户A的码片序列：S = (+1, +1, +1, -1)</li>
+            <li>用户B的码片序列：T = (+1, -1, +1, +1)</li>
+          </ul>
+          
+          <p><strong>场景</strong>：A发送1，B发送0</p>
+          <p>A发送：S = (+1, +1, +1, -1)</p>
+          <p>B发送：-T = (-1, +1, -1, -1)</p>
+          
+          <p><strong>叠加后的信号</strong>：</p>
+          <p>R = S + (-T) = (0, +2, 0, -2)</p>
+          
+          <p><strong>接收端解码A的数据</strong>：</p>
+          <div class="formula-box">
+            <p>R · S / m = (0, +2, 0, -2) · (+1, +1, +1, -1) / 4</p>
+            <p>= (0×1 + 2×1 + 0×1 + (-2)×(-1)) / 4</p>
+            <p>= (0 + 2 + 0 + 2) / 4 = 4/4 = <strong>+1</strong> （A发送的是比特1）✅</p>
+          </div>
+          
+          <p><strong>接收端解码B的数据</strong>：</p>
+          <div class="formula-box">
+            <p>R · T / m = (0, +2, 0, -2) · (+1, -1, +1, +1) / 4</p>
+            <p>= (0×1 + 2×(-1) + 0×1 + (-2)×1) / 4</p>
+            <p>= (0 - 2 + 0 - 2) / 4 = -4/4 = <strong>-1</strong> （B发送的是比特0）✅</p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>❓ 为什么CDM能正常工作？</h4>
+          <p><strong>数学原理</strong>：利用码片序列的正交性</p>
+          <p>当多个用户同时发送时，接收到的信号是所有用户信号的线性叠加：</p>
+          <div class="formula-box">
+            <p>R = Σ(各用户发送的信号)</p>
+          </div>
+          <p>解码时，用目标用户的码片序列与接收信号做内积：</p>
+          <div class="formula-box">
+            <p>R · S = (Σ各用户信号) · S</p>
+            <p>= (用户A的信号 · S) + (用户B的信号 · S) + ...</p>
+          </div>
+          <p>由于正交性：</p>
+          <ul>
+            <li>用户A的信号 · S = ±m（取决于发送的是1还是0）</li>
+            <li>用户B的信号 · S = 0（因为B的码片序列与S正交）</li>
+            <li>其他用户的信号 · S = 0</li>
+          </ul>
+          <p>所以：<strong>R · S / m = ±1</strong>（可以准确恢复A的数据）✅</p>
+        </div>
+        
+        <div class="card-section">
+          <h4>📊 CDM vs FDM/TDM 对比</h4>
+          <el-table :data="cdmComparisonData" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="fdm" label="FDM" width="100" />
+            <el-table-column prop="tdm" label="TDM" width="100" />
+            <el-table-column prop="cdm" label="CDM" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“码分复用靠正交，同时同频不冲突；内积为1是比特1，内积为负是比特0”</strong></p>
+          <ul>
+            <li><strong>码分复用靠正交</strong>：核心是利用码片序列的正交性</li>
+            <li><strong>同时同频不冲突</strong>：所有用户在同一时间、同一频率传输</li>
+            <li><strong>内积为1是比特1</strong>：解码结果为+1表示发送比特1</li>
+            <li><strong>内积为负是比特0</strong>：解码结果为-1表示发送比特0</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研要点总结</h4>
+          <ol>
+            <li>⭐⭐⭐ <strong>码片序列必须满足正交性和归一化条件</strong></li>
+            <li>⭐⭐ <strong>发送1发原码，发送0发反码</strong></li>
+            <li>⭐⭐⭐ <strong>解码公式：接收信号 · 码片序列 / m</strong></li>
+            <li>⭐⭐ <strong>CDM的三大优势</strong>：抗干扰强、保密性好、频谱利用率高</li>
+            <li>⭐⭐ <strong>CDM vs FDM/TDM</strong>：CDM是唯一同时同频的复用技术</li>
+            <li>⭐ <strong>典型应用</strong>：CDMA移动通信、3G网络</li>
+          </ol>
+        </div>
+      </template>
+      
+      <!-- 三种交换方式对比 -->
+      <template v-if="currentCard?.id === 'switchingMethods'">
+        <div class="card-section">
+          <h4>📊 三种交换方式详细对比</h4>
+          <el-table :data="switchingComparison" border stripe style="width: 100%">
+            <el-table-column prop="feature" label="对比项" width="120" />
+            <el-table-column prop="circuit" label="电路交换" />
+            <el-table-column prop="message" label="报文交换" />
+            <el-table-column prop="packet" label="分组交换" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔌 电路交换（Circuit Switching）</h4>
+          <ul>
+            <li><strong>三个阶段</strong>：建立连接 → 通话 → 释放连接</li>
+            <li><strong>资源独占</strong>：通信期间始终占用端到端的固定带宽</li>
+            <li><strong>优点</strong>：实时性强，时延小，适合语音通话</li>
+            <li><strong>缺点</strong>：信道利用率低，建立连接时间长</li>
+            <li><strong>典型应用</strong>：传统电话网络（PSTN）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📨 报文交换（Message Switching）</h4>
+          <ul>
+            <li><strong>存储转发</strong>：整个报文传输，中间节点完整接收后再转发</li>
+            <li><strong>无需建立连接</strong>：动态分配线路</li>
+            <li><strong>优点</strong>：线路利用率高，可实现差错控制和流量控制</li>
+            <li><strong>缺点</strong>：时延大，需要较大存储空间</li>
+            <li><strong>典型应用</strong>：电报系统、电子邮件</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📦 分组交换（Packet Switching）⭐⭐⭐必考</h4>
+          <ul>
+            <li><strong>统计复用</strong>：将报文划分为多个分组，每个分组独立传输</li>
+            <li><strong>两种服务</strong>：
+              <ul>
+                <li><strong>数据报（Datagram）</strong>：无连接，每个分组独立选路（如IP）</li>
+                <li><strong>虚电路（Virtual Circuit）</strong>：面向连接，建立逻辑连接（如ATM）</li>
+              </ul>
+            </li>
+            <li><strong>优点</strong>：高效、灵活、迅速、可靠</li>
+            <li><strong>缺点</strong>：存在时延，需要额外开销（首部信息）</li>
+            <li><strong>典型应用</strong>：互联网（Internet）✅</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“电路独占实时好，报文存储时延大，分组统计最灵活”</strong></p>
+          <ul>
+            <li><strong>电路交换</strong> = 专线电话（独占资源）</li>
+            <li><strong>报文交换</strong> = 邮局寄信（整封信存储转发）</li>
+            <li><strong>分组交换</strong> = 快递分包（大包拆成小包分别运输）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 四种时延详解 -->
+      <template v-if="currentCard?.id === 'networkDelay'">
+        <div class="card-section">
+          <h4>⏱️ 总时延组成公式</h4>
+          <div class="formula-box">
+            <p><strong>总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延</strong></p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>1️⃣ 发送时延（Transmission Delay）⭐⭐⭐</h4>
+          <div class="formula-box">
+            <p><strong>发送时延 = 数据长度 / 发送速率</strong></p>
+            <p>t_trans = L / R</p>
+          </div>
+          <ul>
+            <li><strong>L</strong>：数据帧的长度（bit）</li>
+            <li><strong>R</strong>：信道带宽/发送速率（bit/s）</li>
+            <li><strong>特点</strong>：与数据长度成正比，与发送速率成反比</li>
+            <li><strong>例子</strong>：1000 bit的数据，以1 Mbps速率发送，发送时延 = 1000/10⁶ = 1 ms</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>2️⃣ 传播时延（Propagation Delay）⭐⭐⭐</h4>
+          <div class="formula-box">
+            <p><strong>传播时延 = 信道长度 / 传播速率</strong></p>
+            <p>t_prop = d / v</p>
+          </div>
+          <ul>
+            <li><strong>d</strong>：信道长度（距离，m）</li>
+            <li><strong>v</strong>：电磁波在介质中的传播速率（≈2×10⁸ m/s，光速的2/3）</li>
+            <li><strong>特点</strong>：与距离成正比，与发送速率<strong>无关</strong></li>
+            <li><strong>例子</strong>：1000 km的光纤，传播时延 = 10⁶ / (2×10⁸) = 5 ms</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>3️⃣ 处理时延（Processing Delay）</h4>
+          <ul>
+            <li>主机或路由器处理分组的时间</li>
+            <li>包括：检查首部、决定路由、差错检测等</li>
+            <li><strong>特点</strong>：通常很小，可忽略不计</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>4️⃣ 排队时延（Queuing Delay）</h4>
+          <ul>
+            <li>分组在路由器输入/输出队列中等待的时间</li>
+            <li><strong>特点</strong>：不确定，取决于网络拥塞程度</li>
+            <li>网络拥塞时，排队时延可能很大</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 关键区别</h4>
+          <ul>
+            <li><strong>发送时延</strong>：取决于<strong>数据长度</strong>和<strong>发送速率</strong></li>
+            <li><strong>传播时延</strong>：取决于<strong>距离</strong>和<strong>传播速度</strong>，与发送速率<strong>无关</strong></li>
+            <li><strong>易错点</strong>：提高发送速率只能减少发送时延，不能减少传播时延！</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- OSI vs TCP/IP模型对比 -->
+      <template v-if="currentCard?.id === 'osiVsTcpIp'">
+        <div class="card-section">
+          <h4>📊 OSI七层模型 vs TCP/IP四层模型</h4>
+          <el-table :data="osiVsTcpIpTable" border stripe style="width: 100%">
+            <el-table-column prop="layer" label="OSI七层模型" width="150" />
+            <el-table-column prop="tcpip" label="TCP/IP四层模型" width="150" />
+            <el-table-column prop="protocol" label="典型协议" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🏛️ OSI七层模型（理论模型）</h4>
+          <ul>
+            <li><strong>7层结构</strong>：物理层 → 数据链路层 → 网络层 → 传输层 → 会话层 → 表示层 → 应用层</li>
+            <li><strong>特点</strong>：
+              <ul>
+                <li>✅ 概念清晰，通用性强</li>
+                <li>✅ 严格区分服务、接口和协议</li>
+                <li>❌ 过于复杂，实现困难</li>
+                <li>❌ 市场失败，主要用于教学</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🌐 TCP/IP四层模型（实际标准）⭐⭐⭐</h4>
+          <ul>
+            <li><strong>4层结构</strong>：网络接口层 → 网际层 → 传输层 → 应用层</li>
+            <li><strong>特点</strong>：
+              <ul>
+                <li>✅ 简单实用，易于实现</li>
+                <li>✅ 市场成功，互联网事实标准</li>
+                <li>✅ 包容性强，支持多种底层技术</li>
+                <li>❌ 层次划分不够清晰</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆技巧</h4>
+          <p><strong>“OSI七层太复杂，TCP/IP四层最实用，五层折中好教学”</strong></p>
+          <ul>
+            <li>OSI = 理论完美但市场失败</li>
+            <li>TCP/IP = 实践先行且市场成功 ✅</li>
+            <li>五层模型 = 教学常用（去掉会话层和表示层）</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 奈奎斯特定理 vs 香农定理 -->
+      <template v-if="currentCard?.id === 'nyquistShannon'">
+        <div class="card-section">
+          <h4>📊 两个定理对比</h4>
+          <el-table :data="nyquistVsShannon" border stripe style="width: 100%">
+            <el-table-column prop="item" label="对比项" width="120" />
+            <el-table-column prop="nyquist" label="奈奎斯特定理" />
+            <el-table-column prop="shannon" label="香农定理" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>📐 奈奎斯特定理（Nyquist Theorem）⭐⭐</h4>
+          <div class="formula-box">
+            <p><strong>理想低通信道的最高码元传输速率 = 2W Baud</strong></p>
+            <p><strong>极限数据传输率 = 2W × log₂V (bit/s)</strong></p>
+          </div>
+          <ul>
+            <li><strong>W</strong>：信道带宽（Hz）</li>
+            <li><strong>V</strong>：码元离散电平个数（一个码元可以携带log₂V比特信息）</li>
+            <li><strong>前提条件</strong>：理想低通信道，<strong>无噪声</strong></li>
+            <li><strong>限制因素</strong>：码间串扰</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📈 香农定理（Shannon Theorem）⭐⭐⭐必考</h4>
+          <div class="formula-box">
+            <p><strong>极限数据传输率 = W × log₂(1 + S/N) (bit/s)</strong></p>
+          </div>
+          <ul>
+            <li><strong>W</strong>：信道带宽（Hz）</li>
+            <li><strong>S/N</strong>：信噪比（功率比，不是dB）</li>
+            <li><strong>信噪比(dB) = 10 × log₁₀(S/N)</strong></li>
+            <li><strong>前提条件</strong>：带宽受限且有高斯白噪声干扰的信道</li>
+            <li><strong>意义</strong>：给出了有噪声信道的理论上限</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 关键区别</h4>
+          <ul>
+            <li><strong>奈奎斯特</strong>：无噪声，限制因素是码间串扰</li>
+            <li><strong>香农</strong>：有噪声，限制因素是信噪比</li>
+            <li><strong>实际应用</strong>：两者都需考虑，取较小值作为实际上限</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 编码与调制方式 -->
+      <template v-if="currentCard?.id === 'encodingModulation'">
+        <div class="card-section">
+          <h4>📊 数字编码方式对比</h4>
+          <el-table :data="encodingComparison" border stripe style="width: 100%">
+            <el-table-column prop="name" label="编码方式" width="150" />
+            <el-table-column prop="description" label="特点" />
+            <el-table-column prop="pros" label="优点" width="120" />
+            <el-table-column prop="cons" label="缺点" width="120" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔢 常见数字编码</h4>
+          <ul>
+            <li><strong>NRZ（非归零码）</strong>：高电平=1，低电平=0，简单但存在直流分量</li>
+            <li><strong>RZ（归零码）</strong>：每个比特中间归零，可自同步但带宽需求大</li>
+            <li><strong>曼彻斯特编码</strong>：比特中间跳变，既表示数据又提供时钟信号 ✅</li>
+            <li><strong>差分曼彻斯特编码</strong>：比特开始处是否有跳变表示0或1</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📡 模拟调制方法</h4>
+          <ul>
+            <li><strong>ASK（幅移键控）</strong>：用不同振幅表示0和1，抗干扰能力差</li>
+            <li><strong>FSK（频移键控）</strong>：用不同频率表示0和1，抗干扰能力强</li>
+            <li><strong>PSK（相移键控）</strong>：用不同相位表示数据，频谱效率高</li>
+            <li><strong>DPSK（差分相移键控）</strong>：用相位变化表示数据，无需参考相位</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆技巧</h4>
+          <p><strong>“曼彻斯特最常用，中间跳变带时钟；ASK看幅度，FSK看频率，PSK看相位”</strong></p>
+        </div>
+      </template>
+      
+      <!-- 检错编码详解 -->
+      <template v-if="currentCard?.id === 'errorDetection'">
+        <div class="card-section">
+          <h4>📊 检错编码对比</h4>
+          <el-table :data="errorDetectionComparison" border stripe style="width: 100%">
+            <el-table-column prop="method" label="方法" width="120" />
+            <el-table-column prop="principle" label="原理" />
+            <el-table-column prop="capability" label="检错能力" />
+            <el-table-column prop="canCorrect" label="能否纠错" width="100" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>1️⃣ 奇偶校验码</h4>
+          <ul>
+            <li><strong>原理</strong>：添加一个校验位，使整个码字中1的个数为奇数（奇校验）或偶数（偶校验）</li>
+            <li><strong>检错能力</strong>：只能检测奇数个比特错误</li>
+            <li><strong>缺点</strong>：不能检测偶数个比特错误，不能纠错</li>
+            <li><strong>应用</strong>：简单场景，如内存校验</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>2️⃣ CRC循环冗余校验 ⭐⭐⭐必考</h4>
+          <div class="formula-box">
+            <p><strong>CRC计算步骤</strong>：</p>
+            <ol>
+              <li>选择生成多项式G(x)</li>
+              <li>在数据后面添加r个0（r为G(x)的最高次幂）</li>
+              <li>用模2除法除以G(x)，得到余数R</li>
+              <li>将R附加到数据后面，形成CRC码</li>
+            </ol>
+          </div>
+          <ul>
+            <li><strong>模2除法</strong>：不借位的除法，实际上是异或（XOR）运算</li>
+            <li><strong>检错能力</strong>：可以检测所有单个、双个、奇数个比特错误，以及长度≤r的突发错误</li>
+            <li><strong>优点</strong>：检错能力强，实现简单（硬件实现）</li>
+            <li><strong>缺点</strong>：不能纠错</li>
+            <li><strong>应用</strong>：以太网、WiFi、存储系统 ✅</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 考研要点</h4>
+          <ul>
+            <li>⭐⭐⭐ <strong>CRC计算是必考点</strong>：掌握模2除法和余数计算</li>
+            <li>⭐⭐ <strong>奇偶校验特点</strong>：只能检奇数个错误</li>
+            <li>⭐⭐ <strong>CRC vs 奇偶校验</strong>：CRC检错能力更强</li>
+          </ul>
+        </div>
+      </template>
+      
+      <!-- 纠错编码与海明码 -->
+      <template v-if="currentCard?.id === 'errorCorrection'">
+        <div class="card-section">
+          <h4>🎯 码距（海明距离）核心概念 ⭐⭐⭐</h4>
+          <div class="formula-box">
+            <p><strong>码距 = 两个等长码字之间不同比特的个数</strong></p>
+          </div>
+          <ul>
+            <li><strong>计算方法</strong>：对两个码字进行异或运算，结果中1的个数就是码距</li>
+            <li><strong>例子</strong>：码字A=10110，码字B=10011 → 异或=00101 → 码距=2</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>📐 码距与检错/纠错能力的关系 ⭐⭐⭐必考公式</h4>
+          <el-table :data="codeDistanceFormula" border stripe style="width: 100%">
+            <el-table-column prop="goal" label="目标" width="180" />
+            <el-table-column prop="formula" label="所需最小码距" />
+            <el-table-column prop="example" label="例子" />
+          </el-table>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆口诀</h4>
+          <p><strong>“检一加一，纠二加一”</strong></p>
+          <ul>
+            <li><strong>检错</strong>：码距 = 错误数 + 1</li>
+            <li><strong>纠错</strong>：码距 = 2 × 错误数 + 1</li>
+          </ul>
+          <p><strong>推导理解</strong>：</p>
+          <ul>
+            <li>检测1个错误：需要码距≥2（1个错误后不会变成另一个合法码字）</li>
+            <li>纠正1个错误：需要码距≥3（要能区分是哪个码字出错了）</li>
+            <li>纠正2个错误：需要码距≥5（2×2+1=5）</li>
+            <li>纠正3个错误：需要码距≥7（2×3+1=7）</li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>🧠 形象理解：投票机制</h4>
+          <ul>
+            <li><strong>检测错误</strong> = 只要有分歧就知道出错了（码距小）</li>
+            <li><strong>纠正错误</strong> = 需要多数票才能确定正确答案（码距大）
+              <ul>
+                <li>纠正1个错误：3个人投票，2:1就能确定（码距3）</li>
+                <li>纠正2个错误：5个人投票，3:2就能确定（码距5）</li>
+                <li>纠正3个错误：7个人投票，4:3就能确定（码距7）</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>🎓 考研要点总结</h4>
+          <ol>
+            <li>⭐⭐⭐ <strong>码距定义和计算方法</strong></li>
+            <li>⭐⭐⭐ <strong>检错纠错公式（必考）</strong></li>
+            <li>⭐⭐ <strong>海明码的校验位数计算</strong></li>
+            <li>⭐⭐ <strong>常见编码的码距</strong>：奇偶校验(d=2)、海明码(d=3)</li>
+          </ol>
+        </div>
+      </template>
+      
+      <!-- IP地址分类、NAT与子网划分 -->
+      <template v-if="currentCard?.id === 'ipAddressing'">
+        <div class="card-section">
+          <h4>📊 IP地址分类</h4>
+          <el-table :data="ipClassTable" border stripe style="width: 100%">
+            <el-table-column prop="class" label="类别" width="80" />
+            <el-table-column prop="range" label="地址范围" />
+            <el-table-column prop="networkBits" label="网络号" width="100" />
+            <el-table-column prop="hostBits" label="主机号" width="100" />
+            <el-table-column prop="usage" label="适用场景" />
+          </el-table>
+        </div>
+        
+        <div class="card-section">
+          <h4>🔄 NAT技术（网络地址转换）⭐⭐⭐必考</h4>
+          <ul>
+            <li><strong>作用</strong>：
+              <ul>
+                <li>解决IPv4地址不足问题</li>
+                <li>隐藏内部网络结构，提高安全性</li>
+              </ul>
+            </li>
+            <li><strong>工作原理</strong>：
+              <ul>
+                <li>内网使用私有地址（10.x.x.x、172.16-31.x.x、192.168.x.x）</li>
+                <li>NAT路由器维护地址转换表</li>
+                <li>出站时替换源IP，入站时替换目的IP</li>
+              </ul>
+            </li>
+            <li><strong>类型</strong>：
+              <ul>
+                <li><strong>静态NAT</strong>：一对一映射</li>
+                <li><strong>动态NAT</strong>：多对多映射</li>
+                <li><strong>NAPT</strong>：多对一映射（最常用）✅</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card-section">
+          <h4>✂️ 子网划分 ⭐⭐⭐必考</h4>
+          <ul>
+            <li><strong>原理</strong>：从主机号借用若干位作为子网号</li>
+            <li><strong>子网掩码</strong>：网络号和子网号对应位为1，主机号对应位为0</li>
+            <li><strong>计算公式</strong>：
+              <ul>
+                <li>子网数 = 2^n（n为借用的子网位数）</li>
+                <li>每个子网的主机数 = 2^m - 2（m为主机位数，减2是因为全0和全1不可用）</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <div class="example-box">
+            <p><strong>例题</strong>：某公司申请到一个C类IP地址，但要连接6个子公司，最大的一个子公司有26台计算机，每个子公司在一个网段中，则子网掩码应设为多少？</p>
+            <p><strong>解</strong>：</p>
+            <p>最大子公司26台主机，需要至少5位主机位（2^5-2=30≥26）</p>
+            <p>C类地址默认24位网络位，借用3位作为子网位（2^3=8≥6个子网）</p>
+            <p>所以子网掩码为24+3=27位，即<strong>255.255.255.224</strong></p>
+          </div>
+        </div>
+        
+        <div class="card-section">
+          <h4>🌐 CIDR（无分类编址）⭐⭐⭐</h4>
+          <ul>
+            <li><strong>作用</strong>：消除传统的A、B、C类划分</li>
+            <li><strong>表示方法</strong>：斜线记法，如192.168.1.0/24</li>
+            <li><strong>优点</strong>：支持路由聚合，减小路由表规模</li>
+            <li><strong>应用</strong>：现代互联网的核心技术 ✅</li>
+          </ul>
+        </div>
+        
+        <div class="card-section importance">
+          <h4>💡 记忆技巧</h4>
+          <ul>
+            <li><strong>A类</strong>：大型网络（政府、大公司）</li>
+            <li><strong>B类</strong>：中型网络（大学、中型企业）</li>
+            <li><strong>C类</strong>：小型网络（小型企业、家庭）</li>
+            <li><strong>NAT</strong> = “翻译官”，把内网地址翻译成公网地址</li>
+            <li><strong>子网划分</strong> = “分房间”，从主机号借位划分子网</li>
+          </ul>
+        </div>
+      </template>
     </div>
     
     <template #footer>
@@ -4069,6 +4682,43 @@ const cardData = {
   multiCycleCPU: {
     id: 'multiCycleCPU',
     title: '💡 知识点卡片：多周期CPU的特点'
+  },
+  cdm: {
+    id: 'cdm',
+    title: '💡 知识点卡片：码分复用（CDM）完全指南'
+  },
+  // 计算机网络知识卡片
+  switchingMethods: {
+    id: 'switchingMethods',
+    title: '💡 知识点卡片：三种交换方式对比'
+  },
+  networkDelay: {
+    id: 'networkDelay',
+    title: '💡 知识点卡片：四种时延详解'
+  },
+  osiVsTcpIp: {
+    id: 'osiVsTcpIp',
+    title: '💡 知识点卡片：OSI vs TCP/IP模型对比'
+  },
+  nyquistShannon: {
+    id: 'nyquistShannon',
+    title: '💡 知识点卡片：奈奎斯特定理 vs 香农定理'
+  },
+  encodingModulation: {
+    id: 'encodingModulation',
+    title: '💡 知识点卡片：编码与调制方式'
+  },
+  errorDetection: {
+    id: 'errorDetection',
+    title: '💡 知识点卡片：检错编码详解'
+  },
+  errorCorrection: {
+    id: 'errorCorrection',
+    title: '💡 知识点卡片：纠错编码与海明码'
+  },
+  ipAddressing: {
+    id: 'ipAddressing',
+    title: '💡 知识点卡片：IP地址分类、NAT与子网划分'
   }
 }
 
@@ -4358,6 +5008,18 @@ const raidComparisonData = [
   { level: 'RAID 10', minDisks: '4', faultTolerance: '✅ 允许每组1块损坏', spaceUtilization: '50%', readPerformance: '⭐⭐⭐ 高', writePerformance: '⭐⭐ 中等', application: '高性能数据库' }
 ]
 
+// CDM vs FDM/TDM 对比数据
+const cdmComparisonData = [
+  { item: '复用维度', fdm: '频率域', tdm: '时间域', cdm: '码域 ✅' },
+  { item: '是否同时传输', fdm: '✅ 是', tdm: '❌ 否（轮流）', cdm: '✅ 是' },
+  { item: '是否同频传输', fdm: '❌ 否（不同频率）', tdm: '✅ 是', cdm: '✅ 是' },
+  { item: '抗干扰能力', fdm: '中等', tdm: '中等', cdm: '✅ 最强' },
+  { item: '保密性', fdm: '差', tdm: '差', cdm: '✅ 最好' },
+  { item: '实现复杂度', fdm: '中等', tdm: '简单', cdm: '复杂' },
+  { item: '频谱利用率', fdm: '低', tdm: '中', cdm: '✅ 高' },
+  { item: '典型应用', fdm: '广播、电视', tdm: '数字通信', cdm: 'CDMA手机' }
+]
+
 // 读操作与写操作对比数据
 const readWriteComparisonData = [
   { aspect: '数据流向', read: '存储器→CPU', write: 'CPU→存储器' },
@@ -4486,6 +5148,77 @@ const busStandardsTable = [
   { standard: 'USB 3.0', year: '2008', type: '串行', bandwidth: '625 MB/s', application: '移动硬盘' },
   { standard: 'PCIe 3.0', year: '2010', type: '串行', bandwidth: '~1 GB/s (x1)', application: '显卡SSD' },
   { standard: 'SATA 3.0', year: '2009', type: '串行', bandwidth: '600 MB/s', application: '机械硬盘SSD' }
+]
+
+// ========== 计算机网络知识卡片数据 ==========
+
+// 三种交换方式对比
+const switchingComparison = [
+  { feature: '连接建立', circuit: '需要（三个阶段）', message: '不需要', packet: '数据报不需要，虚电路需要' },
+  { feature: '资源占用', circuit: '独占（固定带宽）', message: '动态分配', packet: '统计复用' },
+  { feature: '时延特性', circuit: '小（实时性强）', message: '大（存储转发）', packet: '中等' },
+  { feature: '信道利用率', circuit: '低 ❌', message: '较高', packet: '高 ✅' },
+  { feature: '可靠性', circuit: '一般', message: '好', packet: '好 ✅' },
+  { feature: '典型应用', circuit: '电话网络', message: '电报、邮件', packet: '互联网 ✅' }
+]
+
+// 四种时延对比
+const delayComparison = [
+  { type: '发送时延', formula: 'L / R', dependsOn: '数据长度、发送速率', importance: '⭐⭐⭐' },
+  { type: '传播时延', formula: 'd / v', dependsOn: '距离、传播速度', importance: '⭐⭐⭐' },
+  { type: '处理时延', formula: '-', dependsOn: '设备性能', importance: '⭐' },
+  { type: '排队时延', formula: '-', dependsOn: '网络拥塞程度', importance: '⭐⭐' }
+]
+
+// OSI vs TCP/IP对比
+const osiVsTcpIpTable = [
+  { layer: '应用层', tcpip: '应用层', protocol: 'HTTP、FTP、DNS、SMTP' },
+  { layer: '表示层', tcpip: '（合并到应用层）', protocol: '-' },
+  { layer: '会话层', tcpip: '（合并到应用层）', protocol: '-' },
+  { layer: '传输层', tcpip: '传输层', protocol: 'TCP、UDP' },
+  { layer: '网络层', tcpip: '网际层', protocol: 'IP、ICMP、ARP' },
+  { layer: '数据链路层', tcpip: '网络接口层', protocol: '以太网、WiFi' },
+  { layer: '物理层', tcpip: '网络接口层', protocol: '双绞线、光纤' }
+]
+
+// 奈奎斯特 vs 香农定理对比
+const nyquistVsShannon = [
+  { item: '前提条件', nyquist: '理想低通信道，无噪声', shannon: '带宽受限且有高斯白噪声' },
+  { item: '限制因素', nyquist: '码间串扰', shannon: '信噪比' },
+  { item: '公式', nyquist: '2W × log₂V', shannon: 'W × log₂(1 + S/N)' },
+  { item: '单位', nyquist: 'Baud（码元速率）', shannon: 'bit/s（比特速率）' },
+  { item: '意义', nyquist: '无噪声时的理论上限', shannon: '有噪声时的理论上限' }
+]
+
+// 编码方式对比
+const encodingComparison = [
+  { name: 'NRZ', description: '高电平=1，低电平=0', pros: '简单', cons: '直流分量' },
+  { name: 'RZ', description: '每个比特中间归零', pros: '可自同步', cons: '带宽需求大' },
+  { name: '曼彻斯特', description: '比特中间跳变', pros: '自带时钟 ✅', cons: '带宽翻倍' },
+  { name: '差分曼彻斯特', description: '开始处跳变表示0/1', pros: '抗干扰强', cons: '复杂' }
+]
+
+// 检错编码对比
+const errorDetectionComparison = [
+  { method: '奇偶校验', principle: '添加校验位使1的个数为奇数或偶数', capability: '只能检测奇数个错误', canCorrect: '❌ 否' },
+  { method: 'CRC', principle: '使用生成多项式进行模2除法', capability: '可检测单、双、奇数个错误及突发错误', canCorrect: '❌ 否' },
+  { method: '海明码', principle: '多个校验位交叉覆盖', capability: '可检测并纠正单个错误', canCorrect: '✅ 是' }
+]
+
+// 码距与检错纠错关系
+const codeDistanceFormula = [
+  { goal: '检测 e 个错误', formula: 'd ≥ e + 1', example: '检测1个错误 → d≥2' },
+  { goal: '纠正 t 个错误', formula: 'd ≥ 2t + 1', example: '纠正1个错误 → d≥3' },
+  { goal: '检测e个+纠正t个', formula: 'd ≥ e + t + 1 (e>t)', example: '检测2个+纠正1个 → d≥4' }
+]
+
+// IP地址分类
+const ipClassTable = [
+  { class: 'A类', range: '1.0.0.0~126.255.255.255', networkBits: '8位', hostBits: '24位', usage: '大型网络' },
+  { class: 'B类', range: '128.0.0.0~191.255.255.255', networkBits: '16位', hostBits: '16位', usage: '中型网络' },
+  { class: 'C类', range: '192.0.0.0~223.255.255.255', networkBits: '24位', hostBits: '8位', usage: '小型网络' },
+  { class: 'D类', range: '224.0.0.0~239.255.255.255', networkBits: '-', hostBits: '-', usage: '组播' },
+  { class: 'E类', range: '240.0.0.0~255.255.255.255', networkBits: '-', hostBits: '-', usage: '保留' }
 ]
 
 // 第7章：输入输出系统相关数据
