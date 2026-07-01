@@ -5171,19 +5171,7 @@ D. 参数问题
 
 **工作原理**：主机A发送ICMP Echo Request（Type=8），然后主机B收到后返回ICMP Echo Reply（Type=0），然后A计算往返时间RTT，然后判断网络连通性和延迟
 
-**ping命令输出示例**：
-```
-Pinging 8.8.8.8 with 32 bytes of data:
-Reply from 8.8.8.8: bytes=32 time=15ms TTL=118
-Reply from 8.8.8.8: bytes=32 time=14ms TTL=118
-Reply from 8.8.8.8: bytes=32 time=16ms TTL=118
-Reply from 8.8.8.8: bytes=32 time=15ms TTL=118
-
-Ping statistics for 8.8.8.8:
-    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
-Approximate round trip times in milli-seconds:
-    Minimum = 14ms, Maximum = 16ms, Average = 15ms
-```
+**ping命令输出示例**：Pinging 8.8.8.8 with 32 bytes of data: Reply from 8.8.8.8: bytes=32 time=15ms TTL=118; Reply from 8.8.8.8: bytes=32 time=14ms TTL=118; Reply from 8.8.8.8: bytes=32 time=16ms TTL=118; Reply from 8.8.8.8: bytes=32 time=15ms TTL=118. Ping statistics for 8.8.8.8: Packets: Sent = 4, Received = 4, Lost = 0 (0% loss). Approximate round trip times in milli-seconds: Minimum = 14ms, Maximum = 16ms, Average = 15ms
 
 ---
 
@@ -5258,16 +5246,7 @@ Approximate round trip times in milli-seconds:
 **Windows**：`tracert`（使用UDP）  
 **Linux/Mac**：`traceroute`（使用UDP或ICMP）
 
-**输出示例**：
-```
-tracert www.baidu.com
-
-  1    <1 ms    <1 ms    <1 ms  192.168.1.1        # 本地路由器
-  2     2 ms     1 ms     2 ms  10.0.0.1           # ISP路由器
-  3     5 ms     4 ms     5 ms  202.106.0.1        # 骨干网路由器
-  4    10 ms     9 ms    10 ms  202.106.1.1
-  5    15 ms    14 ms    15 ms  220.181.38.1       # 百度服务器
-```
+**输出示例**：tracert www.baidu.com - 1: <1 ms <1 ms <1 ms 192.168.1.1 (本地路由器); 2: 2 ms 1 ms 2 ms 10.0.0.1 (ISP路由器); 3: 5 ms 4 ms 5 ms 202.106.0.1 (骨干网路由器); 4: 10 ms 9 ms 10 ms 202.106.1.1; 5: 15 ms 14 ms 15 ms 220.181.38.1 (百度服务器)
 
 **工作原理详解**：第1步：发送TTL=1的UDP数据报到目标主机的无效端口（>30000），第一个路由器TTL减为0，丢弃，返回ICMP Time Exceeded（Type=11, Code=0），获得第一个路由器的IP；第2步：发送TTL=2的UDP数据报，第二个路由器TTL减为0，丢弃，返回ICMP Time Exceeded，获得第二个路由器的IP；...；第N步：发送TTL=N的UDP数据报，到达目标主机，目标主机发现端口未使用，返回ICMP Port Unreachable（Type=3, Code=3），追踪结束
 
@@ -5444,13 +5423,7 @@ D. IPv6的地址长度为128位
 
 #### 4. 即插即用（Plug and Play）
 
-**无状态地址自动配置（SLAAC）**：
-```
-1. 主机启动时发送Router Solicitation报文
-2. 路由器回复Router Advertisement报文，包含前缀信息
-3. 主机根据前缀和自己的MAC地址生成IPv6地址
-4. 进行重复地址检测（DAD），确保地址唯一
-```
+**无状态地址自动配置（SLAAC）**：1.主机启动时发送Router Solicitation报文；2.路由器回复Router Advertisement报文，包含前缀信息；3.主机根据前缀和自己的MAC地址生成IPv6地址；4.进行重复地址检测（DAD），确保地址唯一
 
 **有状态地址配置（DHCPv6）**：
 - 类似IPv4的DHCP，由服务器分配地址
@@ -5478,34 +5451,13 @@ D. IPv6的地址长度为128位
 
 #### 1. 冒号十六进制表示法
 
-**标准格式**：8组，每组4个十六进制数字，用冒号分隔
-
-```
-2001:0DB8:0000:0000:0000:0000:0000:0001
-```
+**标准格式**：8组，每组4个十六进制数字，用冒号分隔。例如：2001:0DB8:0000:0000:0000:0000:0000:0001
 
 #### 2. 压缩表示规则
 
-**规则1：省略前导零**
-```
-2001:0DB8:0000:0000:0000:0000:0000:0001
-↓
-2001:DB8:0:0:0:0:0:1
-```
+**规则1：省略前导零**。例如：2001:0DB8:0000:0000:0000:0000:0000:0001 可以简化为 2001:DB8:0:0:0:0:0:1
 
-**规则2：连续的全0组用::代替（只能用一次）**
-```
-2001:DB8:0:0:0:0:0:1
-↓
-2001:DB8::1
-```
-
-**注意**：::只能使用一次，否则会产生歧义
-
-```
-❌ 错误：2001::DB8::1  （无法确定每组有多少个0）
-✅ 正确：2001:0:0:DB8:0:0:0:1  →  2001:0:0:DB8::1
-```
+**规则2：连续的全0组用::代替（只能用一次）**。例如：2001:DB8:0:0:0:0:0:1 可以简化为 2001:DB8::1。注意：::只能使用一次，否则会产生歧义。错误示例：2001::DB8::1（无法确定每组有多少个0）；正确示例：2001:0:0:DB8:0:0:0:1 → 2001:0:0:DB8::1
 
 #### 3. 特殊地址
 
