@@ -188,6 +188,11 @@ onMounted(() => {
     networkStore.selectChapter(networkStore.chapters[0].id)
     console.log('✅ 初始化选中章节:', networkStore.chapters[0].title)
   }
+  
+  // 在window对象上注册方法，供Markdown中的onclick调用
+  ;(window as any).showKnowledgeCard = (cardId: string) => {
+    knowledgeCardRef.value?.show(cardId)
+  }
 })
 </script>
 
