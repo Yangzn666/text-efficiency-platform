@@ -5232,10 +5232,10 @@ D. 参数问题
 - 检测丢包率
 
 **常见结果分析**：
-- ✅ `Reply from X.X.X.X`：连通正常
-- ❌ `Request timed out`：目标主机无响应（可能防火墙阻止）
-- ❌ `Destination host unreachable`：路由不可达
-- ❌ `Destination port unreachable`：端口未开放
+- ✅ "Reply from X.X.X.X"：连通正常
+- ❌ "Request timed out"：目标主机无响应（可能防火墙阻止）
+- ❌ "Destination host unreachable"：路由不可达
+- ❌ "Destination port unreachable"：端口未开放
 
 ---
 
@@ -5243,8 +5243,8 @@ D. 参数问题
 
 **原理**：利用ICMP Time Exceeded报文
 
-**Windows**：`tracert`（使用UDP）  
-**Linux/Mac**：`traceroute`（使用UDP或ICMP）
+**Windows**："tracert"（使用UDP）  
+**Linux/Mac**："traceroute"（使用UDP或ICMP）
 
 **输出示例**：tracert www.baidu.com - 1: <1 ms <1 ms <1 ms 192.168.1.1 (本地路由器); 2: 2 ms 1 ms 2 ms 10.0.0.1 (ISP路由器); 3: 5 ms 4 ms 5 ms 202.106.0.1 (骨干网路由器); 4: 10 ms 9 ms 10 ms 202.106.1.1; 5: 15 ms 14 ms 15 ms 220.181.38.1 (百度服务器)
 
@@ -5506,16 +5506,7 @@ IPv6使用**扩展首部链**代替IPv4的选项字段。
 | **Encapsulating Security Payload (ESP)** | 50 | IPSec加密 |
 | **Destination Options** | 60 | 仅目的主机处理的选项 |
 
-**扩展首部链示例**：
-```
-IPv6基本首部（Next Header=43）
-  ↓
-Routing扩展首部（Next Header=44）
-  ↓
-Fragment扩展首部（Next Header=6）
-  ↓
-TCP段
-```
+**扩展首部链示例**：IPv6基本首部（Next Header=43）→ Routing扩展首部（Next Header=44）→ Fragment扩展首部（Next Header=6）→ TCP段
 
 **优点**：
 - 路由器只需处理必要的首部
@@ -5535,16 +5526,7 @@ TCP段
 | **MTU发现** | 可选（DF标志） | **强制（PMTUD）** |
 | **路由器行为** | 可分片转发 | **丢弃并返回ICMPv6** |
 
-#### IPv6分片过程
-
-```
-1. 源主机发送数据报
-2. 路由器发现数据报超过下一跳MTU
-3. 路由器丢弃数据报，返回ICMPv6 "Packet Too Big"报文
-4. 源主机收到报文，获知路径MTU
-5. 源主机重新分片，使用Fragment扩展首部
-6. 重新发送分片后的数据报
-```
+#### IPv6分片过程：1.源主机发送数据报；2.路由器发现数据报超过下一跳MTU；3.路由器丢弃数据报，返回ICMPv6 "Packet Too Big"报文；4.源主机收到报文，获知路径MTU；5.源主机重新分片，使用Fragment扩展首部；6.重新发送分片后的数据报
 
 **Path MTU Discovery（PMTUD）**：
 - 源主机探测从自己到目的主机的最小MTU
@@ -5614,13 +5596,7 @@ ICMPv6是IPv6的辅助协议，功能比ICMPv4更强大。
 | **ISATAP** | 用于企业内部网络 |
 | **Teredo** | 穿越NAT的隧道技术 |
 
-**隧道示例**：
-```
-IPv6网络A ←→ [IPv6-in-IPv4隧道] ←→ IPv6网络B
-      ↓                                    ↓
-  封装成IPv4                          解封装恢复IPv6
-  通过IPv4 Internet传输
-```
+**隧道示例**：IPv6网络A ←→ [IPv6-in-IPv4隧道] ←→ IPv6网络B，封装成IPv4通过IPv4 Internet传输，解封装恢复IPv6
 
 ---
 
@@ -5638,18 +5614,7 @@ IPv6网络A ←→ [IPv6-in-IPv4隧道] ←→ IPv6网络B
 | **SIIT** | Stateless IP/ICMP Translation |
 | **IVI** | 无状态翻译方案 |
 
-**工作流程**：
-```
-IPv6主机发送数据报
-  ↓
-翻译器接收
-  ↓
-将IPv6首部转换为IPv4首部
-  ↓
-通过IPv4网络发送到IPv4主机
-  ↓
-反向过程同理
-```
+**工作流程**：IPv6主机发送数据报 → 翻译器接收 → 将IPv6首部转换为IPv4首部 → 通过IPv4网络发送到IPv4主机 → 反向过程同理
 
 **缺点**：
 - 破坏端到端原则
