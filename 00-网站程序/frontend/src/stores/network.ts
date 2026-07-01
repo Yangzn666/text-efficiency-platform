@@ -6526,16 +6526,62 @@ BGP使用多种属性来决定最佳路径，按优先级排序：
 
 **进程间的逻辑通信**：传输层为运行在不同主机上的应用进程提供直接的逻辑通信服务。
 
-### 二、端口号 ⭐⭐
+### 二、端口号 ⭐⭐⭐必考
 
-**端口号的作用**：标识主机中的应用进程
+**端口号的作用**：标识主机中的应用进程（进程到进程的通信）
 
 **端口号范围**：0~65535（16位）
 
 **分类**：
-- **熟知端口号**：0~1023（HTTP: 80, FTP: 21, DNS: 53）
-- **登记端口号**：1024~49151
-- **短暂端口号**：49152~65535
+
+**（1）熟知端口号（Well-Known Ports）⭐⭐⭐**
+- **范围**：0 ~ 1023
+- **特点**：由IANA统一分配，固定给常用服务
+- **使用**：服务器端使用，客户端随机选择端口
+- **重要端口号表格**：
+
+| 端口号 | 协议 | 服务名称 | 传输层协议 | 说明 |
+|--------|------|---------|-----------|------|
+| **7** | - | Echo | TCP/UDP | 回显服务（ping测试） |
+| **20** | FTP | FTP Data | TCP | FTP数据传输 |
+| **21** | FTP | FTP Control | TCP | FTP控制连接 |
+| **22** | SSH | Secure Shell | TCP | 安全远程登录 |
+| **23** | Telnet | Telnet | TCP | 远程登录（明文，不安全） |
+| **25** | SMTP | Simple Mail Transfer | TCP | 邮件发送 |
+| **53** | DNS | Domain Name System | TCP/UDP | 域名解析 |
+| **67** | DHCP | DHCP Server | UDP | DHCP服务器 |
+| **68** | DHCP | DHCP Client | UDP | DHCP客户端 |
+| **69** | TFTP | Trivial FTP | UDP | 简单文件传输 |
+| **80** | HTTP | HyperText Transfer | TCP | Web浏览 |
+| **110** | POP3 | Post Office Protocol v3 | TCP | 邮件接收 |
+| **123** | NTP | Network Time Protocol | UDP | 网络时间同步 |
+| **143** | IMAP | Internet Message Access | TCP | 邮件访问 |
+| **161** | SNMP | Simple Network Management | UDP | 网络管理 |
+| **162** | SNMP | SNMP Trap | UDP | SNMP陷阱消息 |
+| **443** | HTTPS | HTTP Secure | TCP | 安全Web浏览 |
+| **465** | SMTPS | SMTP Secure | TCP | 安全邮件发送 |
+| **514** | Syslog | System Log | UDP | 系统日志 |
+| **520** | RIP | Routing Information | UDP | 路由信息协议 |
+| **631** | IPP | Internet Printing | TCP | 网络打印 |
+| **993** | IMAPS | IMAP Secure | TCP | 安全邮件访问 |
+| **995** | POP3S | POP3 Secure | TCP | 安全邮件接收 |
+
+**记忆技巧**：
+- "21 FTP控，22 SSH安，23 Telnet明文传"
+- "25发邮件，53解域名，80看网页，443加密"
+- "110 POP3收，143 IMAP查"
+
+**（2）登记端口号（Registered Ports）**
+- **范围**：1024 ~ 49151
+- **特点**：没有固定分配，但已在IANA登记
+- **使用**：应用程序可以使用，避免冲突
+- **示例**：MySQL (3306)、Oracle (1521)、SQL Server (1433)
+
+**（3）短暂端口号（Ephemeral/Dynamic Ports）**
+- **范围**：49152 ~ 65535
+- **特点**：动态分配，临时使用
+- **使用**：客户端发起连接时随机选择
+- **生命周期**：连接结束后释放
 
 ### 三、复用与分用
 
