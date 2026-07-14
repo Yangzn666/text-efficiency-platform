@@ -8,13 +8,38 @@
     
     <div class="container">
       <header class="header">
-        <h1>🎓 考研效率平台</h1>
-        <nav class="nav">
+        <div class="header-content">
+          <h1>🎓 考研效率平台</h1>
+          
+          <!-- 移动端汉堡菜单按钮 -->
+          <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="切换菜单">
+            <span class="hamburger-icon" :class="{ open: mobileMenuOpen }">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+        </div>
+        
+        <!-- 桌面端导航 -->
+        <nav class="nav desktop-nav">
           <button 
             v-for="route in routes" 
             :key="route.path"
             :class="{ active: $route.path === route.path }"
             @click="goToRoute(route.path)"
+          >
+            {{ route.name }}
+          </button>
+        </nav>
+        
+        <!-- 移动端下拉菜单 -->
+        <nav v-if="mobileMenuOpen" class="nav mobile-nav">
+          <button 
+            v-for="route in routes" 
+            :key="route.path"
+            :class="{ active: $route.path === route.path }"
+            @click="handleMobileNavClick(route.path)"
           >
             {{ route.name }}
           </button>
@@ -33,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import TodoDashboard from '@/components/TodoDashboard.vue'
 import MathView from '@/views/MathView.vue'
@@ -46,6 +71,7 @@ import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
 
 const currentRoute = ref('/')
 const isLoading = ref(true)
+const mobileMenuOpen = ref(false)
 
 const routes = [
   { path: '/', name: '首页' },
@@ -67,6 +93,15 @@ const goToRoute = (path) => {
   router.push(path).catch(err => {
     console.error('路由跳转失败:', err)
   })
+}
+
+const handleMobileNavClick = (path) => {
+  goToRoute(path)
+  mobileMenuOpen.value = false  // 点击后关闭菜单
+}
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
 const goToSubject = (subject) => {
@@ -112,16 +147,23 @@ body {
 .header {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 25px 20px;
-  text-align: center;
   border-radius: 0;
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
   border: none;
   margin-bottom: 0;
 }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .header h1 {
   color: #1976D2;
-  margin-bottom: 20px;
+  margin: 0;
   font-size: 2.2rem;
   font-weight: 700;
   background: linear-gradient(135deg, #1976D2 0%, #64B5F6 100%);
@@ -130,14 +172,67 @@ body {
   background-clip: text;
 }
 
+/* 移动端汉堡菜单按钮 */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 3px;
+  background: #1976D2;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 .nav {
   display: flex;
   justify-content: center;
   gap: 15px;
-  flex-wrap: wrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   padding: 10px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 桌面端导航：单行显示，不换行 */
+.desktop-nav {
+  flex-wrap: nowrap;
+  overflow-x: visible;
+}
+
+/* 移动端导航：垂直排列 */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 20px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav button {
@@ -145,7 +240,7 @@ body {
   border: 2px solid transparent;
   border-radius: 12px;
   background: white;
-  color: #666;
+  color: #333;  /* 提高对比度，从 #666 改为 #333 */
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   font-weight: normal !important;
@@ -379,6 +474,19 @@ body {
     font-size: 0.85rem;
     border-radius: 8px;
     flex-shrink: 0;
+  }
+  
+  /* 移动端：显示汉堡菜单，隐藏桌面导航 */
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-nav {
+    display: flex;
   }
   
   .main-content {
