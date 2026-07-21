@@ -1895,6 +1895,11 @@ function showExampleDetail(example: any) {
           <span class="card-subtitle">从基础款到高级款的跨越，让文章更有层次感</span>
         </div>
         <p class="card-desc">这四个句式是阅卷老师眼中的“亮点句型”，掌握它们能让你的文章从11分跃升至14分！</p>
+        <div class="connector-note">
+          💡 四大高级连接词（递进 / 转折 / 因果 / 让步）详细例句整理中，可先结合上方模板句式练习。
+        </div>
+      </div>
+    </div>
 
     <!-- Tab 4: Sentences -->
     <div v-if="activeTab === 'sentences'" class="content-section sentences-section">
@@ -2736,11 +2741,11 @@ function showExampleDetail(example: any) {
 
 /* Hero Section - Cinematic Impact */
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   padding: 60px 40px;
   border-radius: 0 0 30px 30px;
   margin-bottom: 40px;
-  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 20px 60px rgba(13, 33, 55, 0.3);
 }
 
 .hero-content {
@@ -2817,17 +2822,17 @@ function showExampleDetail(example: any) {
 }
 
 .tab-pill:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #ffc53d;
+  color: #16345c;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.15);
 }
 
 .tab-pill.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-color: transparent;
   color: white;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.4);
 }
 
 .tab-icon {
@@ -2901,7 +2906,7 @@ function showExampleDetail(example: any) {
   padding: 18px 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .item-icon {
@@ -2960,7 +2965,7 @@ function showExampleDetail(example: any) {
   padding: 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .phase-info {
@@ -2978,7 +2983,7 @@ function showExampleDetail(example: any) {
 
 .phase-time {
   padding: 6px 14px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 20px;
   font-weight: 600;
@@ -3215,7 +3220,7 @@ function showExampleDetail(example: any) {
 
 .card-subtitle {
   display: block;
-  color: #667eea;
+  color: #16345c;
   font-size: 1.05em;
   font-weight: 600;
   margin-bottom: 12px;
@@ -3242,13 +3247,13 @@ function showExampleDetail(example: any) {
   padding: 18px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .step-number {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -3401,7 +3406,7 @@ function showExampleDetail(example: any) {
 
 .comparison-arrow {
   font-size: 2em;
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
 }
 
@@ -3421,9 +3426,9 @@ function showExampleDetail(example: any) {
 }
 
 .method-card:hover {
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.15);
 }
 
 .method-card h4 {
@@ -3456,7 +3461,7 @@ function showExampleDetail(example: any) {
   padding: 8px 10px;
   background: white;
   border-radius: 6px;
-  color: #667eea;
+  color: #16345c;
   font-family: 'Courier New', monospace;
   font-size: 0.85em;
   line-height: 1.5;
@@ -3504,13 +3509,13 @@ function showExampleDetail(example: any) {
   padding: 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   transition: all 0.3s ease;
 }
 
 .technique-item:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 4px 15px rgba(13, 33, 55, 0.15);
 }
 
 .technique-item h4 {
@@ -3536,7 +3541,7 @@ function showExampleDetail(example: any) {
   padding: 12px 15px;
   background: white;
   border-radius: 8px;
-  color: #667eea;
+  color: #16345c;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
   line-height: 1.6;
@@ -3646,7 +3651,7 @@ function showExampleDetail(example: any) {
 
 .mistake-pair .arrow {
   font-size: 1.5em;
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -3655,9 +3660,9 @@ function showExampleDetail(example: any) {
 .practical-examples-box {
   margin-top: 25px;
   padding: 25px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 12px;
-  border-left: 5px solid #2196F3;
+  border-left: 5px solid #ffc53d;
 }
 
 .practical-examples-box h4 {
@@ -3699,7 +3704,7 @@ function showExampleDetail(example: any) {
   padding: 12px 15px;
   background: #f8f9fa;
   border-radius: 8px;
-  border-left: 3px solid #667eea;
+  border-left: 3px solid #ffc53d;
 }
 
 .case-level.level-1 {
@@ -3755,8 +3760,8 @@ function showExampleDetail(example: any) {
 
 .framework-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 15px 40px rgba(13, 33, 55, 0.2);
+  border-color: #ffc53d;
 }
 
 .framework-header {
@@ -3773,8 +3778,8 @@ function showExampleDetail(example: any) {
 }
 
 .framework-badge.argumentative {
-  background: #e3f2fd;
-  color: #1976D2;
+  background: #eef3fa;
+  color: #16345c;
 }
 
 .framework-badge.chart {
@@ -3820,7 +3825,7 @@ function showExampleDetail(example: any) {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   line-height: 1.7;
 }
 
@@ -3828,7 +3833,7 @@ function showExampleDetail(example: any) {
   width: 32px;
   height: 32px;
   min-width: 32px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -3906,7 +3911,7 @@ function showExampleDetail(example: any) {
 }
 
 .expand-hint {
-  color: #667eea;
+  color: #16345c;
   font-size: 0.9em;
   font-weight: 500;
 }
@@ -3914,9 +3919,9 @@ function showExampleDetail(example: any) {
 /* Memory Tip Section */
 .memory-tip {
   padding: 20px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 12px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #ffc53d;
   margin-bottom: 20px;
 }
 
@@ -4021,9 +4026,9 @@ function showExampleDetail(example: any) {
 
 .sentence-card:hover {
   background: white;
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateX(8px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.2);
 }
 
 .sentence-main {
@@ -4062,7 +4067,7 @@ function showExampleDetail(example: any) {
   color: #666;
 }
 
-.tag.universal { background: #e3f2fd; color: #1976D2; }
+.tag.universal { background: #eef3fa; color: #16345c; }
 .tag.formal { background: #f3e5f5; color: #7B1FA2; }
 .tag.current { background: #fff3e0; color: #F57C00; }
 .tag.social { background: #e8f5e9; color: #388E3C; }
@@ -4082,7 +4087,7 @@ function showExampleDetail(example: any) {
 }
 
 .breakdown-section h4 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 15px 0;
   font-size: 1.15em;
   line-height: 1.4;
@@ -4096,7 +4101,7 @@ function showExampleDetail(example: any) {
   padding: 18px;
   background: white;
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .structure-highlight {
@@ -4116,7 +4121,7 @@ function showExampleDetail(example: any) {
 }
 
 .example-context {
-  color: #667eea;
+  color: #16345c;
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 0.95em;
@@ -4166,7 +4171,7 @@ function showExampleDetail(example: any) {
 .timer-value {
   font-size: 2.5em;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
   font-family: 'Courier New', monospace;
 }
 
@@ -4201,7 +4206,7 @@ function showExampleDetail(example: any) {
   font-weight: 600;
 }
 
-.topic-type.argumentative { background: #e3f2fd; color: #1976D2; }
+.topic-type.argumentative { background: #eef3fa; color: #16345c; }
 .topic-type.chart { background: #f3e5f5; color: #7B1FA2; }
 .topic-type.letter { background: #e8f5e9; color: #388E3C; }
 
@@ -4255,7 +4260,7 @@ function showExampleDetail(example: any) {
 
 .essay-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #ffc53d;
 }
 
 .essay-textarea:disabled {
@@ -4298,12 +4303,12 @@ function showExampleDetail(example: any) {
   padding: 22px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 14px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   line-height: 1.7;
 }
 
 .ref-card h5 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 12px 0;
   font-size: 1em;
 }
@@ -4383,8 +4388,8 @@ function showExampleDetail(example: any) {
 
 .example-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 15px 40px rgba(13, 33, 55, 0.2);
+  border-color: #ffc53d;
 }
 
 .example-preview {
@@ -4405,7 +4410,7 @@ function showExampleDetail(example: any) {
   font-weight: 600;
 }
 
-.example-type.argumentative { background: #e3f2fd; color: #1976D2; }
+.example-type.argumentative { background: #eef3fa; color: #16345c; }
 .example-type.chart { background: #f3e5f5; color: #7B1FA2; }
 .example-type.letter { background: #e8f5e9; color: #388E3C; }
 
@@ -4466,7 +4471,7 @@ function showExampleDetail(example: any) {
 }
 
 .example-essay h4 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 18px 0;
   font-size: 1.4em;
   font-weight: 700;
@@ -4491,7 +4496,7 @@ function showExampleDetail(example: any) {
 }
 
 .example-analysis h4 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 25px 0;
   font-size: 1.4em;
   font-weight: 700;
@@ -4509,7 +4514,7 @@ function showExampleDetail(example: any) {
   padding: 22px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 14px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   line-height: 1.8;
 }
 
@@ -4517,7 +4522,7 @@ function showExampleDetail(example: any) {
   width: 36px;
   height: 36px;
   min-width: 36px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -4546,14 +4551,14 @@ function showExampleDetail(example: any) {
   padding: 12px 15px;
   background: white;
   border-radius: 10px;
-  color: #667eea;
+  color: #16345c;
   font-style: italic;
   font-size: 1.05em;
   line-height: 1.7;
 }
 
 .example-vocabulary h4 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 25px 0;
   font-size: 1.4em;
   font-weight: 700;
@@ -4569,7 +4574,7 @@ function showExampleDetail(example: any) {
   padding: 18px 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -4579,7 +4584,7 @@ function showExampleDetail(example: any) {
 
 .vocab-word {
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
   font-size: 1.15em;
 }
 
@@ -4714,8 +4719,8 @@ function showExampleDetail(example: any) {
 }
 
 .memory-tip-detail {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-left: 4px solid #2196F3;
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
+  border-left: 4px solid #ffc53d;
 }
 
 .memory-method {
@@ -4731,7 +4736,7 @@ function showExampleDetail(example: any) {
 }
 
 .method-item strong {
-  color: #1976D2;
+  color: #16345c;
   display: block;
   margin-bottom: 6px;
 }
@@ -4869,7 +4874,7 @@ function showExampleDetail(example: any) {
 }
 
 .strategy-card h3 {
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 25px;
   font-size: 1.4em;
   padding-bottom: 15px;
@@ -4886,11 +4891,11 @@ function showExampleDetail(example: any) {
   padding: 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .strategy-item h4 {
-  color: #764ba2;
+  color: #16345c;
   margin-bottom: 15px;
   font-size: 1.1em;
 }
@@ -4931,13 +4936,13 @@ function showExampleDetail(example: any) {
 
 .category-box {
   padding: 20px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 12px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #ffc53d;
 }
 
 .category-box h4 {
-  color: #1976D2;
+  color: #16345c;
   margin-bottom: 15px;
   font-size: 1.1em;
 }
@@ -4965,7 +4970,7 @@ function showExampleDetail(example: any) {
 }
 
 .vocab-upgrade-table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 15px;
   text-align: left;
@@ -5059,11 +5064,11 @@ function showExampleDetail(example: any) {
   padding: 20px;
   background: white;
   border-radius: 12px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #ffc53d;
 }
 
 .arg-level h5 {
-  color: #1976D2;
+  color: #16345c;
   margin: 0 0 12px 0;
   font-size: 1.1em;
 }
@@ -5093,7 +5098,7 @@ function showExampleDetail(example: any) {
 }
 
 .transition-table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 12px;
   text-align: left;
@@ -5180,7 +5185,7 @@ function showExampleDetail(example: any) {
 .time-phase {
   font-size: 1.2em;
   font-weight: 600;
-  color: #1976D2;
+  color: #16345c;
   margin-bottom: 10px;
 }
 

@@ -32,7 +32,7 @@ const getCategoryColor = (category: string) => {
   const colors: Record<string, string> = {
     study: '#4CAF50',
     streak: '#FF6B6B',
-    milestone: '#2196F3',
+    milestone: '#16345c',
     mastery: '#FFD700'
   }
   return colors[category] || '#999'
@@ -243,7 +243,7 @@ onMounted(() => {
 
 /* 等级卡片 */
 .level-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 

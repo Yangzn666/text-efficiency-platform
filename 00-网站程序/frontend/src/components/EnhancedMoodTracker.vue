@@ -283,7 +283,7 @@ watch(historyPeriod, () => {
 }
 
 .mood-dashboard {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
   padding: 25px;
   color: white;
@@ -419,7 +419,7 @@ watch(historyPeriod, () => {
 }
 
 .recommendation-card {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 15px;
   padding: 20px;
   cursor: pointer;
@@ -429,14 +429,14 @@ watch(historyPeriod, () => {
 
 .recommendation-card:hover {
   transform: translateY(-5px);
-  border-color: #667eea;
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  border-color: #ffc53d;
+  box-shadow: 0 10px 25px rgba(13, 33, 55, 0.3);
 }
 
 .activity-icon {
   text-align: center;
   margin-bottom: 15px;
-  color: #667eea;
+  color: #16345c;
 }
 
 .activity-info h5 {

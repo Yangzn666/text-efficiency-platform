@@ -4,7 +4,7 @@
     <div class="page-header">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <router-link to="/cs408">408专业课</router-link>
+          <router-link to="/cs408">408计算机</router-link>
         </el-breadcrumb-item>
         <el-breadcrumb-item>数据结构</el-breadcrumb-item>
       </el-breadcrumb>
@@ -256,7 +256,7 @@ function toggleCurrentSection() {
           line-height: 48px;
           
           &.is-active {
-            color: #1890ff;
+            color: #16345c;
           }
         }
         
@@ -302,7 +302,7 @@ function toggleCurrentSection() {
         
         :deep(h2) {
           font-size: 20px;
-          color: #1890ff;
+          color: #16345c;
           border-bottom: 2px solid #e8e8e8;
           padding-bottom: 8px;
           margin-top: 24px;
@@ -382,7 +382,7 @@ function toggleCurrentSection() {
         }
         
         :deep(blockquote) {
-          border-left: 4px solid #1890ff;
+          border-left: 4px solid #ffc53d;
           padding-left: 16px;
           margin: 16px 0;
           color: #595959;
@@ -421,7 +421,7 @@ function toggleCurrentSection() {
           transition: all 0.3s;
           
           &:hover {
-            color: #66b1ff;
+            color: #409eff;
             background: #ecf5ff;
             padding: 2px 4px;
             border-radius: 3px;

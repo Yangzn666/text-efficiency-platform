@@ -463,7 +463,7 @@ const getStatusText = (level: number) => {
 }
 
 .grade-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 
@@ -500,7 +500,7 @@ const getStatusText = (level: number) => {
   color: #333;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #16345c;
 }
 
 .section-desc {
@@ -557,7 +557,7 @@ const getStatusText = (level: number) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #667eea;
+  background: #16345c;
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -707,11 +707,11 @@ const getStatusText = (level: number) => {
 
 .weakness-advice {
   font-size: 0.9em;
-  color: #2196F3;
+  color: #16345c;
   padding: 8px 12px;
   background: white;
   border-radius: 6px;
-  border-left: 3px solid #2196F3;
+  border-left: 3px solid #16345c;
 }
 
 /* 知识点掌握情况 */
@@ -734,7 +734,7 @@ const getStatusText = (level: number) => {
   grid-template-columns: 2fr 3fr 1fr;
   gap: 15px;
   padding: 12px 15px;
-  background: #667eea;
+  background: #16345c;
   color: white;
   border-radius: 8px;
   font-weight: 600;
@@ -854,7 +854,7 @@ const getStatusText = (level: number) => {
 
 .ai-tip-card {
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -862,7 +862,7 @@ const getStatusText = (level: number) => {
 
 .ai-tip-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.3);
 }
 
 .tip-template {
@@ -910,7 +910,7 @@ const getStatusText = (level: number) => {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 12px;
-  border-left: 5px solid #667eea;
+  border-left: 5px solid #16345c;
   transition: all 0.3s ease;
 }
 
@@ -921,7 +921,7 @@ const getStatusText = (level: number) => {
 
 .phase-number {
   font-size: 0.9em;
-  color: #667eea;
+  color: #16345c;
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -941,7 +941,7 @@ const getStatusText = (level: number) => {
 
 .phase-time {
   font-size: 0.9em;
-  color: #2196F3;
+  color: #16345c;
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -1030,11 +1030,11 @@ const getStatusText = (level: number) => {
 
 /* 总结与鼓励 */
 .encouragement {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
   padding: 30px;
   color: white;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.3);
 }
 
 .encouragement .section-title {

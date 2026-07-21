@@ -39,7 +39,7 @@
           <el-progress 
             :percentage="exercisePercent" 
             :stroke-width="8"
-            color="#2196F3"
+            color="#16345c"
             class="progress-bar"
           />
         </div>

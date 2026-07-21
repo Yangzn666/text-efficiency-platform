@@ -215,7 +215,7 @@ function saveProgress() {
 }
 
 .pattern-type-badge.opening {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 

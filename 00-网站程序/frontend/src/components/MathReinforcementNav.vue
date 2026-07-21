@@ -52,9 +52,9 @@ const activeMenu = computed(() => {
 <style scoped>
 .math-reinforcement-nav {
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 100%);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(13, 33, 55, 0.25);
   overflow: hidden;
   padding: 4px;
 }
@@ -69,11 +69,11 @@ const activeMenu = computed(() => {
 .reinforcement-menu :deep(.el-menu-item) {
   font-size: 15px;
   padding: 0 28px;
-  height: 52px;
-  line-height: 52px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
+  height: 48px;
+  line-height: 48px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #b8c9dd;
+  border-radius: 7px;
   margin: 0 4px;
   font-weight: 500;
   position: relative;
@@ -104,10 +104,10 @@ const activeMenu = computed(() => {
 }
 
 .reinforcement-menu :deep(.el-menu-item.is-active) {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
-  color: #667eea;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ffc53d 0%, #f0a820 100%);
+  color: #0d2137;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(255, 197, 61, 0.35);
   transform: translateY(-2px);
 }
 

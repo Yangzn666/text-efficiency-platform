@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 使用动态导入实现路由懒加载
 const HomeView = () => import('@/views/HomeView.vue')
+const TodayStatusView = () => import('@/views/TodayStatusView.vue')
 const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
-const LearningPathView = () => import('@/views/LearningPathView.vue')
-const EnergyView = () => import('@/views/EnergyView.vue')
-const PsychologyView = () => import('@/views/PsychologyView.vue')
 const CS408View = () => import('@/views/CS408View.vue')
 const CSLearningView = () => import('@/views/CSLearning.vue')
 const DSLearningView = () => import('@/views/DSLearning.vue')
@@ -19,55 +17,28 @@ const SpecialTrainingCenter = () => import('@/components/SpecialTrainingCenter.v
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
-const UXOptimizationView = () => import('@/views/UXOptimizationView.vue')
-const PerformanceOptimizationView = () => import('@/views/PerformanceOptimizationView.vue')
-const SystemTestDeploymentView = () => import('@/views/SystemTestDeploymentView.vue')
-const TaskManagementView = () => import('@/views/TaskManagementView.vue')
 const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
-// 翻译模块子页面
-const TranslationPhrasesView = () => import('@/views/TranslationPhrasesView.vue')
-const TranslationVocabularyView = () => import('@/views/TranslationVocabularyView.vue')
-const TranslationPatternsView = () => import('@/views/TranslationPatternsView.vue')
-const TranslationExamsView = () => import('@/views/TranslationExamsView.vue')
-const TranslationTipsView = () => import('@/views/TranslationTipsView.vue')
-const TranslationMistakesView = () => import('@/views/TranslationMistakesView.vue')
+// 翻译模块（合并为单页标签）
+const TranslationView = () => import('@/views/TranslationView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'today-status',
+      component: TodayStatusView
+    },
+    {
+      path: '/home',
       name: 'home',
       component: HomeView
     },
-    // {
-      // path: '/auth',
-      // name: 'auth',
-      // component: AuthView
-    // },
     {
       path: '/study-methods',
       name: 'study-methods',
       component: StudyMethodsView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/learning-path',
-      name: 'learning-path',
-      component: LearningPathView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/energy',
-      name: 'energy',
-      component: EnergyView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/psychology',
-      name: 'psychology',
-      component: PsychologyView,
       meta: { requiresAuth: true }
     },
     {
@@ -122,7 +93,7 @@ const router = createRouter({
       component: WrongProblemsView,
       meta: { 
         requiresAuth: true,
-        title: '计组错题本'
+        title: '全科错题本'
       }
     },
     {
@@ -141,15 +112,6 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     // 数学强化阶段路由
-    {
-      path: '/math/reinforcement',
-      name: 'math-reinforcement-dashboard',
-      component: ReinforcementDashboard,
-      meta: { 
-        requiresAuth: true,
-        title: '数学强化学习仪表盘'
-      }
-    },
     {
       path: '/math/reinforcement/topics',
       name: 'math-reinforcement-topics',
@@ -196,29 +158,6 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/ux',
-      name: 'ux',
-      component: UXOptimizationView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/performance',
-      name: 'performance',
-      component: PerformanceOptimizationView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/test-deploy',
-      name: 'test-deploy',
-      component: SystemTestDeploymentView,
-      meta: { requiresAuth: true }
-    },
-    {
-      path: '/tasks',
-      name: 'tasks',
-      component: TaskManagementView
-    },
-    {
       path: '/intensive-reading',
       name: 'intensive-reading',
       component: IntensiveReadingView,
@@ -230,42 +169,12 @@ const router = createRouter({
       component: UniversitiesView,
       meta: { requiresAuth: false }
     },
-    // 翻译模块子路由
+    // 翻译模块（6个子模块合并为单页标签，通过 ?tab= 定位）
     {
-      path: '/translation/phrases',
-      name: 'translation-phrases',
-      component: TranslationPhrasesView,
-      meta: { requiresAuth: true, title: '翻译词组积累' }
-    },
-    {
-      path: '/translation/vocabulary',
-      name: 'translation-vocabulary',
-      component: TranslationVocabularyView,
-      meta: { requiresAuth: true, title: '核心词汇积累' }
-    },
-    {
-      path: '/translation/patterns',
-      name: 'translation-patterns',
-      component: TranslationPatternsView,
-      meta: { requiresAuth: true, title: '万能句型积累' }
-    },
-    {
-      path: '/translation/exams',
-      name: 'translation-exams',
-      component: TranslationExamsView,
-      meta: { requiresAuth: true, title: '真题实战训练' }
-    },
-    {
-      path: '/translation/tips',
-      name: 'translation-tips',
-      component: TranslationTipsView,
-      meta: { requiresAuth: true, title: '翻译技巧讲义' }
-    },
-    {
-      path: '/translation/mistakes',
-      name: 'translation-mistakes',
-      component: TranslationMistakesView,
-      meta: { requiresAuth: true, title: '错题本' }
+      path: '/translation',
+      name: 'translation',
+      component: TranslationView,
+      meta: { requiresAuth: true, title: '翻译学习模块' }
     }
   ]
 })

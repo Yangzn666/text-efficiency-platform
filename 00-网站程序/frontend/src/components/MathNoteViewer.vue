@@ -661,24 +661,24 @@ onMounted(async () => {
 }
 
 .chapter-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.3);
 }
 
 .chapter-item.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.3);
 }
 
 .chapter-number {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  background: rgba(13, 33, 55, 0.1);
+  color: #16345c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -774,7 +774,7 @@ onMounted(async () => {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 16px;
   border: 1px solid #e8ecf1;
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.08);
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.08);
 }
 
 .mindmap-header {

@@ -106,12 +106,12 @@ const handleNodeClick = (data: any) => {
       transition: all 0.2s;
       
       &:hover {
-        background: rgba(102, 126, 234, 0.08);
+        background: rgba(13, 33, 55, 0.08);
       }
     }
     
     .el-tree-node.is-current > .el-tree-node__content {
-      background: linear-gradient(90deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+      background: linear-gradient(90deg, rgba(13, 33, 55, 0.15) 0%, rgba(30, 69, 118, 0.15) 100%);
       color: $primary-color;
       font-weight: 600;
     }

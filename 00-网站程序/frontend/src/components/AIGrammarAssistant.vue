@@ -701,12 +701,12 @@ const formatDate = (date: string) => {
 
 /* 头部样式 */
 .assistant-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
   padding: 35px;
   margin-bottom: 30px;
   color: white;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 10px 30px rgba(13, 33, 55, 0.35);
 }
 
 .header-content {
@@ -798,8 +798,8 @@ const formatDate = (date: string) => {
 }
 
 .action-card.primary {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-color: #2196F3;
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
+  border-color: #ffc53d;
 }
 
 .action-card.secondary {
@@ -871,8 +871,8 @@ const formatDate = (date: string) => {
 }
 
 .template-card:hover {
-  border-color: #667eea;
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.25);
+  border-color: #ffc53d;
+  box-shadow: 0 6px 16px rgba(13, 33, 55, 0.25);
   transform: translateY(-4px);
 }
 
@@ -890,7 +890,7 @@ const formatDate = (date: string) => {
 }
 
 .template-number {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   width: 30px;
   height: 30px;
@@ -960,8 +960,8 @@ const formatDate = (date: string) => {
 }
 
 .conversation-item:hover {
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  border-color: #ffc53d;
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.2);
   transform: translateX(4px);
 }
 
@@ -1072,7 +1072,7 @@ const formatDate = (date: string) => {
 }
 
 .module-percentage {
-  color: #667eea;
+  color: #16345c;
   font-weight: 600;
 }
 
@@ -1141,7 +1141,7 @@ const formatDate = (date: string) => {
   background: #f5f7fa;
   padding: 15px;
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
   line-height: 1.6;

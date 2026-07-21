@@ -396,7 +396,7 @@ onMounted(() => {
 
 .current-date {
   margin: 0 0 8px 0;
-  color: #667eea;
+  color: #16345c;
   font-size: 1.1em;
   font-weight: 500;
 }
@@ -514,9 +514,9 @@ onMounted(() => {
 }
 
 .calendar-day.selected {
-  border-color: #2196F3;
-  background-color: #e3f2fd;
-  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+  border-color: #ffc53d;
+  background-color: #eef3fa;
+  box-shadow: 0 0 0 3px rgba(255, 197, 61, 0.2);
 }
 
 .day-number {

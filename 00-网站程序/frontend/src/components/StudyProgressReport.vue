@@ -210,7 +210,7 @@ onMounted(() => {
 }
 
 .report-card-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 25px;
   display: flex;
@@ -246,7 +246,7 @@ onMounted(() => {
   color: #333;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid #16345c;
 }
 
 /* 学习内容网格 */
@@ -288,7 +288,7 @@ onMounted(() => {
 }
 
 .duration {
-  color: #2196F3;
+  color: #16345c;
   font-weight: 600;
   font-size: 0.9em;
 }
@@ -339,7 +339,7 @@ onMounted(() => {
 
 .stat-box {
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 10px;
   text-align: center;

@@ -206,7 +206,7 @@ const getTrendColor = (trend: string) => {
   padding: 15px;
   background: #f8f9fa;
   border-radius: 10px;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #16345c;
   transition: all 0.3s ease;
 }
 

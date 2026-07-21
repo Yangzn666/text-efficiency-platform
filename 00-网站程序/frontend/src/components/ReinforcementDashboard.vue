@@ -5,8 +5,13 @@
     
     <!-- 页面标题 -->
     <div class="page-header">
-      <h1>📊 数学强化学习仪表盘</h1>
-      <p class="subtitle">精准追踪 · 智能复习 · 高效提升</p>
+      <div class="ph-grid"></div>
+      <div class="ph-glow"></div>
+      <div class="ph-inner">
+        <span class="ph-kicker">MATH · 数学一 · 目标120+</span>
+        <h1>数学强化学习<span class="gold">仪表盘</span></h1>
+        <p class="subtitle">精准追踪 · 智能复习 · 高效提升</p>
+      </div>
     </div>
 
     <!-- 总体进度概览 -->
@@ -1324,58 +1329,81 @@ dV = r²sinφdrdφdθ
 
 <style scoped>
 .reinforcement-dashboard {
+  --font-display: 'Barlow Condensed', 'FZCuHei', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --gold: #ffc53d;
+  --navy-deep: #0d2137;
+  --navy: #16345c;
+  --line: #e4ebf3;
   max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
-  background: linear-gradient(180deg, #f5f7fa 0%, #e8ecf1 100%);
+  background: linear-gradient(180deg, #f5f8fc 0%, #edf2f8 100%);
   min-height: 100vh;
 }
 
 .page-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 40px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+  text-align: left;
+  margin-bottom: 36px;
+  padding: 38px 40px 32px;
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(13, 33, 55, 0.25);
   position: relative;
   overflow: hidden;
 }
 
-.page-header::before {
-  content: '';
+.ph-grid {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: pulse 4s ease-in-out infinite;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+.ph-glow {
+  position: absolute;
+  top: -70%;
+  right: -8%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,197,61,0.13) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ph-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ph-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
 .page-header h1 {
-  font-size: 36px;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   color: #ffffff;
-  margin-bottom: 12px;
-  font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
-  z-index: 1;
+  margin: 8px 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.page-header h1 .gold {
+  color: var(--gold);
 }
 
 .subtitle {
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 16px;
+  color: #a8bdd4;
+  font-size: 0.95rem;
   margin: 0;
   font-weight: 400;
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 0.06em;
 }
 
 /* 总体进度 */
@@ -1414,15 +1442,15 @@ dV = r²sinφdrdφdθ
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #ffc53d 0%, #f0a820 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .subject-progress-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 12px 40px rgba(13, 33, 55, 0.14);
+  border-color: rgba(255, 197, 61, 0.5);
 }
 
 .subject-progress-card:hover::before {
@@ -1433,7 +1461,7 @@ dV = r²sinφdrdφdθ
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   display: flex;
   align-items: center;
@@ -1441,40 +1469,40 @@ dV = r²sinφdrdφdθ
   font-size: 28px;
   font-weight: bold;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.25);
   transition: all 0.3s ease;
 }
 
 .subject-progress-card:hover .subject-icon {
   transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.35);
 }
 
 .subject-icon.math {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+  background: linear-gradient(135deg, #67C23A 0%, #4daf1e 100%);
+  box-shadow: 0 4px 12px rgba(103, 194, 58, 0.3);
 }
 
 .subject-progress-card:hover .subject-icon.math {
-  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+  box-shadow: 0 6px 20px rgba(103, 194, 58, 0.4);
 }
 
 .subject-icon.linear {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+  background: linear-gradient(135deg, #409EFF 0%, #2b7de0 100%);
+  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.3);
 }
 
 .subject-progress-card:hover .subject-icon.linear {
-  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+  box-shadow: 0 6px 20px rgba(64, 158, 255, 0.4);
 }
 
 .subject-icon.prob {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  box-shadow: 0 4px 12px rgba(67, 233, 123, 0.3);
+  background: linear-gradient(135deg, #E6A23C 0%, #cf8a1e 100%);
+  box-shadow: 0 4px 12px rgba(230, 162, 60, 0.3);
 }
 
 .subject-progress-card:hover .subject-icon.prob {
-  box-shadow: 0 6px 20px rgba(67, 233, 123, 0.4);
+  box-shadow: 0 6px 20px rgba(230, 162, 60, 0.4);
 }
 
 .subject-info {
@@ -1558,9 +1586,9 @@ dV = r²sinφdrdφdθ
 
 .task-item:hover {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-color: #667eea;
+  border-color: rgba(255, 197, 61, 0.6);
   transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.10);
 }
 
 .task-item.completed {
@@ -1590,8 +1618,8 @@ dV = r²sinφdrdφdθ
   font-size: 13px;
   padding: 4px 10px;
   border-radius: 6px;
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  background: rgba(22, 52, 92, 0.08);
+  color: #16345c;
   font-weight: 500;
 }
 
@@ -1617,8 +1645,8 @@ dV = r²sinφdrdφdθ
 
 .alert-card:hover {
   transform: translateX(6px);
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
-  border-color: #667eea;
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.10);
+  border-color: rgba(255, 197, 61, 0.5);
 }
 
 .alert-icon {
@@ -1634,15 +1662,15 @@ dV = r²sinφdrdφdθ
 }
 
 .alert-icon.warning {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #F56C6C 0%, #e04b4b 100%);
 }
 
 .alert-icon.info {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #409EFF 0%, #2b7de0 100%);
 }
 
 .alert-icon.success {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #67C23A 0%, #4daf1e 100%);
 }
 
 .alert-content {
@@ -1699,32 +1727,33 @@ dV = r²sinφdrdφdθ
 .stat-card:hover {
   transform: translateY(-4px);
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-color: #667eea;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  border-color: rgba(255, 197, 61, 0.5);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.10);
 }
 
 .stat-card.highlight {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0d2137 0%, #16345c 100%);
   color: white;
   border: none;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.3);
 }
 
 .stat-card.highlight:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 12px 32px rgba(13, 33, 55, 0.4);
 }
 
 .stat-number {
   font-size: 28px;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 8px;
   letter-spacing: 1px;
+  font-family: var(--font-display);
 }
 
 .stat-card.highlight .stat-number {
-  color: white;
+  color: #ffc53d;
 }
 
 .stat-label {
@@ -1781,12 +1810,12 @@ dV = r²sinφdrdφdθ
   }
   
   .page-header {
-    padding: 24px 0;
-    border-radius: 16px;
+    padding: 26px 20px 22px;
+    border-radius: 10px;
   }
   
   .page-header h1 {
-    font-size: 28px;
+    font-size: 1.6rem;
   }
   
   .progress-overview {

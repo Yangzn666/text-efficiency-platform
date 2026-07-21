@@ -228,7 +228,7 @@ const formatDate = (dateString: string) => {
 }
 
 .overview-card.highlight {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 
@@ -244,7 +244,7 @@ const formatDate = (dateString: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
   color: white;
 }
@@ -403,7 +403,7 @@ const formatDate = (dateString: string) => {
 }
 
 .progress-count {
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
   font-size: 1.1em;
 }

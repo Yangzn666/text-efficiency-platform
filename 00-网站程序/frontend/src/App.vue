@@ -5,12 +5,12 @@
       <div class="loading-spinner"></div>
       <p class="loading-text">加载中...</p>
     </div>
-    
+
     <div class="container">
       <header class="header">
         <div class="header-content">
           <h1>🎓 考研效率平台</h1>
-          
+
           <!-- 移动端汉堡菜单按钮 -->
           <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="切换菜单">
             <span class="hamburger-icon" :class="{ open: mobileMenuOpen }">
@@ -20,11 +20,11 @@
             </span>
           </button>
         </div>
-        
+
         <!-- 桌面端导航 -->
         <nav class="nav desktop-nav">
-          <button 
-            v-for="route in routes" 
+          <button
+            v-for="route in routes"
             :key="route.path"
             :class="{ active: $route.path === route.path }"
             @click="goToRoute(route.path)"
@@ -32,11 +32,11 @@
             {{ route.name }}
           </button>
         </nav>
-        
+
         <!-- 移动端下拉菜单 -->
         <nav v-if="mobileMenuOpen" class="nav mobile-nav">
-          <button 
-            v-for="route in routes" 
+          <button
+            v-for="route in routes"
             :key="route.path"
             :class="{ active: $route.path === route.path }"
             @click="handleMobileNavClick(route.path)"
@@ -51,45 +51,36 @@
       </main>
 
       <footer class="footer">
-        <p>© 2026 考研效率平台</p>
+        <p>© 2026 考研效率平台 · 浙大海宁 · 27考研必胜</p>
       </footer>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import TodoDashboard from '@/components/TodoDashboard.vue'
-import MathView from '@/views/MathView.vue'
-import EnglishView from '@/views/EnglishView.vue'
-import PoliticsView from '@/views/PoliticsView.vue'
-import CS408View from '@/views/CS408View.vue'
-import StudyMethodsView from '@/views/StudyMethodsView.vue'
-import LearningPathView from '@/views/LearningPathView.vue'
-import DataAnalyticsView from '@/views/DataAnalyticsView.vue'
 
-const currentRoute = ref('/')
 const isLoading = ref(true)
 const mobileMenuOpen = ref(false)
 
 const routes = [
-  { path: '/', name: '首页' },
+  { path: '/', name: '今日状态' },
   { path: '/math', name: '数学一' },
   { path: '/english', name: '英语一' },
   { path: '/politics', name: '政治' },
   { path: '/cs408', name: '408计算机' },
+  { path: '/translation', name: '翻译' },
+  { path: '/intensive-reading', name: '精读' },
+  { path: '/wrong-problems', name: '错题本' },
   { path: '/universities', name: '🏫 院校查询' },
-  { path: '/study-methods', name: '学习方法' },
-  { path: '/learning-path', name: '学习路径' },
-  { path: '/energy', name: '⚡ 学习能量' },
-  { path: '/analytics', name: '数据分析' }
+  { path: '/analytics', name: '数据分析' },
+  { path: '/study-methods', name: '学习方法' }
 ]
 
 const router = useRouter()
 
 const goToRoute = (path) => {
-  console.log('导航到:', path)
   router.push(path).catch(err => {
     console.error('路由跳转失败:', err)
   })
@@ -97,26 +88,20 @@ const goToRoute = (path) => {
 
 const handleMobileNavClick = (path) => {
   goToRoute(path)
-  mobileMenuOpen.value = false  // 点击后关闭菜单
+  mobileMenuOpen.value = false
 }
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
-const goToSubject = (subject) => {
-  router.push(`/${subject}`)
-}
-
 // 页面加载完成后隐藏加载指示器
 onMounted(() => {
-  // 等待路由准备好后再隐藏加载指示器
   router.isReady().then(() => {
     setTimeout(() => {
       isLoading.value = false
     }, 300)
   }).catch(() => {
-    // 如果出错，也隐藏加载指示器
     isLoading.value = false
   })
 })
@@ -131,12 +116,12 @@ onMounted(() => {
 
 body {
   font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background: #f5f7fa;
+  background: #f5f8fc;
   min-height: 100vh;
 }
 
 .container {
-  max-width: 3000px; /* 与main.scss保持一致，进一步增加宽度 */
+  max-width: 3000px;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -144,13 +129,40 @@ body {
   padding: 0;
 }
 
+/* ===== 作战室顶栏 ===== */
 .header {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  padding: 25px 20px;
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
+  padding: 0;
   border-radius: 0;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(13, 33, 55, 0.35);
   border: none;
   margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 网格纹理 */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+/* 金色光晕 */
+.header::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -5%;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(255, 197, 61, 0.10) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .header-content {
@@ -159,17 +171,33 @@ body {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 18px 24px 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .header h1 {
-  color: #1976D2;
+  color: #ffffff;
   margin: 0;
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #1976D2 0%, #64B5F6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header h1::after {
+  content: '27考研 · 浙大海宁';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #ffc53d;
+  letter-spacing: 0.12em;
+  border: 1px solid rgba(255, 197, 61, 0.4);
+  border-radius: 3px;
+  padding: 3px 8px;
+  transform: translateY(1px);
 }
 
 /* 移动端汉堡菜单按钮 */
@@ -192,7 +220,7 @@ body {
 .hamburger-icon span {
   display: block;
   height: 3px;
-  background: #1976D2;
+  background: #ffc53d;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -209,96 +237,81 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* ===== 导航按钮 ===== */
 .nav {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  padding: 10px 0;
+  gap: 6px;
+  padding: 6px 24px 14px;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* 桌面端导航：单行显示，不换行 */
 .desktop-nav {
   flex-wrap: nowrap;
   overflow-x: visible;
 }
 
-/* 移动端导航：垂直排列 */
 .mobile-nav {
   display: none;
   flex-direction: column;
-  gap: 10px;
-  padding: 15px 20px;
-  background: white;
-  border-top: 1px solid #e0e0e0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: 8px;
+  padding: 14px 20px 18px;
+  background: rgba(13, 33, 55, 0.97);
+  border-top: 1px solid rgba(255, 197, 61, 0.15);
 }
 
 .nav button {
-  padding: 12px 22px;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  background: white;
-  color: #333;  /* 提高对比度，从 #666 改为 #333 */
+  padding: 9px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #b8c9dd;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  font-weight: normal !important;
-  font-size: 1.15rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: 500;
+  font-size: 1rem;
   position: relative;
   overflow: hidden;
-  font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+  font-family: inherit;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.nav button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-  border-radius: 12px;
+  letter-spacing: 0.03em;
 }
 
 .nav button:hover {
-  color: #2196F3;
-  border-color: #2196F3;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.2);
-}
-
-.nav button:hover::before {
-  opacity: 0.1;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 197, 61, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .nav button.active {
-  background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
-  color: white;
-  border-color: #2196F3;
-  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
-  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ffc53d 0%, #f0a820 100%);
+  color: #0d2137;
+  font-weight: 700;
+  border-color: #ffc53d;
+  box-shadow: 0 4px 16px rgba(255, 197, 61, 0.35);
+  transform: translateY(-2px);
 }
 
 .nav button.active::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -3px;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: #2196F3;
+  width: 6px;
+  height: 6px;
+  background: #ffc53d;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(33, 150, 243, 0.4);
+  box-shadow: 0 2px 6px rgba(255, 197, 61, 0.6);
 }
 
+/* ===== 主内容区 ===== */
 .main-content {
   flex: 1;
   padding: 20px;
@@ -355,13 +368,13 @@ body {
 }
 
 .feature-card h3 {
-  color: #333;
+  color: #303133;
   margin-bottom: 15px;
   font-size: 1.4rem;
 }
 
 .feature-card p {
-  color: #666;
+  color: #5b6b7f;
   margin-bottom: 20px;
   line-height: 1.6;
 }
@@ -376,14 +389,14 @@ body {
 .progress-bar {
   width: 100px;
   height: 8px;
-  background: #e0e0e0;
+  background: #e4ebf3;
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: linear-gradient(90deg, #ffc53d, #f0a820);
   border-radius: 4px;
   transition: width 0.3s ease;
 }
@@ -397,22 +410,26 @@ body {
   min-height: 600px;
 }
 
+/* ===== 页脚 ===== */
 .footer {
   text-align: center;
-  padding: 20px;
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+  padding: 18px 20px;
+  color: #7a8fa6;
+  background: #0d2137;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  border-top: 2px solid rgba(255, 197, 61, 0.25);
 }
 
-/* 全局加载指示器 */
+/* ===== 全局加载指示器 ===== */
 .global-loading {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -420,13 +437,24 @@ body {
   z-index: 9999;
 }
 
+.global-loading::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
 .loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
+  width: 56px;
+  height: 56px;
+  border: 4px solid rgba(255, 197, 61, 0.2);
+  border-top-color: #ffc53d;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.9s linear infinite;
+  position: relative;
 }
 
 @keyframes spin {
@@ -434,135 +462,146 @@ body {
 }
 
 .loading-text {
-  color: white;
+  color: #b8c9dd;
   margin-top: 20px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.15em;
+  position: relative;
 }
 
-/* 响应式设计 - 平板 */
+/* ===== 响应式 ===== */
 @media (max-width: 1024px) {
   .nav button {
-    padding: 10px 16px;
-    font-size: 0.95rem;
+    padding: 8px 14px;
+    font-size: 0.9rem;
   }
 }
 
-/* 响应式设计 - 手机 */
 @media (max-width: 768px) {
-  .header {
-    padding: 15px 10px;
-    border-radius: 0;
-    margin-bottom: 0;
+  .header-content {
+    padding: 14px 14px 8px;
   }
-  
+
   .header h1 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
   }
-  
+
+  .header h1::after {
+    display: none;
+  }
+
   .nav {
     gap: 6px;
     justify-content: flex-start;
-    padding: 8px 10px;
+    padding: 6px 10px 12px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   .nav button {
-    padding: 8px 14px;
+    padding: 7px 13px;
     font-size: 0.85rem;
-    border-radius: 8px;
+    border-radius: 5px;
     flex-shrink: 0;
   }
-  
-  /* 移动端：显示汉堡菜单，隐藏桌面导航 */
+
   .mobile-menu-toggle {
     display: block;
   }
-  
+
   .desktop-nav {
     display: none;
   }
-  
+
   .mobile-nav {
     display: flex;
   }
-  
+
   .main-content {
     padding: 10px;
   }
-  
+
   .subject-page, .page {
     padding: 15px 10px;
     border-radius: 15px;
   }
-  
+
   .hero h2 {
     font-size: 1.5rem;
   }
-  
+
   .subtitle {
     font-size: 0.9rem;
   }
-  
+
   .features {
     grid-template-columns: 1fr;
     gap: 15px;
     padding: 0;
   }
-  
+
   .feature-card {
     padding: 20px;
   }
-  
+
   .footer {
-    padding: 15px 10px;
-    font-size: 0.85rem;
+    padding: 14px 10px;
+    font-size: 0.7rem;
   }
 }
 
-/* 响应式设计 - 小屏手机 */
 @media (max-width: 480px) {
-  .header {
-    padding: 12px 8px;
+  .header-content {
+    padding: 12px 10px 6px;
   }
-  
+
   .header h1 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    font-size: 1.05rem;
   }
-  
+
   .nav {
     gap: 5px;
-    padding: 6px 8px;
+    padding: 5px 8px 10px;
   }
-  
+
   .nav button {
     padding: 6px 10px;
-    font-size: 0.75rem;
-    border-radius: 6px;
+    font-size: 0.78rem;
+    border-radius: 4px;
   }
-  
+
   .main-content {
     padding: 8px;
   }
-  
+
   .subject-page, .page {
     padding: 12px 8px;
     border-radius: 12px;
   }
-  
+
   .feature-card {
     padding: 15px;
   }
-  
+
   .feature-card .icon {
     font-size: 2rem;
   }
-  
+
   .feature-card h3 {
     font-size: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav button,
+  .feature-card {
+    transition: none;
+  }
+  .nav button:hover,
+  .nav button.active {
+    transform: none;
   }
 }
 </style>

@@ -2,8 +2,13 @@
   <div class="universities-container">
     <!-- 头部标题 -->
     <header class="page-header">
-      <h1>🎓 11408考研院校数据库</h1>
-      <p class="subtitle">61所重点院校完整信息 · 2026版</p>
+      <div class="ph-grid"></div>
+      <div class="ph-glow"></div>
+      <div class="ph-inner">
+        <span class="ph-kicker">UNIVERSITIES · 院校数据库 · 2026版</span>
+        <h1>11408考研院校<span class="gold">数据库</span></h1>
+        <p class="subtitle">61所重点院校完整信息 · 分数线 · 报录比 · 科目变更</p>
+      </div>
     </header>
 
     <!-- 搜索和筛选区 -->
@@ -182,6 +187,7 @@
               <thead>
                 <tr>
                   <th>年份</th>
+                  <th>方向/校区</th>
                   <th>复试线</th>
                   <th>录取均分</th>
                   <th>统考名额</th>
@@ -189,8 +195,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="year in selectedUni.scoreHistory" :key="year.year">
+                <tr v-for="(year, idx) in selectedUni.scoreHistory" :key="idx">
                   <td>{{ year.year }}</td>
+                  <td>{{ year.direction || '—' }}</td>
                   <td>{{ year.scoreLine }}</td>
                   <td>{{ year.avgScore }}</td>
                   <td>{{ year.quota }}</td>
@@ -458,56 +465,81 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 <style scoped>
 .universities-container {
+  --font-display: 'Barlow Condensed', 'FZCuHei', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --gold: #ffc53d;
+  --navy-deep: #0d2137;
+  --navy: #16345c;
+  --line: #e4ebf3;
   max-width: 1400px;
   margin: 0 auto;
   padding: 24px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(180deg, #f5f8fc 0%, #edf2f8 100%);
   min-height: 100vh;
 }
 
 /* 头部 */
 .page-header {
-  text-align: center;
-  margin-bottom: 32px;
-  padding: 40px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
+  text-align: left;
+  margin-bottom: 28px;
+  padding: 38px 40px 32px;
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
+  border-radius: 14px;
   color: white;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 32px rgba(13, 33, 55, 0.25);
   position: relative;
   overflow: hidden;
 }
 
-.page-header::before {
-  content: '';
+.ph-grid {
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-  animation: shimmer 8s ease-in-out infinite;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
 }
 
-@keyframes shimmer {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-20%, 20%); }
+.ph-glow {
+  position: absolute;
+  top: -70%;
+  right: -8%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,197,61,0.13) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ph-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.ph-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
 .page-header h1 {
-  font-size: 2.5em;
-  margin: 0 0 12px 0;
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin: 8px 0 6px 0;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.page-header h1 .gold {
+  color: var(--gold);
 }
 
 .subtitle {
-  font-size: 1.1em;
-  opacity: 0.95;
+  font-size: 0.95rem;
+  color: #a8bdd4;
   margin: 0;
-  position: relative;
-  z-index: 1;
+  letter-spacing: 0.06em;
 }
 
 /* 筛选区 */
@@ -538,8 +570,8 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 4px 12px rgba(102, 126, 234, 0.1);
+  border-color: #16345c;
+  box-shadow: 0 0 0 4px rgba(22, 52, 92, 0.10), 0 4px 12px rgba(13, 33, 55, 0.08);
   transform: translateY(-1px);
 }
 
@@ -563,15 +595,15 @@ const getLevelBadgeText = (level: string | undefined) => {
 }
 
 .filter-select:hover {
-  border-color: #667eea;
+  border-color: #16345c;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.10);
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  border-color: #16345c;
+  box-shadow: 0 0 0 3px rgba(22, 52, 92, 0.10);
 }
 
 .checkbox-label {
@@ -603,20 +635,20 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .reset-btn {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  color: #ffc53d;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.25);
 }
 
 .reset-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.35);
 }
 
 .reset-btn:active {
@@ -633,36 +665,14 @@ const getLevelBadgeText = (level: string | undefined) => {
 /* 院校卡片 */
 .university-card {
   background: white;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(13, 33, 55, 0.05);
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(102, 126, 234, 0.1);
-}
-
-.university-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.university-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.15);
-  border-color: rgba(102, 126, 234, 0.3);
-}
-
-.university-card:hover::before {
-  opacity: 1;
+  border: 1px solid #e4ebf3;
 }
 
 .university-card::before {
@@ -672,15 +682,16 @@ const getLevelBadgeText = (level: string | undefined) => {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #ffc53d 0%, #f0a820 100%);
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: 1;
 }
 
 .university-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.2);
-  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(13, 33, 55, 0.13);
+  border-color: rgba(255, 197, 61, 0.45);
 }
 
 .university-card:hover::before {
@@ -693,8 +704,8 @@ const getLevelBadgeText = (level: string | undefined) => {
   align-items: flex-start;
   gap: 10px;
   padding: 16px 16px 12px 16px;
-  background: linear-gradient(135deg, #fafbfc 0%, #f5f7fa 100%);
-  border-bottom: 1px solid rgba(102, 126, 234, 0.08);
+  background: linear-gradient(135deg, #fafbfc 0%, #f5f8fc 100%);
+  border-bottom: 1px solid #e4ebf3;
 }
 
 .uni-name {
@@ -713,11 +724,11 @@ const getLevelBadgeText = (level: string | undefined) => {
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #f0f5fa 100%);
   border-radius: 0;
   margin-bottom: 0;
   border: none;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.06);
+  border-bottom: 1px solid #eef3f8;
 }
 
 .college-label {
@@ -776,11 +787,7 @@ const getLevelBadgeText = (level: string | undefined) => {
   justify-content: space-between;
   align-items: center;
   padding: 6px 0;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.06);
-}
-
-.info-row:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #eef3f8;
 }
 
 .info-row:last-child {
@@ -809,7 +816,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 /* 专业预览样式 */
 .majors-preview {
   padding: 8px 0 6px 0;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.06);
+  border-bottom: 1px solid #eef3f8;
 }
 
 .majors-preview .label {
@@ -827,17 +834,17 @@ const getLevelBadgeText = (level: string | undefined) => {
   display: inline-flex;
   align-items: center;
   padding: 5px 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 12px;
   font-size: 11px;
   color: white;
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 2px 6px rgba(13, 33, 55, 0.2);
   transition: all 0.2s;
 }
 
 .university-card:hover .major-tag {
-  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 3px 10px rgba(13, 33, 55, 0.3);
 }
 
 .major-type {
@@ -945,19 +952,19 @@ const getLevelBadgeText = (level: string | undefined) => {
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 11px;
-  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-  color: #5a67d8;
+  background: linear-gradient(135deg, #f5f8fc 0%, #edf2f8 100%);
+  color: #16345c;
   font-weight: 600;
-  border: 1px solid rgba(90, 103, 216, 0.15);
+  border: 1px solid rgba(22, 52, 92, 0.12);
   transition: all 0.2s;
 }
 
 .tag:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  color: #ffc53d;
   border-color: transparent;
   transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 3px 8px rgba(13, 33, 55, 0.25);
 }
 
 .tag-408 {
@@ -991,15 +998,15 @@ const getLevelBadgeText = (level: string | undefined) => {
 .detail-btn {
   width: 100%;
   padding: 12px 16px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  color: #ffc53d;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(13, 33, 55, 0.25);
   position: relative;
   overflow: hidden;
   letter-spacing: 0.02em;
@@ -1020,7 +1027,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .detail-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.45);
+  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.35);
 }
 
 .detail-btn:hover::before {
@@ -1110,7 +1117,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .modal-header {
   padding: 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 100%);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -1143,7 +1150,7 @@ const getLevelBadgeText = (level: string | undefined) => {
   font-size: 1.3em;
   margin-bottom: 16px;
   color: #2d3748;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid #ffc53d;
   padding-bottom: 12px;
   display: flex;
   align-items: center;
@@ -1226,14 +1233,14 @@ const getLevelBadgeText = (level: string | undefined) => {
 }
 
 .subject-item.highlight {
-  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
-  border: 2px solid #667eea;
+  background: linear-gradient(135deg, rgba(255,197,61,0.08) 0%, rgba(240,168,32,0.12) 100%);
+  border: 2px solid rgba(255, 197, 61, 0.5);
 }
 
 .subject-code {
   padding: 4px 12px;
-  background: #667eea;
-  color: white;
+  background: #16345c;
+  color: #ffc53d;
   border-radius: 4px;
   font-weight: bold;
   min-width: 50px;
@@ -1248,7 +1255,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .subject-score {
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
 }
 
 .total-score {
@@ -1279,8 +1286,8 @@ const getLevelBadgeText = (level: string | undefined) => {
 
 .percentage {
   padding: 4px 12px;
-  background: #667eea;
-  color: white;
+  background: #16345c;
+  color: #ffc53d;
   border-radius: 12px;
   font-size: 12px;
   font-weight: bold;
@@ -1295,7 +1302,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 .salary-info {
   margin-top: 15px;
   padding: 15px;
-  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  background: linear-gradient(135deg, rgba(255,197,61,0.08) 0%, rgba(240,168,32,0.12) 100%);
   border-radius: 8px;
   text-align: center;
 }
@@ -1338,7 +1345,7 @@ const getLevelBadgeText = (level: string | undefined) => {
 .target-score {
   text-align: center;
   padding: 15px;
-  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  background: linear-gradient(135deg, rgba(255,197,61,0.08) 0%, rgba(240,168,32,0.12) 100%);
   border-radius: 8px;
   font-size: 1.1em;
 }
@@ -1352,11 +1359,11 @@ const getLevelBadgeText = (level: string | undefined) => {
 .link-item {
   padding: 14px 18px;
   background: white;
-  border-radius: 10px;
-  color: #667eea;
+  border-radius: 8px;
+  color: #16345c;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid #e8ecf1;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #e4ebf3;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -1364,11 +1371,11 @@ const getLevelBadgeText = (level: string | undefined) => {
 }
 
 .link-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-color: #667eea;
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  color: #ffc53d;
+  border-color: #16345c;
   transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.25);
 }
 
 /* 响应式设计 */

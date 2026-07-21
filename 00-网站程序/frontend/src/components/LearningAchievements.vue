@@ -347,7 +347,7 @@ const nextGoals = computed(() => {
 }
 
 .stat-card.highlight {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 
@@ -391,7 +391,7 @@ const nextGoals = computed(() => {
   color: #333;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
 }
 
 .achievements-grid {
@@ -430,7 +430,7 @@ const nextGoals = computed(() => {
 }
 
 .achievement-card.attention {
-  border-top: 3px solid #2196F3;
+  border-top: 3px solid #ffc53d;
 }
 
 .achievement-card.todo {
@@ -494,15 +494,15 @@ const nextGoals = computed(() => {
 
 /* 下一步目标 */
 .next-goals {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 15px;
   padding: 30px;
-  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.15);
 }
 
 .goals-title {
   font-size: 1.5em;
-  color: #1976D2;
+  color: #16345c;
   margin-bottom: 25px;
   text-align: center;
 }
@@ -538,7 +538,7 @@ const nextGoals = computed(() => {
 
 .goal-detail {
   font-size: 1em;
-  color: #667eea;
+  color: #16345c;
   font-weight: 600;
 }
 

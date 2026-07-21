@@ -5,8 +5,8 @@ import CSWrongProblems from '@/components/CSWrongProblems.vue'
 <template>
   <div class="wrong-problems-page">
     <div class="page-header">
-      <h1>📝 计组错题本</h1>
-      <p>记录、复习和掌握每一道错题</p>
+      <h1>📝 全科错题本</h1>
+      <p>按科目记录、复习和掌握每一道错题</p>
     </div>
     
     <div class="page-content">

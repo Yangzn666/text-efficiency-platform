@@ -397,7 +397,7 @@ onMounted(() => {
 
 .record-card:hover {
   background: #f0f8ff;
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateX(5px);
 }
 
@@ -506,7 +506,7 @@ onMounted(() => {
 }
 
 .distortion-item h4 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 10px 0;
   font-size: 1.1em;
 }

@@ -289,7 +289,7 @@ onMounted(() => {
 .submodule-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  border-color: #667eea;
+  border-color: #ffc53d;
 }
 
 .card-icon {
@@ -330,7 +330,7 @@ onMounted(() => {
   display: block;
   font-size: 1.4em;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
 }
 
 .stat-label {

@@ -109,14 +109,14 @@ const menuItems = computed(() => [
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #1976D2;
+  color: #16345c;
   font-weight: 700;
   font-size: 1.4em;
   font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .logo-text {
-  background: linear-gradient(135deg, #1976D2 0%, #64B5F6 100%);
+  background: linear-gradient(135deg, #16345c 0%, #2a5290 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -150,20 +150,20 @@ const menuItems = computed(() => [
 }
 
 .nav-item:hover {
-  color: #2196F3;
-  border-color: #2196F3;
-  background: rgba(33, 150, 243, 0.05);
+  color: #16345c;
+  border-color: #ffc53d;
+  background: rgba(13, 33, 55, 0.05);
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(33, 150, 243, 0.15);
+  box-shadow: 0 6px 15px rgba(13, 33, 55, 0.15);
 }
 
 .nav-item.active {
-  color: #2196F3;
-  border-color: #2196F3;
-  background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
+  color: #16345c;
+  border-color: #ffc53d;
+  background: linear-gradient(135deg, #16345c 0%, #2a5290 100%);
   color: white;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.25);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.25);
 }
 
 .nav-item.active::after {
@@ -174,9 +174,9 @@ const menuItems = computed(() => [
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background: #2196F3;
+  background: #16345c;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(33, 150, 243, 0.4);
+  box-shadow: 0 2px 6px rgba(13, 33, 55, 0.4);
 }
 
 .user-section {

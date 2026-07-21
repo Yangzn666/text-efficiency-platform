@@ -1,0 +1,96 @@
+/**
+ * 响应式断点混入（Breakpoint Mixins）
+ * 遵循 design-taste-frontend 规范 Section 3.E
+ */
+
+// 断点映射
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+);
+
+/**
+ * 响应式媒体查询混入
+ * @param {String} $breakpoint - 断点名称 (sm, md, lg, xl, 2xl)
+ * 
+ * 使用示例:
+ * .element {
+ *   font-size: 14px;
+ *   
+ *   @include respond-to(md) {
+ *     font-size: 16px;
+ *   }
+ *   
+ *   @include respond-to(lg) {
+ *     font-size: 18px;
+ *   }
+ * }
+ */
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "未知的断点: `#{$breakpoint}`. 可用的断点有: #{map-keys($breakpoints)}";
+  }
+}
+
+/**
+ * 最大宽度媒体查询（用于限制样式应用范围）
+ * @param {String} $breakpoint - 断点名称
+ */
+@mixin respond-to-max($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "未知的断点: `#{$breakpoint}`. 可用的断点有: #{map-keys($breakpoints)}";
+  }
+}
+
+/**
+ * 区间媒体查询
+ * @param {String} $min - 最小断点
+ * @param {String} $max - 最大断点
+ */
+@mixin respond-between($min, $max) {
+  @if map-has-key($breakpoints, $min) and map-has-key($breakpoints, $max) {
+    @media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+      @content;
+    }
+  } @else {
+    @warn "未知的断点组合: `#{$min}` - `#{$max}`";
+  }
+}
+
+/**
+ * 移动端优先的快捷混入
+ */
+@mixin mobile {
+  @include respond-to-max(md) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include respond-between(md, lg) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include respond-to(lg) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @include respond-to(xl) {
+    @content;
+  }
+}

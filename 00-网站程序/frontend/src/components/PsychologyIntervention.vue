@@ -127,7 +127,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
   color: white;
 }
@@ -173,11 +173,11 @@ onMounted(() => {
 }
 
 .psychology-tabs :deep(.el-tabs__item.is-active) {
-  color: #667eea;
+  color: #16345c;
 }
 
 .psychology-tabs :deep(.el-tabs__active-bar) {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #16345c 0%, #1e4576 100%);
   height: 4px;
   border-radius: 2px;
 }

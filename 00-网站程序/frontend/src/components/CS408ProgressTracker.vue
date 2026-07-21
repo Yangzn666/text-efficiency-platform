@@ -700,7 +700,7 @@ const goToOSLearning = () => {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #667eea;
+  background: #16345c;
   color: white;
   display: flex;
   align-items: center;

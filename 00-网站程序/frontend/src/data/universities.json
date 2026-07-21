@@ -11,26 +11,26 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 369,
-        "politics": 60,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "390",
-        "avgScore": "410",
+        "politics": 50,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "369",
+        "avgScore": "390",
         "quota": 5
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 378,
-        "politics": 60,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "388",
-        "avgScore": "405",
-        "quota": 10
+        "scoreLine": 327,
+        "politics": 50,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "328",
+        "avgScore": "361",
+        "quota": 18
       }
     ],
     "scoreLine": 360,
@@ -87,7 +87,7 @@
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10248"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年（2025年12月考试届）。修改字段：081200单科线60/60/90/90→50/50/75/75、minScore 390→369、avgScore 410→390；085405（对应085400电子信息-02软件工程方向）scoreLine 378→327、单科线60/60/90/90→50/50/75/75、minScore 388→328、avgScore 405→361、quota 10→18。来源：①上海交通大学计算机学院2026年全日制硕士复试通知（cs.sjtu.edu.cn，单科线50/50/75/75）；②vipkaoyan《2027上海交通大学计算机408考研考情分析》2026拟录取数据（081200复试线369/最低369/均分390/录取5人；电子信息-02软件工程复试线327/最低328/均分361/录取18人）。is408Change=false核查无误（上交计算机2025届起已考408，2024年电子信息已改考，非2026改考院校）。scoreLine(院校线360)、region、level、links.graduate(yzb.sjtu.edu.cn)核查无误。"
   },
   {
     "name": "中国科学技术大学",
@@ -208,7 +208,7 @@
       "college": "https://cs.ustc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10358"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。本条目未修改数值。核查结论：①2026计算机学院学硕初试科目为101政治/201英语一/301数学一/408计算机学科专业基础（招生目录确认），is408Change=true保留原值；②校线官方页面为图片无法提取文字，各复试线/拟录取数据沿用原标注（灰灰考研2026年5月13日统计），未查到更权威来源，保留原值；③225软件学院quota“2985人”明显可疑（疑似298+5人或录入错误），但未查到确切统考名额数据，保留原值待人工复核。links.graduate(gradschool.ustc.edu.cn)、region、level核查无误。"
   },
   {
     "name": "北京大学",
@@ -226,7 +226,7 @@
         "english": 55,
         "course1": 90,
         "course2": 90,
-        "minScore": "392 [350-427]",
+        "minScore": "350 [350-427]",
         "avgScore": "385",
         "quota": "33+2专项"
       },
@@ -249,7 +249,7 @@
         "type": "专业型硕士",
         "scoreLine": 373,
         "politics": 55,
-        "english": 90,
+        "english": 55,
         "course1": 90,
         "course2": 90,
         "minScore": "378",
@@ -260,7 +260,7 @@
         "name": "智能科学与技术",
         "college": "智能学院",
         "scoreLine": 330,
-        "minScore": "379 [347-424]",
+        "minScore": "347 [347-424]",
         "quota": 9,
         "singleScores": "55, 90",
         "direction": "智能学院-智能科学与技术",
@@ -342,7 +342,7 @@
       "college": "https://ai.pku.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200 minScore 392[350-427]→350[350-427]（392为误置的平均分口径，拟录取最低分为350）；085400电子信息（软件工程）english 90→55（北大2026校线：学术工学[08] 300/55/55/90/90、专业学位工学[08] 320/55/55/90/90，英语线应为55）；智能学院minScore 379[347-424]→347[347-424]（379为误置均分口径，最低分取区间下限347）。来源：①新东方转载北大2026复试基本分数线；②盛世清北《北大计算机学院2026复试录取名单》（081200普通计划复试线340、单科55/55/90/90、录取最低350、最高427、录取24人）。081200复试线340、单科55/55/90/90核查无误。avgScore、quota（33+2专项，普通计划实际录取24人）未查到确切对应数据，保留原值。is408Change=false未查到2026改考依据，保留原值。links.graduate(admission.pku.edu.cn)核查无误。"
   },
   {
     "name": "南京大学",
@@ -357,7 +357,7 @@
         "type": "学术型硕士",
         "scoreLine": 363,
         "politics": 50,
-        "english": 75,
+        "english": 50,
         "course1": 75,
         "course2": 75,
         "minScore": "385 [368-421]",
@@ -369,10 +369,10 @@
         "name": "软件工程",
         "type": "专业型硕士",
         "scoreLine": 329,
-        "politics": 50,
-        "english": 75,
-        "course1": 75,
-        "course2": 75,
+        "politics": 55,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
         "minScore": "366 [320-395]",
         "avgScore": "380",
         "quota": "12+1专项"
@@ -435,7 +435,7 @@
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10284"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/75/75/75→50/50/75/75；085405单科线50/75/75/75→55/55/85/85。来源：南京大学2026年复试基本分数线（eduego转载）：学术学位工学[08]（不含照顾专业）总分295、政治50/外语50/业务课一75/业务课二75；专业学位电子信息[0854]总分320、政治55/外语55/业务课一85/业务课二85。原数据081200英语=75有误。scoreLine（081200=363、085405=329）：百度知道称计算机系复试线369、AI学院372，与363不一致，未查到官方院线文字来源，保留原值。minScore/avgScore/quota未查到2026确切数据，保留原值。is408Change=false核查无误（南大计算机常年考408，不在2026改考名单）。"
   },
   {
     "name": "哈尔滨工业大学",
@@ -473,10 +473,10 @@
     ],
     "scoreLine": 365,
     "scoreHistory": [],
-    "is408Change": true,
+    "is408Change": false,
     "hasAI": false,
     "tags": [
-      "2026改考408",
+      "2025改考408",
       "C9联盟",
       "计算机A",
       "深圳校区",
@@ -513,11 +513,11 @@
     "pros": [
       "C9品牌：顶尖名校，认可度极高",
       "学科实力：A学科，全国前三",
-      "改考机遇：2026改考408，可能有抄底机会"
+      "改考机遇：2025改考408，可能有抄底机会"
     ],
     "cons": [
       "地理位置：哈尔滨，气候寒冷",
-      "改考影响：2026改考408，竞争将加剧"
+      "改考影响：2025改考408，竞争将加剧"
     ],
     "targetScore": 375,
     "links": {
@@ -525,7 +525,7 @@
       "college": "https://cs.hit.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10213"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：is408Change true→false；tags/pros/cons中“2026改考408”→“2025改考408”。依据：哈工大计算学部改考408自2025考研（2024年4月公布，vipkaoyan），2026年并非改考年份，前端标签“2026改考408”不成立。2026校线核查：工学学术[08]与电子信息[0854]均为310/50/45/70/70（考研帮转载官方校线），与原单科线50/45/70/70一致，未改动。scoreLine 395/365（院线）、minScore/avgScore/quota未查到更权威2026数据，保留原值。links.graduate(yzb.hit.edu.cn)、region、level核查无误。"
   },
   {
     "name": "复旦大学",
@@ -539,10 +539,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 50,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -553,9 +553,9 @@
         "type": "专业型硕士",
         "scoreLine": 0,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -611,7 +611,8 @@
       "graduate": "https://gsao.fudan.edu.cn/",
       "college": "https://www.cs.fudan.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10246"
-    }
+    },
+    "note": "【2026核查】数据年份：2026年。修改字段：081200单科线55/60/90/90→50/50/75/75；085405单科线50/55/85/85→50/50/75/75。来源：复旦大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求（hzmba转载官方公告）：工学[08]学术学位与电子信息[0854]专业学位均为总分300、单科（满分=100）50、单科（满分>100）75。scoreLine=0、minScore/avgScore“待补充”、quota=null：2026计算机学院院线及拟录取数据未查到文字来源，保留原值。is408Change=false核查无误（复旦计算机2024届已考408，非2026改考）。links.graduate(gsao.fudan.edu.cn)核查无误。"
   },
   {
     "name": "浙江大学",
@@ -624,24 +625,25 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 332,
-        "politics": 50,
-        "english": 75,
-        "course1": 75,
-        "course2": 75,
+        "scoreLine": 382,
+        "politics": 55,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
         "minScore": "386",
         "avgScore": "404",
-        "quota": 9
+        "quota": 9,
+        "note": "2026本部计院学硕复试线382，录取最低393"
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
         "scoreLine": 378,
-        "politics": 50,
-        "english": 75,
-        "course1": 75,
-        "course2": 75,
+        "politics": 55,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
         "minScore": "390",
         "avgScore": "408",
         "quota": 5
@@ -650,11 +652,11 @@
         "code": "085410",
         "name": "人工智能",
         "type": "专业型硕士",
-        "scoreLine": 332,
-        "politics": 50,
-        "english": 75,
-        "course1": 75,
-        "course2": 75,
+        "scoreLine": 333,
+        "politics": 55,
+        "english": 55,
+        "course1": 85,
+        "course2": 85,
         "minScore": "344",
         "avgScore": "371",
         "quota": 13,
@@ -662,27 +664,78 @@
         "note": "2026年拟录取13人，初试范围344-426分，复试线332分"
       }
     ],
-    "scoreLine": 332,
+    "scoreLine": 382,
     "scoreHistory": [
       {
-        "year": 2023,
-        "scoreLine": "345",
-        "avgScore": "待更新",
-        "quota": "待更新",
+        "year": 2026,
+        "direction": "本部·计院(081200学硕)",
+        "scoreLine": "382",
+        "avgScore": "409",
+        "quota": "9",
         "ratio": "待更新"
       },
       {
-        "year": 2022,
+        "year": 2026,
+        "direction": "本部·计院(085400专硕)",
         "scoreLine": "377",
-        "avgScore": "377",
-        "quota": "待更新",
+        "avgScore": "399",
+        "quota": "88",
         "ratio": "待更新"
       },
       {
-        "year": 2023,
-        "scoreLine": "325",
-        "avgScore": "待更新",
-        "quota": "待更新",
+        "year": 2026,
+        "direction": "海宁·电子信息(人工智能)",
+        "scoreLine": "333",
+        "avgScore": "372",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200学硕)",
+        "scoreLine": "375",
+        "avgScore": "393",
+        "quota": "17",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400专硕)",
+        "scoreLine": "347",
+        "avgScore": "381",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "海宁·电子信息",
+        "scoreLine": "312",
+        "avgScore": "350",
+        "quota": "26",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200学硕)",
+        "scoreLine": "381",
+        "avgScore": "403",
+        "quota": "20",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400专硕)",
+        "scoreLine": "378",
+        "avgScore": "404",
+        "quota": "79",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "海宁·电子信息",
+        "scoreLine": "323",
+        "avgScore": "360",
+        "quota": "23",
         "ratio": "待更新"
       }
     ],
@@ -701,11 +754,11 @@
     "cons": [],
     "targetScore": 342,
     "links": {
-      "graduate": "",
+      "graduate": "http://grs.zju.edu.cn/",
       "college": "",
       "yz": ""
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：三个专业（081200/085405/085410）单科线50/75/75/75→55/55/85/85；links.graduate补为http://grs.zju.edu.cn/（浙大研究生院招生网）。来源：浙江大学2026年硕士研究生招生考试复试分数线基本要求（腾讯网/百度知道转载官方公告）：学术学位工学[08]总分330、政治55/外语55/业务课一85/业务课二85。scoreLine（332/378/332）为灰灰考研统计的院线口径，百度知道称081200复试线375、软件工程357、电子信息347，口径不一致且无官方文字来源，保留原值。minScore/avgScore/quota未查到更权威数据，保留原值。is408Change=false核查无误（浙大计算机常年考408，2026仅海洋学院改考）。"
   },
   {
     "name": "清华大学",
@@ -720,8 +773,8 @@
         "type": "学术型硕士",
         "scoreLine": 332,
         "politics": 50,
-        "english": 80,
-        "course1": 70,
+        "english": 50,
+        "course1": 80,
         "course2": 70,
         "minScore": "347 [332-370]",
         "avgScore": "390",
@@ -768,11 +821,11 @@
     "cons": [],
     "targetScore": 347,
     "links": {
-      "graduate": "",
+      "graduate": "https://yz.tsinghua.edu.cn/",
       "college": "",
       "yz": ""
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/80/70/70→50/50/80/70（原值疑似英语与业务课一互换）；links.graduate补为https://yz.tsinghua.edu.cn/。来源：①新东方转载清华大学2026年复试基本分数线（学术学位工学[08]总分330、政治50/外国语50/业务课一80/业务课二70）；②盛世清北2026清华计算机系复试录取解读（电子信息专硕01方向普通计划332/57/57/104/70，强军280/40/40/80/70，进复试20人录取13人、录取最低332、区间332-370）；③盛世清北2026清华软件学院解读（专硕政治英语50、专业课80，普通方向录取最低332，招生计划调整为19人）。085405（330/50/50/80/80）与软件学院口径基本一致，保留原值；大数据工程方向（深研院）及minScore/avgScore/quota未查到对应官方文字数据，保留原值（深研院数据科学和信息技术2026：复试线340/录取最低342/录取31人，专业不同未套用）。is408Change=false核查无误：清华计算机系自2027招生年度起初试第四单元改考408（网易转载院系公告），2026届仍为自命题，非2026改考院校。"
   },
   {
     "name": "西安交通大学",
@@ -788,9 +841,9 @@
         "type": "学术型硕士",
         "scoreLine": 320,
         "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "english": 55,
+        "course1": 80,
+        "course2": 80,
         "minScore": "350",
         "avgScore": "370",
         "quota": null
@@ -858,7 +911,8 @@
       "graduate": "https://yz.xjtu.edu.cn/",
       "college": "https://gr.xjtu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10698"
-    }
+    },
+    "note": "【2026核查】数据年份：2026年。修改字段：081200单科线55/60/90/90→55/55/80/80。来源：①西安交通大学2026年复试基本分数线（百度知道转载官方公告）：工学（不含软件工程、核科学与技术）总分320、政治55/外语55/业务课80/80；②网易/百家号2026西交计算机考研解读：081200与085404复试线均为320（执行校线），081200仅1人进复试（389分）、计划招1人；085404拟招56人。081200复试线320核查无误；minScore“350”——2026录取结果未公布（仅1人389分进复试），保留原值；quota原为null，统考名额未查到确切数据，保留null。085405软件工程：2026院线未公布（2025年院线345、2026拟招180人），原值320/50/55/85/85及minScore/avgScore均保留原值待补。is408Change=true核查无误（西交在2026改考408院校名单中，tags“2026改考408”成立）。links.graduate(yz.xjtu.edu.cn)核查无误。"
   },
   {
     "name": "北京航空航天大学",
@@ -874,32 +928,32 @@
         "type": "学术型硕士",
         "scoreLine": 360,
         "politics": 40,
-        "english": 60,
+        "english": 40,
         "course1": 60,
         "course2": 60,
-        "minScore": "398 [363-428]",
-        "avgScore": "389",
-        "quota": 55
+        "minScore": "363 [363-428]",
+        "avgScore": "398",
+        "quota": 38
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 320,
+        "scoreLine": 330,
         "politics": 40,
-        "english": 60,
+        "english": 40,
         "course1": 60,
         "course2": 60,
-        "minScore": "361 [337-394]",
-        "avgScore": "356",
-        "quota": "25+1专项"
+        "minScore": "337 [337-394]",
+        "avgScore": "361",
+        "quota": "18+1专项"
       },
       {
         "name": "人工智能",
         "college": "",
         "scoreLine": 310,
-        "minScore": "374 [346-395]",
-        "quota": 10,
+        "minScore": "346 [346-395]",
+        "quota": 8,
         "singleScores": "40, 60",
         "direction": "人工智能研究院-人工智能",
         "note": "2026复试线310分"
@@ -908,7 +962,7 @@
         "name": "网络空间安全",
         "college": "网络空间安全学院",
         "scoreLine": 310,
-        "minScore": "367 [328-407]",
+        "minScore": "328 [328-407]",
         "quota": 47,
         "singleScores": "40, 60",
         "direction": "网络空间安全学院-网络空间安全",
@@ -917,7 +971,7 @@
     ],
     "scoreLine": 360,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -970,7 +1024,7 @@
       "college": "https://scse.buaa.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10006"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：is408Change false→true（北航计算机学院2026年硕士初试第四单元改考408计算机基础综合，2025年5月公告，新东方转载）；081200 english 60→40、minScore 398[363-428]→363[363-428]、avgScore 389→398、quota 55→38；085405 scoreLine 320→330、english 60→40、minScore 361[337-394]→337[337-394]、avgScore 356→361、quota 25+1专项→18+1专项；人工智能minScore 374[346-395]→346[346-395]、quota 10→8；网络空间安全minScore 367[328-407]→328[328-407]。来源：①新华网/百度知道转载北航2026复试基本分数线（工学310、单科满分=100为40、单科满分>100为60，原english=60系误置业务课线）；②N诺考研noobdream.com/schoolinfo/20 2026拟录取统计：计算机学院081200复试线360/录取最低363/均分398/统考录取38人；计算机学院软件工程复试线330/最低337/均分361/录取18+1专项（原085405条目数据实际对应计算机学院软件工程，代码应为083500，已按该口径修正并保留085405代码）；人工智能研究院复试线310/最低346/均分374/录取8人；网络空间安全学院复试线310/最低328/均分367/录取12+2补录。网络空间安全quota原值47与统考拟录取12+2补录差异过大，口径不明，保留原值。links.graduate(yzb.buaa.edu.cn)、region、level核查无误。"
   },
   {
     "name": "东北大学",
@@ -984,32 +1038,32 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 330,
+        "politics": 45,
+        "english": 45,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "330",
+        "avgScore": "362",
+        "quota": 53
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 324,
+        "politics": 45,
+        "english": 45,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "328",
+        "avgScore": "375",
+        "quota": 42
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 330,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "复试公平，对双非友好",
@@ -1056,10 +1110,11 @@
     ],
     "targetScore": 0,
     "links": {
-      "graduate": "https://graduate.neu.edu.cn/",
+      "graduate": "https://yz.neu.edu.cn/",
       "college": "https://cse.neu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10145"
-    }
+    },
+    "note": "【2026核查】scoreLine由0补为330（2026计算机学院081200复试线）。081200计算机科学与技术：复试线330、拟录取最低330、均分362、统考名额53（本部，另秦皇岛+4）；085405软件工程：复试线324、拟录取最低328、均分375、统考名额42（本部，另佛山+21等）。单科线改为45/45/75/75（2026东北大学工学[08]校线：总分315、政治英语45、业务课75，院线总分更高）。is408Change由false改true（计算机学院2025起、软件学院2026起均改考408，083500/085405初试专业课均为408）。links.graduate更正为研招网yz.neu.edu.cn。数据年份：2026年（2025年12月考试届）。来源：N诺考研noobdream.com/schoolinfo/47（2026-05-26更新）、环球网校东北大学软件学院2026初试科目调整公告。"
   },
   {
     "name": "东南大学",
@@ -1189,7 +1244,7 @@
       "college": "https://computer.seu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10286"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】未独立核查到2026官方数据，保留原灰灰考研统计（2026-05-13）：081200复试线376、085405复试线355、智能科学与技术345、电子信息-计算机方向344、电子信息-人工智能方向347、网络空间安全322。is408Change=true（2026改考408）保留。单科线55/60/90/90未独立核实（原数据部分方向记50/70，口径不一），建议以官方复试细则为准。数据年份：2026。来源：原文件标注灰灰考研统计（2026-05-13）。"
   },
   {
     "name": "中南大学",
@@ -1203,11 +1258,11 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 385,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 305,
+        "politics": 45,
+        "english": 45,
+        "course1": 75,
+        "course2": 75,
         "minScore": "345",
         "avgScore": "365",
         "quota": null
@@ -1216,17 +1271,17 @@
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 385,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 305,
+        "politics": 45,
+        "english": 45,
+        "course1": 75,
+        "course2": 75,
         "minScore": "345",
         "avgScore": "365",
         "quota": null
       }
     ],
-    "scoreLine": 385,
+    "scoreLine": 305,
     "scoreHistory": [],
     "is408Change": false,
     "hasAI": false,
@@ -1277,7 +1332,8 @@
       "graduate": "https://gra.csu.edu.cn/",
       "college": "https://cse.csu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10533"
-    }
+    },
+    "note": "【2026核查】scoreLine由385改为305：385未核查到2026依据且与原minScore345矛盾（录取最低分不可能低于复试线）；已确认中南大学2026年工学[08]'其他学科专业'（含计算机/软件/电子信息）校线总分305、单科45/75，计算机学院院线未查到。单科线改为45/45/75/75（2026校线）。minScore345/avgScore365未查到2026数据，保留原值（注意原数据复试线385高于minScore345自相矛盾，2026复试线整体下调）。quota未查到，保留null。is408Change=false保留（未核实；中南大学专业课 historically 为943数据结构自命题单科，原数据course1/course2双业务课结构与实际考试科目可能不符，建议核对2026招生专业目录）。数据年份：scoreLine/单科为2026校线；minScore/avgScore年份不详。来源：新东方在线/考研365转载中南大学研招办2026复试基本分数线公告。"
   },
   {
     "name": "中山大学",
@@ -1362,7 +1418,8 @@
       "graduate": "https://graduate.sysu.edu.cn/",
       "college": "https://ai.sysu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10558"
-    }
+    },
+    "note": "【2026核查】未查到,保留原值。重要参考：据tm022等'2026多校二次划线'报道，中山大学计算机学院2026年：计算机技术专硕院线379（校线300）、计算机科学与技术学硕院线344（校线280）、退役士兵计划339。原文件本条目为人工智能学院（081200/085405），与计算机学院非同一学院；原081200的scoreLine379恰等于计算机学院计算机技术专硕线，疑似专业/学院张冠李戴（学硕线实为344），建议以人工智能学院官方2026复试细则（sai.sysu.edu.cn，访问受限未获取）为准。minScore355/avgScore375/quota未查到，保留原值。is408Change=false保留（知乎标题提及'408首年'但原文403未证实）。数据年份：参考数据为2026。来源：tm022/jiaoyubao 2026二次划线报道。"
   },
   {
     "name": "北京理工大学",
@@ -1383,20 +1440,20 @@
         "course2": 90,
         "minScore": "360",
         "avgScore": "380",
-        "quota": null
+        "quota": 34
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 338,
+        "scoreLine": 341,
         "politics": 50,
         "english": 55,
         "course1": 85,
         "course2": 85,
         "minScore": "360",
         "avgScore": "380",
-        "quota": null
+        "quota": 70
       }
     ],
     "scoreLine": 338,
@@ -1448,7 +1505,8 @@
       "graduate": "https://gs.bit.edu.cn/",
       "college": "https://cs.bit.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10007"
-    }
+    },
+    "note": "【2026核查】085405软件工程scoreLine由338改为341、quota补70；081200 scoreLine338确认、quota补34（均来自北京理工大学计算机学院官方2026复试通知，2026-03-19发布；同院085404计算机技术354/63、085411大数据317/15）。校scoreLine338保留（081200线）。minScore360/avgScore380官方通知正文未公布（在复试名单PDF附件），未查到,保留原值。单科线未查到具体值（官方表述'单科满足学校复试基本分数线'），保留原值。is408Change=false保留：已确认085405软件工程2026专业课为885软件工程专业基础综合（自命题），2027才改408；081200/085404的2026专业课科目未确认。数据年份：2026。来源：北理工计算机学院官网复试通知cs.bit.edu.cn、新东方在线北理工2027调整公告。"
   },
   {
     "name": "北京邮电大学",
@@ -1568,7 +1626,7 @@
       "college": "https://scs.bupt.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10013"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】未独立核查到2026官方数据，保留原灰灰考研统计（2026-05-13）：081200复试线328、软件工程313、网络空间安全328、智能科学与技术321。085404计算机技术scoreLine=0未查到，保留0。is408Change=false保留（未核实）。单科线未独立核实。数据年份：2026。来源：原文件标注灰灰考研统计（2026-05-13）。"
   },
   {
     "name": "华东师范大学",
@@ -1608,46 +1666,50 @@
         "name": "电子信息-计算机方向-全日制",
         "college": "计算机科学与技术学院",
         "scoreLine": 264,
-        "minScore": "365+6专项",
-        "quota": "244+7专项",
+        "minScore": "329",
+        "quota": "71+1专项",
         "singleScores": "",
         "direction": "计算机科学与技术学院-电子信息-计算机方向-全日制",
-        "note": "2026复试线264分"
+        "note": "2026复试线264分",
+        "avgScore": "374"
       },
       {
         "name": "电子信息-软件方向-全日制",
         "college": "软件工程学院",
         "scoreLine": 264,
-        "minScore": "376 [317-404]",
-        "quota": "201+3专项",
+        "minScore": "317",
+        "quota": "49+3专项",
         "singleScores": "",
         "direction": "软件工程学院-电子信息-软件方向-全日制",
-        "note": "2026复试线264分"
+        "note": "2026复试线264分",
+        "avgScore": "376"
       },
       {
         "name": "电子信息-大数据方向-全日制",
         "college": "数据科学与工程学院",
         "scoreLine": 264,
-        "minScore": "总学费9万元",
-        "quota": 105,
+        "minScore": "272",
+        "quota": 71,
         "singleScores": "",
         "direction": "数据科学与工程学院-电子信息-大数据方向-全日制",
-        "note": "2026复试线264分"
+        "note": "2026复试线264分",
+        "avgScore": "349"
       },
       {
         "name": "电子信息-人工智能-全日制",
         "college": "人工智能学院",
         "scoreLine": 264,
-        "minScore": "总学费9万元",
-        "quota": 8,
+        "minScore": "288",
+        "quota": 17,
         "singleScores": "",
         "direction": "人工智能学院-电子信息-人工智能-全日制",
-        "note": "2026复试线264分"
+        "note": "2026复试线264分",
+        "avgScore": "335"
       }
     ],
     "scoreLine": 264,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -1696,7 +1758,7 @@
       "college": "https://www.cs.ecnu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10269"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】scoreLine264经核查正确（2026工学国家线A区264，华东师大非34所自划线，多数方向执行国家线），保留。按N诺考研（2026-05-27更新）修正各方向：电子信息-计算机（计算机学院全日制）minScore由'365+6专项'改329（拟录取最低）、avgScore374、quota由'244+7专项'（进复试数）改'71+1专项'（拟录取数）；电子信息-软件（软件学院全日制）minScore由'376 [317-404]'改317、avgScore376、quota由'201+3专项'改'49+3专项'；电子信息-大数据minScore由'总学费9万元'（误填学费）改272、avgScore349、quota由105（进复试数）改71（拟录取，自命题不考408）；电子信息-人工智能minScore由'总学费9万元'改288、avgScore335、quota由8改17。is408Change由false改true（计算机/软件/空间AI/卓越工程师/智能教育研究院初试均为22408即考408，仅数据学院大数据自命题）。081200/085405的scoreLine=0未查到,保留0（华东师大主要以电子信息专硕招生）。单科线未查到（执行国家线，2026确切单科数字网上未确认），保留原值。数据年份：2026。来源：N诺考研noobdream.com/schoolinfo/27。"
   },
   {
     "name": "华中科技大学",
@@ -1821,7 +1883,7 @@
       "college": "https://aia.hust.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10487"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】未独立核查到2026官方数据，保留原灰灰考研统计（2026-05-13）：081200复试线360、085404计算机技术330、软件方向320、网络空间安全340、智能科学与技术345。is408Change=true（2026改考408）、hasAI=true保留。注意：081200的english=90存疑（英语单科线不可能90分，疑似将业务课分数误录到英语列），建议以官方复试细则为准。数据年份：2026。来源：原文件标注灰灰考研统计（2026-05-13）。"
   },
   {
     "name": "华南理工大学",
@@ -1835,32 +1897,32 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
+        "scoreLine": 365,
         "politics": 55,
         "english": 60,
         "course1": 90,
         "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "minScore": "366",
+        "avgScore": "382",
+        "quota": 18
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
+        "scoreLine": 317,
         "politics": 50,
         "english": 55,
         "course1": 85,
         "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "minScore": "317",
+        "avgScore": "359",
+        "quota": 26
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 365,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "重点考查学生编程与解决实际问题的能力"
@@ -1907,7 +1969,8 @@
       "graduate": "https://admission.scut.edu.cn/",
       "college": "https://www.cs.scut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10561"
-    }
+    },
+    "note": "【2026核查】scoreLine由0补为365（2026计算机学院计算机科学与技术复试线）。081200：复试线365、拟录取最低366、均分382、统考名额18；085405软件工程（专硕，对应软件学院电子信息-软件工程方向）：复试线317、拟录取最低317、均分359、统考名额26。is408Change由false改true（2026计算机相关方向初试均为11408，即政治+数一+英一+408）。单科线未查到（华南理工非自划线校，执行国家线，2026确切单科数字网上未确认），保留原值。数据年份：2026（2025年12月考试届）。来源：N诺考研noobdream.com/schoolinfo/36。"
   },
   {
     "name": "南开大学",
@@ -2016,7 +2079,7 @@
       "college": "https://cc.nankai.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10055"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】未独立核查到2026官方数据，保留原灰灰考研统计（2026-05-13）：081200复试线335、085405复试线290、网络空间安全310、智能科学与技术300。is408Change=false保留（未核实）。注意：085405的minScore'398 [370-420]'表述矛盾（398与区间下限370不符），建议以官方拟录取名单为准。数据年份：2026。来源：原文件标注灰灰考研统计（2026-05-13）。"
   },
   {
     "name": "同济大学",
@@ -2030,34 +2093,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 355,
+        "scoreLine": 340,
         "politics": 55,
-        "english": 60,
+        "english": 55,
         "course1": 90,
         "course2": 90,
         "minScore": "343",
-        "avgScore": "373",
-        "quota": null
+        "avgScore": "374",
+        "quota": 26
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 350,
-        "politics": 50,
+        "scoreLine": 340,
+        "politics": 55,
         "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "343",
-        "avgScore": "373",
-        "quota": null
+        "course1": 90,
+        "course2": 90,
+        "minScore": "345",
+        "avgScore": "369",
+        "quota": 53
       }
     ],
-    "scoreLine": 350,
+    "scoreLine": 340,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
-    "tags": [],
+    "tags": [
+      "2026数据已更新",
+      "408统考（11408）"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -2100,7 +2166,8 @@
       "graduate": "https://yz.tongji.edu.cn/",
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10247"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：N诺考研（noobdream）同济院校页（2026-05-26更新）并对照同济研招网/电子学院复试成绩公示。2026年全日制计算机相关方向复试线统一340分、单科55/55/90/90（原数据学硕355、专硕350、英语60等均有误，已修正）。拟录取：计科学硕26人（最低343/均分374）、电子信息-软件工程（085405）53人（最低345/均分369）、电子信息-计算机（085404）80+2人（最低340/均分368，原JSON未单列）。初试科目为政治/英语一/数学一/408（11408），非全计算机技术为22408，083500软件工程学硕仅推免→is408Change由false修正为true。校基本线：工学305、电子信息（不含085405）360、085405软件工程264，院线统一340。招生单位现为计算机科学与技术学院（软件学院），原'电子与信息工程学院'表述偏旧，因非本次核查字段未改动。links.graduate（yz.tongji.edu.cn）核实无误。"
   },
   {
     "name": "四川大学",
@@ -2114,35 +2181,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 328,
+        "politics": 50,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "328",
+        "avgScore": "366",
+        "quota": 23
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 306,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "320",
+        "avgScore": "350",
+        "quota": 18
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 328,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
-      "计算机学院（软件学院、智能科学与技术学院）联合招生"
+      "计算机学院（软件学院、智能科学与技术学院）联合招生",
+      "2026数据已更新",
+      "408统考"
     ],
     "employment": [
       {
@@ -2181,12 +2250,13 @@
       "专硕非11408：专硕采用22408，不适合11408考生",
       "地域局限：西南地区，相比东部机会略少"
     ],
-    "targetScore": 0,
+    "targetScore": 340,
     "links": {
       "graduate": "https://gs.scu.edu.cn/",
       "college": "https://cs.scu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10610"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：中国考研网/chinakaoyan转载川大官方2026复试基本要求+N诺考研川大院校页。原scoreLine=0已补：校基本线工学（学硕）305（50/50/75/75）、0854电子信息（不含085405）360（55/55/83/83）、085405软件工程264（35/35/53/53，即国家线水平）。院复试线（N诺统计）：计算机科学与技术学硕328（录23人，最低328/均分366【328-407】）、软件工程306（录18人，最低320/均分350【320-384】，该条归属085405或083500学硕待招生目录最终确认）、智能科学与技术320（录7人）、全日制电子信息专硕361（录103+5人，最低362/均分389【362-426】）。计算机学院各专业初试均为408（2025年改考）→is408Change由false修正为true；网安学院仍自命题872非408。单科线按校基本线填写（院线未单独公布单科）。minScore/avgScore/quota原为待补充，本次已按拟录取数据补齐。targetScore由0调整为340（参考计科均分366/院线328）。"
   },
   {
     "name": "大连理工大学",
@@ -2201,34 +2271,36 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 300,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 75,
         "minScore": "320",
-        "avgScore": "355",
-        "quota": null
+        "avgScore": "357",
+        "quota": 30
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085404",
+        "name": "计算机技术",
         "type": "专业型硕士",
         "scoreLine": 300,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "320",
-        "avgScore": "355",
-        "quota": null
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 75,
+        "minScore": "303",
+        "avgScore": "346",
+        "quota": 30
       }
     ],
     "scoreLine": 300,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
-      "第五梯队985高校，工科霸主，软件工程是热门专业"
+      "第五梯队985高校，工科霸主，软件工程是热门专业",
+      "2026数据已更新",
+      "2026改考408"
     ],
     "employment": [
       {
@@ -2267,12 +2339,13 @@
       "地域局限：东北，经济相对落后",
       "气候寒冷：冬季较长"
     ],
-    "targetScore": 310,
+    "targetScore": 330,
     "links": {
       "graduate": "https://gs.dlut.edu.cn/",
       "college": "https://cs.dlut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10141"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：大工计算机学院官网《2026年硕士研究生复试录取办法》+N诺考研大工院校页。院复试线均为300、单科45/45/70/75（原数据55/60/90/90、50/55/85/85有误，已修正）。081200计科：进复试44人、统考录取30人（最低320/均分357）。原085405软件工程专硕不在计算机学院2026招生目录内，已修正为085404计算机技术（全日制招30人+非全2人，录取最低303/均分346）；另有085410人工智能（01方向4人/02方向14人/03非全1人，一志愿01方向全被刷、靠调剂）。软件学院（开发区校区）单独招生：软件工程学硕线328（录18人，最低341/均分369）、电子信息-软件专硕线372（录83+3人，最低372/均分412），初试自命题887软件工程、非408。计算机学院2026年专业课全面改考408→is408Change由false修正为true。targetScore由310微调为330。"
   },
   {
     "name": "天津大学",
@@ -2286,14 +2359,14 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 335,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
+        "minScore": "361 [337-391]",
+        "avgScore": "361",
+        "quota": 15
       },
       {
         "code": "085405",
@@ -2301,42 +2374,43 @@
         "type": "专业型硕士",
         "scoreLine": 321,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
         "minScore": "356 [326-377]",
-        "avgScore": "待补充",
-        "quota": 57
+        "avgScore": "356",
+        "quota": 45
       },
       {
-        "name": "计算机硕士",
+        "name": "电子信息-计算机（专硕）",
         "college": "计算机科学与技术学院",
         "scoreLine": 335,
-        "minScore": "361 [337-391]",
-        "quota": 48,
-        "singleScores": "",
-        "direction": "计算机科学与技术学院-计算机硕士",
-        "note": "2026复试线335分"
+        "minScore": "347",
+        "avgScore": "378",
+        "quota": 40,
+        "singleScores": "50, 50, 80, 80",
+        "direction": "计算机科学与技术学院-电子信息（计算机方向）",
+        "note": "2026复试线335分；拟录取40人（均分378/最低347）"
       },
       {
         "name": "网安学硕",
         "college": "网络安全学院",
         "scoreLine": 315,
         "minScore": "332 [315-361]",
-        "quota": 2,
+        "quota": 7,
         "singleScores": "",
         "direction": "网络安全学院-网安学硕",
-        "note": "2026复试线315分"
+        "note": "2026复试线315分；拟录取7人"
       },
       {
         "name": "智能学硕",
         "college": "人工智能学院",
         "scoreLine": 336,
         "minScore": "359 [336-386]",
-        "quota": 2,
+        "quota": 10,
         "singleScores": "",
         "direction": "人工智能学院-智能学硕",
-        "note": "2026复试线336分"
+        "note": "2026复试线336分；拟录取10人"
       }
     ],
     "scoreLine": 335,
@@ -2346,7 +2420,7 @@
     "tags": [
       "2026数据已更新",
       "2026改考408",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研+N诺考研交叉核对"
     ],
     "employment": [
       {
@@ -2387,11 +2461,11 @@
     ],
     "targetScore": 350,
     "links": {
-      "graduate": "https://gradschool.tju.edu.cn/",
+      "graduate": "https://yzb.tju.edu.cn/",
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10056"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日），本次以N诺考研（2026-05更新）交叉核对\n【2026核查】2026年7月核查，来源：N诺考研天大院校页+天大官方2026复试基本分数要求（xdf转载）。校基本线工学/电子信息均为315、单科50/50/80/80，各专业单科线据此修正（原55/60/90/90、50/55/85/85有误）。院线核对一致：计科学硕335（拟录取15人，均分361/最低337）、电子信息-计算机专硕335（拟录取40人，均分378/最低347）、电子信息-软件工程专硕321（进复试57/拟录取45人，均分356）、网安学硕315（拟录取7人）、智能学硕336（拟录取10人）、软件工程学硕326（录11人）。原'计算机硕士'条目数据（335/361[337-391]）实为计科学硕、与081200重复，已改写为电子信息-计算机专硕条目；原quota 48/57/2/2与拟录取实际人数不符，已按N诺拟录取人数修正为15/45/40/7/10。2026改考408属实（原901数据结构与程序设计，学部官方变更通知可查），is408Change=true维持。links.graduate原gradschool.tju.edu.cn非天大研招网址，修正为天津大学研究生招生办公室yzb.tju.edu.cn。"
   },
   {
     "name": "山东大学",
@@ -2405,11 +2479,11 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 310,
+        "politics": 40,
+        "english": 40,
+        "course1": 60,
+        "course2": 60,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -2418,7 +2492,7 @@
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
+        "scoreLine": 320,
         "politics": 50,
         "english": 55,
         "course1": 85,
@@ -2428,13 +2502,14 @@
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 310,
     "scoreHistory": [],
     "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026改考408",
-      "2026年改考408"
+      "2026年改考408",
+      "2026数据已更新（校线）"
     ],
     "employment": [
       {
@@ -2473,12 +2548,13 @@
       "改考影响：2026改考408，竞争将加剧",
       "学科实力一般：B+学科，相比A学科略弱"
     ],
-    "targetScore": 0,
+    "targetScore": 330,
     "links": {
       "graduate": "https://www.yz.sdu.edu.cn/",
       "college": "https://www.cs.sdu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10422"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：eduego转载山大2019-2026复试线汇编+今日头条/研招网转载山大2026官方公告+启航考研山大考情分析。原scoreLine=0已补：2026校基本线08工学（学术学位）310、单科40/40/60/60（已核实）；工学专硕校线回到320分（山大官方公告转载标题，单科未核实到文本）。081200按校线310/40/40/60/60修正（原55/60/90/90有误）；085405总分按校线320修正，单科50/55/85/85未找到2026官方文本依据、暂保留原值待核（参考：2026国家线工学专硕264/35/35/53/53）。计算机学院（青岛）2026年除网安院外全面改考408属实，is408Change=true维持。院复试线与拟录取最低分/平均分在公开渠道仅有图片版名单（cs.sdu.edu.cn复试名单公示抓取失败），minScore/avgScore保留'待补充'、quota保留null，未编造。参考2025年院线：学硕计科313/软工328，专硕计专340（威海312）/软专371。targetScore由0调整为330（参考校线+408首年形势）。"
   },
   {
     "name": "武汉大学",
@@ -2493,36 +2569,36 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 295,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "338",
-        "avgScore": "375",
+        "politics": 45,
+        "english": 50,
+        "course1": 60,
+        "course2": 75,
+        "minScore": "317 [297-338]",
+        "avgScore": "317",
         "quota": 3
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 295,
+        "scoreLine": 350,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 100,
+        "course2": 80,
         "minScore": "385 [352-415]",
-        "avgScore": "375",
-        "quota": 15
+        "avgScore": "385",
+        "quota": 28
       },
       {
         "name": "计算机方向",
-        "college": "",
+        "college": "计算机学院",
         "scoreLine": 350,
         "minScore": "392 [354-424]",
         "quota": 123,
-        "singleScores": "50, 100, 80",
-        "direction": "计算机方向",
-        "note": "2026复试线350分"
+        "singleScores": "50, 50, 100, 80",
+        "direction": "电子信息（计算机/软件/人工智能方向）",
+        "note": "2026复试线350分；电子信息-计算机拟录取24+7+3人（均分392/最低354）"
       },
       {
         "name": "智能科学与技术",
@@ -2537,12 +2613,13 @@
     ],
     "scoreLine": 295,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
       "按学硕、专硕大类进行招生复试录取",
-      "数据来源:灰灰考研"
+      "408统考",
+      "数据来源:灰灰考研+N诺考研交叉核对"
     ],
     "employment": [
       {
@@ -2582,13 +2659,13 @@
       "机试难度大：无签到题，需要扎实编程功底",
       "复试比例高：135%，淘汰率较高"
     ],
-    "targetScore": 310,
+    "targetScore": 360,
     "links": {
       "graduate": "https://gs.whu.edu.cn/",
       "college": "https://sai.whu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10486"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日），本次以N诺考研（2026-05-30更新）交叉核对\n【2026核查】2026年7月核查，来源：N诺考研武大院校页+启航考研转载《武汉大学计算机学院2026年复试分数线》。单科线核实：学硕295/45/50/60/75、计算机技术专硕350/50/50/100/80（业务课一为数二100分制、业务课二为408，原数据55/60/90/90、50/55/85/85有误，已修正）。计院学硕三专业（计科081200/软工083500/智能140500）统一划线295、合计拟录取3人（最低297/均分317/最高338）——原081200的minScore'338'实为最高分，已修正为317[297-338]。电子信息-软件工程方向：线350，拟录取28+1强军（均分385/最低352），085405条目scoreLine由295修正为350、quota由15修正为28。电子信息-计算机方向：拟录取24+7少干+3强军（均分392/最低354）；电子信息-人工智能方向：拟录取46人（均分368/最低351）；'计算机方向'quota=123与N诺分项合计约109人不一致、未找到123的官方出处，暂保留原值待核。网安学院：学硕线275（录23人/最低278）、电子信息专硕线370（录119+5强军/均分389）。2026年武大计算机相关院系初试全部考408（学硕11408、专硕22408）→is408Change由false修正为true。targetScore由310上调为360（专硕实际录取均分368-392）。"
   },
   {
     "name": "湖南大学",
@@ -2602,37 +2679,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 23,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "340",
-        "avgScore": "422",
-        "quota": null
+        "scoreLine": 365,
+        "politics": 50,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "366",
+        "avgScore": "377",
+        "quota": 25
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 23,
+        "scoreLine": 368,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "340",
-        "avgScore": "422",
-        "quota": null
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
+        "minScore": "368",
+        "avgScore": "396",
+        "quota": 104
       }
     ],
-    "scoreLine": 23,
+    "scoreLine": 365,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
-      "- 第五档末流985高校",
-      "- 全球排名第223位，上升3名",
-      "- 办学体量庞大，学科门类齐全"
+      "2026数据已更新",
+      "学硕考408（11408）",
+      "专硕2027改考408（预告）"
     ],
     "employment": [
       {
@@ -2671,12 +2748,13 @@
       "学科实力一般：B+学科，相比A学科略弱",
       "地域局限：中部地区，相比东部机会略少"
     ],
-    "targetScore": 33,
+    "targetScore": 375,
     "links": {
       "graduate": "https://gra.hnu.edu.cn/",
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10532"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：N诺考研湖大院校页（2026年数据）。原scoreLine=23为明显错误数据，已修正：计算机学院计算机科学与技术（学硕）2026院复试线365（单科50/75）、拟录取25+1专项（最低366/均分377【366-403】）；电子信息（专硕，含软件方向）院线368（单科50/75）、拟录取104+12专项（最低368/均分396）——085405软件工程按电子信息大类口径修正，原单科50/55/85/85修正为50/50/75/75，原minScore340/avgScore422均无出处、已按拟录取数据修正。网安学院：网络空间安全学硕线351（录10人/最低351/均分367）、电子信息专硕线344（录26人/最低358/均分382）。408情况：学硕考11408（408）；专硕2026年仍自命题数据结构（866），但已预告2027考研电子信息改考408→按核查口径is408Change由false修正为true并注明预告。targetScore=33系与scoreLine=23同源的错误数据，修正为375。招生单位现为计算机学院/网络空间安全学院，原'信息科学与工程学院'表述偏旧，因非本次核查字段未改动。"
   },
   {
     "name": "西北工业大学",
@@ -2691,53 +2769,54 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 350,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
         "minScore": "368 [351-398]",
-        "avgScore": "待补充",
-        "quota": 48
+        "avgScore": "368",
+        "quota": 10
       },
       {
         "name": "软件工程",
-        "college": "",
+        "college": "软件学院",
         "scoreLine": 310,
         "minScore": "360 [336-384]",
         "quota": 4,
-        "singleScores": "45, 70",
-        "direction": "软件工程",
-        "note": "2026复试线310分"
+        "singleScores": "45, 45, 70, 70",
+        "direction": "软件学院-软件工程（学硕）",
+        "note": "2026复试线310分；拟录取4人（均分360）；初试自命题879、非408"
       },
       {
         "name": "网络空间安全",
         "college": "网络空间安全学院",
         "scoreLine": 310,
         "minScore": "357 [325-388]",
-        "quota": 13,
-        "singleScores": "45, 70",
+        "quota": 10,
+        "singleScores": "45, 45, 70, 70",
         "direction": "网络空间安全学院-网络空间安全",
-        "note": "2026复试线310分"
+        "note": "2026复试线310分；一志愿拟录取10人+调剂25人；初试自命题847、非408"
       },
       {
         "name": "智能科学与技术",
-        "college": "",
+        "college": "光电与智能研究院",
         "scoreLine": 325,
-        "minScore": "344 [319-383]",
-        "quota": "11+1",
-        "singleScores": "45, 70",
-        "direction": "光电与智能研究院-智能科学与技术",
-        "note": "2026复试线325分"
+        "minScore": "344 [319-387]",
+        "quota": 10,
+        "singleScores": "45, 45, 70, 70",
+        "direction": "光电与智能研究院-智能科学与工程",
+        "note": "2026复试线325分；拟录取10人（均分344）；2026改考408"
       }
     ],
     "scoreLine": 350,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
       "国防七子",
-      "数据来源:灰灰考研"
+      "2026改考408（计算机学院/光电与智能研究院/无人系统研究院）",
+      "数据来源:灰灰考研+N诺考研交叉核对"
     ],
     "employment": [
       {
@@ -2782,7 +2861,7 @@
       "college": "https://jsj.nwpu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10699"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日），本次以N诺考研交叉核对\n【2026核查】2026年7月核查，来源：N诺考研西工大院校页。081200计科学硕：院线350（单科45/70，原55/60/90/90有误已修正）、进复试16人、统考拟录取10人（均分368【351-398】），原quota=48与N诺拟录取10人不符且无其他来源佐证，按拟录取人数修正为10。计算机学院电子信息-计算机（专硕）院线高达375（单科60/95）、拟录取71+3专项（均分394/最低375），为计算机学院最热方向，原数据未收录、补充于此说明。软件学院：软件工程学硕线310（录4人/均分360【336-384】，与灰灰数据一致✓），电子信息-软件全日制线375（录102人/均分406）；初试自命题879四选二、非408。网安学院：线310，网安学硕一志愿录10人+调剂25人（均分357【325-388】），电子信息-网安录53+2（均分381）；自命题847、非408；quota由13修正为一志愿拟录取10。光电与智能研究院：智能科学与工程线325（录10人/均分344【319-387】，原区间上限383修正为387）、电子信息-人工智能线350（录18人/均分382）；2026改考408。无人系统研究院电子信息-人工智能线340（录6+2人）。综上：计算机学院/光电与智能研究院/无人系统研究院2026改考408属实→is408Change由false修正为true；软件学院（879）与网安学院（847）仍自命题。"
   },
   {
     "name": "西安电子科技大学",
@@ -2797,12 +2876,12 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 305,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 40,
+        "english": 40,
+        "course1": 60,
+        "course2": 60,
         "minScore": "323 [309-332]",
-        "avgScore": "375",
+        "avgScore": "323",
         "quota": 3
       },
       {
@@ -2810,10 +2889,10 @@
         "name": "计算机技术",
         "type": "专业型硕士",
         "scoreLine": 310,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 40,
+        "english": 40,
+        "course1": 60,
+        "course2": 60,
         "minScore": "355",
         "avgScore": "375",
         "quota": null
@@ -2839,13 +2918,14 @@
         "note": "2026复试线315分"
       }
     ],
-    "scoreLine": 335,
+    "scoreLine": 305,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
       "两电一邮",
+      "2026改考408（计算机学院）",
       "数据来源:灰灰考研"
     ],
     "employment": [
@@ -2892,7 +2972,7 @@
       "college": "https://cs.xidian.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10701"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026年7月核查，来源：灰灰考研数据（2026-05-13）+启航考研/百家号转载西电2026院线+西电计算机学院2026初试科目调整通知（hqqt/kaoyan365转载）。复试线核对：081200学硕305、计算机技术01方向310、软件工程（学硕083500）310均有公开转载来源佐证，与灰灰数据一致；顶层scoreLine原为335、与各 major 均不符，修正为305（计科学硕线）。408核实：西电计算机学院2026年081200/083500/085404/085405初试专业课统一改考408（原833计算机专业基础综合/834数据结构与计算机组成原理）→is408Change由false修正为true。单科线：官方公告为图片版未取到文本，按同校网安院学硕灰灰数据'40/60'及2026国家线（工学35/35/53/53）推定计算机学院为40/40/60/60，原55/60/90/90、50/55/85/85明显偏高、已修正，但单科值仍待官方原文最终确认。081200的avgScore原为375、与其minScore'323[309-332]'（均分323、区间309-332）自相矛盾，修正为323。085404的minScore355/avgScore375及网安/智能两院数据沿用灰灰考研，未找到反证、保留。"
   },
   {
     "name": "重庆大学",
@@ -2906,35 +2986,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 320,
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "324",
+        "avgScore": "355",
+        "quota": 15
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 320,
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "339",
+        "avgScore": "387",
+        "quota": 81
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 320,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
-      "西南地区工科强校，建筑、电气工程突出"
+      "西南地区工科强校，建筑、电气工程突出",
+      "2026数据已更新",
+      "2026改考408"
     ],
     "employment": [
       {
@@ -2973,12 +3055,13 @@
       "学科实力一般：B+学科，相比A学科略弱",
       "地域局限：西南地区，相比东部机会略少"
     ],
-    "targetScore": 0,
+    "targetScore": 360,
     "links": {
       "graduate": "https://graduate.cqu.edu.cn/",
       "college": "https://www.cse.cqu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10611"
-    }
+    },
+    "note": "【2026核查】2026年7月核查，来源：N诺考研重大院校页（2026年录取统计）。原scoreLine=0已补：计算机学院计科学硕院线320（单科45/70）、拟录取15人（均分355/最低324，11408）；电子信息-计算机专硕院线355、拟录取107人（均分390/最低357，22408）。085405软件工程专硕在大数据与软件学院招生：院线320（单科45/70）、拟录取81人（均分387/最低339），该院标注【26改考408】；软件学院软件工程学硕线310（录3人/均分339/最低312，11408）。卓越工程师学院电子信息专硕线310（录27人/均分364/最低315，22408）。计算机学院与大数据与软件学院2026年均改考408→is408Change由false修正为true。单科线原55/60/90/90、50/55/85/85有误，按院线公告修正为45/45/70/70。minScore/avgScore/quota原为待补充，已按拟录取数据补齐。targetScore由0调整为360（参考计算机学院专硕均分390/学硕均分355）。"
   },
   {
     "name": "中国人民大学",
@@ -3001,14 +3084,14 @@
         "quota": 24
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085400",
+        "name": "电子信息",
         "type": "专业型硕士",
-        "scoreLine": 0,
+        "scoreLine": 329,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -3046,7 +3129,7 @@
     ],
     "scoreLine": 355,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -3097,7 +3180,7 @@
       "college": "https://ai.ruc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10002"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。高瓴人工智能学院2026复试线经官方公告核实（2026-03-18）：人工智能(0812Z3)330分(45/45/85/85)、电子信息(085400)329分(50/50/75/75)、智能科学与技术(140500)351分(50/50/80/80)，与原 informal 条目(330/351)一致。原'085405软件工程'条目：高瓴2026年未招该专业，已按官方公告修正为电子信息(085400)，复试线329、单科50/50/75/75。顶层scoreLine 355为信息学院081200数据（灰灰考研，官方页面无法访问，单科55/60/90/90及quota 24、minScore均未核实，保留原值）。is408Change修正为true：据研招网2026招生目录镜像，信息学院计算机科学与技术(学硕)、电子信息(专硕)及高瓴人工智能均考408计算机学科专业基础。links.graduate(pgs.ruc.edu.cn)核实无误。"
   },
   {
     "name": "中国农业大学",
@@ -3111,30 +3194,30 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 310,
+        "politics": 50,
+        "english": 50,
+        "course1": 80,
+        "course2": 80,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085404",
+        "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 320,
+        "politics": 45,
+        "english": 45,
+        "course1": 80,
+        "course2": 80,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 310,
     "scoreHistory": [],
     "is408Change": false,
     "hasAI": false,
@@ -3183,7 +3266,8 @@
       "graduate": "https://gs.cau.edu.cn/",
       "college": "https://ciee.cau.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10019"
-    }
+    },
+    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。据信电学院官方2026复试线公告（ciee.cau.edu.cn，2026-03-24）：081200计算机科学与技术310分(50/50/80/80)、085404计算机技术320分(45/45/80/80)、085401新一代电子信息技术320分(45/45/80/80)、140500智能科学与技术300分(45/45/85/85)。原'085405软件工程'条目：官方公告专业列表中无该专业，已修正为085404计算机技术(320分)。quota/minScore官方未公布，保留原值。is408Change保持false：2026招生目录页面无法访问（需JS验证），是否统考408未核实，待官方目录确认。links.graduate(gs.cau.edu.cn)核实无误。"
   },
   {
     "name": "中国海洋大学",
@@ -3197,11 +3281,11 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -3210,19 +3294,19 @@
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 264,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "海洋科学全国第一，山东本地540分可报",
@@ -3272,7 +3356,8 @@
       "graduate": "https://yz.ouc.edu.cn/",
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10423"
-    }
+    },
+    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。官网(yz.ouc.edu.cn/it.ouc.edu.cn)无法访问，学部院系线未获取；海大非34所自划线，scoreLine暂按2026国家A类线工学补填：学硕/专硕总分264、单科35/35/53/53（原占位单科55/60/90/90、50/55/85/85有误，已修正）；实际院系线及录取分数通常高于国家线，需以官方后续公告为准。is408Change修正为true：据启航考研2026招生目录镜像，电子信息(085400)初试专业课考408；081200及085405是否开设/专业课科目未能核实。quota/minScore未获取，保留原值。links.graduate(yz.ouc.edu.cn)为官方研招网址。"
   },
   {
     "name": "中央民族大学",
@@ -3287,10 +3372,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 304,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "333 [312-376]",
         "avgScore": "335",
         "quota": 48
@@ -3300,10 +3385,10 @@
         "name": "软件工程",
         "type": "专业型硕士",
         "scoreLine": 295,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "331 [302-362]",
         "avgScore": "335",
         "quota": 16
@@ -3314,7 +3399,7 @@
         "scoreLine": 313,
         "minScore": "357 [313-412]",
         "quota": 220,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "信息工程学院-电子信息",
         "note": "2026复试线313分"
       }
@@ -3373,7 +3458,7 @@
       "college": "https://ie.muc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10052"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。复试线经官方公告镜像（启航考研）核实：081200计算机科学与技术304、085405软件工程295、085400电子信息313，与原值一致，保留。单科线修正：民大非34所自划线，2026各专业均执行国家A类线35/35/53/53（原55/60/90/90、50/55/85/85为错误占位值，已修正）。2026一志愿进复试人数：081200约18人、软件工程约16人、电子信息约220人。minScore/avgScore/quota为灰灰考研数据，保留原值（quota 48/16疑含推免或其他计划，与一志愿复试人数不一致，使用时需注意）。is408Change保持false：2026招生目录未能核实。links.graduate(grs.muc.edu.cn)核实无误。"
   },
   {
     "name": "兰州大学",
@@ -3387,30 +3472,30 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 295,
+        "politics": 40,
+        "english": 40,
+        "course1": 65,
+        "course2": 65,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085400",
+        "name": "电子信息",
         "type": "专业型硕士",
-        "scoreLine": 0,
+        "scoreLine": 315,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 70,
+        "course2": 70,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 295,
     "scoreHistory": [],
     "is408Change": false,
     "hasAI": false,
@@ -3460,7 +3545,8 @@
       "graduate": "https://yz.lzu.edu.cn/",
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10730"
-    }
+    },
+    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。据兰州大学2026复试线公告（希赛网转载官方原文，2026-03-20，官网yz.lzu.edu.cn直接访问受限）：081200计算机科学与技术295分(40/40/65/65)、085400电子信息315分(50/50/70/70)。原'085405软件工程'条目：官方公告中专硕为085400电子信息，已修正专业代码与名称，复试线315。is408Change保持false：2026初试专业课为自命题（806计算机专业基础）；'2027改考408'目前仅为网传消息（新东方在线2026-06汇总），官方未官宣，暂不采纳。quota/minScore未获取，保留原值。links.graduate(yz.lzu.edu.cn)为官方研招网址。"
   },
   {
     "name": "北京交通大学",
@@ -3475,10 +3561,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 329,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "357 [329-399]",
         "avgScore": "待补充",
         "quota": 47
@@ -3487,11 +3573,11 @@
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 270,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 332,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "301 [270-369]",
         "avgScore": "待补充",
         "quota": 9
@@ -3502,7 +3588,7 @@
         "scoreLine": 297,
         "minScore": "327 [297-369]",
         "quota": 13,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "网络空间安全学院-网络空间安全",
         "note": "2026复试线297分"
       },
@@ -3512,14 +3598,14 @@
         "scoreLine": 326,
         "minScore": "358 [327-398]",
         "quota": 21,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息学院-人工智能方向",
         "note": "2026复试线326分"
       }
     ],
     "scoreLine": 329,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -3568,7 +3654,7 @@
       "college": "https://scit.bjtu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10004"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。复试线经官方公告镜像（中国考研网转载yzb.bjtu.edu.cn 2026复试线）核实：081200计算机科学与技术329、085404计算机技术322、085405软件工程(软件学院全日制)332/非全日制264、083500软件工程(学硕)270、083900网络空间安全297、085410人工智能(计算机学院)273/(电子信息学院)326、085412网络与信息安全273、085401新一代电子信息280、085402通信工程321。原085405条目scoreLine 270实为083500学硕线，已修正为全日制专硕线332（原minScore '301 [270-369]'为灰灰数据、对应270线口径，保留原值待官方拟录取名单更新）。单科线修正为35/53（国家A类线，原55/60/90/90、50/55/85/85有误）。is408Change修正为true：计算机学院计算机相关专业已考408，软件学院2026年由861改考408。links.graduate(gs.bjtu.edu.cn)核实无误。"
   },
   {
     "name": "北京师范大学",
@@ -3581,10 +3667,10 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
+        "scoreLine": 280,
+        "politics": 40,
+        "english": 40,
+        "course1": 60,
         "course2": 90,
         "minScore": "待补充",
         "avgScore": "待补充",
@@ -3594,19 +3680,19 @@
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 275,
+        "politics": 45,
+        "english": 45,
+        "course1": 70,
+        "course2": 70,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 280,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "教育学、心理学等优势学科院线高于校线"
@@ -3654,7 +3740,8 @@
       "graduate": "https://gs.bnu.edu.cn/",
       "college": "https://ai.bnu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10027"
-    }
+    },
+    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。据北师大2026校复试线公告（中国教育在线转载官方原文，2026-03-13）：工学[08]学术学位280分(40/40/60/90)、电子信息[0854]专业学位275分(45/45/70/70)。081200按工学学硕校线填280；085405条目按电子信息类专硕校线填275（人工智能学院院系线为图片公告未能解析，且该院专硕具体专业代码/名称未核实，实际以院系线为准）。is408Change修正为true：北师大计算机相关专业初试考408（学硕11408、专硕22408口径，自2021招生目录起）。quota/minScore未获取，保留原值。links.graduate(gs.bnu.edu.cn)核实无误。"
   },
   {
     "name": "北京科技大学",
@@ -3669,10 +3756,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 310,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "334 [316-356]",
         "avgScore": "待补充",
         "quota": 21
@@ -3760,7 +3847,7 @@
       "college": "https://cse.ustb.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10008"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。is408Change=true核实无误：2026年计算机与通信工程学院学硕/专硕由871改考408，智能科学与技术学院计算机科学与技术、人工智能科学与技术亦考408（启航考研2026招生目录镜像）。复试线(081200=310、计算机方向330、软件非全301、AI工程264)为灰灰考研数据，官方复试公告为图片未能解析，保留原值。081200单科线修正为35/35/53/53（国家A类线，原55/60/90/90为错误占位值）；informal条目单科'35, 53'核实无误。minScore/quota为灰灰数据，保留原值。links.graduate(gs.ustb.edu.cn)核实无误。"
   },
   {
     "name": "南京理工大学",
@@ -3775,10 +3862,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 330,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "358 [330-398]",
         "avgScore": "待补充",
         "quota": 20
@@ -3788,10 +3875,10 @@
         "name": "软件工程",
         "type": "专业型硕士",
         "scoreLine": 305,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "347 [309-373]",
         "avgScore": "待补充",
         "quota": 16
@@ -3802,7 +3889,7 @@
         "scoreLine": 335,
         "minScore": "349 [335-367]",
         "quota": 12,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "网络空间安全学院-网络空间安全",
         "note": "2026复试线335分"
       },
@@ -3812,14 +3899,14 @@
         "scoreLine": 270,
         "minScore": "322 [278-383]",
         "quota": 37,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "智能科学与技术学院-智能科学与技术",
         "note": "2026复试线270分"
       }
     ],
     "scoreLine": 330,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -3869,7 +3956,7 @@
       "college": "https://cse.njust.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10288"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。单科线修正：据官方复试公告镜像（希冀考研转载），南理工2026复试单科线执行国家A类线，各专业单科统一修正为35/35/53/53（原55/60/90/90、50/55/85/85为错误占位值）。总分线(081200=330、085405=305、网络空间安全335、智能科学与技术270)为灰灰考研数据，官方公告为PDF/图片未能解析，保留原值。is408Change修正为true：南理工计算机相关专业自2023年起初试考408计算机学科专业基础。minScore/quota为灰灰数据，保留原值。links.graduate(gs.njust.edu.cn)核实无误。"
   },
   {
     "name": "南京航空航天大学",
@@ -3884,10 +3971,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 267,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "352 [305-407]",
         "avgScore": "365",
         "quota": 8
@@ -3897,10 +3984,10 @@
         "name": "软件工程",
         "type": "专业型硕士",
         "scoreLine": 340,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "369 [342-412]",
         "avgScore": "365",
         "quota": 22
@@ -3911,14 +3998,14 @@
         "scoreLine": 333,
         "minScore": "358 [338-380]",
         "quota": 22,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "网络空间安全",
         "note": "2026复试线333分"
       }
     ],
     "scoreLine": 340,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
@@ -3968,7 +4055,7 @@
       "college": "https://cs.nuaa.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10287"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。is408Change修正为true：据启航考研2026招生目录镜像，南航计算机学院、网络空间安全学院计算机相关专业（含081200、083500、085405、网络空间安全）初试均考408计算机学科专业基础。2026招生目录拟招人数：软件工程(083500)36人、软件工程(085405)51人（均含推免，统考名额未核实）；原quota(8/22/22)为灰灰数据，保留原值。复试线(081200=267、085405=340、网络空间安全333)为灰灰数据，官方公告为图片未能解析，保留原值；单科线按国家A类线修正为35/35/53/53（原55/60/90/90、50/55/85/85为错误占位值）。links.graduate(www.graduate.nuaa.edu.cn)核实无误。"
   },
   {
     "name": "南京邮电大学",
@@ -3982,34 +4069,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 303,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "314",
+        "avgScore": "344",
+        "quota": "28"
       },
       {
         "code": "085404",
         "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 339,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "350",
+        "avgScore": "378",
+        "quota": "211+2专项（另中科院联培卓越研究生专项40人/复试线306、中信科联培卓越工程师专项10人/复试线309）"
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 303,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
-    "tags": [],
+    "tags": [
+      "2026数据已更新",
+      "2026改考408"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -4049,10 +4139,11 @@
     ],
     "targetScore": 0,
     "links": {
-      "graduate": "https://gra.njupt.edu.cn/",
+      "graduate": "https://yzb.njupt.edu.cn/",
       "college": "https://cs.njupt.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10293"
-    }
+    },
+    "note": "【2026核查】2026年3月19日南邮研招办官方通知（yzb.njupt.edu.cn）：计算机学院081200复试线303、083500软件工程271、083900网络空间安全273、085404计算机技术339，单科线执行2026年国家线A类工学（35/35/53/53）。拟录取数据来自N诺考研统计：081200统招28人/最低314/均分344；085404统招211+2专项/最低350/均分378。is408Change修正为true：2026年计算机学院学硕专硕专业课由811数据结构全面改考408计算机学科专业基础（官方科目调整通知）。links.graduate更新为研招办官网yzb.njupt.edu.cn（原gra.njupt.edu.cn为研究生院）。"
   },
   {
     "name": "厦门大学",
@@ -4066,34 +4157,35 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
+        "scoreLine": 350,
+        "politics": 40,
+        "english": 40,
+        "course1": 65,
+        "course2": 65,
+        "minScore": "未查到确切值（复试线350，进复试均350+）",
         "avgScore": "待补充",
-        "quota": null
+        "quota": "7"
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085404",
+        "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
+        "scoreLine": 335,
         "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "english": 50,
+        "course1": 75,
+        "course2": 75,
         "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "avgScore": "376",
+        "quota": "43"
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 350,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
+      "2026数据已更新",
       "第四梯队985高校，地理位置优势明显"
     ],
     "employment": [
@@ -4139,7 +4231,8 @@
       "graduate": "https://zs.xmu.edu.cn/",
       "college": "https://informatics.xmu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10384"
-    }
+    },
+    "note": "【2026核查】厦大2026年校基本复试线：工学学术学位270/40/65、专业学位300/50/75；信息学院在此基础上单独划线：081200复试线350（统考名额仅7人）、085404计算机技术复试线335（统考43人，拟录取均分376+），单科执行校线。专业代码修正：信息学院专硕为085404计算机技术（原数据085405软件工程有误，厦大信息学院2026目录专硕为计算机技术）。is408Change修正为true：081200与085404初试专业课均为408计算机学科专业基础（厦大常年考408，非2026年改考）。081200拟录取最低分未查到公开数据，保留标注。"
   },
   {
     "name": "合肥工业大学",
@@ -4153,43 +4246,45 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 375,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "382 [376-393]",
-        "avgScore": "待补充",
-        "quota": 27
+        "scoreLine": 337,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "340",
+        "avgScore": "363",
+        "quota": "40（一志愿统考录取，另调剂录取15人）"
       },
       {
-        "name": "计算机方向",
-        "college": "",
+        "name": "计算机技术（085404）",
+        "college": "计算机与信息学院",
         "scoreLine": 358,
-        "minScore": "375 [358-411]",
-        "quota": "54+13专项",
+        "minScore": "358",
+        "avgScore": "379",
+        "quota": "41（一志愿统考录取，另调剂录取10人）",
         "singleScores": "35, 53",
-        "direction": "计算机方向",
-        "note": "2026复试线358分"
+        "direction": "计算机技术方向",
+        "note": "2026复试线358分（官方校线）"
       },
       {
-        "name": "人工智能方向",
-        "college": "",
+        "name": "人工智能（085410）",
+        "college": "计算机与信息学院",
         "scoreLine": 356,
-        "minScore": "375 [356-420]",
-        "quota": "61+5专项",
+        "minScore": "356",
+        "avgScore": "375",
+        "quota": "46（一志愿统考录取，另调剂录取27人）",
         "singleScores": "35, 53",
         "direction": "人工智能方向",
-        "note": "2026复试线356分"
+        "note": "2026复试线356分（官方校线）"
       }
     ],
     "scoreLine": 337,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研/N诺考研/官方复试线"
     ],
     "employment": [
       {
@@ -4233,7 +4328,7 @@
       "college": "https://cis.hfut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10359"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】官方2026复试线（合工大研究生院公布，koolearn转载）：081200为337（35/53）、085404计算机技术358、085410人工智能356、卓越工程师学院085404为299、085410为325。原数据081200的scoreLine=375与官方337不符，已修正（375疑似旧数据或误录）；原'计算机方向358/人工智能方向356'两行与官方吻合，已规范专业名称与代码。拟录取：N诺统计081200最低340/均分363/一志愿40人，085404最低358/均分379/41人，085410最低356/均分375/46人（各专业另有较多调剂，调剂分普遍更高）。is408Change修正为true：学硕考11408（数一英一408）、专硕考22408（数二英二408，2026年由21408改为22408），均考408。"
   },
   {
     "name": "吉林大学",
@@ -4246,34 +4341,35 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 334,
+        "politics": 45,
+        "english": 45,
+        "course1": 68,
+        "course2": 80,
+        "minScore": "335",
+        "avgScore": "371",
+        "quota": "23（人工智能学院非定向统考）"
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085410",
+        "name": "人工智能",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 348,
+        "politics": 45,
+        "english": 45,
+        "course1": 68,
+        "course2": 80,
+        "minScore": "348",
+        "avgScore": "377",
+        "quota": "16+1专项"
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 334,
     "scoreHistory": [],
     "is408Change": true,
     "hasAI": false,
     "tags": [
+      "2026数据已更新",
       "2026改考408",
       "东北地区重要985高校"
     ],
@@ -4320,7 +4416,8 @@
       "graduate": "https://yzb.jlu.edu.cn/",
       "college": "https://ai.jlu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10183"
-    }
+    },
+    "note": "【2026核查】吉大2026年三院计算机相关专业均改考408（N诺考研统计+院校官方复试通知）：人工智能学院081200复试线334（45/45/68/80）/最低335/均分371/统考23人，085410人工智能复试线348/最低348/均分377/16+1专项。专业修正：原数据085405软件工程属软件学院而非人工智能学院，已替换为人工智能学院的085410人工智能。其他学院2026数据备查：计算机学院081200复试线341/最低341/均分373/统考58人，085404计算机技术复试线337/最低337/均分379/81+9专项；软件学院085405软件工程复试线336/最低343/均分378/53+3专项，软件工程学硕复试线300/最低301/均分355/19人。is408Change=true核实无误（2026年改考，学硕11408、专硕12408）。"
   },
   {
     "name": "哈尔滨工程大学",
@@ -4335,56 +4432,59 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 290,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "343 [303-398]",
-        "avgScore": "待补充",
-        "quota": "32+2专项"
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "303",
+        "avgScore": "343",
+        "quota": "32+2专项（2026招生目录统考计划15人/推免60人，第三方统计口径不一，以灰灰统计32+2专项记）"
       },
       {
-        "code": "085405",
+        "code": "083500",
         "name": "软件工程",
-        "type": "专业型硕士",
+        "type": "学术型硕士",
         "scoreLine": 275,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "320 [277-336]",
-        "avgScore": "待补充",
-        "quota": 6
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "277",
+        "avgScore": "320",
+        "quota": "6（2026招生目录统考计划12人）"
       },
       {
-        "name": "网络安全技术与工程",
-        "college": "",
+        "name": "网络安全技术与工程（0812Z1）",
+        "college": "计算机科学与技术学院",
         "scoreLine": 270,
-        "minScore": "311 [272-352]",
-        "quota": 9,
-        "singleScores": "",
+        "minScore": "272（N诺统计一志愿最低290）",
+        "avgScore": "311",
+        "quota": "9（2026招生目录统考计划15人）",
+        "singleScores": "35, 53",
         "direction": "网络安全技术与工程",
         "note": "2026复试线270分"
       },
       {
-        "name": "全日制",
-        "college": "",
+        "name": "电子信息-全日制（085400）",
+        "college": "计算机科学与技术学院",
         "scoreLine": 295,
-        "minScore": "342 [301-394]",
-        "quota": 42,
-        "singleScores": "",
+        "minScore": "301",
+        "avgScore": "342",
+        "quota": "42（2026招生目录：基础类51+青岛基地专项13+数智龙江专项40）",
+        "singleScores": "35, 53",
         "direction": "电子信息-全日制",
-        "note": "2026复试线295分"
+        "note": "2026复试线295分；青岛专项线265/龙江专项线265"
       }
     ],
     "scoreLine": 290,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
+      "2026改考408",
       "国防七子",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研/N诺考研"
     ],
     "employment": [
       {
@@ -4429,7 +4529,7 @@
       "college": "https://cs.hrbeu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10217"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026复试线经N诺考研统计核实与灰灰数据一致：081200为290（录取343均/303最低【303-398】）、软件工程275（320均/277最低）、网安0812Z1为270（311均/272最低）、电子信息全日制295（342均/301最低【301-394】）。重要修正：①原数据minScore字段实为平均分（如'343 [303-398]'），已拆分minScore=区间下限、avgScore=均值；②is408Change由false修正为true——2026年计算机学院全部专业改考408（英日俄任选+数一+408，koolearn转载2026招生目录证实）；③软件工程专业代码修正为083500学术型（原085405有误）；④单科线按2026国家线A类工学35/35/53/53执行（原55/60/90/90为占位值，已修正）；⑤quota与2026招生目录统考计划（15/12/15/51+13+40）存在口径差异，已在字段内注明。"
   },
   {
     "name": "国防科技大学",
@@ -4447,22 +4547,22 @@
         "english": 45,
         "course1": 80,
         "course2": 80,
-        "minScore": "371",
-        "avgScore": "390",
-        "quota": 13
+        "minScore": "356",
+        "avgScore": "372",
+        "quota": "15"
       },
       {
-        "code": "085404",
-        "name": "软件工程",
+        "code": "085400",
+        "name": "电子信息（计算机技术方向）",
         "type": "专业型硕士",
         "scoreLine": 325,
         "politics": 50,
         "english": 45,
         "course1": 80,
         "course2": 80,
-        "minScore": "338",
-        "avgScore": "355",
-        "quota": 16
+        "minScore": "327",
+        "avgScore": "359",
+        "quota": "50"
       }
     ],
     "scoreLine": 325,
@@ -4470,6 +4570,7 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [
+      "2026数据已更新",
       "2026改考408",
       "军校中唯一985，有“军中清华”之称",
       "- 第二档中上985高校",
@@ -4520,11 +4621,11 @@
     ],
     "targetScore": 335,
     "links": {
-      "graduate": "https://yjsc.nudt.edu.cn/",
+      "graduate": "http://yjszs.nudt.edu.cn/",
       "college": "https://nudt.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=91002"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计核实：计算机学院081200复试线355（50/45/80/80）/拟录取15人/最低356/均分372（原数据最低371、均分390、 quota 13均有出入，已修正）；电子信息专硕复试线325/拟录取50人/最低327/均分359。专业修正：原'085404软件工程'有误，国防科大计算机学院专硕为085400电子信息（计算机技术方向）；另软件工程（学硕口径）复试线325/录取7人/最低332/均分357，网络空间安全复试线325/录取2人。is408Change=true核实无误（2026年改考11408）。links.graduate更新为国防科大研究生招生信息网yjszs.nudt.edu.cn（原yjsc.nudt.edu.cn为研究生院）。"
   },
   {
     "name": "杭州电子科技大学",
@@ -4538,34 +4639,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 325,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "325",
+        "avgScore": "355",
+        "quota": "114"
       },
       {
         "code": "085404",
         "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 325,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "325",
+        "avgScore": "355",
+        "quota": "232+2专项"
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 325,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
-    "tags": [],
+    "tags": [
+      "2026数据已更新",
+      "常年考408（11408）"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -4609,7 +4713,8 @@
       "graduate": "https://grs.hdu.edu.cn/",
       "college": "https://cs.hdu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10336"
-    }
+    },
+    "note": "【2026核查】杭电2026年官方复试线（希赛网转载校研究生院公布数据）：计算机学院081200为325（35/53）、085404全日制325、083500软件工程305、085405为290、网络空间安全学院083900为270、081200中外合作及085404非全/圣光机中心264。N诺考研2026录取统计：081200录取114人/最低325/均分355【325-395】；电子信息-计算机（085404）录取232+2专项/最低325/均分355【325-417】；软件工程录取31人/最低305/均分332；网安录取30+1专项/最低270/均分317。is408Change修正为true：四个专业初试均为11408（政治+英一+数一+408），杭电常年考408，非2026年改考。"
   },
   {
     "name": "武汉理工大学",
@@ -4624,45 +4729,46 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 334,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "370 [344-395]",
-        "avgScore": "待补充",
-        "quota": 17
+        "politics": 50,
+        "english": 45,
+        "course1": 85,
+        "course2": 85,
+        "minScore": "340",
+        "avgScore": "356（进复试均分；灰灰统计拟录取均分370【344-395】）",
+        "quota": "14（N诺预计招生计划；灰灰统计17）"
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 343,
+        "scoreLine": 333,
         "politics": 50,
-        "english": 55,
+        "english": 45,
         "course1": 85,
         "course2": 85,
-        "minScore": "376 [351-402]",
-        "avgScore": "待补充",
-        "quota": 23
+        "minScore": "343",
+        "avgScore": "369（进复试均分）",
+        "quota": "29（电子信息-软件工程方向预计招生计划）"
       },
       {
-        "name": "计算机制算方向",
-        "college": "",
+        "name": "计算机技术（085404）",
+        "college": "计算机与人工智能学院",
         "scoreLine": 348,
-        "minScore": "45",
-        "quota": "68+1专项",
+        "minScore": "354",
+        "avgScore": "372（进复试均分）",
+        "quota": "69（不含推免：计算机学院48+卓越工程师学院5+海南专项16）",
         "singleScores": "50, 45, 85",
-        "direction": "计算机制算方向",
-        "note": "2026复试线348分"
+        "direction": "电子信息-计算机方向",
+        "note": "2026复试线348分（原'计算机制算方向'为录入错误，实为计算机技术专硕）"
       }
     ],
     "scoreLine": 334,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [
       "2026数据已更新",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研/N诺考研"
     ],
     "employment": [
       {
@@ -4707,11 +4813,11 @@
       "college": "https://cs.whut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10497"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026统计核实复试线：计算机科学与技术334、电子信息-计算机（085404计算机技术）348、软件工程343（学硕12408口径）、电子信息-软件工程（专硕22408）333，单科线均为50/45/85/85。修正：①单科线原55/60/90/90为占位值，实际为50/45/85/85；②081200拟录取最低340（灰灰统计区间344-395/均分370，N诺最低340，两源略有出入）；③'计算机制算方向'为录入错误，实为085404计算机技术，原minScore='45'系数据错位，已修正为354；④085404统考计划69人不含推免（启航考研转载2026目录：计算机学院48+卓越5+海南专项16，与灰灰'68+1专项'基本吻合）；⑤is408Change由false修正为true——武理计算机相关专业初试均考408（学硕11408、计算机技术22408、软件工程12408/22408，2020年起改考408）。"
   },
   {
     "name": "河海大学",
-    "college": "计算机与信息学院",
+    "college": "计算机与软件学院（原计算机与信息学院）",
     "region": "江苏省南京市",
     "level": "211 / 双一流",
     "grade": "B",
@@ -4721,34 +4827,37 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 350,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "320",
+        "avgScore": "355",
+        "quota": "14（含联合培养，联培复试线303）"
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085400",
+        "name": "电子信息（计算机技术方向）",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 377,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "377",
+        "avgScore": "393",
+        "quota": "41+2专项"
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 350,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
-    "tags": [],
+    "tags": [
+      "2026数据已更新",
+      "2025年起改考408，2026延续"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -4791,7 +4900,8 @@
       "graduate": "https://gs.hhu.edu.cn/",
       "college": "https://cs.hhu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10294"
-    }
+    },
+    "note": "【2026核查】N诺考研2026录取统计（河海大学计算机与软件学院）：081200计算机科学与技术（11408）复试线350/录取均分355【320-392】/拟录14人（含联合培养，联培线303）；085400电子信息-计算机技术方向（22408）复试线377/录取均分393【377-417】/拟录41+2专项；083500软件工程学硕（11408）复试线286/录取均分334【305-373】/3人+5调剂。专业修正：原数据专硕'085405软件工程'与河海2026实际招生不符，河海专硕按085400电子信息（计算机技术方向）招生，已修正。is408Change修正为true：2025年起改考408、2026年延续（学硕数一英一+408，专硕数二英二+408）。单科线按2026国家线A类工学35/35/53/53执行（院校未单独公布2026单科线）。"
   },
   {
     "name": "电子科技大学",
@@ -4806,12 +4916,12 @@
         "type": "学术型硕士",
         "scoreLine": 340,
         "politics": 50,
-        "english": 90,
+        "english": 50,
         "course1": 90,
         "course2": 90,
-        "minScore": "370 [344-410]",
-        "avgScore": "375",
-        "quota": "114+10强军"
+        "minScore": "344",
+        "avgScore": "370",
+        "quota": "87+10强军"
       },
       {
         "code": "085404",
@@ -4819,42 +4929,45 @@
         "type": "专业型硕士",
         "scoreLine": 355,
         "politics": 50,
-        "english": 90,
+        "english": 50,
         "course1": 90,
         "course2": 90,
-        "minScore": "366",
-        "avgScore": "375",
-        "quota": 126
+        "minScore": "355",
+        "avgScore": "379",
+        "quota": "126+7专项"
       },
       {
-        "name": "网络空间安全",
-        "college": "",
+        "name": "网络空间安全（083900）",
+        "college": "计算机科学与工程学院",
         "scoreLine": 320,
-        "minScore": "358 [326-412]",
-        "quota": 19,
+        "minScore": "326",
+        "avgScore": "358",
+        "quota": "15",
         "singleScores": "50, 90",
         "direction": "网络空间安全",
         "note": "2026复试线320分"
       },
       {
-        "name": "软件工程",
+        "name": "软件工程（083500学硕）",
         "college": "信息与软件工程学院",
         "scoreLine": 325,
-        "minScore": "359 [326-395]",
-        "quota": 55,
+        "minScore": "326",
+        "avgScore": "359",
+        "quota": "41",
         "singleScores": "50, 75",
         "direction": "信息与软件工程学院-软件工程",
-        "note": "2026复试线325分"
+        "note": "2026复试线325分；信软学院085405软件工程专硕线340/最低340/均分369/95人"
       },
       {
-        "name": "计算机方向-全日制",
-        "college": "",
+        "name": "计算机技术-全日制（085404）",
+        "college": "深圳高等研究院",
         "scoreLine": 335,
-        "minScore": "369 [336-430]",
-        "quota": 201,
+        "minScore": "336",
+        "avgScore": "369",
+        "quota": "41（电子信息大类合并划线复试201人后分方向录取）",
         "singleScores": "50, 75",
-        "direction": "深圳高等研究院-计算机方向-全日制",
-        "note": "2026复试线335分"
+        "direction": "深圳高等研究院-计算机技术-全日制",
+        "note": "2026复试线335分【336-430】"
       }
     ],
     "scoreLine": 340,
@@ -4868,7 +4981,7 @@
       "985高校",
       "计算机A-",
       "深圳高等研究院",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研/N诺考研"
     ],
     "employment": [
       {
@@ -4913,7 +5026,7 @@
       "college": "https://www.scse.uestc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10614"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计（更新于2026年5月26日）核实：计算机学院081200复试线340（50/50/90/90）/最低344/均分370/统考87+10强军；085404计算机技术复试线355/最低355/均分379/126+7专项；083900网络空间安全复试线320/最低326/均分358/15人；信软学院083500软件工程学硕复试线325（50/50/75/75）/最低326/均分359/41人，085405专硕线340/最低340/均分369/95人；深圳高研院085404计算机技术复试线335/最低336/均分369/41人（大类合并复试201人）。修正：①081200与085404的english原为90系数据错位（90为业务课线），已修正为50；②原minScore字段实为平均分（如'370 [344-410]'），已拆分为最低344/均分370；③081200 quota原'114+10强军'修正为'87+10强军'（N诺实际统考录取口径）；④深圳高研院quota原201为合并复试人数，实际085404录取41人；⑤is408Change=true核实无误（2026年全面改考408，11408）。"
   },
   {
     "name": "福州大学",
@@ -4928,25 +5041,25 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 318,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "349 [318-399]",
-        "avgScore": "待补充",
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "348 [318-399]",
+        "avgScore": "348",
         "quota": "36"
       },
       {
-        "code": "085405",
+        "code": "083500",
         "name": "软件工程",
-        "type": "专业型硕士",
+        "type": "学术型硕士",
         "scoreLine": 315,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "339 [315-396]",
-        "avgScore": "待补充",
+        "avgScore": "339",
         "quota": 11
       },
       {
@@ -4955,9 +5068,9 @@
         "scoreLine": 376,
         "minScore": "390 [377-417]",
         "quota": "103+1",
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "计算机方向",
-        "note": "2026复试线376分"
+        "note": "2026复试线376分（085404电子信息-计算机技术，22408）"
       },
       {
         "name": "软件方向",
@@ -4965,18 +5078,29 @@
         "scoreLine": 359,
         "minScore": "377 [359-416]",
         "quota": 34,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "软件方向",
-        "note": "2026复试线359分"
+        "note": "2026复试线359分（085405电子信息-软件工程，22408）"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 366,
+        "minScore": "381 [366-411]",
+        "quota": 36,
+        "singleScores": "35, 53",
+        "direction": "人工智能方向",
+        "note": "2026复试线366分（085410电子信息-人工智能，22408），原JSON缺失已补"
       }
     ],
     "scoreLine": 318,
     "scoreHistory": [],
-    "is408Change": false,
-    "hasAI": false,
+    "is408Change": true,
+    "hasAI": true,
     "tags": [
       "2026数据已更新",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5021,7 +5145,7 @@
       "college": "https://cs.fzu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10386"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026数据已核实（源：N诺考研/灰灰考研2026录取数据交叉核对）。校线318确认无误。单科线原55/60/90/90（学硕）、50/55/85/85（专硕）均为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——福大计算机与大数据学院学硕考11408（数一英一+408）、专硕考22408（数二英二+408），已修正为true。专业修正：原'085405软件工程(专业型)'实为083500软件工程学术型硕士（11408，复试线315、录取9人、均339[315-396]），已修正code/type；原JSON缺失085410电子信息-人工智能方向（22408，复试线366、录取36人、均381[366-411]），已补充。081200计算机科学与技术：复试线318、录取31人、均348[318-399]（原minScore均值349微调为348）。085404电子信息-计算机技术：复试线376、录取87+1人、均390[377-417]。085405电子信息-软件工程：复试线359、录取28人、均377[359-416]。quota保留原值（36/11/103+1/34），为招生计划数，与上述实际录取数略有差异，建议以官方分专业招生计划为准。"
   },
   {
     "name": "苏州大学",
@@ -5035,27 +5159,27 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 265,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "332+265",
-        "avgScore": "待补充",
-        "quota": 2
+        "scoreLine": 341,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "361 [341-396]",
+        "avgScore": "361",
+        "quota": 12
       },
       {
-        "code": "085405",
+        "code": "083500",
         "name": "软件工程",
-        "type": "专业型硕士",
+        "type": "学术型硕士",
         "scoreLine": 326,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "351 [328-384]",
-        "avgScore": "待补充",
-        "quota": 12
+        "avgScore": "351",
+        "quota": 10
       },
       {
         "name": "计算机方向",
@@ -5063,9 +5187,9 @@
         "scoreLine": 340,
         "minScore": "378 [340-423]",
         "quota": 12,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息-计算机方向",
-        "note": "2026复试线340分"
+        "note": "2026复试线340分（085404电子信息-计算机技术，22408）"
       },
       {
         "name": "软件方向",
@@ -5073,9 +5197,9 @@
         "scoreLine": 346,
         "minScore": "379 [354-411]",
         "quota": 12,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息-软件方向",
-        "note": "2026复试线346分"
+        "note": "2026复试线346分（085405电子信息-软件工程，22408）"
       },
       {
         "name": "人工智能方向",
@@ -5083,9 +5207,9 @@
         "scoreLine": 326,
         "minScore": "356 [326-396]",
         "quota": 27,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息-人工智能方向",
-        "note": "2026复试线326分"
+        "note": "2026复试线326分（085410电子信息-人工智能，22408），录取10+12联培"
       },
       {
         "name": "大数据方向",
@@ -5093,9 +5217,9 @@
         "scoreLine": 352,
         "minScore": "360 [352-369]",
         "quota": 7,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息-大数据方向",
-        "note": "2026复试线352分"
+        "note": "2026复试线352分（22408）"
       },
       {
         "name": "网安方向",
@@ -5103,9 +5227,9 @@
         "scoreLine": 358,
         "minScore": "390 [359-407]",
         "quota": 6,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "电子信息-网安方向",
-        "note": "2026复试线358分"
+        "note": "2026复试线358分（22408）"
       },
       {
         "name": "电子信息-人工智能方向",
@@ -5113,18 +5237,29 @@
         "scoreLine": 340,
         "minScore": "371 [340-420]",
         "quota": 29,
-        "singleScores": "",
+        "singleScores": "35, 53",
         "direction": "未来科学与工程学院-电子信息-人工智能方向",
-        "note": "2026复试线340分"
+        "note": "2026复试线340分（22408），录取19人"
+      },
+      {
+        "name": "计算机科学与技术（未来学院）",
+        "college": "未来科学与工程学院",
+        "scoreLine": 265,
+        "minScore": "299 [265-332]",
+        "quota": 2,
+        "singleScores": "35, 53",
+        "direction": "未来科学与工程学院-计算机科学与技术（学术，11408）",
+        "note": "2026复试线265分，录取2人；原JSON 081200条目(265/quota2)实指此未来学院方向，本部计算机学院CS复试线为341"
       }
     ],
     "scoreLine": 341,
     "scoreHistory": [],
-    "is408Change": false,
-    "hasAI": false,
+    "is408Change": true,
+    "hasAI": true,
     "tags": [
       "2026数据已更新",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5169,7 +5304,7 @@
       "college": "https://cs.suda.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10285"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026数据已核实（源：N诺考研/灰灰考研2026录取数据交叉核对）。校线341确认无误（本部计算机学院081200 CS复试线）。单科线原55/60/90/90、50/55/85/85为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——苏大学硕考11408、专硕考22408，已修正为true。重要修正：原'081200计算机科学与技术'条目(scoreLine265/quota2/minScore332+265)实为未来科学与工程学院CS方向（11408，复试线265、录取2人、均299[265-332]），本部计算机学院CS复试线为341（录取12人、均361[341-396]）——已将081200主条目修正为本部数据341，并将未来学院265单列为独立条目以免混淆。原'085405软件工程(专业型)'实为083500软件工程学术型（11408，复试线326、录取10人、均351[328-384]），已修正code/type/quota。本部各方向：电子信息-计算机340[340-423]均378、电子信息-软件346[354-411]均379、电子信息-人工智能326[326-396]均356(录取10+12联培)、大数据352[352-369]均360、网安358[359-407]均390；未来学院电子信息-人工智能340[340-420]均371(录取19)。quota保留原值（招生计划数），建议以官方分专业招生计划为准。"
   },
   {
     "name": "西北农林科技大学",
@@ -5183,20 +5318,50 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 240,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
-        "minScore": "305",
-        "avgScore": "325",
-        "quota": null
+        "scoreLine": 268,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "291 [268-321]",
+        "avgScore": "291",
+        "quota": 4
+      },
+      {
+        "name": "计算机技术方向",
+        "college": "",
+        "scoreLine": 288,
+        "minScore": "339 [288-394]",
+        "quota": "36+1",
+        "singleScores": "35, 53",
+        "direction": "085400电子信息-计算机技术（22408，2026改考408）",
+        "note": "2026复试线288（进复试328），录取均339[288-394]"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 0,
+        "minScore": "331 [276-383]",
+        "quota": "19+1",
+        "singleScores": "35, 53",
+        "direction": "085400电子信息-人工智能（22408）",
+        "note": "2026未划院线（按国家线），进复试314，录取均331[276-383]"
+      },
+      {
+        "name": "农业工程与信息技术",
+        "college": "",
+        "scoreLine": 0,
+        "minScore": "待补充",
+        "quota": "1+4调剂",
+        "singleScores": "35, 53",
+        "direction": "095136农业工程与信息技术",
+        "note": "2026按国家线，进复试287，含4个调剂名额"
       }
     ],
-    "scoreLine": 240,
+    "scoreLine": 268,
     "scoreHistory": [],
     "is408Change": true,
-    "hasAI": false,
+    "hasAI": true,
     "tags": [
       "2026改考408",
       "- 985守门员，计算机相关学科被低估",
@@ -5204,7 +5369,8 @@
       "- 全国排名第50位，农林类特色985",
       "- 第七梯队985高校",
       "- 农林类全国顶尖，葡萄酒专业亚洲第一",
-      "- 招生体量超大，一志愿生源不足，调剂机会多"
+      "- 招生体量超大，一志愿生源不足，调剂机会多",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5249,7 +5415,8 @@
       "graduate": "https://gs.nwsuaf.edu.cn/",
       "college": "https://ie.nwsuaf.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10712"
-    }
+    },
+    "note": "【2026核查】原scoreLine=240明显错误（低于2026国家线264，不可能），已修正为268（081200计算机科学与技术学术型2026复试线，源：N诺考研2026录取数据）。单科线原55/60/90/90为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。minScore/avgScore原'305'/'325'有误，已修正为081200实际录取数据：最低268、均291、最高321（录取4人），即minScore='291 [268-321]'、avgScore='291'、quota=4。is408Change=true确认无误（2026改考408）。补充原JSON缺失专业：085400电子信息-计算机技术（22408，2026改考408）复试线288（进复试328）、录取均339[288-394]、quota36+1；085400电子信息-人工智能 未划院线（进复试314）、录取均331[276-383]、quota19+1；095136农业工程与信息技术 按国家线（进复试287）、quota1+4调剂。调剂要求：英语≥65、数学≥100。level/region确认无误（985/211/双一流A类，陕西杨凌）。"
   },
   {
     "name": "西南交通大学",
@@ -5264,36 +5431,56 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 320,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "352 [323-405]",
-        "avgScore": "待补充",
-        "quota": "50+1"
+        "avgScore": "352",
+        "quota": "35+1"
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "scoreLine": 335,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "376 [357-417]",
+        "avgScore": "376",
+        "quota": 14
       },
       {
         "name": "智能科学与技术",
         "college": "",
         "scoreLine": 300,
         "minScore": "341 [303-369]",
-        "quota": "21+1",
+        "quota": "14+1",
         "singleScores": "35, 53",
         "direction": "智能科学与技术",
         "note": "2026复试线300分"
+      },
+      {
+        "name": "计算机方向",
+        "college": "",
+        "scoreLine": 355,
+        "minScore": "377 [357-408]",
+        "quota": "41+1",
+        "singleScores": "35, 53",
+        "direction": "电子信息-计算机技术（22408）",
+        "note": "2026复试线355分"
+      },
+      {
+        "name": "人工智能方向",
+        "college": "",
+        "scoreLine": 310,
+        "minScore": "345 [313-384]",
+        "quota": 19,
+        "singleScores": "35, 53",
+        "direction": "电子信息-人工智能（22408）",
+        "note": "2026复试线310分"
       },
       {
         "name": "网络空间安全",
@@ -5302,27 +5489,48 @@
         "minScore": "365 [333-398]",
         "quota": 3,
         "singleScores": "35, 53",
-        "direction": "信息科学与技术学院-网络空间安全",
+        "direction": "信息科学与技术学院-网络空间安全（考信号与系统，非408）",
         "note": "2026复试线330分"
+      },
+      {
+        "name": "计算机方向（信息学院）",
+        "college": "信息科学与技术学院",
+        "scoreLine": 300,
+        "minScore": "332 [300-367]",
+        "quota": "6+1",
+        "singleScores": "35, 53",
+        "direction": "信息科学与技术学院-电子信息-计算机技术（408）",
+        "note": "2026复试线300分"
+      },
+      {
+        "name": "人工智能方向（信息学院）",
+        "college": "信息科学与技术学院",
+        "scoreLine": 275,
+        "minScore": "319 [277-355]",
+        "quota": 6,
+        "singleScores": "35, 53",
+        "direction": "信息科学与技术学院-电子信息-人工智能（408）",
+        "note": "2026复试线275分"
       },
       {
         "name": "计算机方向",
         "college": "",
         "scoreLine": 330,
         "minScore": "369 [338-412]",
-        "quota": 68,
+        "quota": 50,
         "singleScores": "35, 53",
-        "direction": "唐山研究院-计算机方向",
-        "note": "2026复试线330分"
+        "direction": "唐山研究院-电子信息-计算机技术（408）",
+        "note": "2026复试线330分，录取50人"
       }
     ],
     "scoreLine": 320,
     "scoreHistory": [],
-    "is408Change": false,
-    "hasAI": false,
+    "is408Change": true,
+    "hasAI": true,
     "tags": [
       "2026数据已更新",
-      "数据来源:灰灰考研"
+      "数据来源:灰灰考研",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5367,7 +5575,7 @@
       "college": "https://sci.swjtu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10613"
     },
-    "note": "灰灰考研统计（2026年5月13日）"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026数据已核实（源：N诺考研/灰灰考研2026录取数据交叉核对）。校线320确认无误（计算机与人工智能学院081200 CS复试线）。单科线原55/60/90/90、50/55/85/85为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——计算机与人工智能学院学硕考11408、专硕考22408，信息学院及唐山研究院部分方向考408，已修正为true。修正：085405软件工程(专业型)原scoreLine=0缺失，已补335（电子信息-软件工程22408，录取均376[357-417]、quota14）。081200 quota原'50+1'有误，已修正为'35+1'（2026统考计划），录取均352[323-405]。计算机与人工智能学院：智能科学与技术300[303-369]均341(quota14+1)、电子信息-计算机技术355[357-408]均377(quota41+1)、电子信息-人工智能310[313-384]均345(quota19)。信息科学与技术学院：网络空间安全330[333-398]均365(quota3，考信号与系统非408)、电子信息-计算机技术(408)300[300-367]均332(quota6+1)、电子信息-人工智能(408)275[277-355]均319(quota6)、电子信息-网安(信号与系统)315[317-402]均371(quota4)。唐山研究院电子信息-计算机技术(408)330[338-412]均369(quota50)。"
   },
   {
     "name": "上海科技大学",
@@ -5381,22 +5589,23 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 298,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 39
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 298,
     "scoreHistory": [],
     "is408Change": true,
     "hasAI": false,
     "tags": [
-      "2026改考408"
+      "2026改考408",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5440,7 +5649,8 @@
       "graduate": "https://yanzhao.shanghaitech.edu.cn/",
       "college": "https://sist.shanghaitech.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=14430"
-    }
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补298（081200计算机科学与技术本部2026复试线，中科院联培方向为国家线264，源：N诺考研/新东方2026数据）。单科线原55/60/90/90为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。quota原为null，已补39（2026计划：本部26+中科院联培13）。is408Change=true确认无误（2026改考408，初试11408：政治、英语一、数学一、408计算机学科专业基础）。调剂要求：学硕320/专硕300，需考英语一+数学一。拟录取最低分/平均分未查到公开数据，保留'待补充'。level/region确认无误（双非/新型研究型大学，上海浦东）。"
   },
   {
     "name": "广东工业大学",
@@ -5454,21 +5664,36 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 310,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 65
+      },
+      {
+        "code": "085410",
+        "name": "人工智能",
+        "type": "专业型硕士",
+        "scoreLine": 337,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 80
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 310,
     "scoreHistory": [],
-    "is408Change": false,
-    "hasAI": false,
-    "tags": [],
+    "is408Change": true,
+    "hasAI": true,
+    "tags": [
+      "2026已核查"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -5511,7 +5736,8 @@
       "graduate": "https://yzw.gdut.edu.cn/",
       "college": "https://cs.gdut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=11845"
-    }
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补310（081200计算机科学与技术2026复试线，单科35/53，源：广工大2026官方复试分数线表，经启航考研转载的图片表格核对）。补充原JSON缺失专业：085410人工智能2026复试线337（单科35/53）。单科线原55/60/90/90为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——计算机学院081200自2023年起考408、计算机专硕考22408，已修正为true。quota原为null：2026招生计划计科+软工学硕65（含推免）、计专110、人工智能80，此处081200填65、085410填80（含推免，统考名额以官方扣除推免后为准）。复试政策：生源充足专业按120%差额自划线。拟录取最低分/平均分未查到公开数据（官方名单为图片表格无法提取），保留'待补充'。level/region确认无误（双非/省重点/工科强校，广州）。"
   },
   {
     "name": "江苏大学",
@@ -5525,35 +5751,62 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 29
+      },
+      {
+        "code": "085404",
+        "name": "计算机技术",
+        "type": "专业型硕士",
+        "scoreLine": 315,
+        "politics": 35,
+        "english": 35,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 68
       },
       {
         "code": "085405",
         "name": "软件工程",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 7
+      },
+      {
+        "code": "085410",
+        "name": "人工智能",
+        "type": "专业型硕士",
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": 9
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 264,
     "scoreHistory": [],
     "is408Change": true,
-    "hasAI": false,
+    "hasAI": true,
     "tags": [
-      "2026改考408"
+      "2026改考408",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5597,7 +5850,8 @@
       "graduate": "https://yz.ujs.edu.cn/",
       "college": "https://cs.ujs.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10299"
-    }
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补264（081200计算机科学与技术执行2026国家A类线，源：江苏大学2026复试录取办法）。单科线原55/60/90/90、50/55/85/85为模板错误值，已修正：081200/085405/085410按国家线政治35、英语35、业务课53/53；085404计算机技术为院校自划线315、单科政治35、英语35、业务课70/70。is408Change=true确认无误（2026首次改考408）。quota原为null，已按2026分专业招生计划（不含推免）补充：081200=29（不含8推免）、085404=68（不含4推免，另非全10）、085405=7（不含1推免，另非全5）、085410=9。补充原JSON缺失专业：085404计算机技术（自划线315）、085410人工智能（国家线264）。拟录取最低分/平均分2026未查到公开数据，保留'待补充'（仅2025参考：计科260/录取33人/均292；电子信息-计算机295/录取72人/均327）。level/region确认无误（双非/省重点，镇江）。"
   },
   {
     "name": "浙江工业大学",
@@ -5612,10 +5866,10 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -5626,7 +5880,8 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [
-      "2026改考408"
+      "2026改考408",
+      "2026已核查"
     ],
     "employment": [
       {
@@ -5670,7 +5925,8 @@
       "graduate": "https://www.yz.zjut.edu.cn/",
       "college": "https://cs.zjut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10337"
-    }
+    },
+    "note": "【2026核查】scoreLine保留0：浙工大2026计算机相关专业复试线数据仅以图片表格形式发布于官网，多次尝试提取（下载3张官方复试线表格图片读取）均未能确认计算机学院精确数值，按'查不到保留原值并说明'原则保留0，建议人工查阅浙工大研究生院官网2026复试分数线公告复核。已知信息：浙工大2026为自划线/国家线混合模式（如化工298、机械307为自划线，信息通信264为国家线），计算机学院相关专业预计不低于国家A类线264。单科线原55/60/90/90为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change=true确认无误（2026改考408，计算机学院相关专业均考11408）。2026招生变化：地理信息学院计算机科学与技术停招，能源学院新增计算机技术专硕。拟录取最低分/平均分未查到公开数据，保留'待补充'。quota保留null（2026统考计划未核实）。level/region确认无误（双非/省重点/IT强校，杭州）。"
   },
   {
     "name": "深圳大学",
@@ -5684,34 +5940,49 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 339,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085404",
+        "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 347,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "待补充",
+        "avgScore": "待补充",
+        "quota": null
+      },
+      {
+        "code": "085410",
+        "name": "人工智能",
+        "type": "专业型硕士",
+        "scoreLine": 332,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 339,
     "scoreHistory": [],
-    "is408Change": false,
-    "hasAI": false,
-    "tags": [],
+    "is408Change": true,
+    "hasAI": true,
+    "tags": [
+      "2026已核查"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -5755,7 +6026,8 @@
       "graduate": "https://yz.szu.edu.cn/",
       "college": "https://csse.szu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10590"
-    }
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补339（计算机与软件学院081200计算机科学与技术2026复试线，源：深圳大学2026复试分数线公告/新东方2026数据）。单科线原55/60/90/90、50/55/85/85为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——深大2026计算机相关专业改考408，已修正为true。专业修正：原'085405软件工程'专业型条目在2026复试线表中未出现（2026未单独划软件工程线），已替换为2026实际招生的085404计算机技术（复试线347）和085410人工智能（复试线332）。光明实验室（独立招生单位）2026复试线：081200=318、085404=317、085410=312（分数较低，可关注）。拟录取最低分/平均分未查到公开数据，保留'待补充'。quota保留null（2026统考计划未核实）。level/region确认无误（双非/省重点/特区高校，深圳）。"
   },
   {
     "name": "燕山大学",
@@ -5769,34 +6041,36 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       },
       {
-        "code": "085405",
-        "name": "软件工程",
+        "code": "085404",
+        "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 264,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
-    "tags": [],
+    "tags": [
+      "2026已核查"
+    ],
     "employment": [
       {
         "direction": "互联网大厂",
@@ -5839,7 +6113,8 @@
       "graduate": "https://gs.ysu.edu.cn/",
       "college": "https://ise.ysu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10216"
-    }
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补264（燕山大学非自划线高校，081200计算机科学与技术、085404计算机技术2026均执行国家A类线264，源：2026国家线+燕山大学2026复试录取办法）。单科线原55/60/90/90、50/55/85/85为模板错误值，已按2026国家A类工学线修正为政治35、英语35、业务课53/53。is408Change原false有误——燕山大学信息学院自2021年起考408（11408：政治、英语一、数学一、408计算机学科专业基础），已修正为true。专业修正：原'085405软件工程'专业型条目有误——燕山大学信息科学与工程学院2026仅招081200计算机科学与技术（学术）和085404计算机技术（专业），不招软件工程，已将该条目修正为085404计算机技术。录取参考（2025数据）：081200录取约51人、085404录取约64人；2026拟录取最低分/平均分未查到公开数据，保留'待补充'。quota保留null（2026统考计划未核实）。level/region确认无误（双非/省重点/老牌强校，秦皇岛）。"
   },
   {
     "name": "重庆邮电大学",
@@ -5853,11 +6128,11 @@
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 55,
-        "english": 60,
-        "course1": 90,
-        "course2": 90,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
@@ -5866,17 +6141,17 @@
         "code": "085404",
         "name": "计算机技术",
         "type": "专业型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 55,
-        "course1": 85,
-        "course2": 85,
+        "scoreLine": 330,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 264,
     "scoreHistory": [],
     "is408Change": false,
     "hasAI": false,
@@ -5924,13 +6199,14 @@
       "graduate": "https://yjs.cqupt.edu.cn/",
       "college": "https://cst.cqupt.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10617"
-    }
+    },
+    "note": "【2026核查】2026复试线已核实（原scoreLine=0缺失，已补）：081200计算机科学与技术复试线264（较2025年308下降44分），085404计算机技术复试线330（较2025年292上涨38分），单科线均为政治/英语35、业务课53（源：重邮研究生院2026-03-26《考生进入复试的初试成绩基本要求》，经启航考研、本地宝转载核对）。原单科数据55/60/90/90、50/55/85/85有误，已按2026官方线修正。is408Change=false：2026招生目录081200考自命题802数据结构，085404由2025年的803计算机网络改考802数据结构（均非408）。统考招生人数：官网分专业招生计划页（yjs.cqupt.edu.cn/info/1180/13854.htm）无法访问，非官方来源互相矛盾（一说085404约230人、081200约20人，另一说130/189），暂保留null，建议以官方分专业招生计划为准。拟录取最低分/平均分：官方拟录取名单为图片表格无法提取，保留'待补充'。全校2026普通计划2892人、扣除推免后统考计划2766人。"
   },
   {
     "name": "北京大学信息工程学院",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "信息工程学院（深圳研究生院）",
+    "region": "广东省深圳市南山区",
+    "level": "985 / 211 / 双一流",
     "difficulty": "S+",
     "majors": [
       {
@@ -5938,18 +6214,18 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 347,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
+        "politics": 55,
+        "english": 55,
+        "course1": 90,
+        "course2": 90,
         "minScore": "370",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 25
       }
     ],
     "scoreLine": 347,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -5958,16 +6234,17 @@
     "cons": [],
     "targetScore": 357,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://admission.pku.edu.cn/",
+      "college": "https://www.ece.pku.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
+    },
+    "note": "【2026核查】2026数据已核实：复试线347（院线，与原值一致），实际录取最低分370（与原值一致），计划招生/录取25人（quota原为null，已补）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线（2026-03-13发布）修正为政治55、英语55、业务课90/90（工学学硕校线总分300，院系可上调，该院实际执行347）。is408Change=true：初试科目为101政治、201英语一、301数学一、408计算机学科专业基础（经验贴与招生目录核实）。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（深圳研究生院位于深圳市南山区大学城）。"
   },
   {
     "name": "北京大学计算机学院",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "计算机学院（国家示范性软件学院）",
+    "region": "北京市海淀区",
+    "level": "985 / 211 / 双一流",
     "difficulty": "S+",
     "majors": [
       {
@@ -5975,18 +6252,18 @@
         "name": "计算机科学与技术",
         "type": "学术型硕士",
         "scoreLine": 340,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
+        "politics": 55,
+        "english": 55,
+        "course1": 90,
+        "course2": 90,
         "minScore": "350",
         "avgScore": "待补充",
-        "quota": null
+        "quota": 19
       }
     ],
     "scoreLine": 340,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -5995,35 +6272,36 @@
     "cons": [],
     "targetScore": 350,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://admission.pku.edu.cn/",
+      "college": "https://cs.pku.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
+    },
+    "note": "【2026核查】2026数据已核实：复试线340（与原值一致），入围最低343、录取最低350（与原minScore一致），计划招生19人、实际录取24人（quota原为null，按目录计划填19）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线修正为政治55、英语55、业务课90/90。is408Change=true：初试考101政治、201英语一、301数学一、408计算机学科专业基础。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（学院位于北京大学本部，海淀区）。"
   },
   {
     "name": "北京工业大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "计算机学院",
+    "region": "北京市朝阳区",
+    "level": "211 / 双一流",
     "difficulty": "A+",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 365,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": 97
+        "scoreLine": 336,
+        "politics": 40,
+        "english": 40,
+        "course1": 70,
+        "course2": 70,
+        "minScore": "336",
+        "avgScore": "351",
+        "quota": 33
       }
     ],
-    "scoreLine": 365,
+    "scoreLine": 336,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6032,35 +6310,36 @@
     "cons": [],
     "targetScore": 375,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://yanzhao.bjut.edu.cn/",
+      "college": "https://cs.bjut.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10005"
+    },
+    "note": "【2026核查】2026数据已核实：081200复试线336（原值365有误，365实为该院085404计算机技术专硕的2026复试线，已修正），单科线政治40、英语40、业务课70/70（原50/50/80/80有误，已按校方2026复试线公告修正，经中国考研网、育路网转载核对）。2026拟录取27人，最低分336、平均分351（分数区间336-380，源：N诺考研2026录取数据）。quota：2026招生目录081200拟招总65人、推免32人、统考33人（原值97有误，已修正为统考33）。is408Change=true：初试考11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——北工大是211/双一流，非985，已修正。"
   },
   {
     "name": "南京师范大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "计算机与电子信息学院/人工智能学院",
+    "region": "江苏省南京市栖霞区",
+    "level": "211 / 双一流",
     "difficulty": "C",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 48,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": 1
       }
     ],
-    "scoreLine": 48,
+    "scoreLine": 264,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6069,35 +6348,36 @@
     "cons": [],
     "targetScore": 58,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://yjszs.njnu.edu.cn/",
+      "college": "http://ceai.njnu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10319"
+    },
+    "note": "【2026核查】原scoreLine=48明显错误（疑似将某年单科线误填入校线字段），已修正。南师大2026年复试线通知（yjszs.njnu.edu.cn/info/1017/17272.htm，官网无法直接抓取）明确'如无特殊说明，单科按国家分数线A类考生单科要求执行'；2026年工学[08]A类国家线为总分264、政治/外语35、业务课53（较2025年总分+4、小科+1、大科+2），故按264/35/53修正（个别非官方来源称南师大理科校线总分可能上浮至270，院线以官方原表为准，建议复核）。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实）。quota=1为原值保留：2025目录081200拟招32人（含推免，统考名额未单列），2026统考计划未核实。拟录取最低分/平均分未查到公开数据，保留'待补充'。level原'985 / 211'有误——南师大是211/双一流，非985，已修正。"
   },
   {
     "name": "大连海事大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "信息科学技术学院",
+    "region": "辽宁省大连市",
+    "level": "211 / 双一流",
     "difficulty": "C",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 63,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
-        "minScore": "待补充",
-        "avgScore": "待补充",
+        "scoreLine": 311,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
+        "minScore": "311",
+        "avgScore": "347",
         "quota": 26
       }
     ],
-    "scoreLine": 63,
+    "scoreLine": 311,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6106,35 +6386,36 @@
     "cons": [],
     "targetScore": 73,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://grs.dlmu.edu.cn/",
+      "college": "https://ist.dlmu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10151"
+    },
+    "note": "【2026核查】原scoreLine=63明显错误（疑似单科线误填），已修正为2026年院线311（单科35/53，源：N诺考研整理的2026院校公开名单数据）。2026统考拟录取26人（与原quota=26一致，共33人进复试），拟录取最低分311（与复试线持平）、最高分369、初试平均分347，minScore/avgScore已补。is408Change=true：初试科目为11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——大连海事是211/双一流，非985，已修正。region/college/links原为'待补充'/空，已补全。"
   },
   {
     "name": "上海大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "计算机工程与科学学院",
+    "region": "上海市宝山区",
+    "level": "211 / 双一流",
     "difficulty": "B",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
+        "scoreLine": 331,
+        "politics": 45,
+        "english": 40,
+        "course1": 75,
+        "course2": 75,
         "minScore": "331",
         "avgScore": "354",
-        "quota": null
+        "quota": 53
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 331,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6143,35 +6424,36 @@
     "cons": [],
     "targetScore": 0,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://yjszs.shu.edu.cn/",
+      "college": "https://cs.shu.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10280"
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补：2026年081200复试线331，单科政治45、英语40、业务课75/75（源：上海大学2026年复试分数线公告，经本地宝转载核对；原单科50/50/80/80有误已修正）。同院085404计算机技术2026线264（35/35/53/53）。2026拟录取（计算机工程与科学学院，不含推免）：最低331、平均354、最高389——与原minScore=331/avgScore=354一致，已核实。quota原为null，2026预计统考招生53人（源：N诺考研）。is408Change=true：初试考11408（政治、英语一、数学一、408）。level原'985 / 211'有误——上大是211/双一流，非985，已修正。region/college/links已补全（宝山校区）。"
   },
   {
     "name": "华东理工大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "信息科学与工程学院",
+    "region": "上海市徐汇区",
+    "level": "211 / 双一流",
     "difficulty": "A+",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 378,
+        "scoreLine": 348,
         "politics": 50,
         "english": 50,
         "course1": 80,
         "course2": 80,
-        "minScore": "待补充",
-        "avgScore": "待补充",
-        "quota": null
+        "minScore": "348",
+        "avgScore": "355",
+        "quota": 14
       }
     ],
-    "scoreLine": 378,
+    "scoreLine": 348,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6180,35 +6462,36 @@
     "cons": [],
     "targetScore": 388,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://gschool.ecust.edu.cn/",
+      "college": "https://cise.ecust.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10251"
+    },
+    "note": "【2026核查】2026数据已核实：081200复试线348（原值378有误，已按校方2026复试线公告修正，经新东方在线、N诺考研交叉核对），单科政治50、英语50、业务课80/80（与原值一致）。2026统考招生14人（另1个专项计划名额，quota原为null已补），拟录取最低348、平均355（区间348-377），minScore/avgScore已补。is408Change=true：该校自2025年起由自命题815（数据结构、组成原理、操作系统）改考408计算机学科专业基础，2026目录延续408。level原'985 / 211'有误——华理是211/双一流，非985，已修正。region/college/links已补全（信息学院在徐汇校区）。"
   },
   {
     "name": "中南财经政法大学",
-    "college": "待补充",
-    "region": "待补充",
-    "level": "985 / 211",
+    "college": "信息工程学院",
+    "region": "湖北省武汉市",
+    "level": "211 / 双一流",
     "difficulty": "B",
     "majors": [
       {
         "code": "081200",
         "name": "计算机科学与技术",
         "type": "学术型硕士",
-        "scoreLine": 0,
-        "politics": 50,
-        "english": 50,
-        "course1": 80,
-        "course2": 80,
+        "scoreLine": 264,
+        "politics": 35,
+        "english": 35,
+        "course1": 53,
+        "course2": 53,
         "minScore": "待补充",
         "avgScore": "待补充",
         "quota": null
       }
     ],
-    "scoreLine": 0,
+    "scoreLine": 264,
     "scoreHistory": [],
-    "is408Change": false,
+    "is408Change": true,
     "hasAI": false,
     "tags": [],
     "employment": [],
@@ -6217,9 +6500,10 @@
     "cons": [],
     "targetScore": 0,
     "links": {
-      "graduate": "",
-      "college": "",
-      "yz": ""
-    }
+      "graduate": "https://yzb.zuel.edu.cn/",
+      "college": "https://xagx.zuel.edu.cn/",
+      "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10520"
+    },
+    "note": "【2026核查】原scoreLine=0缺失，已补：中南财大非34所自划线高校，2026年计算机相关专业执行国家A类线，2026工学[08]A类线为总分264、政治/外语35、业务课53（单科原50/50/80/80有误，已修正）。佐证：信息工程学院2026年一志愿成绩分布显示46人报考、17人过国家线、等额复试1:1（第8名290+、最高档350-354）。拟录取名单（xagx.zuel.edu.cn/2026/0331/c3402a426031/page.htm）官网无法抓取，minScore/avgScore保留'待补充'。quota保留null：2025年081200合计招12人（推免8、统考4），2026统考计划未核实。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实，原自命题已改统考）。level原'985 / 211'有误——中南财大是211/双一流，非985，已修正。college/region/links已补全（信息工程学院位于南湖校区）。"
   }
 ]

@@ -154,7 +154,7 @@ const navigateTo = (path: string) => {
 .entry-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  border-color: #2196F3;
+  border-color: #ffc53d;
 }
 
 .entry-card.data-structure:hover {
@@ -163,8 +163,8 @@ const navigateTo = (path: string) => {
 }
 
 .entry-card.computer-org:hover {
-  border-color: #2196F3;
-  background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+  border-color: #ffc53d;
+  background: linear-gradient(135deg, #eef3fa 0%, #ffffff 100%);
 }
 
 .entry-card.operating-system:hover {

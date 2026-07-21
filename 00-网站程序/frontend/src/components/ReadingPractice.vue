@@ -759,31 +759,31 @@ const clozeArticle = computed(() => {
   // 暂时返回提示，后续可以补充真实文章
   return '<p style="color: #666; line-height: 2; text-align: justify;">' +
     'Humans are often thought to be insensitive smellers compared with animals, ' +
-    '<strong style="color: #667eea;">___(1)___</strong> this is largely because, ' +
-    '<strong style="color: #667eea;">___(2)___</strong> animals, we stand upright. ' +
-    'This means that our noses are <strong style="color: #667eea;">___(3)___</strong> to perceiving those smells which float through the air, ' +
-    '<strong style="color: #667eea;">___(4)___</strong> the majority of smells which stick to surfaces. ' +
-    'In fact, <strong style="color: #667eea;">___(5)___</strong>, we are extremely sensitive to smells, ' +
-    '<strong style="color: #667eea;">___(6)___</strong> we do not generally realize it. ' +
-    'Our noses are capable of <strong style="color: #667eea;">___(7)___</strong> human smells even when these are ' +
-    '<strong style="color: #667eea;">___(8)___</strong> to far below one part in one million. ' +
+    '<strong style="color: #16345c;">___(1)___</strong> this is largely because, ' +
+    '<strong style="color: #16345c;">___(2)___</strong> animals, we stand upright. ' +
+    'This means that our noses are <strong style="color: #16345c;">___(3)___</strong> to perceiving those smells which float through the air, ' +
+    '<strong style="color: #16345c;">___(4)___</strong> the majority of smells which stick to surfaces. ' +
+    'In fact, <strong style="color: #16345c;">___(5)___</strong>, we are extremely sensitive to smells, ' +
+    '<strong style="color: #16345c;">___(6)___</strong> we do not generally realize it. ' +
+    'Our noses are capable of <strong style="color: #16345c;">___(7)___</strong> human smells even when these are ' +
+    '<strong style="color: #16345c;">___(8)___</strong> to far below one part in one million. ' +
     'Strangely, some people find that they can smell one type of flower but not another, ' +
-    '<strong style="color: #667eea;">___(9)___</strong> others are sensitive to the smells of both flowers. ' +
+    '<strong style="color: #16345c;">___(9)___</strong> others are sensitive to the smells of both flowers. ' +
     'This may be because some people do not have the genes necessary to generate ' +
-    '<strong style="color: #667eea;">___(10)___</strong> smell receptors in the nose. ' +
+    '<strong style="color: #16345c;">___(10)___</strong> smell receptors in the nose. ' +
     'These receptors are the cells which sense smells and send ' +
-    '<strong style="color: #667eea;">___(11)___</strong> to the brain. ' +
+    '<strong style="color: #16345c;">___(11)___</strong> to the brain. ' +
     'However, it has been found that even people insensitive to a certain smell ' +
-    '<strong style="color: #667eea;">___(12)___</strong> can suddenly become sensitive to it when ' +
-    '<strong style="color: #667eea;">___(13)___</strong> to it often enough. ' +
+    '<strong style="color: #16345c;">___(12)___</strong> can suddenly become sensitive to it when ' +
+    '<strong style="color: #16345c;">___(13)___</strong> to it often enough. ' +
     'The explanation for insensitivity to smell seems to be that the brain finds it ' +
-    '<strong style="color: #667eea;">___(14)___</strong> to keep all smell receptors working all the time but can ' +
-    '<strong style="color: #667eea;">___(15)___</strong> new receptors if necessary. ' +
-    'This may <strong style="color: #667eea;">___(16)___</strong> explain why we are not usually sensitive to our own smells—' +
-    'we simply do not need to be. We are not <strong style="color: #667eea;">___(17)___</strong> of the usual smell of our own house, ' +
-    'but we <strong style="color: #667eea;">___(18)___</strong> new smells when we visit someone else\'s. ' +
-    'The brain finds it best to keep smell receptors <strong style="color: #667eea;">___(19)___</strong> for unfamiliar and emergency signals ' +
-    '<strong style="color: #667eea;">___(20)___</strong> the smell of smoke, which might indicate the danger of fire.' +
+    '<strong style="color: #16345c;">___(14)___</strong> to keep all smell receptors working all the time but can ' +
+    '<strong style="color: #16345c;">___(15)___</strong> new receptors if necessary. ' +
+    'This may <strong style="color: #16345c;">___(16)___</strong> explain why we are not usually sensitive to our own smells—' +
+    'we simply do not need to be. We are not <strong style="color: #16345c;">___(17)___</strong> of the usual smell of our own house, ' +
+    'but we <strong style="color: #16345c;">___(18)___</strong> new smells when we visit someone else\'s. ' +
+    'The brain finds it best to keep smell receptors <strong style="color: #16345c;">___(19)___</strong> for unfamiliar and emergency signals ' +
+    '<strong style="color: #16345c;">___(20)___</strong> the smell of smoke, which might indicate the danger of fire.' +
     '</p>'
 })
 
@@ -1069,7 +1069,7 @@ onMounted(async () => {
 
 .stat-item {
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 12px;
   text-align: center;
@@ -1131,7 +1131,7 @@ onMounted(async () => {
   padding: 25px;
   background: #f8f9fa;
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   transition: all 0.3s ease;
 }
 
@@ -1183,7 +1183,7 @@ onMounted(async () => {
 
 .option-label {
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
   flex-shrink: 0;
 }
 
@@ -1262,7 +1262,7 @@ onMounted(async () => {
 .analysis-section h5,
 .tips-section h5,
 .location-section h5 {
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 8px 0;
   font-size: 1em;
 }
@@ -1333,7 +1333,7 @@ onMounted(async () => {
   margin: 0;
   padding: 12px 15px;
   background: #f5f7fa;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   border-radius: 6px;
   color: #666;
   font-style: italic;
@@ -1490,12 +1490,12 @@ onMounted(async () => {
 
 /* 记忆技巧块 */
 .memory-block {
-  background: linear-gradient(135deg, #f0f9ff 0%, #e6f5ff 100%) !important;
-  border-left-color: #2196F3 !important;
+  background: linear-gradient(135deg, #f5f8fc 0%, #eef3fa 100%) !important;
+  border-left-color: #ffc53d !important;
 }
 
 .memory-block h5 {
-  color: #2196F3 !important;
+  color: #16345c !important;
 }
 
 .memory-content {
@@ -1511,14 +1511,14 @@ onMounted(async () => {
   padding: 12px;
   background: white;
   border-radius: 6px;
-  border: 1px solid #b3e5fc;
+  border: 1px solid #d7e3f0;
 }
 
 .memory-method strong,
 .memory-explanation strong,
 .memory-keyword strong,
 .memory-visual strong {
-  color: #2196F3;
+  color: #16345c;
   margin-right: 8px;
 }
 
@@ -1558,7 +1558,7 @@ onMounted(async () => {
   text-align: center;
   margin-bottom: 30px;
   padding: 25px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 12px;
   color: white;
 }
@@ -1610,10 +1610,10 @@ onMounted(async () => {
 .section-title {
   font-size: 1.3em;
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
 }
 
 /* 完型填空大题容器 */
@@ -1626,7 +1626,7 @@ onMounted(async () => {
   align-items: center;
   gap: 12px;
   padding: 15px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -1636,7 +1636,7 @@ onMounted(async () => {
 
 .year-header:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.3);
 }
 
 .year-header .expand-icon {
@@ -1664,7 +1664,7 @@ onMounted(async () => {
   align-items: center;
   gap: 10px;
   padding: 12px 18px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -1674,7 +1674,7 @@ onMounted(async () => {
 
 .text-header:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.3);
 }
 
 .text-header .expand-icon {
@@ -1709,8 +1709,8 @@ onMounted(async () => {
 }
 
 .cloze-question-item:hover {
-  border-color: #667eea;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  border-color: #16345c;
+  box-shadow: 0 2px 8px rgba(13, 33, 55, 0.12);
 }
 
 /* 题目头部：题号+题干+按钮 */
@@ -1727,7 +1727,7 @@ onMounted(async () => {
   height: 32px;
   line-height: 32px;
   text-align: center;
-  background: #667eea;
+  background: #16345c;
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -1772,7 +1772,7 @@ onMounted(async () => {
 
 .option-label {
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
 }
 
 .option-text {
@@ -1832,15 +1832,15 @@ onMounted(async () => {
 /* 解析区域 */
 .cloze-analysis {
   padding: 15px;
-  background: #e3f2fd;
-  border-left: 4px solid #2196F3;
+  background: #eef3fa;
+  border-left: 4px solid #ffc53d;
   border-radius: 6px;
   margin-bottom: 15px;
 }
 
 .analysis-title {
   font-weight: bold;
-  color: #2196F3;
+  color: #16345c;
   margin-bottom: 8px;
   font-size: 1.05em;
 }
@@ -2000,10 +2000,10 @@ onMounted(async () => {
 .section-title {
   font-size: 1.3em;
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
 }
 
 .cloze-question-item {
@@ -2016,8 +2016,8 @@ onMounted(async () => {
 }
 
 .cloze-question-item:hover {
-  border-color: #667eea;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  border-color: #16345c;
+  box-shadow: 0 2px 8px rgba(13, 33, 55, 0.12);
 }
 
 /* 题目头部：题号+题干+按钮 */
@@ -2034,7 +2034,7 @@ onMounted(async () => {
   height: 32px;
   line-height: 32px;
   text-align: center;
-  background: #667eea;
+  background: #16345c;
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -2159,7 +2159,7 @@ onMounted(async () => {
 
 .cloze-analysis {
   background: #f5f7fa;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .cloze-error-analysis {
@@ -2174,7 +2174,7 @@ onMounted(async () => {
 
 .analysis-title {
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 8px;
   font-size: 0.95em;
 }
@@ -2240,7 +2240,7 @@ onMounted(async () => {
   align-items: center;
   gap: 10px;
   padding: 16px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   cursor: pointer;
   transition: all 0.3s;

@@ -934,9 +934,9 @@ const initChapter1FunctionTopics = () => {
   text-align: center;
   margin-bottom: 40px;
   padding: 40px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 40px rgba(13, 33, 55, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -1004,9 +1004,9 @@ const initChapter1FunctionTopics = () => {
 }
 
 .subject-tabs :deep(.el-radio-button__orig:checked + .el-radio-button__inner) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.3);
 }
 
 /* 三栏布局 */
@@ -1036,7 +1036,7 @@ const initChapter1FunctionTopics = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 
@@ -1068,9 +1068,9 @@ const initChapter1FunctionTopics = () => {
 }
 
 .chapter-item.active {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  background: linear-gradient(135deg, rgba(13, 33, 55, 0.1) 0%, rgba(30, 69, 118, 0.1) 100%);
+  border-color: #ffc53d;
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.2);
 }
 
 .chapter-title {
@@ -1113,7 +1113,7 @@ const initChapter1FunctionTopics = () => {
 
 .topic-info-bar {
   padding: 16px;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(13, 33, 55, 0.1) 0%, rgba(30, 69, 118, 0.1) 100%);
   border-radius: 12px;
   margin-bottom: 20px;
   display: flex;
@@ -1124,7 +1124,7 @@ const initChapter1FunctionTopics = () => {
 .topic-info-bar h4 {
   margin: 0;
   font-size: 20px;
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
 }
 
@@ -1143,8 +1143,8 @@ const initChapter1FunctionTopics = () => {
 }
 
 .question-type-card:hover {
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  border-color: #ffc53d;
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.15);
   transform: translateY(-2px);
 }
 
@@ -1187,7 +1187,7 @@ const initChapter1FunctionTopics = () => {
   display: block;
   font-size: 18px;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
 }
 
 .type-actions {
@@ -1235,8 +1235,8 @@ const initChapter1FunctionTopics = () => {
 }
 
 .note-editor :deep(.el-textarea__inner):focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #ffc53d;
+  box-shadow: 0 0 0 3px rgba(13, 33, 55, 0.1);
 }
 
 .note-footer {
@@ -1260,7 +1260,7 @@ const initChapter1FunctionTopics = () => {
 }
 
 :deep(.el-dialog__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   padding: 24px;
   margin: 0;
 }

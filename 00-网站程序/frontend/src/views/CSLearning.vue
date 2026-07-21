@@ -4,7 +4,7 @@
     <div class="page-header">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <router-link to="/cs408">408专业课</router-link>
+          <router-link to="/cs408">408计算机</router-link>
         </el-breadcrumb-item>
         <el-breadcrumb-item>计算机组成原理</el-breadcrumb-item>
       </el-breadcrumb>
@@ -329,18 +329,18 @@ const openVisualIndex = () => {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        color: #1890ff;
+        color: #16345c;
         transition: all 0.3s;
         z-index: 10;
         box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
         
         &:hover {
-          background: linear-gradient(to right, #1890ff, #40a9ff);
+          background: linear-gradient(to right, #ffc53d, #f0a820);
           color: #fff;
-          border-color: #1890ff;
+          border-color: #f0a820;
           width: 20px;
           left: -20px;
-          box-shadow: -3px 0 8px rgba(24, 144, 255, 0.3);
+          box-shadow: -3px 0 8px rgba(255, 197, 61, 0.3);
         }
       }
       
@@ -367,7 +367,7 @@ const openVisualIndex = () => {
           line-height: 48px;
           
           &.is-active {
-            color: #1890ff;
+            color: #16345c;
           }
         }
         
@@ -413,7 +413,7 @@ const openVisualIndex = () => {
         
         :deep(h2) {
           font-size: 20px;
-          color: #1890ff;
+          color: #16345c;
           border-bottom: 2px solid #e8e8e8;
           padding-bottom: 8px;
           margin-top: 24px;
@@ -493,7 +493,7 @@ const openVisualIndex = () => {
         }
         
         :deep(blockquote) {
-          border-left: 4px solid #1890ff;
+          border-left: 4px solid #ffc53d;
           padding-left: 16px;
           margin: 16px 0;
           color: #595959;
@@ -532,7 +532,7 @@ const openVisualIndex = () => {
           transition: all 0.3s;
           
           &:hover {
-            color: #66b1ff;
+            color: #409eff;
             background: #ecf5ff;
             padding: 2px 4px;
             border-radius: 3px;

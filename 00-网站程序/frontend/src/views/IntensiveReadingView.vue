@@ -496,21 +496,47 @@ onMounted(async () => {
 }
 
 .reading-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
+  text-align: left;
+  margin-bottom: 36px;
+  padding: 34px 38px 28px;
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
+  border-radius: 14px;
   color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.reading-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+
+.reading-header::after {
+  content: '';
+  position: absolute;
+  top: -70%;
+  right: -8%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255,197,61,0.13) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .reading-title {
-  font-size: 2em;
-  margin: 0 0 10px 0;
+  font-size: 1.9em;
+  margin: 0 0 8px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
 }
 
 .title-icon {
@@ -518,9 +544,12 @@ onMounted(async () => {
 }
 
 .reading-subtitle {
-  font-size: 1.1em;
-  opacity: 0.9;
+  font-size: 0.95rem;
+  color: #a8bdd4;
   margin: 0;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.06em;
 }
 
 .article-container {
@@ -532,13 +561,13 @@ onMounted(async () => {
 .section-title {
   font-size: 1.5em;
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   padding-bottom: 10px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
 }
 
 .article-section {
@@ -582,7 +611,7 @@ onMounted(async () => {
 
 .sentence-card {
   background: #f8f9fa;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   padding: 25px;
   margin-bottom: 25px;
   border-radius: 10px;
@@ -597,7 +626,7 @@ onMounted(async () => {
 }
 
 .sentence-number {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   width: 32px;
   height: 32px;
@@ -608,7 +637,7 @@ onMounted(async () => {
   font-weight: bold;
   font-size: 1.1em;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 6px rgba(13, 33, 55, 0.3);
 }
 
 .sentence-text {
@@ -620,14 +649,14 @@ onMounted(async () => {
 }
 
 .sentence-translation {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   padding: 16px 18px;
   border-radius: 8px;
   margin-bottom: 15px;
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  border-left: 3px solid #2196f3;
+  border-left: 3px solid #ffc53d;
 }
 
 .translation-content {
@@ -636,7 +665,7 @@ onMounted(async () => {
 
 .translation-label {
   font-weight: 600;
-  color: #1976d2;
+  color: #16345c;
   white-space: nowrap;
   display: block;
   margin-bottom: 6px;
@@ -843,7 +872,7 @@ onMounted(async () => {
   background: #f8f9fa;
   padding: 25px;
   border-radius: 10px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -869,7 +898,7 @@ onMounted(async () => {
 }
 
 .analysis-collapse :deep(.el-collapse-item__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   font-size: 1.1em;
   font-weight: 600;
@@ -1000,17 +1029,17 @@ onMounted(async () => {
 }
 
 .vocab-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 16px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .vocab-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.3);
 }
 
 .vocab-header {
@@ -1096,7 +1125,7 @@ onMounted(async () => {
 }
 
 .tip-number {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   width: 36px;
   height: 36px;
@@ -1107,7 +1136,7 @@ onMounted(async () => {
   font-weight: bold;
   font-size: 1.1em;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(13, 33, 55, 0.3);
 }
 
 .tip-text {
@@ -1207,7 +1236,7 @@ onMounted(async () => {
 
 .option-label {
   font-weight: bold;
-  color: #667eea;
+  color: #16345c;
 }
 
 .option-text {
@@ -1235,7 +1264,7 @@ onMounted(async () => {
 .answer-analysis h5,
 .answer-location h5,
 .answer-tips h5 {
-  color: #667eea;
+  color: #16345c;
   margin-bottom: 8px;
   font-size: 1em;
 }

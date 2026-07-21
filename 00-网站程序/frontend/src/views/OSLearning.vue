@@ -4,7 +4,7 @@
     <div class="page-header">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <router-link to="/cs408">408专业课</router-link>
+          <router-link to="/cs408">408计算机</router-link>
         </el-breadcrumb-item>
         <el-breadcrumb-item>操作系统</el-breadcrumb-item>
       </el-breadcrumb>
@@ -318,7 +318,7 @@ onMounted(() => {
 }
 
 .panel-toggle-btn:hover {
-  background: #66b1ff;
+  background: #409eff;
   width: 28px;
 }
 
@@ -417,8 +417,8 @@ onMounted(() => {
 
 .knowledge-content :deep(h1) {
   font-size: 26px;
-  color: #667eea; /* 紫蓝色 */
-  border-bottom: 3px solid #667eea;
+  color: #16345c;
+  border-bottom: 3px solid #ffc53d;
   padding-bottom: 10px;
   margin-top: 32px;
   font-weight: 700;
@@ -537,7 +537,7 @@ onMounted(() => {
   transition: all 0.2s;
   
   &:hover {
-    color: #66b1ff;
+    color: #409eff;
     background: #ecf5ff;
     padding: 2px 4px;
     border-radius: 3px;

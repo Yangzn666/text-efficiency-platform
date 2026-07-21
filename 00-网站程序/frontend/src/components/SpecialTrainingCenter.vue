@@ -432,9 +432,9 @@ onMounted(() => {
   text-align: center;
   margin-bottom: 40px;
   padding: 40px 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 40px rgba(13, 33, 55, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -519,8 +519,8 @@ onMounted(() => {
 
 .recommendation-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 12px 40px rgba(13, 33, 55, 0.2);
+  border-color: #ffc53d;
 }
 
 .recommend-badge {
@@ -595,15 +595,15 @@ onMounted(() => {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #ffc53d 0%, #f0a820 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .training-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 12px 40px rgba(13, 33, 55, 0.2);
+  border-color: #ffc53d;
 }
 
 .training-card:hover::before {
@@ -617,7 +617,7 @@ onMounted(() => {
 }
 
 .training-card.in-progress {
-  border-color: #667eea;
+  border-color: #ffc53d;
   background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
 }
 
@@ -632,7 +632,7 @@ onMounted(() => {
   font-size: 12px;
   padding: 4px 12px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   font-weight: 600;
 }

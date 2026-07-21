@@ -10,10 +10,15 @@ const activeTab = ref('knowledge')
 
 <template>
   <div class="politics-container">
-    <div class="page-header">
-      <h1 class="page-title">政治学习系统</h1>
-      <p class="page-subtitle">时政热点 · 考点梳理 · 知识关联 · 模拟练习</p>
-    </div>
+    <header class="page-hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <span class="hero-kicker">POLITICS · 政治 · 目标70+</span>
+        <h1 class="hero-title">政治<span class="gold">学习系统</span></h1>
+        <p class="hero-sub">时政热点 · 考点梳理 · 知识关联 · 模拟练习</p>
+      </div>
+    </header>
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="politics-tabs">
@@ -32,7 +37,7 @@ const activeTab = ref('knowledge')
         <el-tab-pane label="知识结构" name="structure">
           <div class="structure-content">
             <div class="structure-illustration">
-              <el-icon size="80" color="#2196F3"><Connection /></el-icon>
+              <el-icon size="80" color="#ffc53d"><Connection /></el-icon>
             </div>
             <h3>🧠 知识结构可视化</h3>
             <p>构建政治知识体系，理清概念间的关系</p>
@@ -104,7 +109,7 @@ const activeTab = ref('knowledge')
               </div>
               
               <div class="feature-card">
-                <el-icon size="24" color="#2196F3"><TrendCharts /></el-icon>
+                <el-icon size="24" color="#ffc53d"><TrendCharts /></el-icon>
                 <div>
                   <h4>成绩统计分析</h4>
                   <p>练习成绩趋势和薄弱环节分析</p>
@@ -133,65 +138,110 @@ const activeTab = ref('knowledge')
 
 <style scoped>
 .politics-container {
-  max-width: 3000px; /* 统一增加容器宽度 */
+  --font-display: 'Barlow Condensed', 'FZCuHei', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ink: #1f2d3d;
+  --body: #303133;
+  --muted: #5b6b7f;
+  --gold: #ffc53d;
+  --navy-deep: #0d2137;
+  --navy: #16345c;
+  --line: #e4ebf3;
+  --bg-soft: #f5f8fc;
+  --subject: #F56C6C;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
 }
 
-.page-header {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-radius: 20px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15);
-  border: 2px solid #2196F3;
-  text-align: center;
+/* 作战室页头 */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 60%, #1e4576 100%);
+  border-radius: 14px;
+  padding: 38px 40px 32px;
+  margin-bottom: 24px;
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  top: -70%;
+  right: -8%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,197,61,0.13) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.hero-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 8px 0 6px;
+  letter-spacing: 0.02em;
+}
+.hero-title .gold {
+  color: var(--gold);
+}
+.hero-sub {
+  color: #a8bdd4;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
 }
 
-.page-title {
-  font-size: 2.2em;
-  color: #1976D2;
-  margin-bottom: 10px;
+/* 内容卡片 */
+.tab-navigation {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(13, 33, 55, 0.06);
+}
+
+/* 页签重制 */
+.politics-tabs :deep(.el-tabs__header) {
+  margin-bottom: 22px;
+}
+.politics-tabs :deep(.el-tabs__nav-wrap)::after {
+  background: var(--line);
+}
+.politics-tabs :deep(.el-tabs__item) {
+  font-size: 1.02rem;
+  font-weight: 500;
+  padding: 0 22px;
+  height: 46px;
+  line-height: 46px;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+.politics-tabs :deep(.el-tabs__item:hover) {
+  color: var(--navy);
+}
+.politics-tabs :deep(.el-tabs__item.is-active) {
+  color: var(--navy);
   font-weight: 700;
 }
-
-.page-subtitle {
-  font-size: 1.2em;
-  color: #424242;
-  font-weight: 500;
-}
-
-.tab-navigation {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.politics-tabs :deep(.el-tabs__header) {
-  margin-bottom: 25px;
-}
-
-.politics-tabs :deep(.el-tabs__nav-wrap)::after {
-  display: none;
-}
-
-.politics-tabs :deep(.el-tabs__item) {
-  font-size: 1.1em;
-  font-weight: 500;
-  padding: 0 25px;
-  height: 50px;
-  line-height: 50px;
-  color: #666;
-}
-
-.politics-tabs :deep(.el-tabs__item.is-active) {
-  color: #2196F3;
-  font-weight: 600;
-}
-
 .politics-tabs :deep(.el-tabs__active-bar) {
-  background: linear-gradient(90deg, #2196F3, #64B5F6);
+  background: linear-gradient(90deg, var(--gold), #f0a820);
   height: 3px;
   border-radius: 2px;
 }
@@ -199,7 +249,7 @@ const activeTab = ref('knowledge')
 .structure-content, .practice-content {
   text-align: center;
   padding: 40px 20px;
-  color: #666;
+  color: var(--muted);
 }
 
 .structure-illustration, .practice-illustration {
@@ -207,23 +257,23 @@ const activeTab = ref('knowledge')
 }
 
 .structure-content h3, .practice-content h3 {
-  font-size: 1.8em;
-  color: #333;
+  font-size: 1.6rem;
+  color: var(--ink);
   margin-bottom: 15px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .structure-content p, .practice-content p {
-  font-size: 1.1em;
+  font-size: 1.05rem;
   margin-bottom: 30px;
-  color: #666;
+  color: var(--muted);
   line-height: 1.6;
 }
 
 .structure-features, .practice-features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 18px;
   margin-bottom: 30px;
 }
 
@@ -232,66 +282,61 @@ const activeTab = ref('knowledge')
   align-items: flex-start;
   gap: 15px;
   padding: 20px;
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-soft);
+  border-radius: 10px;
   text-align: left;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f0f0f0;
+  transition: all 0.25s ease;
+  border: 1px solid var(--line);
 }
 
 .feature-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-  border-color: #2196F3;
+  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.10);
+  border-color: var(--subject);
+  background: #fff;
 }
 
 .feature-card h4 {
-  color: #333;
+  color: var(--ink);
   margin: 0 0 8px 0;
-  font-size: 1.1em;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .feature-card p {
-  color: #666;
+  color: var(--muted);
   margin: 0;
-  font-size: 0.95em;
+  font-size: 0.92rem;
   line-height: 1.5;
 }
 
-/* 响应式设计 */
+/* 响应式 */
 @media (max-width: 768px) {
-  .politics-container {
-    padding: 12px;
+  .page-hero {
+    padding: 26px 20px 22px;
+    border-radius: 10px;
   }
-  
-  .page-title {
-    font-size: 1.8em;
-  }
-  
-  .page-subtitle {
-    font-size: 1em;
-  }
-  
   .tab-navigation {
-    padding: 15px;
+    padding: 14px;
   }
-  
   .structure-features, .practice-features {
     grid-template-columns: 1fr;
-    gap: 15px;
+    gap: 14px;
   }
-  
   .feature-card {
     flex-direction: column;
     text-align: center;
     gap: 12px;
   }
-  
   .politics-tabs :deep(.el-tabs__item) {
     padding: 0 12px;
-    font-size: 0.9em;
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    transition: none;
   }
 }
 </style>

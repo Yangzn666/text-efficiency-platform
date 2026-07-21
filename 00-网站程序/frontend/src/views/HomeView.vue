@@ -26,201 +26,6 @@ const newTodoCategory = ref('')
 // 学习计划相关数据
 const todayDate = ref(new Date().toISOString().split('T')[0])
 
-// 快速学习记录对话框
-const showStudyDialog = ref(false)
-const studySubject = ref('408专业课')
-const studyDuration = ref(25)
-const studyContent = ref('')
-
-const subjectOptions = [
-  { label: '408专业课', value: '408专业课' },
-  { label: '数学一', value: '数学一' },
-  { label: '英语一', value: '英语一' },
-  { label: '政治', value: '政治' }
-]
-
-const quickAddStudy = () => {
-  if (!studyContent.value.trim()) {
-    ElMessage.warning('请输入学习内容')
-    return
-  }
-  
-  const today = new Date().toISOString().split('T')[0]
-  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
-  
-  if (!studyData.studyRecords) {
-    studyData.studyRecords = []
-  }
-  
-  studyData.studyRecords.push({
-    id: 'record_' + Date.now(),
-    date: today,
-    subject: studySubject.value,
-    duration: studyDuration.value,
-    content: studyContent.value.trim(),
-    type: 'study',
-    createdAt: new Date().toISOString()
-  })
-  
-  localStorage.setItem('studyData', JSON.stringify(studyData))
-  
-  ElMessage.success(`✅ 已记录${studyDuration.value}分钟的${studySubject.value}学习！`)
-  
-  // 重置表单
-  studyContent.value = ''
-  studyDuration.value = 25
-  showStudyDialog.value = false
-}
-
-// 自动记录今天的学习（首次加载时执行）
-const autoRecordTodayStudy = () => {
-  const today = new Date().toISOString().split('T')[0]
-  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
-  
-  if (!studyData.studyRecords) {
-    studyData.studyRecords = []
-  }
-  
-  // 检查今天是否已经记录过这两条
-  const alreadyRecorded = studyData.studyRecords.some((record: any) => 
-    record.date === today && 
-    record.content.includes('第三章 存储器系统')
-  )
-  
-  if (!alreadyRecorded) {
-    // 记录第一次学习：16:00-16:25
-    studyData.studyRecords.push({
-      id: 'record_' + Date.now(),
-      date: today,
-      subject: '408专业课',
-      duration: 25,
-      content: '计算机组成原理 - 第三章 存储器系统',
-      type: 'study',
-      createdAt: new Date().toISOString()
-    })
-    
-    // 记录第二次学习：16:30-16:55
-    studyData.studyRecords.push({
-      id: 'record_' + (Date.now() + 1),
-      date: today,
-      subject: '408专业课',
-      duration: 25,
-      content: '计算机组成原理 - 第四章 指令系统',
-      type: 'study',
-      createdAt: new Date().toISOString()
-    })
-    
-    localStorage.setItem('studyData', JSON.stringify(studyData))
-    console.log('✅ 已自动记录今天的50分钟计组学习！')
-  }
-}
-
-
-
-// 注入2026-05-05英语语法学习记录
-const injectEnglishGrammarRecords = () => {
-  const targetDate = '2026-05-05'
-  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
-  
-  if (!studyData.studyRecords) {
-    studyData.studyRecords = []
-  }
-  
-  // 检查是否已经注入过
-  const alreadyInjected = studyData.studyRecords.some((record: any) => 
-    record.date === targetDate && 
-    record.subject === '英语一' &&
-    record.content.includes('虚拟语气')
-  )
-  
-  if (!alreadyInjected) {
-    const recordsToAdd = [
-      {
-            "id": "record_1778071570907_grammar_1",
-            "date": "2026-05-05",
-            "subject": "英语一",
-            "duration": 25,
-            "content": "虚拟语气基础学习 - 掌握三种基本形式（与现在/过去/将来事实相反）、时态倒退规律、特殊句型（wish/suggest/It's time）、倒装结构",
-            "type": "study",
-            "createdAt": "2026-05-05T10:30:00.000Z"
-      },
-      {
-            "id": "record_1778071570907_grammar_2",
-            "date": "2026-05-05",
-            "subject": "英语一",
-            "duration": 25,
-            "content": "虚拟语气实战练习 - 完成15道填空题（正确率70%），掌握基本结构，需加强不规则动词和固定搭配",
-            "type": "practice",
-            "createdAt": "2026-05-05T11:00:00.000Z"
-      },
-      {
-            "id": "record_1778071570907_grammar_3",
-            "date": "2026-05-05",
-            "subject": "英语一",
-            "duration": 25,
-            "content": "虚拟语气选择题和改错题 - 选择题5题（60%）、改错题5题（60%），薄弱点：suggest规则、It's time用法、倒装结构",
-            "type": "practice",
-            "createdAt": "2026-05-05T11:30:00.000Z"
-      },
-      {
-            "id": "record_1778071570907_grammar_4",
-            "date": "2026-05-05",
-            "subject": "英语一",
-            "duration": 25,
-            "content": "虚拟语气翻译练习 - 完成5道中译英，掌握混合虚拟语气，常见错误：wish后用法、advice不可数、listen to搭配",
-            "type": "practice",
-            "createdAt": "2026-05-05T12:00:00.000Z"
-      }
-]
-    
-    recordsToAdd.forEach(record => {
-      studyData.studyRecords.push(record)
-    })
-    
-    localStorage.setItem('studyData', JSON.stringify(studyData))
-    console.log('✅ 已成功注入2026-05-05英语语法学习记录（100分钟）')
-    return true
-  } else {
-    console.log('ℹ️  2026-05-05英语语法学习记录已存在，跳过注入')
-    return false
-  }
-}
-
-// 开始第一天英语语法学习
-const startEnglishGrammarDay1 = () => {
-  const today = new Date().toISOString().split('T')[0]
-  let studyData = JSON.parse(localStorage.getItem('studyData') || '{}')
-  
-  if (!studyData.studyRecords) {
-    studyData.studyRecords = []
-  }
-  
-  // 检查今天是否已经开始英语语法学习
-  const alreadyStarted = studyData.studyRecords.some((record: any) => 
-    record.date === today && 
-    record.subject === '英语一' &&
-    record.content.includes('英语语法学习计划 Day 1')
-  )
-  
-  if (!alreadyStarted) {
-    // 记录英语语法学习启动
-    studyData.studyRecords.push({
-      id: 'record_' + (Date.now() + 2),
-      date: today,
-      subject: '英语一',
-      duration: 120,
-      content: '英语语法学习计划 Day 1 - 长难句分析方法论 + 虚拟语气基础',
-      type: 'study',
-      createdAt: new Date().toISOString()
-    })
-    
-    localStorage.setItem('studyData', JSON.stringify(studyData))
-    console.log('✅ 已开始第一天英语语法学习计划！')
-    ElMessage.success('🎉 已开始第一天英语语法学习！加油！')
-  } else {
-    ElMessage.info('今天已经开始英语语法学习了，继续加油！')
-  }
-}
 const todayPlanItems = ref([
   { time: '8:00', activity: '起床 + 洗漱' },
   { time: '8:30', activity: '早餐 + 复习英语词汇(30分钟，复习剩余500词)' },
@@ -436,17 +241,9 @@ const achievements = computed(() => {
 onMounted(() => {
   // 初始化学习数据（从localStorage/IndexedDB加载）
   studyStore.initializeStudyData()
-  
-  // 注入2026-05-05英语语法学习记录
-  injectEnglishGrammarRecords()
+
   updateCountdown()
   countdownInterval = setInterval(updateCountdown, 1000)
-  
-  // 自动记录今天的学习
-  autoRecordTodayStudy()
-  
-  // 开始第一天英语语法学习
-  startEnglishGrammarDay1()
 })
 
 onUnmounted(() => {
@@ -544,9 +341,6 @@ onUnmounted(() => {
             <h2 class="card-title">📋 今日待办</h2>
             <el-button size="small" type="primary" @click="showAddDialog = true">
               + 添加任务
-            </el-button>
-            <el-button size="small" type="success" @click="showStudyDialog = true" style="margin-left: 8px;">
-              ⏱️ 记录学习
             </el-button>
           </div>
           <div class="card-content">
@@ -646,45 +440,6 @@ onUnmounted(() => {
       <template #footer>
         <el-button @click="showAddDialog = false">取消</el-button>
         <el-button type="primary" @click="addTodo">添加</el-button>
-      </template>
-    </el-dialog>
-
-    <!-- 快速学习记录对话框 -->
-    <el-dialog v-model="showStudyDialog" title="⏱️ 快速记录学习时间" width="500px">
-      <el-form label-width="100px">
-        <el-form-item label="学习科目">
-          <el-select v-model="studySubject" placeholder="选择科目" style="width: 100%;">
-            <el-option 
-              v-for="option in subjectOptions" 
-              :key="option.value" 
-              :label="option.label" 
-              :value="option.value"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="学习时长">
-          <el-input-number 
-            v-model="studyDuration" 
-            :min="5" 
-            :max="180" 
-            :step="5"
-            style="width: 100%;"
-          />
-          <span style="margin-left: 10px; color: #999;">分钟</span>
-        </el-form-item>
-        <el-form-item label="学习内容">
-          <el-input 
-            v-model="studyContent" 
-            type="textarea"
-            :rows="3"
-            placeholder="例如：计算机组成原理 - 第三章 存储器系统" 
-            autofocus
-          />
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <el-button @click="showStudyDialog = false">取消</el-button>
-        <el-button type="success" @click="quickAddStudy">✅ 记录</el-button>
       </template>
     </el-dialog>
 
@@ -804,7 +559,7 @@ onUnmounted(() => {
   width: 100%;
   margin: 0 auto;
   padding: 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+  background: linear-gradient(180deg, #f5f8fc 0%, #edf2f8 100%);
   min-height: calc(100vh - 100px);
   border-radius: 0 0 24px 24px;
   overflow: hidden;
@@ -812,11 +567,11 @@ onUnmounted(() => {
 
 /* 顶部仪表盘区域 */
 .dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
   border-radius: 0;
   padding: 40px 48px;
   margin-bottom: 24px;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 8px 32px rgba(13, 33, 55, 0.25);
   color: white;
   position: relative;
   overflow: hidden;
@@ -829,8 +584,8 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #f093fb, #f5576c, #4facfe, #00f2fe);
-  opacity: 0.8;
+  background: linear-gradient(90deg, #ffc53d, #f0a820, #ffc53d);
+  opacity: 0.9;
 }
 
 .header-content {
@@ -1175,8 +930,8 @@ onUnmounted(() => {
 
 .category-tag {
   font-size: 0.75em;
-  background: #e3f2fd;
-  color: #2196f3;
+  background: #eef3fa;
+  color: #16345c;
   padding: 3px 10px;
   border-radius: 16px;
 }
@@ -1567,8 +1322,8 @@ onUnmounted(() => {
     transition: all 0.3s ease;
     
     &.unlocked {
-      background: linear-gradient(135deg, #667eea20, #764ba220);
-      border: 1px solid #667eea40;
+      background: linear-gradient(135deg, rgba(255,197,61,0.10), rgba(240,168,32,0.14));
+      border: 1px solid rgba(255, 197, 61, 0.4);
     }
     
     &:hover {

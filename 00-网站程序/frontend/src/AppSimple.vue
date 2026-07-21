@@ -82,7 +82,7 @@ const menuItems = [
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
 }
 
 .header {
@@ -118,12 +118,12 @@ const menuItems = [
 }
 
 .header button:hover {
-  background: rgba(102, 126, 234, 0.2);
-  color: #667eea;
+  background: rgba(13, 33, 55, 0.2);
+  color: #16345c;
 }
 
 .header button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
 }
 

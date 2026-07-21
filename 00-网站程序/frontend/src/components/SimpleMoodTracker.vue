@@ -202,7 +202,7 @@ onMounted(() => {
 .recorded-status {
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 12px;
   margin-bottom: 20px;
 }

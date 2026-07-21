@@ -490,8 +490,8 @@ onMounted(async () => {
 }
 
 .prereq-node {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #eef3fa;
+  color: #16345c;
   padding: 3px 8px;
   border-radius: 12px;
   font-size: 0.8em;

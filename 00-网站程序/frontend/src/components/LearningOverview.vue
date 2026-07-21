@@ -1,20 +1,54 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useStudyStore } from '@/stores/study'
 import { ElMessage } from 'element-plus'
 import { Plus, TrendCharts, Aim, Calendar } from '@element-plus/icons-vue'
 
 const studyStore = useStudyStore()
 
-// 快速记录表单
+const todayStr = () => new Date().toISOString().split('T')[0]
+
+// 快速记录表单（支持章节选择 + 日期补录 + 批量添加）
 const showQuickRecord = ref(false)
 const quickRecord = ref({
   subject: '数学一',
+  chapter: '',
+  date: todayStr(),
   duration: 60,
   content: ''
 })
 
 const subjects = ['数学一', '408计算机', '英语一', '政治', '其他']
+
+// 科目 → 章节映射（章节下拉数据源）
+const SUBJECT_CHAPTERS: Record<string, string[]> = {
+  '数学一': [
+    '高数·函数 极限 连续', '高数·一元函数微分学', '高数·一元函数积分学', '高数·常微分方程',
+    '高数·多元函数微分学', '高数·二重积分', '高数·无穷级数', '高数·空间解析几何', '高数·多元积分学',
+    '线代·行列式', '线代·矩阵', '线代·向量', '线代·线性方程组', '线代·特征值与特征向量', '线代·二次型',
+    '概率·随机事件与概率', '概率·随机变量及其分布', '概率·多维随机变量', '概率·随机变量的数字特征',
+    '概率·极限定理', '概率·统计与抽样分布', '概率·参数估计', '概率·假设检验'
+  ],
+  '408计算机': [
+    '数据结构·第1章 绪论', '数据结构·第2章 线性表', '数据结构·第3章 栈、队列和数组', '数据结构·第4章 串',
+    '数据结构·第5章 树与二叉树', '数据结构·第6章 图', '数据结构·第7章 查找', '数据结构·第8章 排序',
+    '计组·第1章 计算机系统概述', '计组·第2章 数据的表示和运算', '计组·第3章 存储系统', '计组·第4章 指令系统',
+    '计组·第5章 中央处理器', '计组·第6章 总线', '计组·第7章 输入/输出系统',
+    '操作系统·第1章 操作系统概述', '操作系统·第2章 进程管理', '操作系统·第3章 内存管理',
+    '操作系统·第4章 文件管理', '操作系统·第5章 输入/输出(I/O)管理',
+    '网络·第1章 计算机网络体系结构', '网络·第2章 物理层', '网络·第3章 数据链路层',
+    '网络·第4章 网络层', '网络·第5章 传输层', '网络·第6章 应用层'
+  ],
+  '英语一': ['完形填空', '阅读 Part A', '阅读 Part B(新题型)', '翻译', '写作 Part A(小作文)', '写作 Part B(大作文)', '单词', '长难句'],
+  '政治': ['马原', '毛中特', '史纲', '思修与法基', '当代世界经济与政治', '时政']
+}
+
+const chapterOptions = computed(() => SUBJECT_CHAPTERS[quickRecord.value.subject] || [])
+
+// 切换科目时清空章节选择
+watch(() => quickRecord.value.subject, () => {
+  quickRecord.value.chapter = ''
+})
 
 // 计算属性 - 本周统计
 const weeklyStats = computed(() => {
@@ -90,34 +124,48 @@ const last7DaysTrend = computed(() => {
   return days
 })
 
-// 提交快速记录
-const submitQuickRecord = () => {
+// 提交快速记录（continueAdding=true 时不关闭表单，支持批量补录）
+const submitQuickRecord = (continueAdding = false) => {
   if (!quickRecord.value.content.trim()) {
     ElMessage.warning('请输入学习内容')
     return
   }
-  
-  const today = new Date().toISOString().split('T')[0]
+  if (!quickRecord.value.date) {
+    ElMessage.warning('请选择日期')
+    return
+  }
+
+  // 日期统一为 YYYY-MM-DD（el-date-picker 返回 Date 对象）
+  const d = new Date(quickRecord.value.date)
+  const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
   const now = new Date()
   const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-  
+
+  // 章节前缀拼入内容，便于后续按章节统计
+  const chapterPrefix = quickRecord.value.chapter ? `【${quickRecord.value.chapter}】` : ''
+
   const newRecord = {
-    id: `record_${today}_${Date.now()}`,
-    date: today,
+    id: `record_${dateStr}_${Date.now()}`,
+    date: dateStr,
     subject: quickRecord.value.subject,
     duration: quickRecord.value.duration,
-    content: `${quickRecord.value.content}（${timeStr}）`,
+    content: `${chapterPrefix}${quickRecord.value.content}（${timeStr}）`,
     type: 'study',
     createdAt: new Date().toISOString()
   }
-  
+
   studyStore.addStudyRecord(newRecord as any)
-  ElMessage.success('学习记录已添加！')
-  
-  // 重置表单
-  quickRecord.value.content = ''
-  quickRecord.value.duration = 60
-  showQuickRecord.value = false
+
+  if (continueAdding) {
+    ElMessage.success(`已添加（${dateStr}），继续补录下一条`)
+    quickRecord.value.content = ''
+  } else {
+    ElMessage.success('学习记录已添加！')
+    quickRecord.value.content = ''
+    quickRecord.value.duration = 60
+    quickRecord.value.date = todayStr()
+    showQuickRecord.value = false
+  }
 }
 
 // 获取趋势条的高度
@@ -171,6 +219,35 @@ const getTrendColor = (minutes: number) => {
               />
             </el-select>
           </el-form-item>
+
+          <el-form-item label="章节">
+            <el-select
+              v-model="quickRecord.chapter"
+              style="width: 100%"
+              filterable
+              clearable
+              :placeholder="chapterOptions.length ? '选择章节（可选）' : '该科目暂无章节'"
+              :disabled="!chapterOptions.length"
+            >
+              <el-option
+                v-for="ch in chapterOptions"
+                :key="ch"
+                :label="ch"
+                :value="ch"
+              />
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="日期">
+            <el-date-picker
+              v-model="quickRecord.date"
+              type="date"
+              style="width: 100%"
+              placeholder="默认今天，可选过去日期补录"
+              :disabled-date="(d: Date) => d.getTime() > Date.now()"
+              format="YYYY-MM-DD"
+            />
+          </el-form-item>
           
           <el-form-item label="时长">
             <el-input-number 
@@ -194,7 +271,8 @@ const getTrendColor = (minutes: number) => {
           </el-form-item>
           
           <el-form-item>
-            <el-button type="primary" @click="submitQuickRecord">保存</el-button>
+            <el-button type="primary" @click="submitQuickRecord(false)">保存</el-button>
+            <el-button type="success" plain @click="submitQuickRecord(true)">保存并继续添加</el-button>
             <el-button @click="showQuickRecord = false">取消</el-button>
           </el-form-item>
         </el-form>
@@ -361,7 +439,7 @@ const getTrendColor = (minutes: number) => {
 .stat-value {
   font-size: 2em;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -411,7 +489,7 @@ const getTrendColor = (minutes: number) => {
 .goal-progress {
   font-weight: 700;
   font-size: 1.2em;
-  color: #667eea;
+  color: #16345c;
 }
 
 .goal-detail {

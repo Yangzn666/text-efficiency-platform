@@ -601,7 +601,7 @@ const updateOverallProgress = () => {
 }
 
 .progress-overview {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
   padding: 25px;
   margin-bottom: 30px;
@@ -789,7 +789,7 @@ const updateOverallProgress = () => {
 }
 
 .duration {
-  color: #2196F3;
+  color: #16345c;
   font-weight: 500;
 }
 
@@ -823,7 +823,7 @@ const updateOverallProgress = () => {
 }
 
 .subitem-count {
-  color: #2196F3;
+  color: #16345c;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -842,10 +842,10 @@ const updateOverallProgress = () => {
 .lesson-note {
   margin: 10px 0;
   padding: 10px 15px;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  border-left: 4px solid #2196F3;
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
+  border-left: 4px solid #ffc53d;
   border-radius: 6px;
-  color: #1976D2;
+  color: #16345c;
   font-size: 0.9em;
   line-height: 1.6;
 }
@@ -915,7 +915,7 @@ const updateOverallProgress = () => {
 }
 
 .content-item.recorded {
-  color: #2196F3;
+  color: #16345c;
 }
 
 .content-label {
@@ -932,7 +932,7 @@ const updateOverallProgress = () => {
 
 .feature-tag {
   padding: 4px 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 12px;
   font-size: 0.85em;
@@ -949,8 +949,8 @@ const updateOverallProgress = () => {
 
 .type-tag {
   padding: 4px 10px;
-  background: #e3f2fd;
-  color: #1976D2;
+  background: #eef3fa;
+  color: #16345c;
   border-radius: 12px;
   font-size: 0.85em;
   font-weight: 500;
@@ -986,7 +986,7 @@ const updateOverallProgress = () => {
 
 /* 类型标签颜色 */
 .type.录播 {
-  color: #2196F3;
+  color: #16345c;
 }
 
 .type.直播 {

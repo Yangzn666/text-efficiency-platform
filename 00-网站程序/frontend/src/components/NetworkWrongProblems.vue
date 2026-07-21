@@ -714,7 +714,7 @@ defineExpose({
                 transition: all 0.2s;
                 
                 &:hover {
-                  background: rgba(102, 126, 234, 0.08);
+                  background: rgba(13, 33, 55, 0.08);
                   border-radius: 4px;
                   padding-left: 20px;
                 }
@@ -727,7 +727,7 @@ defineExpose({
                   transform: translateY(-50%);
                   width: 4px;
                   height: 4px;
-                  background: #667eea;
+                  background: #16345c;
                   border-radius: 50%;
                 }
               }

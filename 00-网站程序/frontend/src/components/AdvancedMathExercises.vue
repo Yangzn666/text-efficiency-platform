@@ -452,14 +452,14 @@ onMounted(() => {
 
 .chapter-card:hover {
   background: #f0f8ff;
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateY(-5px);
 }
 
 .chapter-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #16345c, #1e4576);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -496,7 +496,7 @@ onMounted(() => {
 }
 
 .chapter-action .el-button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #16345c, #1e4576);
   border: none;
 }
 
@@ -579,7 +579,7 @@ onMounted(() => {
   padding: 20px;
   background: white;
   border-radius: 10px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #ffc53d;
 }
 
 .content-text {
@@ -606,7 +606,7 @@ onMounted(() => {
 }
 
 .user-answer-display {
-  background: #e3f2fd;
+  background: #eef3fa;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;

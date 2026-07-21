@@ -120,8 +120,8 @@ function saveProgress() {
 }
 
 .phrase-card:hover {
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  border-color: #16345c;
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.15);
   transform: translateY(-2px);
 }
 
@@ -203,7 +203,7 @@ function saveProgress() {
 .phrase-example .el-icon {
   flex-shrink: 0;
   margin-top: 2px;
-  color: #667eea;
+  color: #16345c;
 }
 
 @media (max-width: 768px) {

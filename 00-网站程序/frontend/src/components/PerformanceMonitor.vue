@@ -201,7 +201,7 @@ onMounted(() => {
             <el-card class="metric-card">
               <template #header>
                 <div class="metric-header">
-                  <el-icon color="#2196F3"><View /></el-icon>
+                  <el-icon color="#16345c"><View /></el-icon>
                   <h3>首次绘制</h3>
                 </div>
               </template>
@@ -214,7 +214,7 @@ onMounted(() => {
                   :percentage="Math.min(100, metrics.firstPaint / 10)" 
                   :stroke-width="8"
                   :show-text="false"
-                  :color="metrics.firstPaint > 1000 ? '#F56C6C' : '#2196F3'"
+                  :color="metrics.firstPaint > 1000 ? '#F56C6C' : '#16345c'"
                 />
               </div>
             </el-card>

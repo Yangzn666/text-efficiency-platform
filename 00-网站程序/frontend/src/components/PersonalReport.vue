@@ -11,13 +11,13 @@ const reportType = ref('weekly')
 const selectedPeriod = ref('')
 const isGenerating = ref(false)
 
-// 计算属�?
+// 计算属�?
 const weeklyReports = computed(() => analyticsStore.weeklyReports)
 const availablePeriods = computed(() => {
   if (reportType.value === 'weekly') {
     return weeklyReports.value.map(report => ({
       value: report.week,
-      label: `�?{report.week}�?(${new Date(report.week).toLocaleDateString()})`
+      label: `�?{report.week}�?(${new Date(report.week).toLocaleDateString()})`
     }))
   }
   return []
@@ -41,7 +41,7 @@ const generateReport = async () => {
     
     if (reportData) {
       downloadReport(reportData)
-      ElMessage.success('报告生成成功�?)
+      ElMessage.success('报告生成成功�?)
     } else {
       ElMessage.error('未找到对应的报告数据')
     }
@@ -79,10 +79,10 @@ const generateReportContent = (data: any) => {
     
     content += `📊 学习概况\n`
     content += `----------\n`
-    content += `总学习时�? ${Math.floor(data.totalTime / 60)}小时${data.totalTime % 60}分钟\n`
-    content += `学习会话�? ${data.sessions}次\n`
+    content += `总学习时�? ${Math.floor(data.totalTime / 60)}小时${data.totalTime % 60}分钟\n`
+    content += `学习会话�? ${data.sessions}次\n`
     content += `平均学习效率: ${data.productivity}/10\n`
-    content += `目标完成�? ${data.goalsAchieved}%\n`
+    content += `目标完成�? ${data.goalsAchieved}%\n`
     content += `连续学习天数: ${data.streak}天\n\n`
     
     content += `📚 科目学习时间分布\n`
@@ -97,19 +97,19 @@ const generateReportContent = (data: any) => {
     content += `🎯 学习建议\n`
     content += `----------\n`
     if (data.productivity >= 8) {
-      content += `�?学习效率很高，继续保持！\n`
+      content += `�?学习效率很高，继续保持！\n`
     } else if (data.productivity >= 6) {
-      content += `�?学习效率良好，可以适当增加学习强度\n`
+      content += `�?学习效率良好，可以适当增加学习强度\n`
     } else {
-      content += `�?学习效率有待提升，建议调整学习方法\n`
+      content += `�?学习效率有待提升，建议调整学习方法\n`
     }
     
     if (data.goalsAchieved >= 100) {
-      content += `�?圆满完成本周学习目标，表现优秀！\n`
+      content += `�?圆满完成本周学习目标，表现优秀！\n`
     } else if (data.goalsAchieved >= 80) {
-      content += `�?基本完成学习目标，继续努力\n`
+      content += `�?基本完成学习目标，继续努力\n`
     } else {
-      content += `�?未达到预期目标，需要加强时间管理\n`
+      content += `�?未达到预期目标，需要加强时间管理\n`
     }
     
     content += `\n`
@@ -126,7 +126,7 @@ const generateReportContent = (data: any) => {
 
 const exportAllData = () => {
   analyticsStore.exportData()
-  ElMessage.success('全部数据导出成功�?)
+  ElMessage.success('全部数据导出成功�?)
 }
 
 onMounted(() => {
@@ -143,14 +143,14 @@ onMounted(() => {
   <div class="report-generator-container">
     <div class="page-header">
       <h1 class="page-title">个人学习报告</h1>
-      <p class="page-subtitle">生成详细的学习分析报�?/p>
+      <p class="page-subtitle">生成详细的学习分析报�?/p>
     </div>
 
     <div class="generator-content">
       <el-card>
         <template #header>
           <div class="card-header">
-            <h2>报告生成�?/h2>
+            <h2>报告生成�?/h2>
           </div>
         </template>
         
@@ -190,7 +190,7 @@ onMounted(() => {
               @click="generateReport"
             >
               <el-icon><Document /></el-icon>
-              {{ isGenerating ? '生成�?..' : '生成报告' }}
+              {{ isGenerating ? '生成�?..' : '生成报告' }}
             </el-button>
             
             <el-button 
@@ -214,7 +214,7 @@ onMounted(() => {
           <div class="preview-content">
             <div class="preview-placeholder" v-if="!selectedPeriod">
               <el-icon size="60" color="#999999"><Document /></el-icon>
-              <p>请选择报告周期以预览内�?/p>
+              <p>请选择报告周期以预览内�?/p>
             </div>
             
             <div class="preview-text" v-else>
@@ -238,7 +238,7 @@ onMounted(() => {
               class="history-item"
             >
               <div class="report-info">
-                <span class="report-period">第{{ report.week }}�?/span>
+                <span class="report-period">第{{ report.week }}�?/span>
                 <span class="report-date">{{ new Date(report.week).toLocaleDateString() }}</span>
               </div>
               <div class="report-stats">
@@ -395,7 +395,7 @@ onMounted(() => {
 }
 
 .history-item:hover {
-  background: #e3f2fd;
+  background: #eef3fa;
   transform: translateX(5px);
 }
 
@@ -433,7 +433,7 @@ onMounted(() => {
   font-size: 1.1em;
 }
 
-/* 响应式设�?*/
+/* 响应式设�?*/
 @media (max-width: 768px) {
   .report-generator-container {
     padding: 20px 15px;

@@ -1887,7 +1887,7 @@
         </div>
         
         <div class="card-section importance">
-          <h4>🎓 考研重点（408专业课）</h4>
+          <h4>🎓 考研重点（408计算机）</h4>
           <p>在《计算机组成原理》外存储器章节中：</p>
           <ul>
             <li>✅ 理解RAID的基本概念和目的</li>
@@ -2389,7 +2389,7 @@ Cache块数 = 16KB / 32B = 512块</pre>
         </div>
         
         <div class="card-section importance">
-          <h4>🎓 考研重点（408专业课）</h4>
+          <h4>🎓 考研重点（408计算机）</h4>
           <p>在《计算机组成原理》运算方法和运算器章节中：</p>
           <ul>
             <li>✅ 掌握6个状态标志位的含义和置位条件（必考选择题）</li>
@@ -5332,7 +5332,7 @@ defineExpose({
       }
       
       .flow-step {
-        background: #ecf5ff;
+        background: #fff8e6;
         padding: 12px 20px;
         border-radius: 8px;
         border: 2px solid #409eff;

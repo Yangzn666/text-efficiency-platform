@@ -1,0 +1,112 @@
+{
+  "chapters": [
+    {
+      "id": "la01",
+      "order": 1,
+      "title": "行列式",
+      "estimatedHours": 4,
+      "difficulty": "基础",
+      "importance": 4,
+      "prerequisites": [],
+      "keyTopics": [
+        "行列式性质",
+        "按行列展开",
+        "数值型行列式计算",
+        "抽象行列式",
+        "代数余子式"
+      ],
+      "markdownFile": "la-chapter01-行列式.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第一章"
+    },
+    {
+      "id": "la02",
+      "order": 2,
+      "title": "矩阵",
+      "estimatedHours": 8,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["la01"],
+      "keyTopics": [
+        "矩阵运算",
+        "逆矩阵",
+        "伴随矩阵",
+        "初等变换",
+        "矩阵的秩",
+        "分块矩阵"
+      ],
+      "markdownFile": "la-chapter02-矩阵.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第二章"
+    },
+    {
+      "id": "la03",
+      "order": 3,
+      "title": "向量",
+      "estimatedHours": 7,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["la02"],
+      "keyTopics": [
+        "线性相关与线性无关",
+        "线性表示",
+        "向量组的秩",
+        "施密特正交化",
+        "向量空间"
+      ],
+      "markdownFile": "la-chapter03-向量.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第三章"
+    },
+    {
+      "id": "la04",
+      "order": 4,
+      "title": "线性方程组",
+      "estimatedHours": 7,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["la02", "la03"],
+      "keyTopics": [
+        "解的判定",
+        "基础解系",
+        "解的结构",
+        "公共解",
+        "同解方程组"
+      ],
+      "markdownFile": "la-chapter04-线性方程组.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第四章"
+    },
+    {
+      "id": "la05",
+      "order": 5,
+      "title": "特征值与特征向量",
+      "estimatedHours": 7,
+      "difficulty": "难点",
+      "importance": 5,
+      "prerequisites": ["la02", "la04"],
+      "keyTopics": [
+        "特征值与特征向量",
+        "相似矩阵",
+        "相似对角化",
+        "实对称矩阵"
+      ],
+      "markdownFile": "la-chapter05-特征值与特征向量.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第五章"
+    },
+    {
+      "id": "la06",
+      "order": 6,
+      "title": "二次型",
+      "estimatedHours": 6,
+      "difficulty": "难点",
+      "importance": 5,
+      "prerequisites": ["la05"],
+      "keyTopics": [
+        "二次型及其矩阵",
+        "化标准形",
+        "惯性指数",
+        "合同",
+        "正定性"
+      ],
+      "markdownFile": "la-chapter06-二次型.md",
+      "pdfReference": "Kira·27线性代数强化讲义 第六章"
+    }
+  ]
+}

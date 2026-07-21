@@ -38,7 +38,7 @@ const weakPoints = ref([
   },
   {
     id: 'cs_os_1',
-    subject: '408专业课',
+    subject: '408计算机',
     category: '操作系统',
     topic: '进程同步与互斥',
     weaknessLevel: 'high',
@@ -103,7 +103,7 @@ const getWeaknessLabel = (level: string) => {
 const getSubjectColor = (subject: string) => {
   const colors: any = {
     '数学一': '#409EFF',
-    '408专业课': '#67C23A',
+    '408计算机': '#67C23A',
     '英语一': '#E6A23C',
     '政治': '#F56C6C'
   }
@@ -424,7 +424,7 @@ const getSubjectColor = (subject: string) => {
 
 /* 学习建议 */
 .learning-tips {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 15px;
   padding: 25px;
 }

@@ -51,10 +51,10 @@ const subjectDetails = computed(() => {
     })
   }
   
-  // 408专业课
-  if (stats['408专业课']) {
-    const csStats = stats['408专业课']
-    const csProgress = progress['408专业课'] || { totalTime: 0, lastStudyDate: '-', weeklyGoal: 300, completionRate: 0 }
+  // 408计算机
+  if (stats['408计算机']) {
+    const csStats = stats['408计算机']
+    const csProgress = progress['408计算机'] || { totalTime: 0, lastStudyDate: '-', weeklyGoal: 300, completionRate: 0 }
     details.push({
       id: 'cs408',
       name: '408计算机',
@@ -432,11 +432,11 @@ const viewSubjectDetail = (subject: any) => {
 }
 
 .overview-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(150deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
   border-radius: 20px;
   padding: 30px;
   color: white;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 30px rgba(13, 33, 55, 0.25);
 }
 
 .overview-header {

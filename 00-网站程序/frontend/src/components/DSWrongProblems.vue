@@ -3371,7 +3371,7 @@ defineExpose({
     display: flex;
     gap: 20px;
     padding: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
     border-radius: 12px;
     margin-bottom: 16px;
     
@@ -3434,7 +3434,7 @@ defineExpose({
     
     .problem-card {
       transition: all 0.3s;
-      border-left: 4px solid #667eea;
+      border-left: 4px solid #ffc53d;
       
       &.mastered {
         border-left-color: #67c23a;
@@ -3571,7 +3571,7 @@ defineExpose({
               transition: all 0.2s;
               
               &:hover {
-                background: rgba(102, 126, 234, 0.08);
+                background: rgba(13, 33, 55, 0.08);
                 border-radius: 4px;
                 padding-left: 20px;
               }
@@ -3585,7 +3585,7 @@ defineExpose({
                 transform: translateY(-50%);
                 width: 4px;
                 height: 4px;
-                background: #667eea;
+                background: #16345c;
                 border-radius: 50%;
               }
             }

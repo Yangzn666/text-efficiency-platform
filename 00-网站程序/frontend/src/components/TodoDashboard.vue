@@ -87,7 +87,7 @@
       
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+          <div class="stat-icon" style="background: linear-gradient(135deg, #16345c 0%, #1e4576 100%)">
             <el-icon size="24" color="white"><List /></el-icon>
           </div>
           <div class="stat-info">
@@ -117,7 +117,7 @@
         </div>
         
         <div class="stat-card">
-          <div class="stat-icon" style="background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%)">
+          <div class="stat-icon" style="background: linear-gradient(135deg, #16345c 0%, #2a5290 100%)">
             <el-icon size="24" color="white"><Calendar /></el-icon>
           </div>
           <div class="stat-info">
@@ -387,7 +387,7 @@ onMounted(() => {
 
 .todo-item:hover {
   background: #f0f8ff;
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateX(5px);
 }
 
@@ -429,8 +429,8 @@ onMounted(() => {
 }
 
 .todo-category {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #eef3fa;
+  color: #16345c;
   padding: 4px 12px;
   border-radius: 15px;
   font-size: 0.85em;

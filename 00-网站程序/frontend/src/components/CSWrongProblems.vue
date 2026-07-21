@@ -18,6 +18,7 @@ interface WrongProblem {
   reviewCount: number
   lastReviewAt: string
   mastered: boolean
+  subject?: string
 }
 
 const problems = ref<WrongProblem[]>([
@@ -148,6 +149,7 @@ const ocrTipVisible = ref(true)
 const expandedCorrections = ref<Set<string>>(new Set())
 
 const newProblem = ref({
+  subject: '408计算机',
   chapterId: '',
   chapterName: '',
   sectionId: '',
@@ -167,13 +169,33 @@ const mistakeTypes = [
   { value: '不会做', label: '完全不会做' }
 ]
 
+// 科目选项（全科错题本）
+const subjectOptions = [
+  { value: '数学一', label: '数学一' },
+  { value: '英语一', label: '英语一' },
+  { value: '政治', label: '政治' },
+  { value: '408计算机', label: '408计算机' }
+]
+
+const getSubjectTagType = (subject?: string) => {
+  const map: Record<string, string> = {
+    '数学一': 'danger',
+    '英语一': 'success',
+    '政治': 'warning',
+    '408计算机': 'primary'
+  }
+  return (map[subject || ''] || 'info') as 'danger' | 'success' | 'warning' | 'primary' | 'info'
+}
+
 const chapterFilter = ref('all')
 const typeFilter = ref('all')
 const masteredFilter = ref('all')
+const subjectFilter = ref('all')
 
 // 计算属性
 const filteredProblems = computed(() => {
   return problems.value.filter(p => {
+    if (subjectFilter.value !== 'all' && (p.subject || '408计算机') !== subjectFilter.value) return false
     if (chapterFilter.value !== 'all' && p.chapterId !== chapterFilter.value) return false
     if (typeFilter.value !== 'all' && p.mistakeType !== typeFilter.value) return false
     if (masteredFilter.value === 'mastered' && !p.mastered) return false
@@ -208,6 +230,7 @@ const stats = computed(() => {
 // 方法
 const openAddDialog = () => {
   newProblem.value = {
+    subject: '408计算机',
     chapterId: '',
     chapterName: '',
     sectionId: '',
@@ -229,6 +252,7 @@ const addProblem = () => {
   
   const problem: WrongProblem = {
     id: `wrong_${Date.now()}`,
+    subject: newProblem.value.subject || '408计算机',
     chapterId: newProblem.value.chapterId || 'unknown',
     chapterName: newProblem.value.chapterName || '未分类',
     sectionId: newProblem.value.sectionId || '',
@@ -324,6 +348,7 @@ D.
 
 const fillExampleData = () => {
   newProblem.value = {
+    subject: '408计算机',
     chapterId: 'ch1',
     chapterName: '第一章 计算机系统概述',
     sectionId: '1.2',
@@ -415,6 +440,16 @@ defineExpose({
           </el-button>
           
           <el-space>
+            <el-select v-model="subjectFilter" placeholder="按科目筛选" clearable style="width: 140px">
+              <el-option label="全部科目" value="all" />
+              <el-option
+                v-for="sub in subjectOptions"
+                :key="sub.value"
+                :label="sub.label"
+                :value="sub.value"
+              />
+            </el-select>
+
             <el-select v-model="chapterFilter" placeholder="按章节筛选" clearable style="width: 150px">
               <el-option label="全部章节" value="all" />
               <el-option 
@@ -455,6 +490,9 @@ defineExpose({
               <div class="problem-title">
                 <h4>{{ problem.title }}</h4>
                 <div class="problem-tags">
+                  <el-tag :type="getSubjectTagType(problem.subject)" size="small" effect="dark">
+                    {{ problem.subject || '408计算机' }}
+                  </el-tag>
                   <el-tag :type="getMistakeTypeTag(problem.mistakeType)" size="small">
                     {{ problem.mistakeType }}
                   </el-tag>
@@ -659,6 +697,17 @@ defineExpose({
 
         <!-- 右侧：表单填写区 -->
         <el-form :model="newProblem" label-position="top" :style="{ flex: imageUploadMode ? 1 : 1 }">
+        <el-form-item label="所属科目">
+          <el-select v-model="newProblem.subject" placeholder="选择科目" style="width: 100%">
+            <el-option
+              v-for="sub in subjectOptions"
+              :key="sub.value"
+              :label="sub.label"
+              :value="sub.value"
+            />
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="所属章节">
           <el-input v-model="newProblem.chapterName" placeholder="例如：第一章 计算机系统概述" />
         </el-form-item>
@@ -725,7 +774,7 @@ defineExpose({
     display: flex;
     gap: 20px;
     padding: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
     border-radius: 12px;
     margin-bottom: 16px;
     
@@ -788,7 +837,7 @@ defineExpose({
     
     .problem-card {
       transition: all 0.3s;
-      border-left: 4px solid #667eea;
+      border-left: 4px solid #ffc53d;
       
       &.mastered {
         border-left-color: #67c23a;
@@ -925,7 +974,7 @@ defineExpose({
               transition: all 0.2s;
               
               &:hover {
-                background: rgba(102, 126, 234, 0.08);
+                background: rgba(13, 33, 55, 0.06);
                 border-radius: 4px;
                 padding-left: 20px;
               }
@@ -939,7 +988,7 @@ defineExpose({
                 transform: translateY(-50%);
                 width: 4px;
                 height: 4px;
-                background: #667eea;
+                background: #16345c;
                 border-radius: 50%;
               }
             }

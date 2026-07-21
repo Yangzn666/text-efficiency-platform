@@ -393,7 +393,7 @@ onMounted(async () => {
       
       <!-- 预计完成时间 -->
       <div class="detail-item" style="margin-bottom: 20px;">
-        <el-icon color="#667eea"><Calendar /></el-icon>
+        <el-icon color="#16345c"><Calendar /></el-icon>
         <span>预计完成：<strong>{{ formatDate(currentPath.estimatedEndDate) }}</strong></span>
       </div>
       
@@ -433,7 +433,7 @@ onMounted(async () => {
         
         <div class="chapter-details">
           <div class="detail-item">
-            <el-icon color="#667eea"><Timer /></el-icon>
+            <el-icon color="#16345c"><Timer /></el-icon>
             <span>预计时间：<strong>{{ formatTime(currentChapter.estimatedTime) }}</strong></span>
           </div>
           <div class="detail-item">
@@ -665,11 +665,11 @@ onMounted(async () => {
 }
 
 .path-selector {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 24px;
   padding: 35px;
   margin-bottom: 30px;
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 12px 40px rgba(13, 33, 55, 0.3);
   color: white;
   text-align: center;
 }
@@ -700,12 +700,12 @@ onMounted(async () => {
   padding: 35px;
   margin-bottom: 30px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .path-overview:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -721,7 +721,7 @@ onMounted(async () => {
   font-size: 1.9em;
   margin: 0;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -731,7 +731,7 @@ onMounted(async () => {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 18px;
   padding: 28px;
-  border: 2px solid rgba(102, 126, 234, 0.15);
+  border: 2px solid rgba(13, 33, 55, 0.15);
   box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
 }
 
@@ -772,7 +772,7 @@ onMounted(async () => {
 .progress-percentage {
   font-size: 2em;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
 }
 
 .progress-bar-container {
@@ -817,12 +817,12 @@ onMounted(async () => {
   padding: 35px;
   margin-bottom: 30px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .current-chapter:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -840,7 +840,7 @@ onMounted(async () => {
   content: '';
   width: 4px;
   height: 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 2px;
 }
 
@@ -855,8 +855,8 @@ onMounted(async () => {
 
 .chapter-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-  border-color: #667eea;
+  box-shadow: 0 10px 30px rgba(13, 33, 55, 0.2);
+  border-color: #16345c;
 }
 
 .chapter-header {
@@ -873,11 +873,11 @@ onMounted(async () => {
 }
 
 .chapter-order {
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
   font-size: 1.1em;
   display: inline-block;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(13, 33, 55, 0.1);
   padding: 4px 12px;
   border-radius: 20px;
   margin-bottom: 8px;
@@ -915,12 +915,12 @@ onMounted(async () => {
   padding: 35px;
   margin-bottom: 30px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .upcoming-chapters:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -949,7 +949,7 @@ onMounted(async () => {
 .chapter-preview:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  border-color: #667eea;
+  border-color: #16345c;
 }
 
 .preview-header {
@@ -960,10 +960,10 @@ onMounted(async () => {
 }
 
 .preview-order {
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
   font-size: 1em;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(13, 33, 55, 0.1);
   padding: 3px 10px;
   border-radius: 15px;
 }
@@ -989,13 +989,13 @@ onMounted(async () => {
 }
 
 .preview-details .time-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 3px 10px;
   border-radius: 15px;
   font-size: 0.85em;
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 6px rgba(13, 33, 55, 0.3);
 }
 
 /* 任务预览列表 */
@@ -1011,14 +1011,14 @@ onMounted(async () => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(13, 33, 55, 0.05);
   border-radius: 8px;
   font-size: 0.85em;
   transition: all 0.2s ease;
 }
 
 .mini-task-item:hover {
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(13, 33, 55, 0.1);
   transform: translateX(3px);
 }
 
@@ -1066,12 +1066,12 @@ onMounted(async () => {
   padding: 35px;
   margin-bottom: 30px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .study-plan:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -1135,8 +1135,8 @@ onMounted(async () => {
 
 .task-item:hover {
   transform: translateX(5px) translateY(-2px);
-  border-color: #667eea;
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+  border-color: #16345c;
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.2);
   background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 100%);
 }
 
@@ -1169,12 +1169,12 @@ onMounted(async () => {
 .time-badge {
   display: inline-block;
   padding: 4px 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 20px;
   font-size: 0.85em;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(13, 33, 55, 0.3);
 }
 
 .path-statistics {
@@ -1182,12 +1182,12 @@ onMounted(async () => {
   border-radius: 24px;
   padding: 35px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .path-statistics:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -1200,10 +1200,10 @@ onMounted(async () => {
 .stat-card {
   text-align: center;
   padding: 28px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.35);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -1243,7 +1243,7 @@ onMounted(async () => {
 
 .stat-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 15px 40px rgba(13, 33, 55, 0.5);
 }
 
 .stat-value {
@@ -1266,12 +1266,12 @@ onMounted(async () => {
   padding: 35px;
   margin-top: 30px;
   box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
 }
 
 .smart-recommendations:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -1358,7 +1358,7 @@ onMounted(async () => {
 
 .distribution-item:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+  box-shadow: 0 4px 15px rgba(13, 33, 55, 0.15);
   background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 100%);
 }
 
@@ -1422,13 +1422,13 @@ onMounted(async () => {
   border-radius: 24px;
   padding: 35px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
-  border: 2px solid rgba(102, 126, 234, 0.1);
+  border: 2px solid rgba(13, 33, 55, 0.1);
   transition: all 0.3s ease;
   animation: fadeInUp 0.6s ease-out;
 }
 
 .result-card:hover {
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 15px 45px rgba(13, 33, 55, 0.2);
   transform: translateY(-2px);
 }
 
@@ -1509,8 +1509,8 @@ onMounted(async () => {
 }
 
 .level-badge.intermediate {
-  background: #e3f2fd;
-  color: #2196F3;
+  background: #eef3fa;
+  color: #16345c;
 }
 
 .level-badge.advanced {
@@ -1547,8 +1547,8 @@ onMounted(async () => {
 
 .detail-item:hover {
   transform: translateX(5px);
-  border-color: #667eea;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+  border-color: #16345c;
+  box-shadow: 0 4px 15px rgba(13, 33, 55, 0.15);
   background: linear-gradient(135deg, #ffffff 0%, #f0f2ff 100%);
 }
 

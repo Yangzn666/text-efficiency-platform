@@ -4,7 +4,7 @@
     <div class="page-header">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item>
-          <router-link to="/cs408">408专业课</router-link>
+          <router-link to="/cs408">408计算机</router-link>
         </el-breadcrumb-item>
         <el-breadcrumb-item>计算机网络</el-breadcrumb-item>
       </el-breadcrumb>
@@ -109,20 +109,12 @@ const toggleKnowledgePanel = () => {
   isKnowledgePanelExpanded.value = !isKnowledgePanelExpanded.value
 }
 
-// 监听当前小节变化，切换时滚动到顶部
+// 监听当前小节变化
 watch(currentSection, (newSection) => {
   if (newSection) {
     console.log('✅ 当前小节:', newSection.id, newSection.title)
-    
-    // 切换章节时，将右侧知识点面板滚动到顶部
-    setTimeout(() => {
-      const tabsContent = document.querySelector('.knowledge-tabs .el-tabs__content')
-      if (tabsContent) {
-        tabsContent.scrollTop = 0
-      }
-    }, 50)
   } else {
-    console.warn('⚠️ 当前小节为 undefined')
+    console.warn(' 当前小节为 undefined')
   }
 })
 
@@ -187,11 +179,6 @@ onMounted(() => {
   if (networkStore.chapters.length > 0 && networkStore.chapters[0].sections.length > 0) {
     networkStore.selectChapter(networkStore.chapters[0].id)
     console.log('✅ 初始化选中章节:', networkStore.chapters[0].title)
-  }
-  
-  // 在window对象上注册方法，供Markdown中的onclick调用
-  ;(window as any).showKnowledgeCard = (cardId: string) => {
-    knowledgeCardRef.value?.show(cardId)
   }
 })
 </script>
@@ -289,18 +276,18 @@ onMounted(() => {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        color: #1890ff;
+        color: #16345c;
         transition: all 0.3s;
         z-index: 10;
         box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
         
         &:hover {
-          background: linear-gradient(to right, #1890ff, #40a9ff);
+          background: linear-gradient(to right, #ffc53d, #f0a820);
           color: #fff;
-          border-color: #1890ff;
+          border-color: #f0a820;
           width: 20px;
           left: -20px;
-          box-shadow: -3px 0 8px rgba(24, 144, 255, 0.3);
+          box-shadow: -3px 0 8px rgba(255, 197, 61, 0.3);
         }
       }
       
@@ -446,7 +433,7 @@ onMounted(() => {
           border-left: 4px solid $primary-color;
           padding: 12px 16px;
           margin: 12px 0;
-          background: rgba(102, 126, 234, 0.05);
+          background: rgba(13, 33, 55, 0.04);
           border-radius: 4px;
         }
         

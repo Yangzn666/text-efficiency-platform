@@ -212,7 +212,7 @@ const todaySubjectStats = computed(() => {
   const todayRecords = studyStore.studyRecords.filter(r => r.date === today)
   
   const stats: Record<string, { minutes: number; color: string }> = {}
-  const colors = ['#667eea', '#4CAF50', '#FF9800', '#2196F3', '#9C27B0', '#F44336']
+  const colors = ['#16345c', '#4CAF50', '#FF9800', '#16345c', '#9C27B0', '#F44336']
   
   todayRecords.forEach((record, index) => {
     if (!stats[record.subject]) {
@@ -238,10 +238,10 @@ const getSubjectPercentage = (minutes: number) => {
 // 获取科目颜色
 const getSubjectColor = (subject: string) => {
   const colorMap: Record<string, string> = {
-    '408计算机科学综合': '#667eea',
-    '数学一': '#4CAF50',
-    '英语一': '#2196F3',
-    '政治': '#FF9800'
+    '408计算机科学综合': '#409EFF',
+    '数学一': '#67C23A',
+    '英语一': '#E6A23C',
+    '政治': '#F56C6C'
   }
   return colorMap[subject] || '#9C27B0'
 }
@@ -449,7 +449,7 @@ onMounted(() => {
     background: #f8f9fa;
     text-align: center;
     
-    &.primary { background: linear-gradient(135deg, #667eea20, #764ba220); }
+    &.primary { background: linear-gradient(135deg, #16345c20, #1e457620); }
     &.success { background: linear-gradient(135deg, #4CAF5020, #81C78420); }
     &.warning { background: linear-gradient(135deg, #FF980020, #FFB74D20); }
     
@@ -538,7 +538,7 @@ onMounted(() => {
         .record-clock {
           font-size: 16px;
           font-weight: 600;
-          color: #667eea;
+          color: #16345c;
           font-family: 'FZCuHei', monospace;
         }
       }
@@ -555,7 +555,7 @@ onMounted(() => {
           .record-duration {
             font-size: 13px;
             font-weight: 600;
-            color: #667eea;
+            color: #16345c;
           }
         }
         
@@ -592,7 +592,7 @@ onMounted(() => {
       
       &.today {
         .day-label {
-          color: #667eea;
+          color: #16345c;
           font-weight: 700;
         }
       }
@@ -615,7 +615,7 @@ onMounted(() => {
           position: absolute;
           bottom: 0;
           width: 100%;
-          background: linear-gradient(to top, #667eea, #764ba2);
+          background: linear-gradient(to top, #16345c, #1e4576);
           border-radius: 15px;
           transition: height 0.5s ease;
           display: flex;
@@ -624,7 +624,7 @@ onMounted(() => {
           padding-top: 4px;
           
           &.active {
-            background: linear-gradient(to top, #667eea, #764ba2);
+            background: linear-gradient(to top, #16345c, #1e4576);
           }
           
           .bar-value {
@@ -665,7 +665,7 @@ onMounted(() => {
       .value {
         font-size: 18px;
         font-weight: 700;
-        color: #667eea;
+        color: #16345c;
       }
     }
   }
@@ -758,8 +758,8 @@ onMounted(() => {
       
       &.unlocked {
         opacity: 1;
-        background: linear-gradient(135deg, #667eea20, #764ba220);
-        border: 2px solid #667eea;
+        background: linear-gradient(135deg, #16345c20, #1e457620);
+        border: 2px solid #16345c;
       }
       
       .achievement-icon {

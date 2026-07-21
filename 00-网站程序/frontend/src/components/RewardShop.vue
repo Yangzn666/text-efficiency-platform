@@ -221,16 +221,16 @@ const formatDate = (dateString: string) => {
   align-items: center;
   gap: 20px;
   padding: 25px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 30px rgba(13, 33, 55, 0.3);
   color: white;
   transition: all 0.3s ease;
 }
 
 .points-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 15px 40px rgba(13, 33, 55, 0.4);
 }
 
 .points-icon {
@@ -280,10 +280,10 @@ const formatDate = (dateString: string) => {
 
 .category-title {
   font-size: 1.3em;
-  color: #667eea;
+  color: #16345c;
   margin: 0 0 20px 0;
   padding-left: 15px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #16345c;
 }
 
 .rewards-grid {

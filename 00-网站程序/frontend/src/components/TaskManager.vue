@@ -538,7 +538,7 @@ onMounted(() => {
   margin: 0;
   font-size: 1.5em;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -559,7 +559,7 @@ onMounted(() => {
   font-size: 1.8em;
   font-weight: 700;
   line-height: 1;
-  color: #667eea;
+  color: #16345c;
 }
 
 .stat-number.completed {
@@ -578,7 +578,7 @@ onMounted(() => {
 }
 
 .add-task-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border: none;
   padding: 12px 24px;
   font-weight: 500;
@@ -587,7 +587,7 @@ onMounted(() => {
 
 .add-task-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.3);
 }
 
 /* 过滤控件样式 */
@@ -746,7 +746,7 @@ onMounted(() => {
 }
 
 .task-dialog :deep(.el-dialog__header) {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   padding: 20px;
 }

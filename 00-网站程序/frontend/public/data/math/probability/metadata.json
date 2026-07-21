@@ -1,0 +1,146 @@
+{
+  "chapters": [
+    {
+      "id": "prob01",
+      "order": 1,
+      "title": "随机事件与概率",
+      "estimatedHours": 6,
+      "difficulty": "基础",
+      "importance": 4,
+      "prerequisites": [],
+      "keyTopics": [
+        "样本空间与事件",
+        "事件运算",
+        "古典概型与几何概型",
+        "条件概率",
+        "全概率与贝叶斯公式",
+        "独立性"
+      ],
+      "markdownFile": "prob-chapter01-随机事件与概率.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第一讲"
+    },
+    {
+      "id": "prob02",
+      "order": 2,
+      "title": "随机变量及其分布",
+      "estimatedHours": 8,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["prob01"],
+      "keyTopics": [
+        "分布函数",
+        "离散型分布",
+        "连续型分布",
+        "八大常见分布",
+        "随机变量函数的分布"
+      ],
+      "markdownFile": "prob-chapter02-随机变量及其分布.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第二讲"
+    },
+    {
+      "id": "prob03",
+      "order": 3,
+      "title": "二维随机变量及其分布",
+      "estimatedHours": 9,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["prob02"],
+      "keyTopics": [
+        "联合分布",
+        "边缘分布与条件分布",
+        "独立性",
+        "二维连续型",
+        "两个随机变量函数的分布"
+      ],
+      "markdownFile": "prob-chapter03-二维随机变量及其分布.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第三讲"
+    },
+    {
+      "id": "prob04",
+      "order": 4,
+      "title": "随机变量的数字特征",
+      "estimatedHours": 8,
+      "difficulty": "核心",
+      "importance": 5,
+      "prerequisites": ["prob02", "prob03"],
+      "keyTopics": [
+        "数学期望",
+        "方差",
+        "协方差与相关系数",
+        "矩",
+        "常见分布的数字特征"
+      ],
+      "markdownFile": "prob-chapter04-随机变量的数字特征.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第四讲"
+    },
+    {
+      "id": "prob05",
+      "order": 5,
+      "title": "大数定律与中心极限定理",
+      "estimatedHours": 4,
+      "difficulty": "难点",
+      "importance": 3,
+      "prerequisites": ["prob04"],
+      "keyTopics": [
+        "切比雪夫不等式",
+        "大数定律",
+        "中心极限定理",
+        "棣莫弗-拉普拉斯定理"
+      ],
+      "markdownFile": "prob-chapter05-大数定律与中心极限定理.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第五讲"
+    },
+    {
+      "id": "prob06",
+      "order": 6,
+      "title": "数理统计的基本概念",
+      "estimatedHours": 6,
+      "difficulty": "核心",
+      "importance": 4,
+      "prerequisites": ["prob04"],
+      "keyTopics": [
+        "总体与样本",
+        "统计量",
+        "样本矩",
+        "三大抽样分布",
+        "正态总体的抽样分布"
+      ],
+      "markdownFile": "prob-chapter06-数理统计的基本概念.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第六讲"
+    },
+    {
+      "id": "prob07",
+      "order": 7,
+      "title": "参数估计",
+      "estimatedHours": 7,
+      "difficulty": "难点",
+      "importance": 5,
+      "prerequisites": ["prob06"],
+      "keyTopics": [
+        "矩估计",
+        "最大似然估计",
+        "估计量评选标准",
+        "区间估计"
+      ],
+      "markdownFile": "prob-chapter07-参数估计.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第七讲"
+    },
+    {
+      "id": "prob08",
+      "order": 8,
+      "title": "假设检验",
+      "estimatedHours": 5,
+      "difficulty": "难点",
+      "importance": 4,
+      "prerequisites": ["prob06", "prob07"],
+      "keyTopics": [
+        "假设检验基本概念",
+        "单个正态总体检验",
+        "两个正态总体检验",
+        "两类错误"
+      ],
+      "markdownFile": "prob-chapter08-假设检验.md",
+      "pdfReference": "方浩·概率论与数理统计必修8课 第八讲"
+    }
+  ]
+}

@@ -489,7 +489,7 @@ const week2Plans = ref([
 
 .stat-item {
   padding: 15px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 12px;
   text-align: center;
@@ -553,7 +553,7 @@ const week2Plans = ref([
 }
 
 .phase-overview {
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #eef3fa 0%, #dbe7f5 100%);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 25px;
@@ -562,7 +562,7 @@ const week2Plans = ref([
 .phase-overview h3 {
   margin: 0 0 15px 0;
   font-size: 1.3em;
-  color: #1976D2;
+  color: #16345c;
 }
 
 .phase-info-grid {
@@ -608,7 +608,7 @@ const week2Plans = ref([
   font-size: 1.2em;
   color: #333;
   padding-bottom: 10px;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid #16345c;
 }
 
 .daily-plans {
@@ -687,7 +687,7 @@ const week2Plans = ref([
 }
 
 .task-time {
-  color: #2196F3;
+  color: #16345c;
   font-weight: 600;
   white-space: nowrap;
   min-width: 60px;
@@ -700,7 +700,7 @@ const week2Plans = ref([
 
 .ai-template {
   padding: 8px 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   border-radius: 6px;
   font-size: 0.85em;
@@ -761,11 +761,11 @@ const week2Plans = ref([
 
 /* 预期成果 */
 .expected-outcomes {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
   padding: 30px;
   color: white;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 25px rgba(13, 33, 55, 0.3);
 }
 
 .expected-outcomes h3 {

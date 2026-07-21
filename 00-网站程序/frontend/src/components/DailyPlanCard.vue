@@ -197,7 +197,7 @@ const getTimeColor = (time: string) => {
 
 .card-header {
   padding: 25px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   color: white;
   position: relative;
 }
@@ -308,8 +308,8 @@ const getTimeColor = (time: string) => {
 }
 
 .date-option.active {
-  background: #e3f2fd;
-  color: #2196F3;
+  background: #eef3fa;
+  color: #16345c;
   font-weight: 600;
 }
 
@@ -430,7 +430,7 @@ const getTimeColor = (time: string) => {
 }
 
 .edit-plan-btn {
-  background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
+  background: linear-gradient(135deg, #16345c 0%, #2a5290 100%);
   color: white;
 }
 

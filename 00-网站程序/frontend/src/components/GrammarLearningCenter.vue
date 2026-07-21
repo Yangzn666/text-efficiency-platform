@@ -50,10 +50,10 @@ const activeSubTab = ref('aiAssistant')
   text-align: center;
   margin-bottom: 25px;
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(13, 33, 55, 0.3);
 }
 
 .center-title {

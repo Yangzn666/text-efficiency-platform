@@ -32,7 +32,7 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '武忠祥高数第3章视频（中值定理）+ 笔记整理', duration: 90, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第3章基础题练习', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第3章（内存管理）学习 + 课后习题', duration: 90, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第3章（内存管理）学习 + 课后习题', duration: 90, priority: 'high', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '背单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '长难句分析30分钟', duration: 30, priority: 'medium', type: 'grammar', color: '#E6A23C' }
     ]
@@ -41,8 +41,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '继续高数第3章剩余内容', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题B组第3章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第3章深入（虚拟内存、页面置换）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '王道习题集对应章节', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第3章深入（虚拟内存、页面置换）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '王道习题集对应章节', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词复习', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2006年阅读Text 1精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -52,8 +52,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第4章（不定积分）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '基本积分公式记忆', duration: 30, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第4章基础题', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第4章（文件管理）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '文件系统概念梳理', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第4章（文件管理）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '文件系统概念梳理', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '语法复习（倒装句）', duration: 30, priority: 'medium', type: 'grammar', color: '#E6A23C' }
     ]
@@ -62,8 +62,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第4章继续（换元积分法）', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第4章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第4章深入（目录结构、磁盘管理）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第4章深入（目录结构、磁盘管理）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2006年阅读Text 2精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -72,8 +72,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第4章收尾（分部积分法）', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '综合练习', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第4章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '本章重点整理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第4章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '本章重点整理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '翻译练习30分钟', duration: 30, priority: 'medium', type: 'translation', color: '#E6A23C' },
       { id: 'math_3', subject: '数学一', title: '本周内容复盘（第3-4章）', duration: 60, priority: 'medium', type: 'review', color: '#409EFF' }
@@ -84,8 +84,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第5章（定积分）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '牛顿-莱布尼茨公式', duration: 30, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第5章基础题', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第5章（I/O管理）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: 'I/O控制方式', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第5章（I/O管理）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: 'I/O控制方式', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2006年阅读Text 3精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -94,8 +94,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第5章继续', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第5章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '操作系统第5章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '全书复习框架梳理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '操作系统第5章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '全书复习框架梳理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词40分钟', duration: 40, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2006年阅读Text 4精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' },
       { id: 'math_3', subject: '数学一', title: '本周错题集中突破', duration: 60, priority: 'medium', type: 'review', color: '#409EFF' },
@@ -107,8 +107,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第6章（定积分应用）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '几何应用（面积、体积）', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第6章', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计算机网络第1章（概述）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '网络体系结构', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计算机网络第1章（概述）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '网络体系结构', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '完型填空练习', duration: 30, priority: 'medium', type: 'practice', color: '#E6A23C' }
     ]
@@ -117,8 +117,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第6章完成 + 物理应用', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第6章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第1章完成 + 性能指标计算', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '课后习题', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第1章完成 + 性能指标计算', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '课后习题', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2007年阅读Text 1精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -128,8 +128,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第7章（多元函数微分学）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '偏导数、全微分', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第7章基础题', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第2章（物理层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '传输介质、编码调制', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第2章（物理层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '传输介质、编码调制', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '长难句专项30分钟', duration: 30, priority: 'medium', type: 'grammar', color: '#E6A23C' }
     ]
@@ -138,8 +138,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第7章继续（极值、条件极值）', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第7章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第2章完成 + 信道容量', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第2章完成 + 信道容量', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2007年阅读Text 2精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -149,8 +149,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第8章（二重积分）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '直角坐标计算', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第8章基础题', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第3章（数据链路层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '帧、差错控制', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第3章（数据链路层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '帧、差错控制', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '翻译练习30分钟', duration: 30, priority: 'medium', type: 'translation', color: '#E6A23C' }
     ]
@@ -159,8 +159,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第8章继续（极坐标、换元法）', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第8章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第3章继续（MAC协议、以太网）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第3章继续（MAC协议、以太网）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2007年阅读Text 3精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -169,8 +169,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第8章完成 + 综合应用', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第8章难题突破', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第3章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '前三章知识框架梳理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第3章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '前三章知识框架梳理', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词40分钟', duration: 40, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2007年阅读Text 4精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' },
       { id: 'math_3', subject: '数学一', title: '本周内容系统复习', duration: 60, priority: 'medium', type: 'review', color: '#409EFF' },
@@ -182,8 +182,8 @@ const junePlanData: any = {
       { id: 'math_1', subject: '数学一', title: '高数第9章（三重积分）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '直角坐标、柱面坐标', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_3', subject: '数学一', title: '1000题第9章基础题', duration: 60, priority: 'medium', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第4章（网络层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: 'IP协议、路由算法', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第4章（网络层）开始', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: 'IP协议、路由算法', duration: 60, priority: 'medium', type: 'study', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '新题型练习30分钟', duration: 30, priority: 'medium', type: 'practice', color: '#E6A23C' }
     ]
@@ -192,8 +192,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第9章完成 + 球面坐标', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '1000题第9章', duration: 60, priority: 'high', type: 'practice', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第4章继续（NAT、ICMP、IPv6）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第4章继续（NAT、ICMP、IPv6）', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '习题练习', duration: 60, priority: 'medium', type: 'practice', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词30分钟', duration: 30, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '2008年阅读Text 1精读', duration: 60, priority: 'medium', type: 'reading', color: '#E6A23C' }
     ]
@@ -202,8 +202,8 @@ const junePlanData: any = {
     tasks: [
       { id: 'math_1', subject: '数学一', title: '高数第10章（曲线曲面积分）开始', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
       { id: 'math_2', subject: '数学一', title: '第一类曲线积分', duration: 60, priority: 'high', type: 'study', color: '#409EFF' },
-      { id: 'cs_1', subject: '408专业课', title: '计网第4章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
-      { id: 'cs_2', subject: '408专业课', title: '本月学习内容总复习', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
+      { id: 'cs_1', subject: '408计算机', title: '计网第4章完成', duration: 60, priority: 'high', type: 'study', color: '#67C23A' },
+      { id: 'cs_2', subject: '408计算机', title: '本月学习内容总复习', duration: 60, priority: 'medium', type: 'review', color: '#67C23A' },
       { id: 'eng_1', subject: '英语一', title: '单词40分钟', duration: 40, priority: 'high', type: 'vocabulary', color: '#E6A23C' },
       { id: 'eng_2', subject: '英语一', title: '本月学习总结', duration: 40, priority: 'medium', type: 'review', color: '#E6A23C' },
       { id: 'math_3', subject: '数学一', title: '本月进度评估 + 七月计划制定', duration: 60, priority: 'medium', type: 'review', color: '#409EFF' },
@@ -404,14 +404,14 @@ onMounted(() => {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 15px;
   padding: 20px;
   display: flex;
   align-items: center;
   gap: 15px;
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(13, 33, 55, 0.25);
 }
 
 .stat-icon {

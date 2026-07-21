@@ -543,7 +543,7 @@ onMounted(() => {
 
 .chapter-card:hover {
   background: #f0f8ff;
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateY(-5px);
 }
 
@@ -568,7 +568,7 @@ onMounted(() => {
   display: block;
   font-size: 1.3em;
   font-weight: 700;
-  color: #667eea;
+  color: #16345c;
 }
 
 .stat-label {
@@ -604,7 +604,7 @@ onMounted(() => {
 .type-icon {
   font-size: 2.5em;
   margin-bottom: 15px;
-  color: #667eea;
+  color: #16345c;
 }
 
 .type-name {
@@ -784,12 +784,12 @@ onMounted(() => {
 
 .option-item:hover {
   background: #f0f8ff;
-  border-color: #667eea;
+  border-color: #ffc53d;
 }
 
 .option-item.selected {
-  background: #e3f2fd;
-  border-color: #667eea;
+  background: #eef3fa;
+  border-color: #ffc53d;
 }
 
 .option-letter {
@@ -798,7 +798,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #667eea;
+  background: #16345c;
   color: white;
   border-radius: 50%;
   font-weight: 600;
@@ -900,7 +900,7 @@ onMounted(() => {
 .stat-number {
   font-size: 2em;
   font-weight: 800;
-  color: #667eea;
+  color: #16345c;
 }
 
 .stat-label {

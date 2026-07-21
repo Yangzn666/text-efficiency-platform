@@ -382,7 +382,7 @@ const formatDate = (dateString: string) => {
 }
 
 .points-overview {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 20px;
   padding: 30px;
   color: white;
@@ -465,9 +465,9 @@ const formatDate = (dateString: string) => {
 }
 
 .reward-card:hover:not(.unavailable) {
-  border-color: #667eea;
+  border-color: #ffc53d;
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 10px 25px rgba(13, 33, 55, 0.2);
 }
 
 .reward-card.unavailable {
@@ -506,8 +506,8 @@ const formatDate = (dateString: string) => {
 }
 
 .category {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #eef3fa;
+  color: #16345c;
   padding: 4px 10px;
   border-radius: 15px;
   font-size: 0.8em;
@@ -578,7 +578,7 @@ const formatDate = (dateString: string) => {
 }
 
 .achievement-card.practice {
-  background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
+  background: linear-gradient(135deg, #16345c 0%, #2a5290 100%);
   color: white;
 }
 

@@ -463,20 +463,11 @@ const improvementPlan = ref({
   ]
 })
 
-// 导航到模块子页面
+// 导航到模块子页面（合并后的翻译页标签）
 function navigateToModule(module: string) {
-  const routeMap: Record<string, string> = {
-    phrases: '/translation/phrases',
-    vocabulary: '/translation/vocabulary',
-    patterns: '/translation/patterns',
-    exams: '/translation/exams',
-    tips: '/translation/tips',
-    mistakes: '/translation/mistakes'
-  }
-  
-  const route = routeMap[module]
-  if (route) {
-    router.push(route)
+  const tabs = ['phrases', 'vocabulary', 'patterns', 'exams', 'tips', 'mistakes']
+  if (tabs.includes(module)) {
+    router.push({ path: '/translation', query: { tab: module } })
   }
 }
 
@@ -963,7 +954,7 @@ onMounted(() => {
 
 .diagnosis-card {
   position: relative;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 16px;
   padding: 24px;
   display: flex;
@@ -971,13 +962,13 @@ onMounted(() => {
   gap: 20px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.25);
   overflow: hidden;
 }
 
 .diagnosis-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 12px 32px rgba(13, 33, 55, 0.35);
 }
 
 .card-decoration {
@@ -1100,7 +1091,7 @@ onMounted(() => {
 .card-action .el-button {
   background: rgba(255, 255, 255, 0.95);
   border: none;
-  color: #667eea;
+  color: #16345c;
   font-weight: 600;
   padding: 10px 20px;
   transition: all 0.3s ease;
@@ -1170,7 +1161,7 @@ onMounted(() => {
 }
 
 .phrases-icon {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
 }
 
 .vocabulary-icon {
@@ -1250,8 +1241,8 @@ onMounted(() => {
 
 /* 为每个模块设置颜色变量 */
 .module-card:nth-child(1) {
-  --module-color: #667eea;
-  --module-color-light: #764ba2;
+  --module-color: #16345c;
+  --module-color-light: #1e4576;
 }
 
 .module-card:nth-child(2) {

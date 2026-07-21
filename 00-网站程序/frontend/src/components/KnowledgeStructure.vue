@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import { useMathStore } from '../stores/math'
@@ -79,7 +79,7 @@ const filteredPoints = computed(() => {
     title: chapter.title,
     content: '', // 初始为空，点击后加载
     category: chapter.subject || '高等数学',
-    difficulty: (chapter.difficulty === '进阶' ? '中等' : chapter.difficulty) as '基础' | '中等' | '困难',
+    difficulty: (chapter.difficulty === '进阶' ? '中等' : chapter.difficulty === '难点' ? '困难' : chapter.difficulty) as '基础' | '中等' | '困难',
     importance: 'high' as 'high' | 'medium' | 'low',
     progress: chapter.masteryLevel || 0,
     keyPoints: chapter.keyPoints || []
@@ -151,10 +151,11 @@ const selectPoint = async (point: KnowledgePoint) => {
   selectedPoint.value = point
   // 加载该章节的Markdown内容
   await loadChapterContent(point.id)
-  // 在下一帧渲染完成后执行公式渲染
+  // 等待DOM更新完成后执行公式渲染
+  await nextTick()
   setTimeout(() => {
     renderMathFormulas()
-  }, 100)
+  }, 50)
 }
 
 const renderMathFormulas = () => {
@@ -198,27 +199,44 @@ const formatContent = (content: string) => {
     return '<p style="color: #999; text-align: center;">点击左侧章节查看详细内容</p>'
   }
   
-  // 处理Markdown格式的标题
-  let formatted = content.replace(/^### (.+)$/gm, '<h3>$1</h3>')
+  // 处理Markdown格式的标题（先处理更长的标记）
+  let formatted = content.replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
   
-  // 处理LaTeX公式标记
-  formatted = formatted.replace(/\$\$(.*?)\$\$/gs, (match, formula) => {
+  // 处理LaTeX公式标记（先块级后行内）
+  formatted = formatted.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
     return `<span data-latex-block="${formula.trim().replace(/"/g, '&quot;')}"></span>`
-  }).replace(/\$(.*?)\$/g, (match, formula) => {
+  }).replace(/\$([^$\n]+?)\$/g, (match, formula) => {
     return `<span data-latex-inline="${formula.trim().replace(/"/g, '&quot;')}"></span>`
   })
   
-  // 处理列表项
-  formatted = formatted.replace(/^- (.+)$/gm, '<li>$1</li>')
-  formatted = formatted.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+  // 处理加粗（放在公式之后，避免影响公式属性）
+  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  
+  // 处理分隔线
+  formatted = formatted.replace(/^---+$/gm, '<hr>')
+  
+  // 处理有序列表项（临时标记，避免与无序列表混淆）
+  formatted = formatted.replace(/^\d+\.\s+(.+)$/gm, '<oli>$1</oli>')
+  
+  // 处理无序列表项
+  formatted = formatted.replace(/^-\s+(.+)$/gm, '<li>$1</li>')
+  
+  // 包裹连续的无序列表项
+  formatted = formatted.replace(/(?:<li>[\s\S]*?<\/li>\s*)+/g, (m) => `<ul>${m}</ul>`)
+  
+  // 包裹连续的有序列表项并还原为li
+  formatted = formatted.replace(/(?:<oli>[\s\S]*?<\/oli>\s*)+/g, (m) => {
+    return `<ol>${m.replace(/<oli>/g, '<li>').replace(/<\/oli>/g, '</li>')}</ol>`
+  })
   
   // 处理重点标识
   formatted = formatted.replace(/★/g, '<span class="highlight-star">★</span>')
   
   // 处理换行（保留段落之间的空行）
-  formatted = formatted.replace(/\n\n/g, '</p><p>')
+  formatted = formatted.replace(/\n{2,}/g, '</p><p>')
   formatted = formatted.replace(/\n/g, '<br>')
   
   // 包裹段落
@@ -388,7 +406,10 @@ onMounted(async () => {
             </div>
           </div>
           
-          <div class="point-content" v-html="formatContent(selectedPoint.content)"></div>
+          <div class="point-content" v-if="isLoadingContent">
+            <p style="color: #999; text-align: center;">内容加载中...</p>
+          </div>
+          <div class="point-content" v-else v-html="formatContent(chapterContent)"></div>
           
           <div class="detail-actions">
             <el-button type="primary" size="large" @click="startPractice">
@@ -434,7 +455,7 @@ onMounted(async () => {
   font-size: 2.5em;
   margin-bottom: 15px;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -493,7 +514,7 @@ onMounted(async () => {
   color: #2c3e50;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
   font-size: 1.4em;
   font-weight: 700;
 }
@@ -516,15 +537,15 @@ onMounted(async () => {
 
 .point-card:hover {
   transform: translateX(8px) translateY(-3px);
-  border-color: #667eea;
+  border-color: #ffc53d;
   background: #f0f5ff;
-  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 12px 30px rgba(13, 33, 55, 0.2);
 }
 
 .point-card.active {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
-  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+  border-color: #ffc53d;
+  background: linear-gradient(135deg, #16345c20 0%, #1e457620 100%);
+  box-shadow: 0 15px 35px rgba(13, 33, 55, 0.3);
 }
 
 .point-header {
@@ -566,8 +587,8 @@ onMounted(async () => {
 }
 
 .key-point-tag {
-  background: #e3f2fd;
-  color: #1976d2;
+  background: #eef3fa;
+  color: #16345c;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.85em;
@@ -657,7 +678,7 @@ onMounted(async () => {
   color: #2c3e50;
   margin: 35px 0 20px 0;
   padding-bottom: 15px;
-  border-bottom: 3px solid #667eea;
+  border-bottom: 3px solid #ffc53d;
   font-weight: 700;
 }
 
@@ -673,6 +694,19 @@ onMounted(async () => {
   color: #4a5568;
   margin: 25px 0 15px 0;
   font-weight: 500;
+}
+
+.point-content :deep(h4) {
+  font-size: 1.1em;
+  color: #5a6b85;
+  margin: 20px 0 12px 0;
+  font-weight: 600;
+}
+
+.point-content :deep(hr) {
+  border: none;
+  border-top: 2px dashed #d0d7e5;
+  margin: 28px 0;
 }
 
 .point-content :deep(p) {
@@ -692,9 +726,9 @@ onMounted(async () => {
 }
 
 .point-content :deep(strong) {
-  color: #667eea;
+  color: #16345c;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -743,7 +777,7 @@ onMounted(async () => {
 
 .points-sidebar::-webkit-scrollbar-thumb,
 .point-detail::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
   border-radius: 4px;
 }
 
