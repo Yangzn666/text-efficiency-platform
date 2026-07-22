@@ -190,6 +190,25 @@ function bar(done, total, width = 10) {
   return '█'.repeat(filled) + '░'.repeat(width - filled)
 }
 const fmtMin = (m) => (m >= 60 ? `${Math.floor(m / 60)}小时${m % 60 ? m % 60 + '分' : ''}` : `${m}分钟`)
+const fmtDateCN = (d) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+const shortDate = (s) => { const d = new Date(s); return `${d.getMonth() + 1}月${d.getDate()}日` }
+
+// ---------- 打卡连续天数（从最近一次有完成的日期往前数连续天数） ----------
+function computeStreak(dailyRecords) {
+  if (!dailyRecords) return { streak: 0, lastDate: null, lastCount: 0 }
+  const dates = Object.keys(dailyRecords)
+    .filter((d) => (dailyRecords[d] && dailyRecords[d].completedCount || 0) >= 1)
+    .sort()
+    .reverse()
+  if (!dates.length) return { streak: 0, lastDate: null, lastCount: 0 }
+  let streak = 1
+  for (let i = 0; i < dates.length - 1; i++) {
+    const diff = Math.round((new Date(dates[i]) - new Date(dates[i + 1])) / 86400000)
+    if (diff === 1) streak++
+    else break
+  }
+  return { streak, lastDate: dates[0], lastCount: dailyRecords[dates[0]].completedCount }
+}
 
 // ---------- 鼓励语 ----------
 const QUOTES = [
@@ -211,10 +230,8 @@ async function main() {
   const forDate = toStr(target)
 
   let cloud = null
-  let usingCloud = false
   try {
     cloud = await fetchCloudState(env)
-    usingCloud = !!cloud
   } catch (e) {
     console.error(`⚠️ 云端读取失败（${e.message}），将使用内置默认进度。`)
   }
@@ -222,50 +239,76 @@ async function main() {
   const plans = mergePlans(cloud)
   const examDate = (cloud && cloud.examDate) ? cloud.examDate : DEFAULT_EXAM_DATE
   const { items, backlogOf } = generateSnapshot(plans, forDate)
+  const streakInfo = computeStreak(cloud && cloud.dailyRecords)
 
-  const daysLeft = Math.max(0, daysBetween(toStr(now), examDate))
+  const todayS = toStr(now)
+  const daysLeft = Math.max(0, daysBetween(todayS, examDate))
   const totalMin = items.reduce((s, t) => s + t.estMinutes, 0)
+  const DIV = '━━━━━━━━━━━━━━━━━━━━'
+  const sub = '────────────────────'
 
   const L = []
-  L.push(`🌙 明日学习计划 · ${forDate}（${WEEK[target.getDay()]}）`)
-  L.push(`⏳ 距考研初试（${examDate}）还有 ${daysLeft} 天`)
-  L.push(usingCloud ? '📡 进度已同步云端，以下为最新实时计划' : '📴 暂未读取到云端进度，以下为参考计划')
+  // 头部
+  L.push('🌙 明日学习计划')
+  L.push(`📅 ${fmtDateCN(target)} · ${WEEK[target.getDay()]}`)
+  L.push(DIV)
   L.push('')
-  L.push('━━━━━━━━ 明日任务清单 ━━━━━━━━')
+  // 倒计时
+  L.push(`⏳ 距考研初试还有 ${daysLeft} 天`)
+  const targetLine = plans
+    .filter((p) => p.active)
+    .map((p) => `${p.icon}${Math.max(0, daysBetween(todayS, p.targetDate))}天`)
+    .join(' · ')
+  L.push(`🎯 距各科目标日：${targetLine}`)
+  L.push('')
+  // 任务清单
+  L.push(`📋 明日任务 · 共 ${items.length} 项 · 约 ${fmtMin(totalMin)}`)
+  L.push(sub)
   if (items.length === 0) {
     L.push('🎉 所有科目都已完成，明天用来复盘和休整吧！')
   } else {
-    L.push(`共 ${items.length} 项 · 预计 ${fmtMin(totalMin)}`)
-    L.push('')
-    // 按科目分组
     const bySubject = {}
     for (const t of items) (bySubject[t.subject] ||= []).push(t)
     for (const plan of plans) {
       const list = bySubject[plan.key]
       if (!list) continue
-      L.push(`${plan.icon} ${plan.name}`)
-      list.forEach((t, i) => L.push(`   ${i + 1}. ${t.title}  ⏱约${t.estMinutes}分钟`))
+      const subjMin = list.reduce((s, t) => s + t.estMinutes, 0)
+      L.push(`${plan.icon} ${plan.name} · 约${fmtMin(subjMin)}`)
+      list.forEach((t) => L.push(`   ☐ ${t.title}`))
     }
   }
   L.push('')
-  L.push('━━━━━━━━ 各科进度 ━━━━━━━━')
+  // 各科进度
+  L.push('📊 各科进度')
+  L.push(sub)
   for (const plan of plans.filter((p) => p.active)) {
     const pct = plan.totalUnits > 0 ? Math.round((plan.completedUnits / plan.totalUnits) * 100) : 0
-    L.push(`${plan.icon} ${plan.name.padEnd(6, ' ')} ${bar(plan.completedUnits, plan.totalUnits)} ${plan.completedUnits}/${plan.totalUnits} (${pct}%)`)
+    L.push(`${plan.icon} ${plan.name.padEnd(6, ' ')} ${bar(plan.completedUnits, plan.totalUnits)} ${plan.completedUnits}/${plan.totalUnits} · ${pct}%`)
   }
-
+  L.push('')
+  // 你的坚持（打卡情况）
+  L.push('🔁 你的坚持')
+  L.push(sub)
+  if (streakInfo.streak > 0) {
+    L.push(`🔥 连续打卡 ${streakInfo.streak} 天 · 最近完成 ${streakInfo.lastCount} 项（${shortDate(streakInfo.lastDate)}）`)
+  } else {
+    L.push('🌱 还没有打卡记录，从明天开始点亮你的坚持吧！')
+  }
   // 欠账提醒
   const backlogNotes = plans
     .filter((p) => p.active && (backlogOf[p.key] || 0) > 0)
     .map((p) => `${p.name}落后约 ${backlogOf[p.key]} 个单元`)
   if (backlogNotes.length) {
     L.push('')
-    L.push('💡 欠账提醒：' + backlogNotes.join('，') + '，量力补上，别堆到最后。')
+    L.push('💡 欠账提醒')
+    L.push(sub)
+    L.push(backlogNotes.join('，') + '，量力补上，别堆到最后～')
   }
-
   L.push('')
+  // 鼓励 + 晚安
   const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)]
   L.push(`🔥 ${quote}`)
+  L.push('😴 早点休息，明天见！')
 
   console.log(L.join('\n'))
 }
