@@ -109,7 +109,7 @@ $$路径无关 \Leftrightarrow Q_x = P_y（单连通域）$$
 
 ## ✏️ 经典题型
 
-:::fold 题型一 三重积分计算
+:::fold 题型一 三重积分计算（高频）
 **例（柱坐标）**：计算 $\iiint_\Omega z dV$，$\Omega$ 由 $z = x^2 + y^2$ 与 $z = 1$ 围成。
 
 **解**：投影 $D$: $x^2 + y^2 \le 1$。柱坐标：
@@ -121,7 +121,7 @@ $\int_0^{2\pi}d\theta\int_0^1 r dr\int_{r^2}^1 z dz = 2\pi\int_0^1 r \cdot \frac
 $= \int_0^{2\pi}d\theta\int_0^\pi\sin\varphi d\varphi\int_0^R \rho \cdot \rho^2 d\rho = 2\pi \times 2 \times \frac{R^4}{4} = \pi R^4$
 :::
 
-:::fold 题型二 格林公式求曲线积分
+:::fold 题型二 格林公式求曲线积分（★年年考·大题）
 **例**：计算 $\oint_L (x^2 - y)dx + (y^2 + x)dy$，$L$ 为 $x^2 + y^2 = 1$ 逆时针。
 
 **解**：$P = x^2 - y$，$Q = y^2 + x$。$Q_x = 1$，$P_y = -1$
@@ -137,7 +137,7 @@ $= \int_0^1 0 dx + \int_0^1 e\cos y dy = e\sin 1$
 **要点**：先检查路径无关（$Q_x = P_y$），能省大量计算。
 :::
 
-:::fold 题型三 第二类曲面积分（投影法）
+:::fold 题型三 第二类曲面积分（投影法）（高频·大题）
 **例**：计算 $\iint_\Sigma z dxdy$，$\Sigma$ 为 $z = x^2 + y^2$（$z \le 1$）的下侧。
 
 **解**：投影 $D$: $x^2 + y^2 \le 1$。下侧 → 取负号：
@@ -147,7 +147,7 @@ $\iint_\Sigma z dxdy = -\iint_D (x^2 + y^2)dxdy = -\int_0^{2\pi}d\theta\int_0^1 
 **要点**：先定侧（上正下负），再投影计算。
 :::
 
-:::fold 题型四 高斯公式（★年年考）
+:::fold 题型四 高斯公式（★年年考·大题）
 **例**：计算 $\oiint_\Sigma x dydz + y dzdx + z dxdy$，$\Sigma$ 为球面 $x^2 + y^2 + z^2 = R^2$ 外侧。
 
 **解**：$P = x$，$Q = y$，$R = z$。$P_x + Q_y + R_z = 3$
@@ -161,7 +161,7 @@ $\iint_\Sigma z dxdy = -\iint_D (x^2 + y^2)dxdy = -\int_0^{2\pi}d\theta\int_0^1 
 **要点**：非闭曲面 → 补面 → 高斯公式 → 减去补面部分。
 :::
 
-:::fold 题型五 斯托克斯公式
+:::fold 题型五 斯托克斯公式（中频·大题）
 **例**：计算 $\oint_L y dx + z dy + x dz$，$L$ 为平面 $x + y + z = 1$ 被三坐标面截下的三角形的正向边界（从 $z$ 轴正向看逆时针）。
 
 **解**：取 $\Sigma$ 为该三角形平面（上侧），斯托克斯公式：
@@ -175,7 +175,7 @@ $\iint_\Sigma (-1)dydz + (1)dzdx + (-1)dxdy$
 $= (-1, 1, -1) \cdot \vec{n} \times S = \frac{-1}{\sqrt{3}} \times \frac{\sqrt{3}}{2} = -\frac{1}{2}$
 :::
 
-:::fold 题型六 路径无关与求原函数
+:::fold 题型六 路径无关与求原函数（高频）
 **例**：验证 $(2xy + y^3)dx + (x^2 + 3xy^2)dy$ 路径无关，并求原函数。
 
 **解**：$P = 2xy + y^3$，$Q = x^2 + 3xy^2$
@@ -189,6 +189,22 @@ $u_y = x^2 + 3xy^2 + \varphi'(y) = Q = x^2 + 3xy^2$ → $\varphi' = 0$
 $u = x^2y + xy^3 + C$
 
 **积分**：$\int_{(0,0)}^{(1,1)} = u(1,1) - u(0,0) = 2$
+:::
+
+:::fold 题型七 第一类曲线/曲面积分（中频）
+**第一类曲线积分**（对弧长）：$\int_L f ds$，参数式 $ds = \sqrt{x'^2 + y'^2}dt$
+
+**例**：$\int_L y ds$，$L$ 为 $y = \sqrt{x}$ 从 $(0,0)$ 到 $(1,1)$。
+
+**解**：令 $x = t^2$，$y = t$ → $ds = \sqrt{4t^2 + 1}dt$
+
+$\int_0^1 t\sqrt{4t^2 + 1}dt = \frac{1}{12}(5\sqrt{5} - 1)$
+
+**第一类曲面积分**：$\iint_\Sigma f dS$，$dS = \sqrt{1 + z_x^2 + z_y^2}dxdy$
+
+**对称性**：$L$/$\Sigma$ 对称、$f$ 奇偶 → 与二重积分同理化简。
+
+**与第二类的区别**：第一类是标量积分、无方向（$ds > 0$ 恒正）；第二类是向量积分、有方向。
 :::
 
 ## ⭐ 重点提示

@@ -67,11 +67,8 @@ $$F=\frac{U/m}{V/n}\sim F(m,n)$$
 设 $X_1,\cdots,X_n$ 来自 $N(\mu,\sigma^2)$，则：
 
 1. $\bar{X}\sim N\!\left(\mu,\dfrac{\sigma^2}{n}\right)$，即 $\dfrac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)$
-
 2. $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$
-
 3. $\bar{X}$ 与 $S^2$ 相互独立
-
 4. $\dfrac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)$
 
 **两个正态总体**（$X\sim N(\mu_1,\sigma_1^2)$，$Y\sim N(\mu_2,\sigma_2^2)$，样本量 $n_1,n_2$）：
@@ -82,6 +79,44 @@ $$F=\frac{U/m}{V/n}\sim F(m,n)$$
 其中 $S_w^2=\dfrac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}$ 为合并样本方差。
 
 ---
+
+## ✏️ 经典题型
+
+:::fold 题型一 三大抽样分布的构造（高频选择题）
+**例**：设 $X \sim N(0, 1)$，$Y \sim \chi^2(5)$，且 $X$ 与 $Y$ 独立，问 $T = \frac{X}{\sqrt{Y/5}}$ 服从什么分布？
+
+**解**：由 $t$ 分布定义，$T \sim t(5)$
+
+---
+
+**例**：设 $U \sim \chi^2(3)$，$V \sim \chi^2(7)$，且独立，问 $F = \frac{U/3}{V/7}$ 服从什么分布？
+
+**解**：由 $F$ 分布定义，$F \sim F(3, 7)$；且 $\frac{1}{F} \sim F(7, 3)$
+
+**要点**：三大分布构造式记牢；$\chi^2$ 的自由度 = 平方和的项数；$F$ 的两个自由度顺序不能颠倒。
+:::
+
+:::fold 题型二 统计量的数字特征（高频）
+**例**：设 $X_1, \cdots, X_n$ 来自 $N(\mu, \sigma^2)$，$\bar{X}$、$S^2$ 为样本均值与样本方差，求 $E(\bar{X})$、$D(\bar{X})$、$E(S^2)$。
+
+**解**：
+
+1. $E(\bar{X}) = \mu$，$D(\bar{X}) = \frac{\sigma^2}{n}$
+2. $E(S^2) = \sigma^2$（无偏性，分母用 $n - 1$ 的原因）
+
+**要点**：$E(\bar{X}) = \mu$、$D(\bar{X}) = \sigma^2/n$、$E(S^2) = \sigma^2$ 是最基本的三个结论。
+:::
+
+:::fold 题型三 正态总体的抽样分布（★年年考）
+**例**：设 $X_1, \cdots, X_9$ 来自 $N(\mu, 4)$，$\bar{X}$ 为样本均值，求 $P\{|\bar{X} - \mu| < 1\}$（$\Phi(1.5) = 0.9332$）。
+
+**解**：$\bar{X} \sim N(\mu, \frac{4}{9})$，故 $\frac{\bar{X} - \mu}{2/3} \sim N(0, 1)$
+
+1. $P\{|\bar{X} - \mu| < 1\} = P\{|\frac{\bar{X} - \mu}{2/3}| < 1.5\}$
+2. $= 2\Phi(1.5) - 1 = 0.8664$
+
+**要点**：$\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$、$\frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$、$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$ 是三大工具。
+:::
 
 ## ⭐ 重点提示
 
