@@ -269,7 +269,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { buildApiUrl } from '@/utils/apiConfig'
 import { 
   ArrowLeft, 
   Reading, 
@@ -357,12 +356,12 @@ const loadIntensiveReadingData = async (actualTextNum: number | null = null) => 
     
     console.log('加载精读数据, key:', dataKey)
     
-    const response = await fetch(`http://localhost:6902/api/intensive-reading?key=${encodeURIComponent(dataKey)}`)
+    const response = await fetch(`${import.meta.env.BASE_URL}data/english/intensive-reading-analysis.json`)
     if (response.ok) {
-      const data = await response.json()
-      
-      if (data.intensiveReading) {
-        const reading = data.intensiveReading
+      const allData = await response.json()
+      const reading = allData[dataKey]
+
+      if (reading) {
         articleTheme.value = reading.theme || ''
         articleStructure.value = reading.structure || ''
         writingTechniques.value = reading.writingTechniques || []
@@ -376,7 +375,7 @@ const loadIntensiveReadingData = async (actualTextNum: number | null = null) => 
         console.log('⚠️ 精读数据不存在')
       }
     } else {
-      console.log('⚠️ 精读数据API返回错误:', response.status)
+      console.log('⚠️ 精读数据加载失败:', response.status)
     }
   } catch (error) {
     console.error(' 加载精读数据失败:', error)
@@ -390,7 +389,7 @@ onMounted(async () => {
   
   // 从 API加载文章数据
   try {
-    const response = await fetch(buildApiUrl('/api/reading-questions'))
+    const response = await fetch(`${import.meta.env.BASE_URL}data/english/reading-questions.json`)
     if (response.ok) {
       const data = await response.json()
       const questions = data.questions || []

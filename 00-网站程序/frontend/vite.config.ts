@@ -4,10 +4,15 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 
+// 生产环境部署在 GitHub Pages 子路径下，PWA 的 scope/start_url 必须与 base 一致，
+// 否则手机安装后会把应用打开到站点根目录（/）导致 404
+const isProd = process.env.NODE_ENV === 'production'
+const base = isProd ? '/text-efficiency-platform/' : '/'
+
 export default defineConfig({
   plugins: [
     vue(),
-    // PWA：可安装到手机主屏幕 + 离线查看（自动处理 base 路径与 SW 注入）
+    // PWA：可安装到手机主屏幕 + 离线查看（base 路径通过下方 base 常量统一处理）
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'icons/*.svg'],
@@ -18,8 +23,8 @@ export default defineConfig({
         theme_color: '#1976D2',
         background_color: '#f5f7fa',
         display: 'standalone',
-        scope: '/',
-        start_url: '/',
+        scope: base,
+        start_url: base,
         icons: [
           {
             src: 'icons/icon.svg',
@@ -36,8 +41,8 @@ export default defineConfig({
         ]
       },
       workbox: {
-        // 预缓存静态资源，离线可打开应用外壳
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
+        // 预缓存静态资源（含 json/md 学习数据），离线可打开应用并查看章节内容
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,md}'],
         // 运行时缓存策略
         runtimeCaching: [
           {
@@ -60,8 +65,8 @@ export default defineConfig({
       }
     })
   ],
-  // 根据环境动态设置base路径
-  base: process.env.NODE_ENV === 'production' ? '/text-efficiency-platform/' : '/',
+  // 根据环境动态设置base路径（与 PWA scope/start_url 保持一致）
+  base,
   resolve: {
     alias: {
       '@': resolve(fileURLToPath(new URL('./', import.meta.url)), 'src')

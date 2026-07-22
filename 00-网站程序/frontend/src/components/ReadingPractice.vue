@@ -543,7 +543,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
-import { buildApiUrl } from '@/utils/apiConfig'
 
 // 数据状态
 const selectedYear = ref('all')
@@ -878,22 +877,11 @@ const importQuestions = () => {
         if (Array.isArray(data)) {
           allQuestions.value = data
           
-          // 保存到localStorage（临时）
+          // 保存到 localStorage，下次加载时会与静态题库合并
           localStorage.setItem('readingQuestions', JSON.stringify(data))
+          console.log('✅ 导入题目已保存到本地')
           
-          // 保存到后端
-          try {
-            await fetch('http://localhost:3000/api/reading-questions', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ questions: data })
-            })
-            console.log('✅ 已保存到后端')
-          } catch (err) {
-            console.log('⚠️ 后端保存失败，仅保存到本地')
-          }
-          
-          alert(`✅ 成功导入 ${data.length} 道题目！\n数据已保存，下次登录依然可见`)
+          alert(`✅ 成功导入 ${data.length} 道题目！\n已保存到本机，下次打开依然可见`)
         } else {
           alert('❌ JSON格式错误：应该是数组格式')
         }
@@ -966,10 +954,10 @@ const openIntensiveReadingForText = (year: number, textNum: number) => {
 }
 
 onMounted(async () => {
-  // 从后端API加载数据（直接读取JSON文件）
+  // 从静态数据文件加载英语真题（部署在 GitHub Pages，无需后端）
   try {
-    console.log('🔄 从后端API加载英语真题...')
-    const response = await fetch(buildApiUrl('/api/reading-questions'))
+    console.log('🔄 加载英语真题数据...')
+    const response = await fetch(`${import.meta.env.BASE_URL}data/english/reading-questions.json`)
     
     if (response.ok) {
       const data = await response.json()
@@ -999,7 +987,25 @@ onMounted(async () => {
           
           return question
         })
-        
+
+        // 合并用户本地导入的题目（静态题库之外的补充，按 year-number 去重）
+        const importedRaw = localStorage.getItem('readingQuestions')
+        if (importedRaw) {
+          try {
+            const imported: any[] = JSON.parse(importedRaw)
+            if (Array.isArray(imported) && imported.length > 0) {
+              const existKeys = new Set(allQuestions.value.map((q: any) => `${q.year}-${q.number}`))
+              const extras = imported.filter((q: any) => !existKeys.has(`${q.year}-${q.number}`))
+              if (extras.length > 0) {
+                allQuestions.value = [...allQuestions.value, ...extras]
+                console.log(`📥 合并了 ${extras.length} 道本地导入题目`)
+              }
+            }
+          } catch (e) {
+            console.warn('本地导入题目解析失败', e)
+          }
+        }
+
         console.log(`✅ 成功加载 ${data.questions.length} 道题目`)
         console.log(`📝 已合并 ${Object.keys(userAnswersMap).length} 条作答记录`)
         

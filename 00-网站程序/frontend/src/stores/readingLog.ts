@@ -40,6 +40,25 @@ export const useReadingLogStore = defineStore('readingLog', () => {
     } catch {
       /* 忽略损坏数据 */
     }
+    seedCompletedPassages()
+  }
+
+  /** 预置已完成的真题记录（2005/2006年全部8篇阅读已完成） */
+  function seedCompletedPassages() {
+    let changed = false
+    for (const year of [2005, 2006]) {
+      for (let text = 1; text <= TEXTS_PER_YEAR; text++) {
+        const k = keyOf(year, text)
+        if (!records.value[k]) {
+          records.value[k] = { year, text, done: true, correct: 0, notes: '' }
+          changed = true
+        } else if (!records.value[k].done) {
+          records.value[k].done = true
+          changed = true
+        }
+      }
+    }
+    if (changed) save()
   }
 
   function save() {

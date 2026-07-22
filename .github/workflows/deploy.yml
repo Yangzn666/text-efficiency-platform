@@ -36,6 +36,9 @@ jobs:
       - name: Build
         env:
           NODE_OPTIONS: --max-old-space-size=4096
+          # Supabase 云同步配置（anon/publishable 为公开密钥，随前端打包分发，可安全内联）
+          VITE_SUPABASE_URL: https://mtxdojiwxqkbzayhekrb.supabase.co
+          VITE_SUPABASE_ANON_KEY: sb_publishable_tpCRgzChmXvlDO1tFScogg_D0mlcWAe
         run: |
           cd 00-网站程序/frontend
           npm run build

@@ -82,11 +82,13 @@ interface ExtendedMathChapter extends MathChapter {
 }
 
 // 三大学科的数据源配置
-const MATH_DATA_VERSION = 'v3-2026-07-21-three-subjects'
+// DATA_BASE：生产环境部署在 GitHub Pages 子路径下，必须拼上 base，否则 /data/... 会指向域名根目录 404
+const DATA_BASE = import.meta.env.BASE_URL
+const MATH_DATA_VERSION = 'v4-2026-07-22-baseurl'
 const SUBJECT_SOURCES = [
-  { subject: '高等数学', base: '/data/math/higher-math/' },
-  { subject: '线性代数', base: '/data/math/linear-algebra/' },
-  { subject: '概率论与数理统计', base: '/data/math/probability/' }
+  { subject: '高等数学', base: 'data/math/higher-math/' },
+  { subject: '线性代数', base: 'data/math/linear-algebra/' },
+  { subject: '概率论与数理统计', base: 'data/math/probability/' }
 ]
 
 export const useMathStore = defineStore('math', () => {
@@ -367,7 +369,7 @@ export const useMathStore = defineStore('math', () => {
 
     for (const source of SUBJECT_SOURCES) {
       try {
-        const response = await fetch(source.base + 'metadata.json')
+        const response = await fetch(DATA_BASE + source.base + 'metadata.json')
         if (!response.ok) {
           console.warn(`无法加载 ${source.subject} 的metadata.json`)
           continue
@@ -419,8 +421,8 @@ export const useMathStore = defineStore('math', () => {
     }
     
     try {
-      const base = chapter.contentBase || '/data/math/higher-math/'
-      const response = await fetch(base + chapter.contentFile)
+      const base = chapter.contentBase || 'data/math/higher-math/'
+      const response = await fetch(DATA_BASE + base + chapter.contentFile)
       if (!response.ok) {
         throw new Error(`无法加载章节内容: ${chapter.contentFile}`)
       }
@@ -434,7 +436,7 @@ export const useMathStore = defineStore('math', () => {
   // 新增：加载公式卡片数据
   const loadFormulasFromJson = async () => {
     try {
-      const response = await fetch('/data/math/higher-math/formulas.json')
+      const response = await fetch(DATA_BASE + 'data/math/higher-math/formulas.json')
       if (!response.ok) {
         throw new Error('无法加载formulas.json')
       }

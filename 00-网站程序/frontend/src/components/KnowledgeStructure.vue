@@ -199,8 +199,13 @@ const formatContent = (content: string) => {
     return '<p style="color: #999; text-align: center;">点击左侧章节查看详细内容</p>'
   }
   
+  // 最先处理折叠块 :::fold 标题 ... :::（内部内容继续走后续markdown流程）
+  let formatted = content.replace(/:::fold([^\n]*)\n([\s\S]*?)\n:::/g, (_m, title, inner) => {
+    return `<details class="fold-block"><summary>${title.trim() || '点击展开'}</summary><div class="fold-body">${inner}</div></details>`
+  })
+  
   // 处理Markdown格式的标题（先处理更长的标记）
-  let formatted = content.replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+  formatted = formatted.replace(/^#### (.+)$/gm, '<h4>$1</h4>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
@@ -235,16 +240,44 @@ const formatContent = (content: string) => {
   // 处理重点标识
   formatted = formatted.replace(/★/g, '<span class="highlight-star">★</span>')
   
-  // 处理换行（保留段落之间的空行）
+  // 处理换行：空行分段，单换行由HTML自然合并（不再生成<br>，大幅缩短页面）
   formatted = formatted.replace(/\n{2,}/g, '</p><p>')
-  formatted = formatted.replace(/\n/g, '<br>')
+  formatted = formatted.replace(/\n/g, ' ')
   
   // 包裹段落
   if (!formatted.startsWith('<')) {
     formatted = '<p>' + formatted + '</p>'
   }
   
+  // 自动折叠H2大节（首节默认展开，其余收起，缩短页面长度）
+  formatted = wrapSections(formatted)
+  
   return formatted
+}
+
+// 将HTML按h2拆分为可折叠区块
+const wrapSections = (html: string) => {
+  const h1Match = html.match(/^<h1>[\s\S]*?<\/h1>/)
+  const h1Part = h1Match ? h1Match[0] : ''
+  const rest = h1Match ? html.slice(h1Match[0].length) : html
+  
+  const parts = rest.split(/(?=<h2>)/)
+  let sectionIndex = 0
+  
+  const wrapped = parts.map(part => {
+    if (!part.trim()) return ''
+    if (part.startsWith('<h2>')) {
+      const titleMatch = part.match(/<h2>([\s\S]*?)<\/h2>/)
+      const title = titleMatch ? titleMatch[1] : ''
+      const body = part.replace(/<h2>[\s\S]*?<\/h2>/, '')
+      const open = sectionIndex === 0 ? ' open' : ''
+      sectionIndex++
+      return `<details class="section-fold"${open}><summary>${title}</summary><div class="section-body">${body}</div></details>`
+    }
+    return part
+  }).join('')
+  
+  return h1Part + wrapped
 }
 
 const startPractice = () => {
@@ -435,303 +468,432 @@ onMounted(async () => {
 
 <style scoped>
 .knowledge-structure {
+  --font-display: 'FZCuHei', '方正粗黑_GBK', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
-  border-radius: 25px;
-  padding: 35px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background:
+    radial-gradient(ellipse at top right, rgba(42, 82, 144, 0.07) 0%, transparent 55%),
+    linear-gradient(160deg, #f7f9fc 0%, #edf2f9 100%);
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-family: 'FZCuHei', '方正粗黑_GBK', 'Microsoft YaHei', sans-serif;
+  font-weight: 400;
 }
 
 .header-section {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 25px 0;
+  text-align: left;
+  margin-bottom: 12px;
+  padding: 0 4px 10px;
+  border-bottom: 1px solid rgba(22, 52, 92, 0.12);
+  position: relative;
+}
+
+.header-section::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  bottom: -2px;
+  width: 72px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffc53d, #f0a820);
+  border-radius: 2px;
 }
 
 .subject-title {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: var(--font-display);
+  font-size: 1.9em;
+  margin: 0 0 4px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #0d2137;
+  line-height: 1.15;
 }
 
 .subject-description {
-  font-size: 1.3em;
-  color: #555;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  letter-spacing: 2.5px;
+  color: #5a6b85;
   margin-bottom: 0;
   font-weight: 400;
 }
 
 .controls-section {
-  margin-bottom: 35px;
-  background: white;
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  margin-bottom: 14px;
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .search-bar {
-  max-width: 450px;
-  margin-bottom: 25px;
+  width: 260px;
+  margin-bottom: 0;
 }
 
 .category-filters {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+}
+
+.category-filters :deep(.el-button) {
+  border-radius: 9999px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.category-filters :deep(.el-button--primary) {
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  border-color: #16345c;
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.25);
 }
 
 .content-layout {
   display: flex;
   flex: 1;
-  gap: 35px;
+  gap: 16px;
   min-height: 0;
 }
 
 .points-sidebar {
-  width: 400px;
+  width: 285px;
+  flex-shrink: 0;
   overflow-y: auto;
-  background: white;
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.06);
   height: fit-content;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 260px);
 }
 
 .category-group {
-  margin-bottom: 35px;
+  margin-bottom: 14px;
 }
 
 .category-title {
-  color: #2c3e50;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 3px solid #ffc53d;
-  font-size: 1.4em;
-  font-weight: 700;
+  font-family: var(--font-display);
+  color: #0d2137;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #ffc53d;
+  font-size: 1.1em;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .points-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 6px;
 }
 
 .point-card {
-  padding: 25px;
-  border-radius: 16px;
-  background: #fafbff;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: #f8fafd;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 3px solid transparent;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-left: 3px solid transparent;
 }
 
 .point-card:hover {
-  transform: translateX(8px) translateY(-3px);
-  border-color: #ffc53d;
-  background: #f0f5ff;
-  box-shadow: 0 12px 30px rgba(13, 33, 55, 0.2);
+  transform: translateX(4px);
+  border-left-color: #f0a820;
+  background: #f0f5fc;
+  box-shadow: 0 6px 18px rgba(13, 33, 55, 0.1);
 }
 
 .point-card.active {
-  border-color: #ffc53d;
-  background: linear-gradient(135deg, #16345c20 0%, #1e457620 100%);
-  box-shadow: 0 15px 35px rgba(13, 33, 55, 0.3);
+  border-left-color: #ffc53d;
+  border-color: rgba(255, 197, 61, 0.45);
+  background: linear-gradient(90deg, rgba(255, 197, 61, 0.12) 0%, rgba(22, 52, 92, 0.04) 100%);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.12);
 }
 
 .point-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .point-title {
-  font-weight: 700;
-  color: #2c3e50;
-  font-size: 1.2em;
+  font-weight: 400;
+  color: #16345c;
+  font-size: 0.92em;
   flex: 1;
-  margin-right: 15px;
-  line-height: 1.4;
+  margin-right: 8px;
+  line-height: 1.3;
 }
 
 .point-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
 }
 
 .progress-text {
-  font-size: 1em;
-  color: #666;
-  min-width: 50px;
-  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  color: #16345c;
+  min-width: 36px;
+  font-weight: 400;
 }
 
 .key-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
+  display: none;
 }
 
 .key-point-tag {
   background: #eef3fa;
   color: #16345c;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85em;
-  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 9999px;
+  font-size: 0.82em;
+  font-weight: 400;
 }
 
 .no-results {
   text-align: center;
-  padding: 80px 30px;
+  padding: 40px 20px;
   color: #999;
-  background: white;
-  border-radius: 15px;
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-radius: 12px;
 }
 
 .no-results p {
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: #666;
+  margin-top: 12px;
+  font-size: 1em;
+  color: #5a6b85;
 }
 
 .point-detail {
   flex: 1;
   overflow-y: auto;
-  padding-left: 25px;
+  padding-left: 4px;
 }
 
 .detail-content {
-  max-width: 900px;
-  background: white;
-  border-radius: 20px;
-  padding: 35px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-radius: 12px;
+  padding: 20px 26px;
+  box-shadow: 0 8px 28px rgba(13, 33, 55, 0.08);
 }
 
 .detail-header {
-  margin-bottom: 35px;
-  padding-bottom: 25px;
-  border-bottom: 3px solid #f0f0f0;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(22, 52, 92, 0.1);
+  position: relative;
+}
+
+.detail-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, #ffc53d, #f0a820);
+  border-radius: 2px;
 }
 
 .detail-header h2 {
-  color: #2c3e50;
-  margin-bottom: 25px;
-  font-size: 2.3em;
-  font-weight: 800;
-  line-height: 1.3;
+  font-family: var(--font-display);
+  color: #0d2137;
+  margin: 0 0 10px;
+  font-size: 1.7em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1.2;
 }
 
 .header-tags {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .progress-section {
-  margin-bottom: 35px;
-  padding: 25px;
-  background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
-  border-radius: 16px;
-  border: 1px solid #e0e7ff;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #f7f9fc 0%, #eef3fa 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(22, 52, 92, 0.08);
 }
 
 .progress-info {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
 .progress-info span {
-  font-weight: 600;
-  color: #2c3e50;
-  min-width: 100px;
-  font-size: 1.1em;
+  font-weight: 400;
+  color: #16345c;
+  min-width: 90px;
+  font-size: 1em;
 }
 
 .point-content {
-  line-height: 2.0;
-  color: #34495e;
-  font-size: 1.15em;
-  margin-bottom: 45px;
-  padding: 5px 0;
+  line-height: 1.55;
+  color: #303133;
+  font-size: 0.95em;
+  margin-bottom: 12px;
+  padding: 2px 0;
 }
 
 .point-content :deep(h1) {
-  font-size: 1.6em;
-  color: #2c3e50;
-  margin: 35px 0 20px 0;
-  padding-bottom: 15px;
-  border-bottom: 3px solid #ffc53d;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.3em;
+  color: #0d2137;
+  margin: 8px 0 6px 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ffc53d;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
 }
 
 .point-content :deep(h2) {
-  font-size: 1.4em;
-  color: #34495e;
-  margin: 30px 0 18px 0;
-  font-weight: 600;
+  font-size: 1.12em;
+  color: #16345c;
+  margin: 8px 0 4px 0;
+  padding-left: 10px;
+  border-left: 3px solid #ffc53d;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
 .point-content :deep(h3) {
-  font-size: 1.2em;
-  color: #4a5568;
-  margin: 25px 0 15px 0;
-  font-weight: 500;
+  font-size: 1.04em;
+  color: #1e4576;
+  margin: 6px 0 3px 0;
+  font-weight: 400;
 }
 
 .point-content :deep(h4) {
-  font-size: 1.1em;
-  color: #5a6b85;
-  margin: 20px 0 12px 0;
-  font-weight: 600;
+  font-size: 1em;
+  color: #2a5290;
+  margin: 5px 0 2px 0;
+  font-weight: 400;
 }
 
 .point-content :deep(hr) {
   border: none;
   border-top: 2px dashed #d0d7e5;
-  margin: 28px 0;
+  margin: 6px 0;
+}
+
+/* H2大节折叠块 */
+.point-content :deep(.section-fold) {
+  margin: 6px 0;
+  border: 1px solid #e4e9f2;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.point-content :deep(.section-fold[open]) {
+  border-color: rgba(22, 52, 92, 0.15);
+}
+
+.point-content :deep(.section-fold summary) {
+  padding: 6px 12px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.02em;
+  color: #16345c;
+  background: #f6f8fc;
+  line-height: 1.25;
+  margin: 0;
+  border-left: none;
+}
+
+.point-content :deep(.section-fold summary::-webkit-details-marker) {
+  display: none;
+}
+
+.point-content :deep(.section-fold summary::before) {
+  content: '\25B6';
+  font-size: 0.6em;
+  color: #f0a820;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.point-content :deep(.section-fold[open] summary::before) {
+  transform: rotate(90deg);
+}
+
+.point-content :deep(.section-fold summary:hover) {
+  background: #eef3fa;
+}
+
+.point-content :deep(.section-body) {
+  padding: 3px 12px 6px;
 }
 
 .point-content :deep(p) {
-  margin: 18px 0;
-  line-height: 1.9;
+  margin: 6px 0;
+  line-height: 1.55;
 }
 
 .point-content :deep(ul),
 .point-content :deep(ol) {
-  margin: 20px 0;
-  padding-left: 30px;
+  margin: 2px 0;
+  padding-left: 20px;
 }
 
 .point-content :deep(li) {
-  margin: 12px 0;
-  line-height: 1.7;
+  margin: 3px 0;
+  line-height: 1.5;
+}
+
+.point-content :deep(li)::marker {
+  color: #f0a820;
+  font-weight: 400;
 }
 
 .point-content :deep(strong) {
-  color: #16345c;
-  font-weight: 700;
-  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #0d2137;
+  font-weight: 400;
+  background: linear-gradient(transparent 62%, rgba(255, 197, 61, 0.35) 62%);
+  padding: 0 2px;
+}
+
+.point-content :deep(.katex-display) {
+  margin: 3px 0;
+  padding: 5px 12px;
+  background: #f8fafd;
+  border: 1px solid rgba(22, 52, 92, 0.07);
+  border-radius: 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.point-content :deep(.katex) {
+  font-size: 1.05em;
 }
 
 .highlight-star {
@@ -740,27 +902,89 @@ onMounted(async () => {
   font-size: 1.2em;
 }
 
+/* 折叠例题块 */
+.point-content :deep(.fold-block) {
+  margin: 4px 0;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #ffc53d;
+  border-radius: 8px;
+  background: #fafcff;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease;
+}
+
+.point-content :deep(.fold-block:hover) {
+  box-shadow: 0 4px 14px rgba(13, 33, 55, 0.08);
+}
+
+.point-content :deep(.fold-block[open]) {
+  border-left-color: #16345c;
+  background: #fff;
+}
+
+.point-content :deep(.fold-block summary) {
+  padding: 6px 12px;
+  font-weight: 400;
+  color: #16345c;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92em;
+  line-height: 1.3;
+}
+
+.point-content :deep(.fold-block summary::-webkit-details-marker) {
+  display: none;
+}
+
+.point-content :deep(.fold-block summary::before) {
+  content: '\25B6';
+  font-size: 0.65em;
+  color: #f0a820;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.point-content :deep(.fold-block[open] summary::before) {
+  transform: rotate(90deg);
+}
+
+.point-content :deep(.fold-block summary:hover) {
+  background: rgba(255, 197, 61, 0.08);
+}
+
+.point-content :deep(.fold-body) {
+  padding: 2px 14px 8px;
+  border-top: 1px dashed #e8edf5;
+}
+
 .detail-actions {
   display: flex;
-  gap: 25px;
-  padding-top: 35px;
+  gap: 20px;
+  padding-top: 18px;
   border-top: 2px solid #f0f0f0;
   justify-content: center;
 }
 
 .placeholder {
   text-align: center;
-  padding: 120px 30px;
+  padding: 70px 30px;
   color: #999;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.05);
 }
 
 .placeholder h3 {
-  margin: 25px 0 15px 0;
-  color: #666;
-  font-size: 1.8em;
+  margin: 22px 0 12px 0;
+  color: #16345c;
+  font-family: var(--font-display);
+  font-size: 1.7em;
+  letter-spacing: 1px;
 }
 
 /* 滚动条样式 */
@@ -771,7 +995,7 @@ onMounted(async () => {
 
 .points-sidebar::-webkit-scrollbar-track,
 .point-detail::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #eef2f8;
   border-radius: 4px;
 }
 
@@ -783,19 +1007,19 @@ onMounted(async () => {
 
 .points-sidebar::-webkit-scrollbar-thumb:hover,
 .point-detail::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  background: linear-gradient(135deg, #2a5290 0%, #1e4576 100%);
 }
 
 /* 响应式设计 */
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   .content-layout {
     flex-direction: column;
   }
   
   .points-sidebar {
     width: 100%;
-    max-height: 400px;
-    margin-bottom: 25px;
+    max-height: 320px;
+    margin-bottom: 14px;
   }
   
   .point-detail {
@@ -805,54 +1029,8 @@ onMounted(async () => {
 
 @media (max-width: 768px) {
   .knowledge-structure {
-    padding: 25px;
-    border-radius: 20px;
-  }
-  
-  .subject-title {
-    font-size: 2em;
-  }
-  
-  .controls-section {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .category-filters {
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .point-card {
-    padding: 20px;
-  }
-  
-  .detail-header h2 {
-    font-size: 1.8em;
-  }
-  
-  .detail-content {
-    padding: 25px;
-  }
-  
-  .detail-actions {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .detail-actions .el-button {
-    width: 100%;
-  }
-  
-  .point-content {
-    font-size: 1.05em;
-  }
-}
-
-@media (max-width: 480px) {
-  .knowledge-structure {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 12px;
+    border-radius: 12px;
   }
   
   .subject-title {
@@ -860,20 +1038,11 @@ onMounted(async () => {
   }
   
   .controls-section {
-    padding: 15px;
+    padding: 10px 12px;
   }
   
-  .category-filters {
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  
-  .point-card {
-    padding: 15px;
-  }
-  
-  .point-title {
-    font-size: 1.1em;
+  .search-bar {
+    width: 100%;
   }
   
   .detail-header h2 {
@@ -881,12 +1050,16 @@ onMounted(async () => {
   }
   
   .detail-content {
-    padding: 15px;
+    padding: 14px 16px;
   }
   
-  .point-content {
-    font-size: 0.95em;
-    line-height: 1.6;
+  .detail-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .detail-actions .el-button {
+    width: 100%;
   }
 }
 </style>

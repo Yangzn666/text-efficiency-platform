@@ -11,7 +11,7 @@
         <span>📊 仪表盘</span>
       </el-menu-item>
       
-      <el-menu-item index="/math/reinforcement/topics">
+      <el-menu-item index="/math/detail">
         <el-icon><Document /></el-icon>
         <span>🔍 知识点</span>
       </el-menu-item>
@@ -38,8 +38,8 @@ const activeMenu = computed(() => {
   if (path === '/math' || path === '/math/') {
     return '/math'
   }
-  if (path.includes('/topics')) {
-    return '/math/reinforcement/topics'
+  if (path === '/math/detail' || path.includes('/detail')) {
+    return '/math/detail'
   }
   if (path.includes('/special-training')) {
     return '/math/reinforcement/special-training'

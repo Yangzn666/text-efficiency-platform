@@ -1,0 +1,1756 @@
+{
+  "questions": [
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 1,
+      "type": "逻辑关系",
+      "article": "<p>The human nose is an underrated tool. Humans are often thought to be insensitive smellers compared with animals, <u> 1 </u> this is largely because, <u> 2 </u> animals, we stand upright. This means that our noses are <u> 3 </u> to perceiving those smells which float through the air, <u> 4 </u> the majority of smells which stick to surfaces. In fact, <u> 5 </u>, we are extremely sensitive to smells, <u> 6 </u> we do not generally realize it. Our noses are capable of <u> 7 </u> human smells even when these are <u> 8 </u> to far below one part in one million.</p><p>Strangely, some people find that they can smell one type of flower but not another <u> 9 </u> others are sensitive to the smells of both flowers. This may be because some people do not have the genes necessary to generate <u> 10 </u> smell receptors in the nose. These receptors are the cells which sense smells and send <u> 11 </u> to the brain. However, it has been found that even people insensitive to a certain smell <u> 12 </u> can suddenly become sensitive to it when <u> 13 </u> to it often enough.</p><p>The explanation for insensitivity to smell seems to be that the brain finds it <u> 14 </u> to keep all smell receptors working all the time but can <u> 15 </u> new receptors if necessary. This may <u> 16 </u> explain why we are not usually sensitive to our own smells—we simply do not need to be. We are not <u> 17 </u> of the usual smell of our own house, but we <u> 18 </u> new smells when we visit someone else's. The brain finds it best to keep smell receptors <u> 19 </u> for unfamiliar and emergency signals <u> 20 </u> the smell of smoke, which might indicate the danger of fire.</p>",
+      "stem": "Humans are often thought to be insensitive smellers compared with animals, ___ this is largely because...",
+      "options": [
+        {
+          "label": "A",
+          "text": "although"
+        },
+        {
+          "label": "B",
+          "text": "as"
+        },
+        {
+          "label": "C",
+          "text": "but"
+        },
+        {
+          "label": "D",
+          "text": "while"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "D",
+      "analysis": "前后句是转折关系：人们认为人类嗅觉不灵敏，但这主要是因为人类直立行走。but表示转折，符合逻辑关系。",
+      "errorAnalysis": {
+        "A": "although引导让步状语从句，意思是'虽然'，后面需要跟完整的从句结构，而这里需要一个连词连接两个并列句。",
+        "B": "as可以表示'因为'或'当...时'，但这里前后句是转折关系，不是因果关系或时间关系。",
+        "D": "while可以表示'然而'（对比）或'当...时'（时间）。虽然while有时可以表示对比，但but更直接表达转折关系。while的对比语气较弱，通常用于对比两种同时存在的情况，而这里是明显的转折。"
+      },
+      "tips": "注意句子前后的逻辑关系，这里是典型的转折关系。although/though引导让步状语从句，but表示转折。",
+      "location": "第一句和第二句之间"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 2,
+      "type": "介词辨析",
+      "stem": "...this is largely because, ___ animals, we stand upright.",
+      "options": [
+        {
+          "label": "A",
+          "text": "above"
+        },
+        {
+          "label": "B",
+          "text": "unlike"
+        },
+        {
+          "label": "C",
+          "text": "excluding"
+        },
+        {
+          "label": "D",
+          "text": "besides"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "B",
+      "analysis": "unlike表示'不像...，与...不同'。句意：这主要是因为，与动物不同，我们是直立行走的。unlike强调人类与动物的区别。",
+      "errorAnalysis": {
+        "A": "above表示位置关系'在...上方'，不能用来比较人类和动物的特征差异。",
+        "C": "excluding表示'排除，不包括'，强调的是范围排除，而不是对比两者的不同特征。",
+        "D": "besides表示'除...之外还'，有包含的意思，而这里需要的是对比两者不同的介词。"
+      },
+      "tips": "unlike表示对比关系，above表示位置，excluding表示排除，besides表示'除...之外还'。",
+      "location": "第二段开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 3,
+      "type": "固定搭配",
+      "stem": "This means that our noses are ___ to perceiving those smells which float through the air...",
+      "options": [
+        {
+          "label": "A",
+          "text": "limited"
+        },
+        {
+          "label": "B",
+          "text": "committed"
+        },
+        {
+          "label": "C",
+          "text": "dedicated"
+        },
+        {
+          "label": "D",
+          "text": "confined"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "be limited to表示'局限于...'，符合句意：我们的鼻子只能感知飘浮在空气中的气味。",
+      "tips": "be limited to是固定搭配，表示限制在某范围。committed to致力于，dedicated to献身于，confined to局限于（多指空间）。",
+      "location": "第二句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 4,
+      "type": "动词辨析",
+      "stem": "...perceiving those smells which float through the air, ___ the majority of smells which stick to surfaces.",
+      "options": [
+        {
+          "label": "A",
+          "text": "catching"
+        },
+        {
+          "label": "B",
+          "text": "ignoring"
+        },
+        {
+          "label": "C",
+          "text": "missing"
+        },
+        {
+          "label": "D",
+          "text": "tracking"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "missing表示'错过，漏掉'。句意：鼻子只能闻到空气中的气味，而错过了（漏掉了）附着在表面的大多数气味。",
+      "tips": "根据上下文逻辑，前面说鼻子'局限于'感知空气中的气味，后面应该是'错过'表面的气味。",
+      "location": "第二句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 5,
+      "type": "逻辑关系",
+      "stem": "In fact, ___, we are extremely sensitive to smells, ___ we do not generally realize it.",
+      "options": [
+        {
+          "label": "A",
+          "text": "anyway"
+        },
+        {
+          "label": "B",
+          "text": "though"
+        },
+        {
+          "label": "C",
+          "text": "instead"
+        },
+        {
+          "label": "D",
+          "text": "therefore"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "though在此处作副词，表示'然而，不过'，放在句中用逗号隔开。句意：事实上，我们对气味极其敏感，不过我们通常没有意识到。",
+      "errorAnalysis": {
+        "A": "anyway表示'无论如何'，用于转换话题或总结，不符合这里的转折语境。",
+        "C": "instead表示'代替，反而'，强调替代关系，而这里是轻微的转折，不是替代。",
+        "D": "therefore表示'因此'，是因果关系，而这里前后句是转折关系。"
+      },
+      "tips": "though作副词时可放在句中，前后用逗号隔开，表示转折。anyway无论如何，instead代替，therefore因此。",
+      "location": "第三句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 6,
+      "type": "连词辨析",
+      "stem": "...we are extremely sensitive to smells, ___ we do not generally realize it.",
+      "options": [
+        {
+          "label": "A",
+          "text": "even if"
+        },
+        {
+          "label": "B",
+          "text": "if only"
+        },
+        {
+          "label": "C",
+          "text": "only if"
+        },
+        {
+          "label": "D",
+          "text": "as if"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "even if表示'即使，虽然'，引导让步状语从句。句意：即使我们没有意识到，我们对气味也是极其敏感的。",
+      "errorAnalysis": {
+        "B": "if only表示'要是...就好了'，表达愿望或遗憾，后面常跟虚拟语气，不符合这里的语境。",
+        "C": "only if表示'只有...才'，强调条件，而这里需要的是让步关系（即使...也）。only if的逻辑是：只有满足条件，结果才成立；而even if的逻辑是：即使不满足条件，结果也成立。",
+        "D": "as if表示'好像'，用于比喻或假设，不符合这里的让步逻辑。"
+      },
+      "tips": "even if表示让步，if only要是...就好了，only if只有...才，as if好像。",
+      "location": "第三句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 7,
+      "type": "动词辨析",
+      "stem": "Our noses are capable of ___ human smells even when these are ___ to far below one part in one million.",
+      "options": [
+        {
+          "label": "A",
+          "text": "distinguishing"
+        },
+        {
+          "label": "B",
+          "text": "discovering"
+        },
+        {
+          "label": "C",
+          "text": "determining"
+        },
+        {
+          "label": "D",
+          "text": "detecting"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "detecting表示'探测，察觉'，特别适合用于感官感知。句意：我们的鼻子能够察觉到人类的气味。",
+      "errorAnalysis": {
+        "A": "distinguishing表示'区分，辨别'，强调分辨两个或多个事物的不同，而这里只是单纯的感知、察觉，不需要区分。",
+        "B": "discovering表示'发现'，通常指发现新事物或之前不知道的事物，而这里是指感知已经存在的气味。",
+        "C": "determining表示'确定，决定'，强调做出判断或决定，不符合感官感知的语境。"
+      },
+      "tips": "detect强调发现、察觉（不易觉察的事物），distinguish区分，discover发现（新事物），determine决定。",
+      "location": "第四句开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 8,
+      "type": "动词辨析",
+      "stem": "...even when these are ___ to far below one part in one million.",
+      "options": [
+        {
+          "label": "A",
+          "text": "diluted"
+        },
+        {
+          "label": "B",
+          "text": "dissolved"
+        },
+        {
+          "label": "C",
+          "text": "dispersed"
+        },
+        {
+          "label": "D",
+          "text": "diffused"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "C",
+      "analysis": "diluted表示'稀释'。句意：即使气味被稀释到远低于百万分之一，我们的鼻子也能察觉到。",
+      "tips": "diluted稀释（液体或气体），dissolved溶解（固体在液体中），dispersed分散，diffused扩散。",
+      "location": "第四句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 9,
+      "type": "连词辨析",
+      "stem": "Strangely, some people find that they can smell one type of flower but not another, ___ others are sensitive to the smells of both flowers.",
+      "options": [
+        {
+          "label": "A",
+          "text": "when"
+        },
+        {
+          "label": "B",
+          "text": "since"
+        },
+        {
+          "label": "C",
+          "text": "for"
+        },
+        {
+          "label": "D",
+          "text": "whereas"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "whereas表示'然而，但是'，用于对比两种情况。句意：有些人只能闻到一种花的气味，而另一些人对两种花都敏感。",
+      "errorAnalysis": {
+        "A": "when表示'当...时'，是时间关系，而这里需要的是对比关系。",
+        "B": "since可以表示'因为'（因果）或'自从'（时间），都不符合这里的对比语境。",
+        "C": "for作为连词时表示'因为'，引导原因状语从句，而这里是对比两种人的不同情况，不是因果关系。"
+      },
+      "tips": "whereas强调对比，when当...时，since因为/自从，for因为。",
+      "location": "第五句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 10,
+      "type": "形容词辨析",
+      "stem": "This may be because some people do not have the genes necessary to generate ___ smell receptors in the nose.",
+      "options": [
+        {
+          "label": "A",
+          "text": "unusual"
+        },
+        {
+          "label": "B",
+          "text": "particular"
+        },
+        {
+          "label": "C",
+          "text": "unique"
+        },
+        {
+          "label": "D",
+          "text": "typical"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "particular表示'特定的，特定的某种'。句意：有些人没有产生特定气味感受器所需的基因。",
+      "tips": "particular强调特定的某一种，unusual不寻常，unique独一无二，typical典型的。",
+      "location": "第五句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 11,
+      "type": "名词辨析",
+      "stem": "These receptors are the cells which sense smells and send ___ to the brain.",
+      "options": [
+        {
+          "label": "A",
+          "text": "signs"
+        },
+        {
+          "label": "B",
+          "text": "stimuli"
+        },
+        {
+          "label": "C",
+          "text": "messages"
+        },
+        {
+          "label": "D",
+          "text": "impulses"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "messages表示'信息，信号'。句意：这些感受器是感知气味并向大脑发送信息的细胞。",
+      "tips": "在神经系统中，感受器向大脑发送的是messages（信息）。signs迹象，stimuli刺激，impulses冲动。",
+      "location": "第六句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 12,
+      "type": "固定搭配",
+      "stem": "However, it has been found that even people insensitive to a certain smell ___ can suddenly become sensitive to it...",
+      "options": [
+        {
+          "label": "A",
+          "text": "at first"
+        },
+        {
+          "label": "B",
+          "text": "at all"
+        },
+        {
+          "label": "C",
+          "text": "at large"
+        },
+        {
+          "label": "D",
+          "text": "at times"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "D",
+      "analysis": "at first表示'起初，开始时'。句意：即使是起初对某种气味不敏感的人，也可能突然变得敏感。",
+      "tips": "at first起初，与后面的suddenly形成时间对比。at all根本，at large总体上，at times有时。",
+      "location": "第七句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 13,
+      "type": "固定搭配",
+      "stem": "...when ___ to it often enough.",
+      "options": [
+        {
+          "label": "A",
+          "text": "subjected"
+        },
+        {
+          "label": "B",
+          "text": "left"
+        },
+        {
+          "label": "C",
+          "text": "drawn"
+        },
+        {
+          "label": "D",
+          "text": "exposed"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "be exposed to表示'接触，暴露于'。句意：当经常接触到这种气味时，就会突然变得敏感。",
+      "tips": "be exposed to是固定搭配，表示接触、暴露。subjected to遭受，left to留给，drawn to被吸引。",
+      "location": "第七句末尾"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 14,
+      "type": "形容词辨析",
+      "stem": "The explanation for insensitivity to smell seems to be that the brain finds it ___ to keep all smell receptors working all the time...",
+      "options": [
+        {
+          "label": "A",
+          "text": "ineffective"
+        },
+        {
+          "label": "B",
+          "text": "incompetent"
+        },
+        {
+          "label": "C",
+          "text": "inefficient"
+        },
+        {
+          "label": "D",
+          "text": "insufficient"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "inefficient表示'效率低的'。句意：大脑认为让所有嗅觉感受器一直工作是不高效的。",
+      "tips": "inefficient效率低（浪费资源），ineffective无效（没效果），incompetent无能力，insufficient不足。",
+      "location": "第八句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 15,
+      "type": "动词辨析",
+      "stem": "...but can ___ new receptors if necessary.",
+      "options": [
+        {
+          "label": "A",
+          "text": "introduce"
+        },
+        {
+          "label": "B",
+          "text": "summon"
+        },
+        {
+          "label": "C",
+          "text": "trigger"
+        },
+        {
+          "label": "D",
+          "text": "create"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "create表示'创造，生成'。句意：但在必要时可以创造新的感受器。",
+      "tips": "create强调从无到有的创造。introduce引入，summon召唤，trigger触发。",
+      "location": "第八句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 16,
+      "type": "副词辨析",
+      "stem": "This may ___ explain why we are not usually sensitive to our own smells...",
+      "options": [
+        {
+          "label": "A",
+          "text": "still"
+        },
+        {
+          "label": "B",
+          "text": "also"
+        },
+        {
+          "label": "C",
+          "text": "otherwise"
+        },
+        {
+          "label": "D",
+          "text": "nevertheless"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "B",
+      "analysis": "also表示'也，还'。句意：这也可以解释为什么我们通常对自己的气味不敏感。",
+      "tips": "also表示补充说明，除了前面的解释外，还有这个解释。still仍然，otherwise否则，nevertheless然而。",
+      "location": "第九句开头"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 17,
+      "type": "固定搭配",
+      "stem": "We are not ___ of the usual smell of our own house...",
+      "options": [
+        {
+          "label": "A",
+          "text": "sure"
+        },
+        {
+          "label": "B",
+          "text": "sick"
+        },
+        {
+          "label": "C",
+          "text": "aware"
+        },
+        {
+          "label": "D",
+          "text": "tired"
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "be aware of表示'意识到，觉察到'。句意：我们通常觉察不到自己房子的气味。",
+      "tips": "be aware of是固定搭配。sure of确信，sick of厌倦，tired of厌倦。",
+      "location": "第九句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 18,
+      "type": "动词辨析",
+      "stem": "...but we ___ new smells when we visit someone else's.",
+      "options": [
+        {
+          "label": "A",
+          "text": "tolerate"
+        },
+        {
+          "label": "B",
+          "text": "repel"
+        },
+        {
+          "label": "C",
+          "text": "neglect"
+        },
+        {
+          "label": "D",
+          "text": "notice"
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "notice表示'注意到'。句意：但当我们拜访别人家时，我们会注意到新的气味。与前文'觉察不到'形成对比。",
+      "tips": "notice与前面的aware形成语义呼应。tolerate容忍，repel排斥，neglect忽视。",
+      "location": "第九句后半部分"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 19,
+      "type": "形容词辨析",
+      "stem": "The brain finds it best to keep smell receptors ___ for unfamiliar and emergency signals...",
+      "options": [
+        {
+          "label": "A",
+          "text": "available"
+        },
+        {
+          "label": "B",
+          "text": "reliable"
+        },
+        {
+          "label": "C",
+          "text": "identifiable"
+        },
+        {
+          "label": "D",
+          "text": "suitable"
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "B",
+      "analysis": "available表示'可用的，可用的'。句意：大脑最好让嗅觉感受器保持可用状态，以应对不熟悉和紧急的信号。",
+      "tips": "available可用（随时能用），reliable可靠，identifiable可识别，suitable适合。",
+      "location": "第十句"
+    },
+    {
+      "year": 2005,
+      "section": "Use of English",
+      "number": 20,
+      "type": "介词短语",
+      "stem": "...for unfamiliar and emergency signals ___ the smell of smoke, which might indicate the danger of fire.",
+      "options": [
+        {
+          "label": "A",
+          "text": "similar to"
+        },
+        {
+          "label": "B",
+          "text": "such as"
+        },
+        {
+          "label": "C",
+          "text": "along with"
+        },
+        {
+          "label": "D",
+          "text": "aside from"
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "B",
+      "analysis": "such as表示'例如'，用于举例。句意：例如烟味，可能预示着火灾的危险。",
+      "tips": "such as用于举例说明前面的'unfamiliar and emergency signals'。similar to类似于，along with和...一起，aside from除...之外。",
+      "location": "第十句末尾"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "title": "猴子的公平感研究",
+      "number": 21,
+      "type": "推理题",
+      "article": "<p>Everybody loves a fat pay rise. Yet pleasure at your own can vanish if you learn that a colleague has been given a bigger one. Indeed, if he has a reputation for slacking, you might even be outraged. Such behaviour is regarded as \"all too human\", with the underlying assumption that other animals would not be capable of this finely developed sense of grievance. But a study by Sarah Brosnan and Frans de Waal of Emory University in Atlanta, Georgia, which has just been published in <em>Nature</em>, suggests that <u>it is all too monkey</u>, as well.</p><p>The researchers studied the behaviour of female brown capuchin monkeys. They look cute. They are good-natured, co-operative creatures, and they share their food readily. Above all, like their female human counterparts, they tend to pay much closer attention to the value of \"goods and services\" than males.</p><p>Such characteristics make them perfect candidates for Dr. Brosnan's and Dr. de Waal's study. The researchers spent two years teaching their monkeys to exchange tokens for food. Normally, the monkeys were happy enough to exchange pieces of rock for slices of cucumber. However, when two monkeys were placed in separate but adjoining chambers, so that each could observe what the other was getting in return for its rock, their behaviour became markedly different.</p><p>In the world of capuchins, grapes are luxury goods (and much preferable to cucumbers). So when one monkey was handed a grape in exchange for her token, the second was reluctant to hand hers over for a mere piece of cucumber. And if one received a grape without having to provide her token in exchange at all, the other either tossed her own token at the researcher or out of the chamber, or refused to accept the slice of cucumber. Indeed, the mere presence of a grape in the other chamber (without an actual monkey to eat it) was enough to induce resentment in a female capuchin.</p><p>The researchers suggest that capuchin monkeys, like humans, are guided by social emotions. In the wild, they are a cooperative, group-living species. Such cooperation is likely to be stable only when each animal feels it is not being cheated. Feelings of righteous indignation, it seems, are not the preserve of people alone. Refusing a lesser reward completely makes these feelings abundantly clear to other members of the group. However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.</p>",
+      "stem": "In the opening paragraph, the author introduces his topic by",
+      "options": [
+        {
+          "label": "A",
+          "text": "posing a contrast."
+        },
+        {
+          "label": "B",
+          "text": "justifying an assumption."
+        },
+        {
+          "label": "C",
+          "text": "making a comparison."
+        },
+        {
+          "label": "D",
+          "text": "explaining a phenomenon."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "作者在第一段通过比较人类和猴子的行为来引入主题。开头说人类喜欢加薪,但如果同事加薪更多会不高兴,然后引出研究表明猴子也有类似行为('it is all too monkey')。这是典型的比较手法。",
+      "errorAnalysis": {
+        "A": "posing a contrast表示'提出对比',强调两者的对立或差异。但本文不是强调人类和猴子的对立,而是通过比较发现相似性。",
+        "B": "justifying an assumption表示'证明假设的合理性',但作者不是在证明某个假设,而是通过比较引入主题。",
+        "D": "explaining a phenomenon表示'解释现象',虽然文章确实涉及现象,但作者引入主题的手法是通过比较人和猴子的相似性,而不是直接解释现象。"
+      },
+      "tips": "注意作者引入话题的手法:先说人类的行为,然后说研究表明猴子也一样,这是典型的比较(comparison)手法。contrast强调差异,comparison强调相似。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 22,
+      "type": "词义题",
+      "stem": "The statement 'it is all too monkey' (Last line, Paragraph 1) implies that",
+      "options": [
+        {
+          "label": "A",
+          "text": "monkeys are also outraged by slack rivals."
+        },
+        {
+          "label": "B",
+          "text": "resenting unfairness is also monkeys' nature."
+        },
+        {
+          "label": "C",
+          "text": "monkeys, like humans, tend to be jealous of each other."
+        },
+        {
+          "label": "D",
+          "text": "no animals other than monkeys can develop such emotions."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "'it is all too monkey'是对前面'all too human'的呼应,意思是'这也太猴子了',暗示这种行为不仅人类有,猴子也有。文章第一段提到'other animals would not be capable of this finely developed sense of grievance',但研究表明猴子也有这种情感,所以D选项正确:除了猴子,没有其他动物能发展出这种情感。",
+      "errorAnalysis": {
+        "A": "文章没有提到猴子对'laziness/slack'的同事感到愤怒,而是对不公平待遇感到不满。",
+        "B": "虽然猴子确实对不公平感到不满,但这个选项没有准确理解'all too monkey'的含义。这个短语强调的是猴子也有这种情感,而不是在定义猴子的本性。",
+        "C": "jealous(嫉妒)不准确。文章强调的是对不公平待遇的愤怒(resentment/indignation),而不是嫉妒。猴子不满是因为受到了不公平对待,而不是嫉妒对方得到更多。"
+      },
+      "tips": "理解'all too monkey'是对'all too human'的呼应,暗示猴子也有人类才被认为有的情感。注意区分jealousy(嫉妒)和resentment of unfairness(对不公平的愤怒)。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 23,
+      "type": "细节题",
+      "stem": "Female capuchin monkeys were chosen for the research most probably because they are",
+      "options": [
+        {
+          "label": "A",
+          "text": "more inclined to weigh what they get."
+        },
+        {
+          "label": "B",
+          "text": "attentive to researchers' instructions."
+        },
+        {
+          "label": "C",
+          "text": "nice in both appearance and temperament."
+        },
+        {
+          "label": "D",
+          "text": "more generous than their male companions."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "C",
+      "analysis": "第二段最后一句明确说明:'Above all, like their female human counterparts, they tend to pay much closer attention to the value of goods and services than males.' 意思是雌性卷尾猴更倾向于关注'商品和服务'的价值,即更会权衡得失。",
+      "errorAnalysis": {
+        "B": "文章没有提到雌性猴子更关注研究者的指令。",
+        "C": "虽然第二段提到'They look cute. They are good-natured',但这是描述性内容,不是选择它们做研究的主要原因。'",
+        "D": "文章没有比较雌雄猴子的慷慨程度,而是比较它们对价值的关注度。"
+      },
+      "tips": "注意'Above all'(最重要的是)这个信号词,后面的内容就是选择雌性猴子的主要原因。weigh what they get = pay attention to the value of goods and services。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 24,
+      "type": "细节题",
+      "stem": "Dr. Brosnan and Dr. de Waal have eventually found in their study that the monkey",
+      "options": [
+        {
+          "label": "A",
+          "text": "prefer grapes to cucumbers."
+        },
+        {
+          "label": "B",
+          "text": "can be taught to exchange things."
+        },
+        {
+          "label": "C",
+          "text": "will not be cooperative if feeling cheated."
+        },
+        {
+          "label": "D",
+          "text": "are unhappy when separated from others."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "第四段描述了实验结果:当一只猴子看到另一只猴子得到葡萄(更好的奖励)而自己只得到黄瓜时,它会拒绝合作(tossed her token away or refused to accept cucumber)。最后一段也明确指出:'Such cooperation is likely to be stable only when each animal feels it is not being cheated.' 这表明猴子在感到被欺骗或不公平对待时会拒绝合作。",
+      "errorAnalysis": {
+        "A": "虽然猴子确实更喜欢葡萄,但这只是实验设计的一部分,不是研究的主要发现。",
+        "B": "猴子可以被教交换东西是实验的前提条件,不是研究的最终发现。",
+        "D": "文章没有提到猴子被分开时不开心。实验确实将猴子放在相邻但分开的房间,但重点是它们能看到对方的待遇,而不是分离本身。"
+      },
+      "tips": "注意问题问的是'eventually found'(最终发现),即研究的主要结论。实验的核心发现是猴子对不公平待遇的反应,而不是它们的偏好或能力。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 1,
+      "number": 25,
+      "type": "推理题",
+      "stem": "What can we infer from the last paragraph?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Monkeys can be trained to develop social emotions."
+        },
+        {
+          "label": "B",
+          "text": "Human indignation evolved from an uncertain source."
+        },
+        {
+          "label": "C",
+          "text": "Animals usually show their feelings openly as humans do."
+        },
+        {
+          "label": "D",
+          "text": "Cooperation among monkeys remains stable only in the wild."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "最后一段最后一句是关键:'whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.' 意思是这种公平感是独立进化而来的,还是来自3500万年前的共同祖先,目前还是未解之谜。这暗示人类的不公平感(义愤)来源不确定。",
+      "errorAnalysis": {
+        "A": "文章说猴子像人类一样被社会情感引导,但没有说可以通过训练发展社会情感。",
+        "C": "文章没有说动物通常像人类一样公开表达情感。实际上,文章说猴子通过拒绝较少的奖励来'明确地'表达不满,但不能推断出'通常'都这样。",
+        "D": "文章说在野外合作可能稳定,但没有说'只有在野外'才稳定。"
+      },
+      "tips": "最后一段的关键信息是'unanswered question'(未解之谜),暗示来源不确定。indignation = righteous indignation = 义愤,对不公平的愤怒。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "title": "吸烟与全球变暖的类比",
+      "number": 26,
+      "type": "细节题",
+      "article": "<p>Do you remember all those years when scientists argued that smoking would kill us but the doubters insisted that we didn't know for sure? That the evidence was inconclusive, the science uncertain? That the antismoking lobby was out to destroy our way of life and the government should stay out of the way? Lots of Americans bought that nonsense, and over three decades, some 10 million smokers went to early graves.</p><p>There are upsetting parallels today, as scientists in one wave after another try to awaken us to the growing threat of global warming. The latest was a panel from the National Academy of Sciences, enlisted by the White House, to tell us that the Earth's atmosphere is definitely warming and that the problem is largely man-made. The clear message is that we should get moving to protect ourselves. The president of the National Academy, Bruce Alberts, added this key point in the preface to the panel's report: \"Science never has all the answers. But science does provide us with the best available guide to the future, and it is critical that our nation and the world base important policies on the best judgments that science can provide concerning the future consequences of present actions.\"</p><p>Just as on smoking, voices now come from many quarters insisting that the science about global warming is incomplete, that it's OK to keep pouring fumes into the air until we know for sure. This is a dangerous game: by the time 100 percent of the evidence is in, it may be too late. With the risks obvious and growing, a prudent people would take out an insurance policy now.</p><p>Fortunately, the White House is starting to pay attention. But it's obvious that a majority of the president's advisers still don't take global warming seriously. Instead of a plan of action, they continue to press for more research—a classic case of \"paralysis by analysis.\"</p><p>To serve as responsible stewards of the planet, we must press forward on deeper atmospheric and oceanic research. But research alone is inadequate. If the Administration won't take the legislative initiative, Congress should help to begin fashioning conservation measures. A bill by Democratic Senator Robert Byrd of West Virginia, which would offer financial incentives for private industry, is a promising start. Many see that the country is getting ready to build lots of new power plants to meet our energy needs. If we are ever going to protect the atmosphere, it is crucial that those new plants be environmentally sound.</p>",
+      "stem": "An argument made by supporters of smoking was that",
+      "options": [
+        {
+          "label": "A",
+          "text": "there was no scientific evidence of the correlation between smoking and death."
+        },
+        {
+          "label": "B",
+          "text": "the number of early deaths of smokers in the past decades was insignificant."
+        },
+        {
+          "label": "C",
+          "text": "people had the freedom to choose their own way of life."
+        },
+        {
+          "label": "D",
+          "text": "antismoking people were usually talking nonsense."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "A",
+      "analysis": "第一段中吸烟支持者的论点是：'the antismoking lobby was out to destroy our way of life and the government should stay out of the way'（反吸烟游说团体是要破坏我们的生活方式，政府应该不要干预）。这表明他们认为人们有选择自己生活方式的自由，政府不应该干涉。C选项'people had the freedom to choose their own way of life'（人们有自由选择自己生活方式的权利）准确概括了这一论点。",
+      "stepByStep": "【Step 1】读题干找关键词：'supporters of smoking'（吸烟支持者）的'argument'（论点）。\n【Step 2】回文定位：第一段提到'antismoking lobby was out to destroy our way of life and the government should stay out of the way'。\n【Step 3】同义替换：'destroy our way of life'和'government should stay out'说明支持者认为政府不应该干预生活方式，即人们有选择自由。\n【Step 4】排除干扰：A选项混淆了doubters和supporters；D选项nonsense指的是doubters的论点。",
+      "errorAnalysis": {
+        "A": "文章说的是doubters（怀疑者）认为证据不是决定性的（inconclusive），而不是完全没有科学证据。而且这是怀疑者的观点，不是supporters（支持者）的论点。",
+        "B": "文章提到10 million smokers went to early graves，并没有说这个数字insignificant（不重要）。",
+        "D": "是Lots of Americans bought that nonsense（很多美国人相信了那些胡话），不是antismoking people在说胡话。nonsense指的是前面doubters的论点。"
+      },
+      "tips": "注意区分supporters of smoking（吸烟支持者）和antismoking lobby（反吸烟游说团体）。定位第一段第三句，'our way of life'和'government should stay out of the way'是关键信息，暗示生活方式选择的自由。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 27,
+      "type": "细节题",
+      "stem": "According to Bruce Alberts, science can serve as",
+      "options": [
+        {
+          "label": "A",
+          "text": "a protector."
+        },
+        {
+          "label": "B",
+          "text": "a judge."
+        },
+        {
+          "label": "C",
+          "text": "a critic."
+        },
+        {
+          "label": "D",
+          "text": "a guide."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "第二段中Bruce Alberts在报告前言中说：'But science does provide us with the best available guide to the future'（但科学确实为我们提供了通向未来的最佳指南）。这里明确指出science serve as a guide（科学作为指南）。",
+      "errorAnalysis": {
+        "A": "protector（保护者）不是原文表达。文章说的是science提供guide，我们要用这个guide来protect ourselves。",
+        "B": "judge（法官）不符合原文。science提供的是guide和judgments（判断），但science本身不是judge。",
+        "C": "critic（批评家）不是原文的意思。虽然科学可能批评某些行为，但这不是Bruce Alberts强调的角色。"
+      },
+      "tips": "直接定位第二段Bruce Alberts的话，'science does provide us with the best available guide to the future'是原文重现。serve as = provide us with = 作为、充当。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 28,
+      "type": "词义题",
+      "stem": "What does the author mean by 'paralysis by analysis' (Last line, Paragraph 4)?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Endless studies kill action."
+        },
+        {
+          "label": "B",
+          "text": "Careful investigation reveals truth."
+        },
+        {
+          "label": "C",
+          "text": "Prudent planning hinders progress."
+        },
+        {
+          "label": "D",
+          "text": "Extensive research helps decision-making."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "第四段最后一句'Instead of a plan of action, they continue to press for more research—a classic case of paralysis by analysis'（他们没有制定行动计划，而是继续要求进行更多研究——这是典型的'分析导致瘫痪'）。paralysis by analysis意思是过度分析、不断研究而导致无法采取行动。A选项'Endless studies kill action'（无休止的研究扼杀了行动）完美诠释了这个短语的含义。",
+      "stepByStep": "【Step 1】读题干找定位：'paralysis by analysis'在第四段最后一行。\n【Step 2】看上下文：前面是'Instead of a plan of action, they continue to press for more research'（不采取行动计划，反而继续要求更多研究）。\n【Step 3】理解短语：paralysis=瘫痪，analysis=分析，字面意思是'分析太多导致瘫痪'。\n【Step 4】同义替换：Endless studies=press for more research，kill action=paralysis。",
+      "errorAnalysis": {
+        "B": "Careful investigation reveals truth（仔细调查揭示真相）是正面意义，而原文是负面批评，说不断研究却不行动。",
+        "C": "Prudent planning（谨慎计划）不是原文要表达的。原文批评的是press for more research（要求更多研究）而不采取行动。",
+        "D": "Extensive research helps decision-making（广泛研究有助于决策）是正面评价，与原文的批评态度相反。"
+      },
+      "tips": "paralysis = 瘫痪，analysis = 分析。理解这个短语的字面意思：因为过度分析而瘫痪（无法行动）。注意instead of a plan of action（而不是行动计划）这个对比，强调应该行动却在研究。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 29,
+      "type": "细节题",
+      "stem": "According to the author, what should the Administration do about global warming?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Offer aid to build cleaner power plants."
+        },
+        {
+          "label": "B",
+          "text": "Raise public awareness of conservation."
+        },
+        {
+          "label": "C",
+          "text": "Press for further scientific research."
+        },
+        {
+          "label": "D",
+          "text": "Take some legislative measures."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "C",
+      "analysis": "第五段明确指出：'If the Administration won't take the legislative initiative, Congress should help to begin fashioning conservation measures.'（如果政府不采取立法行动，国会应该帮助开始制定保护措施。）作者建议Administration（政府/行政当局）应该take the legislative initiative（采取立法行动）。D选项'Take some legislative measures'（采取一些立法措施）与此一致。",
+      "errorAnalysis": {
+        "A": "文章提到Senator Byrd的法案会为private industry提供financial incentives，但这不是作者建议Administration做的事情。",
+        "B": "Raise public awareness（提高公众意识）不是作者的主要建议。作者强调的是legislative initiative（立法行动）。",
+        "C": "Press for further scientific research（要求更多科学研究）正是作者在第四段批评的做法（paralysis by analysis），不是建议。"
+      },
+      "tips": "定位第五段第二句，legislative initiative = legislative measures（立法措施）。注意作者的观点：research alone is inadequate（仅靠研究是不够的），需要legislative action（立法行动）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 2,
+      "number": 30,
+      "type": "推理题",
+      "stem": "The author associates the issue of global warming with that of smoking because",
+      "options": [
+        {
+          "label": "A",
+          "text": "they both suffered from the government's negligence."
+        },
+        {
+          "label": "B",
+          "text": "a lesson from the latter is applicable to the former."
+        },
+        {
+          "label": "C",
+          "text": "the outcome of the latter aggravates the former."
+        },
+        {
+          "label": "D",
+          "text": "both of them have turned from bad to worse."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "C",
+      "analysis": "作者将吸烟问题与全球变暖问题相联系，是因为两者有相似的模式和教训。第二段开头说'There are upsetting parallels today'（今天有令人不安的相似之处），然后通过吸烟的历史教训（很多人因为怀疑科学证据而早期死亡）来警示全球变暖问题。作者认为我们应该从吸烟问题中吸取教训，不要重蹈覆辙。B选项'a lesson from the latter is applicable to the former'（从后者（吸烟）中得到的教训适用于前者（全球变暖））准确概括了作者的意图。",
+      "errorAnalysis": {
+        "A": "虽然文章确实提到政府在两个问题上的不作为，但这不是作者进行类比的主要原因。作者的重点是从历史教训中学习。",
+        "C": "the outcome of the latter aggravates the former（后者的结果加剧了前者）不符合事实。吸烟和全球变暖之间没有直接的因果关系。",
+        "D": "both of them have turned from bad to worse（两者都变得越来越糟）虽然是事实，但不是作者进行类比的目的。作者是为了用吸烟的教训来警示全球变暖问题。"
+      },
+      "tips": "理解类比的目的：latter（后者）= smoking，former（前者）= global warming。作者用吸烟的历史教训（人们因为怀疑科学而付出了10 million early graves的代价）来警示我们现在面对全球变暖不应该重犯同样的错误。注意第三段'This is a dangerous game'和'a prudent people would take out an insurance policy now'。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "title": "睡眠与梦的情绪调节功能",
+      "number": 31,
+      "type": "细节题",
+      "article": "<p>Of all the <u>components</u> of a good night's sleep, dreams seem to be least within our control. In dreams, a window opens into a world where logic is suspended and dead people speak. A century ago, Freud formulated his revolutionary theory that dreams were the disguised shadows of our unconscious desires and fears; by the late 1970s, neurologists had switched to thinking of them as just 'mental noise' —the random byproducts of the neural-repair work that goes on during sleep. Now researchers suspect that dreams are part of the mind's emotional <u>thermostat</u>, regulating moods while the brain is 'off-line.' And one leading authority says that these intensely powerful mental events can be not only harnessed but actually brought under conscious control, to help us sleep and feel better. 'It's your dream,' says Rosalind Cartwright, chair of psychology at Chicago's Medical Center. 'If you don't like it, change it.'</p><p>Evidence from brain imaging supports this view. The brain is as active during REM (rapid eye movement) sleep—when most vivid dreams occur—as it is when fully awake, says Dr. Eric Nofzinger at the University of Pittsburgh. But not all parts of the brain are equally involved; the <u>limbic</u> system (the 'emotional brain') is especially active, while the prefrontal cortex (the center of intellect and reasoning) is relatively quiet. 'We wake up from dreams happy or depressed, and those feelings can stay with us all day,' says Stanford sleep researcher Dr. William Dement.</p><p>The link between dreams and emotions shows up among the patients in Cartwright's clinic. Most people seem to have more bad dreams early in the night, progressing toward happier ones before <u>awakening</u>, suggesting that they are working through <u>negative</u> feelings generated <u>during the day</u>. Because our conscious mind is occupied with daily life we don't always think about the emotional significance of the day's <u>events</u>—until, it appears, we begin to dream.</p><p>And this process need not be left to the unconscious. Cartwright believes one can exercise conscious control over <u>recurring</u> bad dreams. As soon as you awaken, <u>identify</u> what is <u>upsetting</u> about the dream. Visualize how you would like it to end instead; the next time it occurs, try to wake up just enough to control its course. With much <u>practice</u> people can learn to, literally, do it in their sleep.</p><p>At the end of the day, there's probably little reason to pay attention to our dreams at all unless they keep us from sleeping or 'we wake up in a panic,' Cartwright says. Terrorism, economic uncertainties and general feelings of <u>insecurity have increased</u> people's anxiety. Those suffering from persistent nightmares should seek help from a <u>therapist</u>. For the rest of us, the brain has its ways of working through bad feelings. Sleep—or rather dream—on it and you'll feel better in the morning.</p>",
+      "stem": "Researchers have come to believe that dreams",
+      "options": [
+        {
+          "label": "A",
+          "text": "can be modified in their courses."
+        },
+        {
+          "label": "B",
+          "text": "are susceptible to emotional changes."
+        },
+        {
+          "label": "C",
+          "text": "reflect our innermost desires and fears."
+        },
+        {
+          "label": "D",
+          "text": "are a random outcome of neural repairs."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "A",
+      "analysis": "根据第一段And one leading authority says that these intensely powerful mental events can be not only harnessed but actually brought under conscious control（一位权威人士表示，这些强大的心理活动不仅可以被利用，而且实际上可以被有意识地控制），研究者认为梦可以在其过程中被修改。[A]正确。[B]易受情绪影响不准确，[C]反映内心欲望和恐惧是弗洛伊德的观点，[D]神经修复的随机产物是1970年代的观点。",
+      "errorAnalysis": {
+        "B": "文章说梦调节情绪，而不是梦本身易受情绪影响。",
+        "C": "这是弗洛伊德100年前的观点，不是现在研究者的观点。",
+        "D": "这是1970年代神经学家的观点，已被新研究取代。"
+      },
+      "tips": "注意区分不同时期研究者的观点：Freud（100年前）→ neurologists（1970年代）→ Now researchers（现在）。题干问的是have come to believe（已经逐渐相信），指现在的观点。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 32,
+      "type": "推理题",
+      "stem": "By referring to the limbic system, the author intends to show",
+      "options": [
+        {
+          "label": "A",
+          "text": "its function in our dreams."
+        },
+        {
+          "label": "B",
+          "text": "the mechanism of REM sleep."
+        },
+        {
+          "label": "C",
+          "text": "the relation of dreams to emotions."
+        },
+        {
+          "label": "D",
+          "text": "its difference from the prefrontal cortex."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "第二段提到the limbic system (the 'emotional brain') is especially active（边缘系统，即'情绪脑'，特别活跃），作者提及limbic system是为了说明梦与情绪的关系。[C]正确。[A]不准确，[B]不是主要目的，[D]只是对比说明。",
+      "errorAnalysis": {
+        "A": "虽然提到了功能，但核心是说明梦与情绪的关系。",
+        "B": "REM睡眠机制不是主要目的。",
+        "D": "与前额叶皮层的差异是为了说明情绪脑和理智脑的对比，不是主要目的。"
+      },
+      "tips": "注意括号中的解释：'emotional brain'（情绪脑），这直接点明了limbic system与情绪的关系。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 33,
+      "type": "细节题",
+      "stem": "The negative feelings generated during the day tend to",
+      "options": [
+        {
+          "label": "A",
+          "text": "aggravate in our unconscious mind."
+        },
+        {
+          "label": "B",
+          "text": "develop into happy dreams."
+        },
+        {
+          "label": "C",
+          "text": "persist till the time we fall asleep."
+        },
+        {
+          "label": "D",
+          "text": "show up in dreams early at night."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "D",
+      "analysis": "根据第三段Most people seem to have more bad dreams early in the night（大多数人似乎在夜间较早时做更多的噩梦），白天的负面情绪倾向于在夜间早期出现在梦中。[D]正确。[A]加重不符合文意，[B]发展成快乐的梦不准确，[C]持续到入睡时间错误。",
+      "errorAnalysis": {
+        "A": "文章没有说负面情绪在潜意识中加重。",
+        "B": "文章说夜间后期趋向于更快乐的梦，但白天的负面情绪首先出现在夜间早期的梦中。",
+        "C": "负面情绪不是在入睡时持续，而是在梦中出现。"
+      },
+      "tips": "注意时间线索：early in the night（夜间早期）→ progressing toward happier ones（趋向更快乐的梦）→ before awakening（醒来前）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 34,
+      "type": "推理题",
+      "stem": "Cartwright seems to suggest that",
+      "options": [
+        {
+          "label": "A",
+          "text": "waking up in time is essential to the ridding of bad dreams."
+        },
+        {
+          "label": "B",
+          "text": "visualizing bad dreams helps bring them under control."
+        },
+        {
+          "label": "C",
+          "text": "dreams should be left to their natural progression."
+        },
+        {
+          "label": "D",
+          "text": "dreaming may not entirely belong to the unconscious."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "A",
+      "analysis": "根据第四段And this process need not be left to the unconscious（这个过程不一定留给潜意识），Cartwright认为做梦不一定完全属于潜意识，人们可以有意识地控制梦境。[D]正确。[A]及时醒来不是核心观点，[B]想象噩梦有助于控制不够准确，[C]梦应该自然发展与文意相反。",
+      "errorAnalysis": {
+        "A": "虽然提到醒来，但核心是控制梦境，不是强调及时醒来。",
+        "B": "是想象更好的结局，不是想象噩梦本身。",
+        "C": "Cartwright主张可以控制梦境，不是任其自然发展。"
+      },
+      "tips": "注意关键词：need not be left to the unconscious（不一定留给潜意识）= may not entirely belong to the unconscious（可能不完全属于潜意识）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 3,
+      "number": 35,
+      "type": "推理题",
+      "stem": "What advice might Cartwright give to those who sometimes have bad dreams?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lead your life as usual."
+        },
+        {
+          "label": "B",
+          "text": "Seek professional help."
+        },
+        {
+          "label": "C",
+          "text": "Exercise conscious control."
+        },
+        {
+          "label": "D",
+          "text": "Avoid anxiety in the daytime."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "B",
+      "analysis": "根据最后一段For the rest of us, the brain has its ways of working through bad feelings. Sleep—or rather dream—on it and you'll feel better in the morning.（对于我们其他人来说，大脑有它自己的方式来处理不好的感觉。睡一觉——或者更确切地说做梦——第二天早上你会感觉更好），Cartwright建议偶尔做噩梦的人正常生活即可。[A]正确。[B]寻求专业帮助是针对持续做噩梦的人，[C]有意识控制是方法但不是给偶尔做噩梦者的建议，[D]避免白天焦虑不是她的建议。",
+      "errorAnalysis": {
+        "B": "Those suffering from persistent nightmares should seek help from a therapist是针对持续噩梦患者，不是偶尔做噩梦的人。",
+        "C": "有意识控制是针对recurring bad dreams（反复出现的噩梦），不是偶尔的。",
+        "D": "文章没有建议避免白天焦虑，而是说大脑会通过梦来处理。"
+      },
+      "tips": "注意区分对象：those who sometimes have bad dreams（偶尔做噩梦的人）→ Lead your life as usual（正常生活）；those suffering from persistent nightmares（持续做噩梦的人）→ seek help from a therapist（寻求治疗师帮助）。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "title": "正式英语的衰落与语言演变",
+      "number": 36,
+      "type": "细节题",
+      "article": "<p>Americans no longer expect public figures, whether in speech or in writing, to command the English language with skill and gift. Nor do they aspire to such command themselves. In his latest book, <em>Doing Our Own Thing: The Degradation of Language and Music and Why We Should, Like, Care</em>, John McWhorter, a linguist and controversialist of mixed liberal and conservative views, sees the triumph of 1960s counter-culture as responsible for the decline of formal English.</p><p>Blaming the permissive 1960s is nothing new, but this is not yet another criticism against the decline in education. Mr. McWhorter's academic speciality is language history and change, and he sees the gradual disappearance of 'whom', for example, to be natural and no more regrettable than the loss of the case-endings of Old English.</p><p>But the cult of the authentic and the personal, 'doing our own thing', has spelt the death of formal speech, writing, poetry and music. While even the modestly educated sought an elevated tone when they put pen to paper before the 1960s, even the most well regarded writing since then has sought to capture spoken English on the page. Equally, in poetry, the highly personal, performative genre is the only form that could claim real liveliness. In both oral and written English, talking is triumphing over speaking, spontaneity over craft.</p><p>Illustrated with an entertaining array of examples from both high and low culture, the trend that Mr. McWhorter documents is unmistakable. But it is less clear, to take the question of his subtitle, why we should, like, care. As a linguist, he acknowledges that all varieties of human language, including non-standard ones like Black English, can be powerfully expressive—there exists no language or dialect in the world that cannot convey complex ideas. He is not arguing, as many do, that we can no longer think straight because we do not talk proper.</p><p>Russians have a deep love for their own language and carry large chunks of memorized poetry in their heads, while Italian politicians tend to elaborate speech that would seem old-fashioned to most English-speakers. Mr. McWhorter acknowledges that formal language is not strictly necessary, and proposes no radical education reforms—he is really grieving over the loss of something beautiful more than useful. We now take our English 'on paper plates instead of china'. A shame, perhaps, but probably an inevitable one.</p>",
+      "stem": "According to McWhorter, the decline of formal English",
+      "options": [
+        {
+          "label": "A",
+          "text": "is inevitable in radical education reforms."
+        },
+        {
+          "label": "B",
+          "text": "is but all too natural in language development."
+        },
+        {
+          "label": "C",
+          "text": "has caused the controversy over the counter-culture."
+        },
+        {
+          "label": "D",
+          "text": "brought about changes in public attitudes in the 1960s."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "D",
+      "analysis": "第二段明确指出McWhorter认为'whom'的逐渐消失是自然的(natural),就像古英语格词尾的消失一样不值得遗憾。这表明他认为正式英语的衰落在语言发展中是自然的。B选项正确。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题:美国人不再期望公众人物精通英语,McWhorter认为这是1960年代反文化胜利的结果",
+            "keyPoint": "提出核心观点:反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "McWhorter的专业背景和他的核心观点:语言变化是自然的",
+            "keyPoint": "⭐关键段落!他看到'whom'的消失是natural(自然的)"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因:'做自己的事'这种个人主义文化导致了正式语言的死亡",
+            "keyPoint": "talking(随意交谈)胜过speaking(正式演讲)"
+          },
+          {
+            "paragraph": 4,
+            "content": "McWhorter承认所有语言变体都有表现力,不认为说话不规范会导致思维混乱",
+            "keyPoint": "反驳常见误解:语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "用俄罗斯人和意大利人的例子对比,说明McWhorter真正哀悼的是失去美丽的东西",
+            "keyPoint": "paper plates(实用)vs china(美丽)的类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "command",
+            "meaning": "精通,掌握(语言)",
+            "example": "command the English language = 精通英语"
+          },
+          {
+            "word": "aspire to",
+            "meaning": "渴望,追求",
+            "example": "aspire to such command = 渴望达到这样的水平"
+          },
+          {
+            "word": "controversialist",
+            "meaning": "有争议的人物",
+            "note": "controversial(有争议的)+ist(人)"
+          },
+          {
+            "word": "counter-culture",
+            "meaning": "反主流文化",
+            "context": "1960年代的反文化运动"
+          },
+          {
+            "word": "permissive",
+            "meaning": "放纵的,宽容的",
+            "example": "permissive 1960s = 放纵的1960年代"
+          },
+          {
+            "word": "case-endings",
+            "meaning": "格词尾",
+            "note": "古英语的名词变格词尾,现代英语已消失"
+          },
+          {
+            "word": "cult",
+            "meaning": "崇拜,狂热信仰",
+            "example": "the cult of the authentic = 对真实性的崇拜"
+          },
+          {
+            "word": "spontaneity",
+            "meaning": "自发性,自然流露",
+            "contrast": "vs craft(技巧,精心制作)"
+          },
+          {
+            "word": "elaborate",
+            "meaning": "精心制作的,复杂的",
+            "example": "elaborate speech = 精心准备的演讲"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:题干问'McWhorter认为正式英语的衰落...',需要找到McWhorter的观点",
+          "step2": "🔍找关键词:在第二段找到'he sees...to be natural'(他认为...是自然的)",
+          "step3": "✅匹配:B选项'all too natural'(完全自然的)与原文'natural'完美对应",
+          "step4": "❌排除其他选项:",
+          "elimination": [
+            "A选项错在最后一段'proposes no radical education reforms'(没有提出激进改革)",
+            "C选项因果关系颠倒:是反文化→导致→正式英语衰落,不是反过来",
+            "D选项也是因果颠倒:1960年代态度变化→导致→正式英语衰落"
+          ]
+        },
+        "commonTraps": [
+          "️ 陷阱1:因果关系颠倒 - 注意谁导致谁(responsible for)",
+          "⚠️ 陷阱2:偷换概念 - 'radical education reforms'出现在文中,但说的是'没有提出'",
+          "⚠️ 陷阱3:过度推断 - 文中说'natural',不要自己添加'in language development'以外的内容"
+        ],
+        "memoryTechnique": {
+          "method": "【自然演变联想法】",
+          "explanation": "把语言想象成河流,会自然流淌和改变。'whom'消失就像古英语格词尾消失一样,是语言发展的自然过程,不值得遗憾。",
+          "keyword": "natural = 自然的 = all too natural(完全自然的)",
+          "visualAid": "🌊 语言像河流 → 自然流动 → 词汇消失是正常的 → natural"
+        }
+      },
+      "errorAnalysis": {
+        "A": "最后一段说McWhorter没有提出激进的教育改革(proposes no radical education reforms),所以A错误。",
+        "C": "第一段说1960年代反文化的胜利导致了正式英语的衰落,而不是反过来。因果关系搞反了。",
+        "D": "不是正式英语的衰落带来了公众态度的变化,而是1960年代的反文化(公众态度变化)导致了正式英语的衰落。因果关系颠倒。"
+      },
+      "tips": "定位第二段:'he sees the gradual disappearance of whom...to be natural'。注意natural这个词,对应B选项的all too natural。"
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 37,
+      "type": "词义题",
+      "stem": "The word 'talking' (Line 6, Paragraph 3) denotes",
+      "options": [
+        {
+          "label": "A",
+          "text": "modesty."
+        },
+        {
+          "label": "B",
+          "text": "personality."
+        },
+        {
+          "label": "C",
+          "text": "liveliness."
+        },
+        {
+          "label": "D",
+          "text": "informality."
+        }
+      ],
+      "correctAnswer": "D",
+      "userAnswer": "B",
+      "analysis": "第三段讨论的是正式语言的死亡和口语化表达的兴起。'talking is triumphing over speaking, spontaneity over craft'中,talking与speaking形成对比,spontaneity(自发性)与craft(技巧)形成对比。根据上下文,talking代表的是非正式的、随意的表达方式。D选项informality(非正式性)正确。",
+      "errorAnalysis": {
+        "A": "modesty(谦虚)与文意无关。文章讨论的是正式与非正式,不是谦虚与否。",
+        "B": "personality(个性)不准确。虽然文章提到personal(个人的),但talking强调的是非正式的表达方式,而不是个性。",
+        "C": "liveliness(生动活泼)在文中出现过('claim real liveliness'),但这是描述诗歌的特点,不是talking的含义。talking强调的是随意、非正式。"
+      },
+      "tips": "理解对比关系:talking vs speaking = informal vs formal; spontaneity vs craft = 自然流露 vs 精心雕琢。talking代表非正式的口头表达。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "美国人不再期望精通英语"
+          },
+          {
+            "paragraph": 2,
+            "content": "McWhorter观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "⭐关键段落!",
+            "keyPoint": "talking vs speaking的对比"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "文化对比",
+            "keyPoint": "paper plates vs china类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "authentic",
+            "meaning": "真实的,真诚的",
+            "example": "the cult of the authentic = 对真实性的崇拜"
+          },
+          {
+            "word": "elevated tone",
+            "meaning": "高雅的语调",
+            "context": "正式写作的特点"
+          },
+          {
+            "word": "performative",
+            "meaning": "表演性的",
+            "note": "指诗歌需要朗诵表演"
+          },
+          {
+            "word": "spontaneity",
+            "meaning": "自发性",
+            "contrast": "vs craft(精心制作)"
+          },
+          {
+            "word": "triumph over",
+            "meaning": "胜过,战胜",
+            "example": "talking triumphs over speaking"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第三段第6行'talking is triumphing over speaking'",
+          "step2": "找对比:talking vs speaking, spontaneity vs craft",
+          "step3": "✅理解:talking=随意交谈(非正式), speaking=正式演讲",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(modesty谦虚):文中没提到谦虚的概念",
+            "B(personality个性):虽然提到personal,但强调的是表达方式,不是个性",
+            "C(liveliness生动):文中说诗歌有liveliness,但不是talking的含义"
+          ]
+        },
+        "commonTraps": [
+          "️ 陷阱1:看到personal就选personality - 要注意上下文,talking强调的是表达方式",
+          "⚠️ 陷阱2:混淆不同段落的词汇 - liveliness在第三段形容诗歌,不是talking的意思",
+          "⚠️ 陷阱3:忽视对比结构 - talking vs speaking是关键线索"
+        ],
+        "memoryTechnique": {
+          "method": "【对比配对法】",
+          "explanation": "建立对比表:talking(随意)=informal, speaking(正式)=formal。就像聊天vs演讲的区别。",
+          "keyword": "talking = 聊天、闲谈 → 轻松随意 → informality(非正式性)",
+          "visualAid": "💬 talking(聊天) vs 🎤 speaking(演讲) = informal vs formal"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 38,
+      "type": "推理题",
+      "stem": "To which of the following statements would McWhorter most likely agree?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Logical thinking is not necessarily related to the way we talk."
+        },
+        {
+          "label": "B",
+          "text": "Black English can be more expressive than standard English."
+        },
+        {
+          "label": "C",
+          "text": "Non-standard varieties of human language are just as entertaining."
+        },
+        {
+          "label": "D",
+          "text": "Of all the varieties, standard English can best convey complex ideas."
+        }
+      ],
+      "correctAnswer": "A",
+      "userAnswer": "B",
+      "analysis": "第四段最后一句:'He is not arguing, as many do, that we can no longer think straight because we do not talk proper.'意思是McWhorter不认为我们因为说话不规范就不能清晰思考。这暗示逻辑思维不一定与说话方式相关。A选项正确。",
+      "errorAnalysis": {
+        "B": "第四段说所有语言变体(包括黑人英语)都可以很有表现力(powerfully expressive),但没有说黑人英语比标准英语更有表现力。比较级错误。",
+        "C": "entertaining(有趣的)在第四段出现过('an entertaining array of examples'),但那是形容例子的,不是说语言变体本身有趣。",
+        "D": "第四段明确说'there exists no language or dialect in the world that cannot convey complex ideas'(世界上没有不能传达复杂思想的语言或方言),所以D错误。"
+      },
+      "tips": "定位第四段最后一句,理解双重否定:not arguing...that we can no longer think straight = 认为我们可以清晰思考,即使说话不规范。think straight = logical thinking。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "⭐关键段落!",
+            "keyPoint": "所有语言都有表现力"
+          },
+          {
+            "paragraph": 5,
+            "content": "文化对比",
+            "keyPoint": "哀悼失去美丽的东西"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "acknowledge",
+            "meaning": "承认",
+            "example": "he acknowledges that..."
+          },
+          {
+            "word": "powerfully expressive",
+            "meaning": "很有表现力的",
+            "context": "形容各种语言变体"
+          },
+          {
+            "word": "think straight",
+            "meaning": "清晰思考",
+            "note": "straight=清晰的,直接的"
+          },
+          {
+            "word": "talk proper",
+            "meaning": "说话规范",
+            "contrast": "vs talk improper(说话不规范)"
+          },
+          {
+            "word": "convey complex ideas",
+            "meaning": "传达复杂思想",
+            "example": "所有语言都能做到"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第四段最后一句'He is not arguing...that we can no longer think straight'",
+          "step2": "理解双重否定:not arguing + no longer = 认为可以",
+          "step3": "✅转换:不认为我们不能清晰思考 = 认为我们能清晰思考(即使说话不规范)",
+          "step4": "❌排除:",
+          "elimination": [
+            "B(more expressive比较级):原文说'都可以很有表现力',没有比较谁更强",
+            "C(entertaining有趣的):entertaining形容的是examples,不是language varieties",
+            "D(best convey最好传达):原文明确说'没有不能传达的语言',所以没有'最好'"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:比较级陷阱 - 看到more/better/than要警惕,原文没比较就别选",
+          "⚠️ 陷阱2:偷换主语 - entertaining修饰的是examples,不是languages",
+          "⚠️ 陷阱3:双重否定理解错误 - not...no = 肯定,要学会转换"
+        ],
+        "memoryTechnique": {
+          "method": "【双重否定破解法】",
+          "explanation": "not arguing(不认为) + no longer think straight(不能再清晰思考) = 认为我们可以清晰思考",
+          "keyword": "think straight = logical thinking(逻辑思维)",
+          "visualAid": "🔄 not...no = ✅ 肯定 | 说话不规范 ≠ 思维不清晰"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 39,
+      "type": "推理题",
+      "stem": "The description of Russians' love of memorizing poetry shows the author's",
+      "options": [
+        {
+          "label": "A",
+          "text": "interest in their language."
+        },
+        {
+          "label": "B",
+          "text": "appreciation of their efforts."
+        },
+        {
+          "label": "C",
+          "text": "admiration for their memory."
+        },
+        {
+          "label": "D",
+          "text": "contempt for their old-fashionedness."
+        }
+      ],
+      "correctAnswer": "B",
+      "userAnswer": "A",
+      "analysis": "第五段用俄罗斯人热爱背诵诗歌和意大利政治家的华丽演讲作为例子,说明不同文化对正式语言的重视。'memorized poetry'(背诵诗歌)和'elaborate speech'(精心雕琢的演讲)都暗示了**努力和用心**。作者通过这些正面例子表达了对这种文化努力的欣赏(appreciation of their efforts)。B选项正确。",
+      "errorAnalysis": {
+        "A": "interest in their language(对他们语言的兴趣)不够准确。作者不是在表达'兴趣',而是在赞赏他们为保持语言传统所付出的努力。",
+        "C": "admiration for their memory(钦佩他们的记忆力)偏离重点。重点是他们对语言的热爱和努力,不是记忆力本身。",
+        "D": "contempt(蔑视)完全错误。作者是正面描述,没有贬低的意思。"
+      },
+      "tips": "理解例子的作用:俄罗斯人和意大利人的例子都是在说对语言的用心和努力(memorized/elaborate),与McWhorter的观点形成对比。appreciation of efforts = 赞赏他们的努力付出。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "⭐关键段落!",
+            "keyPoint": "俄罗斯人和意大利人的例子"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "memorize",
+            "meaning": "背诵,记住",
+            "example": "memorized poetry = 背诵的诗歌"
+          },
+          {
+            "word": "elaborate",
+            "meaning": "精心制作的",
+            "example": "elaborate speech = 精心准备的演讲"
+          },
+          {
+            "word": "appreciation",
+            "meaning": "欣赏,赞赏",
+            "note": "比interest程度更深"
+          },
+          {
+            "word": "contempt",
+            "meaning": "蔑视,轻视",
+            "antonym": "admiration(钦佩)"
+          },
+          {
+            "word": "old-fashioned",
+            "meaning": "过时的,守旧的",
+            "context": "意大利政治家的演讲显得过时"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "📍定位:第五段'Russians have a deep love...and carry large chunks of memorized poetry'",
+          "step2": "找关键词:memorized(背诵)暗示努力和付出",
+          "step3": "✅理解:作者用正面例子表达对这种文化努力的欣赏(appreciation)",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(interest兴趣):太浅层,只是'感兴趣',没有体现作者的正面评价和赞赏",
+            "C(memory记忆力):偏离重点,重点是热爱和努力,不是记忆力好",
+            "D(contempt蔑视):完全相反,作者是正面态度"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:把客观描述当主观评价 - interest太中性,不够准确",
+          "⚠️ 陷阱2:关注表面词汇 - 看到memorized就想到memory,忽略了背后的努力含义",
+          "⚠️ 陷阱3:忽视情感色彩 - 作者是正面赞赏,不是中立或负面"
+        ],
+        "memoryTechnique": {
+          "method": "【关键词定位法】",
+          "explanation": "memorized(需要努力背诵) + elaborate(需要用心准备) = efforts(努力付出)",
+          "keyword": "memorized/elaborate → effort → appreciation of efforts",
+          "visualAid": "📚 memorized(背诵) + 🎨 elaborate(精心) = 💪 efforts(努力) → 👍 appreciation(赞赏)"
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "section": "Traditional Reading",
+      "textNumber": 4,
+      "number": 40,
+      "type": "类比题",
+      "stem": "According to the last paragraph, 'paper plates' is to 'china' as",
+      "options": [
+        {
+          "label": "A",
+          "text": "'temporary' is to 'permanent'."
+        },
+        {
+          "label": "B",
+          "text": "'radical' is to 'conservative'."
+        },
+        {
+          "label": "C",
+          "text": "'functional' is to 'artistic'."
+        },
+        {
+          "label": "D",
+          "text": "'humble' is to 'noble'."
+        }
+      ],
+      "correctAnswer": "C",
+      "userAnswer": "C",
+      "analysis": "最后一段说McWhorter承认正式语言不是严格必要的(not strictly necessary),他真正哀悼的是失去了一些美丽的东西(loss of something beautiful more than useful)。'paper plates'(纸盘子)代表实用的、功能性的,'china'(瓷器)代表美丽的、艺术性的。这个类比强调从功能性向艺术性的转变,C选项正确。",
+      "errorAnalysis": {
+        "A": "temporary vs permanent(临时vs永久)不准确。纸盘子和瓷器的区别不在于使用时间长短,而在于功能和美感。",
+        "B": "radical vs conservative(激进vs保守)与文意无关。文章没有讨论激进或保守的问题。",
+        "D": "humble vs noble(卑微vs高贵)有阶级色彩,不符合文意。文章强调的是实用与美感的对比,不是社会地位。"
+      },
+      "tips": "理解关键句:'grieving over the loss of something beautiful more than useful'(哀悼失去的是美丽而非实用的东西)。paper plates = functional/useful, china = beautiful/artistic。",
+      "detailedAnalysis": {
+        "articleStructure": [
+          {
+            "paragraph": 1,
+            "content": "引出话题",
+            "keyPoint": "反文化导致正式英语衰落"
+          },
+          {
+            "paragraph": 2,
+            "content": "核心观点",
+            "keyPoint": "语言变化是自然的"
+          },
+          {
+            "paragraph": 3,
+            "content": "解释原因",
+            "keyPoint": "个人主义文化的影响"
+          },
+          {
+            "paragraph": 4,
+            "content": "反驳误解",
+            "keyPoint": "语言形式≠思维能力"
+          },
+          {
+            "paragraph": 5,
+            "content": "⭐关键段落!",
+            "keyPoint": "paper plates vs china的类比"
+          }
+        ],
+        "vocabulary": [
+          {
+            "word": "grieve over",
+            "meaning": "为...感到悲伤",
+            "example": "grieving over the loss = 为失去而悲伤"
+          },
+          {
+            "word": "beautiful more than useful",
+            "meaning": "美丽多于实用",
+            "note": "强调美感价值"
+          },
+          {
+            "word": "inevitable",
+            "meaning": "不可避免的",
+            "synonym": "unavoidable"
+          },
+          {
+            "word": "functional",
+            "meaning": "功能性的,实用的",
+            "contrast": "vs artistic(艺术性的)"
+          },
+          {
+            "word": "artistic",
+            "meaning": "艺术性的,美观的",
+            "example": "china represents artistic value"
+          }
+        ],
+        "questionBreakdown": {
+          "step1": "定位:最后一段'grieving over the loss of something beautiful more than useful'",
+          "step2": "🔍理解类比:paper plates(纸盘子)=实用,functional; china(瓷器)=美丽,artistic",
+          "step3": "✅匹配:C选项'functional is to artistic'(功能性对艺术性)完美对应",
+          "step4": "❌排除:",
+          "elimination": [
+            "A(temporary vs permanent临时vs永久):不准确,区别在于功能和美感,不在使用时间",
+            "B(radical vs conservative激进vs保守):与文意无关,文章没讨论激进保守",
+            "D(humble vs noble卑微vs高贵):有阶级色彩,不符合文意"
+          ]
+        },
+        "commonTraps": [
+          "⚠️ 陷阱1:表面理解 - 只看到纸盘子和瓷器的物理属性,没理解象征意义",
+          "⚠️ 陷阱2:过度联想 - 加入阶级观念(humble/noble),超出原文范围",
+          "⚠️ 陷阱3:忽视关键句 - 'beautiful more than useful'是解题核心"
+        ],
+        "memoryTechnique": {
+          "method": "【功能vs美感联想法】",
+          "explanation": "纸盘子=便宜实用用完就扔,瓷器=精美昂贵值得收藏。就像快餐vs高级餐厅的区别。",
+          "keyword": "paper plates=functional(实用), china=artistic(艺术)",
+          "visualAid": "🍽️ paper plates(实用) : 🏺 china(美丽) = functional : artistic"
+        }
+      }
+    }
+  ],
+  "lastUpdated": "2026-06-04T00:00:00.000Z"
+}

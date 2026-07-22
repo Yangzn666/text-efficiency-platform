@@ -34,7 +34,56 @@
       }
     ],
     "scoreLine": 360,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "369",
+        "avgScore": "390",
+        "quota": "5",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "360",
+        "avgScore": "390",
+        "quota": "75",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "369",
+        "avgScore": "378",
+        "quota": "9",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "341",
+        "avgScore": "368",
+        "quota": "74",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "377",
+        "avgScore": "394",
+        "quota": "8",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "340",
+        "avgScore": "370",
+        "quota": "107",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -87,7 +136,8 @@
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10248"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年（2025年12月考试届）。修改字段：081200单科线60/60/90/90→50/50/75/75、minScore 390→369、avgScore 410→390；085405（对应085400电子信息-02软件工程方向）scoreLine 378→327、单科线60/60/90/90→50/50/75/75、minScore 388→328、avgScore 405→361、quota 10→18。来源：①上海交通大学计算机学院2026年全日制硕士复试通知（cs.sjtu.edu.cn，单科线50/50/75/75）；②vipkaoyan《2027上海交通大学计算机408考研考情分析》2026拟录取数据（081200复试线369/最低369/均分390/录取5人；电子信息-02软件工程复试线327/最低328/均分361/录取18人）。is408Change=false核查无误（上交计算机2025届起已考408，2024年电子信息已改考，非2026改考院校）。scoreLine(院校线360)、region、level、links.graduate(yzb.sjtu.edu.cn)核查无误。"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年（2025年12月考试届）。修改字段：081200单科线60/60/90/90→50/50/75/75、minScore 390→369、avgScore 410→390；085405（对应085400电子信息-02软件工程方向）scoreLine 378→327、单科线60/60/90/90→50/50/75/75、minScore 388→328、avgScore 405→361、quota 10→18。来源：①上海交通大学计算机学院2026年全日制硕士复试通知（cs.sjtu.edu.cn，单科线50/50/75/75）；②vipkaoyan《2027上海交通大学计算机408考研考情分析》2026拟录取数据（081200复试线369/最低369/均分390/录取5人；电子信息-02软件工程复试线327/最低328/均分361/录取18人）。is408Change=false核查无误（上交计算机2025届起已考408，2024年电子信息已改考，非2026改考院校）。scoreLine(院校线360)、region、level、links.graduate(yzb.sjtu.edu.cn)核查无误。",
+    "grade": "A"
   },
   {
     "name": "中国科学技术大学",
@@ -154,7 +204,56 @@
       }
     ],
     "scoreLine": 388,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "355",
+        "avgScore": "383",
+        "quota": "78",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "355",
+        "avgScore": "383",
+        "quota": "25",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "340",
+        "avgScore": "367",
+        "quota": "94",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "350",
+        "avgScore": "374",
+        "quota": "31",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "350",
+        "avgScore": "386",
+        "quota": "70",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "375",
+        "avgScore": "394",
+        "quota": "32",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -208,7 +307,8 @@
       "college": "https://cs.ustc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10358"
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。本条目未修改数值。核查结论：①2026计算机学院学硕初试科目为101政治/201英语一/301数学一/408计算机学科专业基础（招生目录确认），is408Change=true保留原值；②校线官方页面为图片无法提取文字，各复试线/拟录取数据沿用原标注（灰灰考研2026年5月13日统计），未查到更权威来源，保留原值；③225软件学院quota“2985人”明显可疑（疑似298+5人或录入错误），但未查到确切统考名额数据，保留原值待人工复核。links.graduate(gradschool.ustc.edu.cn)、region、level核查无误。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。本条目未修改数值。核查结论：①2026计算机学院学硕初试科目为101政治/201英语一/301数学一/408计算机学科专业基础（招生目录确认），is408Change=true保留原值；②校线官方页面为图片无法提取文字，各复试线/拟录取数据沿用原标注（灰灰考研2026年5月13日统计），未查到更权威来源，保留原值；③225软件学院quota“2985人”明显可疑（疑似298+5人或录入错误），但未查到确切统考名额数据，保留原值待人工复核。links.graduate(gradschool.ustc.edu.cn)、region、level核查无误。",
+    "grade": "A-"
   },
   {
     "name": "北京大学",
@@ -288,7 +388,56 @@
       }
     ],
     "scoreLine": 340,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "378",
+        "avgScore": "399",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "382",
+        "quota": "24",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "357",
+        "avgScore": "378",
+        "quota": "198",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "370",
+        "avgScore": "388",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "380",
+        "avgScore": "397",
+        "quota": "358",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "380",
+        "avgScore": "398",
+        "quota": "17",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -342,7 +491,8 @@
       "college": "https://ai.pku.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200 minScore 392[350-427]→350[350-427]（392为误置的平均分口径，拟录取最低分为350）；085400电子信息（软件工程）english 90→55（北大2026校线：学术工学[08] 300/55/55/90/90、专业学位工学[08] 320/55/55/90/90，英语线应为55）；智能学院minScore 379[347-424]→347[347-424]（379为误置均分口径，最低分取区间下限347）。来源：①新东方转载北大2026复试基本分数线；②盛世清北《北大计算机学院2026复试录取名单》（081200普通计划复试线340、单科55/55/90/90、录取最低350、最高427、录取24人）。081200复试线340、单科55/55/90/90核查无误。avgScore、quota（33+2专项，普通计划实际录取24人）未查到确切对应数据，保留原值。is408Change=false未查到2026改考依据，保留原值。links.graduate(admission.pku.edu.cn)核查无误。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200 minScore 392[350-427]→350[350-427]（392为误置的平均分口径，拟录取最低分为350）；085400电子信息（软件工程）english 90→55（北大2026校线：学术工学[08] 300/55/55/90/90、专业学位工学[08] 320/55/55/90/90，英语线应为55）；智能学院minScore 379[347-424]→347[347-424]（379为误置均分口径，最低分取区间下限347）。来源：①新东方转载北大2026复试基本分数线；②盛世清北《北大计算机学院2026复试录取名单》（081200普通计划复试线340、单科55/55/90/90、录取最低350、最高427、录取24人）。081200复试线340、单科55/55/90/90核查无误。avgScore、quota（33+2专项，普通计划实际录取24人）未查到确切对应数据，保留原值。is408Change=false未查到2026改考依据，保留原值。links.graduate(admission.pku.edu.cn)核查无误。",
+    "grade": "A+"
   },
   {
     "name": "南京大学",
@@ -379,7 +529,56 @@
       }
     ],
     "scoreLine": 371,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "371",
+        "avgScore": "386",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "367",
+        "avgScore": "393",
+        "quota": "76",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "353",
+        "avgScore": "372",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "369",
+        "avgScore": "384",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "359",
+        "avgScore": "381",
+        "quota": "44",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "373",
+        "avgScore": "392",
+        "quota": "13",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -435,7 +634,8 @@
       "college": "",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10284"
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/75/75/75→50/50/75/75；085405单科线50/75/75/75→55/55/85/85。来源：南京大学2026年复试基本分数线（eduego转载）：学术学位工学[08]（不含照顾专业）总分295、政治50/外语50/业务课一75/业务课二75；专业学位电子信息[0854]总分320、政治55/外语55/业务课一85/业务课二85。原数据081200英语=75有误。scoreLine（081200=363、085405=329）：百度知道称计算机系复试线369、AI学院372，与363不一致，未查到官方院线文字来源，保留原值。minScore/avgScore/quota未查到2026确切数据，保留原值。is408Change=false核查无误（南大计算机常年考408，不在2026改考名单）。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/75/75/75→50/50/75/75；085405单科线50/75/75/75→55/55/85/85。来源：南京大学2026年复试基本分数线（eduego转载）：学术学位工学[08]（不含照顾专业）总分295、政治50/外语50/业务课一75/业务课二75；专业学位电子信息[0854]总分320、政治55/外语55/业务课一85/业务课二85。原数据081200英语=75有误。scoreLine（081200=363、085405=329）：百度知道称计算机系复试线369、AI学院372，与363不一致，未查到官方院线文字来源，保留原值。minScore/avgScore/quota未查到2026确切数据，保留原值。is408Change=false核查无误（南大计算机常年考408，不在2026改考名单）。",
+    "grade": "A"
   },
   {
     "name": "哈尔滨工业大学",
@@ -472,7 +672,56 @@
       }
     ],
     "scoreLine": 365,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部(081200)",
+        "scoreLine": "310",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "深圳校区(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部(081200)",
+        "scoreLine": "300",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "深圳校区(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "深圳校区(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -525,7 +774,8 @@
       "college": "https://cs.hit.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10213"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：is408Change true→false；tags/pros/cons中“2026改考408”→“2025改考408”。依据：哈工大计算学部改考408自2025考研（2024年4月公布，vipkaoyan），2026年并非改考年份，前端标签“2026改考408”不成立。2026校线核查：工学学术[08]与电子信息[0854]均为310/50/45/70/70（考研帮转载官方校线），与原单科线50/45/70/70一致，未改动。scoreLine 395/365（院线）、minScore/avgScore/quota未查到更权威2026数据，保留原值。links.graduate(yzb.hit.edu.cn)、region、level核查无误。"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：is408Change true→false；tags/pros/cons中“2026改考408”→“2025改考408”。依据：哈工大计算学部改考408自2025考研（2024年4月公布，vipkaoyan），2026年并非改考年份，前端标签“2026改考408”不成立。2026校线核查：工学学术[08]与电子信息[0854]均为310/50/45/70/70（考研帮转载官方校线），与原单科线50/45/70/70一致，未改动。scoreLine 395/365（院线）、minScore/avgScore/quota未查到更权威2026数据，保留原值。links.graduate(yzb.hit.edu.cn)、region、level核查无误。",
+    "grade": "A"
   },
   {
     "name": "复旦大学",
@@ -562,7 +812,56 @@
       }
     ],
     "scoreLine": 0,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "371",
+        "avgScore": "396",
+        "quota": "315",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "314",
+        "avgScore": "339",
+        "quota": "6",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "343",
+        "avgScore": "344",
+        "quota": "137",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "314",
+        "avgScore": "372",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "335",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "335",
+        "avgScore": "380",
+        "quota": "7",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -612,7 +911,8 @@
       "college": "https://www.cs.fudan.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10246"
     },
-    "note": "【2026核查】数据年份：2026年。修改字段：081200单科线55/60/90/90→50/50/75/75；085405单科线50/55/85/85→50/50/75/75。来源：复旦大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求（hzmba转载官方公告）：工学[08]学术学位与电子信息[0854]专业学位均为总分300、单科（满分=100）50、单科（满分>100）75。scoreLine=0、minScore/avgScore“待补充”、quota=null：2026计算机学院院线及拟录取数据未查到文字来源，保留原值。is408Change=false核查无误（复旦计算机2024届已考408，非2026改考）。links.graduate(gsao.fudan.edu.cn)核查无误。"
+    "note": "【2026核查】数据年份：2026年。修改字段：081200单科线55/60/90/90→50/50/75/75；085405单科线50/55/85/85→50/50/75/75。来源：复旦大学2026年硕士研究生招生考试考生进入复试的初试成绩基本要求（hzmba转载官方公告）：工学[08]学术学位与电子信息[0854]专业学位均为总分300、单科（满分=100）50、单科（满分>100）75。scoreLine=0、minScore/avgScore“待补充”、quota=null：2026计算机学院院线及拟录取数据未查到文字来源，保留原值。is408Change=false核查无误（复旦计算机2024届已考408，非2026改考）。links.graduate(gsao.fudan.edu.cn)核查无误。",
+    "grade": "B+"
   },
   {
     "name": "浙江大学",
@@ -758,7 +1058,8 @@
       "college": "",
       "yz": ""
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：三个专业（081200/085405/085410）单科线50/75/75/75→55/55/85/85；links.graduate补为http://grs.zju.edu.cn/（浙大研究生院招生网）。来源：浙江大学2026年硕士研究生招生考试复试分数线基本要求（腾讯网/百度知道转载官方公告）：学术学位工学[08]总分330、政治55/外语55/业务课一85/业务课二85。scoreLine（332/378/332）为灰灰考研统计的院线口径，百度知道称081200复试线375、软件工程357、电子信息347，口径不一致且无官方文字来源，保留原值。minScore/avgScore/quota未查到更权威数据，保留原值。is408Change=false核查无误（浙大计算机常年考408，2026仅海洋学院改考）。"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：三个专业（081200/085405/085410）单科线50/75/75/75→55/55/85/85；links.graduate补为http://grs.zju.edu.cn/（浙大研究生院招生网）。来源：浙江大学2026年硕士研究生招生考试复试分数线基本要求（腾讯网/百度知道转载官方公告）：学术学位工学[08]总分330、政治55/外语55/业务课一85/业务课二85。scoreLine（332/378/332）为灰灰考研统计的院线口径，百度知道称081200复试线375、软件工程357、电子信息347，口径不一致且无官方文字来源，保留原值。minScore/avgScore/quota未查到更权威数据，保留原值。is408Change=false核查无误（浙大计算机常年考408，2026仅海洋学院改考）。",
+    "grade": "A+"
   },
   {
     "name": "清华大学",
@@ -805,7 +1106,56 @@
       }
     ],
     "scoreLine": 332,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机系-电子信息(085400)",
+        "scoreLine": "332",
+        "avgScore": "347",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "软件学院-软件工程(085405)",
+        "scoreLine": "330",
+        "avgScore": "364",
+        "quota": "19",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "343",
+        "avgScore": "361",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "软件学院-电子信息(085400)",
+        "scoreLine": "325",
+        "avgScore": "357",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "356",
+        "avgScore": "375",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "软件学院-电子信息(085400)",
+        "scoreLine": "335",
+        "avgScore": "365",
+        "quota": "8",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -825,7 +1175,8 @@
       "college": "",
       "yz": ""
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/80/70/70→50/50/80/70（原值疑似英语与业务课一互换）；links.graduate补为https://yz.tsinghua.edu.cn/。来源：①新东方转载清华大学2026年复试基本分数线（学术学位工学[08]总分330、政治50/外国语50/业务课一80/业务课二70）；②盛世清北2026清华计算机系复试录取解读（电子信息专硕01方向普通计划332/57/57/104/70，强军280/40/40/80/70，进复试20人录取13人、录取最低332、区间332-370）；③盛世清北2026清华软件学院解读（专硕政治英语50、专业课80，普通方向录取最低332，招生计划调整为19人）。085405（330/50/50/80/80）与软件学院口径基本一致，保留原值；大数据工程方向（深研院）及minScore/avgScore/quota未查到对应官方文字数据，保留原值（深研院数据科学和信息技术2026：复试线340/录取最低342/录取31人，专业不同未套用）。is408Change=false核查无误：清华计算机系自2027招生年度起初试第四单元改考408（网易转载院系公告），2026届仍为自命题，非2026改考院校。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】数据年份：2026年。修改字段：081200单科线50/80/70/70→50/50/80/70（原值疑似英语与业务课一互换）；links.graduate补为https://yz.tsinghua.edu.cn/。来源：①新东方转载清华大学2026年复试基本分数线（学术学位工学[08]总分330、政治50/外国语50/业务课一80/业务课二70）；②盛世清北2026清华计算机系复试录取解读（电子信息专硕01方向普通计划332/57/57/104/70，强军280/40/40/80/70，进复试20人录取13人、录取最低332、区间332-370）；③盛世清北2026清华软件学院解读（专硕政治英语50、专业课80，普通方向录取最低332，招生计划调整为19人）。085405（330/50/50/80/80）与软件学院口径基本一致，保留原值；大数据工程方向（深研院）及minScore/avgScore/quota未查到对应官方文字数据，保留原值（深研院数据科学和信息技术2026：复试线340/录取最低342/录取31人，专业不同未套用）。is408Change=false核查无误：清华计算机系自2027招生年度起初试第四单元改考408（网易转载院系公告），2026届仍为自命题，非2026改考院校。",
+    "grade": "A+"
   },
   {
     "name": "西安交通大学",
@@ -863,7 +1214,56 @@
       }
     ],
     "scoreLine": 320,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "320",
+        "avgScore": "389",
+        "quota": "1",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "320",
+        "avgScore": "380",
+        "quota": "60",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "365",
+        "avgScore": "376",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "375",
+        "avgScore": "404",
+        "quota": "49",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "350",
+        "avgScore": "374",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "370",
+        "avgScore": "407",
+        "quota": "50",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -970,7 +1370,56 @@
       }
     ],
     "scoreLine": 360,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "310",
+        "avgScore": "373",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "360",
+        "avgScore": "398",
+        "quota": "38",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "310",
+        "avgScore": "356",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "335",
+        "avgScore": "369",
+        "quota": "38",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "340",
+        "avgScore": "373",
+        "quota": "49",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "340",
+        "avgScore": "374",
+        "quota": "44",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -1062,7 +1511,56 @@
       }
     ],
     "scoreLine": 330,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "373",
+        "avgScore": "394",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "330",
+        "avgScore": "362",
+        "quota": "53",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "362",
+        "avgScore": "376",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "343",
+        "avgScore": "362",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "354",
+        "avgScore": "375",
+        "quota": "100",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "321",
+        "avgScore": "370",
+        "quota": "72",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -1121,7 +1619,7 @@
     "college": "计算机科学与工程学院",
     "region": "江苏省南京市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "A-",
+    "grade": "B+",
     "difficulty": "B",
     "majors": [
       {
@@ -1192,7 +1690,56 @@
       }
     ],
     "scoreLine": 376,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "344",
+        "avgScore": "373",
+        "quota": "20",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "376",
+        "avgScore": "387",
+        "quota": "19",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "335",
+        "avgScore": "349",
+        "quota": "18",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "335",
+        "avgScore": "357",
+        "quota": "17",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "340",
+        "avgScore": "365",
+        "quota": "22",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "320",
+        "avgScore": "356",
+        "quota": "15",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -1282,7 +1829,56 @@
       }
     ],
     "scoreLine": 305,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "385",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "360",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "360",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "360",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -1371,7 +1967,56 @@
       }
     ],
     "scoreLine": 379,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "379",
+        "avgScore": "待更新",
+        "quota": "49",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "344",
+        "avgScore": "待更新",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "371",
+        "avgScore": "待更新",
+        "quota": "73",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "346",
+        "avgScore": "待更新",
+        "quota": "14",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "338",
+        "avgScore": "待更新",
+        "quota": "50",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "349",
+        "avgScore": "待更新",
+        "quota": "10",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [],
@@ -1457,7 +2102,64 @@
       }
     ],
     "scoreLine": 338,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "珠海校区-电子信息计算机(085400)",
+        "scoreLine": "300",
+        "avgScore": "344",
+        "quota": "43",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "354",
+        "avgScore": "383",
+        "quota": "67",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "338",
+        "avgScore": "370",
+        "quota": "44",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "341",
+        "avgScore": "360",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "331",
+        "avgScore": "357",
+        "quota": "47",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "324",
+        "avgScore": "361",
+        "quota": "98",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "360",
+        "avgScore": "377",
+        "quota": "34",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -1574,7 +2276,56 @@
       }
     ],
     "scoreLine": 328,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "338",
+        "avgScore": "366",
+        "quota": "124",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "345",
+        "avgScore": "369",
+        "quota": "117",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "331",
+        "avgScore": "354",
+        "quota": "109",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "319",
+        "avgScore": "348",
+        "quota": "122",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "340",
+        "avgScore": "364",
+        "quota": "106",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "337",
+        "avgScore": "362",
+        "quota": "132",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -1708,7 +2459,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "264",
+        "avgScore": "374",
+        "quota": "71",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "260",
+        "avgScore": "350",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "325",
+        "avgScore": "358",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "273",
+        "avgScore": "347",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "340",
+        "avgScore": "365",
+        "quota": "19",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -1765,7 +2565,7 @@
     "college": "计算机科学与技术学院/软件学院/网络空间安全学院",
     "region": "湖北省武汉市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "A-",
+    "grade": "A",
     "difficulty": "B",
     "majors": [
       {
@@ -1826,7 +2626,56 @@
       }
     ],
     "scoreLine": 360,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "330",
+        "avgScore": "371",
+        "quota": "127",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "360",
+        "avgScore": "386",
+        "quota": "14",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "315",
+        "avgScore": "355",
+        "quota": "105",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "335",
+        "avgScore": "361",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "355",
+        "avgScore": "380",
+        "quota": "94",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "370",
+        "avgScore": "387",
+        "quota": "33",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -1921,7 +2770,56 @@
       }
     ],
     "scoreLine": 365,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "348",
+        "avgScore": "378",
+        "quota": "35+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "365",
+        "avgScore": "382",
+        "quota": "18",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "356",
+        "avgScore": "367",
+        "quota": "53",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "352",
+        "avgScore": "368",
+        "quota": "34+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "351",
+        "avgScore": "369",
+        "quota": "53",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "362",
+        "avgScore": "376",
+        "quota": "27",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -1977,7 +2875,7 @@
     "college": "计算机学院",
     "region": "天津市南开区",
     "level": "985 / 211 / 双一流A类",
-    "grade": "A-",
+    "grade": "B+",
     "difficulty": "B",
     "majors": [
       {
@@ -2028,7 +2926,56 @@
       }
     ],
     "scoreLine": 335,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "335",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "335",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "310",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "310",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "300",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -2117,7 +3064,56 @@
       }
     ],
     "scoreLine": 340,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "340",
+        "avgScore": "368",
+        "quota": "80",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "374",
+        "quota": "26",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "305",
+        "avgScore": "341",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "310",
+        "avgScore": "342",
+        "quota": "19",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "330",
+        "avgScore": "365",
+        "quota": "146",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "330",
+        "avgScore": "368",
+        "quota": "40",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2174,7 +3170,7 @@
     "college": "计算机学院",
     "region": "四川省成都市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "A-",
+    "grade": "B+",
     "difficulty": "B",
     "majors": [
       {
@@ -2205,7 +3201,56 @@
       }
     ],
     "scoreLine": 328,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "361",
+        "avgScore": "389",
+        "quota": "103",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "328",
+        "avgScore": "366",
+        "quota": "23",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "345",
+        "avgScore": "374",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "330",
+        "avgScore": "354",
+        "quota": "17",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "320",
+        "avgScore": "367",
+        "quota": "86",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "310",
+        "avgScore": "352",
+        "quota": "26",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2294,7 +3339,56 @@
       }
     ],
     "scoreLine": 300,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "300",
+        "avgScore": "357",
+        "quota": "30",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "300",
+        "avgScore": "346",
+        "quota": "30",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "348",
+        "avgScore": "370",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "328",
+        "avgScore": "367",
+        "quota": "44",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "344",
+        "avgScore": "373",
+        "quota": "29",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "336",
+        "avgScore": "376",
+        "quota": "58",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2352,7 +3446,7 @@
     "college": "智能与计算学部",
     "region": "天津市南开区",
     "level": "985 / 211 / 双一流A类",
-    "grade": "A-",
+    "grade": "B+",
     "difficulty": "B",
     "majors": [
       {
@@ -2414,7 +3508,56 @@
       }
     ],
     "scoreLine": 335,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "335",
+        "avgScore": "378",
+        "quota": "40",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "335",
+        "avgScore": "361",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "305",
+        "avgScore": "待更新",
+        "quota": "145",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "310",
+        "avgScore": "339",
+        "quota": "3",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "330",
+        "avgScore": "368",
+        "quota": "67",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2503,7 +3646,56 @@
       }
     ],
     "scoreLine": 310,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "353",
+        "avgScore": "386",
+        "quota": "47",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "312",
+        "avgScore": "330",
+        "quota": "2",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "341",
+        "avgScore": "371",
+        "quota": "55",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "313",
+        "avgScore": "343",
+        "quota": "3",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "343",
+        "avgScore": "375",
+        "quota": "42",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "332",
+        "avgScore": "355",
+        "quota": "7",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2561,7 +3753,7 @@
     "college": "人工智能学院",
     "region": "湖北省武汉市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "B+",
+    "grade": "A-",
     "difficulty": "A",
     "majors": [
       {
@@ -2612,7 +3804,56 @@
       }
     ],
     "scoreLine": 295,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "350",
+        "avgScore": "392",
+        "quota": "24+7少干+3强军",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "295",
+        "avgScore": "317",
+        "quota": "3",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机与软件(085400)",
+        "scoreLine": "320",
+        "avgScore": "360",
+        "quota": "105+16专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "325",
+        "avgScore": "364",
+        "quota": "1",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "335",
+        "avgScore": "374",
+        "quota": "7+5专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "350",
+        "avgScore": "355",
+        "quota": "2",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2703,7 +3944,56 @@
       }
     ],
     "scoreLine": 365,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "368",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "365",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "364",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "349",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "356",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "319",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2761,7 +4051,7 @@
     "college": "计算机学院",
     "region": "陕西省西安市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "B+",
+    "grade": "A-",
     "difficulty": "A",
     "majors": [
       {
@@ -2809,7 +4099,56 @@
       }
     ],
     "scoreLine": 350,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "375",
+        "avgScore": "394",
+        "quota": "71",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "350",
+        "avgScore": "368",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "340",
+        "avgScore": "359",
+        "quota": "114",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "359",
+        "quota": "11",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "350",
+        "avgScore": "378",
+        "quota": "76",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "310",
+        "avgScore": "345",
+        "quota": "20",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -2919,7 +4258,56 @@
       }
     ],
     "scoreLine": 305,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "310",
+        "avgScore": "354",
+        "quota": "75",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "335",
+        "avgScore": "361",
+        "quota": "67",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "345",
+        "avgScore": "374",
+        "quota": "82",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "330",
+        "avgScore": "356",
+        "quota": "67",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "315",
+        "avgScore": "351",
+        "quota": "60",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "371",
+        "quota": "70",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3010,7 +4398,56 @@
       }
     ],
     "scoreLine": 320,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "320",
+        "avgScore": "355",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "355",
+        "avgScore": "390",
+        "quota": "107",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "305",
+        "avgScore": "343",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "305",
+        "avgScore": "363",
+        "quota": "91",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "345",
+        "avgScore": "368",
+        "quota": "11",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "330",
+        "avgScore": "365",
+        "quota": "67",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3128,7 +4565,56 @@
       }
     ],
     "scoreLine": 355,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "315",
+        "avgScore": "391",
+        "quota": "34",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "355",
+        "avgScore": "378",
+        "quota": "19",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "290",
+        "avgScore": "370",
+        "quota": "40",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "350",
+        "avgScore": "369",
+        "quota": "19",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "305",
+        "avgScore": "367",
+        "quota": "24",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "330",
+        "avgScore": "358",
+        "quota": "20",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3180,14 +4666,15 @@
       "college": "https://ai.ruc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10002"
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。高瓴人工智能学院2026复试线经官方公告核实（2026-03-18）：人工智能(0812Z3)330分(45/45/85/85)、电子信息(085400)329分(50/50/75/75)、智能科学与技术(140500)351分(50/50/80/80)，与原 informal 条目(330/351)一致。原'085405软件工程'条目：高瓴2026年未招该专业，已按官方公告修正为电子信息(085400)，复试线329、单科50/50/75/75。顶层scoreLine 355为信息学院081200数据（灰灰考研，官方页面无法访问，单科55/60/90/90及quota 24、minScore均未核实，保留原值）。is408Change修正为true：据研招网2026招生目录镜像，信息学院计算机科学与技术(学硕)、电子信息(专硕)及高瓴人工智能均考408计算机学科专业基础。links.graduate(pgs.ruc.edu.cn)核实无误。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】2026-07-21联网核查。高瓴人工智能学院2026复试线经官方公告核实（2026-03-18）：人工智能(0812Z3)330分(45/45/85/85)、电子信息(085400)329分(50/50/75/75)、智能科学与技术(140500)351分(50/50/80/80)，与原 informal 条目(330/351)一致。原'085405软件工程'条目：高瓴2026年未招该专业，已按官方公告修正为电子信息(085400)，复试线329、单科50/50/75/75。顶层scoreLine 355为信息学院081200数据（灰灰考研，官方页面无法访问，单科55/60/90/90及quota 24、minScore均未核实，保留原值）。is408Change修正为true：据研招网2026招生目录镜像，信息学院计算机科学与技术(学硕)、电子信息(专硕)及高瓴人工智能均考408计算机学科专业基础。links.graduate(pgs.ruc.edu.cn)核实无误。",
+    "grade": "B+"
   },
   {
     "name": "中国农业大学",
     "college": "信息与电气工程学院",
     "region": "北京市海淀区",
     "level": "985 / 211 / 双一流A类",
-    "grade": "B",
+    "grade": "B-",
     "difficulty": "B",
     "majors": [
       {
@@ -3218,7 +4705,56 @@
       }
     ],
     "scoreLine": 310,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "320",
+        "avgScore": "357",
+        "quota": "79",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "310",
+        "avgScore": "338",
+        "quota": "37",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "320",
+        "avgScore": "343",
+        "quota": "94",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "300",
+        "avgScore": "328",
+        "quota": "35",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "335",
+        "avgScore": "364",
+        "quota": "97",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "358",
+        "quota": "37",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -3305,7 +4841,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "364",
+        "avgScore": "366",
+        "quota": "29+2专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "322",
+        "avgScore": "337",
+        "quota": "22",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "339",
+        "avgScore": "358",
+        "quota": "35+14创新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "313",
+        "avgScore": "342",
+        "quota": "27+3创新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "273",
+        "avgScore": "336",
+        "quota": "23+14创新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "279",
+        "avgScore": "359",
+        "quota": "19+8创新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3405,7 +4990,56 @@
       }
     ],
     "scoreLine": 304,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "313",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "304",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "264",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "276",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "273",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "316",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -3465,7 +5099,7 @@
     "college": "信息科学与工程学院",
     "region": "甘肃省兰州市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "C+",
+    "grade": "B",
     "difficulty": "B",
     "majors": [
       {
@@ -3496,7 +5130,56 @@
       }
     ],
     "scoreLine": 295,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "315",
+        "avgScore": "371",
+        "quota": "117",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "295",
+        "avgScore": "348",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "290",
+        "avgScore": "338",
+        "quota": "110",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "320",
+        "avgScore": "343",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "300",
+        "avgScore": "346",
+        "quota": "95",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "320",
+        "avgScore": "357",
+        "quota": "7",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [
@@ -3553,7 +5236,7 @@
     "college": "计算机与信息技术学院",
     "region": "北京市海淀区",
     "level": "211 / 双一流",
-    "grade": "B+",
+    "grade": "A-",
     "difficulty": "A-",
     "majors": [
       {
@@ -3604,7 +5287,56 @@
       }
     ],
     "scoreLine": 329,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "322",
+        "avgScore": "待更新",
+        "quota": "56",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "329",
+        "avgScore": "357",
+        "quota": "37",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "305",
+        "avgScore": "待更新",
+        "quota": "47",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "310",
+        "avgScore": "336",
+        "quota": "36",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "344",
+        "avgScore": "365",
+        "quota": "65",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "345",
+        "avgScore": "368",
+        "quota": "35",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3691,7 +5423,56 @@
       }
     ],
     "scoreLine": 280,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·人工智能学院(081200)",
+        "scoreLine": "340",
+        "avgScore": "375",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·人工智能学院(085400电子信息)",
+        "scoreLine": "275",
+        "avgScore": "329",
+        "quota": "39",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·人工智能学院(081200)",
+        "scoreLine": "305",
+        "avgScore": "333",
+        "quota": "18",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·人工智能学院(085400电子信息)",
+        "scoreLine": "267",
+        "avgScore": "323",
+        "quota": "40",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·人工智能学院(081200)",
+        "scoreLine": "354",
+        "avgScore": "367",
+        "quota": "13",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·人工智能学院(085400电子信息)",
+        "scoreLine": "326",
+        "avgScore": "351",
+        "quota": "29",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3741,7 +5522,8 @@
       "college": "https://ai.bnu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10027"
     },
-    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。据北师大2026校复试线公告（中国教育在线转载官方原文，2026-03-13）：工学[08]学术学位280分(40/40/60/90)、电子信息[0854]专业学位275分(45/45/70/70)。081200按工学学硕校线填280；085405条目按电子信息类专硕校线填275（人工智能学院院系线为图片公告未能解析，且该院专硕具体专业代码/名称未核实，实际以院系线为准）。is408Change修正为true：北师大计算机相关专业初试考408（学硕11408、专硕22408口径，自2021招生目录起）。quota/minScore未获取，保留原值。links.graduate(gs.bnu.edu.cn)核实无误。"
+    "note": "【2026核查】2026-07-21联网核查，scoreLine缺失已补。据北师大2026校复试线公告（中国教育在线转载官方原文，2026-03-13）：工学[08]学术学位280分(40/40/60/90)、电子信息[0854]专业学位275分(45/45/70/70)。081200按工学学硕校线填280；085405条目按电子信息类专硕校线填275（人工智能学院院系线为图片公告未能解析，且该院专硕具体专业代码/名称未核实，实际以院系线为准）。is408Change修正为true：北师大计算机相关专业初试考408（学硕11408、专硕22408口径，自2021招生目录起）。quota/minScore未获取，保留原值。links.graduate(gs.bnu.edu.cn)核实无误。",
+    "grade": "B"
   },
   {
     "name": "北京科技大学",
@@ -3796,7 +5578,56 @@
       }
     ],
     "scoreLine": 310,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "330",
+        "avgScore": "339",
+        "quota": "37",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "310",
+        "avgScore": "334",
+        "quota": "14",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "326",
+        "avgScore": "346",
+        "quota": "25",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "321",
+        "avgScore": "346",
+        "quota": "18",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "313",
+        "avgScore": "354",
+        "quota": "51",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "338",
+        "avgScore": "361",
+        "quota": "29",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -3905,7 +5736,56 @@
       }
     ],
     "scoreLine": 330,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "360",
+        "avgScore": "386",
+        "quota": "67",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "330",
+        "avgScore": "358",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "340",
+        "avgScore": "362",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "325",
+        "avgScore": "343",
+        "quota": "5",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "349",
+        "avgScore": "370",
+        "quota": "75",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "325",
+        "avgScore": "353",
+        "quota": "17",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4004,7 +5884,56 @@
       }
     ],
     "scoreLine": 340,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "341",
+        "avgScore": "372",
+        "quota": "25+6专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "340",
+        "avgScore": "368",
+        "quota": "30",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "341",
+        "avgScore": "364",
+        "quota": "50+5专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "330",
+        "avgScore": "358",
+        "quota": "35+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "312",
+        "avgScore": "345",
+        "quota": "43+4专项+2非全",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "330",
+        "avgScore": "353",
+        "quota": "30",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4062,7 +5991,7 @@
     "college": "计算机学院",
     "region": "江苏省南京市",
     "level": "双非 / 省重点 / 通信强校",
-    "grade": "B+",
+    "grade": "B-",
     "difficulty": "A-",
     "majors": [
       {
@@ -4093,7 +6022,56 @@
       }
     ],
     "scoreLine": 303,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "339",
+        "avgScore": "378",
+        "quota": "211+2专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "303",
+        "avgScore": "344",
+        "quota": "28",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "339",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "339",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "341",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4150,7 +6128,7 @@
     "college": "信息学院",
     "region": "福建省厦门市",
     "level": "985 / 211 / 双一流A类",
-    "grade": "B",
+    "grade": "B+",
     "difficulty": "B",
     "majors": [
       {
@@ -4181,7 +6159,56 @@
       }
     ],
     "scoreLine": 350,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机系(085400)",
+        "scoreLine": "321",
+        "avgScore": "377",
+        "quota": "43",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术-计算机系(081200)",
+        "scoreLine": "285",
+        "avgScore": "371",
+        "quota": "7",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机系(085400)",
+        "scoreLine": "346",
+        "avgScore": "375",
+        "quota": "43",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术-计算机系(081200)",
+        "scoreLine": "335",
+        "avgScore": "351",
+        "quota": "6",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机系(085400)",
+        "scoreLine": "343",
+        "avgScore": "377",
+        "quota": "44",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术-计算机系(081200)",
+        "scoreLine": "350",
+        "avgScore": "370",
+        "quota": "7",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4279,7 +6306,56 @@
       }
     ],
     "scoreLine": 337,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "358",
+        "avgScore": "379",
+        "quota": "41",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "337",
+        "avgScore": "363",
+        "quota": "40",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "326",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "321",
+        "avgScore": "346",
+        "quota": "36",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "336",
+        "avgScore": "361",
+        "quota": "35",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "344",
+        "avgScore": "364",
+        "quota": "33",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4365,7 +6441,56 @@
       }
     ],
     "scoreLine": 334,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "341",
+        "avgScore": "375",
+        "quota": "50",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "337",
+        "avgScore": "379",
+        "quota": "81",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "346",
+        "avgScore": "373",
+        "quota": "44",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "323",
+        "avgScore": "354",
+        "quota": "72",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "320",
+        "avgScore": "374",
+        "quota": "55",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "377",
+        "avgScore": "401",
+        "quota": "52",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4417,7 +6542,8 @@
       "college": "https://ai.jlu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10183"
     },
-    "note": "【2026核查】吉大2026年三院计算机相关专业均改考408（N诺考研统计+院校官方复试通知）：人工智能学院081200复试线334（45/45/68/80）/最低335/均分371/统考23人，085410人工智能复试线348/最低348/均分377/16+1专项。专业修正：原数据085405软件工程属软件学院而非人工智能学院，已替换为人工智能学院的085410人工智能。其他学院2026数据备查：计算机学院081200复试线341/最低341/均分373/统考58人，085404计算机技术复试线337/最低337/均分379/81+9专项；软件学院085405软件工程复试线336/最低343/均分378/53+3专项，软件工程学硕复试线300/最低301/均分355/19人。is408Change=true核实无误（2026年改考，学硕11408、专硕12408）。"
+    "note": "【2026核查】吉大2026年三院计算机相关专业均改考408（N诺考研统计+院校官方复试通知）：人工智能学院081200复试线334（45/45/68/80）/最低335/均分371/统考23人，085410人工智能复试线348/最低348/均分377/16+1专项。专业修正：原数据085405软件工程属软件学院而非人工智能学院，已替换为人工智能学院的085410人工智能。其他学院2026数据备查：计算机学院081200复试线341/最低341/均分373/统考58人，085404计算机技术复试线337/最低337/均分379/81+9专项；软件学院085405软件工程复试线336/最低343/均分378/53+3专项，软件工程学硕复试线300/最低301/均分355/19人。is408Change=true核实无误（2026年改考，学硕11408、专硕12408）。",
+    "grade": "A-"
   },
   {
     "name": "哈尔滨工程大学",
@@ -4477,7 +6603,56 @@
       }
     ],
     "scoreLine": 290,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "295",
+        "avgScore": "342",
+        "quota": "31",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "290",
+        "avgScore": "343",
+        "quota": "22",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "330",
+        "avgScore": "361",
+        "quota": "79",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "320",
+        "avgScore": "355",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "330",
+        "avgScore": "358",
+        "quota": "102",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "350",
+        "avgScore": "384",
+        "quota": "15",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4566,7 +6741,56 @@
       }
     ],
     "scoreLine": 325,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "325",
+        "avgScore": "359",
+        "quota": "50",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "355",
+        "avgScore": "372",
+        "quota": "15",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "346",
+        "avgScore": "368",
+        "quota": "80",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "346",
+        "avgScore": "375",
+        "quota": "11",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "327",
+        "avgScore": "367",
+        "quota": "66",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "372",
+        "quota": "18",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4625,7 +6849,8 @@
       "college": "https://nudt.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=91002"
     },
-    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计核实：计算机学院081200复试线355（50/45/80/80）/拟录取15人/最低356/均分372（原数据最低371、均分390、 quota 13均有出入，已修正）；电子信息专硕复试线325/拟录取50人/最低327/均分359。专业修正：原'085404软件工程'有误，国防科大计算机学院专硕为085400电子信息（计算机技术方向）；另软件工程（学硕口径）复试线325/录取7人/最低332/均分357，网络空间安全复试线325/录取2人。is408Change=true核实无误（2026年改考11408）。links.graduate更新为国防科大研究生招生信息网yjszs.nudt.edu.cn（原yjsc.nudt.edu.cn为研究生院）。"
+    "note": "图片数据来源：灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计核实：计算机学院081200复试线355（50/45/80/80）/拟录取15人/最低356/均分372（原数据最低371、均分390、 quota 13均有出入，已修正）；电子信息专硕复试线325/拟录取50人/最低327/均分359。专业修正：原'085404软件工程'有误，国防科大计算机学院专硕为085400电子信息（计算机技术方向）；另软件工程（学硕口径）复试线325/录取7人/最低332/均分357，网络空间安全复试线325/录取2人。is408Change=true核实无误（2026年改考11408）。links.graduate更新为国防科大研究生招生信息网yjszs.nudt.edu.cn（原yjsc.nudt.edu.cn为研究生院）。",
+    "grade": "A+"
   },
   {
     "name": "杭州电子科技大学",
@@ -4663,7 +6888,56 @@
       }
     ],
     "scoreLine": 325,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "325",
+        "avgScore": "355",
+        "quota": "232+2专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "325",
+        "avgScore": "355",
+        "quota": "114",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "295",
+        "avgScore": "325",
+        "quota": "200",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "285",
+        "avgScore": "323",
+        "quota": "96+3专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "300",
+        "avgScore": "335",
+        "quota": "201+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "300",
+        "avgScore": "342",
+        "quota": "91+1专项",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4721,7 +6995,7 @@
     "college": "计算机与人工智能学院",
     "region": "湖北省武汉市",
     "level": "211 / 双一流",
-    "grade": "B+",
+    "grade": "B",
     "difficulty": "A-",
     "majors": [
       {
@@ -4763,7 +7037,56 @@
       }
     ],
     "scoreLine": 334,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "348",
+        "avgScore": "372",
+        "quota": "69",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "334",
+        "avgScore": "356",
+        "quota": "14",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "341",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "348",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "354",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4851,7 +7174,56 @@
       }
     ],
     "scoreLine": 350,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "377",
+        "avgScore": "393",
+        "quota": "41",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "350",
+        "avgScore": "355",
+        "quota": "14",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "346",
+        "avgScore": "364",
+        "quota": "86",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "308",
+        "avgScore": "334",
+        "quota": "18",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "335",
+        "avgScore": "362",
+        "quota": "109",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "288",
+        "avgScore": "349",
+        "quota": "20",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -4971,7 +7343,56 @@
       }
     ],
     "scoreLine": 340,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "355",
+        "avgScore": "379",
+        "quota": "126",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "370",
+        "quota": "87",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "320",
+        "avgScore": "355",
+        "quota": "131",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "335",
+        "avgScore": "362",
+        "quota": "96",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "335",
+        "avgScore": "370",
+        "quota": "136",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "350",
+        "avgScore": "382",
+        "quota": "113",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -5026,14 +7447,15 @@
       "college": "https://www.scse.uestc.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10614"
     },
-    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计（更新于2026年5月26日）核实：计算机学院081200复试线340（50/50/90/90）/最低344/均分370/统考87+10强军；085404计算机技术复试线355/最低355/均分379/126+7专项；083900网络空间安全复试线320/最低326/均分358/15人；信软学院083500软件工程学硕复试线325（50/50/75/75）/最低326/均分359/41人，085405专硕线340/最低340/均分369/95人；深圳高研院085404计算机技术复试线335/最低336/均分369/41人（大类合并复试201人）。修正：①081200与085404的english原为90系数据错位（90为业务课线），已修正为50；②原minScore字段实为平均分（如'370 [344-410]'），已拆分为最低344/均分370；③081200 quota原'114+10强军'修正为'87+10强军'（N诺实际统考录取口径）；④深圳高研院quota原201为合并复试人数，实际085404录取41人；⑤is408Change=true核实无误（2026年全面改考408，11408）。"
+    "note": "灰灰考研统计（2026年5月13日）\n【2026核查】N诺考研2026录取统计（更新于2026年5月26日）核实：计算机学院081200复试线340（50/50/90/90）/最低344/均分370/统考87+10强军；085404计算机技术复试线355/最低355/均分379/126+7专项；083900网络空间安全复试线320/最低326/均分358/15人；信软学院083500软件工程学硕复试线325（50/50/75/75）/最低326/均分359/41人，085405专硕线340/最低340/均分369/95人；深圳高研院085404计算机技术复试线335/最低336/均分369/41人（大类合并复试201人）。修正：①081200与085404的english原为90系数据错位（90为业务课线），已修正为50；②原minScore字段实为平均分（如'370 [344-410]'），已拆分为最低344/均分370；③081200 quota原'114+10强军'修正为'87+10强军'（N诺实际统考录取口径）；④深圳高研院quota原201为合并复试人数，实际085404录取41人；⑤is408Change=true核实无误（2026年全面改考408，11408）。",
+    "grade": "A"
   },
   {
     "name": "福州大学",
     "college": "计算机与大数据学院",
     "region": "福建省福州市",
     "level": "211 / 双一流",
-    "grade": "B",
+    "grade": "B-",
     "difficulty": "A-",
     "majors": [
       {
@@ -5094,7 +7516,56 @@
       }
     ],
     "scoreLine": 318,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "318",
+        "avgScore": "349",
+        "quota": "30",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "376",
+        "avgScore": "390",
+        "quota": "85",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "321",
+        "avgScore": "341",
+        "quota": "33",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "326",
+        "avgScore": "353",
+        "quota": "131",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "328",
+        "avgScore": "336",
+        "quota": "36",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "329",
+        "avgScore": "356",
+        "quota": "142",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5152,7 +7623,7 @@
     "college": "计算机科学与技术学院",
     "region": "江苏省苏州市",
     "level": "211 / 双一流",
-    "grade": "B+",
+    "grade": "B",
     "difficulty": "A-",
     "majors": [
       {
@@ -5253,7 +7724,56 @@
       }
     ],
     "scoreLine": 341,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "340",
+        "avgScore": "378",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "341",
+        "avgScore": "361",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "364",
+        "avgScore": "376",
+        "quota": "11",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "316",
+        "avgScore": "347",
+        "quota": "20",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "325",
+        "avgScore": "356",
+        "quota": "12",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "336",
+        "avgScore": "349",
+        "quota": "11",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5311,7 +7831,7 @@
     "college": "信息工程学院",
     "region": "陕西省杨凌示范区",
     "level": "985 / 211 / 双一流A类",
-    "grade": "C+",
+    "grade": "C",
     "difficulty": "C",
     "majors": [
       {
@@ -5359,7 +7879,56 @@
       }
     ],
     "scoreLine": 268,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "288",
+        "avgScore": "339",
+        "quota": "36",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "268",
+        "avgScore": "291",
+        "quota": "4",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "260",
+        "avgScore": "309",
+        "quota": "9",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "263",
+        "avgScore": "295",
+        "quota": "2",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "278",
+        "avgScore": "待更新",
+        "quota": "17",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "285",
+        "avgScore": "待更新",
+        "quota": "1",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5524,7 +8093,56 @@
       }
     ],
     "scoreLine": 320,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "320",
+        "avgScore": "352",
+        "quota": "35",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "355",
+        "avgScore": "377",
+        "quota": "41+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "363",
+        "avgScore": "384",
+        "quota": "45+18专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "335",
+        "avgScore": "361",
+        "quota": "39",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "357",
+        "avgScore": "385",
+        "quota": "48+4专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "362",
+        "avgScore": "379",
+        "quota": "33",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5600,7 +8218,56 @@
       }
     ],
     "scoreLine": 298,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "264",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "298",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "260",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "302",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "273",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "273",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -5657,7 +8324,7 @@
     "college": "计算机学院",
     "region": "广东省广州市",
     "level": "双非 / 省重点 / 工科强校",
-    "grade": "B+",
+    "grade": "C",
     "difficulty": "B+",
     "majors": [
       {
@@ -5688,7 +8355,56 @@
       }
     ],
     "scoreLine": 310,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "300",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "267",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "300",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "297",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5801,7 +8517,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机技术(085404)",
+        "scoreLine": "315",
+        "avgScore": "待更新",
+        "quota": "68",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "275",
+        "avgScore": "待更新",
+        "quota": "29",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "295",
+        "avgScore": "327",
+        "quota": "72",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "260",
+        "avgScore": "292",
+        "quota": "33",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "310",
+        "avgScore": "340",
+        "quota": "72",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "277",
+        "avgScore": "315",
+        "quota": "35",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -5858,7 +8623,7 @@
     "college": "计算机科学与技术学院",
     "region": "浙江省杭州市",
     "level": "双非 / 省重点 / IT强校",
-    "grade": "B+",
+    "grade": "B",
     "difficulty": "B+",
     "majors": [
       {
@@ -5876,7 +8641,56 @@
       }
     ],
     "scoreLine": 0,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "278",
+        "avgScore": "311",
+        "quota": "69",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "289",
+        "avgScore": "316",
+        "quota": "163",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "309",
+        "avgScore": "339",
+        "quota": "74",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "282",
+        "avgScore": "318",
+        "quota": "165",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -5933,7 +8747,7 @@
     "college": "计算机与软件学院",
     "region": "广东省深圳市",
     "level": "双非 / 省重点 / 特区高校",
-    "grade": "B+",
+    "grade": "B",
     "difficulty": "B+",
     "majors": [
       {
@@ -5977,7 +8791,56 @@
       }
     ],
     "scoreLine": 339,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "339",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "347",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "318",
+        "avgScore": "339",
+        "quota": "27",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "321",
+        "avgScore": "343",
+        "quota": "49",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "325",
+        "avgScore": "352",
+        "quota": "30",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "300",
+        "avgScore": "344",
+        "quota": "64",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": true,
     "tags": [
@@ -6065,7 +8928,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "264",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "264",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "260",
+        "avgScore": "290",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "260",
+        "avgScore": "296",
+        "quota": "51",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "273",
+        "avgScore": "303",
+        "quota": "64",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "274",
+        "avgScore": "305",
+        "quota": "70",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [
@@ -6121,7 +9033,7 @@
     "college": "计算机科学与技术学院",
     "region": "重庆市南岸区",
     "level": "双非 / 省重点 / 通信强校",
-    "grade": "B",
+    "grade": "B+",
     "difficulty": "B+",
     "majors": [
       {
@@ -6152,7 +9064,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "264",
+        "avgScore": "315",
+        "quota": "118+1远东",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "330",
+        "avgScore": "361",
+        "quota": "225",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "308",
+        "avgScore": "338",
+        "quota": "172",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "292",
+        "avgScore": "327",
+        "quota": "230",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "313",
+        "avgScore": "342",
+        "quota": "169",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机技术(085404)",
+        "scoreLine": "295",
+        "avgScore": "327",
+        "quota": "222",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": false,
     "hasAI": false,
     "tags": [],
@@ -6224,7 +9185,32 @@
       }
     ],
     "scoreLine": 347,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "347",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6238,7 +9224,8 @@
       "college": "https://www.ece.pku.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
     },
-    "note": "【2026核查】2026数据已核实：复试线347（院线，与原值一致），实际录取最低分370（与原值一致），计划招生/录取25人（quota原为null，已补）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线（2026-03-13发布）修正为政治55、英语55、业务课90/90（工学学硕校线总分300，院系可上调，该院实际执行347）。is408Change=true：初试科目为101政治、201英语一、301数学一、408计算机学科专业基础（经验贴与招生目录核实）。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（深圳研究生院位于深圳市南山区大学城）。"
+    "note": "【2026核查】2026数据已核实：复试线347（院线，与原值一致），实际录取最低分370（与原值一致），计划招生/录取25人（quota原为null，已补）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线（2026-03-13发布）修正为政治55、英语55、业务课90/90（工学学硕校线总分300，院系可上调，该院实际执行347）。is408Change=true：初试科目为101政治、201英语一、301数学一、408计算机学科专业基础（经验贴与招生目录核实）。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（深圳研究生院位于深圳市南山区大学城）。",
+    "grade": "A+"
   },
   {
     "name": "北京大学计算机学院",
@@ -6262,7 +9249,56 @@
       }
     ],
     "scoreLine": 340,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "378",
+        "avgScore": "399",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "340",
+        "avgScore": "382",
+        "quota": "24",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "357",
+        "avgScore": "378",
+        "quota": "198",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "370",
+        "avgScore": "388",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-软件与微电子学院(085400)",
+        "scoreLine": "380",
+        "avgScore": "397",
+        "quota": "358",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "380",
+        "avgScore": "398",
+        "quota": "17",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6276,7 +9312,8 @@
       "college": "https://cs.pku.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10001"
     },
-    "note": "【2026核查】2026数据已核实：复试线340（与原值一致），入围最低343、录取最低350（与原minScore一致），计划招生19人、实际录取24人（quota原为null，按目录计划填19）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线修正为政治55、英语55、业务课90/90。is408Change=true：初试考101政治、201英语一、301数学一、408计算机学科专业基础。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（学院位于北京大学本部，海淀区）。"
+    "note": "【2026核查】2026数据已核实：复试线340（与原值一致），入围最低343、录取最低350（与原minScore一致），计划招生19人、实际录取24人（quota原为null，按目录计划填19）。单科线原50/50/80/80为2025年数据，已按北大2026年复试基本分数线修正为政治55、英语55、业务课90/90。is408Change=true：初试考101政治、201英语一、301数学一、408计算机学科专业基础。平均分未公开，保留'待补充'。region/college/links原为'待补充'/空，已补全（学院位于北京大学本部，海淀区）。",
+    "grade": "A+"
   },
   {
     "name": "北京工业大学",
@@ -6300,7 +9337,56 @@
       }
     ],
     "scoreLine": 336,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "365",
+        "avgScore": "385",
+        "quota": "68",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "336",
+        "avgScore": "351",
+        "quota": "27",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "331",
+        "avgScore": "351",
+        "quota": "89",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "313",
+        "avgScore": "336",
+        "quota": "43",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "326",
+        "avgScore": "353",
+        "quota": "92",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "328",
+        "avgScore": "347",
+        "quota": "44",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6314,7 +9400,8 @@
       "college": "https://cs.bjut.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10005"
     },
-    "note": "【2026核查】2026数据已核实：081200复试线336（原值365有误，365实为该院085404计算机技术专硕的2026复试线，已修正），单科线政治40、英语40、业务课70/70（原50/50/80/80有误，已按校方2026复试线公告修正，经中国考研网、育路网转载核对）。2026拟录取27人，最低分336、平均分351（分数区间336-380，源：N诺考研2026录取数据）。quota：2026招生目录081200拟招总65人、推免32人、统考33人（原值97有误，已修正为统考33）。is408Change=true：初试考11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——北工大是211/双一流，非985，已修正。"
+    "note": "【2026核查】2026数据已核实：081200复试线336（原值365有误，365实为该院085404计算机技术专硕的2026复试线，已修正），单科线政治40、英语40、业务课70/70（原50/50/80/80有误，已按校方2026复试线公告修正，经中国考研网、育路网转载核对）。2026拟录取27人，最低分336、平均分351（分数区间336-380，源：N诺考研2026录取数据）。quota：2026招生目录081200拟招总65人、推免32人、统考33人（原值97有误，已修正为统考33）。is408Change=true：初试考11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——北工大是211/双一流，非985，已修正。",
+    "grade": "B+"
   },
   {
     "name": "南京师范大学",
@@ -6338,7 +9425,56 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "333",
+        "avgScore": "352",
+        "quota": "10",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "370",
+        "avgScore": "386",
+        "quota": "26",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "285",
+        "avgScore": "311",
+        "quota": "22",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "326",
+        "avgScore": "348",
+        "quota": "27",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(081200)",
+        "scoreLine": "327",
+        "avgScore": "360",
+        "quota": "16",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "本部·计院(085400电子信息)",
+        "scoreLine": "339",
+        "avgScore": "370",
+        "quota": "28",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6352,7 +9488,8 @@
       "college": "http://ceai.njnu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10319"
     },
-    "note": "【2026核查】原scoreLine=48明显错误（疑似将某年单科线误填入校线字段），已修正。南师大2026年复试线通知（yjszs.njnu.edu.cn/info/1017/17272.htm，官网无法直接抓取）明确'如无特殊说明，单科按国家分数线A类考生单科要求执行'；2026年工学[08]A类国家线为总分264、政治/外语35、业务课53（较2025年总分+4、小科+1、大科+2），故按264/35/53修正（个别非官方来源称南师大理科校线总分可能上浮至270，院线以官方原表为准，建议复核）。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实）。quota=1为原值保留：2025目录081200拟招32人（含推免，统考名额未单列），2026统考计划未核实。拟录取最低分/平均分未查到公开数据，保留'待补充'。level原'985 / 211'有误——南师大是211/双一流，非985，已修正。"
+    "note": "【2026核查】原scoreLine=48明显错误（疑似将某年单科线误填入校线字段），已修正。南师大2026年复试线通知（yjszs.njnu.edu.cn/info/1017/17272.htm，官网无法直接抓取）明确'如无特殊说明，单科按国家分数线A类考生单科要求执行'；2026年工学[08]A类国家线为总分264、政治/外语35、业务课53（较2025年总分+4、小科+1、大科+2），故按264/35/53修正（个别非官方来源称南师大理科校线总分可能上浮至270，院线以官方原表为准，建议复核）。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实）。quota=1为原值保留：2025目录081200拟招32人（含推免，统考名额未单列），2026统考计划未核实。拟录取最低分/平均分未查到公开数据，保留'待补充'。level原'985 / 211'有误——南师大是211/双一流，非985，已修正。",
+    "grade": "未参评"
   },
   {
     "name": "大连海事大学",
@@ -6376,7 +9513,56 @@
       }
     ],
     "scoreLine": 311,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息(085400)",
+        "scoreLine": "363",
+        "avgScore": "382",
+        "quota": "23",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "311",
+        "avgScore": "347",
+        "quota": "26",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息(085400)",
+        "scoreLine": "300",
+        "avgScore": "342",
+        "quota": "31",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "262",
+        "avgScore": "311",
+        "quota": "41",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "348",
+        "avgScore": "365",
+        "quota": "35",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "333",
+        "avgScore": "351",
+        "quota": "27",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6390,7 +9576,8 @@
       "college": "https://ist.dlmu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10151"
     },
-    "note": "【2026核查】原scoreLine=63明显错误（疑似单科线误填），已修正为2026年院线311（单科35/53，源：N诺考研整理的2026院校公开名单数据）。2026统考拟录取26人（与原quota=26一致，共33人进复试），拟录取最低分311（与复试线持平）、最高分369、初试平均分347，minScore/avgScore已补。is408Change=true：初试科目为11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——大连海事是211/双一流，非985，已修正。region/college/links原为'待补充'/空，已补全。"
+    "note": "【2026核查】原scoreLine=63明显错误（疑似单科线误填），已修正为2026年院线311（单科35/53，源：N诺考研整理的2026院校公开名单数据）。2026统考拟录取26人（与原quota=26一致，共33人进复试），拟录取最低分311（与复试线持平）、最高分369、初试平均分347，minScore/avgScore已补。is408Change=true：初试科目为11408（政治、英语一、数学一、408计算机学科专业基础）。level原'985 / 211'有误——大连海事是211/双一流，非985，已修正。region/college/links原为'待补充'/空，已补全。",
+    "grade": "B"
   },
   {
     "name": "上海大学",
@@ -6414,7 +9601,56 @@
       }
     ],
     "scoreLine": 331,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-软件工程(085400)",
+        "scoreLine": "357",
+        "avgScore": "378",
+        "quota": "57",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "331",
+        "avgScore": "354",
+        "quota": "53",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-软件工程(085400)",
+        "scoreLine": "304",
+        "avgScore": "339",
+        "quota": "41",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "312",
+        "avgScore": "331",
+        "quota": "48",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息(085400)",
+        "scoreLine": "305",
+        "avgScore": "344",
+        "quota": "45",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "331",
+        "avgScore": "352",
+        "quota": "49",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6428,7 +9664,8 @@
       "college": "https://cs.shu.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10280"
     },
-    "note": "【2026核查】原scoreLine=0缺失，已补：2026年081200复试线331，单科政治45、英语40、业务课75/75（源：上海大学2026年复试分数线公告，经本地宝转载核对；原单科50/50/80/80有误已修正）。同院085404计算机技术2026线264（35/35/53/53）。2026拟录取（计算机工程与科学学院，不含推免）：最低331、平均354、最高389——与原minScore=331/avgScore=354一致，已核实。quota原为null，2026预计统考招生53人（源：N诺考研）。is408Change=true：初试考11408（政治、英语一、数学一、408）。level原'985 / 211'有误——上大是211/双一流，非985，已修正。region/college/links已补全（宝山校区）。"
+    "note": "【2026核查】原scoreLine=0缺失，已补：2026年081200复试线331，单科政治45、英语40、业务课75/75（源：上海大学2026年复试分数线公告，经本地宝转载核对；原单科50/50/80/80有误已修正）。同院085404计算机技术2026线264（35/35/53/53）。2026拟录取（计算机工程与科学学院，不含推免）：最低331、平均354、最高389——与原minScore=331/avgScore=354一致，已核实。quota原为null，2026预计统考招生53人（源：N诺考研）。is408Change=true：初试考11408（政治、英语一、数学一、408）。level原'985 / 211'有误——上大是211/双一流，非985，已修正。region/college/links已补全（宝山校区）。",
+    "grade": "B"
   },
   {
     "name": "华东理工大学",
@@ -6452,7 +9689,56 @@
       }
     ],
     "scoreLine": 348,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "369",
+        "avgScore": "384",
+        "quota": "25+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2026,
+        "direction": "计算机(081200)",
+        "scoreLine": "348",
+        "avgScore": "355",
+        "quota": "14+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "322",
+        "avgScore": "350",
+        "quota": "54+3专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机(081200)",
+        "scoreLine": "299",
+        "avgScore": "319",
+        "quota": "23+1专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "电子信息-计算机(085400)",
+        "scoreLine": "350",
+        "avgScore": "371",
+        "quota": "44+3专项",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机(081200)",
+        "scoreLine": "340",
+        "avgScore": "362",
+        "quota": "17+1专项",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6466,7 +9752,8 @@
       "college": "https://cise.ecust.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10251"
     },
-    "note": "【2026核查】2026数据已核实：081200复试线348（原值378有误，已按校方2026复试线公告修正，经新东方在线、N诺考研交叉核对），单科政治50、英语50、业务课80/80（与原值一致）。2026统考招生14人（另1个专项计划名额，quota原为null已补），拟录取最低348、平均355（区间348-377），minScore/avgScore已补。is408Change=true：该校自2025年起由自命题815（数据结构、组成原理、操作系统）改考408计算机学科专业基础，2026目录延续408。level原'985 / 211'有误——华理是211/双一流，非985，已修正。region/college/links已补全（信息学院在徐汇校区）。"
+    "note": "【2026核查】2026数据已核实：081200复试线348（原值378有误，已按校方2026复试线公告修正，经新东方在线、N诺考研交叉核对），单科政治50、英语50、业务课80/80（与原值一致）。2026统考招生14人（另1个专项计划名额，quota原为null已补），拟录取最低348、平均355（区间348-377），minScore/avgScore已补。is408Change=true：该校自2025年起由自命题815（数据结构、组成原理、操作系统）改考408计算机学科专业基础，2026目录延续408。level原'985 / 211'有误——华理是211/双一流，非985，已修正。region/college/links已补全（信息学院在徐汇校区）。",
+    "grade": "B"
   },
   {
     "name": "中南财经政法大学",
@@ -6490,7 +9777,32 @@
       }
     ],
     "scoreLine": 264,
-    "scoreHistory": [],
+    "scoreHistory": [
+      {
+        "year": 2026,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2025,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "267",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      },
+      {
+        "year": 2024,
+        "direction": "计算机科学与技术(081200)",
+        "scoreLine": "待更新",
+        "avgScore": "待更新",
+        "quota": "待更新",
+        "ratio": "待更新"
+      }
+    ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
@@ -6504,6 +9816,7 @@
       "college": "https://xagx.zuel.edu.cn/",
       "yz": "https://yz.chsi.com.cn/zsml/queryAction.do?ssdm=10520"
     },
-    "note": "【2026核查】原scoreLine=0缺失，已补：中南财大非34所自划线高校，2026年计算机相关专业执行国家A类线，2026工学[08]A类线为总分264、政治/外语35、业务课53（单科原50/50/80/80有误，已修正）。佐证：信息工程学院2026年一志愿成绩分布显示46人报考、17人过国家线、等额复试1:1（第8名290+、最高档350-354）。拟录取名单（xagx.zuel.edu.cn/2026/0331/c3402a426031/page.htm）官网无法抓取，minScore/avgScore保留'待补充'。quota保留null：2025年081200合计招12人（推免8、统考4），2026统考计划未核实。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实，原自命题已改统考）。level原'985 / 211'有误——中南财大是211/双一流，非985，已修正。college/region/links已补全（信息工程学院位于南湖校区）。"
+    "note": "【2026核查】原scoreLine=0缺失，已补：中南财大非34所自划线高校，2026年计算机相关专业执行国家A类线，2026工学[08]A类线为总分264、政治/外语35、业务课53（单科原50/50/80/80有误，已修正）。佐证：信息工程学院2026年一志愿成绩分布显示46人报考、17人过国家线、等额复试1:1（第8名290+、最高档350-354）。拟录取名单（xagx.zuel.edu.cn/2026/0331/c3402a426031/page.htm）官网无法抓取，minScore/avgScore保留'待补充'。quota保留null：2025年081200合计招12人（推免8、统考4），2026统考计划未核实。is408Change=true：081200初试专业课为408计算机学科专业基础（2025/2026招生目录核实，原自命题已改统考）。level原'985 / 211'有误——中南财大是211/双一流，非985，已修正。college/region/links已补全（信息工程学院位于南湖校区）。",
+    "grade": "未参评"
   }
 ]

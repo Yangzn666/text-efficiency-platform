@@ -10,7 +10,7 @@ export const getApiBaseUrl = (): string => {
   
   // 移动端使用局域网IP，PC端使用localhost
   // 注意：如果IP地址改变，需要更新这里的IP
-  const baseUrl = isMobile ? 'http://192.168.1.103:3002' : 'http://localhost:3002'
+  const baseUrl = isMobile ? 'http://192.168.1.103:6902' : 'http://localhost:6902'
   
   console.log(`📱 设备类型: ${isMobile ? '移动端' : 'PC端'}, API地址: ${baseUrl}`)
   

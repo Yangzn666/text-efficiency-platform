@@ -34,12 +34,13 @@ const getClient = (): SupabaseClient | null => {
 /**
  * 推送本地数据到云端（upsert）
  * @param data 要同步的完整状态对象（可 JSON 序列化）
+ * @param table 目标表名，默认 today_status
  */
-export async function pushToCloud(data: unknown): Promise<void> {
+export async function pushToCloud(data: unknown, table: string = TABLE): Promise<void> {
   const c = getClient()
   if (!c) return
   try {
-    await c.from(TABLE).upsert({
+    await c.from(table).upsert({
       user_id: USER_ID,
       data,
       updated_at: new Date().toISOString()
@@ -52,14 +53,15 @@ export async function pushToCloud(data: unknown): Promise<void> {
 
 /**
  * 从云端拉取最新数据
+ * @param table 目标表名，默认 today_status
  * @returns 云端存储的状态对象；未配置或无数据时返回 null
  */
-export async function pullFromCloud(): Promise<{ data: any; updatedAt: string } | null> {
+export async function pullFromCloud(table: string = TABLE): Promise<{ data: any; updatedAt: string } | null> {
   const c = getClient()
   if (!c) return null
   try {
     const { data: rows, error } = await c
-      .from(TABLE)
+      .from(table)
       .select('data, updated_at')
       .eq('user_id', USER_ID)
       .maybeSingle()
@@ -72,13 +74,13 @@ export async function pullFromCloud(): Promise<{ data: any; updatedAt: string } 
 }
 
 /**
- * 防抖推送包装：避免频繁写云端
+ * 防抖推送包装：避免频繁写云端（按表独立计时，互不干扰）
  */
-let pushTimer: ReturnType<typeof setTimeout> | null = null
-export function pushToCloudDebounced(data: unknown, delay = 1500): void {
+const pushTimers: Record<string, ReturnType<typeof setTimeout>> = {}
+export function pushToCloudDebounced(data: unknown, delay = 1500, table: string = TABLE): void {
   if (!isCloudSyncEnabled) return
-  if (pushTimer) clearTimeout(pushTimer)
-  pushTimer = setTimeout(() => {
-    pushToCloud(data)
+  if (pushTimers[table]) clearTimeout(pushTimers[table])
+  pushTimers[table] = setTimeout(() => {
+    pushToCloud(data, table)
   }, delay)
 }

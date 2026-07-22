@@ -7,7 +7,7 @@
       <div class="ph-inner">
         <span class="ph-kicker">UNIVERSITIES · 院校数据库 · 2026版</span>
         <h1>11408考研院校<span class="gold">数据库</span></h1>
-        <p class="subtitle">61所重点院校完整信息 · 分数线 · 报录比 · 科目变更</p>
+        <p class="subtitle">69所重点院校完整信息 · 分数线 · 报录比 · 科目变更</p>
       </div>
     </header>
 
@@ -55,6 +55,17 @@
           <option value="A">A级（很难）</option>
           <option value="A-">A-级（较难）</option>
           <option value="B+">B+级（中等）</option>
+        </select>
+
+        <!-- 排序方式 -->
+        <select v-model="sortBy" class="filter-select sort-select">
+          <option value="">排序：默认</option>
+          <option value="scoreLine-asc">复试线 低→高</option>
+          <option value="scoreLine-desc">复试线 高→低</option>
+          <option value="avgScore-asc">录取均分 低→高</option>
+          <option value="avgScore-desc">录取均分 高→低</option>
+          <option value="quota-desc">统考名额 多→少</option>
+          <option value="difficulty-asc">难度 易→难</option>
         </select>
 
         <!-- 特殊标签 -->
@@ -135,6 +146,10 @@
 
         <!-- 查看详情按钮 -->
         <div class="card-footer">
+          <button
+            :class="['compare-btn', { active: isCompared(uni) }]"
+            @click.stop="toggleCompare(uni)"
+          >{{ isCompared(uni) ? '✓ 已选' : '+ 对比' }}</button>
           <button class="detail-btn">查看详情 →</button>
         </div>
       </div>
@@ -153,7 +168,7 @@
         
         <div class="modal-header">
           <h2>{{ selectedUni.name }}</h2>
-          <span :class="['level-badge', 'large', selectedUni.level.toLowerCase()]">{{ selectedUni.level }}</span>
+          <span :class="['level-badge', 'large', getLevelBadgeClass(selectedUni.level)]">{{ selectedUni.level }}</span>
         </div>
 
         <div class="modal-body">
@@ -183,6 +198,7 @@
           <!-- 招生数据 -->
           <section v-if="selectedUni.scoreHistory && selectedUni.scoreHistory.length > 0" class="detail-section">
             <h3>📊 历年分数线</h3>
+            <div class="table-wrap">
             <table class="data-table">
               <thead>
                 <tr>
@@ -205,12 +221,14 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </section>
 
           <!-- 专业分数线 -->
           <section v-if="selectedUni.majors && selectedUni.majors.length > 0" class="detail-section">
             <h3>📚 11408专业分数线</h3>
-            <table class="data-table">
+            <div class="table-wrap">
+            <table class="data-table majors-table">
               <thead>
                 <tr>
                   <th>专业代码</th>
@@ -242,6 +260,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
           </section>
 
           <!-- 考试科目 -->
@@ -321,6 +340,89 @@
         </div>
       </div>
     </div>
+
+    <!-- 对比浮动栏 -->
+    <div v-if="compareList.length > 0" class="compare-bar">
+      <div class="compare-bar-items">
+        <span class="compare-bar-label">对比 ({{ compareList.length }}/3)：</span>
+        <span v-for="u in compareList" :key="u.name" class="compare-chip">
+          {{ u.name }}
+          <button class="chip-remove" @click="removeCompare(u.name)">×</button>
+        </span>
+      </div>
+      <div class="compare-bar-actions">
+        <button class="compare-clear" @click="clearCompare">清空</button>
+        <button class="compare-go" @click="openCompare">开始对比 →</button>
+      </div>
+    </div>
+
+    <!-- 对比弹窗 -->
+    <div v-if="compareVisible" class="modal-overlay" @click="compareVisible = false">
+      <div class="modal-content compare-modal" @click.stop>
+        <button class="close-btn" @click="compareVisible = false">×</button>
+        <div class="modal-header">
+          <h2>🎯 院校对比</h2>
+        </div>
+        <div class="modal-body">
+          <div class="compare-table-wrap">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th class="compare-row-label">对比项</th>
+                  <th v-for="u in compareList" :key="u.name">{{ u.name }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="compare-row-label">院校层次</td>
+                  <td v-for="u in compareList" :key="u.name">{{ u.level }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">学科等级</td>
+                  <td v-for="u in compareList" :key="u.name" :class="getGradeClass(u.grade)">{{ u.grade || '—' }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">所在地区</td>
+                  <td v-for="u in compareList" :key="u.name">{{ u.region }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">难度评级</td>
+                  <td v-for="u in compareList" :key="u.name"><span :class="['difficulty-badge', u.difficulty.toLowerCase()]">{{ u.difficulty }}</span></td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">复试线</td>
+                  <td v-for="u in compareList" :key="u.name" class="score-cell">{{ u.scoreLine }}分</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">录取均分</td>
+                  <td v-for="u in compareList" :key="u.name">{{ compareAvg(u) }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">统考名额</td>
+                  <td v-for="u in compareList" :key="u.name">{{ compareQuota(u) }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">2026改考408</td>
+                  <td v-for="u in compareList" :key="u.name">{{ u.is408Change ? '✓ 是' : '否' }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">AI专硕</td>
+                  <td v-for="u in compareList" :key="u.name">{{ u.hasAI ? '✓ 有' : '无' }}</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">建议目标分</td>
+                  <td v-for="u in compareList" :key="u.name">≥ {{ u.targetScore }}分</td>
+                </tr>
+                <tr>
+                  <td class="compare-row-label">硕士起薪</td>
+                  <td v-for="u in compareList" :key="u.name">{{ u.salary || '—' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -366,13 +468,106 @@ const filterRegion = ref('')
 const filterDifficulty = ref('')
 const showOnly408Change = ref(false)
 const showOnlyAI = ref(false)
+const sortBy = ref('')
 
 // 选中的院校
 const selectedUni = ref<any>(null)
 
+// ===== 院校对比 =====
+const compareList = ref<any[]>([])
+const compareVisible = ref(false)
+
+const isCompared = (uni: any): boolean => {
+  return compareList.value.some(u => u.name === uni.name)
+}
+
+const toggleCompare = (uni: any) => {
+  const idx = compareList.value.findIndex(u => u.name === uni.name)
+  if (idx >= 0) {
+    compareList.value.splice(idx, 1)
+  } else {
+    if (compareList.value.length >= 3) {
+      alert('最多同时对比 3 所院校，请先移除一所')
+      return
+    }
+    compareList.value.push(uni)
+  }
+}
+
+const removeCompare = (name: string) => {
+  compareList.value = compareList.value.filter(u => u.name !== name)
+}
+
+const clearCompare = () => {
+  compareList.value = []
+  compareVisible.value = false
+}
+
+const openCompare = () => {
+  if (compareList.value.length < 2) {
+    alert('请至少选择 2 所院校进行对比')
+    return
+  }
+  compareVisible.value = true
+}
+
+// 对比用的最新均分/名额
+const compareAvg = (uni: any) => {
+  const n = getLatestStat(uni, 'avgScore')
+  return n === null ? '待更新' : n
+}
+const compareQuota = (uni: any) => {
+  const n = getLatestStat(uni, 'quota')
+  return n === null ? '待更新' : n
+}
+
+// 难度等级 -> 数字（越大越难）
+const difficultyRank = (d: string): number => {
+  const map: Record<string, number> = { 'B+': 1, 'B': 1, 'A-': 2, 'A': 3, 'A+': 4, 'S+': 5, 'S': 5 }
+  return map[d] ?? 0
+}
+
+// 把可能为"待更新"的字段转成数字，无效返回 null
+const numVal = (v: any): number | null => {
+  if (v === null || v === undefined) return null
+  const n = parseFloat(String(v).replace(/[^\d.]/g, ''))
+  return isNaN(n) ? null : n
+}
+
+// 从 scoreHistory 取最新一年的指定字段（均分/名额），回退到 majors
+const getLatestStat = (uni: any, field: 'avgScore' | 'quota'): number | null => {
+  const hist = uni.scoreHistory
+  if (Array.isArray(hist) && hist.length > 0) {
+    const maxYear = Math.max(...hist.map((h: any) => h.year || 0))
+    const latest = hist.filter((h: any) => h.year === maxYear)
+    for (const h of latest) {
+      const n = numVal(h[field])
+      if (n !== null) return n
+    }
+  }
+  const majors = uni.majors
+  if (Array.isArray(majors)) {
+    for (const m of majors) {
+      const n = numVal(m[field])
+      if (n !== null) return n
+    }
+  }
+  return null
+}
+
+// 取排序用的数值
+const getSortValue = (uni: any): number => {
+  const key = sortBy.value
+  if (key === 'difficulty-asc') return difficultyRank(uni.difficulty)
+  if (key === 'scoreLine-asc' || key === 'scoreLine-desc') return numVal(uni.scoreLine) ?? -1
+  if (key === 'avgScore-asc' || key === 'avgScore-desc') return getLatestStat(uni, 'avgScore') ?? -1
+  if (key === 'quota-desc') return getLatestStat(uni, 'quota') ?? -1
+  return 0
+}
+
 // 筛选后的院校列表
 const filteredUniversities = computed(() => {
-  return universitiesData.filter(uni => {
+  let result = universitiesData.filter(uni => {
     // 关键词搜索
     if (searchKeyword.value) {
       const keyword = searchKeyword.value.toLowerCase()
@@ -415,6 +610,22 @@ const filteredUniversities = computed(() => {
 
     return true
   })
+
+  // 排序
+  if (sortBy.value) {
+    const desc = sortBy.value.endsWith('-desc')
+    result = result.slice().sort((a, b) => {
+      const va = getSortValue(a)
+      const vb = getSortValue(b)
+      // 无有效值(-1)排到末尾
+      if (va === -1 && vb === -1) return 0
+      if (va === -1) return 1
+      if (vb === -1) return -1
+      return desc ? vb - va : va - vb
+    })
+  }
+
+  return result
 })
 
 // 显示详情
@@ -435,6 +646,7 @@ const resetFilters = () => {
   filterDifficulty.value = ''
   showOnly408Change.value = false
   showOnlyAI.value = false
+  sortBy.value = ''
 }
 
 // 辅助函数：将grade转换为合法的CSS类名
@@ -448,8 +660,8 @@ const getGradeClass = (grade: string | undefined) => {
 const getLevelBadgeClass = (level: string | undefined) => {
   if (!level) return 'none'
   if (level.includes('C9')) return 'c9'
-  if (level.includes('985')) return '985'
-  if (level.includes('211')) return '211'
+  if (level.includes('985')) return 'g985'
+  if (level.includes('211')) return 'g211'
   return 'none'
 }
 
@@ -766,11 +978,11 @@ const getLevelBadgeText = (level: string | undefined) => {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.level-badge.985 {
+.level-badge.g985 {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.level-badge.211 {
+.level-badge.g211 {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
@@ -991,10 +1203,6 @@ const getLevelBadgeText = (level: string | undefined) => {
   border-color: transparent;
 }
 
-.card-footer {
-  padding: 0 16px 16px 16px;
-}
-
 .detail-btn {
   width: 100%;
   padding: 12px 16px;
@@ -1213,6 +1421,35 @@ const getLevelBadgeText = (level: string | undefined) => {
   background: #f8f9fa;
 }
 
+/* 表格横向滚动容器（移动端防溢出） */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  border: 1px solid #e8ecf1;
+}
+
+.table-wrap .data-table {
+  min-width: 560px;
+}
+
+.table-wrap .data-table.majors-table {
+  min-width: 920px;
+}
+
+.table-wrap .data-table th:first-child,
+.table-wrap .data-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #f8f9fa;
+  z-index: 2;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.04);
+}
+
+.table-wrap .data-table tbody tr:hover td:first-child {
+  background: #f8f9fa;
+}
+
 .score-cell {
   color: #f5576c;
   font-weight: bold;
@@ -1378,18 +1615,259 @@ const getLevelBadgeText = (level: string | undefined) => {
   box-shadow: 0 4px 12px rgba(13, 33, 55, 0.25);
 }
 
+/* ===== 排序下拉框 ===== */
+.sort-select {
+  border-color: rgba(255, 197, 61, 0.5);
+  background: linear-gradient(135deg, #fffdf5 0%, #fff8e6 100%);
+}
+
+/* ===== 卡片底部按钮区 ===== */
+.card-footer {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px 16px;
+}
+
+.compare-btn {
+  flex: 0 0 auto;
+  padding: 12px 14px;
+  background: white;
+  color: #16345c;
+  border: 2px solid #e4ebf3;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.compare-btn:hover {
+  border-color: #16345c;
+  background: #f5f8fc;
+  transform: translateY(-2px);
+}
+
+.compare-btn.active {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: #0d2137;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(67, 233, 123, 0.35);
+}
+
+.detail-btn {
+  flex: 1;
+}
+
+/* ===== 底部浮动对比栏 ===== */
+.compare-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: min(920px, calc(100% - 32px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(13, 33, 55, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  z-index: 900;
+  animation: compareBarIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes compareBarIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.compare-bar-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.compare-bar-label {
+  color: #ffc53d;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.compare-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 5px 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 197, 61, 0.3);
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.chip-remove {
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.chip-remove:hover {
+  background: #f5576c;
+  transform: scale(1.1);
+}
+
+.compare-bar-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.compare-clear {
+  padding: 10px 16px;
+  background: transparent;
+  color: #a8bdd4;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.compare-clear:hover {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.compare-go {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ffc53d 0%, #f0a820 100%);
+  color: #0d2137;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(255, 197, 61, 0.35);
+}
+
+.compare-go:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 197, 61, 0.5);
+}
+
+/* ===== 对比弹窗 ===== */
+.compare-modal {
+  max-width: 1000px;
+}
+
+.compare-table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e8ecf1;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #eef3f8;
+  font-size: 14px;
+}
+
+.compare-table thead th {
+  background: linear-gradient(135deg, #0d2137 0%, #16345c 100%);
+  color: #ffc53d;
+  font-size: 15px;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+}
+
+.compare-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.compare-table tbody tr:hover {
+  background: #fff8e6;
+}
+
+.compare-row-label {
+  text-align: left !important;
+  font-weight: 600;
+  color: #4a5568;
+  background: #f5f8fc !important;
+  white-space: nowrap;
+  width: 110px;
+}
+
+.compare-table thead th.compare-row-label {
+  background: linear-gradient(135deg, #0d2137 0%, #16345c 100%) !important;
+  color: #a8bdd4;
+}
+
+/* 给浮动对比栏留出底部空间 */
+.universities-container {
+  padding-bottom: 100px;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .universities-container {
+    padding: 14px;
+    padding-bottom: 110px;
+  }
+
+  .page-header {
+    padding: 26px 22px 22px;
+  }
+
   .page-header h1 {
     font-size: 1.8em;
   }
 
+  .filter-section {
+    padding: 16px;
+  }
+
   .filter-controls {
     flex-direction: column;
+    gap: 10px;
   }
 
   .filter-select {
     width: 100%;
+  }
+
+  /* 两个复选框并排，不占满整行 */
+  .checkbox-label {
+    display: inline-flex;
+    width: auto;
+    margin-right: 14px;
   }
 
   .universities-grid {
@@ -1401,8 +1879,56 @@ const getLevelBadgeText = (level: string | undefined) => {
     grid-template-columns: 1fr;
   }
 
+  .modal-overlay {
+    padding: 10px;
+  }
+
   .modal-content {
     max-height: 95vh;
+    border-radius: 16px;
+  }
+
+  .modal-header {
+    padding: 20px 18px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4em;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .detail-section {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .table-wrap .data-table th,
+  .table-wrap .data-table td {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  /* 对比浮动栏：紧凑全宽 */
+  .compare-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+  }
+
+  .compare-bar-actions {
+    justify-content: flex-end;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 10px 12px;
+    font-size: 13px;
   }
 }
 </style>

@@ -14,6 +14,9 @@ const TranslationMistakesView = defineAsyncComponent(() => import('@/views/Trans
 const route = useRoute()
 const router = useRouter()
 
+// 嵌入模式：作为英语一的tab使用时隐藏独立页头（返回按钮+标题）
+defineProps<{ embedded?: boolean }>()
+
 const tabNames = ['phrases', 'vocabulary', 'patterns', 'exams', 'tips', 'mistakes']
 const activeTab = ref('phrases')
 
@@ -35,7 +38,7 @@ function goBackToHub() {
 
 <template>
   <div class="translation-view">
-    <div class="page-header">
+    <div class="page-header" v-if="!embedded">
       <el-button type="primary" link @click="goBackToHub">
         <el-icon><ArrowLeft /></el-icon>
         返回翻译主页

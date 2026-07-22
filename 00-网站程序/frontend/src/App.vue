@@ -70,8 +70,6 @@ const routes = [
   { path: '/english', name: '英语一' },
   { path: '/politics', name: '政治' },
   { path: '/cs408', name: '408计算机' },
-  { path: '/translation', name: '翻译' },
-  { path: '/intensive-reading', name: '精读' },
   { path: '/wrong-problems', name: '错题本' },
   { path: '/universities', name: '🏫 院校查询' },
   { path: '/analytics', name: '数据分析' },

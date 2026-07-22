@@ -3,6 +3,10 @@ import { ref, computed } from 'vue'
 import localforage from 'localforage'
 import { usePsychologyStore } from './psychology'
 import { buildApiUrl } from '@/utils/apiConfig'
+import { isCloudSyncEnabled, pullFromCloud, pushToCloudDebounced } from '@/utils/cloudSync'
+
+// 学习记录云同步表名（与 today_status 分开存放）
+const STUDY_TABLE = 'study_data'
 
 interface StudyRecord {
   id: string
@@ -84,6 +88,20 @@ export const useStudyStore = defineStore('study', () => {
     return stats
   })
 
+  // 将学习记录同步到云端（Supabase study_data 表），跨设备可用
+  const syncStudyToCloud = () => {
+    if (!isCloudSyncEnabled) return
+    pushToCloudDebounced(
+      {
+        studyRecords: studyRecords.value,
+        subjectProgress: subjectProgress.value,
+        _updatedAt: Date.now()
+      },
+      1500,
+      STUDY_TABLE
+    )
+  }
+
   // 方法
   const addStudyRecord = async (record: Omit<StudyRecord, 'id' | 'createdAt'>) => {
     isLoading.value = true
@@ -106,6 +124,9 @@ export const useStudyStore = defineStore('study', () => {
       // 保存到本地存储
       await localforage.setItem('studyRecords', studyRecords.value)
       await localforage.setItem('subjectProgress', subjectProgress.value)
+      
+      // 同步到云端
+      syncStudyToCloud()
       
       return { success: true, record: newRecord }
     } catch (error) {
@@ -188,7 +209,32 @@ export const useStudyStore = defineStore('study', () => {
   const initializeStudyData = async () => {
     isLoading.value = true
     try {
-      // 从后端 API加载数据（直接读取JSON文件）
+      // 1. 优先从云端加载（跨设备可用）
+      if (isCloudSyncEnabled) {
+        try {
+          console.log('☁️ 从云端加载学习数据...')
+          const remote = await pullFromCloud(STUDY_TABLE)
+          const payload = remote?.data as {
+            studyRecords?: StudyRecord[]
+            subjectProgress?: SubjectProgress
+          } | undefined
+          if (payload && Array.isArray(payload.studyRecords) && payload.studyRecords.length > 0) {
+            studyRecords.value = payload.studyRecords
+            if (payload.subjectProgress) {
+              subjectProgress.value = payload.subjectProgress
+            }
+            console.log(`✅ 云端加载了 ${payload.studyRecords.length} 条学习记录`)
+            // 同步一份到本地缓存，离线也能用
+            await localforage.setItem('studyRecords', studyRecords.value)
+            await localforage.setItem('subjectProgress', subjectProgress.value)
+            return
+          }
+        } catch (error) {
+          console.warn('⚠️  云端加载失败，回退到后端/本地数据', error)
+        }
+      }
+
+      // 2. 回退：从后端 API加载数据（直接读取JSON文件）
       try {
         console.log('🔄 从后端 API加载学习数据...')
           
@@ -216,6 +262,11 @@ export const useStudyStore = defineStore('study', () => {
             if (result.data.subjectProgress) {
               subjectProgress.value = result.data.subjectProgress
               console.log('📈 加载了科目进度数据')
+            }
+
+            // 后端有数据而云端为空时，回填到云端（首次种子）
+            if (isCloudSyncEnabled && studyRecords.value.length > 0) {
+              syncStudyToCloud()
             }
           } else {
             console.warn('⚠️  API返回数据格式错误')
@@ -287,6 +338,9 @@ export const useStudyStore = defineStore('study', () => {
         await localforage.setItem('studyRecords', march1Records);
         await localforage.setItem('subjectProgress', subjectProgress.value);
       }
+      
+      // 同步清除后的状态到云端
+      syncStudyToCloud()
       
       console.log('✅ 模拟学习数据已清除，系统将从今天开始记录真实学习数据');
       
