@@ -199,9 +199,14 @@ const formatContent = (content: string) => {
     return '<p style="color: #999; text-align: center;">点击左侧章节查看详细内容</p>'
   }
   
+  // 统一换行为 LF：Windows 下保存的 md 文件是 CRLF(\r\n)，空行为 \r\n\r\n，
+  // 下方 \n{2,} 分段正则匹配不到，会导致折叠块内例题/解/步骤全部挤在一行
+  content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
   // 最先处理折叠块 :::fold 标题 ... :::（内部内容继续走后续markdown流程）
+  // 内部先包一层 <p>，经"空行→</p><p>"处理后，例/解/各步骤各自成为独立段落，不再挤在一行
   let formatted = content.replace(/:::fold([^\n]*)\n([\s\S]*?)\n:::/g, (_m, title, inner) => {
-    return `<details class="fold-block"><summary>${title.trim() || '点击展开'}</summary><div class="fold-body">${inner}</div></details>`
+    return `<details class="fold-block"><summary>${title.trim() || '点击展开'}</summary><div class="fold-body"><p>${inner}</p></div></details>`
   })
   
   // 处理Markdown格式的标题（先处理更长的标记）
@@ -752,7 +757,7 @@ onMounted(async () => {
 }
 
 .point-content {
-  line-height: 1.55;
+  line-height: 1.75;
   color: #303133;
   font-size: 0.95em;
   margin-bottom: 12px;
@@ -855,8 +860,8 @@ onMounted(async () => {
 }
 
 .point-content :deep(p) {
-  margin: 6px 0;
-  line-height: 1.55;
+  margin: 10px 0;
+  line-height: 1.75;
 }
 
 .point-content :deep(ul),
@@ -866,8 +871,8 @@ onMounted(async () => {
 }
 
 .point-content :deep(li) {
-  margin: 3px 0;
-  line-height: 1.5;
+  margin: 5px 0;
+  line-height: 1.65;
 }
 
 .point-content :deep(li)::marker {
@@ -883,7 +888,7 @@ onMounted(async () => {
 }
 
 .point-content :deep(.katex-display) {
-  margin: 3px 0;
+  margin: 8px 0;
   padding: 5px 12px;
   background: #f8fafd;
   border: 1px solid rgba(22, 52, 92, 0.07);
@@ -957,7 +962,7 @@ onMounted(async () => {
 }
 
 .point-content :deep(.fold-body) {
-  padding: 2px 14px 8px;
+  padding: 6px 16px 12px;
   border-top: 1px dashed #e8edf5;
 }
 
