@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "subject": "cs408",
+  "subjectName": "408计算机",
+  "updatedAt": "2026-07-22T00:00:00+08:00",
+  "sessions": [],
+  "weakPoints": [],
+  "stats": {
+    "totalSessions": 0,
+    "totalWeakPoints": 0,
+    "resolvedCount": 0,
+    "streakDays": 0
+  }
+}

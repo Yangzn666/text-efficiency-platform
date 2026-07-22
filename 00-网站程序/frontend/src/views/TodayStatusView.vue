@@ -139,6 +139,18 @@
         </div>
       </section>
 
+      <!-- 费曼学习法快捷入口 -->
+      <section class="card feynman-card" @click="$router.push('/cs408/feynman')">
+        <div class="feynman-inner">
+          <span class="feynman-icon">🧠</span>
+          <div class="feynman-text">
+            <strong>费曼学习法</strong>
+            <span>408强化 · AI对话 · 薄弱点追踪</span>
+          </div>
+          <span class="feynman-arrow">→</span>
+        </div>
+      </section>
+
       <!-- 各科进度（全宽计量板） -->
       <section class="card subjects-card">
         <div class="card-head">
@@ -660,6 +672,14 @@ onUnmounted(() => {
 }
 .tasks-card { grid-column: span 7; animation-delay: 0.08s; }
 .chain-card { grid-column: span 5; animation-delay: 0.14s; }
+.feynman-card { grid-column: span 12; animation-delay: 0.16s; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
+.feynman-card:hover { border-color: #ffc53d; box-shadow: 0 4px 16px rgba(255,197,61,0.15); }
+.feynman-inner { display: flex; align-items: center; gap: 14px; }
+.feynman-icon { font-size: 1.6rem; }
+.feynman-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.feynman-text strong { color: #1f2d3d; font-size: 0.95rem; }
+.feynman-text span { color: #5b6b7f; font-size: 0.8rem; }
+.feynman-arrow { color: #ffc53d; font-size: 1.2rem; font-weight: 700; }
 .subjects-card { grid-column: span 12; animation-delay: 0.18s; }
 .materials-card { animation-delay: 0.22s; }
 

@@ -8,6 +8,7 @@ const CSLearningView = () => import('@/views/CSLearning.vue')
 const DSLearningView = () => import('@/views/DSLearning.vue')
 const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
 const OSLearningView = () => import('@/views/OSLearning.vue')
+const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
 const MathView = () => import('@/views/MathView.vue')
 // 数学强化阶段组件
@@ -85,6 +86,15 @@ const router = createRouter({
         requiresAuth: true,
         title: '操作系统',
         subject: '操作系统'
+      }
+    },
+    {
+      path: '/cs408/feynman',
+      name: 'cs408-feynman',
+      component: FeynmanLearning,
+      meta: {
+        requiresAuth: true,
+        title: '费曼学习法'
       }
     },
     {

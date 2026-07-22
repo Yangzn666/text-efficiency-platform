@@ -317,79 +317,89 @@ const goToOSLearning = () => {
 
 <style scoped>
 .cs408-progress-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  --navy-deep: #0d2137;
+  --navy: #16345c;
+  --gold: #ffc53d;
+  --line: #e4ebf3;
+  --bg-soft: #f5f8fc;
+  --ink: #1f2d3d;
+  --muted: #5b6b7f;
+  --font-mono: 'JetBrains Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .progress-header {
-  text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 4px;
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .header-content > div:first-child {
   flex: 1;
-  text-align: left;
 }
 
 .visual-link-btn {
   white-space: nowrap;
-  font-size: 1.1rem;
-  padding: 12px 24px;
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-  transition: all 0.3s ease;
+  font-size: 0.92rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--navy) 0%, #1e4576 100%);
+  border: none;
+  box-shadow: 0 4px 14px rgba(13, 33, 55, 0.2);
+  transition: all 0.25s ease;
 }
 
 .visual-link-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 6px 20px rgba(13, 33, 55, 0.3);
 }
 
 .page-title {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 10px;
-  word-break: break-word;
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .page-subtitle {
-  font-size: 1rem;
-  color: #666;
-  word-break: break-word;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .progress-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
 }
 
 .overview-card {
-  background: white;
-  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
   padding: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.05);
   display: flex;
   align-items: center;
-  gap: 15px;
-  transition: transform 0.3s ease;
+  gap: 16px;
+  transition: all 0.25s ease;
 }
 
 .overview-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.1);
+  border-color: var(--gold);
 }
 
 .card-icon {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   flex-shrink: 0;
 }
 
@@ -398,125 +408,126 @@ const goToOSLearning = () => {
 }
 
 .card-content h3 {
-  color: #333;
-  margin-bottom: 12px;
-  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .progress-numbers {
   display: flex;
   align-items: baseline;
-  gap: 5px;
-  margin-bottom: 10px;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 .current {
   font-size: 2rem;
-  font-weight: bold;
-  color: #4CAF50;
+  font-weight: 800;
+  color: var(--navy);
+  font-family: var(--font-mono);
 }
 
 .separator {
-  font-size: 1.3rem;
-  color: #999;
+  font-size: 1.2rem;
+  color: var(--muted);
 }
 
 .total {
-  font-size: 1.3rem;
-  color: #999;
+  font-size: 1.2rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
 }
 
 .progress-percent {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
 }
 
 .progress-bar {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .current-subject {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .subject-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #FF9800;
-  word-break: break-word;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
 }
 
 .subject-status {
-  font-size: 1rem;
-  color: #666;
+  font-size: 0.88rem;
+  color: var(--muted);
 }
 
 .subjects-section {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.05);
 }
 
 .section-header {
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
 }
 
 .section-header h3 {
-  color: #333;
-  font-size: 1.2rem;
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .subjects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
 }
 
 .subject-card {
-  background: #f8f9fa;
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  padding: 15px;
-  transition: all 0.3s ease;
-}
-
-.subject-card.completed {
-  background: #e8f5e8;
-  border-color: #4CAF50;
-}
-
-.subject-card.in-progress {
-  background: #fff3e0;
-  border-color: #FF9800;
-  animation: pulse 2s infinite;
-}
-
-.subject-card.pending {
-  background: #f5f5f5;
-  border-color: #9e9e9e;
-}
-
-/* 所有卡片都可点击 */
-.subject-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.25s ease;
   cursor: pointer;
   position: relative;
 }
 
+.subject-card.completed {
+  background: #f0f9eb;
+  border-color: #b3e19d;
+}
+
+.subject-card.in-progress {
+  background: #fffbe6;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(255, 197, 61, 0.2);
+}
+
+.subject-card.pending {
+  background: var(--bg-soft);
+  border-color: var(--line);
+  opacity: 0.8;
+}
+
 .subject-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.1);
 }
 
 .subject-card:active {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .click-hint {
@@ -526,37 +537,31 @@ const goToOSLearning = () => {
   gap: 6px;
   margin-top: 12px;
   padding: 8px 12px;
-  background: rgba(255, 152, 0, 0.1);
-  border-radius: 6px;
-  color: #FF9800;
-  font-size: 0.9rem;
+  background: rgba(22, 52, 92, 0.06);
+  border-radius: 8px;
+  color: var(--navy);
+  font-size: 0.82rem;
   font-weight: 500;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
-.subject-card.clickable:hover .click-hint {
-  background: rgba(255, 152, 0, 0.2);
+.subject-card:hover .click-hint {
+  background: rgba(22, 52, 92, 0.1);
 }
 
 .click-hint .el-icon {
-  font-size: 1.1rem;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
+  font-size: 1rem;
 }
 
 .subject-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .subject-icon {
-  font-size: 2rem;
+  font-size: 1.8rem;
   flex-shrink: 0;
 }
 
@@ -565,20 +570,21 @@ const goToOSLearning = () => {
 }
 
 .subject-info h4 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 8px;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .subject-details {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .detail-item {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(228, 235, 243, 0.6);
 }
 
 .detail-item:last-child {
@@ -586,49 +592,50 @@ const goToOSLearning = () => {
 }
 
 .label {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .value {
-  color: #333;
+  color: var(--ink);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
 }
 
 .subject-description {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.85rem;
   line-height: 1.6;
 }
 
 .timeline-section {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.05);
 }
 
 .timeline {
   position: relative;
-  padding-left: 40px;
+  padding-left: 36px;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #4CAF50, #FF9800, #9e9e9e);
-  border-radius: 2px;
+  left: 13px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--navy), #c0c4cc);
+  border-radius: 1px;
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .timeline-item:last-child {
@@ -637,267 +644,157 @@ const goToOSLearning = () => {
 
 .timeline-dot {
   position: absolute;
-  left: -33px;
-  top: 5px;
-  width: 16px;
-  height: 16px;
+  left: -30px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 0 0 3px #ddd;
+  border: 2px solid #fff;
 }
 
 .timeline-item.completed .timeline-dot {
-  background: #4CAF50;
-  box-shadow: 0 0 0 3px #4CAF50;
+  background: #67c23a;
+  box-shadow: 0 0 0 2px #67c23a;
 }
 
 .timeline-item.in-progress .timeline-dot {
-  background: #FF9800;
-  box-shadow: 0 0 0 3px #FF9800;
-  animation: blink 1.5s infinite;
+  background: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold);
 }
 
 .timeline-item.pending .timeline-dot {
-  background: #9e9e9e;
-  box-shadow: 0 0 0 3px #9e9e9e;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  background: #c0c4cc;
+  box-shadow: 0 0 0 2px #c0c4cc;
 }
 
 .timeline-content {
-  background: #f8f9fa;
-  padding: 15px;
+  background: var(--bg-soft);
+  padding: 14px 16px;
   border-radius: 10px;
-  border-left: 4px solid #ddd;
+  border-left: 3px solid var(--line);
 }
 
 .timeline-item.completed .timeline-content {
-  background: #e8f5e8;
-  border-left-color: #4CAF50;
+  background: #f0f9eb;
+  border-left-color: #67c23a;
 }
 
 .timeline-item.in-progress .timeline-content {
-  background: #fff3e0;
-  border-left-color: #FF9800;
+  background: #fffbe6;
+  border-left-color: var(--gold);
 }
 
 .timeline-item.pending .timeline-content {
-  background: #f5f5f5;
-  border-left-color: #9e9e9e;
+  background: var(--bg-soft);
+  border-left-color: #c0c4cc;
 }
 
 .timeline-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .timeline-order {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: #16345c;
-  color: white;
+  background: var(--navy);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 0.9rem;
+  font-weight: 700;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
 }
 
 .timeline-header h4 {
   flex: 1;
-  font-size: 1.1rem;
-  color: #333;
+  font-size: 1rem;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .timeline-desc {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.85rem;
   line-height: 1.6;
   margin: 0;
 }
 
 .next-step-section {
-  margin-top: 30px;
+  margin-top: 4px;
+}
+
+.next-step-section :deep(.el-alert) {
+  border-radius: 12px;
+  border: 1px solid var(--line);
 }
 
 .next-step-content ul {
-  margin-top: 10px;
-  padding-left: 20px;
+  margin-top: 8px;
+  padding-left: 18px;
 }
 
 .next-step-content li {
-  margin-bottom: 5px;
-  color: #666;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
-/* 计组学习入口样式 */
 .composition-learning-entry {
-  margin-top: 16px;
-  
-  .entry-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    
-    .entry-text {
-      font-size: 14px;
-      color: #595959;
-    }
-  }
+  margin-top: 14px;
+}
+
+.composition-learning-entry .entry-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.composition-learning-entry .entry-text {
+  font-size: 0.88rem;
+  color: var(--muted);
 }
 
 @media (max-width: 768px) {
-  .cs408-progress-container {
-    padding: 10px;
-  }
-  
-  .progress-header {
-    margin-bottom: 20px;
-  }
-  
   .header-content {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
   }
-  
   .header-content > div:first-child {
     text-align: center;
-    width: 100%;
   }
-  
   .page-title {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.2rem;
   }
-  
-  .page-subtitle {
-    font-size: 0.9rem;
-  }
-  
   .visual-link-btn {
     width: 100%;
-    font-size: 0.95rem;
-    padding: 10px 16px;
+    font-size: 0.88rem;
   }
-  
   .progress-overview {
     grid-template-columns: 1fr;
     gap: 12px;
-    margin-bottom: 20px;
   }
-  
   .overview-card {
-    padding: 15px;
-    gap: 12px;
+    padding: 16px;
   }
-  
-  .card-icon {
-    font-size: 2rem;
-  }
-  
-  .card-content h3 {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  
-  .current {
-    font-size: 1.8rem;
-  }
-  
-  .separator {
-    font-size: 1.1rem;
-  }
-  
-  .total {
-    font-size: 1.1rem;
-  }
-  
-  .subject-name {
-    font-size: 1.1rem;
-  }
-  
-  .subjects-section {
-    padding: 15px;
-    margin-bottom: 20px;
-  }
-  
-  .section-header h3 {
-    font-size: 1.1rem;
-  }
-  
   .subjects-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
-  
-  .subject-card {
-    padding: 12px;
-  }
-  
-  .subject-icon {
-    font-size: 1.8rem;
-  }
-  
-  .subject-info h4 {
-    font-size: 1rem;
-  }
-  
-  .subject-desc {
-    font-size: 0.85rem;
+  .subjects-section,
+  .timeline-section {
+    padding: 16px;
   }
 }
 
-@media (max-width: 480px) {
-  .cs408-progress-container {
-    padding: 8px;
-  }
-  
-  .page-title {
-    font-size: 1.3rem;
-  }
-  
-  .page-subtitle {
-    font-size: 0.85rem;
-  }
-  
-  .overview-card {
-    padding: 12px;
-    gap: 10px;
-  }
-  
-  .card-icon {
-    font-size: 1.8rem;
-  }
-  
-  .card-content h3 {
-    font-size: 0.95rem;
-  }
-  
-  .current {
-    font-size: 1.5rem;
-  }
-  
+@media (prefers-reduced-motion: reduce) {
+  .overview-card,
   .subject-card {
-    padding: 10px;
-  }
-  
-  .subject-icon {
-    font-size: 1.5rem;
-  }
-  
-  .subject-info h4 {
-    font-size: 0.95rem;
-  }
-  
-  .subject-desc {
-    font-size: 0.8rem;
+    transition: none;
   }
 }
 </style>
