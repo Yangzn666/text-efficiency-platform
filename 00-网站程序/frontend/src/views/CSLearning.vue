@@ -581,19 +581,51 @@ const openVisualIndex = () => {
 
 @media (max-width: 768px) {
   .cs-learning-page {
+    /* 页头进度条：窄屏下允许换行，进度条独占一行，避免横向溢出 */
+    .page-header {
+      padding: 12px 16px;
+
+      .progress-info {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+
+        :deep(.el-progress) {
+          width: 100% !important;
+          margin-right: 0 !important;
+        }
+      }
+    }
+
     .page-content {
       flex-direction: column;
-      
+      /* 桌面端靠 overflow:hidden 固定三栏；移动端改为可滚动，避免堆叠后知识点被裁切、滑不到 */
+      overflow-y: auto;
+
       .mindmap-panel {
         height: 40vh;
+        flex: none; /* 不再弹性扩张挤占下方知识点面板 */
         min-width: unset;
+
+        /* 内部导图容器桌面端 min-height:500px，会超出 40vh 面板被裁掉，这里强制贴合面板 */
+        :deep(.mindmap-container) {
+          height: 100%;
+          min-height: 0;
+          max-height: none;
+        }
       }
-      
+
       .knowledge-panel {
         width: 100%;
+        max-width: none; /* 重置桌面端 600px 上限 */
         min-width: unset;
         border-left: none;
         border-top: 1px solid #e8e8e8;
+
+        /* 展开态桌面端 min-width:600px，手机端会横向溢出，重置 */
+        &.expanded {
+          min-width: unset;
+          max-width: none;
+        }
       }
     }
   }

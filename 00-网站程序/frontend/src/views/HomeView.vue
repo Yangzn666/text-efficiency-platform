@@ -10,11 +10,13 @@ import SimpleMoodTracker from '@/components/SimpleMoodTracker.vue'
 import { useStudyStore } from '@/stores/study'
 import { useTodoStore } from '@/stores/todos'
 import { useTaskStore } from '@/stores/tasks'
+import { useTodayStatusStore } from '@/stores/todayStatus'
 
 const router = useRouter()
 const studyStore = useStudyStore()
 const todoStore = useTodoStore()
 const taskStore = useTaskStore()
+const todayStore = useTodayStatusStore()
 
 // 对话框相关状态
 const showAddDialog = ref(false)
@@ -45,8 +47,10 @@ const todayPlanItems = ref([
   { time: '22:00', activity: '洗漱休息，准备睡觉' }
 ])
 
-// 考研倒计时相关
-const examDate = new Date(2026, 11, 26) // 2026年12月26日
+// 考研倒计时相关（考试日期统一读取 store，与今日进度/数据分析页保持单一数据源）
+const examDate = computed(() => new Date(todayStore.examDate + 'T00:00:00'))
+// 展示用日期：2026-12-19 → 2026.12.19
+const examDateDisplay = computed(() => todayStore.examDate.replace(/-/g, '.'))
 const countdown = ref({
   days: 0,
   hours: 0,
@@ -77,7 +81,7 @@ const getPriorityText = (priority: string): string => {
 
 const updateCountdown = () => {
   const now = new Date()
-  const diff = examDate.getTime() - now.getTime()
+  const diff = examDate.value.getTime() - now.getTime()
   
   if (diff > 0) {
     countdown.value.days = Math.floor(diff / (1000 * 60 * 60 * 24))
@@ -272,7 +276,7 @@ onUnmounted(() => {
           <div class="countdown-card">
             <div class="countdown-header">
               <h3>🎯 考研倒计时</h3>
-              <div class="exam-date">2026.12.26</div>
+              <div class="exam-date">{{ examDateDisplay }}</div>
             </div>
             <div class="countdown-numbers">
               <div class="time-unit">
@@ -1079,7 +1083,12 @@ onUnmounted(() => {
     align-items: flex-start;
     gap: 24px;
   }
-  
+
+  /* 桌面端 logo 靠 100px 左边距定位；纵向堆叠后须重置，否则移动端 logo 被挤出中心 */
+  .logo-section {
+    margin-left: 0;
+  }
+
   .countdown-card {
     width: 100%;
     min-width: auto;

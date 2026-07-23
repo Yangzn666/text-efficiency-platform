@@ -2,6 +2,7 @@
 import { ref, computed, defineAsyncComponent, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useReadingLogStore } from '@/stores/readingLog'
+import { useTodayStatusStore } from '@/stores/todayStatus'
 // 使用动态导入解决TypeScript默认导出识别问题
 const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
 const VocabularySystem = defineAsyncComponent(() => import('@/components/VocabularyLearning.vue'))
@@ -14,13 +15,10 @@ const EnglishReadingLog = defineAsyncComponent(() => import('@/components/Englis
 const route = useRoute()
 const activeTab = ref('reading')
 const readingLog = useReadingLogStore()
+const todayStore = useTodayStatusStore()
 
-// 实时数据
-const examDate = new Date('2026-12-19')
-const daysLeft = computed(() => {
-  const diff = examDate.getTime() - Date.now()
-  return Math.max(0, Math.ceil(diff / 86400000))
-})
+// 实时数据（倒计时统一读取 store，与今日进度/数据分析页保持同一数据源和算法）
+const daysLeft = computed(() => todayStore.daysToExam)
 const passagesDone = computed(() => readingLog.overall.done)
 const passagesTotal = computed(() => readingLog.overall.total)
 const readingAccuracy = computed(() => readingLog.overall.accuracy)

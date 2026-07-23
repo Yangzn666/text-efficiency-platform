@@ -577,4 +577,48 @@ onMounted(() => {
   color: #1f2d3d;
   font-weight: 600;
 }
+
+/* ==================== 响应式（原先完全缺失，手机端三栏横排导致知识点被挤出屏幕） ==================== */
+@media (max-width: 1200px) {
+  .nav-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 12px 16px;
+  }
+
+  /* 页头进度条：窄屏下允许换行，进度条独占一行，避免横向溢出 */
+  .progress-info {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .progress-info :deep(.el-progress) {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  .page-content {
+    flex-direction: column;
+    /* 桌面端靠 overflow:hidden 固定三栏；移动端改为可滚动，避免堆叠后知识点被裁切、滑不到 */
+    overflow-y: auto;
+  }
+
+  .mindmap-panel {
+    flex: none; /* 不再弹性扩张挤占下方知识点面板 */
+    height: 40vh;
+  }
+
+  .knowledge-panel {
+    width: 100% !important;
+  }
+
+  /* 展开态桌面端 800px，手机端会横向溢出，重置为全宽 */
+  .knowledge-panel.expanded {
+    width: 100% !important;
+  }
+}
 </style>

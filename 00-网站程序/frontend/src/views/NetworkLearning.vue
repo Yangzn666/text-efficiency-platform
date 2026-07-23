@@ -483,20 +483,65 @@ onMounted(() => {
   .network-learning-page {
     .page-content {
       flex-direction: column;
-      
+      /* 桌面端靠 overflow:hidden 固定三栏；纵向堆叠后改为可滚动，避免知识点被裁切、滑不到 */
+      overflow-y: auto;
+
       .nav-panel {
         width: 100%;
         max-height: 200px;
       }
-      
+
       .mindmap-panel {
         min-height: 300px;
       }
-      
+
       .knowledge-panel {
         width: 100%;
         min-width: unset;
         min-height: 400px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .network-learning-page {
+    /* 页头进度条：窄屏下允许换行，进度条独占一行，避免横向溢出 */
+    .page-header {
+      padding: 12px 16px;
+
+      .progress-info {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+
+        :deep(.el-progress) {
+          width: 100% !important;
+          margin-right: 0 !important;
+        }
+      }
+    }
+
+    .page-content {
+      .mindmap-panel {
+        flex: none;
+        min-width: unset;
+
+        /* 内部导图容器桌面端 min-height:500px，手机端强制贴合面板，避免被裁 */
+        :deep(.mindmap-container) {
+          height: 100%;
+          min-height: 0;
+          max-height: none;
+        }
+      }
+
+      .knowledge-panel {
+        max-width: none;
+
+        /* 展开态桌面端 min-width:600px，手机端会横向溢出，重置 */
+        &.expanded {
+          min-width: unset;
+          max-width: none;
+        }
       }
     }
   }
