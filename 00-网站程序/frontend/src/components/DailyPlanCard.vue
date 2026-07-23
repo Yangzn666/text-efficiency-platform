@@ -466,4 +466,30 @@ const getTimeColor = (time: string) => {
   color: #999;
   margin: 0;
 }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .card-header {
+    padding: 18px 16px;
+  }
+
+  .header-content {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .card-title {
+    font-size: 1.15em;
+    min-width: 0;
+  }
+
+  .date-btn {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+
+  .card-footer {
+    padding: 16px;
+  }
+}
 </style>

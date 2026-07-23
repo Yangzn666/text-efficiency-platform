@@ -468,6 +468,7 @@ onMounted(() => {
 .weekday {
   padding: 12px 0;
   font-size: 1.1em;
+  min-width: 0;
 }
 
 .calendar-grid {
@@ -486,6 +487,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   border: 2px solid transparent;
+  min-width: 0;
 }
 
 .calendar-day:hover {
@@ -691,30 +693,45 @@ onMounted(() => {
 /* 响应式设计 */
 @media (max-width: 768px) {
   .calendar-container {
-    padding: 20px 15px;
-    margin: 0 15px;
+    padding: 16px 12px;
+    margin: 0;
   }
-  
+
   .calendar-header {
     margin-bottom: 20px;
   }
-  
+
   .calendar-title h3 {
     font-size: 1.5em;
   }
-  
+
   .weekdays {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
-  
+
+  .weekday {
+    padding: 8px 0;
+  }
+
   .day-number {
-    font-size: 1em;
+    font-size: 0.85em;
+    margin-bottom: 3px;
   }
-  
+
   .calendar-grid {
-    gap: 5px;
+    gap: 4px;
   }
-  
+
+  .calendar-day {
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  .todo-dot {
+    width: 5px;
+    height: 5px;
+  }
+
   .todo-dialog {
     width: 95% !important;
   }

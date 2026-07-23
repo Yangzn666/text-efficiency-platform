@@ -801,6 +801,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
 /* 右侧栏 */
@@ -808,6 +809,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
 }
 
 .primary-card, .secondary-card {
