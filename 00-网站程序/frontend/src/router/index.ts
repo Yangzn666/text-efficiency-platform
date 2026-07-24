@@ -11,10 +11,9 @@ const OSLearningView = () => import('@/views/OSLearning.vue')
 const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
 const MathView = () => import('@/views/MathView.vue')
-// 数学强化阶段组件
+// 数学一仪表盘 + 速查卡片页
 const ReinforcementDashboard = () => import('@/components/ReinforcementDashboard.vue')
-const TopicReinforcementView = () => import('@/components/TopicReinforcementView.vue')
-const SpecialTrainingCenter = () => import('@/components/SpecialTrainingCenter.vue')
+const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
@@ -22,6 +21,8 @@ const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
 // 翻译模块（合并为单页标签）
 const TranslationView = () => import('@/views/TranslationView.vue')
+// 技能树（数学题型掌握度可视化）
+const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -121,33 +122,11 @@ const router = createRouter({
       component: MathView,
       meta: { requiresAuth: true }
     },
-    // 数学强化阶段路由
     {
-      path: '/math/reinforcement/topics',
-      name: 'math-reinforcement-topics',
-      component: TopicReinforcementView,
-      meta: { 
-        requiresAuth: true,
-        title: '知识点强化管理'
-      }
-    },
-    {
-      path: '/math/reinforcement/topics/:id',
-      name: 'math-reinforcement-topic-detail',
-      component: TopicReinforcementView,
-      meta: { 
-        requiresAuth: true,
-        title: '知识点详情'
-      }
-    },
-    {
-      path: '/math/reinforcement/special-training',
-      name: 'math-reinforcement-special-training',
-      component: SpecialTrainingCenter,
-      meta: { 
-        requiresAuth: true,
-        title: '专题突破中心'
-      }
+      path: '/math/quickcards',
+      name: 'math-quickcards',
+      component: MathQuickCardsView,
+      meta: { requiresAuth: true, title: '速查卡片' }
     },
     {
       path: '/english',
@@ -185,6 +164,13 @@ const router = createRouter({
       name: 'translation',
       component: TranslationView,
       meta: { requiresAuth: true, title: '翻译学习模块' }
+    },
+    // 技能树（数学题型掌握度可视化，数据来自费曼复习题库）
+    {
+      path: '/skilltree',
+      name: 'skilltree',
+      component: SkillTreeView,
+      meta: { requiresAuth: true, title: '技能树' }
     }
   ]
 })

@@ -1,0 +1,277 @@
+// 408 计算机学科专业基础 · 考频数据
+// 数据来源: codebrick.tech 考频地图 (2009-2026 共18年408真题, 846道题, 总分3792分)
+// 由脚本自动生成, 请勿手动修改
+
+export type FreqLevel = 'high' | 'mid' | 'low' | 'cold'
+
+export interface ExamFreqPoint {
+  lv: FreqLevel
+  name: string
+  code: string
+  q: number      // 题量
+  score: number  // 分值
+  yrs: number    // 考察年数
+  years: string[]
+}
+
+export interface FreqLevelMeta {
+  label: string
+  color: string
+  desc: string
+}
+
+export const FREQ_LEVELS: Record<FreqLevel, FreqLevelMeta> = {
+  high: { label: '高频', color: '#f56c6c', desc: '考察≥10年 · 占分49% · 必须吃透' },
+  mid:  { label: '中频', color: '#e6a23c', desc: '考察5-9年 · 占分38% · 重点掌握' },
+  low:  { label: '低频', color: '#409eff', desc: '考察2-4年 · 占分11% · 熟悉即可' },
+  cold: { label: '冷门', color: '#909399', desc: '考察≤1年 · 略读了解' },
+}
+
+export interface ModuleInfo {
+  sub: string
+  subKey: string
+  chapter: number
+  chapterTitle: string
+}
+
+export const MODULE_MAP: Record<string, ModuleInfo> = {
+  'ds-intro': { sub: '数据结构', subKey: 'ds', chapter: 1, chapterTitle: '绪论' },
+  'ds-list': { sub: '数据结构', subKey: 'ds', chapter: 2, chapterTitle: '线性表' },
+  'ds-stack': { sub: '数据结构', subKey: 'ds', chapter: 3, chapterTitle: '栈和队列' },
+  'ds-string': { sub: '数据结构', subKey: 'ds', chapter: 4, chapterTitle: '串、数组和广义表' },
+  'ds-tree': { sub: '数据结构', subKey: 'ds', chapter: 5, chapterTitle: '树和二叉树' },
+  'ds-graph': { sub: '数据结构', subKey: 'ds', chapter: 6, chapterTitle: '图' },
+  'ds-search': { sub: '数据结构', subKey: 'ds', chapter: 7, chapterTitle: '查找' },
+  'ds-sort': { sub: '数据结构', subKey: 'ds', chapter: 8, chapterTitle: '排序' },
+  'co-intro': { sub: '计算机组成原理', subKey: 'co', chapter: 1, chapterTitle: '计算机系统概述' },
+  'co-data': { sub: '计算机组成原理', subKey: 'co', chapter: 2, chapterTitle: '数据的表示和运算' },
+  'co-storage': { sub: '计算机组成原理', subKey: 'co', chapter: 3, chapterTitle: '存储系统' },
+  'co-instruction': { sub: '计算机组成原理', subKey: 'co', chapter: 4, chapterTitle: '指令系统' },
+  'co-cpu': { sub: '计算机组成原理', subKey: 'co', chapter: 5, chapterTitle: '中央处理器' },
+  'co-bus': { sub: '计算机组成原理', subKey: 'co', chapter: 6, chapterTitle: '总线' },
+  'co-io': { sub: '计算机组成原理', subKey: 'co', chapter: 7, chapterTitle: '输入输出系统' },
+  'os-intro': { sub: '操作系统', subKey: 'os', chapter: 1, chapterTitle: '计算机系统概述' },
+  'os-process': { sub: '操作系统', subKey: 'os', chapter: 2, chapterTitle: '进程与线程' },
+  'os-memory': { sub: '操作系统', subKey: 'os', chapter: 3, chapterTitle: '内存管理' },
+  'os-file': { sub: '操作系统', subKey: 'os', chapter: 4, chapterTitle: '文件管理' },
+  'os-io': { sub: '操作系统', subKey: 'os', chapter: 5, chapterTitle: '输入/输出管理' },
+  'cn-intro': { sub: '计算机网络', subKey: 'cn', chapter: 1, chapterTitle: '计算机网络体系结构' },
+  'cn-physical': { sub: '计算机网络', subKey: 'cn', chapter: 2, chapterTitle: '物理层' },
+  'cn-datalink': { sub: '计算机网络', subKey: 'cn', chapter: 3, chapterTitle: '数据链路层' },
+  'cn-network': { sub: '计算机网络', subKey: 'cn', chapter: 4, chapterTitle: '网络层' },
+  'cn-transport': { sub: '计算机网络', subKey: 'cn', chapter: 5, chapterTitle: '传输层' },
+  'cn-application': { sub: '计算机网络', subKey: 'cn', chapter: 6, chapterTitle: '应用层' },
+}
+
+export const SUBJECTS = [
+  { key: 'ds', label: '数据结构' },
+  { key: 'co', label: '计算机组成原理' },
+  { key: 'os', label: '操作系统' },
+  { key: 'cn', label: '计算机网络' },
+]
+
+export const examFreqPoints: ExamFreqPoint[] = [
+  { lv: 'high', name: 'Cache 映射方式', code: 'co-storage', q: 25, score: 142, yrs: 17, years: ['2026','2025','2024','2023','2022','2021','2020','2019','2018','2016','2015','2014','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: '定点数编码（原/反/补/移）', code: 'co-data', q: 20, score: 49, yrs: 17, years: ['2026','2025','2024','2023','2022','2021','2020','2019','2018','2016','2015','2014','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: '文件基本概念', code: 'os-file', q: 27, score: 89, yrs: 16, years: ['2026','2025','2024','2023','2022','2021','2020','2018','2017','2016','2015','2014','2013','2012','2010','2009'] },
+  { lv: 'high', name: '总线基本概念与组成', code: 'co-bus', q: 18, score: 36, yrs: 15, years: ['2025','2024','2023','2021','2020','2019','2018','2017','2016','2014','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: 'CPU 调度基本概念', code: 'os-process', q: 17, score: 43, yrs: 15, years: ['2026','2025','2023','2022','2021','2020','2018','2017','2016','2015','2014','2013','2012','2010','2009'] },
+  { lv: 'high', name: '主存与 CPU 连接', code: 'co-storage', q: 17, score: 52, yrs: 15, years: ['2026','2025','2024','2023','2022','2021','2020','2017','2016','2015','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: 'IEEE754 浮点表示', code: 'co-data', q: 15, score: 41, yrs: 15, years: ['2026','2025','2024','2023','2022','2021','2020','2018','2017','2014','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: '子网划分 / 子网掩码 / CIDR / NAT', code: 'cn-network', q: 21, score: 82, yrs: 14, years: ['2026','2025','2023','2022','2021','2020','2019','2018','2017','2016','2014','2012','2011','2010'] },
+  { lv: 'high', name: 'CPU 基础（结构+取指执行+数据通路）', code: 'co-cpu', q: 20, score: 87, yrs: 14, years: ['2026','2025','2023','2022','2021','2020','2019','2018','2017','2016','2015','2011','2010','2009'] },
+  { lv: 'high', name: '图基本概念', code: 'ds-graph', q: 19, score: 95, yrs: 14, years: ['2026','2025','2024','2023','2022','2021','2019','2017','2016','2015','2014','2013','2010','2009'] },
+  { lv: 'high', name: '进程与线程基本概念', code: 'os-process', q: 19, score: 49, yrs: 14, years: ['2026','2025','2024','2021','2020','2019','2018','2016','2015','2014','2012','2011','2010','2009'] },
+  { lv: 'high', name: '哈夫曼树与编码', code: 'ds-tree', q: 14, score: 44, yrs: 14, years: ['2026','2025','2023','2022','2021','2020','2019','2018','2017','2015','2014','2013','2012','2010'] },
+  { lv: 'high', name: '随机访问 MAC', code: 'cn-datalink', q: 14, score: 42, yrs: 14, years: ['2026','2025','2024','2023','2022','2020','2019','2018','2016','2015','2013','2011','2010','2009'] },
+  { lv: 'high', name: '二叉树基础（性质+存储）', code: 'ds-tree', q: 21, score: 42, yrs: 13, years: ['2026','2025','2024','2023','2022','2020','2019','2018','2017','2015','2011','2010','2009'] },
+  { lv: 'high', name: '同步与互斥基本概念', code: 'os-process', q: 18, score: 88, yrs: 13, years: ['2026','2025','2024','2023','2022','2021','2020','2018','2017','2016','2015','2011','2010'] },
+  { lv: 'high', name: 'TCP 连接管理', code: 'cn-transport', q: 16, score: 60, yrs: 13, years: ['2026','2025','2024','2023','2022','2021','2020','2019','2017','2016','2015','2012','2011'] },
+  { lv: 'high', name: '虚拟存储器（计组视角）', code: 'co-storage', q: 15, score: 88, yrs: 13, years: ['2026','2024','2022','2021','2020','2019','2018','2016','2015','2014','2013','2011','2010'] },
+  { lv: 'high', name: '指令流水线', code: 'co-cpu', q: 13, score: 48, yrs: 13, years: ['2024','2023','2020','2019','2018','2017','2016','2014','2013','2012','2011','2010','2009'] },
+  { lv: 'high', name: '异常与中断（计组视角）', code: 'co-cpu', q: 21, score: 59, yrs: 12, years: ['2026','2025','2023','2021','2020','2019','2016','2015','2012','2011','2010','2009'] },
+  { lv: 'high', name: '页式管理', code: 'os-memory', q: 15, score: 62, yrs: 12, years: ['2026','2024','2021','2020','2019','2018','2017','2015','2014','2013','2011','2010'] },
+  { lv: 'high', name: '寻址方式', code: 'co-instruction', q: 14, score: 69, yrs: 12, years: ['2023','2021','2020','2019','2018','2017','2016','2014','2013','2011','2010','2009'] },
+  { lv: 'high', name: 'I/O 控制方式', code: 'os-io', q: 14, score: 34, yrs: 12, years: ['2026','2024','2023','2022','2020','2018','2017','2015','2012','2011','2010','2009'] },
+  { lv: 'high', name: '死锁', code: 'os-process', q: 13, score: 32, yrs: 12, years: ['2022','2021','2020','2019','2018','2016','2015','2014','2013','2012','2011','2009'] },
+  { lv: 'high', name: 'CPU 调度算法', code: 'os-process', q: 12, score: 28, yrs: 12, years: ['2025','2024','2021','2020','2019','2017','2016','2014','2013','2011','2010','2009'] },
+  { lv: 'high', name: '计算机性能指标', code: 'co-intro', q: 12, score: 32, yrs: 12, years: ['2025','2023','2022','2021','2019','2017','2015','2014','2013','2012','2011','2010'] },
+  { lv: 'high', name: '信号量', code: 'os-process', q: 12, score: 75, yrs: 12, years: ['2026','2022','2021','2020','2019','2018','2017','2015','2014','2013','2010','2009'] },
+  { lv: 'high', name: '栈的应用', code: 'ds-stack', q: 12, score: 32, yrs: 12, years: ['2026','2025','2024','2020','2018','2017','2015','2014','2013','2012','2010','2009'] },
+  { lv: 'high', name: '网络分层与参考模型', code: 'cn-intro', q: 12, score: 24, yrs: 11, years: ['2022','2021','2020','2019','2017','2016','2014','2013','2011','2010','2009'] },
+  { lv: 'high', name: 'B 树', code: 'ds-search', q: 11, score: 22, yrs: 11, years: ['2025','2023','2022','2021','2020','2018','2016','2014','2013','2012','2009'] },
+  { lv: 'high', name: '指令格式', code: 'co-instruction', q: 12, score: 86, yrs: 10, years: ['2026','2025','2024','2022','2021','2017','2015','2014','2013','2010'] },
+  { lv: 'high', name: 'I/O 软件层次结构', code: 'os-io', q: 11, score: 33, yrs: 10, years: ['2026','2023','2022','2020','2019','2015','2013','2012','2011','2009'] },
+  { lv: 'high', name: 'DMA 方式', code: 'co-io', q: 10, score: 38, yrs: 10, years: ['2025','2024','2023','2022','2020','2019','2018','2015','2013','2009'] },
+  { lv: 'high', name: '程序中断方式', code: 'co-io', q: 10, score: 20, yrs: 10, years: ['2025','2024','2023','2022','2021','2018','2017','2015','2014','2013'] },
+  { lv: 'high', name: '页面置换算法', code: 'os-memory', q: 10, score: 31, yrs: 10, years: ['2025','2022','2021','2019','2016','2015','2014','2013','2012','2010'] },
+  { lv: 'mid', name: '树与森林', code: 'ds-tree', q: 11, score: 60, yrs: 9, years: ['2026','2022','2021','2020','2017','2016','2014','2010','2009'] },
+  { lv: 'mid', name: '整数加减运算', code: 'co-data', q: 10, score: 54, yrs: 9, years: ['2025','2023','2020','2019','2018','2014','2013','2011','2010'] },
+  { lv: 'mid', name: '拓扑排序', code: 'ds-graph', q: 10, score: 39, yrs: 9, years: ['2025','2024','2021','2020','2018','2016','2012','2011','2010'] },
+  { lv: 'mid', name: '平衡二叉树（AVL）', code: 'ds-search', q: 9, score: 18, yrs: 9, years: ['2026','2021','2019','2017','2015','2013','2012','2010','2009'] },
+  { lv: 'mid', name: '通信基础', code: 'cn-physical', q: 9, score: 18, yrs: 9, years: ['2026','2023','2022','2021','2016','2013','2012','2011','2009'] },
+  { lv: 'mid', name: '进程间通信', code: 'os-process', q: 9, score: 40, yrs: 9, years: ['2026','2023','2021','2020','2018','2015','2014','2013','2010'] },
+  { lv: 'mid', name: '网络层功能', code: 'cn-network', q: 9, score: 25, yrs: 9, years: ['2026','2022','2021','2020','2015','2012','2011','2010','2009'] },
+  { lv: 'mid', name: '进程状态与转换', code: 'os-process', q: 9, score: 18, yrs: 9, years: ['2026','2025','2023','2022','2019','2018','2015','2014','2010'] },
+  { lv: 'mid', name: 'IPv4 分组与地址', code: 'cn-network', q: 11, score: 34, yrs: 8, years: ['2023','2022','2021','2019','2018','2017','2011','2010'] },
+  { lv: 'mid', name: '半导体存储器（SRAM/DRAM/Flash）', code: 'co-storage', q: 9, score: 18, yrs: 8, years: ['2022','2020','2018','2015','2014','2012','2011','2010'] },
+  { lv: 'mid', name: '顺序表', code: 'ds-list', q: 9, score: 86, yrs: 8, years: ['2026','2025','2023','2020','2018','2013','2011','2010'] },
+  { lv: 'mid', name: '文件物理结构', code: 'os-file', q: 8, score: 35, yrs: 8, years: ['2020','2016','2015','2014','2013','2012','2010','2009'] },
+  { lv: 'mid', name: '页框分配与回收', code: 'os-memory', q: 8, score: 21, yrs: 8, years: ['2026','2025','2023','2022','2016','2015','2012','2011'] },
+  { lv: 'mid', name: '路由协议（RIP/OSPF/BGP）', code: 'cn-network', q: 8, score: 37, yrs: 8, years: ['2026','2024','2021','2017','2016','2014','2013','2010'] },
+  { lv: 'mid', name: '单链表', code: 'ds-list', q: 8, score: 63, yrs: 8, years: ['2024','2019','2017','2016','2015','2013','2012','2009'] },
+  { lv: 'mid', name: '系统调用', code: 'os-intro', q: 8, score: 16, yrs: 8, years: ['2023','2022','2021','2019','2017','2013','2012','2010'] },
+  { lv: 'mid', name: '二叉搜索树', code: 'ds-search', q: 8, score: 46, yrs: 7, years: ['2026','2024','2022','2020','2018','2013','2011'] },
+  { lv: 'mid', name: '折半/二分查找', code: 'ds-search', q: 7, score: 27, yrs: 7, years: ['2024','2023','2017','2016','2015','2011','2010'] },
+  { lv: 'mid', name: '时间空间复杂度分析', code: 'ds-intro', q: 7, score: 14, yrs: 7, years: ['2025','2022','2019','2017','2014','2012','2011'] },
+  { lv: 'mid', name: '计算机系统层次结构', code: 'co-intro', q: 7, score: 14, yrs: 7, years: ['2026','2022','2019','2018','2016','2015','2009'] },
+  { lv: 'mid', name: '磁盘调度', code: 'os-io', q: 7, score: 24, yrs: 7, years: ['2024','2021','2019','2018','2015','2010','2009'] },
+  { lv: 'mid', name: '堆', code: 'ds-tree', q: 7, score: 22, yrs: 7, years: ['2024','2022','2021','2020','2015','2011','2009'] },
+  { lv: 'mid', name: '直接插入排序', code: 'ds-sort', q: 7, score: 14, yrs: 7, years: ['2026','2022','2020','2017','2015','2012','2009'] },
+  { lv: 'mid', name: '内存管理基础', code: 'os-memory', q: 7, score: 20, yrs: 7, years: ['2023','2021','2019','2018','2014','2011','2009'] },
+  { lv: 'mid', name: '奈奎斯特与香农定理', code: 'cn-physical', q: 7, score: 14, yrs: 7, years: ['2026','2023','2022','2017','2016','2014','2009'] },
+  { lv: 'mid', name: '后序遍历', code: 'ds-tree', q: 7, score: 14, yrs: 7, years: ['2026','2023','2020','2017','2012','2011','2010'] },
+  { lv: 'mid', name: '快速排序', code: 'ds-sort', q: 7, score: 14, yrs: 7, years: ['2024','2023','2022','2019','2014','2011','2010'] },
+  { lv: 'mid', name: '各查找算法比较', code: 'ds-search', q: 7, score: 22, yrs: 7, years: ['2025','2023','2022','2019','2018','2014','2013'] },
+  { lv: 'mid', name: '以太网交换机', code: 'cn-datalink', q: 7, score: 14, yrs: 7, years: ['2026','2020','2016','2015','2014','2013','2009'] },
+  { lv: 'mid', name: 'TCP 拥塞控制', code: 'cn-transport', q: 7, score: 14, yrs: 7, years: ['2025','2022','2020','2017','2015','2014','2009'] },
+  { lv: 'mid', name: '无线局域网', code: 'cn-datalink', q: 7, score: 21, yrs: 7, years: ['2026','2024','2022','2020','2018','2017','2011'] },
+  { lv: 'mid', name: 'ARP / DHCP / ICMP', code: 'cn-network', q: 7, score: 28, yrs: 6, years: ['2025','2017','2015','2012','2011','2010'] },
+  { lv: 'mid', name: 'Cache 写策略', code: 'co-storage', q: 7, score: 45, yrs: 6, years: ['2024','2021','2020','2018','2015','2010'] },
+  { lv: 'mid', name: '目录管理', code: 'os-file', q: 7, score: 25, yrs: 6, years: ['2017','2013','2012','2011','2010','2009'] },
+  { lv: 'mid', name: '以太网 / IEEE802.3', code: 'cn-datalink', q: 7, score: 14, yrs: 6, years: ['2026','2024','2018','2013','2012','2009'] },
+  { lv: 'mid', name: '关键路径', code: 'ds-graph', q: 6, score: 26, yrs: 6, years: ['2025','2022','2020','2019','2013','2011'] },
+  { lv: 'mid', name: '电子邮件', code: 'cn-application', q: 6, score: 12, yrs: 6, years: ['2025','2018','2015','2014','2013','2012'] },
+  { lv: 'mid', name: '散列表-开放定址', code: 'ds-search', q: 6, score: 28, yrs: 6, years: ['2025','2024','2023','2018','2011','2010'] },
+  { lv: 'mid', name: '中断与异常（OS 视角）', code: 'os-intro', q: 6, score: 12, yrs: 6, years: ['2024','2022','2016','2015','2014','2013'] },
+  { lv: 'mid', name: '归并排序', code: 'ds-sort', q: 6, score: 20, yrs: 6, years: ['2026','2024','2022','2017','2016','2012'] },
+  { lv: 'mid', name: '队列', code: 'ds-stack', q: 6, score: 20, yrs: 6, years: ['2019','2018','2016','2014','2011','2009'] },
+  { lv: 'mid', name: '虚拟内存（OS 视角）', code: 'os-memory', q: 6, score: 23, yrs: 6, years: ['2026','2023','2022','2020','2012','2009'] },
+  { lv: 'mid', name: '邻接矩阵', code: 'ds-graph', q: 6, score: 48, yrs: 5, years: ['2023','2021','2015','2012','2011'] },
+  { lv: 'mid', name: '邻接表', code: 'ds-graph', q: 5, score: 18, yrs: 5, years: ['2026','2016','2014','2012','2011'] },
+  { lv: 'mid', name: '连续分配', code: 'os-memory', q: 5, score: 10, yrs: 5, years: ['2024','2019','2017','2012','2010'] },
+  { lv: 'mid', name: '控制器', code: 'co-cpu', q: 5, score: 10, yrs: 5, years: ['2024','2017','2014','2012','2009'] },
+  { lv: 'mid', name: 'Dijkstra 最短路径', code: 'ds-graph', q: 5, score: 26, yrs: 5, years: ['2021','2016','2014','2012','2009'] },
+  { lv: 'mid', name: 'DNS 系统', code: 'cn-application', q: 5, score: 17, yrs: 5, years: ['2021','2020','2018','2016','2010'] },
+  { lv: 'mid', name: '流量控制与可靠传输', code: 'cn-datalink', q: 5, score: 10, yrs: 5, years: ['2019','2015','2014','2012','2009'] },
+  { lv: 'mid', name: '后退 N 帧（GBN）', code: 'cn-datalink', q: 5, score: 17, yrs: 5, years: ['2023','2017','2014','2012','2009'] },
+  { lv: 'mid', name: 'I/O 接口', code: 'co-io', q: 5, score: 10, yrs: 5, years: ['2021','2017','2015','2014','2012'] },
+  { lv: 'mid', name: 'Kruskal 最小生成树', code: 'ds-graph', q: 5, score: 20, yrs: 5, years: ['2023','2020','2018','2015','2012'] },
+  { lv: 'mid', name: '网络性能指标', code: 'cn-intro', q: 5, score: 10, yrs: 5, years: ['2025','2024','2023','2013','2010'] },
+  { lv: 'mid', name: '前序遍历', code: 'ds-tree', q: 5, score: 21, yrs: 5, years: ['2023','2017','2014','2012','2011'] },
+  { lv: 'mid', name: 'Prim 最小生成树', code: 'ds-graph', q: 5, score: 26, yrs: 5, years: ['2023','2018','2017','2015','2012'] },
+  { lv: 'mid', name: '希尔排序', code: 'ds-sort', q: 5, score: 10, yrs: 5, years: ['2025','2023','2018','2015','2014'] },
+  { lv: 'mid', name: '各排序算法比较', code: 'ds-sort', q: 5, score: 16, yrs: 5, years: ['2023','2022','2021','2019','2012'] },
+  { lv: 'mid', name: '特殊矩阵压缩存储', code: 'ds-stack', q: 5, score: 10, yrs: 5, years: ['2023','2020','2018','2017','2016'] },
+  { lv: 'mid', name: '选择重传（SR）', code: 'cn-datalink', q: 5, score: 10, yrs: 5, years: ['2024','2023','2019','2011','2009'] },
+  { lv: 'mid', name: 'TCP 可靠传输', code: 'cn-transport', q: 5, score: 10, yrs: 5, years: ['2021','2019','2013','2011','2009'] },
+  { lv: 'mid', name: '由遍历序列构造二叉树', code: 'ds-tree', q: 5, score: 10, yrs: 5, years: ['2026','2021','2020','2012','2011'] },
+  { lv: 'mid', name: 'WWW 与 HTTP', code: 'cn-application', q: 5, score: 10, yrs: 5, years: ['2026','2024','2022','2015','2014'] },
+  { lv: 'low', name: '操作系统概念与发展', code: 'os-intro', q: 5, score: 10, yrs: 4, years: ['2022','2018','2017','2016'] },
+  { lv: 'low', name: '广度优先搜索', code: 'ds-graph', q: 4, score: 8, yrs: 4, years: ['2025','2023','2013','2012'] },
+  { lv: 'low', name: 'B+ 树', code: 'ds-search', q: 4, score: 8, yrs: 4, years: ['2023','2017','2016','2009'] },
+  { lv: 'low', name: 'CISC 与 RISC', code: 'co-instruction', q: 4, score: 27, yrs: 4, years: ['2025','2024','2017','2009'] },
+  { lv: 'low', name: 'CPU 运行模式', code: 'os-intro', q: 4, score: 8, yrs: 4, years: ['2022','2021','2014','2011'] },
+  { lv: 'low', name: '编码与调制', code: 'cn-physical', q: 4, score: 8, yrs: 4, years: ['2024','2021','2015','2013'] },
+  { lv: 'low', name: '外部排序', code: 'ds-sort', q: 4, score: 16, yrs: 4, years: ['2024','2023','2019','2016'] },
+  { lv: 'low', name: '文件系统全局结构', code: 'os-file', q: 4, score: 21, yrs: 4, years: ['2025','2021','2019','2016'] },
+  { lv: 'low', name: '磁盘存储器', code: 'co-storage', q: 4, score: 14, yrs: 4, years: ['2022','2019','2015','2013'] },
+  { lv: 'low', name: '多维数组存储', code: 'ds-stack', q: 4, score: 8, yrs: 4, years: ['2021','2020','2018','2016'] },
+  { lv: 'low', name: '基数排序', code: 'ds-sort', q: 4, score: 8, yrs: 4, years: ['2026','2021','2015','2013'] },
+  { lv: 'low', name: 'TCP 流量控制', code: 'cn-transport', q: 4, score: 8, yrs: 4, years: ['2025','2017','2015','2010'] },
+  { lv: 'low', name: '线索二叉树', code: 'ds-tree', q: 4, score: 8, yrs: 4, years: ['2024','2014','2013','2010'] },
+  { lv: 'low', name: 'UDP 协议', code: 'cn-transport', q: 4, score: 8, yrs: 4, years: ['2025','2024','2021','2014'] },
+  { lv: 'low', name: '中序遍历', code: 'ds-tree', q: 5, score: 34, yrs: 3, years: ['2024','2022','2017'] },
+  { lv: 'low', name: '缓冲区管理', code: 'os-io', q: 3, score: 6, yrs: 3, years: ['2015','2013','2011'] },
+  { lv: 'low', name: '循环链表', code: 'ds-list', q: 3, score: 14, yrs: 3, years: ['2021','2019','2016'] },
+  { lv: 'low', name: '经典同步问题', code: 'os-process', q: 3, score: 23, yrs: 3, years: ['2019','2014','2009'] },
+  { lv: 'low', name: '上下文切换', code: 'os-process', q: 3, score: 6, yrs: 3, years: ['2025','2024','2012'] },
+  { lv: 'low', name: '浮点数运算', code: 'co-data', q: 3, score: 6, yrs: 3, years: ['2026','2015','2009'] },
+  { lv: 'low', name: '外存空闲空间管理', code: 'os-file', q: 3, score: 6, yrs: 3, years: ['2024','2015','2014'] },
+  { lv: 'low', name: 'KMP 算法', code: 'ds-string', q: 3, score: 6, yrs: 3, years: ['2024','2019','2015'] },
+  { lv: 'low', name: '整数乘除运算', code: 'co-data', q: 3, score: 24, yrs: 3, years: ['2025','2024','2020'] },
+  { lv: 'low', name: '操作系统引导', code: 'os-intro', q: 3, score: 12, yrs: 3, years: ['2022','2021','2013'] },
+  { lv: 'low', name: '程序查询方式', code: 'co-io', q: 3, score: 12, yrs: 3, years: ['2023','2018','2011'] },
+  { lv: 'low', name: '路由器组成与功能', code: 'cn-network', q: 3, score: 13, yrs: 3, years: ['2022','2014','2010'] },
+  { lv: 'low', name: '路由算法', code: 'cn-network', q: 3, score: 6, yrs: 3, years: ['2021','2016','2010'] },
+  { lv: 'low', name: '段式管理', code: 'os-memory', q: 3, score: 6, yrs: 3, years: ['2019','2016','2009'] },
+  { lv: 'low', name: '顺序查找', code: 'ds-search', q: 3, score: 14, yrs: 3, years: ['2025','2016','2013'] },
+  { lv: 'low', name: '顺序栈', code: 'ds-stack', q: 3, score: 6, yrs: 3, years: ['2022','2018','2011'] },
+  { lv: 'low', name: '停止-等待协议', code: 'cn-datalink', q: 3, score: 6, yrs: 3, years: ['2023','2020','2018'] },
+  { lv: 'low', name: '深度优先搜索', code: 'ds-graph', q: 2, score: 4, yrs: 2, years: ['2016','2015'] },
+  { lv: 'low', name: '双端队列', code: 'ds-stack', q: 2, score: 4, yrs: 2, years: ['2021','2010'] },
+  { lv: 'low', name: '双链表', code: 'ds-list', q: 2, score: 4, yrs: 2, years: ['2026','2023'] },
+  { lv: 'low', name: '差错控制（链路层）', code: 'cn-datalink', q: 2, score: 4, yrs: 2, years: ['2025','2023'] },
+  { lv: 'low', name: '森林与二叉树的转换', code: 'ds-tree', q: 2, score: 4, yrs: 2, years: ['2021','2020'] },
+  { lv: 'low', name: 'FTP 协议', code: 'cn-application', q: 2, score: 4, yrs: 2, years: ['2017','2009'] },
+  { lv: 'low', name: '散列表-拉链法', code: 'ds-search', q: 2, score: 17, yrs: 2, years: ['2015','2011'] },
+  { lv: 'low', name: '堆排序', code: 'ds-sort', q: 2, score: 4, yrs: 2, years: ['2023','2018'] },
+  { lv: 'low', name: '内存映射文件', code: 'os-memory', q: 2, score: 4, yrs: 2, years: ['2026','2025'] },
+  { lv: 'low', name: '管程与条件变量', code: 'os-process', q: 2, score: 4, yrs: 2, years: ['2018','2016'] },
+  { lv: 'low', name: '简单选择排序', code: 'ds-sort', q: 2, score: 4, yrs: 2, years: ['2025','2020'] },
+  { lv: 'low', name: '传输层功能', code: 'cn-transport', q: 2, score: 4, yrs: 2, years: ['2018','2014'] },
+  { lv: 'low', name: 'VLAN', code: 'cn-datalink', q: 2, score: 4, yrs: 2, years: ['2026','2024'] },
+  { lv: 'cold', name: '校验码', code: 'co-data', q: 2, score: 4, yrs: 1, years: ['2013'] },
+  { lv: 'cold', name: '网络应用模型', code: 'cn-application', q: 1, score: 2, yrs: 1, years: ['2019'] },
+  { lv: 'cold', name: '分块查找', code: 'ds-search', q: 1, score: 2, yrs: 1, years: ['2025'] },
+  { lv: 'cold', name: '冒泡排序', code: 'ds-sort', q: 1, score: 2, yrs: 1, years: ['2010'] },
+  { lv: 'cold', name: '总线定时', code: 'co-bus', q: 1, score: 2, yrs: 1, years: ['2015'] },
+  { lv: 'cold', name: '循环队列', code: 'ds-stack', q: 1, score: 2, yrs: 1, years: ['2011'] },
+  { lv: 'cold', name: '拥塞控制（网络层视角）', code: 'cn-network', q: 1, score: 2, yrs: 1, years: ['2010'] },
+  { lv: 'cold', name: '邻接多重表/十字链表', code: 'ds-graph', q: 1, score: 2, yrs: 1, years: ['2024'] },
+  { lv: 'cold', name: '数据链路层功能与组帧', code: 'cn-datalink', q: 1, score: 2, yrs: 1, years: ['2013'] },
+  { lv: 'cold', name: 'I/O 设备分类与接口', code: 'os-io', q: 1, score: 2, yrs: 1, years: ['2026'] },
+  { lv: 'cold', name: 'IPv6', code: 'cn-network', q: 1, score: 2, yrs: 1, years: ['2023'] },
+  { lv: 'cold', name: '层序遍历', code: 'ds-tree', q: 1, score: 2, yrs: 1, years: ['2026'] },
+  { lv: 'cold', name: '程序链接与装入', code: 'os-intro', q: 1, score: 2, yrs: 1, years: ['2026'] },
+  { lv: 'cold', name: '信道划分 MAC', code: 'cn-datalink', q: 1, score: 2, yrs: 1, years: ['2014'] },
+  { lv: 'cold', name: '存储器层次结构', code: 'co-storage', q: 1, score: 2, yrs: 1, years: ['2017'] },
+  { lv: 'cold', name: '多处理器基本概念', code: 'co-cpu', q: 1, score: 2, yrs: 1, years: ['2022'] },
+  { lv: 'cold', name: '网络概念组成与功能', code: 'cn-intro', q: 1, score: 2, yrs: 1, years: ['2026'] },
+  { lv: 'cold', name: 'OS 结构', code: 'os-intro', q: 1, score: 2, yrs: 1, years: ['2023'] },
+  { lv: 'cold', name: '排序通论', code: 'ds-sort', q: 1, score: 15, yrs: 1, years: ['2016'] },
+  { lv: 'cold', name: '假脱机 SPOOL', code: 'os-io', q: 1, score: 2, yrs: 1, years: ['2016'] },
+  { lv: 'cold', name: '线程实现', code: 'os-process', q: 1, score: 2, yrs: 1, years: ['2019'] },
+  { lv: 'cold', name: '传输介质', code: 'cn-physical', q: 1, score: 2, yrs: 1, years: ['2019'] },
+  { lv: 'cold', name: '树和森林的遍历', code: 'ds-tree', q: 1, score: 2, yrs: 1, years: ['2009'] },
+  { lv: 'cold', name: '虚拟文件系统与挂载', code: 'os-file', q: 1, score: 2, yrs: 1, years: ['2025'] },
+  { lv: 'cold', name: '虚拟机', code: 'os-intro', q: 1, score: 2, yrs: 1, years: ['2025'] },
+  { lv: 'cold', name: '算法基本概念', code: 'ds-intro', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '折半插入排序', code: 'ds-sort', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '总线仲裁', code: 'co-bus', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '数据结构基本概念', code: 'ds-intro', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '文件逻辑结构', code: 'os-file', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: 'Floyd 最短路径', code: 'ds-graph', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '高级语言到机器级代码', code: 'co-instruction', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: 'IP 组播', code: 'cn-network', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '链栈', code: 'ds-stack', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '轮询访问 / 令牌', code: 'cn-datalink', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '移动 IP', code: 'cn-network', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '网络分类', code: 'cn-intro', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '进位计数制与转换', code: 'co-data', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '物理层设备', code: 'cn-physical', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '队列的应用', code: 'ds-stack', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '红黑树', code: 'ds-search', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '段页式管理', code: 'os-memory', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '固态硬盘 SSD（计组视角）', code: 'co-storage', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: 'SSD 读写特性与磨损均衡', code: 'os-io', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '静态链表', code: 'ds-list', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '字符串模式匹配（朴素）', code: 'ds-string', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '电路/报文/分组交换', code: 'cn-physical', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '并查集', code: 'ds-tree', q: 0, score: 0, yrs: 0, years: [] },
+  { lv: 'cold', name: '广域网与 PPP', code: 'cn-datalink', q: 0, score: 0, yrs: 0, years: [] },
+]
+
+/** 按学科筛选考点 */
+export function pointsBySubject(subKey: string): ExamFreqPoint[] {
+  if (!subKey || subKey === 'all') return examFreqPoints
+  return examFreqPoints.filter(p => MODULE_MAP[p.code]?.subKey === subKey)
+}
+
+/** 汇总某一组考点的分值/题量/年数 */
+export function summarize(pts: ExamFreqPoint[]) {
+  const byLevel: Record<FreqLevel, number> = { high: 0, mid: 0, low: 0, cold: 0 }
+  let score = 0, q = 0
+  for (const p of pts) { byLevel[p.lv]++; score += p.score; q += p.q }
+  return { count: pts.length, score, q, byLevel }
+}

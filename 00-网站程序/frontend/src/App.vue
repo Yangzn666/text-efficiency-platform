@@ -73,6 +73,7 @@ const routes = [
   { path: '/wrong-problems', name: '错题本' },
   { path: '/universities', name: '🏫 院校查询' },
   { path: '/analytics', name: '数据分析' },
+  { path: '/skilltree', name: '🌳 技能树' },
   { path: '/study-methods', name: '学习方法' }
 ]
 

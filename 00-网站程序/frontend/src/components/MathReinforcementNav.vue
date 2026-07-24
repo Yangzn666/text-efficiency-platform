@@ -15,10 +15,10 @@
         <el-icon><Document /></el-icon>
         <span>🔍 知识点</span>
       </el-menu-item>
-      
-      <el-menu-item index="/math/reinforcement/special-training">
-        <el-icon><Document /></el-icon>
-        <span>🎯 专题突破</span>
+
+      <el-menu-item index="/math/quickcards">
+        <el-icon><Collection /></el-icon>
+        <span>📇 速查卡片</span>
       </el-menu-item>
     </el-menu>
   </div>
@@ -27,24 +27,24 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { DataAnalysis, Document } from '@element-plus/icons-vue'
+import { DataAnalysis, Document, Collection } from '@element-plus/icons-vue'
 
 const route = useRoute()
 
 const activeMenu = computed(() => {
   const path = route.path
-  
+
   // 精确匹配各个路由
   if (path === '/math' || path === '/math/') {
     return '/math'
   }
+  if (path.includes('/quickcards')) {
+    return '/math/quickcards'
+  }
   if (path === '/math/detail' || path.includes('/detail')) {
     return '/math/detail'
   }
-  if (path.includes('/special-training')) {
-    return '/math/reinforcement/special-training'
-  }
-  
+
   return '/math'
 })
 </script>

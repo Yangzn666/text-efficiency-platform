@@ -1,0 +1,1269 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-25",
+  "source": "question-bank-math.json(mastery) + skill-tree-math.json(prereqs/short)",
+  "chapterPrereqs": {
+    "gaoshu-01": [],
+    "gaoshu-02": [
+      "gaoshu-01"
+    ],
+    "gaoshu-03": [
+      "gaoshu-02"
+    ],
+    "gaoshu-04": [
+      "gaoshu-03"
+    ],
+    "gaoshu-05": [
+      "gaoshu-02"
+    ],
+    "gaoshu-06": [
+      "gaoshu-03",
+      "gaoshu-05"
+    ],
+    "gaoshu-07": [
+      "gaoshu-03"
+    ],
+    "gaoshu-08": [
+      "gaoshu-05"
+    ],
+    "gaoshu-09": [
+      "gaoshu-06",
+      "gaoshu-08"
+    ],
+    "xiandai-01": [],
+    "xiandai-02": [
+      "xiandai-01"
+    ],
+    "xiandai-03": [
+      "xiandai-02"
+    ],
+    "xiandai-04": [
+      "xiandai-03"
+    ],
+    "xiandai-05": [
+      "xiandai-04"
+    ],
+    "xiandai-06": [
+      "xiandai-05"
+    ],
+    "gailv-01": [],
+    "gailv-02": [
+      "gailv-01"
+    ],
+    "gailv-03": [
+      "gailv-02"
+    ],
+    "gailv-04": [
+      "gailv-02"
+    ],
+    "gailv-05": [
+      "gailv-04"
+    ],
+    "gailv-06": [
+      "gailv-04"
+    ],
+    "gailv-07": [
+      "gailv-06"
+    ],
+    "gailv-08": [
+      "gailv-07"
+    ]
+  },
+  "subjects": {
+    "gaoshu": {
+      "name": "高等数学",
+      "chapters": [
+        {
+          "id": "gaoshu-01",
+          "name": "第一章 函数 极限 连续",
+          "items": [
+            {
+              "id": "gaoshu-01-01",
+              "title": "题型一 等价无穷小 + 洛必达求极限",
+              "short": "等价无穷小",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-02",
+              "title": "题型二 $1^\\infty$ 型极限",
+              "short": "1^∞型极限",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-03",
+              "title": "题型三 分段函数/绝对值函数的极限与连续性",
+              "short": "分段函数极限",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-04",
+              "title": "题型四 间断点分类",
+              "short": "间断点分类",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-05",
+              "title": "题型五 数列极限（单调有界/夹逼）",
+              "short": "数列极限",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-06",
+              "title": "题型六 用零点定理/介值定理证明",
+              "short": "零点介值定理",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-01-07",
+              "title": "题型七 无穷小的比较与定阶",
+              "short": "无穷小的比较",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-02",
+          "name": "第二章 一元函数微分学",
+          "items": [
+            {
+              "id": "gaoshu-02-01",
+              "title": "题型一 导数定义与极限形式",
+              "short": "导数定义与极限",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-02",
+              "title": "题型二 各类函数求导（隐函数/参数方程/幂指）",
+              "short": "各类函数求导",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-03",
+              "title": "题型三 中值定理证明题",
+              "short": "中值定理证明",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-04",
+              "title": "题型四 极值、拐点、单调性分析",
+              "short": "极值拐点单调性",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-05",
+              "title": "题型五 渐近线",
+              "short": "渐近线",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-06",
+              "title": "题型六 不等式证明（利用单调性）",
+              "short": "不等式证明",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-02-07",
+              "title": "题型七 曲率与曲率半径",
+              "short": "曲率与曲率半径",
+              "freq": "中频",
+              "tags": [
+                "数一专属"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-03",
+          "name": "第三章 一元函数积分学",
+          "items": [
+            {
+              "id": "gaoshu-03-01",
+              "title": "题型一 不定积分计算（换元/分部）",
+              "short": "不定积分计算",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-02",
+              "title": "题型二 变上限积分求导 + 极限",
+              "short": "变上限积分求导",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-03",
+              "title": "题型三 定积分计算（奇偶性/周期性/华里士）",
+              "short": "定积分计算",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-04",
+              "title": "题型四 反常积分敛散性",
+              "short": "反常积分敛散性",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-05",
+              "title": "题型五 定积分的几何应用（旋转体体积）",
+              "short": "定积分几何应用",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-06",
+              "title": "题型六 积分等式/不等式证明",
+              "short": "积分等式证明",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-03-07",
+              "title": "题型七 定积分的物理应用（功/压力/质心）",
+              "short": "定积分物理应用",
+              "freq": "中频",
+              "tags": [
+                "数一专属"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-04",
+          "name": "第四章 常微分方程",
+          "items": [
+            {
+              "id": "gaoshu-04-01",
+              "title": "题型一 一阶线性方程",
+              "short": "一阶线性方程",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-02",
+              "title": "题型二 可分离变量 / 齐次方程",
+              "short": "可分离变量",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-03",
+              "title": "题型三 二阶常系数齐次方程",
+              "short": "二阶常系数齐次",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-04",
+              "title": "题型四 二阶常系数非齐次方程",
+              "short": "二阶常系数非齐",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-05",
+              "title": "题型五 三角型非齐次特解",
+              "short": "三角型非齐次",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-06",
+              "title": "题型六 利用解的结构求方程",
+              "short": "利用解的结构",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-04-07",
+              "title": "题型七 可降阶的高阶微分方程",
+              "short": "可降阶高阶方程",
+              "freq": "高频",
+              "tags": [
+                "数一专属"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-05",
+          "name": "第五章 多元函数微分学",
+          "items": [
+            {
+              "id": "gaoshu-05-01",
+              "title": "题型一 复合函数求偏导",
+              "short": "复合函数求偏导",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-02",
+              "title": "题型二 隐函数求导",
+              "short": "隐函数求导",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-03",
+              "title": "题型三 无条件极值",
+              "short": "无条件极值",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-04",
+              "title": "题型四 条件极值（拉格朗日乘数法）",
+              "short": "条件极值",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-05",
+              "title": "题型五 可微性判定（选择题）",
+              "short": "可微性判定",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-06",
+              "title": "题型六 方向导数与梯度",
+              "short": "方向导数与梯度",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-05-07",
+              "title": "题型七 曲面切平面与法线",
+              "short": "切平面与法线",
+              "freq": "高频",
+              "tags": [
+                "数一专属"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-06",
+          "name": "第六章 二重积分",
+          "items": [
+            {
+              "id": "gaoshu-06-01",
+              "title": "题型一 直角坐标计算（选择积分次序）",
+              "short": "直角坐标计算",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-02",
+              "title": "题型二 交换积分次序",
+              "short": "交换积分次序",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-03",
+              "title": "题型三 极坐标计算",
+              "short": "极坐标计算",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-04",
+              "title": "题型四 利用对称性化简",
+              "short": "利用对称性化简",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-05",
+              "title": "题型五 二重积分与极限/导数综合",
+              "short": "二重积分与极限",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-06",
+              "title": "题型六 二重积分的应用（面积/体积）",
+              "short": "二重积分的应用",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-06-07",
+              "title": "题型七 分段函数/绝对值函数的二重积分",
+              "short": "分段二重积分",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-07",
+          "name": "第七章 无穷级数",
+          "items": [
+            {
+              "id": "gaoshu-07-01",
+              "title": "题型一 数项级数敛散性判别",
+              "short": "数项级数敛散性",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-07-02",
+              "title": "题型二 幂级数收敛域",
+              "short": "幂级数收敛域",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-07-03",
+              "title": "题型三 求幂级数的和函数",
+              "short": "幂级数的和函数",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-07-04",
+              "title": "题型四 数项级数求和（利用幂级数）",
+              "short": "数项级数求和",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-07-05",
+              "title": "题型五 函数的幂级数展开",
+              "short": "幂级数展开",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-07-06",
+              "title": "题型六 傅里叶级数",
+              "short": "傅里叶级数",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-08",
+          "name": "第八章 空间解析几何",
+          "items": [
+            {
+              "id": "gaoshu-08-01",
+              "title": "题型一 求平面方程",
+              "short": "求平面方程",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-08-02",
+              "title": "题型二 求直线方程",
+              "short": "求直线方程",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-08-03",
+              "title": "题型三 位置关系与夹角",
+              "short": "位置关系与夹角",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-08-04",
+              "title": "题型四 投影与对称问题",
+              "short": "投影与对称问题",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-08-05",
+              "title": "题型五 二次曲面与旋转曲面",
+              "short": "二次曲面与旋转",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gaoshu-09",
+          "name": "第九章 多元积分学",
+          "items": [
+            {
+              "id": "gaoshu-09-01",
+              "title": "题型一 三重积分计算",
+              "short": "三重积分计算",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-02",
+              "title": "题型二 格林公式求曲线积分",
+              "short": "格林公式曲线积分",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-03",
+              "title": "题型三 第二类曲面积分（投影法）",
+              "short": "第二类曲面积分",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-04",
+              "title": "题型四 高斯公式",
+              "short": "高斯公式",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-05",
+              "title": "题型五 斯托克斯公式",
+              "short": "斯托克斯公式",
+              "freq": "中频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-06",
+              "title": "题型六 路径无关与求原函数",
+              "short": "路径无关与原函数",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gaoshu-09-07",
+              "title": "题型七 第一类曲线/曲面积分",
+              "short": "第一类曲线积分",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        }
+      ]
+    },
+    "xiandai": {
+      "name": "线性代数",
+      "chapters": [
+        {
+          "id": "xiandai-01",
+          "name": "第一章 行列式",
+          "items": [
+            {
+              "id": "xiandai-01-01",
+              "title": "题型一 数值型行列式计算（化三角形）",
+              "short": "数值型行列式",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-01-02",
+              "title": "题型二 降阶法（按行/列展开）",
+              "short": "降阶法",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-01-03",
+              "title": "题型三 递推法（n阶三对角行列式）",
+              "short": "递推法",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-01-04",
+              "title": "题型四 抽象行列式计算",
+              "short": "抽象行列式计算",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-01-05",
+              "title": "题型五 代数余子式线性组合",
+              "short": "余子式线性组合",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "xiandai-02",
+          "name": "第二章 矩阵",
+          "items": [
+            {
+              "id": "xiandai-02-01",
+              "title": "题型一 求逆矩阵（初等变换法）",
+              "short": "求逆矩阵",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-02-02",
+              "title": "题型二 伴随矩阵相关计算",
+              "short": "伴随矩阵相关",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-02-03",
+              "title": "题型三 矩阵方程求解",
+              "short": "矩阵方程求解",
+              "freq": "中频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-02-04",
+              "title": "题型四 矩阵可逆性的证明",
+              "short": "矩阵可逆性证明",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-02-05",
+              "title": "题型五 秩的判定与证明",
+              "short": "秩的判定与证明",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-02-06",
+              "title": "题型六 初等变换与初等矩阵",
+              "short": "初等变换与矩阵",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "xiandai-03",
+          "name": "第三章 向量",
+          "items": [
+            {
+              "id": "xiandai-03-01",
+              "title": "题型一 判定向量组的线性相关性",
+              "short": "线性相关性判定",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-03-02",
+              "title": "题型二 线性表示问题",
+              "short": "线性表示问题",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-03-03",
+              "title": "题型三 线性相关性的证明",
+              "short": "线性相关性证明",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-03-04",
+              "title": "题型四 求极大无关组与秩",
+              "short": "求极大无关组",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-03-05",
+              "title": "题型五 施密特正交化计算",
+              "short": "施密特正交化",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-03-06",
+              "title": "题型六 向量空间（基/坐标/过渡矩阵）",
+              "short": "向量空间",
+              "freq": "低频",
+              "tags": [
+                "数一专属"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "xiandai-04",
+          "name": "第四章 线性方程组",
+          "items": [
+            {
+              "id": "xiandai-04-01",
+              "title": "题型一 求齐次方程组的基础解系与通解",
+              "short": "齐次方程组通解",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-04-02",
+              "title": "题型二 求非齐次方程组的通解",
+              "short": "非齐次方程组通解",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-04-03",
+              "title": "题型三 利用解的结构反推方程组",
+              "short": "利用解的结构",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-04-04",
+              "title": "题型四 含参数的方程组讨论",
+              "short": "含参数方程组讨论",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-04-05",
+              "title": "题型五 公共解与同解问题",
+              "short": "公共解与同解",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "xiandai-05",
+          "name": "第五章 特征值与特征向量",
+          "items": [
+            {
+              "id": "xiandai-05-01",
+              "title": "题型一 求特征值与特征向量",
+              "short": "特征值与特征向量",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-05-02",
+              "title": "题型二 判断能否对角化 + 求P",
+              "short": "判断能否对角化",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-05-03",
+              "title": "题型三 实对称矩阵的正交对角化",
+              "short": "实对称正交对角化",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-05-04",
+              "title": "题型四 利用特征值性质求行列式/迹",
+              "short": "利用特征值性质",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-05-05",
+              "title": "题型五 抽象矩阵的特征值问题",
+              "short": "抽象矩阵特征值",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-05-06",
+              "title": "题型六 矩阵相似的判定",
+              "short": "矩阵相似的判定",
+              "freq": "高频",
+              "tags": [
+                "选择题"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "xiandai-06",
+          "name": "第六章 二次型",
+          "items": [
+            {
+              "id": "xiandai-06-01",
+              "title": "题型一 用正交变换化二次型为标准形",
+              "short": "正交变换化标准形",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-06-02",
+              "title": "题型二 配方法化标准形",
+              "short": "配方法化标准形",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-06-03",
+              "title": "题型三 正定性判定",
+              "short": "正定性判定",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-06-04",
+              "title": "题型四 合同与相似的判定",
+              "short": "合同与相似判定",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "xiandai-06-05",
+              "title": "题型五 已知标准形/特征值反求参数",
+              "short": "标准形反求参数",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        }
+      ]
+    },
+    "gailv": {
+      "name": "概率统计",
+      "chapters": [
+        {
+          "id": "gailv-01",
+          "name": "第一章 随机事件与概率",
+          "items": [
+            {
+              "id": "gailv-01-01",
+              "title": "题型一 事件关系运算求概率",
+              "short": "事件关系运算",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-01-02",
+              "title": "题型二 全概率公式与贝叶斯公式",
+              "short": "全概率与贝叶斯",
+              "freq": "高频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-01-03",
+              "title": "题型三 独立性与伯努利试验",
+              "short": "独立性与伯努利",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-02",
+          "name": "第二章 随机变量及其分布",
+          "items": [
+            {
+              "id": "gailv-02-01",
+              "title": "题型一 利用分布函数/密度性质求参数",
+              "short": "利用分布函数",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-02-02",
+              "title": "题型二 常见分布的概率计算",
+              "short": "常见分布概率计算",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-02-03",
+              "title": "题型三 正态分布标准化计算",
+              "short": "正态分布标准化",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-02-04",
+              "title": "题型四 一维随机变量函数的分布",
+              "short": "一维随机变量",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-03",
+          "name": "第三章 二维随机变量及其分布",
+          "items": [
+            {
+              "id": "gailv-03-01",
+              "title": "题型一 求边缘密度与条件密度",
+              "short": "边缘与条件密度",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-03-02",
+              "title": "题型二 联合分布与区域概率",
+              "short": "联合分布与区域",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-03-03",
+              "title": "题型三 二维随机变量函数的分布",
+              "short": "二维随机变量",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-03-04",
+              "title": "题型四 独立性判定",
+              "short": "独立性判定",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-04",
+          "name": "第四章 随机变量的数字特征",
+          "items": [
+            {
+              "id": "gailv-04-01",
+              "title": "题型一 期望与方差的计算",
+              "short": "期望与方差计算",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-04-02",
+              "title": "题型二 随机变量函数的期望与方差",
+              "short": "随机变量函数",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-04-03",
+              "title": "题型三 协方差与相关系数",
+              "short": "协方差与相关系数",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-04-04",
+              "title": "题型四 独立、不相关、线性相关辨析",
+              "short": "独立与不相关",
+              "freq": "高频",
+              "tags": [
+                "选择题"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-05",
+          "name": "第五章 大数定律与中心极限定理",
+          "items": [
+            {
+              "id": "gailv-05-01",
+              "title": "题型一 中心极限定理近似计算",
+              "short": "中心极限定理",
+              "freq": "中频",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-05-02",
+              "title": "题型二 二项分布的正态近似",
+              "short": "二项分布正态近似",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-05-03",
+              "title": "题型三 切比雪夫不等式",
+              "short": "切比雪夫不等式",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-06",
+          "name": "第六章 数理统计的基本概念",
+          "items": [
+            {
+              "id": "gailv-06-01",
+              "title": "题型一 三大抽样分布的构造",
+              "short": "三大抽样分布",
+              "freq": "高频",
+              "tags": [
+                "选择题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-06-02",
+              "title": "题型二 统计量的数字特征",
+              "short": "统计量数字特征",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-06-03",
+              "title": "题型三 正态总体的抽样分布",
+              "short": "正态总体抽样分布",
+              "freq": "年年考",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-07",
+          "name": "第七章 参数估计",
+          "items": [
+            {
+              "id": "gailv-07-01",
+              "title": "题型一 最大似然估计",
+              "short": "最大似然估计",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-07-02",
+              "title": "题型二 矩估计",
+              "short": "矩估计",
+              "freq": "年年考",
+              "tags": [
+                "大题"
+              ],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-07-03",
+              "title": "题型三 无偏性验证",
+              "short": "无偏性验证",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-07-04",
+              "title": "题型四 置信区间",
+              "short": "置信区间",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            }
+          ]
+        },
+        {
+          "id": "gailv-08",
+          "name": "第八章 假设检验",
+          "items": [
+            {
+              "id": "gailv-08-01",
+              "title": "题型一 单个正态总体均值的假设检验",
+              "short": "均值假设检验",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-08-02",
+              "title": "题型二 单个正态总体方差的假设检验",
+              "short": "方差假设检验",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested"
+            },
+            {
+              "id": "gailv-08-03",
+              "title": "题型三 两类错误与基本概念",
+              "short": "两类错误与概念",
+              "freq": "低频",
+              "tags": [
+                "选择题"
+              ],
+              "mastery": "untested"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

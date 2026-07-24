@@ -167,34 +167,27 @@
         <button class="close-btn" @click="closeDetail">×</button>
         
         <div class="modal-header">
-          <h2>{{ selectedUni.name }}</h2>
-          <span :class="['level-badge', 'large', getLevelBadgeClass(selectedUni.level)]">{{ selectedUni.level }}</span>
+          <div class="header-top">
+            <h2>{{ selectedUni.name }}</h2>
+            <div class="header-badges">
+              <span :class="['level-badge', getLevelBadgeClass(selectedUni.level)]">{{ selectedUni.level }}</span>
+              <span :class="['difficulty-badge', selectedUni.difficulty.toLowerCase()]">难度 {{ selectedUni.difficulty }}</span>
+            </div>
+          </div>
+          <div class="header-meta">
+            <span class="meta-chip">📍 {{ selectedUni.region }}</span>
+            <span class="meta-chip">🏫 {{ selectedUni.college }}</span>
+            <span class="meta-chip">学科 <b :class="getGradeClass(selectedUni.grade)">{{ selectedUni.grade || '—' }}</b></span>
+            <span class="meta-chip accent">复试线 <b>{{ selectedUni.scoreLine || '—' }}</b>分</span>
+            <span class="meta-chip accent">目标 <b>≥{{ selectedUni.targetScore || '—' }}</b>分</span>
+            <span class="meta-chip">💰 {{ selectedUni.salary }}</span>
+          </div>
+          <div v-if="selectedUni.tags && selectedUni.tags.length" class="header-tags">
+            <span v-for="tag in selectedUni.tags" :key="tag" class="header-tag">{{ tag }}</span>
+          </div>
         </div>
 
         <div class="modal-body">
-          <!-- 基本信息 -->
-          <section class="detail-section">
-            <h3>📋 基本信息</h3>
-            <div class="detail-grid">
-              <div class="detail-item">
-                <span class="label">所在地区</span>
-                <span class="value">{{ selectedUni.region }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">学科等级</span>
-                <span :class="['value', getGradeClass(selectedUni.grade)]">{{ selectedUni.grade || '待补充' }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">学院名称</span>
-                <span class="value">{{ selectedUni.college }}</span>
-              </div>
-              <div class="detail-item">
-                <span class="label">难度评级</span>
-                <span :class="['difficulty-badge', selectedUni.difficulty.toLowerCase()]">{{ selectedUni.difficulty }}</span>
-              </div>
-            </div>
-          </section>
-
           <!-- 招生数据 -->
           <section v-if="selectedUni.scoreHistory && selectedUni.scoreHistory.length > 0" class="detail-section">
             <h3>📊 历年分数线</h3>
@@ -652,8 +645,8 @@ const resetFilters = () => {
 // 辅助函数：将grade转换为合法的CSS类名
 const getGradeClass = (grade: string | undefined) => {
   if (!grade) return 'grade-none'
-  // 将特殊字符替换为合法字符：+ -> plus, - -> minus
-  return 'grade-' + grade.replace(/\+/g, '-plus').replace(/-/g, '-minus').toLowerCase()
+  // 将特殊字符替换为合法字符：- -> minus, + -> plus（注意顺序：先替换-，否则+替换出的-plus会被-替换破坏）
+  return 'grade-' + grade.replace(/-/g, '-minus').replace(/\+/g, '-plus').toLowerCase()
 }
 
 // 辅助函数：获取层级标签的简写
@@ -1324,26 +1317,84 @@ const getLevelBadgeText = (level: string | undefined) => {
 }
 
 .modal-header {
-  padding: 30px;
+  padding: 18px 24px 14px;
   background: linear-gradient(150deg, #0d2137 0%, #16345c 100%);
   color: white;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header-top {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .modal-header h2 {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 1.45em;
+  letter-spacing: 0.5px;
 }
 
-.level-badge.large {
-  padding: 8px 20px;
-  font-size: 16px;
+.header-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.88);
+}
+
+.meta-chip b {
+  font-size: 13.5px;
+}
+
+.meta-chip.accent {
+  background: rgba(255,197,61,0.13);
+  border-color: rgba(255,197,61,0.35);
+}
+
+.meta-chip.accent b {
+  color: #ffc53d;
+  font-size: 14.5px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.header-tag {
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: rgba(255,255,255,0.06);
+  border: 1px dashed rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.65);
 }
 
 .modal-body {
-  padding: 30px;
+  padding: 22px 24px;
 }
 
 .detail-section {
@@ -1894,6 +1945,23 @@ const getLevelBadgeText = (level: string | undefined) => {
 
   .modal-header h2 {
     font-size: 1.4em;
+  }
+
+  .header-meta {
+    gap: 6px;
+  }
+
+  .meta-chip {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .meta-chip b {
+    font-size: 13px;
+  }
+
+  .meta-chip.accent b {
+    font-size: 14px;
   }
 
   .modal-body {

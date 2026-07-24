@@ -62,6 +62,7 @@ export default defineConfig({
           '**/cytoscape.esm-*.js',
           '**/wardley-*.js',
           '**/MindMapView-*.js',
+          '**/SkillTreeView-*.js',
           '**/cose-bilkent-*.js',
           '**/sequenceDiagram-*.js',
           '**/architectureDiagram-*.js'

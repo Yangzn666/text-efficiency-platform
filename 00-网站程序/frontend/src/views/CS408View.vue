@@ -8,6 +8,7 @@ import CS408ProgressTracker from '@/components/CS408ProgressTracker.vue'
 import CS408QuickEntry from '@/components/CS408QuickEntry.vue'
 import ReinforcementTracker from '@/components/ReinforcementTracker.vue'
 import FeynmanLearning from '@/components/FeynmanLearning.vue'
+import ExamFrequencyMap from '@/components/ExamFrequencyMap.vue'
 
 const activeTab = ref('progress')
 </script>
@@ -36,6 +37,10 @@ const activeTab = ref('progress')
 
         <el-tab-pane label="🧠 费曼学习法" name="feynman">
           <FeynmanLearning />
+        </el-tab-pane>
+
+        <el-tab-pane label="📊 考频地图" name="frequency">
+          <ExamFrequencyMap />
         </el-tab-pane>
         
         <el-tab-pane label="知识点梳理" name="knowledge">

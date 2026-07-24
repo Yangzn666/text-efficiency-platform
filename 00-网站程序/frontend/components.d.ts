@@ -12,7 +12,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AchievementSystem: typeof import('./src/components/AchievementSystem.vue')['default']
-    AdvancedMathExercises: typeof import('./src/components/AdvancedMathExercises.vue')['default']
     AIGrammarAssistant: typeof import('./src/components/AIGrammarAssistant.vue')['default']
     AssessmentQuiz: typeof import('./src/components/AssessmentQuiz.vue')['default']
     BehaviorActivation: typeof import('./src/components/BehaviorActivation.vue')['default']
@@ -67,6 +66,7 @@ declare module 'vue' {
     EnglishStudyPlan: typeof import('./src/components/EnglishStudyPlan.vue')['default']
     EnhancedMoodTracker: typeof import('./src/components/EnhancedMoodTracker.vue')['default']
     EnhancedRewardShop: typeof import('./src/components/EnhancedRewardShop.vue')['default']
+    ExamFrequencyMap: typeof import('./src/components/ExamFrequencyMap.vue')['default']
     FeynmanLearning: typeof import('./src/components/FeynmanLearning.vue')['default']
     GamificationDashboard: typeof import('./src/components/GamificationDashboard.vue')['default']
     GrammarDiagnosis: typeof import('./src/components/GrammarDiagnosis.vue')['default']
@@ -79,11 +79,8 @@ declare module 'vue' {
     LearningAnalytics: typeof import('./src/components/LearningAnalytics.vue')['default']
     LearningOverview: typeof import('./src/components/LearningOverview.vue')['default']
     LearningPathVisualizer: typeof import('./src/components/LearningPathVisualizer.vue')['default']
-    LinearAlgebraPractice: typeof import('./src/components/LinearAlgebraPractice.vue')['default']
     MaterialsWall: typeof import('./src/components/MaterialsWall.vue')['default']
     MathNoteViewer: typeof import('./src/components/MathNoteViewer.vue')['default']
-    MathPracticeModule: typeof import('./src/components/MathPracticeModule.vue')['default']
-    MathProgressTracker: typeof import('./src/components/MathProgressTracker.vue')['default']
     MathReinforcementNav: typeof import('./src/components/MathReinforcementNav.vue')['default']
     MindMapView: typeof import('./src/components/MindMapView.vue')['default']
     MonthlyCalendar: typeof import('./src/components/MonthlyCalendar.vue')['default']
@@ -112,7 +109,6 @@ declare module 'vue' {
     SimpleDependencyGraph: typeof import('./src/components/SimpleDependencyGraph.vue')['default']
     SimpleEnglishStudyPlan: typeof import('./src/components/SimpleEnglishStudyPlan.vue')['default']
     SimpleMoodTracker: typeof import('./src/components/SimpleMoodTracker.vue')['default']
-    SpecialTrainingCenter: typeof import('./src/components/SpecialTrainingCenter.vue')['default']
     StatCard: typeof import('./src/components/StatCard.vue')['default']
     StudyAnalytics: typeof import('./src/components/StudyAnalytics.vue')['default']
     StudyProgressReport: typeof import('./src/components/StudyProgressReport.vue')['default']
@@ -121,12 +117,10 @@ declare module 'vue' {
     SystemTesting: typeof import('./src/components/SystemTesting.vue')['default']
     TaskManager: typeof import('./src/components/TaskManager.vue')['default']
     TodoDashboard: typeof import('./src/components/TodoDashboard.vue')['default']
-    TopicReinforcementView: typeof import('./src/components/TopicReinforcementView.vue')['default']
     TranslationLearning: typeof import('./src/components/TranslationLearning.vue')['default']
     VocabularyLearning: typeof import('./src/components/VocabularyLearning.vue')['default']
     VocabularyList: typeof import('./src/components/VocabularyList.vue')['default']
     WeaknessAnalysis: typeof import('./src/components/WeaknessAnalysis.vue')['default']
     WritingLearningPremium: typeof import('./src/components/WritingLearning-Premium.vue')['default']
-    WrongProblemAnalysis: typeof import('./src/components/WrongProblemAnalysis.vue')['default']
   }
 }

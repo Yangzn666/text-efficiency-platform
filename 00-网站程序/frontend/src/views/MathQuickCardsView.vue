@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
+import QuickCards from '@/components/QuickCards.vue'
 import MathReinforcementNav from '@/components/MathReinforcementNav.vue'
 
 const router = useRouter()
@@ -8,25 +8,20 @@ const router = useRouter()
 
 <template>
   <div class="math-container">
-    <!-- 顶部导航 -->
     <MathReinforcementNav />
     <div class="page-header">
-      <h1 class="page-title">数学一知识点</h1>
-      <p class="page-subtitle">高等数学 · 线性代数 · 概率统计</p>
+      <h1 class="page-title">数学一速查卡片</h1>
+      <p class="page-subtitle">公式定理 · 翻面自测 · 快速过筛</p>
       <div class="navigation-links">
         <el-button type="primary" plain @click="router.push('/math')">
           <el-icon><House /></el-icon>
           返回数学一首页
         </el-button>
-        <el-button type="success" plain @click="router.push('/')">
-          <el-icon><HomeFilled /></el-icon>
-          返回网站主页
-        </el-button>
       </div>
     </div>
 
-    <div class="knowledge-body">
-      <KnowledgeStructure subject="math" />
+    <div class="cards-body">
+      <QuickCards />
     </div>
   </div>
 </template>
@@ -61,8 +56,6 @@ const router = useRouter()
   color: #fff;
 }
 
-/* 全局 main.scss 的 .page-title 会把字色设成深灰(#333)并加一条 left:0 的下划线，
-   在深色头部上看不清且位置错乱，这里覆盖掉 */
 .page-title::after {
   content: none;
 }
@@ -81,7 +74,7 @@ const router = useRouter()
   flex-wrap: wrap;
 }
 
-.knowledge-body {
+.cards-body {
   padding: 0 4px 40px;
 }
 
