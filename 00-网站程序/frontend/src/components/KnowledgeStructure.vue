@@ -214,7 +214,46 @@ const formatContent = (content: string) => {
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-  
+
+  // 处理Markdown表格（连续的、以 | 开头且以 | 结尾的行）。
+  // 放在 LaTeX/加粗之前，单元格内的 $...$、**...** 仍会走后续流程被正常渲染。
+  formatted = formatted.replace(/((?:^[ \t]*\|.*\|[ \t]*$\n?)+)/gm, (block) => {
+    const lines = block.trim().split('\n').map(l => l.trim())
+    if (lines.length < 2) return block // 单行不成表，原样保留
+
+    // 单元格切分：忽略 $...$ 数学公式内部的竖线
+    const splitRow = (line: string): string[] => {
+      let s = line
+      if (s.startsWith('|')) s = s.slice(1)
+      if (s.endsWith('|')) s = s.slice(0, -1)
+      const cells: string[] = []
+      let cur = ''
+      let inMath = false
+      for (const ch of s) {
+        if (ch === '$') { inMath = !inMath; cur += ch }
+        else if (ch === '|' && !inMath) { cells.push(cur.trim()); cur = '' }
+        else cur += ch
+      }
+      cells.push(cur.trim())
+      return cells
+    }
+
+    const headerCells = splitRow(lines[0])
+    // 第二行若为 |---|---| 分隔行则跳过
+    let bodyStart = 1
+    if (/^[\s|:-]+$/.test(lines[1]) && lines[1].includes('-')) {
+      bodyStart = 2
+    }
+
+    let html = '<table><thead><tr>' + headerCells.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>'
+    for (let i = bodyStart; i < lines.length; i++) {
+      const cells = splitRow(lines[i])
+      html += '<tr>' + cells.map(c => `<td>${c}</td>`).join('') + '</tr>'
+    }
+    html += '</tbody></table>'
+    return html
+  })
+
   // 处理LaTeX公式标记（先块级后行内）
   formatted = formatted.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
     return `<span data-latex-block="${formula.trim().replace(/"/g, '&quot;')}"></span>`
@@ -248,7 +287,11 @@ const formatContent = (content: string) => {
   // 处理换行：空行分段，单换行由HTML自然合并（不再生成<br>，大幅缩短页面）
   formatted = formatted.replace(/\n{2,}/g, '</p><p>')
   formatted = formatted.replace(/\n/g, ' ')
-  
+
+  // 表格是块级元素，不应被包在 <p> 里（浏览器会自动拆开但会留下游离标签），
+  // 这里把作为段落唯一内容的表格解包出来
+  formatted = formatted.replace(/<p>(\s*<table>)/g, '$1').replace(/(<\/table>)\s*<\/p>/g, '$1')
+
   // 包裹段落
   if (!formatted.startsWith('<')) {
     formatted = '<p>' + formatted + '</p>'
@@ -887,6 +930,41 @@ onMounted(async () => {
   padding: 0 2px;
 }
 
+/* Markdown 表格 */
+.point-content :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.92em;
+  background: #fff;
+  border: 1px solid rgba(22, 52, 92, 0.14);
+}
+
+.point-content :deep(th),
+.point-content :deep(td) {
+  border: 1px solid rgba(22, 52, 92, 0.12);
+  padding: 8px 12px;
+  text-align: left;
+  line-height: 1.65;
+  vertical-align: middle;
+}
+
+.point-content :deep(th) {
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.point-content :deep(tbody tr:nth-child(even) td) {
+  background: #f8fafd;
+}
+
+.point-content :deep(tbody tr:hover td) {
+  background: rgba(255, 197, 61, 0.14);
+}
+
 .point-content :deep(.katex-display) {
   margin: 8px 0;
   padding: 5px 12px;
@@ -1065,6 +1143,12 @@ onMounted(async () => {
   
   .detail-actions .el-button {
     width: 100%;
+  }
+
+  /* 小屏下表格横向滚动，避免撑破布局 */
+  .point-content :deep(table) {
+    display: block;
+    overflow-x: auto;
   }
 }
 </style>

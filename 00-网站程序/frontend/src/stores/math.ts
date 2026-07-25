@@ -363,9 +363,10 @@ export const useMathStore = defineStore('math', () => {
 
   // 新增：从metadata.json加载章节数据（三大学科）
   const loadChaptersFromMetadata = async () => {
-    // 清除现有数据
-    chapters.value = []
-    let loadedCount = 0
+    // 先累积到局部数组，全部加载完成后一次性原子赋值。
+    // 不能边 fetch 边 push 到 chapters.value：两次并发初始化（如 HMR 热更新重载组件、
+    // 快速切换路由）会在 await 处交错向同一数组 push，导致每个章节重复两遍。
+    const loaded: ExtendedMathChapter[] = []
 
     for (const source of SUBJECT_SOURCES) {
       try {
@@ -396,17 +397,19 @@ export const useMathStore = defineStore('math', () => {
             contentFile: ch.markdownFile,
             contentBase: source.base
           }
-          chapters.value.push(chapter)
-          loadedCount++
+          loaded.push(chapter)
         }
       } catch (error) {
         console.error(`加载 ${source.subject} 章节元数据失败:`, error)
       }
     }
 
-    if (loadedCount === 0) {
+    if (loaded.length === 0) {
       throw new Error('未能从任何metadata.json加载章节数据')
     }
+
+    // 原子赋值：整体替换，杜绝并发交错导致的章节重复
+    chapters.value = loaded
 
     await saveMathData()
     console.log('成功从metadata.json加载', chapters.value.length, '个章节（三学科）')
@@ -504,7 +507,19 @@ export const useMathStore = defineStore('math', () => {
         parsedChapters.forEach((chapter: any) => {
           chapter.practiceProblems = []
         })
-        chapters.value = parsedChapters
+        // 按 id 去重：早期版本的并发初始化竞态可能把重复章节写进了 localStorage，
+        // 保留首次出现的条目（以保留掌握度等进度）。
+        const seenIds = new Set<string>()
+        chapters.value = parsedChapters.filter((chapter: any) => {
+          if (seenIds.has(chapter.id)) return false
+          seenIds.add(chapter.id)
+          return true
+        })
+        // 若确实去掉了重复数据，回写一次以清除 localStorage 中的旧污染
+        if (chapters.value.length !== parsedChapters.length) {
+          console.warn(`检测到 localStorage 中 ${parsedChapters.length - chapters.value.length} 个重复章节，已去重`)
+          await saveMathData()
+        }
       }
       
       if (storedProblems) problems.value = JSON.parse(storedProblems)
