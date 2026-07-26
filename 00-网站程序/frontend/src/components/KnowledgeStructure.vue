@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import { useMathStore } from '../stores/math'
@@ -69,12 +69,9 @@ const currentConfig = computed(() => {
   return subjectConfigs[props.subject] || subjectConfigs.math
 })
 
-// 新增：从store动态获取知识点数据
-const filteredPoints = computed(() => {
-  let points: KnowledgePoint[] = []
-  
-  // 将store中的chapters转换为KnowledgePoint格式
-  const allChapters = mathStore.chapters.map(chapter => ({
+// 将store中的chapters转换为KnowledgePoint格式（单一映射，供列表与自动选中复用）
+const allPoints = computed<KnowledgePoint[]>(() => {
+  return mathStore.chapters.map(chapter => ({
     id: chapter.id,
     title: chapter.title,
     content: '', // 初始为空，点击后加载
@@ -84,13 +81,16 @@ const filteredPoints = computed(() => {
     progress: chapter.masteryLevel || 0,
     keyPoints: chapter.keyPoints || []
   }))
-  
-  points = allChapters
-  
+})
+
+// 新增：从store动态获取知识点数据
+const filteredPoints = computed(() => {
+  let points = allPoints.value
+
   if (activeCategory.value) {
     points = points.filter(point => point.category === activeCategory.value)
   }
-  
+
   if (searchTerm.value) {
     const term = searchTerm.value.toLowerCase()
     points = points.filter(point => 
@@ -158,6 +158,53 @@ const selectPoint = async (point: KnowledgePoint) => {
   }, 50)
 }
 
+// 自动选中某模块的第一章（不传则选全部章节中的第一章），避免详情区空白
+const autoSelectFirst = (category?: string) => {
+  const pool = category
+    ? allPoints.value.filter(p => p.category === category)
+    : allPoints.value
+  const first = pool[0]
+  if (first) {
+    selectPoint(first)
+  }
+}
+
+// 切换模块时，若当前选中章节不属于新模块，则自动展示新模块的第一章
+watch(activeCategory, (cat) => {
+  if (!cat) return // 选「全部」时保留当前选中
+  const stillVisible = selectedPoint.value && selectedPoint.value.category === cat
+  if (!stillVisible) {
+    autoSelectFirst(cat)
+  }
+})
+
+// ===== 图解灯箱（点击知识点附近的「📊 图解」链接弹出几何示意图）=====
+const lightbox = ref<{ src: string; caption: string } | null>(null)
+// 图片统一存放在 public/data/math/figures/，生产环境需拼 BASE_URL（GitHub Pages 子路径）
+const FIGURE_BASE = (import.meta.env.BASE_URL || '/') + 'data/math/figures/'
+
+const closeLightbox = () => { lightbox.value = null }
+
+// 事件委托：v-html 渲染的内容无法直接绑定 @click，在容器上捕获 .figure-link 的点击
+const handleContentClick = (e: MouseEvent) => {
+  const el = (e.target as HTMLElement).closest('.figure-link')
+  if (!el) return
+  e.preventDefault()
+  const file = el.getAttribute('data-figure') || ''
+  const caption = el.getAttribute('data-caption') || ''
+  if (file) {
+    lightbox.value = { src: FIGURE_BASE + file, caption }
+  }
+}
+
+// Esc 关闭灯箱
+const onKeydown = (e: KeyboardEvent) => {
+  if (e.key === 'Escape') closeLightbox()
+}
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+})
+
 const renderMathFormulas = () => {
   const contentElement = document.querySelector('.point-content')
   if (!contentElement) return
@@ -202,6 +249,14 @@ const formatContent = (content: string) => {
   // 统一换行为 LF：Windows 下保存的 md 文件是 CRLF(\r\n)，空行为 \r\n\r\n，
   // 下方 \n{2,} 分段正则匹配不到，会导致折叠块内例题/解/步骤全部挤在一行
   content = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
+  // 图解弹窗链接 [[figure:文件名|说明文字]] → 可点击的胶囊链接，
+  // 点击后由事件委托打开图片灯箱（图片存放在 data/math/figures/ 下）
+  content = content.replace(/\[\[figure:([^|\]]+)\|([^\]]+)\]\]/g, (_m, file, caption) => {
+    const f = String(file).trim()
+    const c = String(caption).trim()
+    return `<a class="figure-link" data-figure="${f}" data-caption="${c}">📊 图解：${c}</a>`
+  })
 
   // 最先处理折叠块 :::fold 标题 ... :::（内部内容继续走后续markdown流程）
   // 内部先包一层 <p>，经"空行→</p><p>"处理后，例/解/各步骤各自成为独立段落，不再挤在一行
@@ -354,6 +409,10 @@ onMounted(async () => {
     await mathStore.initializeMathData()
   }
   activeCategory.value = currentConfig.value.categories[0] || ''
+  // 进入页面即自动展示当前模块第一章内容，避免详情区空白
+  autoSelectFirst(activeCategory.value || undefined)
+  // 监听 Esc 关闭图解灯箱
+  window.addEventListener('keydown', onKeydown)
 })
 </script>
 
@@ -490,7 +549,7 @@ onMounted(async () => {
           <div class="point-content" v-if="isLoadingContent">
             <p style="color: #999; text-align: center;">内容加载中...</p>
           </div>
-          <div class="point-content" v-else v-html="formatContent(chapterContent)"></div>
+          <div class="point-content" v-else v-html="formatContent(chapterContent)" @click="handleContentClick"></div>
           
           <div class="detail-actions">
             <el-button type="primary" size="large" @click="startPractice">
@@ -511,6 +570,17 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+
+    <!-- 图解灯箱：点击知识点附近的「📊 图解」链接后弹出几何示意图 -->
+    <Teleport to="body">
+      <div v-if="lightbox" class="figure-lightbox" @click.self="closeLightbox">
+        <div class="lightbox-inner">
+          <button class="lightbox-close" type="button" aria-label="关闭" @click="closeLightbox">✕</button>
+          <img :src="lightbox.src" :alt="lightbox.caption" />
+          <div class="lightbox-caption">{{ lightbox.caption }}</div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -1042,6 +1112,92 @@ onMounted(async () => {
 .point-content :deep(.fold-body) {
   padding: 6px 16px 12px;
   border-top: 1px dashed #e8edf5;
+}
+
+/* 图解弹窗链接（v-html 内容，需 :deep） */
+.point-content :deep(.figure-link) {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 3px;
+  padding: 2px 12px;
+  border: 1px solid rgba(240, 168, 32, 0.55);
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #fff8e6 0%, #fff3d6 100%);
+  color: #b8860b;
+  font-size: 0.88em;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+.point-content :deep(.figure-link:hover) {
+  background: linear-gradient(135deg, #ffc53d 0%, #f0a820 100%);
+  color: #fff;
+  border-color: #f0a820;
+  box-shadow: 0 2px 10px rgba(240, 168, 32, 0.45);
+}
+
+/* 图解灯箱（Teleport 到 body，scoped 属性仍会附加，样式正常生效） */
+.figure-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(13, 33, 55, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  cursor: zoom-out;
+}
+.lightbox-inner {
+  position: relative;
+  max-width: 92vw;
+  max-height: 92vh;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 18px 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox-inner img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.lightbox-caption {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #16345c;
+  font-weight: 600;
+  text-align: center;
+}
+.lightbox-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #ffc53d;
+  color: #16345c;
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+.lightbox-close:hover {
+  transform: scale(1.12);
 }
 
 .detail-actions {

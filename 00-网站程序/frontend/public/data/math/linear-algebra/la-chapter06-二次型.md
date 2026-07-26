@@ -49,6 +49,8 @@ $$f(x_1, \cdots, x_n) = \sum_{i=1}^{n}\sum_{j=1}^{n} a_{ij}x_ix_j = x^TAx \quad 
 3. 求特征向量 → 重根正交化 → 单位化 → 组成正交矩阵 $Q$
 4. $x = Qy$，$f = \lambda_1y_1^2 + \cdots + \lambda_ny_n^2$
 
+[[figure:quadratic-form-rotation.png|正交变换的几何意义：旋转坐标轴使椭圆摆正（消去交叉项）]]
+
 **方法二：配方法**
 
 - 有 $x_i^2$ 项：对含 $x_i$ 的项配方，逐步消元

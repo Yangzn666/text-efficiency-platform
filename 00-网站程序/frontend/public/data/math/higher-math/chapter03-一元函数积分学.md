@@ -98,6 +98,8 @@ $$\int_1^{+\infty} \frac{dx}{x^p} \begin{cases} 收敛, & p > 1 \\ 发散, & p \
 - 绕 $x$ 轴：$V = \pi\int_a^b f^2(x)dx$
 - 绕 $y$ 轴（柱壳法）：$V = 2\pi\int_a^b x|f(x)|dx$
 
+[[figure:solid-of-revolution.png|旋转体体积：圆盘法（绕x轴）与柱壳法（绕y轴）]]
+
 **弧长**：$L = \int_a^b \sqrt{1 + f'^2(x)}dx$；参数方程 $L = \int \sqrt{x'^2 + y'^2}dt$
 
 ## 📐 核心公式速查

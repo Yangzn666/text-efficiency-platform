@@ -69,6 +69,8 @@ $(x^m)^{(n)} = \frac{m!}{(m-n)!}x^{m-n}$（$n \le m$），$(\frac{1}{ax+b})^{(n)
 
 $$f'(\xi) = \frac{f(b) - f(a)}{b - a} \quad (即f(b) - f(a) = f'(\xi)(b-a))$$
 
+[[figure:mean-value-theorem.png|拉格朗日中值定理：曲线上必有一点的切线平行于割线]]
+
 推论：$f'(x) \equiv 0$ → $f$ 为常数。
 
 **柯西中值定理**：$f, g$ 满足条件且 $g'(x) \ne 0$ → $\exists \xi$：$\frac{f'(\xi)}{g'(\xi)} = \frac{f(b) - f(a)}{g(b) - g(a)}$

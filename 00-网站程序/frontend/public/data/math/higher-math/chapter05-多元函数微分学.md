@@ -89,6 +89,8 @@ $$\frac{\partial f}{\partial l} = f_x\cos\alpha + f_y\cos\beta$$
 - 梯度方向是方向导数最大的方向，最大值 $= |\nabla f|$
 - 梯度垂直于等值线（等高线）
 
+[[figure:gradient-level-curves.png|梯度垂直于等值线，指向函数增长最快的方向]]
+
 ## 📐 核心公式速查
 
 $$dz = f_x dx + f_y dy$$
@@ -197,6 +199,8 @@ $\frac{\partial f}{\partial l} = 3 \times \frac{3}{5} + 3 \times \frac{4}{5} = \
 :::
 
 :::fold 题型七 曲面切平面与法线（高频，数一专属）
+[[figure:tangent-plane.png|曲面的切平面与法线]]
+
 **曲面** $F(x,y,z) = 0$：法向量 $\vec{n} = (F_x, F_y, F_z)$
 
 **例**：求曲面 $z = x^2 + y^2$ 在点 $(1, 1, 2)$ 的切平面与法线。

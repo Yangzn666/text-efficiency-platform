@@ -14,6 +14,8 @@
 
 **定义**：$A\alpha = \lambda\alpha$（$\alpha \ne 0$），则 $\lambda$ 为特征值，$\alpha$ 为属于 $\lambda$ 的特征向量。
 
+[[figure:eigenvector.png|特征向量的几何意义：变换后方向不变，只伸缩λ倍]]
+
 **求解流程**：
 
 1. 解特征方程 $|\lambda E - A| = 0$，得特征值 $\lambda_1, \lambda_2, \cdots$

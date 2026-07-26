@@ -71,7 +71,11 @@ $$\frac{x - x_0}{l} = \frac{y - y_0}{m} = \frac{z - z_0}{n}$$
 
 **两直线的夹角**：$\cos\theta = \frac{|\vec{s_1} \cdot \vec{s_2}|}{|\vec{s_1}||\vec{s_2}|}$
 
+[[figure:line-plane-relations.png|空间直线与平面的位置关系]]
+
 ### 8.4 常用二次曲面（识别图形）
+
+[[figure:quadric-surfaces.png|常用二次曲面]]
 
 | 曲面 | 方程 | 特征 |
 |------|------|------|

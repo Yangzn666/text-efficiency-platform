@@ -29,6 +29,8 @@ $$\iiint_\Omega f dV = \iint_D d\sigma \int_{z_1(x,y)}^{z_2(x,y)} f dz \quad (�
 - 球面 $x^2 + y^2 + z^2 = R^2$ → $\rho = R$
 - 锥面 $z = \sqrt{x^2 + y^2}$ → $\varphi = \frac{\pi}{4}$
 
+[[figure:triple-integral-coords.png|三重积分的柱坐标与球坐标]]
+
 **对称性**：$\Omega$ 关于 $zOx$ 面对称，$f$ 对 $y$ 为奇 → 积分为0（类推）。
 
 ### 9.2 第一类曲线积分（对弧长）
@@ -49,6 +51,8 @@ $$\int_L Pdx + Qdy = \int_\alpha^\beta [P(x(t), y(t))x'(t) + Q(x(t), y(t))y'(t)]
 **格林公式（★核心）**：$L$ 为闭区域 $D$ 的正向边界（逆时针）：
 
 $$\oint_L Pdx + Qdy = \iint_D (\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y})dxdy$$
+
+[[figure:green-theorem.png|格林公式的正向（逆时针）与补线法]]
 
 **应用**：
 - 闭曲线积分 → 化为二重积分
@@ -74,6 +78,8 @@ $$\iint_\Sigma Pdydz + Qdzdx + Rdxdy$$
 $$\iint_\Sigma Rdxdy = \pm\iint_D R(x, y, z(x, y))dxdy$$
 
 ★ 上侧取正，下侧取负；$Pdydz$、$Qdzdx$ 同理投影到对应坐标面。
+
+[[figure:surface-orientation.png|第二类曲面积分的侧：上侧取正、下侧取负、闭曲面外侧为正]]
 
 **高斯公式（★核心）**：$\Sigma$ 为闭曲面外侧，$\Omega$ 为其围成的区域：
 

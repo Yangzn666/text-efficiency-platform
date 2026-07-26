@@ -34,6 +34,8 @@ $$\iint_D f d\sigma = \int_a^b dx \int_{\varphi_1(x)}^{\varphi_2(x)} f(x, y)dy$$
 
 $$\iint_D f d\sigma = \int_c^d dy \int_{\psi_1(y)}^{\psi_2(y)} f(x, y)dx$$
 
+[[figure:xy-region-swap.png|X型与Y型区域及交换积分次序]]
+
 **选择积分次序的原则**：
 
 1. 看被积函数：$e^{x^2}$、$\frac{\sin x}{x}$ 等"积不出来"的函数 → 调整次序让它先积
@@ -47,6 +49,8 @@ $$x = r\cos\theta, \quad y = r\sin\theta, \quad d\sigma = r dr d\theta$$
 $$\iint_D f(x, y)d\sigma = \int_\alpha^\beta d\theta \int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta) \cdot r dr$$
 
 ★ **面积元素是 $r dr d\theta$，不是 $dr d\theta$！**（雅可比行列式 $= r$）
+
+[[figure:polar-coordinates.png|二重积分的极坐标]]
 
 **适用识别**：
 

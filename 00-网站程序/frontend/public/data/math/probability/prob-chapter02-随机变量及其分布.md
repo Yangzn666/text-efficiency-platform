@@ -67,6 +67,8 @@
 - 标准化：$X\sim N(\mu,\sigma^2)\Rightarrow \dfrac{X-\mu}{\sigma}\sim N(0,1)$
 - $P\{|X-\mu|<k\sigma\}$：$1\sigma\to0.6826$，$2\sigma\to0.9544$，$3\sigma\to0.9974$
 
+[[figure:normal-distribution.png|正态分布曲线：μ定位置，σ定胖瘦]]
+
 ### 四、随机变量函数的分布
 
 **离散型**：列出 $Y=g(X)$ 的取值，合并相同取值的概率。
