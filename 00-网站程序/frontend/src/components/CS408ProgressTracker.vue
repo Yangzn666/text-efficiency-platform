@@ -45,7 +45,7 @@
           <h3>当前学习</h3>
           <div class="current-subject">
             <span class="subject-name">{{ currentSubjectName }}</span>
-            <el-tag type="warning" size="small">进行中</el-tag>
+            <el-tag :type="allCompleted ? 'success' : 'warning'" size="small">{{ allCompleted ? '已完成' : '进行中' }}</el-tag>
           </div>
           <div class="subject-status">{{ currentSubjectStatus }}</div>
         </div>
@@ -150,19 +150,29 @@
       >
         <template #default>
           <div class="next-step-content">
-            <p><strong>当前任务：</strong>继续完成{{ currentSubjectName }}的基础学习</p>
-            <p><strong>后续安排：</strong></p>
-            <ul>
-              <li v-for="subject in upcomingSubjects" :key="subject.id">
-                {{ subject.name }} - {{ subject.phase }}
-              </li>
-            </ul>
+            <template v-if="allCompleted">
+              <p><strong>🎉 基础阶段已全部完成：</strong>四门科目基础轮均已收官，正式进入大题强化阶段</p>
+              <p><strong>后续安排：</strong></p>
+              <ul>
+                <li>王道大题强化：数据结构 → 计组 → 操作系统 → 计算机网络</li>
+                <li>每周安排 1-2 次基础知识点轮转复习，防止遗忘</li>
+              </ul>
+            </template>
+            <template v-else>
+              <p><strong>当前任务：</strong>继续完成{{ currentSubjectName }}的基础学习</p>
+              <p><strong>后续安排：</strong></p>
+              <ul>
+                <li v-for="subject in upcomingSubjects" :key="subject.id">
+                  {{ subject.name }} - {{ subject.phase }}
+                </li>
+              </ul>
+            </template>
             
             <!-- 计组学习入口 -->
             <div class="composition-learning-entry">
               <el-divider />
               <div class="entry-content">
-                <span class="entry-text">📖 想系统学习计算机组成原理？</span>
+                <span class="entry-text">📖 想回顾计算机组成原理知识点？</span>
                 <el-button 
                   type="primary" 
                   size="small"
@@ -212,18 +222,21 @@ const subjects = ref([
     id: 'computer-network',
     name: '计算机网络',
     icon: '🌐',
-    status: 'pending',
+    status: 'completed',
     phase: '基础阶段',
-    description: '计算机网络体系结构、物理层、数据链路层、网络层、传输层、应用层'
+    description: '计算机网络体系结构、物理层、数据链路层、网络层、传输层、应用层',
+    startDate: '2026-06-15',
+    completedDate: '2026-07-24'
   },
   {
     id: 'operating-system',
     name: '操作系统',
     icon: '⚙️',
-    status: 'in-progress',
+    status: 'completed',
     phase: '基础阶段',
     description: '操作系统基本概念、进程管理、内存管理、文件管理、输入输出管理',
-    startDate: '2026-05-19'
+    startDate: '2026-05-19',
+    completedDate: '2026-06-14'
   }
 ])
 
@@ -238,16 +251,18 @@ const overallPercent = computed(() => {
   return Math.round((completedSubjects.value / totalSubjects.value) * 100)
 })
 
+const allCompleted = computed(() => completedSubjects.value === totalSubjects.value)
+
 const currentSubject = computed(() => {
   return subjects.value.find(s => s.status === 'in-progress')
 })
 
 const currentSubjectName = computed(() => {
-  return currentSubject.value?.name || '无'
+  return currentSubject.value?.name || '408基础轮（四门科目）'
 })
 
 const currentSubjectStatus = computed(() => {
-  if (!currentSubject.value) return '暂无进行中的科目'
+  if (!currentSubject.value) return '四门科目基础阶段全部完成 · 下一步：王道大题强化第1章'
   return `已开始基础学习 · ${currentSubject.value.phase}`
 })
 

@@ -48,11 +48,11 @@
         <div class="card-icon">⚙️</div>
         <div class="card-content">
           <h4>操作系统</h4>
-          <p class="status-tag in-progress">🚀 进行中</p>
+          <p class="status-tag completed">✅ 已完成</p>
           <p class="description">进程管理、内存管理、文件管理、设备管理</p>
           <div class="progress-info">
-            <el-progress :percentage="5" :stroke-width="6" color="#FF9800" />
-            <span class="progress-text">5%</span>
+            <el-progress :percentage="100" :stroke-width="6" color="#4CAF50" />
+            <span class="progress-text">100%</span>
           </div>
         </div>
       </div>
@@ -65,11 +65,11 @@
         <div class="card-icon">🌐</div>
         <div class="card-content">
           <h4>计算机网络</h4>
-          <p class="status-tag pending">⏳ 未开始</p>
+          <p class="status-tag completed">✅ 已完成</p>
           <p class="description">网络体系结构、物理层到应用层</p>
           <div class="progress-info">
-            <el-progress :percentage="0" :stroke-width="6" color="#9E9E9E" />
-            <span class="progress-text">0%</span>
+            <el-progress :percentage="100" :stroke-width="6" color="#4CAF50" />
+            <span class="progress-text">100%</span>
           </div>
         </div>
       </div>
@@ -85,9 +85,9 @@
       >
         <template #default>
           <ul>
-            <li><strong>当前重点：</strong>继续完成操作系统基础阶段学习（预计4周）</li>
-            <li><strong>复习提醒：</strong>数据结构和计组已学完，建议每周安排1-2次复习</li>
-            <li><strong>后续计划：</strong>操作系统完成后开始计算机网络基础学习</li>
+            <li><strong>当前重点：</strong>四门科目基础阶段已全部完成，进入王道大题强化（第1章起）</li>
+            <li><strong>复习提醒：</strong>每周安排 1-2 次四科知识点轮转复习，防止基础遗忘</li>
+            <li><strong>后续计划：</strong>大题强化按 数据结构 → 计组 → 操作系统 → 网络 推进，之后衔接真题模拟</li>
           </ul>
         </template>
       </el-alert>
