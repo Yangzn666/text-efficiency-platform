@@ -54,6 +54,19 @@ interface DayRecord {
   date: string
 }
 
+/** 备考里程碑（阶段节点）：已完成的阶段标记 done，未完成的 date 为目标启动/节点日期 */
+export interface Milestone {
+  id: string
+  title: string
+  /** YYYY-MM-DD：已完成则为完成日期，未完成则为目标日期 */
+  date: string
+  /** 关联科目（用于配色/图标），可选 */
+  subject?: SubjectKey
+  done: boolean
+  /** 该阶段要做的事的简要说明 */
+  note?: string
+}
+
 // ==================== 工具函数 ====================
 const todayStr = (): string => {
   const d = new Date()
@@ -92,6 +105,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
   const todayKey = ref<string>(todayStr())
   /** 每日任务快照：当天首次打开时生成一份固定清单，勾选只打勾不重生 */
   const taskSnapshot = ref<{ date: string, version: number, items: Omit<DailyTask, 'done'>[] }>({ date: '', version: 0, items: [] })
+  /** 备考里程碑（阶段节点） */
+  const milestones = ref<Milestone[]>([])
 
   // ---------- 初始化默认计划（备考全程模型：totalUnits 覆盖基础→强化→真题→冲刺全周期） ----------
   const initDefaultPlans = () => {
@@ -191,6 +206,17 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     ]
   }
 
+  // ---------- 初始化默认里程碑（阶段节点：已完成 + 未来关键节点） ----------
+  const initDefaultMilestones = () => {
+    milestones.value = [
+      { id: 'm-xiandai-done', title: '线代强化完成', date: '2026-07-26', subject: 'math', done: true, note: '线性代数强化阶段收尾' },
+      { id: 'm-politics-mayuan', title: '政治·马原启动', date: '2026-08-01', subject: 'politics', done: false, note: '徐涛强化+肖1000马原部分，重理解轻死记' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '整理作文模板，翻译真题穿插练采分点' },
+      { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
+      { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' }
+    ]
+  }
+
   // ---------- 加载 / 保存 ----------
   /** 从解析后的数据对象恢复状态（本地与云端共用） */
   const restoreFromData = (data: any) => {
@@ -214,6 +240,18 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           p.active = saved.active ?? p.active
         }
       })
+    }
+
+    // 恢复里程碑：先置默认，再按 id 叠加已存的 done/date，最后追加用户自定义节点
+    initDefaultMilestones()
+    if (Array.isArray(data.milestones)) {
+      const savedMap = new Map<string, any>(data.milestones.map((m: any) => [m.id, m]))
+      milestones.value = milestones.value.map(def => {
+        const s = savedMap.get(def.id)
+        return s ? { ...def, done: s.done ?? def.done, date: s.date ?? def.date, note: s.note ?? def.note } : def
+      })
+      const defIds = new Set(milestones.value.map(m => m.id))
+      data.milestones.forEach((s: any) => { if (s && s.id && !defIds.has(s.id)) milestones.value.push(s) })
     }
   }
 
@@ -242,6 +280,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       restoreFromData(localData)
     } else {
       initDefaultPlans()
+      initDefaultMilestones()
     }
     finalizeLoad()
 
@@ -275,6 +314,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           targetDate: p.targetDate,
           active: p.active
         })),
+        milestones: milestones.value,
         _updatedAt: new Date().toISOString()
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
@@ -584,6 +624,26 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     save()
   }
 
+  // ==================== 备考里程碑 ====================
+  /** 里程碑（按日期升序，附 daysUntil：正=还有多少天，负=已过多少天） */
+  const milestoneRows = computed(() => {
+    const today = todayStr()
+    return milestones.value
+      .map(m => ({ ...m, daysUntil: daysBetween(today, m.date) }))
+      .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+  })
+
+  /** 最近的下一个未完成里程碑 */
+  const nextMilestone = computed(() => milestoneRows.value.find(m => !m.done) || null)
+
+  const toggleMilestone = (id: string) => {
+    const m = milestones.value.find(x => x.id === id)
+    if (m) {
+      m.done = !m.done
+      save()
+    }
+  }
+
   return {
     // 状态
     examDate,
@@ -612,6 +672,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     load,
     save,
     updatePlan,
-    setExamDate
+    setExamDate,
+    // 里程碑
+    milestones,
+    milestoneRows,
+    nextMilestone,
+    toggleMilestone
   }
 })

@@ -185,6 +185,33 @@
           </div>
         </div>
       </section>
+
+      <!-- 备考里程碑（阶段节点时间轴，点击标记完成） -->
+      <section class="card milestone-card">
+        <div class="card-head">
+          <h2 class="card-title">🎯 备考里程碑</h2>
+          <span class="head-hint">已完成 {{ milestonesDone }} / {{ store.milestoneRows.length }} · 点击标记完成</span>
+        </div>
+        <div class="milestone-track">
+          <div
+            v-for="m in store.milestoneRows"
+            :key="m.id"
+            class="milestone-item"
+            :class="milestoneStatus(m).cls"
+            @click="store.toggleMilestone(m.id)"
+          >
+            <div class="ms-icon" :style="{ background: milestoneMeta(m.subject).color }">{{ milestoneMeta(m.subject).icon }}</div>
+            <div class="ms-body">
+              <div class="ms-title">{{ m.title }}</div>
+              <div class="ms-note">{{ m.note }}</div>
+              <div class="ms-foot">
+                <span class="ms-date">{{ m.date }}</span>
+                <span class="ms-status">{{ milestoneStatus(m).text }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- ③ 励志标语跑马灯 -->
@@ -216,6 +243,25 @@ const store = useTodayStatusStore()
 
 // 资料进度墙折叠状态
 const materialsOpen = ref(false)
+
+// ---------- 备考里程碑 ----------
+const MILESTONE_SUBJECT_META = {
+  math: { icon: '📐', color: '#67C23A', label: '数学一' },
+  cs408: { icon: '💻', color: '#409EFF', label: '408' },
+  english: { icon: '📖', color: '#E6A23C', label: '英语一' },
+  politics: { icon: '🚩', color: '#F56C6C', label: '政治' }
+}
+const milestoneMeta = (subject) => MILESTONE_SUBJECT_META[subject || ''] || { icon: '🎯', color: '#909399', label: '综合' }
+
+function milestoneStatus(m) {
+  if (m.done) return { text: '✓ 已完成', cls: 'done' }
+  if (m.daysUntil < 0) return { text: `已到期 ${-m.daysUntil} 天`, cls: 'overdue' }
+  if (m.daysUntil === 0) return { text: '就是今天', cls: 'soon' }
+  if (m.daysUntil <= 7) return { text: `还有 ${m.daysUntil} 天`, cls: 'soon' }
+  return { text: `还有 ${m.daysUntil} 天`, cls: 'future' }
+}
+
+const milestonesDone = computed(() => store.milestoneRows.filter(m => m.done).length)
 
 // ---------- 励志语录（6秒轮换） ----------
 const quotes = [
@@ -681,6 +727,7 @@ onUnmounted(() => {
 .feynman-text span { color: #5b6b7f; font-size: 0.8rem; }
 .feynman-arrow { color: #ffc53d; font-size: 1.2rem; font-weight: 700; }
 .subjects-card { grid-column: span 12; animation-delay: 0.18s; }
+.milestone-card { grid-column: span 12; animation-delay: 0.2s; }
 .materials-card { animation-delay: 0.22s; }
 
 /* ---------- 今日任务 ---------- */
@@ -1021,6 +1068,49 @@ onUnmounted(() => {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* ---------- 备考里程碑 ---------- */
+.milestone-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.milestone-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+}
+.milestone-item:hover { border-color: var(--gold); background: #fffdf5; }
+.milestone-item.done { background: #f0f9eb; border-color: #b3e19d; }
+.milestone-item.soon { background: #fdf6ec; border-color: #f5c77e; }
+.milestone-item.overdue { background: #fef0f0; border-color: #f89898; }
+.ms-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+.ms-body { flex: 1; min-width: 0; }
+.ms-title { font-size: 0.95em; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.milestone-item.done .ms-title { color: #529b2e; }
+.ms-note { font-size: 0.78em; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+.ms-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ms-date { font-size: 0.75em; color: #c0c4cc; }
+.ms-status { font-size: 0.78em; font-weight: 700; white-space: nowrap; }
+.milestone-item.done .ms-status { color: #67c23a; }
+.milestone-item.soon .ms-status { color: #e6a23c; }
+.milestone-item.overdue .ms-status { color: #f56c6c; }
+.milestone-item.future .ms-status { color: #909399; }
 
 /* ---------- 资料进度墙 ---------- */
 .card-head.clickable {

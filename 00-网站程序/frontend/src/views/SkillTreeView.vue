@@ -196,9 +196,27 @@ function loadSubject(subj: string) {
   applyStyles()
   const pos = computePositions()
   cy.nodes().forEach((n: any) => { if (pos[n.id()]) n.position(pos[n.id()]) })
-  // width:'label' 的宽度在渲染时才测量，立即 fit 会拿到错误边界框；先粗fit，等两帧标签宽度稳定后再精确fit
+  // width:'label' 的节点宽度要等字体/纹理就绪后才测得准，立即 fit 拿到的边界框可能不准；
+  // 且首帧渲染可能漏画（渲染器未被失效），导致画布一片空白、非得点击某个节点才全部显示。
+  // 先粗 fit，再等"两帧后"与"字体就绪后"各做一次：强制失效重绘 + 用稳定宽度精确 fit，兜底保证首屏可见。
   fitReadable()
-  requestAnimationFrame(() => requestAnimationFrame(() => fitReadable()))
+  const refine = () => {
+    if (!cy || cy.destroyed()) return
+    applyStyles()   // 对全部节点增删类名，强制渲染器失效并重绘（等价于点击节点触发的重绘）
+    fitReadable()   // 用稳定的标签宽度重新适配视口
+    // 兜底：直接驱动渲染器同步绘制一帧，避免依赖 rAF（其可能被节流/错过）
+    try {
+      const r = cy.renderer && cy.renderer()
+      if (r && typeof r.render === 'function') {
+        if (typeof r.redrawHint === 'function') { r.redrawHint('ele', true); r.redrawHint('viewport', true) }
+        r.render()
+      }
+    } catch (e) { /* 内部 API 不可用时退化为自动渲染 */ }
+  }
+  requestAnimationFrame(() => requestAnimationFrame(refine))
+  const fonts: any = (document as any).fonts
+  if (fonts && fonts.ready) fonts.ready.then(() => requestAnimationFrame(refine))
+  setTimeout(refine, 400)   // 不依赖 rAF 的超时兜底，保证至少执行一次
   updateProgress()
   panel.visible = false
 }
