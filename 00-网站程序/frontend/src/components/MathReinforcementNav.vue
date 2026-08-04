@@ -20,6 +20,11 @@
         <el-icon><Collection /></el-icon>
         <span>📇 速查卡片</span>
       </el-menu-item>
+
+      <el-menu-item index="/math/guide">
+        <el-icon><Guide /></el-icon>
+        <span>🧭 专题指南</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -27,7 +32,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { DataAnalysis, Document, Collection } from '@element-plus/icons-vue'
+import { DataAnalysis, Document, Collection, Guide } from '@element-plus/icons-vue'
 
 const route = useRoute()
 
@@ -40,6 +45,9 @@ const activeMenu = computed(() => {
   }
   if (path.includes('/quickcards')) {
     return '/math/quickcards'
+  }
+  if (path.includes('/guide')) {
+    return '/math/guide'
   }
   if (path === '/math/detail' || path.includes('/detail')) {
     return '/math/detail'

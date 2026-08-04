@@ -19,6 +19,7 @@ declare module 'vue' {
     CompositionChapterNav: typeof import('./src/components/CompositionChapterNav.vue')['default']
     CS408ProgressTracker: typeof import('./src/components/CS408ProgressTracker.vue')['default']
     CS408QuickEntry: typeof import('./src/components/CS408QuickEntry.vue')['default']
+    CS408TopicGuide: typeof import('./src/components/CS408TopicGuide.vue')['default']
     CSWrongProblems: typeof import('./src/components/CSWrongProblems.vue')['default']
     DailyPlanCard: typeof import('./src/components/DailyPlanCard.vue')['default']
     DailyPlanGenerator: typeof import('./src/components/DailyPlanGenerator.vue')['default']
@@ -63,6 +64,7 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     EnglishReadingLog: typeof import('./src/components/EnglishReadingLog.vue')['default']
     EnglishStudyPlan: typeof import('./src/components/EnglishStudyPlan.vue')['default']
+    EnglishWrongProblems: typeof import('./src/components/EnglishWrongProblems.vue')['default']
     EnhancedMoodTracker: typeof import('./src/components/EnhancedMoodTracker.vue')['default']
     EnhancedRewardShop: typeof import('./src/components/EnhancedRewardShop.vue')['default']
     ExamFrequencyMap: typeof import('./src/components/ExamFrequencyMap.vue')['default']
@@ -81,6 +83,7 @@ declare module 'vue' {
     MaterialsWall: typeof import('./src/components/MaterialsWall.vue')['default']
     MathNoteViewer: typeof import('./src/components/MathNoteViewer.vue')['default']
     MathReinforcementNav: typeof import('./src/components/MathReinforcementNav.vue')['default']
+    MathWrongProblems: typeof import('./src/components/MathWrongProblems.vue')['default']
     MindMapView: typeof import('./src/components/MindMapView.vue')['default']
     MonthlyCalendar: typeof import('./src/components/MonthlyCalendar.vue')['default']
     MoodTracker: typeof import('./src/components/MoodTracker.vue')['default']
@@ -95,6 +98,7 @@ declare module 'vue' {
     PersonalReport: typeof import('./src/components/PersonalReport.vue')['default']
     PhraseList: typeof import('./src/components/PhraseList.vue')['default']
     PlaceholderComponent: typeof import('./src/components/PlaceholderComponent.vue')['default']
+    PoliticsWrongProblems: typeof import('./src/components/PoliticsWrongProblems.vue')['default']
     PomodoroTimer: typeof import('./src/components/PomodoroTimer.vue')['default']
     PsychologyIntervention: typeof import('./src/components/PsychologyIntervention.vue')['default']
     QuickCards: typeof import('./src/components/QuickCards.vue')['default']
@@ -121,5 +125,6 @@ declare module 'vue' {
     VocabularyList: typeof import('./src/components/VocabularyList.vue')['default']
     WeaknessAnalysis: typeof import('./src/components/WeaknessAnalysis.vue')['default']
     WritingLearningPremium: typeof import('./src/components/WritingLearning-Premium.vue')['default']
+    WrongProblemsDashboard: typeof import('./src/components/WrongProblemsDashboard.vue')['default']
   }
 }

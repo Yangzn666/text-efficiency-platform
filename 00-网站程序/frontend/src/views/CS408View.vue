@@ -9,6 +9,7 @@ import CS408QuickEntry from '@/components/CS408QuickEntry.vue'
 import ReinforcementTracker from '@/components/ReinforcementTracker.vue'
 import FeynmanLearning from '@/components/FeynmanLearning.vue'
 import ExamFrequencyMap from '@/components/ExamFrequencyMap.vue'
+import CS408TopicGuide from '@/components/CS408TopicGuide.vue'
 
 const activeTab = ref('progress')
 </script>
@@ -59,6 +60,10 @@ const activeTab = ref('progress')
         
         <el-tab-pane label="思维导图" name="mindmap">
           <MindMap />
+        </el-tab-pane>
+
+        <el-tab-pane label="🧭 专题指南" name="guide">
+          <CS408TopicGuide />
         </el-tab-pane>
       </el-tabs>
     </div>

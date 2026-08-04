@@ -14,6 +14,7 @@ const MathView = () => import('@/views/MathView.vue')
 // 数学一仪表盘 + 速查卡片页
 const ReinforcementDashboard = () => import('@/components/ReinforcementDashboard.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
+const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
@@ -127,6 +128,12 @@ const router = createRouter({
       name: 'math-quickcards',
       component: MathQuickCardsView,
       meta: { requiresAuth: true, title: '速查卡片' }
+    },
+    {
+      path: '/math/guide',
+      name: 'math-guide',
+      component: MathTopicGuideView,
+      meta: { requiresAuth: true, title: '专题指南' }
     },
     {
       path: '/english',
