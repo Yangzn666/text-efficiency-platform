@@ -27,7 +27,9 @@ const categories = [
 
 const categoryMap: Record<string, string> = {
   'gaoshu-18': 'gaoshu',
+  'implicit-diff': 'gaoshu',
   'linear-systems': 'linear-algebra',
+  'quadratic-form': 'linear-algebra',
   'probability-ch3': 'probability',
   'series-convergence': 'series',
   'second-order-ode': 'ode',

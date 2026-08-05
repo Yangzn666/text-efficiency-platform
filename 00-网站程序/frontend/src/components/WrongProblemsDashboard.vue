@@ -8,13 +8,13 @@ const subjectStats = [
     name: '数学一',
     icon: '📐',
     color: '#e74c3c',
-    total: 9,
+    total: 18,
     mastered: 0,
-    unmastered: 9,
+    unmastered: 18,
     subs: [
-      { key: 'gaoshu', name: '高数', total: 5, mastered: 0, unmastered: 5 },
-      { key: 'xiandai', name: '线代', total: 2, mastered: 0, unmastered: 2 },
-      { key: 'gailv', name: '概率论', total: 2, mastered: 0, unmastered: 2 },
+      { key: 'gaoshu', name: '高数', total: 10, mastered: 0, unmastered: 10 },
+      { key: 'xiandai', name: '线代', total: 3, mastered: 0, unmastered: 3 },
+      { key: 'gailv', name: '概率论', total: 5, mastered: 0, unmastered: 5 },
     ],
   },
   {
