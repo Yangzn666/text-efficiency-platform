@@ -226,7 +226,7 @@ function texify(text: string): string {
 
 .page-title {
   font-family: 'FZCuHei', '方正粗黑_GBK', 'Microsoft YaHei', serif;
-  font-size: 2.2em;
+  font-size: 2.4em;
   margin: 0 0 12px;
   font-weight: 400;
   text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.35);
@@ -236,7 +236,7 @@ function texify(text: string): string {
 }
 
 .page-subtitle {
-  font-size: 1.1em;
+  font-size: 1.2em;
   opacity: 0.82;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -283,7 +283,7 @@ function texify(text: string): string {
   border-radius: 999px;
   background: #fff;
   color: var(--body);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -319,7 +319,7 @@ function texify(text: string): string {
   border-radius: 8px;
   background: #fff;
   color: var(--navy);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -386,7 +386,7 @@ function texify(text: string): string {
 
 .card-head h2 {
   margin: 0;
-  font-size: 1.28rem;
+  font-size: 1.4rem;
   color: var(--ink);
   position: relative;
   padding-left: 16px;
@@ -407,7 +407,7 @@ function texify(text: string): string {
 }
 
 .head-note {
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--navy);
   background: linear-gradient(135deg, rgba(22, 52, 92, 0.06), rgba(22, 52, 92, 0.1));
@@ -418,7 +418,7 @@ function texify(text: string): string {
 }
 
 .item-count {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: #8896a7;
   background: var(--bg-soft);
   padding: 3px 10px;
@@ -488,7 +488,7 @@ function texify(text: string): string {
 
 .guide-intro {
   margin: 0;
-  font-size: 1.02rem;
+  font-size: 1.1rem;
   line-height: 1.85;
   color: var(--navy);
 }
@@ -524,19 +524,19 @@ function texify(text: string): string {
 }
 
 .gi-icon {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   line-height: 1.2;
   flex-shrink: 0;
 }
 
 .gi-head strong {
-  font-size: 1.08rem;
+  font-size: 1.18rem;
   color: var(--ink);
   letter-spacing: 0.02em;
 }
 
 .gi-tag {
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   font-weight: 700;
   color: var(--navy);
   background: rgba(22, 52, 92, 0.06);
