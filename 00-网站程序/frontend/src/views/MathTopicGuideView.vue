@@ -488,7 +488,7 @@ function texify(text: string): string {
 
 .guide-intro {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   line-height: 1.85;
   color: var(--navy);
 }
