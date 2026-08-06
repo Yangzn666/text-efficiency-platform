@@ -559,8 +559,8 @@ function texify(text: string): string {
 .gi-points li {
   position: relative;
   padding: 4px 0 4px 22px;
-  font-size: 0.96rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.8;
   color: var(--body);
 }
 
@@ -578,8 +578,8 @@ function texify(text: string): string {
 
 .gi-tip {
   margin-top: 12px;
-  font-size: 0.92rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.75;
   color: #9a7216;
   background: linear-gradient(135deg, #fffbf0 0%, #fff6e0 100%);
   border-radius: 10px;
