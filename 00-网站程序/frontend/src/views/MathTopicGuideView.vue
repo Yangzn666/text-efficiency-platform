@@ -488,7 +488,7 @@ function texify(text: string): string {
 
 .guide-intro {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.85;
   color: var(--navy);
 }
@@ -559,8 +559,8 @@ function texify(text: string): string {
 .gi-points li {
   position: relative;
   padding: 4px 0 4px 22px;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1.15rem;
+  line-height: 1.85;
   color: var(--body);
 }
 
@@ -578,8 +578,8 @@ function texify(text: string): string {
 
 .gi-tip {
   margin-top: 12px;
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.1rem;
+  line-height: 1.8;
   color: #9a7216;
   background: linear-gradient(135deg, #fffbf0 0%, #fff6e0 100%);
   border-radius: 10px;
@@ -589,43 +589,43 @@ function texify(text: string): string {
 
 /* ── KaTeX Formula Styles ──────────────── */
 :deep(.katex) {
-  font-size: 1em !important;
+  font-size: 1.15em !important;
   font-family: 'KaTeX_Main', 'Times New Roman', serif !important;
 }
 
 :deep(.katex-display) {
-  margin: 0.5em 0;
+  margin: 0.6em 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
 /* inline math in titles should be slightly larger */
 .card-head h2 :deep(.katex) {
-  font-size: 1.05em !important;
+  font-size: 1.15em !important;
 }
 
 .gi-head strong :deep(.katex) {
-  font-size: 1.02em !important;
+  font-size: 1.12em !important;
 }
 
 .gi-points li :deep(.katex) {
-  font-size: 0.95em !important;
+  font-size: 1.05em !important;
 }
 
 .gi-tip :deep(.katex) {
-  font-size: 0.92em !important;
+  font-size: 1.05em !important;
 }
 
 /* ── Responsive ─────────────────────────── */
 @media (max-width: 768px) {
   .math-container { padding: 0 12px; }
-  .page-title { font-size: 1.7em; }
+  .page-title { font-size: 1.85em; }
   .page-header { padding: 24px 16px 20px; border-radius: 12px 12px 0 0; }
   .guide-body { padding: 4px 12px 36px; gap: 22px; }
   .guide-card { padding: 22px 16px 18px; }
-  .guide-card::before { left: 16px; font-size: 0.72rem; }
-  .card-head h2 { font-size: 1.1rem; }
-  .gi-head strong { font-size: 0.95rem; }
-  .gi-tag { font-size: 0.65rem; padding: 2px 10px; }
+  .guide-card::before { left: 16px; font-size: 0.78rem; }
+  .card-head h2 { font-size: 1.2rem; }
+  .gi-head strong { font-size: 1.05rem; }
+  .gi-tag { font-size: 0.72rem; padding: 2px 10px; }
 }
 </style>
