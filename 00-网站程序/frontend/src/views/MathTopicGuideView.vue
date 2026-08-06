@@ -488,7 +488,7 @@ function texify(text: string): string {
 
 .guide-intro {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.85;
   color: var(--navy);
 }
@@ -559,7 +559,7 @@ function texify(text: string): string {
 .gi-points li {
   position: relative;
   padding: 4px 0 4px 22px;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   line-height: 1.85;
   color: var(--body);
 }
@@ -578,7 +578,7 @@ function texify(text: string): string {
 
 .gi-tip {
   margin-top: 12px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   color: #9a7216;
   background: linear-gradient(135deg, #fffbf0 0%, #fff6e0 100%);
@@ -609,11 +609,11 @@ function texify(text: string): string {
 }
 
 .gi-points li :deep(.katex) {
-  font-size: 1.05em !important;
+  font-size: 1.15em !important;
 }
 
 .gi-tip :deep(.katex) {
-  font-size: 1.05em !important;
+  font-size: 1.15em !important;
 }
 
 /* ── Responsive ─────────────────────────── */
