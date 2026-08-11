@@ -22,7 +22,7 @@
           <div class="brief-date">{{ todayLabel }}</div>
           <div class="brief-goal">
             <span class="goal-chip">🎯 浙大海宁 · 电子信息(AI)</span>
-            <span class="goal-chip gold">目标 380+</span>
+            <span class="goal-chip gold">目标 360+</span>
           </div>
           <div class="brief-today">
             <span class="bt-label">今日任务</span>
@@ -278,7 +278,7 @@ const quotes = [
 ]
 const slogans = [
   '浙大海宁 · 等我上岸',
-  '380分 · 势在必得',
+  '360分 · 势在必得',
   '越努力 越幸运',
   '自律给我自由',
   '坚持到无能为力',
