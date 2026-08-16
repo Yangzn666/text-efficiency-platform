@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import {
+  type FSRSState,
+  type Grade,
+  createNewCard,
+  scheduleCard,
+  isCardDue
+} from '../utils/fsrs'
 
 /**
  * 费曼学习法数据引擎
@@ -36,6 +43,8 @@ export interface WeakPoint {
   reviewCount: number
   /** 关联的会话ID */
   sessionId: string | null
+  /** FSRS 间隔复习状态（可选，首次复习时自动创建） */
+  fsrs?: FSRSState
 }
 
 export interface FeynmanSession {
@@ -220,6 +229,75 @@ export const useFeynmanStore = defineStore('feynman', () => {
       .sort((a, b) => b.reviewCount - a.reviewCount)
   )
 
+  // ---------- FSRS 间隔复习 ----------
+
+  /**
+   * 对薄弱点执行 FSRS 评分
+   * @param id    薄弱点 ID
+   * @param grade 评分：1=Again(忘了), 2=Hard(模糊), 3=Good(记得), 4=Easy(秒杀)
+   */
+  function reviewWeakPoint(id: string, grade: Grade) {
+    const wp = data.value.weakPoints.find(w => w.id === id)
+    if (!wp) return
+
+    // 如果还没有 FSRS 状态，创建新卡片
+    if (!wp.fsrs) {
+      wp.fsrs = createNewCard()
+    }
+
+    // 执行 FSRS 调度
+    wp.fsrs = scheduleCard(wp.fsrs, grade)
+
+    // 更新复习元数据
+    wp.lastReviewAt = new Date().toISOString().slice(0, 10)
+    wp.reviewCount++
+
+    // 持久化
+    saveLocal()
+  }
+
+  /**
+   * 当前已到期的薄弱点（今天需要复习）
+   * 按 FSRS 难度降序排列（难度高的优先复习）
+   */
+  const dueWeakPoints = computed(() =>
+    data.value.weakPoints
+      .filter(w => w.status !== 'resolved' && w.fsrs && isCardDue(w.fsrs))
+      .sort((a, b) => (b.fsrs?.difficulty ?? 0) - (a.fsrs?.difficulty ?? 0))
+  )
+
+  /**
+   * 未来 7 天的复习计划预览
+   * 返回按日期分组的数据
+   */
+  const upcomingReviews = computed(() => {
+    const now = new Date()
+    const groups: { date: string; label: string; items: WeakPoint[] }[] = []
+
+    for (let i = 0; i < 7; i++) {
+      const day = new Date(now)
+      day.setDate(day.getDate() + i)
+      const dateStr = day.toISOString().slice(0, 10)
+
+      const dayEnd = new Date(day)
+      dayEnd.setDate(dayEnd.getDate() + 1)
+
+      const items = data.value.weakPoints.filter(w => {
+        if (w.status === 'resolved' || !w.fsrs?.due) return false
+        const due = new Date(w.fsrs.due)
+        return due >= day && due < dayEnd
+      })
+
+      const isToday = i === 0
+      const isTomorrow = i === 1
+      const label = isToday ? '今天' : isTomorrow ? '明天' : `${day.getMonth() + 1}/${day.getDate()}`
+
+      groups.push({ date: dateStr, label, items })
+    }
+
+    return groups
+  })
+
   const weakPointsByTopic = computed(() => {
     const map: Record<string, WeakPoint[]> = {}
     data.value.weakPoints.forEach(wp => {
@@ -242,11 +320,14 @@ export const useFeynmanStore = defineStore('feynman', () => {
     unresolvedWeakPoints,
     highPriorityWeakPoints,
     weakPointsByTopic,
+    dueWeakPoints,
+    upcomingReviews,
     switchSubject,
     loadFromJson,
     addWeakPoint,
     updateWeakPointStatus,
     removeWeakPoint,
+    reviewWeakPoint,
     addSession,
     saveLocal
   }

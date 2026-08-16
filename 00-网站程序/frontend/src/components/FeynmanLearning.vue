@@ -8,6 +8,7 @@ import {
   type WeakPointStatus,
   type FeynmanSubject
 } from '@/stores/feynman'
+import { type Grade, getCardStatus } from '@/utils/fsrs'
 
 const store = useFeynmanStore()
 
@@ -192,6 +193,39 @@ const resolveRate = computed(() => {
   if (stats.value.totalWeakPoints === 0) return 0
   return Math.round((stats.value.resolvedCount / stats.value.totalWeakPoints) * 100)
 })
+
+// ==================== FSRS 间隔复习 ====================
+
+/** 执行 FSRS 评分 */
+function handleReview(wp: WeakPoint, grade: Grade) {
+  store.reviewWeakPoint(wp.id, grade)
+  ElMessage.success(
+    grade === 1 ? '已标记为"忘了"，将很快再次复习'
+    : grade === 2 ? '已标记为"模糊"'
+    : grade === 3 ? '已标记为"记得"'
+    : '已标记为"秒杀"'
+  )
+}
+
+/** 获取卡片的 FSRS 状态信息 */
+function getFsrsInfo(wp: WeakPoint) {
+  if (!wp.fsrs) return null
+  return getCardStatus(wp.fsrs)
+}
+
+/** FSRS 统计数据 */
+const fsrsStats = computed(() => {
+  const allWps = store.data.weakPoints.filter(w => w.fsrs)
+  const learning = allWps.filter(w => w.fsrs?.state === 'learning' || w.fsrs?.state === 'relearning')
+  const review = allWps.filter(w => w.fsrs?.state === 'review')
+  const dueToday = store.dueWeakPoints.length
+  return {
+    total: allWps.length,
+    learning: learning.length,
+    review: review.length,
+    dueToday
+  }
+})
 </script>
 
 <template>
@@ -239,6 +273,13 @@ const resolveRate = computed(() => {
       >
         ⚠️ 薄弱点记录
         <el-badge v-if="store.unresolvedWeakPoints.length" :value="store.unresolvedWeakPoints.length" class="nav-badge" />
+      </button>
+      <button
+        :class="{ active: innerTab === 'review' }"
+        @click="innerTab = 'review'"
+      >
+        🔁 间隔复习
+        <el-badge v-if="store.dueWeakPoints.length" :value="store.dueWeakPoints.length" class="nav-badge" />
       </button>
       <button
         :class="{ active: innerTab === 'history' }"
@@ -516,6 +557,122 @@ const resolveRate = computed(() => {
           <el-button type="primary" @click="submitWeakPoint">确认添加</el-button>
         </template>
       </el-dialog>
+    </div>
+
+    <!-- ==================== 间隔复习 (FSRS) ==================== -->
+    <div v-show="innerTab === 'review'" class="section-review">
+      <div class="review-header">
+        <h2>🔁 间隔复习 <span class="review-subtitle">FSRS-5 智能调度</span></h2>
+        <el-badge :value="store.dueWeakPoints.length" :hidden="!store.dueWeakPoints.length" type="danger">
+          <span class="due-count-label">待复习</span>
+        </el-badge>
+      </div>
+
+      <!-- FSRS 统计面板 -->
+      <div class="fsrs-stats-panel">
+        <div class="fsrs-stat">
+          <span class="fsrs-stat-num">{{ fsrsStats.total }}</span>
+          <span class="fsrs-stat-label">总卡片</span>
+        </div>
+        <div class="fsrs-stat">
+          <span class="fsrs-stat-num fsrs-learning">{{ fsrsStats.learning }}</span>
+          <span class="fsrs-stat-label">学习中</span>
+        </div>
+        <div class="fsrs-stat">
+          <span class="fsrs-stat-num fsrs-review">{{ fsrsStats.review }}</span>
+          <span class="fsrs-stat-label">复习中</span>
+        </div>
+        <div class="fsrs-stat">
+          <span class="fsrs-stat-num" :class="{ 'fsrs-due': fsrsStats.dueToday > 0 }">{{ fsrsStats.dueToday }}</span>
+          <span class="fsrs-stat-label">今日到期</span>
+        </div>
+      </div>
+
+      <!-- 到期卡片列表 -->
+      <div v-if="store.dueWeakPoints.length > 0" class="due-cards">
+        <h3 class="due-section-title">📌 今日到期</h3>
+        <div
+          v-for="wp in store.dueWeakPoints"
+          :key="wp.id"
+          class="review-card"
+        >
+          <div class="review-card-top">
+            <el-tag :type="severityMap[wp.severity].type as any" size="small" effect="dark">
+              {{ severityMap[wp.severity].label }}
+            </el-tag>
+            <span class="review-card-topic">{{ wp.topic }}</span>
+            <el-tag
+              v-if="getFsrsInfo(wp)"
+              size="small"
+              :color="getFsrsInfo(wp)!.color"
+              effect="dark"
+              style="border: none; color: #fff"
+            >
+              {{ getFsrsInfo(wp)!.label }}
+            </el-tag>
+          </div>
+          <h4 class="review-card-concept">{{ wp.concept }}</h4>
+          <p v-if="wp.description" class="review-card-desc">{{ wp.description }}</p>
+          <div class="review-card-actions">
+            <el-button size="small" type="danger" plain @click="handleReview(wp, 1)">
+              忘了
+            </el-button>
+            <el-button size="small" type="warning" plain @click="handleReview(wp, 2)">
+              模糊
+            </el-button>
+            <el-button size="small" type="success" plain @click="handleReview(wp, 3)">
+              记得
+            </el-button>
+            <el-button size="small" type="primary" plain @click="handleReview(wp, 4)">
+              秒杀
+            </el-button>
+          </div>
+          <div v-if="getFsrsInfo(wp)" class="review-card-meta">
+            <span>难度 {{ wp.fsrs!.difficulty.toFixed(1) }} · 稳定性 {{ wp.fsrs!.stability.toFixed(1) }}天 · 复习{{ wp.fsrs!.reps }}次</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 无到期卡片 -->
+      <div v-else class="review-empty">
+        <div class="empty-icon">🎉</div>
+        <p v-if="fsrsStats.total === 0">
+          还没有任何卡片进入间隔复习。<br>
+          在「薄弱点记录」中点击状态按钮开始首次复习。
+        </p>
+        <p v-else>
+          今天没有到期的卡片，做得不错！<br>
+          继续学习新的知识点吧。
+        </p>
+      </div>
+
+      <!-- 未来 7 天复习计划 -->
+      <div v-if="fsrsStats.total > 0" class="upcoming-panel">
+        <h3 class="upcoming-title">📅 未来 7 天复习计划</h3>
+        <div class="upcoming-grid">
+          <div
+            v-for="group in store.upcomingReviews"
+            :key="group.date"
+            class="upcoming-day"
+            :class="{ 'has-items': group.items.length > 0 }"
+          >
+            <div class="upcoming-day-label">{{ group.label }}</div>
+            <div class="upcoming-day-count">{{ group.items.length }}</div>
+            <div v-if="group.items.length" class="upcoming-day-items">
+              <div
+                v-for="item in group.items.slice(0, 3)"
+                :key="item.id"
+                class="upcoming-item"
+              >
+                {{ item.concept }}
+              </div>
+              <div v-if="group.items.length > 3" class="upcoming-more">
+                +{{ group.items.length - 3 }} 更多
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ==================== 会话历史 ==================== -->
@@ -1159,21 +1316,221 @@ const resolveRate = computed(() => {
   font-weight: 500;
 }
 
+/* ==================== 间隔复习 (FSRS) ==================== */
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.review-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #1f2d3d;
+}
+.review-subtitle {
+  font-size: 0.82rem;
+  color: #909399;
+  font-weight: 400;
+  margin-left: 8px;
+}
+.due-count-label {
+  font-size: 0.85rem;
+  color: #5b6b7f;
+  font-weight: 500;
+}
+
+/* FSRS 统计面板 */
+.fsrs-stats-panel {
+  display: flex;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #f5f8fc;
+  border: 1px solid #e4ebf3;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.fsrs-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+.fsrs-stat-num {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1f2d3d;
+  font-family: 'JetBrains Mono', monospace;
+}
+.fsrs-stat-num.fsrs-learning {
+  color: #E6A23C;
+}
+.fsrs-stat-num.fsrs-review {
+  color: #67C23A;
+}
+.fsrs-stat-num.fsrs-due {
+  color: #F56C6C;
+}
+.fsrs-stat-label {
+  font-size: 0.75rem;
+  color: #909399;
+}
+
+/* 到期卡片 */
+.due-section-title {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #1f2d3d;
+}
+.due-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.review-card {
+  background: #fff;
+  border: 1px solid #e4ebf3;
+  border-radius: 12px;
+  padding: 16px;
+  border-left: 4px solid #E6A23C;
+  transition: all 0.2s;
+}
+.review-card:hover {
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.08);
+}
+.review-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.review-card-topic {
+  flex: 1;
+  font-size: 0.8rem;
+  color: #5b6b7f;
+}
+.review-card-concept {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: #1f2d3d;
+}
+.review-card-desc {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: #5b6b7f;
+  line-height: 1.5;
+}
+.review-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.review-card-meta {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #909399;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* 空状态 */
+.review-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #5b6b7f;
+}
+
+/* 未来 7 天计划 */
+.upcoming-panel {
+  background: #fff;
+  border: 1px solid #e4ebf3;
+  border-radius: 14px;
+  padding: 20px;
+}
+.upcoming-title {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  color: #1f2d3d;
+}
+.upcoming-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.upcoming-day {
+  background: #f5f8fc;
+  border: 1px solid #e4ebf3;
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.upcoming-day.has-items {
+  border-color: #ffc53d;
+  background: #fffbe6;
+}
+.upcoming-day-label {
+  font-size: 0.78rem;
+  color: #5b6b7f;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.upcoming-day-count {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1f2d3d;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 6px;
+}
+.upcoming-day.has-items .upcoming-day-count {
+  color: #e6a23c;
+}
+.upcoming-day-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.upcoming-item {
+  font-size: 0.7rem;
+  color: #5b6b7f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upcoming-more {
+  font-size: 0.65rem;
+  color: #909399;
+}
+
 /* ==================== 响应式 ==================== */
 @media (max-width: 768px) {
   .stats-bar {
     gap: 16px;
     padding: 12px 14px;
+    flex-direction: column;
   }
   .stat-num {
     font-size: 1.2rem;
   }
+  .stat-spacer {
+    display: none;
+  }
+  .subject-switch {
+    width: 100%;
+    text-align: center;
+  }
   .inner-nav {
     gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
   .inner-nav button {
     padding: 8px 12px;
     font-size: 0.82rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .steps-grid {
     grid-template-columns: 1fr;
@@ -1190,6 +1547,67 @@ const resolveRate = computed(() => {
   .prompt-body {
     font-size: 0.8rem;
     max-height: 180px;
+  }
+  .upcoming-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .fsrs-stats-panel {
+    flex-wrap: wrap;
+  }
+  .review-card-actions {
+    gap: 4px;
+  }
+  .review-card-actions .el-button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+  :deep(.el-dialog) {
+    width: 92% !important;
+    margin: 5vh auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .upcoming-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fsrs-stats-panel {
+    flex-wrap: wrap;
+  }
+  .fsrs-stat {
+    flex: 0 0 calc(50% - 8px);
+  }
+  .inner-nav button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  .review-grade-buttons {
+    gap: 4px;
+  }
+  .review-grade-buttons .el-button {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+  .review-card-actions .el-button {
+    padding: 3px 6px;
+    font-size: 0.72rem;
+  }
+  .weak-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .weak-actions {
+    width: 100%;
+  }
+  .prompt-card {
+    border-radius: 10px;
+  }
+  .prompt-body {
+    font-size: 0.78rem;
+    max-height: 150px;
+  }
+  .session-card {
+    padding: 12px 14px;
   }
 }
 </style>

@@ -15,6 +15,7 @@ const MathView = () => import('@/views/MathView.vue')
 const ReinforcementDashboard = () => import('@/components/ReinforcementDashboard.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
+const MathMethodIndexView = () => import('@/views/MethodIndexView.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
@@ -134,6 +135,12 @@ const router = createRouter({
       name: 'math-guide',
       component: MathTopicGuideView,
       meta: { requiresAuth: true, title: '专题指南' }
+    },
+    {
+      path: '/math/methods',
+      name: 'math-methods',
+      component: MathMethodIndexView,
+      meta: { requiresAuth: true, title: '方法索引' }
     },
     {
       path: '/english',

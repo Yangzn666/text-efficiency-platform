@@ -25,6 +25,11 @@
         <el-icon><Guide /></el-icon>
         <span>🧭 专题指南</span>
       </el-menu-item>
+
+      <el-menu-item index="/math/methods">
+        <el-icon><Connection /></el-icon>
+        <span>🔗 方法索引</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -32,7 +37,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { DataAnalysis, Document, Collection, Guide } from '@element-plus/icons-vue'
+import { DataAnalysis, Document, Collection, Guide, Connection } from '@element-plus/icons-vue'
 
 const route = useRoute()
 
@@ -45,6 +50,9 @@ const activeMenu = computed(() => {
   }
   if (path.includes('/quickcards')) {
     return '/math/quickcards'
+  }
+  if (path.includes('/methods')) {
+    return '/math/methods'
   }
   if (path.includes('/guide')) {
     return '/math/guide'
