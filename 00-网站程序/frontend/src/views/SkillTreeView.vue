@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
 
 // ===== 数据类型 =====
 interface SkillItem {
@@ -27,6 +27,34 @@ const currentSubject = ref('gaoshu')
 const subjectList = ref<{ key: string; name: string }[]>([])
 const progressPct = ref(0)
 const progressText = ref('0 / 0 掌握')
+
+// ===== 励志语录轮播 =====
+const quotes = [
+  '你不需要很厉害才能开始，但你需要开始才能很厉害。',
+  '关关难过关关过，前路漫漫亦灿灿。',
+  '把会做的做对，把不会的学会，你就赢过了昨天的自己。',
+  '进度条从不说谎——每点亮一个节点，都是实打实的进步。',
+  '别急着和别人比，这棵树是你自己一题一题点亮的。',
+  '今天多掌握一个题型，考场上就少慌一分钟。',
+  '所谓运气，是你刷过的每一道题在关键时刻站出来。',
+  '慢就是快，稳就是强；把眼前的这一题啃透，就够了。'
+]
+const quoteIdx = ref(0)
+const quoteVisible = ref(true)
+let quoteTimer: ReturnType<typeof setInterval> | null = null
+function rotateQuote() {
+  quoteVisible.value = false
+  setTimeout(() => {
+    quoteIdx.value = (quoteIdx.value + 1) % quotes.length
+    quoteVisible.value = true
+  }, 400)
+}
+
+// ===== 进度环（SVG dash）=====
+const RING_R = 22
+const ringCirc = computed(() => 2 * Math.PI * RING_R)
+const ringOffset = computed(() => ringCirc.value * (1 - Math.min(progressPct.value, 100) / 100))
+
 const panel = reactive({
   visible: false,
   title: '',
@@ -140,7 +168,7 @@ function computePositions() {
   chIds.forEach(crank)
   const sorted = chIds.slice().sort((a, b) => (cmemo[a] - cmemo[b]) || a.localeCompare(b))
   const pos: Record<string, { x: number; y: number }> = {}
-  const rowH = 80, colW = 140, itemsStartX = 235
+  const rowH = 96, colW = 158, itemsStartX = 262
   sorted.forEach((ch, r) => {
     pos[ch] = { x: 0, y: r * rowH }
     ;(itemsOfChapter[ch] || []).forEach((it, i) => {
@@ -258,22 +286,49 @@ function closePanel() {
 // ===== 初始化 cytoscape =====
 function cyStyles() {
   return [
-    { selector: 'node', style: { 'label': 'data(label)', 'font-family': 'system-ui,"Microsoft YaHei",sans-serif', 'font-weight': 'normal', 'color': '#E2E8F0', 'text-valign': 'center', 'text-halign': 'center', 'font-size': '15px', 'text-outline-color': 'rgba(11,17,32,0.9)', 'text-outline-width': 1, 'transition-property': 'opacity, background-color, border-color, border-width', 'transition-duration': '0.2s' } },
-    { selector: 'node[type="chapter"]', style: { 'shape': 'round-rectangle', 'background-color': '#312E81', 'border-width': 2, 'border-color': '#6366F1', 'width': 'label', 'height': 40, 'padding': '14px', 'font-size': '16px', 'color': '#E0E7FF', 'text-outline-width': 0 } },
-    { selector: 'node[type="item"]', style: { 'shape': 'round-rectangle', 'width': 'label', 'height': 30, 'padding': '10px', 'font-size': '14px', 'font-weight': '500', 'text-outline-width': 0, 'border-width': 2 } },
-    { selector: 'node.freq-nnk', style: { 'background-color': '#F59E0B', 'border-color': '#FCD34D', 'color': '#1A1206' } },
-    { selector: 'node.freq-gp', style: { 'background-color': '#3B82F6', 'border-color': '#93C5FD', 'color': '#fff' } },
-    { selector: 'node.freq-zp', style: { 'background-color': '#14B8A6', 'border-color': '#5EEAD4', 'color': '#04211D' } },
-    { selector: 'node.freq-dp', style: { 'background-color': '#64748B', 'border-color': '#CBD5E1', 'color': '#fff' } },
-    { selector: 'node.mastered', style: { 'opacity': 1, 'border-width': 3, 'border-color': '#FDE047' } },
-    { selector: 'node.learning', style: { 'opacity': 0.95, 'border-width': 2, 'border-style': 'dashed', 'border-color': '#F8FAFC' } },
+    { selector: 'node', style: {
+      'label': 'data(label)', 'font-family': '"Microsoft YaHei",system-ui,sans-serif', 'font-weight': '500',
+      'color': '#E2E8F0', 'text-valign': 'center', 'text-halign': 'center', 'font-size': '14px',
+      'text-wrap': 'none', 'transition-property': 'opacity, background-color, border-color, border-width', 'transition-duration': '0.25s'
+    } },
+    // 章节节点：靛蓝径向渐变 + 柔光，像一颗行星站
+    { selector: 'node[type="chapter"]', style: {
+      'shape': 'round-rectangle',
+      'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#4F46E5', '#312E81', '#1E1B4B'],
+      'background-gradient-stop-positions': [0, 0.55, 1], 'background-gradient-direction': 'right',
+      'border-width': 2, 'border-color': '#818CF8', 'width': 'label', 'height': 46, 'padding': '16px',
+      'font-size': '16px', 'font-weight': '600', 'color': '#EEF2FF',
+      'shadow-blur': 18, 'shadow-color': 'rgba(99,102,241,0.55)', 'shadow-opacity': 1, 'shadow-offset-x': 0, 'shadow-offset-y': 4
+    } },
+    { selector: 'node[type="item"]', style: {
+      'shape': 'round-rectangle', 'width': 'label', 'height': 34, 'padding': '11px',
+      'font-size': '14px', 'font-weight': '500', 'border-width': 1.5
+    } },
+    // 考频配色（线性渐变）
+    { selector: 'node.freq-nnk', style: { 'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#FCD34D', '#F59E0B'], 'color': '#3A2600', 'border-color': '#FDE68A' } },
+    { selector: 'node.freq-gp',  style: { 'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#60A5FA', '#2563EB'], 'color': '#FFFFFF', 'border-color': '#93C5FD' } },
+    { selector: 'node.freq-zp',  style: { 'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#2DD4BF', '#0D9488'], 'color': '#04211D', 'border-color': '#5EEAD4' } },
+    { selector: 'node.freq-dp',  style: { 'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#94A3B8', '#64748B'], 'color': '#0F172A', 'border-color': '#CBD5E1' } },
+    // 掌握态
+    { selector: 'node.mastered', style: { 'opacity': 1, 'border-width': 3, 'border-color': '#FDE047',
+      'shadow-blur': 24, 'shadow-color': '#FDE047', 'shadow-opacity': 0.6, 'shadow-offset-x': 0, 'shadow-offset-y': 0 } },
+    { selector: 'node.learning', style: { 'opacity': 1, 'border-width': 2, 'border-style': 'dashed', 'border-color': '#F8FAFC' } },
     { selector: 'node.untested', style: { 'opacity': 1 } },
-    { selector: 'node.locked', style: { 'opacity': 0.85, 'background-color': '#3E4C63', 'border-color': '#64748B', 'border-style': 'dashed', 'color': '#C7D2E0' } },
-    { selector: 'node[type="chapter"].mastered', style: { 'background-color': '#4C1D95', 'border-color': '#FDE047', 'color': '#FEF9C3', 'opacity': 1 } },
-    { selector: 'node[type="chapter"].locked', style: { 'opacity': 0.85, 'background-color': '#2B3648', 'border-color': '#64748B', 'border-style': 'dashed', 'color': '#C7D2E0' } },
-    { selector: 'node.selected', style: { 'border-width': 3, 'border-color': '#FDE047' } },
-    { selector: 'edge', style: { 'width': 2, 'line-color': '#3B4A63', 'target-arrow-color': '#3B4A63', 'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.8, 'opacity': 0.5 } },
-    { selector: 'edge.edge-active', style: { 'line-color': '#F59E0B', 'target-arrow-color': '#F59E0B', 'opacity': 0.9, 'width': 2.5 } }
+    // 锁定：保留考频配色，只压暗 + 虚线边框（不再是灰墙）
+    { selector: 'node.locked', style: { 'opacity': 0.46, 'border-style': 'dashed', 'border-color': '#64748B', 'shadow-blur': 0, 'shadow-opacity': 0 } },
+    { selector: 'node[type="chapter"].mastered', style: {
+      'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#FDE68A', '#F59E0B', '#B45309'],
+      'border-color': '#FEF08A', 'color': '#3A2600', 'opacity': 1,
+      'shadow-blur': 26, 'shadow-color': '#FDE047', 'shadow-opacity': 0.6, 'shadow-offset-y': 0 } },
+    { selector: 'node[type="chapter"].locked', style: {
+      'background-fill': 'solid', 'background-color': '#243049', 'border-color': '#475569', 'border-style': 'dashed',
+      'color': '#94A3B8', 'opacity': 0.55, 'shadow-blur': 0, 'shadow-opacity': 0 } },
+    { selector: 'node.selected', style: { 'border-width': 3.5, 'border-color': '#FFFFFF',
+      'shadow-blur': 28, 'shadow-color': '#FDE047', 'shadow-opacity': 0.85, 'shadow-offset-x': 0, 'shadow-offset-y': 0 } },
+    { selector: 'edge', style: { 'width': 2, 'line-color': '#3B4A63', 'target-arrow-color': '#3B4A63',
+      'target-arrow-shape': 'triangle', 'curve-style': 'bezier', 'arrow-scale': 0.7, 'opacity': 0.3 } },
+    { selector: 'edge.edge-active', style: { 'line-color': '#FBBF24', 'target-arrow-color': '#FBBF24',
+      'opacity': 0.95, 'width': 2.5, 'shadow-blur': 8, 'shadow-color': '#FBBF24', 'shadow-opacity': 0.5 } }
   ]
 }
 
@@ -308,6 +363,7 @@ function onKeydown(e: KeyboardEvent) {
 
 onMounted(async () => {
   window.addEventListener('keydown', onKeydown)
+  quoteTimer = setInterval(rotateQuote, 6000)
   try {
     await loadData()
     loading.value = false
@@ -320,6 +376,7 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
+  if (quoteTimer) { clearInterval(quoteTimer); quoteTimer = null }
   if (cy) { cy.destroy(); cy = null }
 })
 </script>
@@ -327,21 +384,39 @@ onBeforeUnmount(() => {
 <template>
   <div class="skilltree-page">
     <div class="skilltree-card">
-      <div class="st-header">
-        <h2 class="st-title">🌳 数学题型技能树</h2>
-        <div class="st-tabs">
-          <button
-            v-for="s in subjectList"
-            :key="s.key"
-            class="st-tab"
-            :class="{ active: currentSubject === s.key }"
-            @click="loadSubject(s.key)"
-          >{{ s.name }}</button>
+      <div class="st-hero">
+        <div class="st-hero-left">
+          <h2 class="st-title">
+            <span class="st-title-icon">🌳</span> 数学题型技能树
+          </h2>
+          <p class="st-subtitle">点亮每一个题型 · 看着自己的实力一棵棵生长</p>
+          <div class="st-tabs">
+            <button
+              v-for="s in subjectList"
+              :key="s.key"
+              class="st-tab"
+              :class="{ active: currentSubject === s.key }"
+              @click="loadSubject(s.key)"
+            >{{ s.name }}</button>
+          </div>
         </div>
-        <div class="st-progress">
-          <div class="st-progress-bar"><div class="st-progress-fill" :style="{ width: progressPct + '%' }"></div></div>
-          <span class="st-progress-text">{{ progressText }}</span>
+        <div class="st-hero-right">
+          <div class="st-ring">
+            <svg viewBox="0 0 56 56" class="st-ring-svg">
+              <circle class="st-ring-bg" cx="28" cy="28" :r="RING_R" />
+              <circle class="st-ring-fg" cx="28" cy="28" :r="RING_R"
+                :stroke-dasharray="ringCirc" :stroke-dashoffset="ringOffset" />
+            </svg>
+            <div class="st-ring-num">
+              <strong>{{ Math.round(progressPct) }}</strong><span>%</span>
+            </div>
+          </div>
+          <div class="st-ring-label">{{ progressText }}</div>
         </div>
+      </div>
+
+      <div class="st-quote" :class="{ 'quote-hide': !quoteVisible }">
+        <span class="st-quote-mark">“</span>{{ quotes[quoteIdx] }}<span class="st-quote-mark">”</span>
       </div>
 
       <div v-if="loading" class="st-state">正在加载技能树…</div>
@@ -359,7 +434,7 @@ onBeforeUnmount(() => {
             <span class="st-chip"><span class="st-swatch" style="background:#3B82F6;border:2px solid #FDE047"></span>已掌握</span>
             <span class="st-chip"><span class="st-swatch" style="background:#3B82F6;border:2px dashed #F8FAFC"></span>学习中</span>
             <span class="st-chip"><span class="st-swatch" style="background:#3B82F6"></span>未测</span>
-            <span class="st-chip"><span class="st-swatch" style="background:#3E4C63;border:2px dashed #64748B"></span>未解锁</span>
+            <span class="st-chip"><span class="st-swatch" style="background:#3B82F6;opacity:0.4;border:2px dashed #64748B"></span>未解锁</span>
           </div>
           <div class="st-zoom-h">
             <button class="st-btn" title="放大" @click="zoomIn">+</button>
@@ -408,45 +483,89 @@ onBeforeUnmount(() => {
   flex-direction: column;
 }
 
-.st-header {
+.st-hero {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 14px 20px;
-  background: #1E293B;
-  border-bottom: 1px solid #334155;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  background:
+    radial-gradient(120% 140% at 88% -20%, rgba(253, 224, 71, 0.16), transparent 45%),
+    linear-gradient(120deg, #1E1B4B 0%, #1E293B 55%, #0B1120 100%);
+  border-bottom: 1px solid rgba(129, 140, 248, 0.28);
   flex-wrap: wrap;
+  overflow: hidden;
 }
-
+.st-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.5; pointer-events: none;
+}
+.st-hero-left { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; }
 .st-title {
-  font-size: 18px;
-  font-weight: normal;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
   color: #FDE047;
   letter-spacing: 1px;
   margin: 0;
+  text-shadow: 0 0 22px rgba(253, 224, 71, 0.35);
 }
+.st-title-icon { filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.5)); }
+.st-subtitle { margin: 0; font-size: 13px; color: #A5B4FC; letter-spacing: 0.5px; }
 
-.st-tabs { display: flex; gap: 6px; }
+.st-tabs { display: flex; gap: 8px; margin-top: 2px; }
 .st-tab {
-  padding: 6px 16px;
-  border-radius: 8px;
-  background: #0F172A;
-  border: 1px solid #334155;
-  color: #94A3B8;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  color: #C7D2FE;
   cursor: pointer;
   font-size: 14px;
-  transition: 0.2s;
-  &:hover { border-color: #FDE047; color: #FDE047; }
-  &.active { background: #FDE047; color: #1A1206; border-color: #FDE047; }
+  font-weight: 500;
+  transition: 0.22s;
+  &:hover { border-color: #FDE047; color: #FDE047; transform: translateY(-1px); }
+  &.active {
+    background: linear-gradient(90deg, #FDE047, #F59E0B);
+    color: #1A1206; border-color: transparent; font-weight: 700;
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+  }
 }
 
-.st-progress { display: flex; align-items: center; gap: 10px; margin-left: auto; }
-.st-progress-bar {
-  width: 160px; height: 10px; background: #0F172A;
-  border-radius: 5px; overflow: hidden; border: 1px solid #334155;
+.st-hero-right { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.st-ring { position: relative; width: 72px; height: 72px; }
+.st-ring-svg { width: 72px; height: 72px; transform: rotate(-90deg); }
+.st-ring-bg { fill: none; stroke: rgba(148, 163, 184, 0.22); stroke-width: 5; }
+.st-ring-fg {
+  fill: none; stroke: #FDE047; stroke-width: 5; stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(253, 224, 71, 0.6));
+  transition: stroke-dashoffset 0.6s ease;
 }
-.st-progress-fill { height: 100%; background: linear-gradient(90deg, #F59E0B, #FDE047); transition: width 0.4s; }
-.st-progress-text { font-size: 13px; color: #CBD5E1; min-width: 96px; }
+.st-ring-num {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: #FEF9C3;
+  strong { font-size: 20px; font-weight: 700; line-height: 1; }
+  span { font-size: 11px; margin-left: 1px; color: #FDE047; }
+}
+.st-ring-label { font-size: 12px; color: #CBD5E1; letter-spacing: 0.5px; }
+
+.st-quote {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  padding: 10px 24px;
+  font-size: 14px; font-style: italic; letter-spacing: 0.5px;
+  color: #E0E7FF;
+  background: linear-gradient(90deg, rgba(79, 70, 229, 0.18), rgba(15, 23, 42, 0.35), rgba(79, 70, 229, 0.18));
+  border-bottom: 1px solid #1E293B;
+  text-align: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  &.quote-hide { opacity: 0; transform: translateY(-4px); }
+}
+.st-quote-mark { color: #FDE047; font-size: 18px; font-style: normal; line-height: 1; }
 
 .st-state {
   padding: 60px 20px;
@@ -462,16 +581,16 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 10px 20px;
-  background: #0F172A;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(11, 17, 32, 0.7));
   border-bottom: 1px solid #1E293B;
   flex-wrap: wrap;
 }
 .st-legend-h { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.st-legend-label { color: #64748B; font-size: 12px; margin-left: 4px; }
+.st-legend-label { color: #818CF8; font-size: 12px; margin-left: 4px; font-weight: 600; letter-spacing: 0.5px; }
 .st-chip {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 3px 10px; border-radius: 12px;
-  background: #1E293B; border: 1px solid #334155;
+  background: rgba(30, 41, 59, 0.7); border: 1px solid #334155;
   color: #CBD5E1; font-size: 12px;
 }
 .st-swatch { width: 12px; height: 12px; border-radius: 3px; box-sizing: border-box; }
@@ -479,31 +598,49 @@ onBeforeUnmount(() => {
 .st-zoom-h { display: flex; gap: 6px; }
 .st-btn {
   width: 32px; height: 32px;
-  border-radius: 8px; background: #1E293B;
+  border-radius: 8px; background: rgba(30, 41, 59, 0.8);
   border: 1px solid #334155; color: #94A3B8;
   cursor: pointer; font-size: 16px;
   display: flex; align-items: center; justify-content: center;
   transition: 0.2s;
-  &:hover { border-color: #FDE047; color: #FDE047; }
+  &:hover { border-color: #FDE047; color: #FDE047; box-shadow: 0 0 12px rgba(253, 224, 71, 0.25); }
 }
 
 .st-main { position: relative; }
 .st-cy {
+  position: relative;
   width: 100%;
-  height: 700px;
+  height: 720px;
   background:
-    radial-gradient(circle at 28% 18%, rgba(99, 102, 241, 0.10), transparent 42%),
-    radial-gradient(circle at 82% 82%, rgba(245, 158, 11, 0.07), transparent 42%),
+    radial-gradient(120% 90% at 22% 12%, rgba(99, 102, 241, 0.16), transparent 45%),
+    radial-gradient(120% 90% at 84% 88%, rgba(245, 158, 11, 0.12), transparent 45%),
+    radial-gradient(90% 70% at 60% 50%, rgba(20, 184, 166, 0.06), transparent 55%),
     #0B1120;
+  &::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(148, 163, 184, 0.10) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  &::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    box-shadow: inset 0 0 120px 40px rgba(2, 6, 23, 0.7);
+  }
 }
 
 .st-panel {
   position: absolute; right: 16px; top: 16px;
-  width: 280px; max-height: calc(100% - 32px);
+  width: 288px; max-height: calc(100% - 32px);
   overflow-y: auto;
-  background: rgba(30, 41, 59, 0.96);
-  border: 1px solid #334155; border-radius: 12px;
+  background: rgba(23, 30, 51, 0.82);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(129, 140, 248, 0.35); border-radius: 14px;
   padding: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  animation: st-panel-in 0.28s ease;
+}
+@keyframes st-panel-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .st-panel-close {
   position: absolute; top: 8px; right: 8px;
@@ -534,19 +671,21 @@ onBeforeUnmount(() => {
 
 /* ===== 移动端适配 ===== */
 @media (max-width: 768px) {
-  .st-header {
-    gap: 10px;
-    padding: 12px 14px;
+  .st-hero {
+    gap: 14px;
+    padding: 16px 16px;
   }
-  .st-title { font-size: 16px; }
-  .st-tab { padding: 5px 12px; font-size: 13px; }
-  /* 进度条独占一行，避免被挤溢出 */
-  .st-progress {
-    margin-left: 0;
+  .st-hero-left { width: 100%; }
+  .st-title { font-size: 18px; }
+  .st-subtitle { font-size: 12px; }
+  .st-tab { padding: 5px 14px; font-size: 13px; }
+  .st-hero-right {
     width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
   }
-  .st-progress-bar { flex: 1; width: auto; }
-  .st-progress-text { min-width: 0; white-space: nowrap; }
+  .st-quote { font-size: 12.5px; padding: 9px 14px; }
 
   .st-toolbar { padding: 8px 14px; }
   .st-chip { padding: 2px 8px; font-size: 11px; }
