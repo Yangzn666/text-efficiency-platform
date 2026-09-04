@@ -2,7 +2,7 @@
   <div class="grammar-learning-center">
     <div class="center-header">
       <h2 class="center-title">🎓 语法学习中心</h2>
-      <p class="center-subtitle">AI辅助 · 诊断评估 · 学习计划 · 进度追踪</p>
+      <p class="center-subtitle">AI辅助 · 诊断评估 · 知识图谱 · 长难句拆解 · 进度追踪</p>
     </div>
 
     <!-- 内部标签页 -->
@@ -17,9 +17,14 @@
         <GrammarDiagnosis />
       </el-tab-pane>
 
-      <!-- 语法学习计划 -->
-      <el-tab-pane label="学习计划" name="learningPlan">
-        <GrammarLearningPlan />
+      <!-- 语法知识图谱 -->
+      <el-tab-pane label="知识图谱" name="knowledgeMap">
+        <GrammarKnowledgeMap />
+      </el-tab-pane>
+
+      <!-- 长难句拆解 -->
+      <el-tab-pane label="长难句拆解" name="longSentence">
+        <LongSentencePractice />
       </el-tab-pane>
 
       <!-- 学习情况报告 -->
@@ -35,7 +40,8 @@ import { ref, defineAsyncComponent } from 'vue'
 
 const AIGrammarAssistant = defineAsyncComponent(() => import('@/components/AIGrammarAssistant.vue'))
 const GrammarDiagnosis = defineAsyncComponent(() => import('@/components/GrammarDiagnosis.vue'))
-const GrammarLearningPlan = defineAsyncComponent(() => import('@/components/GrammarLearningPlan.vue'))
+const GrammarKnowledgeMap = defineAsyncComponent(() => import('@/components/GrammarKnowledgeMap.vue'))
+const LongSentencePractice = defineAsyncComponent(() => import('@/components/LongSentencePractice.vue'))
 const StudyProgressReport = defineAsyncComponent(() => import('@/components/StudyProgressReport.vue'))
 
 const activeSubTab = ref('aiAssistant')

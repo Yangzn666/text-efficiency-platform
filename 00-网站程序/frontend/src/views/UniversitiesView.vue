@@ -8,6 +8,7 @@
         <span class="ph-kicker">UNIVERSITIES · 院校数据库 · 2026版</span>
         <h1>11408考研院校<span class="gold">数据库</span></h1>
         <p class="subtitle">69所重点院校完整信息 · 分数线 · 报录比 · 科目变更</p>
+        <p class="data-updated">📅 数据更新：2026年5月13日 · 来源：灰灰考研统计（27所院校2026复试线/录取分已同步核验）</p>
       </div>
     </header>
 
@@ -745,6 +746,18 @@ const getLevelBadgeText = (level: string | undefined) => {
   color: #a8bdd4;
   margin: 0;
   letter-spacing: 0.06em;
+}
+
+.data-updated {
+  margin: 10px auto 0;
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: #ffd77a;
+  background: rgba(255, 197, 61, 0.1);
+  border: 1px solid rgba(255, 197, 61, 0.3);
+  border-radius: 999px;
+  padding: 5px 16px;
 }
 
 /* 筛选区 */

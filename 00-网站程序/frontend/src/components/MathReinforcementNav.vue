@@ -7,11 +7,6 @@
       class="reinforcement-menu"
     >
       <el-menu-item index="/math">
-        <el-icon><DataAnalysis /></el-icon>
-        <span>📊 仪表盘</span>
-      </el-menu-item>
-      
-      <el-menu-item index="/math/detail">
         <el-icon><Document /></el-icon>
         <span>🔍 知识点</span>
       </el-menu-item>
@@ -37,17 +32,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { DataAnalysis, Document, Collection, Guide, Connection } from '@element-plus/icons-vue'
+import { Document, Collection, Guide, Connection } from '@element-plus/icons-vue'
 
 const route = useRoute()
 
 const activeMenu = computed(() => {
   const path = route.path
 
-  // 精确匹配各个路由
-  if (path === '/math' || path === '/math/') {
-    return '/math'
-  }
   if (path.includes('/quickcards')) {
     return '/math/quickcards'
   }
@@ -57,10 +48,8 @@ const activeMenu = computed(() => {
   if (path.includes('/guide')) {
     return '/math/guide'
   }
-  if (path === '/math/detail' || path.includes('/detail')) {
-    return '/math/detail'
-  }
 
+  // 默认（含 /math 与 /math/detail 兼容路径）高亮知识点
   return '/math'
 })
 </script>

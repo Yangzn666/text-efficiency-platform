@@ -1,11 +1,59 @@
 <script setup lang="ts">
 import { ref, defineAsyncComponent } from 'vue'
-// 使用动态导入解决TypeScript默认导出识别问题
-const CurrentAffairs = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
-const PoliticalPoints = defineAsyncComponent(() => import('@/components/PlaceholderComponent.vue'))
-const KnowledgeStructure = defineAsyncComponent(() => import('@/components/KnowledgeStructure.vue'))
 
-const activeTab = ref('knowledge')
+const PoliticsKnowledge = defineAsyncComponent(() => import('@/components/PoliticsKnowledge.vue'))
+const PoliticsReciteCards = defineAsyncComponent(() => import('@/components/PoliticsReciteCards.vue'))
+
+const activeTab = ref('roadmap')
+
+// 备考路线图三阶段数据
+const stages = [
+  {
+    phase: 'PHASE 01',
+    time: '8月 - 9月',
+    title: '强化筑基期',
+    color: 'gold',
+    goal: '搭建框架 · 理解考点 · 刷透肖1000题',
+    tasks: [
+      '主线课程：徐涛强化班（或腿姐考点清单），按马原→毛中特→史纲→思修顺序过一遍',
+      '每看完一章立即对应刷肖秀荣《1000题》该章节，当天错题当天订正',
+      '马原哲学部分重理解：矛盾、实践、认识论必须能用自己的话讲出来',
+      '形策暂不系统投入，每天刷新闻留印象即可'
+    ],
+    daily: '每日预算 1 - 1.5 小时',
+    tip: '此阶段不求全记住，选择题正确率 60% 即达标，重点是建立框架感'
+  },
+  {
+    phase: 'PHASE 02',
+    time: '10月',
+    title: '真题技巧期',
+    color: 'red',
+    goal: '真题实战 · 技巧提炼 · 错题回炉',
+    tasks: [
+      '腿姐技巧班（选择题技巧为主），学会识别命题陷阱与绝对化表述',
+      '肖1000题二刷错题与标记题，正确率目标提升至 75%+',
+      '研砖政治模块按年刷真题选择题，感受命题风格',
+      '开始整理时政热点笔记，跟随主流时政串讲资料'
+    ],
+    daily: '每日预算 1.5 - 2 小时',
+    tip: '多选题是政治拉分核心，错 1 个少 2 分，技巧班的"帽子题"判断法务必练熟'
+  },
+  {
+    phase: 'PHASE 03',
+    time: '11月 - 12月',
+    title: '冲刺决胜期',
+    color: 'navy',
+    goal: '肖8肖4 · 时政突击 · 分析题背诵',
+    tasks: [
+      '肖八到手：选择题全刷、反复刷到全对，分析题只看思路不必背',
+      '肖四到手：4 道分析题 × 4 套卷全部背熟，这是政治分析题的保命盘',
+      '时政冲刺册 + 各机构押题卷选择题（腿4、徐8等选做）',
+      '回顾错题本中的政治错题，考前一周只看不练'
+    ],
+    daily: '每日预算 2 - 2.5 小时',
+    tip: '肖四大题押题命中率常年极高，背诵优先级高于一切，12月每天大声背诵 1 小时'
+  }
+]
 </script>
 
 <template>
@@ -15,120 +63,136 @@ const activeTab = ref('knowledge')
       <div class="hero-glow"></div>
       <div class="hero-inner">
         <span class="hero-kicker">POLITICS · 政治 · 目标70+</span>
-        <h1 class="hero-title">政治<span class="gold">学习系统</span></h1>
-        <p class="hero-sub">时政热点 · 考点梳理 · 知识关联 · 模拟练习</p>
+        <h1 class="hero-title">政治<span class="gold">作战室</span></h1>
+        <p class="hero-sub">路线图 · 知识框架 · 背诵卡片 · 真题演练 —— 一站到位</p>
       </div>
     </header>
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="politics-tabs">
-        <el-tab-pane label="知识点梳理" name="knowledge">
-          <KnowledgeStructure subject="politics" />
-        </el-tab-pane>
-        
-        <el-tab-pane label="时政热点" name="affairs">
-          <CurrentAffairs />
-        </el-tab-pane>
-        
-        <el-tab-pane label="考点关联" name="points">
-          <PoliticalPoints />
-        </el-tab-pane>
-        
-        <el-tab-pane label="知识结构" name="structure">
-          <div class="structure-content">
-            <div class="structure-illustration">
-              <el-icon size="80" color="#ffc53d"><Connection /></el-icon>
+        <!-- ══ 页签1：备考路线图 ══ -->
+        <el-tab-pane label="🗺️ 备考路线图" name="roadmap">
+          <div class="roadmap-intro">
+            <span class="ri-icon">🎯</span>
+            <div>
+              <strong>8月启动，完全来得及</strong>
+              <p>政治是所有科目中启动最晚、性价比最高的。现阶段每天 1-1.5 小时足够，切忌过早投入挤压数学与408。以下三阶段计划与主流名师节奏一致，照着执行即可。</p>
             </div>
-            <h3>🧠 知识结构可视化</h3>
-            <p>构建政治知识体系，理清概念间的关系</p>
-            
-            <div class="structure-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#FF6B6B"><DataAnalysis /></el-icon>
-                <div>
-                  <h4>知识图谱构建</h4>
-                  <p>可视化展示知识点之间的逻辑关系</p>
+          </div>
+
+          <div class="timeline">
+            <section
+              v-for="(s, i) in stages"
+              :key="i"
+              class="stage-card"
+              :class="s.color"
+            >
+              <div class="stage-rail">
+                <span class="stage-dot"></span>
+                <span v-if="i < stages.length - 1" class="stage-line"></span>
+              </div>
+              <div class="stage-body">
+                <div class="stage-head">
+                  <span class="stage-phase">{{ s.phase }}</span>
+                  <span class="stage-time">{{ s.time }}</span>
+                  <strong class="stage-title">{{ s.title }}</strong>
+                </div>
+                <div class="stage-goal">目标：{{ s.goal }}</div>
+                <ul class="stage-tasks">
+                  <li v-for="(t, j) in s.tasks" :key="j">{{ t }}</li>
+                </ul>
+                <div class="stage-foot">
+                  <span class="stage-daily">⏱ {{ s.daily }}</span>
+                  <span class="stage-tip">💡 {{ s.tip }}</span>
                 </div>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><Cpu /></el-icon>
-                <div>
-                  <h4>智能关联分析</h4>
-                  <p>自动识别和建立知识点间的联系</p>
-                </div>
+            </section>
+          </div>
+
+          <div class="budget-card">
+            <h3>📐 现阶段每日时间预算建议</h3>
+            <div class="budget-grid">
+              <div class="budget-item">
+                <strong>1 - 1.5h</strong>
+                <span>政治总投入（视频课 + 肖1000）</span>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#FF9800"><Lightning /></el-icon>
-                <div>
-                  <h4>学习路径优化</h4>
-                  <p>基于知识结构推荐最优学习顺序</p>
-                </div>
+              <div class="budget-item">
+                <strong>60%</strong>
+                <span>看课与理解（徐涛强化/腿姐考点清单）</span>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#9C27B0"><Collection /></el-icon>
-                <div>
-                  <h4>记忆强化系统</h4>
-                  <p>通过结构化学习加深理解和记忆</p>
-                </div>
+              <div class="budget-item">
+                <strong>40%</strong>
+                <span>刷题与订正（肖1000按章同步）</span>
+              </div>
+              <div class="budget-item">
+                <strong>10min</strong>
+                <span>睡前翻 2-3 张背诵卡片巩固</span>
               </div>
             </div>
-            
-            <el-button type="primary" size="large" @click="activeTab = 'knowledge'">
-              <el-icon><Collection /></el-icon>
-              前往知识点梳理
-            </el-button>
           </div>
         </el-tab-pane>
-        
-        <el-tab-pane label="模拟练习" name="practice">
-          <div class="practice-content">
-            <div class="practice-illustration">
-              <el-icon size="80" color="#FF9800"><EditPen /></el-icon>
-            </div>
-            <h3>📝 模拟试题练习</h3>
-            <p>海量政治模拟题，在线练习和智能批改</p>
-            
-            <div class="practice-features">
-              <div class="feature-card">
-                <el-icon size="24" color="#FF6B6B"><Document /></el-icon>
+
+        <!-- ══ 页签2：知识框架 ══ -->
+        <el-tab-pane label="🧱 知识框架" name="knowledge" lazy>
+          <PoliticsKnowledge />
+        </el-tab-pane>
+
+        <!-- ══ 页签3：背诵卡片 ══ -->
+        <el-tab-pane label="🃏 背诵卡片" name="recite" lazy>
+          <PoliticsReciteCards />
+        </el-tab-pane>
+
+        <!-- ══ 页签4：真题演练室 ══ -->
+        <el-tab-pane label="⚔️ 真题演练室" name="practice" lazy>
+          <div class="practice-grid">
+            <section class="practice-card brick">
+              <div class="pc-head">
+                <span class="pc-icon">🧱</span>
                 <div>
-                  <h4>全题型覆盖</h4>
-                  <p>单选、多选、简答、论述题全面练习</p>
+                  <h3>研砖 · 政治真题在线</h3>
+                  <p>政治真题在线刷题平台（需注册），按年/按考点刷题，含答案解析</p>
                 </div>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#4CAF50"><DataLine /></el-icon>
+              <a class="pc-btn" href="https://www.mathbrick.cn/politics" target="_blank" rel="noopener">
+                进入研砖政治板块 ↗
+              </a>
+              <ul class="pc-points">
+                <li>选择题按年份实战，训练考场节奏</li>
+                <li>10月开始后每周至少一套真题选择题</li>
+              </ul>
+            </section>
+
+            <section class="practice-card guide">
+              <div class="pc-head">
+                <span class="pc-icon">📕</span>
                 <div>
-                  <h4>智能评分系统</h4>
-                  <p>AI辅助批改和详细答案解析</p>
+                  <h3>肖秀荣系列使用指引</h3>
+                  <p>肖1000 → 肖8 → 肖4，三件套各司其职</p>
                 </div>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#ffc53d"><TrendCharts /></el-icon>
+              <ul class="pc-points xiao">
+                <li><strong>肖1000题</strong>：8-10月，按章刷+二刷错题，只用铅笔做、可反复</li>
+                <li><strong>肖八</strong>：11月，选择题刷到全对，大题读思路不背</li>
+                <li><strong>肖四</strong>：12月，4×4 道大题全文背诵，考前每天过一遍</li>
+              </ul>
+            </section>
+
+            <section class="practice-card wrong">
+              <div class="pc-head">
+                <span class="pc-icon">📋</span>
                 <div>
-                  <h4>成绩统计分析</h4>
-                  <p>练习成绩趋势和薄弱环节分析</p>
+                  <h3>政治错题回收</h3>
+                  <p>刷题中的错题统一录入全科错题本，按遗忘曲线回顾</p>
                 </div>
               </div>
-              
-              <div class="feature-card">
-                <el-icon size="24" color="#9C27B0"><MagicStaff /></el-icon>
-                <div>
-                  <h4>错题巩固训练</h4>
-                  <p>针对性错题练习和知识点强化</p>
-                </div>
-              </div>
-            </div>
-            
-            <el-button type="primary" size="large" @click="activeTab = 'knowledge'">
-              <el-icon><Collection /></el-icon>
-              前往知识点梳理
-            </el-button>
+              <router-link class="pc-btn local" to="/wrong-problems">
+                打开全科错题本 →
+              </router-link>
+              <ul class="pc-points">
+                <li>错题记录时注明考点（如"马原-矛盾论"），方便按块回炉</li>
+                <li>考前两周只看错题不再做新题</li>
+              </ul>
+            </section>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -154,7 +218,7 @@ const activeTab = ref('knowledge')
   padding: 0;
 }
 
-/* 作战室页头 */
+/* ══ 作战室页头 ══ */
 .page-hero {
   position: relative;
   overflow: hidden;
@@ -208,7 +272,7 @@ const activeTab = ref('knowledge')
   letter-spacing: 0.06em;
 }
 
-/* 内容卡片 */
+/* ══ 页签容器 ══ */
 .tab-navigation {
   background: #fff;
   border-radius: 14px;
@@ -217,7 +281,6 @@ const activeTab = ref('knowledge')
   box-shadow: 0 4px 20px rgba(13, 33, 55, 0.06);
 }
 
-/* 页签重制 */
 .politics-tabs :deep(.el-tabs__header) {
   margin-bottom: 22px;
 }
@@ -237,80 +300,365 @@ const activeTab = ref('knowledge')
   color: var(--navy);
 }
 .politics-tabs :deep(.el-tabs__item.is-active) {
-  color: var(--navy);
+  color: var(--subject);
   font-weight: 700;
 }
 .politics-tabs :deep(.el-tabs__active-bar) {
-  background: linear-gradient(90deg, var(--gold), #f0a820);
+  background: linear-gradient(90deg, var(--subject), #d94848);
   height: 3px;
   border-radius: 2px;
 }
 
-.structure-content, .practice-content {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--muted);
+/* ══ 页签1：路线图 ══ */
+.roadmap-intro {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #fff8ec, #fffdf5);
+  border: 1px solid rgba(255, 197, 61, 0.45);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 26px;
 }
-
-.structure-illustration, .practice-illustration {
-  margin-bottom: 25px;
+.ri-icon {
+  font-size: 2rem;
+  line-height: 1.2;
 }
-
-.structure-content h3, .practice-content h3 {
-  font-size: 1.6rem;
+.roadmap-intro strong {
+  display: block;
   color: var(--ink);
-  margin-bottom: 15px;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.roadmap-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-card {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 4px;
+}
+
+.stage-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stage-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 2px var(--gold), 0 0 14px rgba(255, 197, 61, 0.5);
+  background: var(--gold);
+  margin-top: 22px;
+  flex-shrink: 0;
+}
+
+.stage-card.red .stage-dot {
+  background: var(--subject);
+  box-shadow: 0 0 0 2px var(--subject), 0 0 14px rgba(245, 108, 108, 0.5);
+}
+
+.stage-card.navy .stage-dot {
+  background: var(--navy);
+  box-shadow: 0 0 0 2px var(--navy), 0 0 14px rgba(22, 52, 92, 0.5);
+}
+
+.stage-line {
+  flex: 1;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), rgba(255, 197, 61, 0.15));
+  border-radius: 2px;
+  margin: 6px 0;
+}
+
+.stage-body {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 20px 24px;
+  margin-bottom: 22px;
+  transition: all 0.28s ease;
+}
+
+.stage-body:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 24px rgba(13, 33, 55, 0.1);
+  border-color: var(--gold);
+}
+
+.stage-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.stage-phase {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  background: rgba(255, 197, 61, 0.12);
+  padding: 3px 10px;
+  border-radius: 6px;
   font-weight: 700;
 }
 
-.structure-content p, .practice-content p {
+.stage-card.red .stage-phase {
+  color: var(--subject);
+  background: rgba(245, 108, 108, 0.1);
+}
+
+.stage-card.navy .stage-phase {
+  color: var(--navy);
+  background: rgba(22, 52, 92, 0.08);
+}
+
+.stage-time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.stage-title {
+  font-size: 1.15rem;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+}
+
+.stage-goal {
+  font-size: 0.88rem;
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stage-tasks {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stage-tasks li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.88rem;
+  color: var(--body);
+  line-height: 1.7;
+}
+
+.stage-tasks li::before {
+  content: '▸';
+  position: absolute;
+  left: 2px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.stage-foot {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.stage-daily {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--bg-soft);
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.stage-tip {
+  font-size: 0.78rem;
+  color: #a06a00;
+  background: #fff8ec;
+  padding: 4px 12px;
+  border-radius: 999px;
+  line-height: 1.6;
+}
+
+.budget-card {
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-top: 6px;
+}
+
+.budget-card h3 {
+  color: #fff;
   font-size: 1.05rem;
-  margin-bottom: 30px;
+  margin: 0 0 16px;
+  letter-spacing: 0.04em;
+}
+
+.budget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.budget-item {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 197, 61, 0.2);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: all 0.25s ease;
+}
+
+.budget-item:hover {
+  background: rgba(255, 197, 61, 0.1);
+  transform: translateY(-3px);
+}
+
+.budget-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.budget-item span {
+  color: #a8bdd4;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* ══ 页签4：真题演练室 ══ */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.practice-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.28s ease;
+}
+
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(13, 33, 55, 0.12);
+}
+
+.practice-card.brick:hover { border-color: var(--subject); }
+.practice-card.guide:hover { border-color: var(--gold); }
+.practice-card.wrong:hover { border-color: var(--navy); }
+
+.pc-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.pc-icon {
+  font-size: 1.9rem;
+  line-height: 1.2;
+}
+
+.pc-head h3 {
+  margin: 0 0 4px;
+  font-size: 1.02rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.pc-head p {
+  margin: 0;
+  font-size: 0.8rem;
   color: var(--muted);
   line-height: 1.6;
 }
 
-.structure-features, .practice-features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 18px;
-  margin-bottom: 30px;
-}
-
-.feature-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  padding: 20px;
-  background: var(--bg-soft);
-  border-radius: 10px;
-  text-align: left;
-  transition: all 0.25s ease;
-  border: 1px solid var(--line);
-}
-
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(13, 33, 55, 0.10);
-  border-color: var(--subject);
-  background: #fff;
-}
-
-.feature-card h4 {
-  color: var(--ink);
-  margin: 0 0 8px 0;
-  font-size: 1.05rem;
+.pc-btn {
+  display: inline-block;
+  align-self: flex-start;
+  background: linear-gradient(135deg, var(--subject), #d94848);
+  color: #fff;
   font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 14px rgba(245, 108, 108, 0.3);
+  transition: all 0.22s ease;
 }
 
-.feature-card p {
-  color: var(--muted);
+.pc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 108, 108, 0.42);
+  color: #fff;
+}
+
+.pc-btn.local {
+  background: linear-gradient(135deg, var(--navy), #1e4576);
+  box-shadow: 0 4px 14px rgba(22, 52, 92, 0.3);
+}
+
+.pc-btn.local:hover {
+  box-shadow: 0 8px 20px rgba(22, 52, 92, 0.42);
+}
+
+.pc-points {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-/* 响应式 */
+.pc-points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.82rem;
+  color: var(--body);
+  line-height: 1.65;
+}
+
+.pc-points li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 800;
+}
+
+.pc-points.xiao li strong {
+  color: var(--subject);
+}
+
+/* ══ 响应式 ══ */
 @media (max-width: 768px) {
   .page-hero {
     padding: 26px 20px 22px;
@@ -319,23 +667,20 @@ const activeTab = ref('knowledge')
   .tab-navigation {
     padding: 14px;
   }
-  .structure-features, .practice-features {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .feature-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
   .politics-tabs :deep(.el-tabs__item) {
     padding: 0 12px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+  }
+  .stage-card {
+    grid-template-columns: 30px 1fr;
+  }
+  .budget-card {
+    padding: 18px 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .feature-card {
+  .stage-body, .practice-card, .budget-item {
     transition: none;
   }
 }

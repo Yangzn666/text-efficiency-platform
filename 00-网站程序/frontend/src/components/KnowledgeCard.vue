@@ -871,7 +871,220 @@
           </ul>
         </div>
       </template>
-      
+
+      <!-- 算术移位vs逻辑移位 -->
+      <template v-if="currentCard?.id === 'shift'">
+        <h3>💡 知识点卡片：算术移位vs逻辑移位</h3>
+
+        <div class="card-section">
+          <h4>📝 移位类型总览</h4>
+          <ul>
+            <li><strong>算术移位</strong>：针对有符号数（补码表示），移位时符号位保持不变</li>
+            <li><strong>逻辑移位</strong>：针对无符号数，移位时空出位补0</li>
+            <li><strong>循环移位</strong>：移出的位填入另一端，数据不丢失</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>🔀 各类移位规则对比</h4>
+          <ul>
+            <li><strong>算术左移</strong>：低位补0，等效于补码数 ×2；符号位不变，若移位后符号位改变则<strong>溢出</strong></li>
+            <li><strong>算术右移</strong>：高位补<strong>符号位</strong>（即符号位不变），等效于补码数 ÷2（向下取整）</li>
+            <li><strong>逻辑左移</strong>：低位补0，等效于无符号数 ×2</li>
+            <li><strong>逻辑右移</strong>：高位补0，等效于无符号数 ÷2</li>
+            <li><strong>循环左移</strong>：最高位移入最低位，其余位左移一位</li>
+            <li><strong>循环右移</strong>：最低位移入最高位，其余位右移一位</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>⚠️ 补码算术移位要点</h4>
+          <ul>
+            <li><strong>正数补码</strong>：左移右移均补0（符号位为0）</li>
+            <li><strong>负数补码</strong>：左移补0；右移补<strong>1</strong>（符号位为1，高位补1）</li>
+            <li><strong>左移溢出判断</strong>：若左移前后符号位发生变化（如01→10），说明结果溢出</li>
+            <li>补码算术左移1位 = 乘2，算术右移1位 = 除2（向负无穷取整）</li>
+          </ul>
+        </div>
+
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》数据表示章节中：</p>
+          <ul>
+            <li>✅ 408高频考点：补码的算术移位规则，尤其负数右移补1</li>
+            <li>✅ 区分算术移位与逻辑移位的适用场景（有符号 vs 无符号）</li>
+            <li>✅ 掌握左移溢出判断方法：符号位改变即溢出</li>
+          </ul>
+        </div>
+      </template>
+
+      <!-- 布斯乘法算法 -->
+      <template v-if="currentCard?.id === 'booth'">
+        <h3>💡 知识点卡片：布斯乘法算法</h3>
+
+        <div class="card-section">
+          <h4>📝 基本原理</h4>
+          <ul>
+            <li><strong>核心思想</strong>：将乘法转化为加法和减法操作</li>
+            <li>利用乘数<strong>相邻两位的差值</strong>来决定对部分积执行加/减操作</li>
+            <li>设当前位为 y<sub>i</sub>，前一位为 y<sub>i-1</sub>，则差值 d = y<sub>i</sub> - y<sub>i-1</sub></li>
+            <li>将乘数视为补码形式，可直接处理有符号数乘法</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>🔢 Booth算法编码规则</h4>
+          <ul>
+            <li><strong>y<sub>i-1</sub>y<sub>i</sub> = 00</strong>：加0（不变），右移一位</li>
+            <li><strong>y<sub>i-1</sub>y<sub>i</sub> = 01</strong>：加被乘数 [X]<sub>补</sub>，右移一位</li>
+            <li><strong>y<sub>i-1</sub>y<sub>i</sub> = 10</strong>：减被乘数 [-X]<sub>补</sub>，右移一位</li>
+            <li><strong>y<sub>i-1</sub>y<sub>i</sub> = 11</strong>：加0（不变），右移一位</li>
+            <li>初始时附加位 y<sub>-1</sub> = 0，共执行 n+1 步（n为乘数位数）</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>⚙️ 算法执行步骤</h4>
+          <ol>
+            <li>部分积初始为0，乘数末尾设附加位 y<sub>-1</sub> = 0</li>
+            <li>根据 y<sub>i</sub>y<sub>i-1</sub> 的组合决定操作（加/减被乘数或不变）</li>
+            <li>操作完成后，部分积和乘数<strong>一起算术右移一位</strong>（符号位扩展）</li>
+            <li>重复上述过程，共执行 n 次移位和 n+1 次判断</li>
+            <li>最后一步不移位（或说第 n+1 步只做加减不移位）</li>
+          </ol>
+        </div>
+
+        <div class="card-section">
+          <h4>🚀 改进Booth算法（基4编码）</h4>
+          <ul>
+            <li>每次观察<strong>3位</strong>（当前位、前一位、再前一位），产生5种操作</li>
+            <li>可将部分积数量减半，提高乘法速度</li>
+            <li>编码：000/001→+0/+X，010/011→+2X/-2X，100/101→-2X/+2X，110/111→-X/+0</li>
+          </ul>
+        </div>
+
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》运算方法与运算器章节中：</p>
+          <ul>
+            <li>✅ 408考过Booth乘法的部分积计算过程，需手算模拟</li>
+            <li>✅ 注意补码运算中符号位参与运算，右移时进行符号扩展</li>
+            <li>✅ 理解Booth算法如何将减法统一为补码加法</li>
+          </ul>
+        </div>
+      </template>
+
+      <!-- Amdahl定律详解 -->
+      <template v-if="currentCard?.id === 'amdahl'">
+        <h3>💡 知识点卡片：Amdahl定律详解</h3>
+
+        <div class="card-section">
+          <h4>📝 核心公式</h4>
+          <ul>
+            <li><strong>Amdahl定律</strong>：描述加速比与并行度、处理器数量的关系</li>
+            <li><strong>加速比公式</strong>：S = 1 / [(1 - P) + P / N]</li>
+            <li>其中 <strong>P</strong> = 可并行执行的比例，<strong>N</strong> = 处理器数量</li>
+            <li><strong>1 - P</strong> = 串行执行的比例（不可并行部分）</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>📊 极限加速比</h4>
+          <ul>
+            <li>当 N → ∞ 时，S<sub>max</sub> = <strong>1 / (1 - P)</strong></li>
+            <li>例：P = 80% = 0.8，则 S<sub>max</sub> = 1 / 0.2 = <strong>5倍</strong></li>
+            <li>例：P = 95% = 0.95，则 S<sub>max</sub> = 1 / 0.05 = <strong>20倍</strong></li>
+            <li><strong>核心结论</strong>：串行部分限制了最大加速比，即使增加无穷多处理器</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>💡 关键洞察</h4>
+          <ul>
+            <li>串行比例即使很小，也会严重限制加速效果</li>
+            <li>当 P = 90%，N = 100 时：S = 1 / (0.1 + 0.9/100) ≈ <strong>9.17倍</strong>（远非100倍）</li>
+            <li>提升串行部分性能比增加处理器数量更有效</li>
+            <li>体现了"木桶效应"——系统性能受限于最慢的串行部分</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>🔄 与Gustafson定律对比</h4>
+          <ul>
+            <li><strong>Amdahl定律</strong>：固定问题规模，增加处理器 → 加速比有上限</li>
+            <li><strong>Gustafson定律</strong>：固定时间，增加处理器 → 可处理更大规模问题</li>
+            <li>Gustafson公式：S = N + (1 - N) × P（更乐观的估计）</li>
+            <li>两者假设不同：Amdahl固定任务量，Gustafson固定执行时间</li>
+          </ul>
+        </div>
+
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》计算机系统性能章节中：</p>
+          <ul>
+            <li>✅ 408选择题高频考点：给定P和N，计算加速比S</li>
+            <li>✅ 常考极限加速比的计算：S<sub>max</sub> = 1/(1-P)</li>
+            <li>✅ 理解串行部分对系统性能的根本性限制</li>
+          </ul>
+        </div>
+      </template>
+
+      <!-- 定点数除法（加减交替法） -->
+      <template v-if="currentCard?.id === 'division'">
+        <h3>💡 知识点卡片：定点数除法（加减交替法）</h3>
+
+        <div class="card-section">
+          <h4>📝 两种除法方法</h4>
+          <ul>
+            <li><strong>恢复余数法</strong>：余数为负时，先加回除数恢复余数，再左移减除数（步骤多，效率低）</li>
+            <li><strong>加减交替法（不恢复余数法）</strong>：余数为负时不再恢复，直接左移后加除数（408重点考查）</li>
+            <li>加减交替法是对恢复余数法的改进，减少了操作步骤</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>🔢 原码加减交替法规则</h4>
+          <ul>
+            <li><strong>符号位</strong>：商的符号 = 被除数符号 ⊕ 除数符号（异或）</li>
+            <li><strong>数值部分</strong>：取绝对值进行运算</li>
+            <li><strong>溢出判断</strong>：若被除数绝对值 ≥ 除数绝对值，则商 ≥ 1，发生溢出</li>
+            <li>运算前需先判断是否溢出</li>
+          </ul>
+        </div>
+
+        <div class="card-section">
+          <h4>⚙️ 加减交替法操作步骤</h4>
+          <ol>
+            <li>先做<strong>被除数 - 除数</strong>（即第一次减除数），判断溢出</li>
+            <li>若余数<strong>为正</strong>：商<strong>1</strong>，余数<strong>左移一位</strong>后<strong>减除数</strong></li>
+            <li>若余数<strong>为负</strong>：商<strong>0</strong>，余数<strong>左移一位</strong>后<strong>加除数</strong></li>
+            <li>重复步骤2-3，共执行 n 次（n为数值位位数）</li>
+            <li>最后一步若余数为负，需<strong>恢复余数</strong>（加回除数）得到正确余数</li>
+            <li>注意：余数左移了n次，所以最终余数 = 最后余数 × 2<sup>-n</sup></li>
+          </ol>
+        </div>
+
+        <div class="card-section">
+          <h4>⚠️ 易错点提醒</h4>
+          <ul>
+            <li>商的符号由被除数和除数符号<strong>异或</strong>决定，与运算过程无关</li>
+            <li>每次操作的是<strong>余数和除数</strong>，被除数在第一步后不再直接使用</li>
+            <li>最后一步余数为负时，必须恢复余数（加除数）才是真正余数</li>
+            <li>真正的余数 = 最终余数 × 2<sup>-n</sup>（因为余数被左移了n次）</li>
+          </ul>
+        </div>
+
+        <div class="card-section importance">
+          <h4>🎓 考研重点</h4>
+          <p>在《计算机组成原理》运算方法章节中：</p>
+          <ul>
+            <li>✅ 408考过原码加减交替除法的完整计算过程</li>
+            <li>✅ 掌握"余数正→商1→减；余数负→商0→加"的核心规则</li>
+            <li>✅ 注意溢出判断和余数修正（最后一步恢复余数）</li>
+          </ul>
+        </div>
+      </template>
+
       <!-- DRAM刷新机制详解 -->
       <template v-if="currentCard?.id === 'dramRefresh'">
         <h3>💡 知识点卡片：DRAM刷新机制详解</h3>

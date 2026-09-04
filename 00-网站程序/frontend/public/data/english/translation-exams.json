@@ -1,0 +1,4542 @@
+{
+  "source": "mathbrick.cn（研砖）",
+  "fetchedAt": "2026-08-23",
+  "years": [
+    {
+      "year": 2005,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2005-text5-s1",
+          "no": 1,
+          "en": "Television is one of the means by which these feelings are created and conveyed—and perhaps never before has it served so much to connect different peoples and nations as in the recent events in Europe.",
+          "zh": "电视是引发和传递这些感受的手段之一——在欧洲近来发生的事件中，它把不同的民族和国家连在一起，其作用之大，前所未有。",
+          "trunk": {
+            "主语": "Television",
+            "谓语": "is",
+            "宾语或表语": "one of the means",
+            "主干翻译": "电视是引发和传递这些感受的手段之一。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "by which these feelings are created and conveyed",
+              "修饰对象": "means",
+              "中文翻译": "引发和传递这些感受的",
+              "说明": "介词 by 提前的定语从句，修饰 means；从句为被动语态，译成主动的“……的”字结构前置。"
+            },
+            {
+              "成分类型": "并列分句(倒装)",
+              "原文": "and perhaps never before has it served so much to connect different peoples and nations as in the recent events in Europe",
+              "修饰对象": "—",
+              "中文翻译": "在欧洲近来发生的事件中，它把不同的民族和国家连在一起，其作用之大，前所未有",
+              "说明": "破折号连接的并列分句，否定副词 never before 置于句首引起部分倒装（has it served）。"
+            },
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "to connect different peoples and nations",
+              "修饰对象": "served",
+              "中文翻译": "把不同的民族和国家连在一起",
+              "说明": "不定式作目的状语，说明电视所发挥作用的指向。"
+            },
+            {
+              "成分类型": "比较状语从句",
+              "原文": "as in the recent events in Europe",
+              "修饰对象": "so much",
+              "中文翻译": "像在欧洲近来发生的事件中那样",
+              "说明": "so much...as... 比较结构，对比过去与现在，凸显作用之大前所未有。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2005-text5-s2",
+          "no": 2,
+          "en": "In Europe, as elsewhere, multi-media groups have been increasingly successful; groups which bring together television, radio, newspapers, magazines and publishing houses that work in relation to one another.",
+          "zh": "在欧洲，像在其他地方一样，多媒体集团越来越成功：这些集团将相关的电视、广播、报纸、杂志和出版社组合在一起。",
+          "trunk": {
+            "主语": "multi-media groups",
+            "谓语": "have been",
+            "宾语或表语": "increasingly successful",
+            "主干翻译": "多媒体集团越来越成功。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语",
+              "原文": "In Europe",
+              "修饰对象": "have been",
+              "中文翻译": "在欧洲",
+              "说明": "介词短语作地点状语。"
+            },
+            {
+              "成分类型": "比较状语",
+              "原文": "as elsewhere",
+              "修饰对象": "In Europe",
+              "中文翻译": "像在其他地方一样",
+              "说明": "as 引导的比较状语，将欧洲与别处类比。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "groups which bring together television, radio, newspapers, magazines and publishing houses that work in relation to one another",
+              "修饰对象": "multi-media groups",
+              "中文翻译": "这些集团将相关的电视、广播、报纸、杂志和出版社组合在一起",
+              "说明": "分号后的名词短语是 multi-media groups 的同位语，翻译时化作其谓语结构以免头重脚轻。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which bring together television, radio, newspapers, magazines and publishing houses that work in relation to one another",
+              "修饰对象": "groups",
+              "中文翻译": "将相关的电视、广播、报纸、杂志和出版社组合在一起的",
+              "说明": "which 引导的定语从句，修饰同位语中心词 groups。"
+            },
+            {
+              "成分类型": "定语从句(内嵌)",
+              "原文": "that work in relation to one another",
+              "修饰对象": "publishing houses",
+              "中文翻译": "相互之间关联密切的",
+              "说明": "内嵌的 that 定语从句，修饰前面列举的各媒体领域，说明它们彼此关联。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2005-text5-s3",
+          "no": 3,
+          "en": "This alone demonstrates that the television business is not an easy world to survive in, a fact underlined by statistics that show that out of eighty European television networks, no less than 50% took a loss in 1989.",
+          "zh": "这一点就足以表明，要在电视行业里生存下来并非易事，统计数字尤其说明了这一事实，在80家欧洲电视网中，多达一半在1989年亏损。",
+          "trunk": {
+            "主语": "This",
+            "谓语": "demonstrates",
+            "宾语或表语": "that the television business is not an easy world to survive in",
+            "主干翻译": "仅这一点就足以表明，要在电视行业里生存下来并非易事。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that the television business is not an easy world to survive in",
+              "修饰对象": "demonstrates",
+              "中文翻译": "电视行业并非一个容易生存的领域",
+              "说明": "that 引导的宾语从句，作 demonstrates 的宾语。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "to survive in",
+              "修饰对象": "world",
+              "中文翻译": "生存下来的",
+              "说明": "不定式作后置定语修饰 world，介词 in 后置。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "a fact underlined by statistics that show that out of eighty European television networks, no less than 50% took a loss in 1989",
+              "修饰对象": "—",
+              "中文翻译": "这一事实被统计数字所证实，在80家欧洲电视网中，多达一半在1989年亏损",
+              "说明": "名词短语作前面整个主句内容的同位语（a fact 回指主句所述）。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "underlined by statistics",
+              "修饰对象": "fact",
+              "中文翻译": "被统计数字所凸显的",
+              "说明": "过去分词短语作后置定语修饰 fact，体现被动，译时调整为主动“统计数字说明了这一事实”。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that show that out of eighty European television networks, no less than 50% took a loss in 1989",
+              "修饰对象": "statistics",
+              "中文翻译": "表明在80家欧洲电视网中多达一半在1989年亏损的",
+              "说明": "that 引导的定语从句修饰 statistics，因过长且陈述具体事例，翻译时单独成句。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that out of eighty European television networks, no less than 50% took a loss in 1989",
+              "修饰对象": "show",
+              "中文翻译": "在80家欧洲电视网中，多达一半在1989年亏损",
+              "说明": "that 引导的宾语从句，作 show 的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2005-text5-s4",
+          "no": 4,
+          "en": "Creating a ``European identity'' that respects the different cultures and traditions which go to make up the connecting fabric of the Old Continent is no easy task and demands a strategic choice",
+          "zh": "不同的文化和传统把欧洲大陆编织成一体，要创造出一种尊重这些不同文化和传统的“欧洲认同”绝非易事，需要人们做出战略性的选择。",
+          "trunk": {
+            "主语": "Creating a ``European identity''",
+            "谓语": "is",
+            "宾语或表语": "no easy task",
+            "主干翻译": "创造出一种“欧洲认同”绝非易事。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作主语",
+              "原文": "Creating a ``European identity'' that respects the different cultures and traditions which go to make up the connecting fabric of the Old Continent",
+              "修饰对象": "is",
+              "中文翻译": "要创造出一种尊重不同文化和传统的“欧洲认同”",
+              "说明": "动名词短语作句子主语，谓语为 is。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that respects the different cultures and traditions which go to make up the connecting fabric of the Old Continent",
+              "修饰对象": "``European identity''",
+              "中文翻译": "尊重不同文化和传统的",
+              "说明": "that 引导的定语从句，修饰 European identity，点明其实质。"
+            },
+            {
+              "成分类型": "定语从句(内嵌)",
+              "原文": "which go to make up the connecting fabric of the Old Continent",
+              "修饰对象": "the different cultures and traditions",
+              "中文翻译": "把欧洲大陆编织成一体的",
+              "说明": "内嵌的 which 定语从句，修饰 cultures and traditions。"
+            },
+            {
+              "成分类型": "并列谓语",
+              "原文": "and demands a strategic choice",
+              "修饰对象": "Creating a ``European identity''",
+              "中文翻译": "并且需要做出战略性的选择",
+              "说明": "and 连接的并列谓语，与 is 并列共享同一动名词主语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2005-text5-s5",
+          "no": 5,
+          "en": "In dealing with a challenge on such a scale, it is no exaggeration to say, ``United we stand, divided we fall''",
+          "zh": "在应付如此规模的挑战时，可以毫不夸张地说，“联合，我们就生存；分裂，我们就灭亡。”",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "no exaggeration",
+            "主干翻译": "可以毫不夸张地说。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语",
+              "原文": "In dealing with a challenge on such a scale",
+              "修饰对象": "is",
+              "中文翻译": "在应付如此规模的挑战时",
+              "说明": "介词短语（in + 动名词）作时间/条件状语，置于句首。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "on such a scale",
+              "修饰对象": "challenge",
+              "中文翻译": "如此规模的",
+              "说明": "介词短语作后置定语修饰 challenge。"
+            },
+            {
+              "成分类型": "非谓语作真主语",
+              "原文": "to say, ``United we stand, divided we fall''",
+              "修饰对象": "it",
+              "中文翻译": "说“联合，我们就生存；分裂，我们就灭亡”",
+              "说明": "不定式作真正主语，前面的 it 为形式主语。"
+            },
+            {
+              "成分类型": "并列分句(省略/引语)",
+              "原文": "``United we stand, divided we fall''",
+              "修饰对象": "say",
+              "中文翻译": "联合，我们就生存；分裂，我们就灭亡",
+              "说明": "作 say 的引语宾语，两个并列分句含条件含义的省略结构，前置成分表条件。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2006,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2006-text5-s1",
+          "no": 1,
+          "en": "I shall define him as an individual who has elected as his primary duty and pleasure in life the activity of thinking in a Socratic (苏格拉底) way about moral problems.",
+          "zh": "我将他定义为一个对道德问题进行苏格拉底式思考并将此作为自己人生首要责任和快乐的人。",
+          "trunk": {
+            "主语": "I",
+            "谓语": "shall define",
+            "宾语或表语": "him",
+            "主干翻译": "我将他定义为一个人。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "who has elected as his primary duty and pleasure in life the activity of thinking in a Socratic (苏格拉底) way about moral problems",
+              "修饰对象": "an individual",
+              "中文翻译": "他把对道德问题进行苏格拉底式思考这一活动选作自己人生的首要责任和快乐",
+              "说明": "who 引导定语从句修饰 an individual；从句内为 elect...as...固定搭配，宾语 the activity 因过长被移到宾补 as his primary duty... 之后，造成动宾分隔。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "of thinking in a Socratic (苏格拉底) way about moral problems",
+              "修饰对象": "the activity",
+              "中文翻译": "对道德问题进行苏格拉底式思考的",
+              "说明": "介词短语作后置定语修饰 the activity，thinking 为动名词含动作义。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in a Socratic (苏格拉底) way",
+              "修饰对象": "thinking",
+              "中文翻译": "以苏格拉底（式）的方式",
+              "说明": "介词短语作方式状语，修饰 thinking。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2006-text5-s2",
+          "no": 2,
+          "en": "His function is analogous to that of a judge, who must accept the obligation of revealing in as obvious a matter as possible the course of reasoning which led him to his decision.",
+          "zh": "他的职责与法官相似，必须承担这样的责任：用尽可能明了的方式来展示自己做出决定的推理过程。",
+          "trunk": {
+            "主语": "His function",
+            "谓语": "is",
+            "宾语或表语": "analogous to that of a judge",
+            "主干翻译": "他的职责与法官的职责相似。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "who must accept the obligation of revealing in as obvious a matter as possible the course of reasoning which led him to his decision",
+              "修饰对象": "a judge",
+              "中文翻译": "法官必须承担这样的责任：用尽可能明了的方式来展示自己做出决定的推理过程",
+              "说明": "who 引导非限制性定语从句补充说明 a judge 的职责，翻译时可与主句拆为两句。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "of revealing in as obvious a matter as possible the course of reasoning",
+              "修饰对象": "the obligation",
+              "中文翻译": "展示推理过程的（责任）",
+              "说明": "介词短语作后置定语修饰 the obligation；revealing 的宾语 the course of reasoning 被移至方式状语之后，形成动宾分隔。原句 matter 系试题原文，官方释义作 manner（方式）。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in as obvious a matter as possible",
+              "修饰对象": "revealing",
+              "中文翻译": "以尽可能明了的方式",
+              "说明": "套用 as+形容词+a+名词+as possible 结构作方式状语，修饰 revealing。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which led him to his decision",
+              "修饰对象": "the course of reasoning",
+              "中文翻译": "引导他做出决定的",
+              "说明": "which 引导定语从句修饰 the course of reasoning。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2006-text5-s3",
+          "no": 3,
+          "en": "I have excluded him because, while his accomplish\\-ments may contribute to the solution of moral problems, he has not been charged with the task of approaching any but the factual aspects of those problems.",
+          "zh": "我之所以将他（普通科学家）排除在外，是因为尽管他的成果可能会有助于解决道德问题，但他承担的任务只不过是研究这些问题的事实方面。",
+          "trunk": {
+            "主语": "I",
+            "谓语": "have excluded",
+            "宾语或表语": "him",
+            "主干翻译": "我已经把他排除在外。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(原因)",
+              "原文": "because, while his accomplish\\-ments may contribute to the solution of moral problems, he has not been charged with the task of approaching any but the factual aspects of those problems",
+              "修饰对象": "have excluded",
+              "中文翻译": "因为尽管他的成果可能会有助于解决道德问题，但他承担的任务只不过是研究这些问题的事实方面",
+              "说明": "because 引导原因状语从句，说明将他排除的原因，内部又嵌套 while 让步从句。"
+            },
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "while his accomplish\\-ments may contribute to the solution of moral problems",
+              "修饰对象": "he has not been charged with the task",
+              "中文翻译": "尽管他的成果可能会有助于解决道德问题",
+              "说明": "while 在此表让步（相当于 although），嵌套于 because 从句内，与主句 not...any but 的转折语义相呼应。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "of approaching any but the factual aspects of those problems",
+              "修饰对象": "the task",
+              "中文翻译": "研究这些问题事实方面的（任务）",
+              "说明": "介词短语作后置定语修饰 the task；not...any but 意为“仅仅”，approach 取“探讨/研究”义。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2006-text5-s4",
+          "no": 4,
+          "en": "But his primary task is not to think about the moral code which governs his activity, any more than a businessman is expected to dedicate his energies to an exploration of rules of conduct in business.",
+          "zh": "但是，他的首要任务并不是考虑支配自己行动的道德规范，就如同不能指望商人专注于探索行业规范一样。",
+          "trunk": {
+            "主语": "his primary task",
+            "谓语": "is",
+            "宾语或表语": "not to think about the moral code",
+            "主干翻译": "但他的首要任务并不是考虑道德规范。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "which governs his activity",
+              "修饰对象": "the moral code",
+              "中文翻译": "支配自己行动的",
+              "说明": "which 引导定语从句修饰 the moral code，从句较短可前置译。"
+            },
+            {
+              "成分类型": "状语从句(比较)",
+              "原文": "any more than a businessman is expected to dedicate his energies to an exploration of rules of conduct in business",
+              "修饰对象": "is not to think about the moral code",
+              "中文翻译": "就如同不能指望商人专注于探索行业规范一样",
+              "说明": "not...any more than 结构引导比较状语从句，表示否定前者如同否定后者，从句 is expected 宜译为主动并增补泛指主语。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "to an exploration of rules of conduct in business",
+              "修饰对象": "dedicate",
+              "中文翻译": "专注于探索行业规范",
+              "说明": "介词短语作 dedicate his energies to 的宾语部分，rules of conduct 与 moral code 呼应，均指“道德规范”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2006-text5-s5",
+          "no": 5,
+          "en": "They may teach very well, and more than earn their salaries, but most of them make little or no independent reflections on human problems which involve moral judgment.",
+          "zh": "他们可以教得很好，而且不仅仅是为了挣薪水，但他们大多数人却很少或没有对需要进行道德判断的、人的问题进行独立思考。",
+          "trunk": {
+            "主语": "most of them",
+            "谓语": "make",
+            "宾语或表语": "little or no independent reflections",
+            "主干翻译": "他们大多数人却很少或没有进行独立思考。"
+          },
+          "components": [
+            {
+              "成分类型": "并列分句",
+              "原文": "They may teach very well, and more than earn their salaries",
+              "修饰对象": "—",
+              "中文翻译": "他们可以教得很好，而且不仅仅是为了挣薪水",
+              "说明": "but 之前的并列分句，与后一分句形成转折；more than earn 意为“不仅仅是挣得”。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "on human problems which involve moral judgment",
+              "修饰对象": "reflections",
+              "中文翻译": "对需要进行道德判断的、人的问题",
+              "说明": "介词短语作 reflections 的定语，指出独立思考所针对的对象。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which involve moral judgment",
+              "修饰对象": "human problems",
+              "中文翻译": "需要进行道德判断的",
+              "说明": "which 引导定语从句修饰 human problems。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2007,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2007-text5-s1",
+          "no": 1,
+          "en": "Traditionally, legal learning has been viewed in such institutions as the special preserve of lawyers, rather than a necessary part of the intellectual equipment of an educated person.",
+          "zh": "长久以来，法律知识在这类学校里一直被视为律师们所专有的，而不是一个受教育者的知识素养的必要组成部分。",
+          "trunk": {
+            "主语": "legal learning",
+            "谓语": "has been viewed",
+            "宾语或表语": "the special preserve of lawyers, rather than a necessary part of the intellectual equipment of an educated person",
+            "主干翻译": "法律知识一直被视为律师们所专有的，而不是一个受教育者知识素养的必要组成部分。"
+          },
+          "components": [
+            {
+              "成分类型": "状语",
+              "原文": "Traditionally",
+              "修饰对象": "has been viewed",
+              "中文翻译": "长久以来",
+              "说明": "副词置于句首作时间状语，修饰谓语。"
+            },
+            {
+              "成分类型": "介词短语(地点状语)",
+              "原文": "in such institutions",
+              "修饰对象": "has been viewed",
+              "中文翻译": "在这类学校里",
+              "说明": "介词短语作地点状语，such institutions 回指上文提到的加拿大院校。"
+            },
+            {
+              "成分类型": "并列结构(rather than)",
+              "原文": "rather than a necessary part of the intellectual equipment of an educated person",
+              "修饰对象": "the special preserve of lawyers",
+              "中文翻译": "而不是一个受教育者知识素养的必要组成部分",
+              "说明": "并列连词 rather than 连接 be viewed as 后的两个主语补足语，否定后者、侧重二者差异。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of the intellectual equipment of an educated person",
+              "修饰对象": "a necessary part",
+              "中文翻译": "受教育者知识素养的",
+              "说明": "of 介词结构作后置定语，修饰 a necessary part；equipment 为熟词僻义，指才能、知识素养。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2007-text5-s2",
+          "no": 2,
+          "en": "On the other, it links these concepts to everyday realities in a manner which is parallel to the links journalists forge on a daily basis as they cover and comment on the news.",
+          "zh": "另一方面，这一学科把这些概念结合到日常生活中，这与新闻记者每天报道和评论新闻时的做法是相同的。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "links",
+            "宾语或表语": "these concepts",
+            "主干翻译": "另一方面，这一学科把这些概念结合到日常生活中。"
+          },
+          "components": [
+            {
+              "成分类型": "插入语(衔接)",
+              "原文": "On the other",
+              "修饰对象": "—",
+              "中文翻译": "另一方面",
+              "说明": "与上文 On the one hand 呼应的衔接语，引出并列的另一功能。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "to everyday realities",
+              "修饰对象": "links",
+              "中文翻译": "与日常生活",
+              "说明": "与谓语构成 link ... to ... 结构，作动词的宾语补足状语。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "in a manner",
+              "修饰对象": "links",
+              "中文翻译": "以某种方式",
+              "说明": "介词短语作方式状语，后接定语从句加以说明。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which is parallel to the links",
+              "修饰对象": "a manner",
+              "中文翻译": "这种方式与……建立联系是相同的",
+              "说明": "which 引导定语从句修饰 manner，be parallel to 表示两者一致。"
+            },
+            {
+              "成分类型": "定语从句(省略that)",
+              "原文": "journalists forge on a daily basis",
+              "修饰对象": "the links",
+              "中文翻译": "新闻记者每天建立的（联系）",
+              "说明": "嵌套的定语从句，关系代词 that 被省略，forge 的宾语即 the links，on a daily basis 作状语。"
+            },
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "as they cover and comment on the news",
+              "修饰对象": "forge",
+              "中文翻译": "当他们报道和评论新闻时",
+              "说明": "as 引导时间状语从句，cover 为熟词僻义，与 news 搭配意为报道。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2007-text5-s3",
+          "no": 3,
+          "en": "But the idea that the journalist must understand the law more profoundly than an ordinary citizen rests on an understanding of the established conventions and special responsibilities of the news media.",
+          "zh": "新闻记者应比普通公民更加透彻地了解法律，而这种看法是基于他们对新闻媒体业已确立的规约和特殊责任的理解。",
+          "trunk": {
+            "主语": "the idea",
+            "谓语": "rests on",
+            "宾语或表语": "an understanding of the established conventions and special responsibilities of the news media",
+            "主干翻译": "但这种看法是基于对新闻媒体业已确立的规约和特殊责任的理解。"
+          },
+          "components": [
+            {
+              "成分类型": "并列分句(转折连词)",
+              "原文": "But",
+              "修饰对象": "—",
+              "中文翻译": "但是",
+              "说明": "转折连词，引出与上文通俗观点的对比评价。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that the journalist must understand the law more profoundly than an ordinary citizen",
+              "修饰对象": "the idea",
+              "中文翻译": "新闻记者应比普通公民更加透彻地了解法律",
+              "说明": "that 引导同位语从句说明 the idea 的具体内容；从句过长，翻译时前置独立成句、再用代词复指。"
+            },
+            {
+              "成分类型": "比较状语",
+              "原文": "than an ordinary citizen",
+              "修饰对象": "more profoundly",
+              "中文翻译": "比普通公民",
+              "说明": "than 引导比较状语，与 more profoundly 构成比较结构。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of the established conventions and special responsibilities of the news media",
+              "修饰对象": "an understanding",
+              "中文翻译": "对……业已确立的规约和特殊责任的",
+              "说明": "of 介词结构作后置定语，修饰 an understanding。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of the news media",
+              "修饰对象": "the established conventions and special responsibilities",
+              "中文翻译": "新闻媒体的",
+              "说明": "of 介词结构作后置定语，修饰 established conventions and special responsibilities。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2007-text5-s4",
+          "no": 4,
+          "en": "In fact, it is difficult to see how journalists who do not have a clear grasp of the basic features of the Canadian Constitution can do a competent job on political stories.",
+          "zh": "事实上，很难想象那些对加拿大宪法的基本特点缺乏清晰了解的新闻记者何以能胜任政治新闻的报道工作。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "difficult",
+            "主干翻译": "事实上，很难想象……"
+          },
+          "components": [
+            {
+              "成分类型": "插入语(衔接)",
+              "原文": "In fact",
+              "修饰对象": "—",
+              "中文翻译": "事实上",
+              "说明": "句首衔接语，承接上文引出例证。"
+            },
+            {
+              "成分类型": "非谓语(不定式作真正主语)",
+              "原文": "to see how journalists who do not have a clear grasp of the basic features of the Canadian Constitution can do a competent job on political stories",
+              "修饰对象": "it",
+              "中文翻译": "想象……记者何以能胜任……工作",
+              "说明": "it 为形式主语，此不定式结构为真正主语，因过长而后置。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "how journalists who do not have a clear grasp of the basic features of the Canadian Constitution can do a competent job on political stories",
+              "修饰对象": "see",
+              "中文翻译": "那些记者何以能胜任政治新闻报道工作",
+              "说明": "how 引导宾语从句作 see 的宾语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who do not have a clear grasp of the basic features of the Canadian Constitution",
+              "修饰对象": "journalists",
+              "中文翻译": "那些对加拿大宪法的基本特点缺乏清晰了解的",
+              "说明": "who 引导定语从句修饰 journalists，可译为前置定语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2007-text5-s5",
+          "no": 5,
+          "en": "While comment and reaction from lawyers may enhance stories, it is preferable for journalists to rely on their own notions of significance and make their own judgments.",
+          "zh": "尽管律师的见解和反应会提高报道的质量，但新闻记者最好凭借他们自己对重要性的理解自行做出判断。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "preferable",
+            "主干翻译": "新闻记者最好自行做出判断。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "While comment and reaction from lawyers may enhance stories",
+              "修饰对象": "is preferable",
+              "中文翻译": "尽管律师的见解和反应会提高报道的质量",
+              "说明": "While 引导让步状语从句，先肯定律师建议的作用，再由主句强调记者应自行判断。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "from lawyers",
+              "修饰对象": "comment and reaction",
+              "中文翻译": "来自律师的",
+              "说明": "介词短语作后置定语，修饰 comment and reaction。"
+            },
+            {
+              "成分类型": "介词短语(逻辑主语)",
+              "原文": "for journalists",
+              "修饰对象": "to rely on their own notions of significance and make their own judgments",
+              "中文翻译": "对新闻记者来说",
+              "说明": "for 介词结构表示后接不定式的逻辑主语。"
+            },
+            {
+              "成分类型": "非谓语(不定式作真正主语)",
+              "原文": "to rely on their own notions of significance and make their own judgments",
+              "修饰对象": "it",
+              "中文翻译": "凭借自己对重要性的理解自行做出判断",
+              "说明": "it 为形式主语，此不定式并列结构为真正主语。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2008,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2008-text5-s1",
+          "no": 1,
+          "en": "he believes that this very difficulty may have had the compensating advantage of forcing him to think long and intently about every sentence, and thus enabling him to detect errors in reasoning and in his own observations",
+          "zh": "他认为或许正因为（语言表达上的）这种困难，他不得不对自己要说的每句话都进行长时间的认真思考，从而能发现推理错误及自己言论中的错误，结果这反而成为他的优点。",
+          "trunk": {
+            "主语": "he",
+            "谓语": "believes",
+            "宾语或表语": "that this very difficulty may have had the compensating advantage",
+            "主干翻译": "他认为，这种困难或许恰恰带来了一种补偿性的好处。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that this very difficulty may have had the compensating advantage of forcing him to think long and intently about every sentence, and thus enabling him to detect errors in reasoning and in his own observations",
+              "修饰对象": "believes",
+              "中文翻译": "这种困难或许有一种能弥补缺陷的优点……",
+              "说明": "that 引导宾语从句，作 believes 的宾语。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of forcing him to think long and intently about every sentence, and thus enabling him to detect errors in reasoning and in his own observations",
+              "修饰对象": "the compensating advantage",
+              "中文翻译": "即促使他对每句话都长时间专心思考，从而能发现错误",
+              "说明": "of 引出并列动名词短语作 the compensating advantage 的后置定语，表同位说明。"
+            },
+            {
+              "成分类型": "非谓语(动名词，并列一)",
+              "原文": "forcing him to think long and intently about every sentence",
+              "修饰对象": "the compensating advantage",
+              "中文翻译": "促使他对每句话都进行长时间的专心思考",
+              "说明": "动名词短语作 of 的宾语，其逻辑主语是 this very difficulty。"
+            },
+            {
+              "成分类型": "非谓语(动名词，并列二)",
+              "原文": "thus enabling him to detect errors in reasoning and in his own observations",
+              "修饰对象": "the compensating advantage",
+              "中文翻译": "从而使他能够发现推理和自己言论中的错误",
+              "说明": "and thus 连接第二个动名词短语，表结果，逻辑主语同为 this very difficulty。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "in reasoning and in his own observations",
+              "修饰对象": "errors",
+              "中文翻译": "推理和他自己言论中的（错误）",
+              "说明": "两个并列介词短语作 errors 的后置定语，observations 此处取僻义'言论、评论'。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2008-text5-s2",
+          "no": 2,
+          "en": "He asserted, also, that his power to follow a long and purely abstract train of thought was very limited, for which reason he felt certain that he never could have succeeded with mathematics",
+          "zh": "他还坚持认为自己进行长时间纯抽象思维的能力十分有限，由此他也认定自己在数学方面根本不可能有大的作为。",
+          "trunk": {
+            "主语": "He",
+            "谓语": "asserted",
+            "宾语或表语": "that his power to follow a long and purely abstract train of thought was very limited",
+            "主干翻译": "他还断言，自己进行长时间纯抽象思维的能力十分有限。"
+          },
+          "components": [
+            {
+              "成分类型": "插入语",
+              "原文": "also",
+              "修饰对象": "asserted",
+              "中文翻译": "还、也",
+              "说明": "由逗号隔开的插入语，起补充与逻辑衔接作用。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that his power to follow a long and purely abstract train of thought was very limited",
+              "修饰对象": "asserted",
+              "中文翻译": "他进行长时间纯抽象思维的能力十分有限",
+              "说明": "that 引导宾语从句作 asserted 的宾语。"
+            },
+            {
+              "成分类型": "非谓语作定语(不定式)",
+              "原文": "to follow a long and purely abstract train of thought",
+              "修饰对象": "his power",
+              "中文翻译": "进行长时间纯抽象思维的（能力）",
+              "说明": "动词不定式作 power 的后置定语，follow 取僻义'理解、跟上（思路）'。"
+            },
+            {
+              "成分类型": "定语从句(非限定性)",
+              "原文": "for which reason he felt certain that he never could have succeeded with mathematics",
+              "修饰对象": "his power to follow a long and purely abstract train of thought was very limited",
+              "中文翻译": "由于这个原因，他确信自己在数学方面绝不可能有所成就",
+              "说明": "for which reason 引导非限制性定语从句，which 回指前面整个内容，翻译时独立成句。"
+            },
+            {
+              "成分类型": "宾语从句(嵌套)",
+              "原文": "that he never could have succeeded with mathematics",
+              "修饰对象": "certain",
+              "中文翻译": "他在数学方面绝不可能取得成功",
+              "说明": "that 引导宾语从句作 felt certain 的宾语，could have succeeded 表对过去的推测。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2008-text5-s3",
+          "no": 3,
+          "en": "On the other hand, he did not accept as well founded the charge made by some of his critics that, while he was a good observer, he had no power of reasoning",
+          "zh": "另一方面，一些批评者指责他虽然善于观察，却不具备推理能力，而他认为这种指责是缺乏根据的。",
+          "trunk": {
+            "主语": "he",
+            "谓语": "did not accept",
+            "宾语或表语": "the charge made by some of his critics",
+            "主干翻译": "他不认为他的一些批评者提出的这种指责是有根据的。"
+          },
+          "components": [
+            {
+              "成分类型": "衔接性状语",
+              "原文": "On the other hand",
+              "修饰对象": "—",
+              "中文翻译": "另一方面",
+              "说明": "连接性状语，与上文形成转折并列。"
+            },
+            {
+              "成分类型": "宾语补足语(前置)",
+              "原文": "as well founded",
+              "修饰对象": "the charge",
+              "中文翻译": "是有充分根据的",
+              "说明": "as well founded 作宾语补足语，因宾语过长而前置，造成动宾分隔。"
+            },
+            {
+              "成分类型": "非谓语作定语(过去分词)",
+              "原文": "made by some of his critics",
+              "修饰对象": "the charge",
+              "中文翻译": "由他的一些批评者提出的",
+              "说明": "过去分词短语作 the charge 的后置定语。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that, while he was a good observer, he had no power of reasoning",
+              "修饰对象": "the charge",
+              "中文翻译": "即：他虽然善于观察，却没有推理能力",
+              "说明": "that 引导同位语从句说明 charge 的具体内容，与后置定语被分隔开。"
+            },
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "while he was a good observer",
+              "修饰对象": "had",
+              "中文翻译": "虽然他是一个善于观察的人",
+              "说明": "while 引导让步状语从句，嵌套在同位语从句之内。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2008-text5-s4",
+          "no": 4,
+          "en": "He adds humbly that perhaps he was ``superior to the common run of men in noticing things which easily escape attention, and in observing them carefully",
+          "zh": "他又自谦地说，或许自己“在注意到容易被忽略的事物，并对其加以仔细观察方面优于常人”。",
+          "trunk": {
+            "主语": "He",
+            "谓语": "adds",
+            "宾语或表语": "that perhaps he was ``superior to the common run of men",
+            "主干翻译": "他又谦虚地补充说，或许他胜过常人。"
+          },
+          "components": [
+            {
+              "成分类型": "状语",
+              "原文": "humbly",
+              "修饰对象": "adds",
+              "中文翻译": "谦虚地",
+              "说明": "副词作方式状语，呼应上文的 extraordinary modesty。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that perhaps he was ``superior to the common run of men in noticing things which easily escape attention, and in observing them carefully",
+              "修饰对象": "adds",
+              "中文翻译": "或许他在注意到容易被忽视的事物并对其加以仔细观察方面胜过常人",
+              "说明": "that 引导宾语从句作 adds 的宾语。"
+            },
+            {
+              "成分类型": "介词短语(状语一)",
+              "原文": "in noticing things which easily escape attention",
+              "修饰对象": "superior",
+              "中文翻译": "在注意到容易被忽视的事物方面",
+              "说明": "be superior to sb in sth 结构，介词短语作状语，说明'胜过'的方面。"
+            },
+            {
+              "成分类型": "介词短语(状语二)",
+              "原文": "and in observing them carefully",
+              "修饰对象": "superior",
+              "中文翻译": "以及在仔细观察这些事物方面",
+              "说明": "and 连接的第二个介词短语，与前一个并列作状语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which easily escape attention",
+              "修饰对象": "things",
+              "中文翻译": "容易被忽视的（事物）",
+              "说明": "which 引导定语从句修饰 things，escape 取僻义'不被注意、被忽视'，可译作前置定语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2008-text5-s5",
+          "no": 5,
+          "en": "Darwin was convinced that the loss of these tastes was not only a loss of happiness, but might possibly be injurious to the intellect, and more probably to the moral character",
+          "zh": "达尔文确信，失去这些爱好不仅是失去了一种幸福，而且还可能有损于智力，更有可能损害道德品质。",
+          "trunk": {
+            "主语": "Darwin",
+            "谓语": "was convinced",
+            "宾语或表语": "that the loss of these tastes was not only a loss of happiness",
+            "主干翻译": "达尔文确信，失去这些爱好不仅仅是一种幸福的损失。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that the loss of these tastes was not only a loss of happiness, but might possibly be injurious to the intellect, and more probably to the moral character",
+              "修饰对象": "convinced",
+              "中文翻译": "失去这些爱好不仅是一种幸福的损失，而且可能有损智力，更有可能损害道德品质",
+              "说明": "that 引导宾语从句，作 be convinced 的宾语。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of these tastes",
+              "修饰对象": "the loss",
+              "中文翻译": "这些爱好的",
+              "说明": "介词短语作 the loss 的后置定语。"
+            },
+            {
+              "成分类型": "并列结构(not only...but...)",
+              "原文": "not only a loss of happiness, but might possibly be injurious to the intellect",
+              "修饰对象": "the loss of these tastes",
+              "中文翻译": "不仅是幸福的损失，而且可能有损智力",
+              "说明": "not only...but... 关联词连接从句中两个并列的表语/谓语部分，表递进。"
+            },
+            {
+              "成分类型": "介词短语(递进)",
+              "原文": "and more probably to the moral character",
+              "修饰对象": "injurious",
+              "中文翻译": "更有可能有损道德品质",
+              "说明": "and 承接 be injurious to，此处省略了 be injurious，与 to the intellect 并列且语气递进。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2009,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2009-text5-s1",
+          "no": 1,
+          "en": "It may be said that the measure of the worth of any social institution is its effect in enlarging and improving experience, but this effect is not a part of its original motive.",
+          "zh": "虽然我们可以说，衡量任何一个社会机构价值的标准是其在丰富和完善人生经验方面所起的作用，但这种作用并不是其最初动机的组成部分。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "may be said",
+            "宾语或表语": "that the measure of the worth of any social institution is its effect in enlarging and improving experience",
+            "主干翻译": "可以说，衡量任何社会机构价值的标准是其在丰富和完善经验方面所起的作用。"
+          },
+          "components": [
+            {
+              "成分类型": "主语从句",
+              "原文": "the measure of the worth of any social institution is its effect in enlarging and improving experience",
+              "修饰对象": "It",
+              "中文翻译": "衡量任何一个社会机构价值的标准是其在丰富和完善经验方面所起的作用",
+              "说明": "that 引导的从句是形式主语 It 所指代的真正主语。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "of the worth of any social institution",
+              "修饰对象": "the measure",
+              "中文翻译": "任何一个社会机构价值的",
+              "说明": "介词短语作后置定语，修饰 the measure。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in enlarging and improving experience",
+              "修饰对象": "its effect",
+              "中文翻译": "在丰富和完善经验方面",
+              "说明": "介词短语作后置定语，说明 its effect 的具体内容。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "but this effect is not a part of its original motive.",
+              "修饰对象": "—",
+              "中文翻译": "但这种作用并不是其最初动机的组成部分",
+              "说明": "but 引导并列转折分句，与前句形成对比。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2009-text5-s2",
+          "no": 2,
+          "en": "Only gradually was the by-product of the institution noted, and only more gradually still was this effect considered as a directive factor in the conduct of the institution.",
+          "zh": "人们只是逐渐地才注意到机构的这一副产品，而人们把这种作用视为机构运作的指导性因素的过程则更为缓慢。",
+          "trunk": {
+            "主语": "the by-product of the institution",
+            "谓语": "—",
+            "宾语或表语": "—",
+            "主干翻译": "机构的这一副产品被注意到。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(程度)",
+              "原文": "Only gradually",
+              "修饰对象": "noted",
+              "中文翻译": "只是逐渐地",
+              "说明": "Only+状语置于句首，引起句子部分倒装，修饰谓语 noted。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "and only more gradually still was this effect considered as a directive factor in the conduct of the institution.",
+              "修饰对象": "—",
+              "中文翻译": "而这种作用被视为机构运作的指导性因素的过程则更为缓慢",
+              "说明": "and 连接的第二个并列分句，同样为 Only 引起的部分倒装。"
+            },
+            {
+              "成分类型": "状语(程度)",
+              "原文": "only more gradually still",
+              "修饰对象": "considered",
+              "中文翻译": "则更为缓慢地",
+              "说明": "置于并列分句句首，引起倒装，修饰谓语 considered。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in the conduct of the institution",
+              "修饰对象": "a directive factor",
+              "中文翻译": "在机构运作中",
+              "说明": "介词短语作后置定语，修饰 a directive factor。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2009-text5-s3",
+          "no": 3,
+          "en": "While it is easy to ignore in our contact with them the effect of our acts upon their disposition, it is not so easy as in dealing with adults.",
+          "zh": "尽管在与年轻人的接触中我们容易忽视自己的行为对他们的性情所产生的影响，但仍比不上与成年人打交道时那样容易。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "not so easy",
+            "主干翻译": "这并不那么容易。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "While it is easy to ignore in our contact with them the effect of our acts upon their disposition",
+              "修饰对象": "it is not so easy",
+              "中文翻译": "尽管在与年轻人的接触中我们容易忽视自己的行为对他们性情所产生的影响",
+              "说明": "While 引导让步状语从句，与主句形成对比。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in our contact with them",
+              "修饰对象": "ignore",
+              "中文翻译": "在与他们的接触中",
+              "说明": "介词短语作状语插入在动词 ignore 与其宾语之间，构成动宾分隔。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "of our acts upon their disposition",
+              "修饰对象": "the effect",
+              "中文翻译": "我们的行为对他们性情的",
+              "说明": "介词短语作后置定语，修饰 ignore 的真正宾语 the effect。"
+            },
+            {
+              "成分类型": "比较状语",
+              "原文": "as in dealing with adults",
+              "修饰对象": "not so easy",
+              "中文翻译": "像与成年人打交道时那样",
+              "说明": "not so…as 结构，as 引出比较对象，表示不及、比不上。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2009-text5-s4",
+          "no": 4,
+          "en": "Since our chief business with them is to enable them to share in a commonlife we cannot help considering whether or not we are forming the powers which will secure this ability.",
+          "zh": "由于我们对年轻人所做的首要工作在于使他们能够在生活中彼此相融，因此我们不禁要考虑自己是否在形成让他们获得这种能力的力量。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "cannot help considering",
+            "宾语或表语": "whether or not we are forming the powers which will secure this ability",
+            "主干翻译": "我们不禁要考虑我们是否在形成这种力量。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(原因)",
+              "原文": "Since our chief business with them is to enable them to share in a commonlife",
+              "修饰对象": "cannot help considering",
+              "中文翻译": "由于我们对他们所做的首要工作在于使他们能够在生活中彼此相融",
+              "说明": "Since 引导原因状语从句，交代主句的原因。"
+            },
+            {
+              "成分类型": "非谓语作表语",
+              "原文": "to enable them to share in a commonlife",
+              "修饰对象": "business",
+              "中文翻译": "使他们能够在生活中彼此相融",
+              "说明": "动词不定式作从句的表语，说明 chief business 的内容。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "whether or not we are forming the powers which will secure this ability",
+              "修饰对象": "considering",
+              "中文翻译": "我们是否在形成让他们获得这种能力的力量",
+              "说明": "whether or not 引导宾语从句，作 considering 的宾语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which will secure this ability",
+              "修饰对象": "the powers",
+              "中文翻译": "这种能确保获得这种能力的",
+              "说明": "which 引导限定性定语从句，修饰先行词 the powers。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2009-text5-s5",
+          "no": 5,
+          "en": "We are thus led to distinguish, within the broad educational process which we have been so far considering, a more formal kind of education—that of direct tuition or schooling.",
+          "zh": "因此，我们要在迄今为止一直讨论的广义教育过程之内，区分出一种更为正式的教育，即直接讲授或学校教育。",
+          "trunk": {
+            "主语": "We",
+            "谓语": "are thus led to distinguish",
+            "宾语或表语": "a more formal kind of education",
+            "主干翻译": "因此我们被引导去区分出一种更为正式的教育。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语",
+              "原文": "within the broad educational process which we have been so far considering",
+              "修饰对象": "distinguish",
+              "中文翻译": "在迄今为止我们一直讨论的广义教育过程之内",
+              "说明": "介词短语作状语，插入在 distinguish 与其宾语之间，构成分隔结构。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which we have been so far considering",
+              "修饰对象": "the broad educational process",
+              "中文翻译": "我们迄今为止一直讨论的",
+              "说明": "which 引导限定性定语从句，修饰 the broad educational process。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "that of direct tuition or schooling",
+              "修饰对象": "a more formal kind of education",
+              "中文翻译": "即直接讲授或学校教育",
+              "说明": "破折号后的名词短语作同位语，进一步说明 a more formal kind of education，that 指代 education。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2010,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2010-text5-s1",
+          "no": 1,
+          "en": "Scientists jumped to the rescue with some distinctly shaky evidence to the effect that insects would eat us up if birds failed to control them.",
+          "zh": "科学家们急忙赶来挽救，但提出的证据显然站不住脚，其大意是，如果鸟类不能控制昆虫的数量，昆虫便会吞噬我们人类。",
+          "trunk": {
+            "主语": "Scientists",
+            "谓语": "jumped to the rescue",
+            "宾语或表语": "—",
+            "主干翻译": "科学家们急忙赶来挽救。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(伴随状语)",
+              "原文": "with some distinctly shaky evidence",
+              "修饰对象": "jumped",
+              "中文翻译": "但提出的证据显然站不住脚",
+              "说明": "with 介词短语作伴随状语，含动作意味，可译为“拿出证据”；distinctly shaky 带贬义，故增译转折。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "to the effect that insects would eat us up if birds failed to control them",
+              "修饰对象": "evidence",
+              "中文翻译": "其大意是，如果鸟类不能控制昆虫的数量，昆虫便会吞噬我们人类",
+              "说明": "to the effect that 为固定搭配（相当于 with the meaning that），引出同位语从句解释 evidence 的内容，可独立译为一句。"
+            },
+            {
+              "成分类型": "状语从句(条件)",
+              "原文": "if birds failed to control them",
+              "修饰对象": "would eat us up",
+              "中文翻译": "如果鸟类不能控制昆虫的数量",
+              "说明": "if 引导虚拟条件状语从句，修饰同位语从句内的主句谓语 would eat us up。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2010-text5-s2",
+          "no": 2,
+          "en": "but we have at least drawn near the point of admitting that birds should continue as a matter of intrinsic right, regardless of the presence or absence of economic advantage to us.",
+          "zh": "但是我们至少近乎承认，无论鸟类能否带给我们经济价值，它们自有生存下去的权利。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "have at least drawn near",
+            "宾语或表语": "the point",
+            "主干翻译": "但是我们至少已近乎接受这一点。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that birds should continue as a matter of intrinsic right",
+              "修饰对象": "admitting",
+              "中文翻译": "鸟类自有继续生存下去的权利",
+              "说明": "that 引导宾语从句，作动名词 admitting 的宾语（admitting 是介词 of 的宾语）。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "as a matter of intrinsic right",
+              "修饰对象": "continue",
+              "中文翻译": "作为一种固有的权利",
+              "说明": "as a matter of 为固定搭配（关乎……的事情），介词短语说明 continue 的依据，意译为“自有……的权利”。"
+            },
+            {
+              "成分类型": "介词短语(让步状语)",
+              "原文": "regardless of the presence or absence of economic advantage to us",
+              "修饰对象": "should continue",
+              "中文翻译": "无论鸟类能否带给我们经济价值",
+              "说明": "regardless of 引导让步状语；presence or absence 由动词派生，转译为“能否带来”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2010-text5-s3",
+          "no": 3,
+          "en": "Time was when biologists somewhat overworked the evidence that these creatures preserve the health of game by killing the physically weak, or that they prey only on ``worthless'' species.",
+          "zh": "曾几何时，生物学家们有点滥用了这样一条证据，即这些生物通过杀死体弱的个体来保持猎物群体的健康，或者说它们仅仅捕食那些“没有价值的”物种。",
+          "trunk": {
+            "主语": "Time",
+            "谓语": "was",
+            "宾语或表语": "when biologists somewhat overworked the evidence",
+            "主干翻译": "曾几何时，生物学家们有点滥用了这样一条证据。"
+          },
+          "components": [
+            {
+              "成分类型": "表语从句",
+              "原文": "when biologists somewhat overworked the evidence",
+              "修饰对象": "Time",
+              "中文翻译": "生物学家们曾有点滥用了这一证据",
+              "说明": "Time was when… 为固定表达（曾有一段时间），when 引导表语从句说明 Time 的内容。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that these creatures preserve the health of game by killing the physically weak",
+              "修饰对象": "evidence",
+              "中文翻译": "这些生物通过杀死体弱的个体来保持猎物群体的健康",
+              "说明": "that 引导同位语从句，解释 evidence 的具体内容。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "by killing the physically weak",
+              "修饰对象": "preserve",
+              "中文翻译": "通过杀死体弱的个体",
+              "说明": "by 介词短语作方式状语，说明 preserve 的手段。"
+            },
+            {
+              "成分类型": "同位语从句(并列)",
+              "原文": "or that they prey only on ``worthless'' species",
+              "修饰对象": "evidence",
+              "中文翻译": "或者说它们仅仅捕食那些“没有价值的”物种",
+              "说明": "or 连接的第二个 that 同位语从句，与前一同位语从句并列，共同解释 evidence。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2010-text5-s4",
+          "no": 4,
+          "en": "In Europe, where forestry is ecologically more advanced, the non-commercial tree species are recognized as members of native forest community, to be preserved as such, within reason.",
+          "zh": "在林业生态更为发达的欧洲，没有商业价值的树种被认定为原始森林群落的成员，并作为这样的成员在合理范围内受到保护。",
+          "trunk": {
+            "主语": "the non-commercial tree species",
+            "谓语": "are recognized",
+            "宾语或表语": "as members of native forest community",
+            "主干翻译": "没有商业价值的树种被认定为原始森林群落的成员。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(地点状语)",
+              "原文": "In Europe",
+              "修饰对象": "are recognized",
+              "中文翻译": "在欧洲",
+              "说明": "介词短语作地点状语，置于句首。"
+            },
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "where forestry is ecologically more advanced",
+              "修饰对象": "Europe",
+              "中文翻译": "那里的林业在生态上更为发达",
+              "说明": "where 引导非限制性定语从句，修饰 Europe，可前置译为“林业生态更为发达的欧洲”。"
+            },
+            {
+              "成分类型": "非谓语作状语(不定式)",
+              "原文": "to be preserved as such",
+              "修饰对象": "the non-commercial tree species",
+              "中文翻译": "并作为这样的成员而受到保护",
+              "说明": "不定式的被动式作结果/伴随状语，as such 回指前文的“群落成员”。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "within reason",
+              "修饰对象": "to be preserved",
+              "中文翻译": "在合理的范围内",
+              "说明": "介词短语作状语，限定保护的程度，译为“合理地”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2010-text5-s5",
+          "no": 5,
+          "en": "It tends to ignore, and thus eventually to eliminate, many elements in the land community that lack commercial value, but that are essential to its healthy functioning.",
+          "zh": "这一制度往往会忽视、并因此最终消灭陆地群落中许多缺乏商业价值、但对其健康运转至关重要的成员。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "tends to ignore",
+            "宾语或表语": "many elements in the land community",
+            "主干翻译": "这一制度往往会忽视陆地群落中的许多成员。"
+          },
+          "components": [
+            {
+              "成分类型": "并列谓语(不定式)",
+              "原文": "and thus eventually to eliminate",
+              "修饰对象": "tends",
+              "中文翻译": "并因此最终消灭",
+              "说明": "and 连接的并列不定式，与 to ignore 一起作 tends 的宾语，thus 表结果。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "in the land community",
+              "修饰对象": "many elements",
+              "中文翻译": "陆地群落中的",
+              "说明": "介词短语作后置定语，修饰 many elements。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that lack commercial value",
+              "修饰对象": "many elements",
+              "中文翻译": "缺乏商业价值",
+              "说明": "that 引导限制性定语从句，修饰 elements。"
+            },
+            {
+              "成分类型": "定语从句(并列/转折)",
+              "原文": "but that are essential to its healthy functioning",
+              "修饰对象": "many elements",
+              "中文翻译": "但对其健康运转至关重要",
+              "说明": "but 连接的第二个 that 定语从句，与前一定语从句并列并形成转折，共同修饰 elements。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2011,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2011-text5-s1",
+          "no": 1,
+          "en": "Allen's contribution was to take an assumption we all share – that because we are not robots we therefore control our thoughts – and reveal its erroneous nature.",
+          "zh": "艾伦的贡献在于，他拿出“我们并不是机器人，所以能控制自己的思想”这一公认的假设，并揭示了其谬误所在。",
+          "trunk": {
+            "主语": "Allen's contribution",
+            "谓语": "was",
+            "宾语或表语": "to take an assumption we all share – that because we are not robots we therefore control our thoughts – and reveal its erroneous nature",
+            "主干翻译": "艾伦的贡献在于拿出一个假设并揭示其谬误所在。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "we all share",
+              "修饰对象": "an assumption",
+              "中文翻译": "我们都认同的",
+              "说明": "限定性定语从句修饰 an assumption，省略了关系代词 that/which。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that because we are not robots we therefore control our thoughts",
+              "修饰对象": "an assumption",
+              "中文翻译": "因为我们不是机器人，所以能控制自己的思想",
+              "说明": "that 引导同位语从句，破折号引出，解释 assumption 的具体内容。"
+            },
+            {
+              "成分类型": "状语从句(原因)",
+              "原文": "because we are not robots",
+              "修饰对象": "control",
+              "中文翻译": "因为我们不是机器人",
+              "说明": "内嵌于同位语从句的原因状语从句，与后面 therefore 呼应。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and reveal its erroneous nature",
+              "修饰对象": "was",
+              "中文翻译": "并揭示其谬误的本质",
+              "说明": "不定式 reveal 与 to take 并列，共同作表语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2011-text5-s2",
+          "no": 2,
+          "en": "while we may be able to sustain the illusion of control through the conscious mind alone, in reality we are continually faced with a question: ``Why cannot I make myself do this or achieve that?\\,''",
+          "zh": "尽管我们或许可以仅凭意识来维系“控制”这种错觉，现实中我们还是不断要面对一个问题：“我为什么不能让自己做这个或实现那个？”",
+          "trunk": {
+            "主语": "we",
+            "谓语": "are continually faced with",
+            "宾语或表语": "a question",
+            "主干翻译": "现实中我们不断要面对一个问题。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "while we may be able to sustain the illusion of control through the conscious mind alone",
+              "修饰对象": "are continually faced with",
+              "中文翻译": "尽管我们或许可以仅凭意识来维系“控制”这种错觉",
+              "说明": "while 引导让步状语从句，与主句 in reality 形成转折对比。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "through the conscious mind alone",
+              "修饰对象": "sustain",
+              "中文翻译": "仅凭意识",
+              "说明": "介词短语作方式状语，修饰 sustain。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in reality",
+              "修饰对象": "are continually faced with",
+              "中文翻译": "现实中",
+              "说明": "介词短语作状语，暗含与前面让步分句的转折关系。"
+            },
+            {
+              "成分类型": "同位语(直接引语)",
+              "原文": "``Why cannot I make myself do this or achieve that?\\,''",
+              "修饰对象": "a question",
+              "中文翻译": "“我为什么不能让自己做这个或实现那个？”",
+              "说明": "直接引语作 a question 的同位语，说明所面对问题的具体内容。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2011-text5-s3",
+          "no": 3,
+          "en": "This seems a justification for neglect of those in need, and a rationalization of exploitation, of the superiority of those at the top and the inferiority of those at the bottom.",
+          "zh": "这似乎是在为忽视贫困者的行为作辩护，为剥削、为社会上层人群的优越及社会底层人群的卑微找理由。",
+          "trunk": {
+            "主语": "This",
+            "谓语": "seems",
+            "宾语或表语": "a justification for neglect of those in need, and a rationalization of exploitation, of the superiority of those at the top and the inferiority of those at the bottom",
+            "主干翻译": "这似乎是一种辩护，也是一种合理化的说法。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "for neglect of those in need",
+              "修饰对象": "a justification",
+              "中文翻译": "为忽视贫困者的行为",
+              "说明": "介词短语作 a justification 的后置定语。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and a rationalization of exploitation, of the superiority of those at the top and the inferiority of those at the bottom",
+              "修饰对象": "seems",
+              "中文翻译": "以及为剥削、为社会上层人群的优越和社会底层人群的卑微找理由",
+              "说明": "a rationalization 与 a justification 并列，共作 seems 的表语。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of exploitation",
+              "修饰对象": "a rationalization",
+              "中文翻译": "对剥削的",
+              "说明": "介词短语作 a rationalization 的后置定语之一。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of the superiority of those at the top and the inferiority of those at the bottom",
+              "修饰对象": "a rationalization",
+              "中文翻译": "对社会上层人群的优越和社会底层人群的卑微的",
+              "说明": "与 of exploitation 并列，同作 a rationalization 的后置定语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2011-text5-s4",
+          "no": 4,
+          "en": "circumstances seem to be designed to bring out the best in us, and if we feel that we have been ``wronged'' then we are unlikely to begin a conscious effort to escape from our situation.",
+          "zh": "环境仿佛就是为了激发我们的最大潜能而设，如果我们觉得自己遭受了“不公”，就不太可能有意识地去努力摆脱自己的处境。",
+          "trunk": {
+            "主语": "circumstances",
+            "谓语": "seem to be designed",
+            "宾语或表语": "—",
+            "主干翻译": "环境仿佛是被设计用来激发我们最大潜能的。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语(目的状语)",
+              "原文": "to bring out the best in us",
+              "修饰对象": "designed",
+              "中文翻译": "以激发我们的最大潜能",
+              "说明": "不定式短语作目的状语，说明 designed 的目的。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "and if we feel that we have been ``wronged'' then we are unlikely to begin a conscious effort to escape from our situation",
+              "修饰对象": "—",
+              "中文翻译": "如果我们觉得自己遭受了“不公”，就不太可能有意识地去努力摆脱自己的处境",
+              "说明": "由 and 连接的并列分句，内含条件状语从句。"
+            },
+            {
+              "成分类型": "状语从句(条件)",
+              "原文": "if we feel that we have been ``wronged''",
+              "修饰对象": "are unlikely",
+              "中文翻译": "如果我们觉得自己遭受了“不公”",
+              "说明": "if 引导条件状语从句，与 then 主句呼应。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that we have been ``wronged''",
+              "修饰对象": "feel",
+              "中文翻译": "自己遭受了“不公”",
+              "说明": "that 引导宾语从句，作 feel 的宾语。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "to escape from our situation",
+              "修饰对象": "a conscious effort",
+              "中文翻译": "去摆脱我们处境的",
+              "说明": "不定式短语作 a conscious effort 的后置定语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2011-text5-s5",
+          "no": 5,
+          "en": "The upside is the possibilities contained in knowing that everything is up to us; where before we were experts in the array of limitations, now we become authorities of what is possible.",
+          "zh": "其正面意义在于，“认识到一切都取决于我们自己”这一认识本身蕴含着种种可能性；从前我们是各种局限性方面的专家，如今我们却成了判断什么才有可能的权威。",
+          "trunk": {
+            "主语": "The upside",
+            "谓语": "is",
+            "宾语或表语": "the possibilities contained in knowing that everything is up to us",
+            "主干翻译": "其好处在于：“认识到一切都取决于我们自己”这一认识本身所蕴含的种种可能性。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "contained in knowing that everything is up to us",
+              "修饰对象": "the possibilities",
+              "中文翻译": "蕴含于“认识到一切都取决于我们自己”之中的",
+              "说明": "过去分词短语作 the possibilities 的后置定语。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that everything is up to us",
+              "修饰对象": "knowing",
+              "中文翻译": "一切都取决于我们自己",
+              "说明": "that 引导宾语从句，作动名词 knowing 的宾语。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "where before we were experts in the array of limitations, now we become authorities of what is possible",
+              "修饰对象": "—",
+              "中文翻译": "从前我们是各种局限性方面的专家，如今我们却成了判断什么是可能的权威",
+              "说明": "分号后的并列分句，以 before…now… 形成今昔对比。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "what is possible",
+              "修饰对象": "authorities",
+              "中文翻译": "什么是可能的",
+              "说明": "what 引导从句作介词 of 的宾语，即 authorities 所判定的对象。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2012,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2012-text5-s1",
+          "no": 1,
+          "en": "In physics, one approach takes this impulse for unification to its extreme, and seeks a theory of everything—a single generative equation for all we see.",
+          "zh": "在物理学领域，一种做法把这种寻求大同理论的冲动推向极端，试图寻找包含一切的理论——一个涵括我们所看到的一切的生成性公式。",
+          "trunk": {
+            "主语": "one approach",
+            "谓语": "takes",
+            "宾语或表语": "this impulse for unification",
+            "主干翻译": "一种做法把这种寻求大同理论的冲动推向极端。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(地点/领域)",
+              "原文": "In physics",
+              "修饰对象": "takes",
+              "中文翻译": "在物理学领域",
+              "说明": "介词短语作状语，交代讨论的学科背景。"
+            },
+            {
+              "成分类型": "目标状语",
+              "原文": "to its extreme",
+              "修饰对象": "takes",
+              "中文翻译": "推向极端",
+              "说明": "介词短语作 takes 的目标状语，构成 take sth to its extreme 结构。"
+            },
+            {
+              "成分类型": "并列谓语",
+              "原文": "and seeks a theory of everything",
+              "修饰对象": "one approach",
+              "中文翻译": "并试图寻找包含一切的理论",
+              "说明": "and 连接第二个谓语 seeks，与 takes 并列共用主语 one approach。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "a single generative equation for all we see",
+              "修饰对象": "a theory of everything",
+              "中文翻译": "一个涵括我们所看到的一切的生成性公式",
+              "说明": "破折号后的名词短语作 a theory of everything 的同位语，进一步解释。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "we see",
+              "修饰对象": "all",
+              "中文翻译": "我们所看到的（一切）",
+              "说明": "省略关系代词 that 的定语从句，修饰前面的 all。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2012-text5-s2",
+          "no": 2,
+          "en": "Here, Darwinism seems to offer justification, for if all humans share common origins, it seems reasonable to suppose that cultural diversity could also be traced to more constrained beginnings",
+          "zh": "这里，达尔文学说似乎做出了证明，因为如果人类有着共同的起源，那么似乎就有理由认为文化的多样性也可以追溯到更为有限的起源。",
+          "trunk": {
+            "主语": "Darwinism",
+            "谓语": "seems to offer",
+            "宾语或表语": "justification",
+            "主干翻译": "达尔文学说似乎做出了证明。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(承接)",
+              "原文": "Here",
+              "修饰对象": "seems to offer",
+              "中文翻译": "这里",
+              "说明": "承接上文的衔接性状语。"
+            },
+            {
+              "成分类型": "原因状语从句",
+              "原文": "for if all humans share common origins, it seems reasonable to suppose that cultural diversity could also be traced to more constrained beginnings",
+              "修饰对象": "Darwinism seems to offer justification",
+              "中文翻译": "因为如果人类有着共同的起源，那么似乎就有理由认为文化的多样性也可以追溯到更为有限的起源",
+              "说明": "连词 for 引导原因状语，说明达尔文学说做出证明的理由。"
+            },
+            {
+              "成分类型": "条件状语从句",
+              "原文": "if all humans share common origins",
+              "修饰对象": "it seems reasonable to suppose",
+              "中文翻译": "如果人类有着共同的起源",
+              "说明": "if 引导条件状语从句，内嵌于 for 原因状语之中。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that cultural diversity could also be traced to more constrained beginnings",
+              "修饰对象": "suppose",
+              "中文翻译": "文化的多样性也可以追溯到更为有限的起源",
+              "说明": "that 引导 suppose 的宾语从句；it 为形式主语，不定式 to suppose 为真正主语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2012-text5-s3",
+          "no": 3,
+          "en": "To filter out what is unique from what is shared might enable us to understand how complex cultural behavior arose and what guides it in evolutionary or cognitive terms",
+          "zh": "从共有特征中滤出独有特征，这或许能使我们得以理解复杂的文化行为是如何产生的，并从进化或认知角度理解什么引导了它的走向。",
+          "trunk": {
+            "主语": "To filter out what is unique from what is shared",
+            "谓语": "might enable",
+            "宾语或表语": "us",
+            "主干翻译": "从共有特征中滤出独有特征，这可能使我们得以理解……"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作主语",
+              "原文": "To filter out what is unique from what is shared",
+              "修饰对象": "—",
+              "中文翻译": "从共有特征中滤出独有特征",
+              "说明": "动词不定式短语作全句主语，翻译时常补出“这”。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "what is unique",
+              "修饰对象": "filter out",
+              "中文翻译": "独有的东西（独有特征）",
+              "说明": "what 从句作 filter out 的宾语。"
+            },
+            {
+              "成分类型": "介词宾语从句",
+              "原文": "what is shared",
+              "修饰对象": "from",
+              "中文翻译": "共有的东西（共有特征）",
+              "说明": "what 从句作介词 from 的宾语。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "how complex cultural behavior arose",
+              "修饰对象": "understand",
+              "中文翻译": "复杂的文化行为是如何产生的",
+              "说明": "how 引导 understand 的宾语从句。"
+            },
+            {
+              "成分类型": "并列宾语从句",
+              "原文": "and what guides it in evolutionary or cognitive terms",
+              "修饰对象": "understand",
+              "中文翻译": "并从进化或认知角度（理解）什么引导了它的走向",
+              "说明": "and 连接的第二个 what 宾语从句，与前一从句并列作 understand 的宾语，翻译时补出省略的谓语“理解”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2012-text5-s4",
+          "no": 4,
+          "en": "The second, by Joshua Greenberg, takes a more empirical approach to universality, identifying traits (particularly in word order) shared by many language which are considered to represent biases that result from cognitive constraints",
+          "zh": "第二次努力——由乔舒亚·格林堡做出——采用更为经验主义的方法来研究语言的普遍性，确定了多种语言（尤其在语法词序方面）的共有特征，这些特征被认为是代表了由认知限制产生的倾向。",
+          "trunk": {
+            "主语": "The second",
+            "谓语": "takes",
+            "宾语或表语": "a more empirical approach",
+            "主干翻译": "第二次努力采用了一种更为经验主义的方法（来研究普遍性）。"
+          },
+          "components": [
+            {
+              "成分类型": "插入语",
+              "原文": "by Joshua Greenberg",
+              "修饰对象": "The second",
+              "中文翻译": "由乔舒亚·格林堡做出",
+              "说明": "两个逗号之间的插入语，补充说明第二次努力的发起者。"
+            },
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "identifying traits (particularly in word order) shared by many language",
+              "修饰对象": "takes",
+              "中文翻译": "确定了多种语言（尤其在语法词序方面）的共有特征",
+              "说明": "现在分词短语作伴随状语，说明 takes 这一做法的具体内容。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "shared by many language",
+              "修饰对象": "traits",
+              "中文翻译": "为多种语言所共有的",
+              "说明": "过去分词短语作后置定语，修饰 traits。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which are considered to represent biases",
+              "修饰对象": "traits",
+              "中文翻译": "这些（特征）被认为代表了一些倾向",
+              "说明": "which 引导的定语从句修饰 traits（而非离得更近的 language），含被动语态。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that result from cognitive constraints",
+              "修饰对象": "biases",
+              "中文翻译": "由认知限制产生的（倾向）",
+              "说明": "that 引导的定语从句限定修饰 biases。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2012-text5-s5",
+          "no": 5,
+          "en": "Chomsky's grammar should show patterns of language change that are independent of the family tree or the pathway tracked through it, whereas Greenbergian universality predicts strong co-dependencies between particular types of word-order relations.",
+          "zh": "乔姆斯基的语法应该显示出独立于谱系或贯穿其间路径的语言变化模式，而格林伯格式的普遍性理论则预测特定类型的词序关系之间存在着强烈的相互依存关系。",
+          "trunk": {
+            "主语": "Chomsky's grammar",
+            "谓语": "should show",
+            "宾语或表语": "patterns of language change",
+            "主干翻译": "乔姆斯基的语法应该显示出语言变化的模式。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "that are independent of the family tree or the pathway tracked through it",
+              "修饰对象": "patterns of language change",
+              "中文翻译": "独立于谱系或贯穿其间路径的",
+              "说明": "that 引导的定语从句修饰 patterns of language change。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "tracked through it",
+              "修饰对象": "the pathway",
+              "中文翻译": "贯穿其间被追踪的（路径）",
+              "说明": "过去分词短语作后置定语，修饰 the pathway。"
+            },
+            {
+              "成分类型": "并列分句(转折)",
+              "原文": "whereas Greenbergian universality predicts strong co-dependencies between particular types of word-order relations",
+              "修饰对象": "—",
+              "中文翻译": "而格林伯格式的普遍性理论则预测特定类型的词序关系之间存在着强烈的相互依存关系",
+              "说明": "whereas 引导表对比转折的并列分句，与前一分句形成对照。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2013,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2013-text5-s1",
+          "no": 1,
+          "en": "yet when one looks at the photographs of the gardens created by the homeless, it strikes one that, for all their diversity of styles, these gardens speak of various other fundamental urges, beyond that of decoration and creative expression.",
+          "zh": "然而，只要看看无家可归者创造的花园的照片，你就会意识到，尽管样式各异，但这些花园除了表达（人类）装饰和创造的欲望之外，更体现了人类其他根本的强烈愿望。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "strikes",
+            "宾语或表语": "one",
+            "主干翻译": "它使人（你）意识到（后接主语从句所述内容）。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "when one looks at the photographs of the gardens created by the homeless",
+              "修饰对象": "strikes",
+              "中文翻译": "当人们看看无家可归者创造的花园的照片时",
+              "说明": "when 引导时间状语从句，修饰主句谓语 strikes。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "created by the homeless",
+              "修饰对象": "gardens",
+              "中文翻译": "由无家可归者创造的",
+              "说明": "过去分词短语作后置定语修饰 garden。"
+            },
+            {
+              "成分类型": "主语从句",
+              "原文": "that, for all their diversity of styles, these gardens speak of various other fundamental urges, beyond that of decoration and creative expression",
+              "修饰对象": "it",
+              "中文翻译": "尽管样式各异，但这些花园除了装饰和创造性表达的欲望之外，更体现了人类其他根本的强烈愿望",
+              "说明": "that 引导主语从句，it 为形式主语，该从句为真正主语。"
+            },
+            {
+              "成分类型": "状语(让步)",
+              "原文": "for all their diversity of styles",
+              "修饰对象": "speak of",
+              "中文翻译": "尽管它们样式各异",
+              "说明": "for all 表让步的介词短语作状语，for all 意为“尽管”。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "beyond that of decoration and creative expression",
+              "修饰对象": "speak of",
+              "中文翻译": "除了装饰和创造性表达（的欲望）之外",
+              "说明": "beyond 引导介词短语作状语，that 指代 urge（欲望）。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2013-text5-s2",
+          "no": 2,
+          "en": "A sacred place of peace, however crude it may be, is a distinctly human need, as opposed to shelter, which is a distinctly animal need.",
+          "zh": "安宁的圣地（体现的）是人类特有的需要，无论怎样疏于雕琢，它仍与遮风挡雨之所不同，后者（反映的）是动物特有的需要。",
+          "trunk": {
+            "主语": "A sacred place of peace",
+            "谓语": "is",
+            "宾语或表语": "a distinctly human need",
+            "主干翻译": "安宁的圣地是人类特有的需要。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "however crude it may be",
+              "修饰对象": "A sacred place of peace",
+              "中文翻译": "无论它怎样疏于雕琢（多么简陋）",
+              "说明": "however 引导让步状语从句作插入语，it 指代 A sacred place of peace。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "as opposed to shelter",
+              "修饰对象": "a distinctly human need",
+              "中文翻译": "与遮风挡雨之所不同",
+              "说明": "as opposed to 表对比的介词短语作状语。"
+            },
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "which is a distinctly animal need",
+              "修饰对象": "shelter",
+              "中文翻译": "后者（它）是动物特有的需要",
+              "说明": "which 引导非限制性定语从句修饰 shelter，可用“后者”译出。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2013-text5-s3",
+          "no": 3,
+          "en": "The gardens of the homeless, which are in effect homeless gardens, introduce form into an urban environment where it either didn't exist or was not discernible as such.",
+          "zh": "这种无家可归者的花园实质上是无定所的花园，它们把“形式”引入城市环境，而城市环境中原本要么没有这种“形式”，要么并没有把它当成“形式”看待。",
+          "trunk": {
+            "主语": "The gardens of the homeless",
+            "谓语": "introduce",
+            "宾语或表语": "form",
+            "主干翻译": "无家可归者的花园把“形式”引入城市环境。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "which are in effect homeless gardens",
+              "修饰对象": "The gardens of the homeless",
+              "中文翻译": "它们实质上是无定所的花园",
+              "说明": "which 引导非限制性定语从句修饰 gardens，in effect 意为“实际上”。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "into an urban environment",
+              "修饰对象": "introduce",
+              "中文翻译": "引入城市环境中",
+              "说明": "into 引导介词短语作地点状语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "where it either didn't exist or was not discernible as such",
+              "修饰对象": "an urban environment",
+              "中文翻译": "而城市环境中原本要么没有这种“形式”，要么并没有把它当成“形式”看待",
+              "说明": "where 引导定语从句修饰 environment，it 回指 form，either...or... 连接两个并列谓语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2013-text5-s4",
+          "no": 4,
+          "en": "most of us give in to a demoralization of spirit which we usually blame on some psychological conditions, until one day we find ourselves in a garden and feel the oppression vanish as if by magic.",
+          "zh": "我们大多数人通常把陷入精神颓丧归咎于某些心理疾病，直到有一天置身花园，才顿觉压抑感神奇地消失了。",
+          "trunk": {
+            "主语": "most of us",
+            "谓语": "give in to",
+            "宾语或表语": "a demoralization of spirit",
+            "主干翻译": "我们大多数人陷入一种精神颓丧。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "which we usually blame on some psychological conditions",
+              "修饰对象": "a demoralization of spirit",
+              "中文翻译": "我们通常把它归咎于某些心理疾病",
+              "说明": "which 引导定语从句修饰 a demoralization of spirit，blame on 为固定搭配“归咎于”。"
+            },
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "until one day we find ourselves in a garden and feel the oppression vanish as if by magic",
+              "修饰对象": "give in to",
+              "中文翻译": "直到有一天置身花园，才顿觉压抑感神奇地消失了",
+              "说明": "until 引导时间状语从句，find 与 feel 为并列谓语。"
+            },
+            {
+              "成分类型": "非谓语作宾补",
+              "原文": "feel the oppression vanish",
+              "修饰对象": "the oppression",
+              "中文翻译": "感觉压抑感消失",
+              "说明": "感官动词 feel + 宾语 the oppression + 省略 to 的动词原形 vanish 作宾语补足语。"
+            },
+            {
+              "成分类型": "状语(方式)",
+              "原文": "as if by magic",
+              "修饰对象": "vanish",
+              "中文翻译": "仿佛靠魔法一般",
+              "说明": "as if 引导方式状语，修饰 vanish。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2013-text5-s5",
+          "no": 5,
+          "en": "It is this implicit or explicit reference to nature that fully justifies the use of the word garden, though in a ``liberated'' sense, to describe these synthetic constructions.",
+          "zh": "虽然有“扩大词义外延”的意味，但正是这种对大自然或隐晦或明晰的参照，让用“花园”一词来描述这些人造组合有了充分的根据。",
+          "trunk": {
+            "主语": "this implicit or explicit reference to nature",
+            "谓语": "justifies",
+            "宾语或表语": "the use of the word garden",
+            "主干翻译": "正是这种对大自然或隐晦或明晰的参照，让用“花园”一词有了充分的根据。"
+          },
+          "components": [
+            {
+              "成分类型": "强调句型",
+              "原文": "It is this implicit or explicit reference to nature that",
+              "修饰对象": "this implicit or explicit reference to nature",
+              "中文翻译": "正是这种对大自然或隐晦或明晰的参照……",
+              "说明": "It is...that... 强调句型，强调主语 this implicit or explicit reference to nature。"
+            },
+            {
+              "成分类型": "状语(让步/插入语)",
+              "原文": "though in a ``liberated'' sense",
+              "修饰对象": "the use of the word garden",
+              "中文翻译": "尽管是在一种“扩大词义外延”的意义上",
+              "说明": "though 引导让步状语，作插入语。"
+            },
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "to describe these synthetic constructions",
+              "修饰对象": "the use of the word garden",
+              "中文翻译": "用来描述这些人造组合",
+              "说明": "不定式短语作目的状语，修饰 the use（of the word garden）。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2014,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2014-text5-s1",
+          "no": 1,
+          "en": "It is also the reason why when we try to describe music with words, all we can do is articulate our reactions to it, and not grasp music itself.",
+          "zh": "这也解释了为什么当我们试图用语言去描述音乐的时候，充其量只能是说清楚自己的感受，而无法抓住音乐本身。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "is",
+            "宾语或表语": "the reason",
+            "主干翻译": "这也是（其中的）原因所在。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "why when we try to describe music with words, all we can do is articulate our reactions to it, and not grasp music itself",
+              "修饰对象": "the reason",
+              "中文翻译": "为什么当我们试图用语言去描述音乐的时候，充其量只能说清楚自己的感受，而无法抓住音乐本身",
+              "说明": "关系副词 why 引导定语从句修饰先行词 the reason。"
+            },
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "when we try to describe music with words",
+              "修饰对象": "articulate",
+              "中文翻译": "当我们试图用语言去描述音乐的时候",
+              "说明": "when 引导时间状语从句，嵌套在定语从句内，修饰其主句谓语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "we can do",
+              "修饰对象": "all",
+              "中文翻译": "我们所能做的",
+              "说明": "省略关系代词 that 的定语从句修饰不定代词 all。"
+            },
+            {
+              "成分类型": "表语(并列不定式)",
+              "原文": "articulate our reactions to it, and not grasp music itself",
+              "修饰对象": "all we can do",
+              "中文翻译": "说清楚自己的感受，而无法抓住音乐本身",
+              "说明": "省略 to 的并列不定式短语作表语，说明 all we can do 的内容。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2014-text5-s2",
+          "no": 2,
+          "en": "By all accounts he was a freethinking person, and a courageous one, and I find courage an essential quality for the understanding, let alone the performance, of his works.",
+          "zh": "人们普遍认为，他是一个思想不受束缚的人，而且是一个富有勇气的人。我认为勇气是理解——更是演奏——其作品不可或缺的品格。",
+          "trunk": {
+            "主语": "he",
+            "谓语": "was",
+            "宾语或表语": "a freethinking person, and a courageous one",
+            "主干翻译": "他是一个思想不受束缚的人，而且是一个富有勇气的人。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(插入语)",
+              "原文": "By all accounts",
+              "修饰对象": "was",
+              "中文翻译": "据各方面所说／人们普遍认为",
+              "说明": "介词短语作句首状语，起总结、评述作用。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "and I find courage an essential quality for the understanding, let alone the performance, of his works",
+              "修饰对象": "—",
+              "中文翻译": "我认为勇气是理解——更是演奏——其作品不可或缺的品格",
+              "说明": "并列连词 and 连接第二个分句，采用 find + 宾语 + 宾语补足语结构。"
+            },
+            {
+              "成分类型": "后置定语(介词短语)",
+              "原文": "for the understanding, let alone the performance, of his works",
+              "修饰对象": "quality",
+              "中文翻译": "对于理解——更不用说演奏——他的作品而言",
+              "说明": "介词短语作后置定语，说明这一品质对何而言不可或缺。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "let alone the performance",
+              "修饰对象": "the understanding",
+              "中文翻译": "更不用说演奏",
+              "说明": "let alone 引导的插入语，表递进，强调演奏比理解更需勇气。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2014-text5-s3",
+          "no": 3,
+          "en": "Beethoven's habit of increasing the volume with an extreme intensity and then abruptly following it with a sudden soft passage was only rarely used by composers before him.",
+          "zh": "贝多芬惯以超凡的力度加大音响，随后突然进入一个意想不到的柔和乐段，这种手法在前人的作品中极为罕见。",
+          "trunk": {
+            "主语": "Beethoven's habit",
+            "谓语": "was only rarely used",
+            "宾语或表语": "—",
+            "主干翻译": "贝多芬的这种手法在前人的作品中极为罕见。"
+          },
+          "components": [
+            {
+              "成分类型": "后置定语(动名词结构)",
+              "原文": "of increasing the volume with an extreme intensity and then abruptly following it with a sudden soft passage",
+              "修饰对象": "habit",
+              "中文翻译": "以超凡的力度加大音响，随后突然接以一个意想不到的柔和乐段（的习惯）",
+              "说明": "of 引导的介词短语作后置定语，宾语由 and then 连接的两个动名词并列结构担当。"
+            },
+            {
+              "成分类型": "状语(方式)",
+              "原文": "with an extreme intensity",
+              "修饰对象": "increasing",
+              "中文翻译": "以极强的力度",
+              "说明": "介词短语作方式状语，修饰动名词 increasing。"
+            },
+            {
+              "成分类型": "状语(方式)",
+              "原文": "with a sudden soft passage",
+              "修饰对象": "following",
+              "中文翻译": "以一个突然的柔和乐段",
+              "说明": "介词短语作方式状语，修饰动名词 following。"
+            },
+            {
+              "成分类型": "状语(被动施动者)",
+              "原文": "by composers before him",
+              "修饰对象": "used",
+              "中文翻译": "被他之前的作曲家（使用）",
+              "说明": "by 引出被动语态的动作执行者。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2014-text5-s4",
+          "no": 4,
+          "en": "Especially significant was his view of freedom, which, for him, was associated with the rights and responsibilities of the individual: he advocated freedom of thought and of personal expression.",
+          "zh": "尤具深意的是他的自由观，在他看来自由关系到个人的权利和责任：他主张思想和个人表达的自由。",
+          "trunk": {
+            "主语": "his view of freedom",
+            "谓语": "was",
+            "宾语或表语": "Especially significant",
+            "主干翻译": "尤具深意的是他的自由观。"
+          },
+          "components": [
+            {
+              "成分类型": "倒装(表语前置)",
+              "原文": "Especially significant",
+              "修饰对象": "his view of freedom",
+              "中文翻译": "尤具深意的",
+              "说明": "表语提至句首形成完全倒装，起强调作用。"
+            },
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "which, for him, was associated with the rights and responsibilities of the individual",
+              "修饰对象": "freedom",
+              "中文翻译": "在他看来，这种自由关系到个人的权利和责任",
+              "说明": "which 引导非限制性定语从句修饰 freedom。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "for him",
+              "修饰对象": "was associated",
+              "中文翻译": "在他看来",
+              "说明": "介词短语作插入语，插在定语从句主谓之间。"
+            },
+            {
+              "成分类型": "并列分句(解释说明)",
+              "原文": "he advocated freedom of thought and of personal expression",
+              "修饰对象": "—",
+              "中文翻译": "他主张思想和个人表达的自由",
+              "说明": "冒号后的分句进一步解释说明前文定语从句的内容。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2014-text5-s5",
+          "no": 5,
+          "en": "One could interpret much of the work of Beethoven by saying that suffering is inevitable, but the courage to fight it renders life worth living.",
+          "zh": "人们可以这样来解读贝多芬的大部分作品：苦难是不可避免的，但与之抗争的勇气使人生值得一过。",
+          "trunk": {
+            "主语": "One",
+            "谓语": "could interpret",
+            "宾语或表语": "much of the work of Beethoven",
+            "主干翻译": "人们可以解读贝多芬的大部分作品。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(方式)",
+              "原文": "by saying that suffering is inevitable, but the courage to fight it renders life worth living",
+              "修饰对象": "interpret",
+              "中文翻译": "通过这样说来（解读）：苦难不可避免，但与之抗争的勇气使人生值得一过",
+              "说明": "by + 动名词短语作方式状语，说明解读的方式。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that suffering is inevitable, but the courage to fight it renders life worth living",
+              "修饰对象": "saying",
+              "中文翻译": "苦难是不可避免的，但与之抗争的勇气使人生值得一过",
+              "说明": "that 引导宾语从句，作动名词 saying 的宾语。"
+            },
+            {
+              "成分类型": "非谓语作定语(不定式)",
+              "原文": "to fight it",
+              "修饰对象": "the courage",
+              "中文翻译": "与之抗争的",
+              "说明": "不定式短语作后置定语，修饰 the courage，it 指代 suffering。"
+            },
+            {
+              "成分类型": "并列分句(转折)",
+              "原文": "but the courage to fight it renders life worth living",
+              "修饰对象": "—",
+              "中文翻译": "但与之抗争的勇气使人生值得一过",
+              "说明": "but 在宾语从句内连接转折并列分句，render + 宾语 + 宾补结构。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2015-text5-s1",
+          "no": 1,
+          "en": "This movement, driven by powerful and diverse motivations, built a nation out of a wilderness and, by its nature, shaped the character and destiny of an uncharted continent",
+          "zh": "在各种强大动机的推动下，这场迁移从荒野中造就了一个民族，并循其本质塑造了一片全新大陆的特点，决定了它的命运。",
+          "trunk": {
+            "主语": "This movement",
+            "谓语": "built",
+            "宾语或表语": "a nation",
+            "主干翻译": "这场迁移造就了一个民族。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作状语(过去分词)",
+              "原文": "driven by powerful and diverse motivations",
+              "修饰对象": "This movement",
+              "中文翻译": "在各种强大动机的推动下",
+              "说明": "过去分词短语作状语，插在主谓之间，修饰全句，译时提至句首表原因。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "out of a wilderness",
+              "修饰对象": "built",
+              "中文翻译": "从荒野中",
+              "说明": "介词短语作状语，说明造就民族的起点。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "and, by its nature, shaped the character and destiny of an uncharted continent",
+              "修饰对象": "This movement",
+              "中文翻译": "并循其本质塑造了一片全新大陆的特点，决定了它的命运",
+              "说明": "and 连接的并列谓语，与 built 共用主语 This movement。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "by its nature",
+              "修饰对象": "shaped",
+              "中文翻译": "循其本质",
+              "说明": "介词短语作状语，意为就这场迁移的本质而言。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2015-text5-s2",
+          "no": 2,
+          "en": "The United States is the product of two principal forces—the immigration of European peoples with their varied ideas, customs, and national characteristics and the impact of a new country which modified these traits",
+          "zh": "合众国是两股主要力量作用的产物——一是具有不同思想、风俗和民族特点的欧洲各民族的迁入，二是一个新国家因改变了这些特性而产生的影响。",
+          "trunk": {
+            "主语": "The United States",
+            "谓语": "is",
+            "宾语或表语": "the product of two principal forces",
+            "主干翻译": "合众国是两股主要力量作用的产物。"
+          },
+          "components": [
+            {
+              "成分类型": "同位语",
+              "原文": "the immigration of European peoples with their varied ideas, customs, and national characteristics",
+              "修饰对象": "two principal forces",
+              "中文翻译": "具有不同思想、风俗和民族特点的欧洲各民族的迁入",
+              "说明": "破折号后第一个同位语，说明 two principal forces 之一。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "the impact of a new country which modified these traits",
+              "修饰对象": "two principal forces",
+              "中文翻译": "一个新国家因改变了这些特性而产生的影响",
+              "说明": "and 连接的第二个同位语，说明 two principal forces 之二。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "with their varied ideas, customs, and national characteristics",
+              "修饰对象": "European peoples",
+              "中文翻译": "具有不同思想、风俗和民族特点",
+              "说明": "介词短语作后置定语，修饰 European peoples。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which modified these traits",
+              "修饰对象": "a new country",
+              "中文翻译": "改变了这些特性",
+              "说明": "which 引导的定语从句作后置定语，修饰 a new country。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2015-text5-s3",
+          "no": 3,
+          "en": "But, the force of geographic conditions peculiar to America, the interplay of the varied national groups upon one another, and the sheer difficulty of maintaining old-world ways in a raw, new continent caused significant changes",
+          "zh": "但是美洲特有地理条件的作用，不同族群间的相互影响，加上在一片荒蛮新大陆上维持旧大陆方式的巨大困难，所有这一切引起了意义深远的变化。",
+          "trunk": {
+            "主语": "the force of geographic conditions peculiar to America, the interplay of the varied national groups upon one another, and the sheer difficulty of maintaining old-world ways in a raw, new continent",
+            "谓语": "caused",
+            "宾语或表语": "significant changes",
+            "主干翻译": "所有这一切引起了意义深远的变化。"
+          },
+          "components": [
+            {
+              "成分类型": "并列主语",
+              "原文": "the force of geographic conditions peculiar to America",
+              "修饰对象": "caused",
+              "中文翻译": "美洲特有地理条件的作用",
+              "说明": "三个并列主语之一。"
+            },
+            {
+              "成分类型": "并列主语",
+              "原文": "the interplay of the varied national groups upon one another",
+              "修饰对象": "caused",
+              "中文翻译": "不同族群间的相互影响",
+              "说明": "三个并列主语之二。"
+            },
+            {
+              "成分类型": "并列主语",
+              "原文": "the sheer difficulty of maintaining old-world ways in a raw, new continent",
+              "修饰对象": "caused",
+              "中文翻译": "在一片荒蛮新大陆上维持旧大陆方式的巨大困难",
+              "说明": "and 连接的第三个并列主语。"
+            },
+            {
+              "成分类型": "后置定语",
+              "原文": "peculiar to America",
+              "修饰对象": "geographic conditions",
+              "中文翻译": "美洲特有的",
+              "说明": "形容词短语作后置定语，peculiar to 意为特有的。"
+            },
+            {
+              "成分类型": "非谓语作定语(动名词)",
+              "原文": "maintaining old-world ways in a raw, new continent",
+              "修饰对象": "difficulty",
+              "中文翻译": "在一片荒蛮新大陆上维持旧大陆方式",
+              "说明": "动名词短语作 of 的宾语，修饰 difficulty。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2015-text5-s4",
+          "no": 4,
+          "en": "The first shiploads of immigrants bound for the territory which is now the United States crossed the Atlantic more than a hundred years after the 15 th-and-16 th-century explorations of North America",
+          "zh": "在十五、十六世纪的北美大陆探险过去一百多年后，首批满载移民驶向今天合众国这片疆土的船只横穿过了大西洋。",
+          "trunk": {
+            "主语": "The first shiploads of immigrants",
+            "谓语": "crossed",
+            "宾语或表语": "the Atlantic",
+            "主干翻译": "首批满载移民的船只横穿过了大西洋。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语(过去分词)",
+              "原文": "bound for the territory which is now the United States",
+              "修饰对象": "shiploads",
+              "中文翻译": "驶向今天合众国这片疆土的",
+              "说明": "过去分词短语 bound for 作后置定语，修饰 shiploads。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which is now the United States",
+              "修饰对象": "the territory",
+              "中文翻译": "今天是合众国的",
+              "说明": "which 引导的定语从句，修饰 the territory。"
+            },
+            {
+              "成分类型": "状语(时间)",
+              "原文": "more than a hundred years after the 15 th-and-16 th-century explorations of North America",
+              "修饰对象": "crossed",
+              "中文翻译": "在十五、十六世纪的北美大陆探险过去一百多年后",
+              "说明": "介词短语作时间状语，译时提至句首。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2015-text5-s5",
+          "no": 5,
+          "en": "The virgin forest with its richness and variety of trees was a real treasure-house which extended from Maine all the way down to Georgia",
+          "zh": "郁郁葱葱、树种繁多的原始森林是一座真正的宝库，它从缅因州一直向南延伸至佐治亚州。",
+          "trunk": {
+            "主语": "The virgin forest",
+            "谓语": "was",
+            "宾语或表语": "a real treasure-house",
+            "主干翻译": "原始森林是一座真正的宝库。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语",
+              "原文": "with its richness and variety of trees",
+              "修饰对象": "The virgin forest",
+              "中文翻译": "郁郁葱葱、树种繁多的",
+              "说明": "介词短语作后置定语，修饰 The virgin forest。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which extended from Maine all the way down to Georgia",
+              "修饰对象": "treasure-house",
+              "中文翻译": "从缅因州一直向南延伸至佐治亚州",
+              "说明": "which 引导的定语从句，修饰 a real treasure-house。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "from Maine all the way down to Georgia",
+              "修饰对象": "extended",
+              "中文翻译": "从缅因州一直向南延伸至佐治亚州",
+              "说明": "介词短语作状语，说明宝库延伸的范围。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2016-text5-s1",
+          "no": 1,
+          "en": "We don't have to learn how to be mentally healthy; it is built into us in the same way that our bodies know how to heal a cut or mend a broken bone.",
+          "zh": "我们不必学习如何保持心理健康；它是我们生来就有的，正如同我们的身体知道如何治愈伤口或修复断骨一样。",
+          "trunk": {
+            "主语": "We",
+            "谓语": "don't have to learn",
+            "宾语或表语": "how to be mentally healthy",
+            "主干翻译": "我们不必学习如何保持心理健康。"
+          },
+          "components": [
+            {
+              "成分类型": "不定式短语作宾语",
+              "原文": "how to be mentally healthy",
+              "修饰对象": "learn",
+              "中文翻译": "如何保持心理健康",
+              "说明": "疑问词 how 加不定式构成 learn 的宾语。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "it is built into us in the same way that our bodies know how to heal a cut or mend a broken bone",
+              "修饰对象": "—",
+              "中文翻译": "它是我们生来就有的，正如同我们的身体知道如何治愈伤口或修复断骨一样",
+              "说明": "分号连接的第二个独立分句，与前一分句并列，被动式 is built into us 说明心理健康是天生的。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "in the same way",
+              "修饰对象": "is built into us",
+              "中文翻译": "正如同……一样",
+              "说明": "介词短语作方式状语，引出类比。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that our bodies know how to heal a cut or mend a broken bone",
+              "修饰对象": "the same way",
+              "中文翻译": "我们的身体知道如何治愈伤口或修复断骨（那样）",
+              "说明": "that 引导定语从句修饰 the same way，in the same way that 整体可译为“就像……一样”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2016-text5-s2",
+          "no": 2,
+          "en": "Our mental health doesn't really go anywhere; like the sun behind a cloud, it can be temporarily hidden from view, but it is fully capable of being restored in an instant.",
+          "zh": "心理健康并没有真的离开；宛如云朵后面的太阳，它虽然可能暂离我们的视线，但完全能在转瞬之间重现。",
+          "trunk": {
+            "主语": "Our mental health",
+            "谓语": "doesn't really go",
+            "宾语或表语": "anywhere",
+            "主干翻译": "我们的心理健康并没有真的离开。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "like the sun behind a cloud",
+              "修饰对象": "it can be temporarily hidden from view",
+              "中文翻译": "宛如云朵后面的太阳",
+              "说明": "like 引出的介词短语作方式状语，把心理健康类比为云后的太阳，按原语序译在句首。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "behind a cloud",
+              "修饰对象": "the sun",
+              "中文翻译": "云朵后面的",
+              "说明": "介词短语作后置定语，修饰 the sun。"
+            },
+            {
+              "成分类型": "被动语态",
+              "原文": "it can be temporarily hidden from view",
+              "修饰对象": "—",
+              "中文翻译": "它可能暂时被隐藏于视线之外",
+              "说明": "被动语态可转译为主动“可能暂离我们的视线”，更合汉语习惯。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "but it is fully capable of being restored in an instant",
+              "修饰对象": "—",
+              "中文翻译": "但它完全能在转瞬之间重现",
+              "说明": "but 连接的并列分句，与前一分句形成转折，be capable of 意为“完全能”。"
+            },
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "in an instant",
+              "修饰对象": "being restored",
+              "中文翻译": "在转瞬之间",
+              "说明": "介词短语作时间状语，点明恢复之迅速。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2016-text5-s3",
+          "no": 3,
+          "en": "Mental health allows us to view others with sympathy if they are having troubles, with kindness if they are in pain, and with unconditional love no matter who they are.",
+          "zh": "心理健康让我们在他人遇到困难时心怀同情，遭受苦痛时心怀善意，不论他们是谁都会心怀无条件的爱。",
+          "trunk": {
+            "主语": "Mental health",
+            "谓语": "allows",
+            "宾语或表语": "us to view others",
+            "主干翻译": "心理健康让我们（以某种态度）看待他人。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "with sympathy",
+              "修饰对象": "view",
+              "中文翻译": "心怀同情",
+              "说明": "with 短语与 view 构成 view...with... 搭配，作看待他人的方式状语。"
+            },
+            {
+              "成分类型": "条件状语从句",
+              "原文": "if they are having troubles",
+              "修饰对象": "with sympathy",
+              "中文翻译": "在他人遇到困难时",
+              "说明": "if 引导条件状语从句，按汉语习惯译在方式状语之前。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "with kindness",
+              "修饰对象": "view",
+              "中文翻译": "心怀善意",
+              "说明": "第二个并列 with 短语，作看待他人的方式状语。"
+            },
+            {
+              "成分类型": "条件状语从句",
+              "原文": "if they are in pain",
+              "修饰对象": "with kindness",
+              "中文翻译": "在他们遭受苦痛时",
+              "说明": "if 引导条件状语从句，译在其对应方式状语之前。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "with unconditional love",
+              "修饰对象": "view",
+              "中文翻译": "心怀无条件的爱",
+              "说明": "由 and 引出的第三个并列 with 短语，作看待他人的方式状语。"
+            },
+            {
+              "成分类型": "让步状语从句",
+              "原文": "no matter who they are",
+              "修饰对象": "with unconditional love",
+              "中文翻译": "不论他们是谁",
+              "说明": "no matter who 引导让步状语从句，按汉语习惯译在前面。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2016-text5-s4",
+          "no": 4,
+          "en": "Although mental health is the cure-all for living our lives, it is perfectly ordinary as you will see that it has been there to direct you through all your difficult decisions.",
+          "zh": "尽管心理健康是我们生活的万能灵药，但它又再寻常不过，因为你会发现，它一直在那里引领你完成所有艰难的抉择。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "perfectly ordinary",
+            "主干翻译": "它再寻常不过。"
+          },
+          "components": [
+            {
+              "成分类型": "让步状语从句",
+              "原文": "Although mental health is the cure-all for living our lives",
+              "修饰对象": "it is perfectly ordinary",
+              "中文翻译": "尽管心理健康是我们生活的万能灵药",
+              "说明": "Although 引导让步状语从句，与主句构成转折关系。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "for living our lives",
+              "修饰对象": "the cure-all",
+              "中文翻译": "（用于）我们生活的",
+              "说明": "介词短语作后置定语，修饰 the cure-all。"
+            },
+            {
+              "成分类型": "状语从句(原因)",
+              "原文": "as you will see that it has been there to direct you through all your difficult decisions",
+              "修饰对象": "it is perfectly ordinary",
+              "中文翻译": "因为你会发现，它一直在那里引领你完成所有艰难的抉择",
+              "说明": "as 在此表原因，引导原因状语从句。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that it has been there to direct you through all your difficult decisions",
+              "修饰对象": "see",
+              "中文翻译": "它一直在那里引领你完成所有艰难的抉择",
+              "说明": "that 引导宾语从句，作 see 的宾语。"
+            },
+            {
+              "成分类型": "不定式短语(目的状语)",
+              "原文": "to direct you through all your difficult decisions",
+              "修饰对象": "has been there",
+              "中文翻译": "去引领你完成所有艰难的抉择",
+              "说明": "不定式短语作目的状语，说明它“一直在那里”的作用。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2016-text5-s5",
+          "no": 5,
+          "en": "As you will come to see, knowing that mental health is always available and knowing to trust it allow us to slow down to the moment and live life happily.",
+          "zh": "你终会明白，懂得心理健康无时不在并懂得信赖它，这能让我们慢下来活在每一刻，快乐地生活着。",
+          "trunk": {
+            "主语": "knowing that mental health is always available and knowing to trust it",
+            "谓语": "allow",
+            "宾语或表语": "us to slow down to the moment and live life happily",
+            "主干翻译": "懂得心理健康无时不在并懂得信赖它，能让我们慢下来活在每一刻，快乐地生活。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "As you will come to see",
+              "修饰对象": "allow",
+              "中文翻译": "你终会明白",
+              "说明": "As 引导状语从句，表“正如你将会看到”，置于句首。"
+            },
+            {
+              "成分类型": "动名词短语作主语",
+              "原文": "knowing that mental health is always available",
+              "修饰对象": "—",
+              "中文翻译": "懂得心理健康无时不在",
+              "说明": "动名词短语作主语，与后一动名词短语并列构成复合主语。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that mental health is always available",
+              "修饰对象": "knowing",
+              "中文翻译": "心理健康无时不在",
+              "说明": "that 引导宾语从句，作动名词 knowing 的宾语。"
+            },
+            {
+              "成分类型": "动名词短语作主语",
+              "原文": "knowing to trust it",
+              "修饰对象": "—",
+              "中文翻译": "懂得信赖它",
+              "说明": "由 and 连接的第二个动名词短语主语，故谓语用复数 allow。"
+            },
+            {
+              "成分类型": "不定式短语(宾语补足语)",
+              "原文": "to slow down to the moment and live life happily",
+              "修饰对象": "us",
+              "中文翻译": "慢下来活在每一刻，快乐地生活",
+              "说明": "allow sb to do 结构中的不定式短语，作宾语 us 的补足语。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2017-text5-s1",
+          "no": 1,
+          "en": "But even as the number of English speakers expands further there are signs that the global predominance of the language may fade within the foreseeable future",
+          "zh": "尽管讲英语的人数在进一步增加,但有迹象显示这一语言的全球统治地位在可预见的未来可能会衰落。",
+          "trunk": {
+            "主语": "there",
+            "谓语": "are",
+            "宾语或表语": "signs",
+            "主干翻译": "有迹象显示……"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间/让步)",
+              "原文": "even as the number of English speakers expands further",
+              "修饰对象": "are",
+              "中文翻译": "尽管讲英语的人数在进一步增加",
+              "说明": "as 引导时间状语从句,even 加让步语气,句首 But 表句间转折。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that the global predominance of the language may fade within the foreseeable future",
+              "修饰对象": "signs",
+              "中文翻译": "这一语言的全球统治地位在可预见的未来可能会衰落",
+              "说明": "that 引导同位语从句,说明抽象名词 signs 的具体内容,过长可单独译为一句。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "within the foreseeable future",
+              "修饰对象": "may fade",
+              "中文翻译": "在可预见的未来",
+              "说明": "介词短语作时间状语,within/in the foreseeable future 为固定搭配。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2017-text5-s2",
+          "no": 2,
+          "en": "His analysis should therefore end any self-contentedness among those who may believe that the global position of English is so stable that the young generations of the United Kingdom do not need additional language capabilities",
+          "zh": "因此,他的分析会让一些人再也无法自满,这些人或许认为英语的全球地位十分稳固,从而英国的年轻人无需额外的语言能力。",
+          "trunk": {
+            "主语": "His analysis",
+            "谓语": "should therefore end",
+            "宾语或表语": "any self-contentedness",
+            "主干翻译": "因此,他的分析会终结任何自我满足心态。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "among those",
+              "修饰对象": "self-contentedness",
+              "中文翻译": "在那些人中间",
+              "说明": "介词短语作 self-contentedness 的后置定语,those 指代人。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who may believe that the global position of English is so stable that the young generations of the United Kingdom do not need additional language capabilities",
+              "修饰对象": "those",
+              "中文翻译": "这些人或许认为英语的全球地位十分稳固,从而英国的年轻人无需额外的语言能力",
+              "说明": "who 引导定语从句修饰 those,翻译时在此拆开另起一句。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that the global position of English is so stable that the young generations of the United Kingdom do not need additional language capabilities",
+              "修饰对象": "believe",
+              "中文翻译": "英语的全球地位十分稳固,以至于英国的年轻一代无需额外的语言能力",
+              "说明": "that 引导 believe 的宾语从句,内含 so...that 结构。"
+            },
+            {
+              "成分类型": "状语从句(结果)",
+              "原文": "that the young generations of the United Kingdom do not need additional language capabilities",
+              "修饰对象": "so stable",
+              "中文翻译": "从而英国的年轻一代无需额外的语言能力",
+              "说明": "so...that 结构中 that 引导结果状语从句,呼应 so。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2017-text5-s3",
+          "no": 3,
+          "en": "many countries are introducing English into the primary-school curriculum but British schoolchildren and students do not appear to be gaining greater encouragement to achieve fluency in other languages",
+          "zh": "许多国家都在把英语纳入小学课程,但英国的大、中、小学生却似乎没有得到更多的鼓励去熟练掌握其他语言。",
+          "trunk": {
+            "主语": "many countries",
+            "谓语": "are introducing",
+            "宾语或表语": "English",
+            "主干翻译": "许多国家都在把英语纳入小学课程。"
+          },
+          "components": [
+            {
+              "成分类型": "并列分句",
+              "原文": "but British schoolchildren and students do not appear to be gaining greater encouragement to achieve fluency in other languages",
+              "修饰对象": "—",
+              "中文翻译": "但英国的大、中、小学生却似乎没有得到更多的鼓励去熟练掌握其他语言",
+              "说明": "but 连接的并列分句,与前句形成对比。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "into the primary-school curriculum",
+              "修饰对象": "are introducing",
+              "中文翻译": "纳入小学课程",
+              "说明": "introduce...into... 固定结构,介词短语作状语,意为把……引入。"
+            },
+            {
+              "成分类型": "非谓语作定语(不定式)",
+              "原文": "to achieve fluency in other languages",
+              "修饰对象": "encouragement",
+              "中文翻译": "去熟练掌握其他语言",
+              "说明": "不定式作 encouragement 的后置定语(非目的状语),可活译为动词短语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2017-text5-s4",
+          "no": 4,
+          "en": "The changes identified by David Graddol all present clear and major challenges to the UK's providers of English language teaching to people of other countries and to broader education business sectors.",
+          "zh": "大卫·格拉多尔所指出的这些变化,都对向其他国家的人提供英语教学的英国机构以及更广泛的教育产业部门,带来了明显而重大的挑战。",
+          "trunk": {
+            "主语": "The changes",
+            "谓语": "present",
+            "宾语或表语": "clear and major challenges",
+            "主干翻译": "这些变化都带来了明显而重大的挑战。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语(过去分词)",
+              "原文": "identified by David Graddol",
+              "修饰对象": "The changes",
+              "中文翻译": "大卫·格拉多尔所指出的",
+              "说明": "过去分词短语作 The changes 的后置定语。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "to the UK's providers of English language teaching to people of other countries",
+              "修饰对象": "challenges",
+              "中文翻译": "给向其他国家的人提供英语教学的英国机构",
+              "说明": "介词短语指出 challenges 的对象,说明挑战针对谁。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "to people of other countries",
+              "修饰对象": "English language teaching",
+              "中文翻译": "向其他国家的人",
+              "说明": "介词短语作 teaching 的定语,说明教学对象。"
+            },
+            {
+              "成分类型": "介词短语(并列)",
+              "原文": "and to broader education business sectors",
+              "修饰对象": "challenges",
+              "中文翻译": "以及更广泛的教育产业部门",
+              "说明": "and 连接的并列介词短语,与前一 to 短语并列,共同作 challenges 的对象。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2017-text5-s5",
+          "no": 5,
+          "en": "It gives a basis for all organisations which seek to promote the learning and use of English, a basis for planning to meet the possibilities of what could be a very different operating environment",
+          "zh": "它给所有致力于推广英语学习和使用的机构提供了一个依据,一个用来筹划应对可能会大不相同的运营环境的依据。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "gives",
+            "宾语或表语": "a basis",
+            "主干翻译": "它提供了一个依据。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "for all organisations which seek to promote the learning and use of English",
+              "修饰对象": "a basis",
+              "中文翻译": "给所有致力于推广英语学习和使用的机构",
+              "说明": "介词短语作 basis 的后置定语,内嵌 which 定语从句。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which seek to promote the learning and use of English",
+              "修饰对象": "organisations",
+              "中文翻译": "致力于推广英语学习和使用的",
+              "说明": "which 引导定语从句修饰 organisations。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "a basis for planning to meet the possibilities of what could be a very different operating environment",
+              "修饰对象": "a basis",
+              "中文翻译": "一个用来筹划应对可能大不相同的运营环境的依据",
+              "说明": "名词短语作前一 a basis 的同位语,对其加以补充说明。"
+            },
+            {
+              "成分类型": "名词性从句(介词宾语从句)",
+              "原文": "what could be a very different operating environment",
+              "修饰对象": "of",
+              "中文翻译": "可能会大不相同的运营环境",
+              "说明": "what 引导名词性从句作介词 of 的宾语。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2018,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2018-text5-s1",
+          "no": 1,
+          "en": "By the date of his birth Europe was witnessing the passing of the religious drama, and the creation of new forms under the incentive of classical tragedy and comedy.",
+          "zh": "他出生时，欧洲正见证着宗教剧的消亡，以及在古典悲剧和喜剧启发之下新型戏剧形式的诞生。",
+          "trunk": {
+            "主语": "Europe",
+            "谓语": "was witnessing",
+            "宾语或表语": "the passing of the religious drama, and the creation of new forms",
+            "主干翻译": "欧洲正见证着宗教剧的消亡以及新型戏剧形式的诞生。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(时间)",
+              "原文": "By the date of his birth",
+              "修饰对象": "was witnessing",
+              "中文翻译": "到他出生的时候",
+              "说明": "介词短语作时间状语，置于句首。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "of the religious drama",
+              "修饰对象": "the passing",
+              "中文翻译": "宗教剧的",
+              "说明": "of 短语作后置定语，说明 passing 的对象。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "under the incentive of classical tragedy and comedy",
+              "修饰对象": "the creation of new forms",
+              "中文翻译": "在古典悲剧和喜剧的启发之下",
+              "说明": "介词短语作状语，修饰第二个宾语 the creation，汉语习惯前置翻译。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2018-text5-s2",
+          "no": 2,
+          "en": "no boy who went to a grammar school could be ignorant that the drama was a form of literature which gave glory to Greece and Rome and might yet bring honor to England.",
+          "zh": "凡是文法学校的学童就不会不知道，戏剧这种文学形式曾给希腊和罗马带来辉煌，或也将为英国带来荣耀。",
+          "trunk": {
+            "主语": "no boy",
+            "谓语": "could be",
+            "宾语或表语": "ignorant",
+            "主干翻译": "凡是学童都不会不知道（没有一个学童会不知道）。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "who went to a grammar school",
+              "修饰对象": "boy",
+              "中文翻译": "上过文法学校的",
+              "说明": "who 引导限定性定语从句，修饰先行词 boy，从句较短译作“……的”。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that the drama was a form of literature which gave glory to Greece and Rome and might yet bring honor to England",
+              "修饰对象": "ignorant",
+              "中文翻译": "戏剧这种文学形式曾给希腊和罗马带来辉煌，或也将为英国带来荣耀",
+              "说明": "that 引导形容词 ignorant 后的宾语从句，交代所“知道”的内容。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which gave glory to Greece and Rome and might yet bring honor to England",
+              "修饰对象": "a form of literature",
+              "中文翻译": "（这种文学形式）曾给希腊和罗马带来辉煌，或也将为英国带来荣耀",
+              "说明": "which 引导定语从句修饰 a form of literature，内含 gave...and might...bring 两个并列谓语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2018-text5-s3",
+          "no": 3,
+          "en": "But the professional companies prospered in their permanent theaters, and university men with literary ambitions were quick to turn to these theaters as offering a means of livelihood.",
+          "zh": "但是专业剧团在他们的固定剧场里蓬勃发展，而大学里有文学抱负的人们迅速转向这些剧场，视其为一种谋生手段。",
+          "trunk": {
+            "主语": "the professional companies",
+            "谓语": "prospered",
+            "宾语或表语": "—",
+            "主干翻译": "但专业剧团蓬勃发展。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(地点状语)",
+              "原文": "in their permanent theaters",
+              "修饰对象": "prospered",
+              "中文翻译": "在他们的固定剧场里",
+              "说明": "介词短语作地点状语，修饰 prospered。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "university men with literary ambitions were quick to turn to these theaters as offering a means of livelihood",
+              "修饰对象": "—",
+              "中文翻译": "有文学抱负的大学才子们迅速转向这些剧场，视其为一种谋生手段",
+              "说明": "and 连接的第二个并列分句，与前一分句地位对等。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "with literary ambitions",
+              "修饰对象": "university men",
+              "中文翻译": "有文学抱负的",
+              "说明": "with 短语作后置定语，修饰主语 university men，翻译时前置。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "as offering a means of livelihood",
+              "修饰对象": "these theaters",
+              "中文翻译": "视其为一种谋生手段",
+              "说明": "as 短语作补充说明，交代大学才子把这些剧场看作谋生手段。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2018-text5-s4",
+          "no": 4,
+          "en": "A native literary drama had been created, its alliance with the public playhouses established, and at least some of its great traditions had been begun.",
+          "zh": "一种本土的文学戏剧已然形成，它与公共剧场的联盟已然建立，它的伟大传统中至少有一部分也已然开启。",
+          "trunk": {
+            "主语": "A native literary drama",
+            "谓语": "had been created",
+            "宾语或表语": "—",
+            "主干翻译": "一种本土的文学戏剧已然形成。"
+          },
+          "components": [
+            {
+              "成分类型": "独立主格",
+              "原文": "its alliance with the public playhouses established",
+              "修饰对象": "—",
+              "中文翻译": "它与公共剧场的联盟也已建立",
+              "说明": "名词 its alliance 加过去分词 established 构成独立主格结构，作伴随说明，中间省略 being。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "with the public playhouses",
+              "修饰对象": "its alliance",
+              "中文翻译": "与公共剧场的",
+              "说明": "with 短语作后置定语，说明 alliance 的联盟对象。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "at least some of its great traditions had been begun",
+              "修饰对象": "—",
+              "中文翻译": "它的伟大传统中至少有一部分也已然开启",
+              "说明": "and 连接的第三个并列分句，与首个分句结构对称，均用过去完成时被动语态。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2018-text5-s5",
+          "no": 5,
+          "en": "To realize how great was the dramatic activity, we must remember further that hosts of plays have been lost, and that probably there is no author of note whose entire work has survived.",
+          "zh": "要认识到当时的戏剧活动多么繁荣，我们必须进一步记住，大量剧作已经散失，而且很可能没有哪位知名作家的全部作品都得以留存下来。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "must remember",
+            "宾语或表语": "that hosts of plays have been lost, and that probably there is no author of note whose entire work has survived",
+            "主干翻译": "我们必须进一步记住……"
+          },
+          "components": [
+            {
+              "成分类型": "状语(目的)",
+              "原文": "To realize how great was the dramatic activity",
+              "修饰对象": "must remember",
+              "中文翻译": "为了认识到当时的戏剧活动多么繁荣",
+              "说明": "动词不定式短语作目的状语，置于句首。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "how great was the dramatic activity",
+              "修饰对象": "realize",
+              "中文翻译": "当时的戏剧活动多么繁荣",
+              "说明": "how 引导 realize 的宾语从句，采用完全倒装（表语 how great 前置）。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that hosts of plays have been lost",
+              "修饰对象": "remember",
+              "中文翻译": "大量剧作已经散失",
+              "说明": "that 引导 remember 的第一个宾语从句。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that probably there is no author of note whose entire work has survived",
+              "修饰对象": "remember",
+              "中文翻译": "很可能没有哪位知名作家的全部作品都得以留存",
+              "说明": "and that 引导 remember 的第二个并列宾语从句。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "whose entire work has survived",
+              "修饰对象": "author",
+              "中文翻译": "其全部作品得以留存的",
+              "说明": "whose 引导定语从句，修饰 author of note，说明作家的作品留存情况。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2019-text5-s1",
+          "no": 1,
+          "en": "There is a great deal of this kind of nonsense in the medical journals which, when taken up by broadcasters and the lay press, generates both health scares and short-lived dietary enthusiasms.",
+          "zh": "医学期刊中充斥着这类无稽之谈，这些东西一经广播和非专业报刊传播，就会引起健康方面的恐慌和对某些饮食的短暂追捧。",
+          "trunk": {
+            "主语": "a great deal of this kind of nonsense",
+            "谓语": "There is",
+            "宾语或表语": "—",
+            "主干翻译": "医学期刊中充斥着大量这类无稽之谈。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(地点状语)",
+              "原文": "in the medical journals",
+              "修饰对象": "nonsense",
+              "中文翻译": "在医学期刊中",
+              "说明": "介词短语作地点状语，说明这类无稽之谈存在的场所。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which, when taken up by broadcasters and the lay press, generates both health scares and short-lived dietary enthusiasms",
+              "修饰对象": "nonsense",
+              "中文翻译": "这些东西一经广播和非专业报刊传播，就会引起健康方面的恐慌和对某些饮食的短暂追捧",
+              "说明": "which引导定语从句修饰this kind of nonsense，与主句实为因果关联。"
+            },
+            {
+              "成分类型": "状语从句(时间/条件，插入)",
+              "原文": "when taken up by broadcasters and the lay press",
+              "修饰对象": "generates",
+              "中文翻译": "一经广播和非专业报刊传播",
+              "说明": "when引导的时间兼条件状语从句(省略主语和be)，插入定语从句中修饰generates。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "both health scares and short-lived dietary enthusiasms",
+              "修饰对象": "generates",
+              "中文翻译": "健康方面的恐慌和对某些饮食的短暂追捧",
+              "说明": "both...and连接两个并列宾语，作generates的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2019-text5-s2",
+          "no": 2,
+          "en": "nowadays anyone applying for a research post has to have published twice the number of papers that would have been required for the same post only 10 years ago. Never mind the quality, then, count the number.",
+          "zh": "今天，任何一个科研岗位的申请者需要发表文章的数量比短短十年前申报同一岗位时整整翻了一番。既然如此，那就别管质量，就数论文发表数好了。",
+          "trunk": {
+            "主语": "anyone",
+            "谓语": "has to have published",
+            "宾语或表语": "twice the number of papers",
+            "主干翻译": "如今任何一个申请者需要发表的文章数量都要翻一番。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(时间)",
+              "原文": "nowadays",
+              "修饰对象": "has to have published",
+              "中文翻译": "如今，今天",
+              "说明": "时间状语，与下文的10 years ago构成今昔对比。"
+            },
+            {
+              "成分类型": "非谓语作后置定语(现在分词)",
+              "原文": "applying for a research post",
+              "修饰对象": "anyone",
+              "中文翻译": "申请科研岗位的",
+              "说明": "现在分词短语作后置定语，修饰主语anyone。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that would have been required for the same post only 10 years ago",
+              "修饰对象": "twice the number of papers",
+              "中文翻译": "短短十年前申报同一岗位时所需要发表的",
+              "说明": "that引导定语从句，修饰the number of papers，构成倍数比较的参照项。"
+            },
+            {
+              "成分类型": "并列分句(祈使句)",
+              "原文": "Never mind the quality, then, count the number",
+              "修饰对象": "—",
+              "中文翻译": "那就别管质量，只数论文发表的数量好了",
+              "说明": "两个并列祈使句构成取舍结构，点出重量轻质的结论。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2019-text5-s3",
+          "no": 3,
+          "en": "Attempts have been made to curb this tendency, for example, by trying to incorporate some measure of quality as well as quantity into the assessment of an applicant's papers.",
+          "zh": "为遏制这一倾向，已经采取了若干措施，比如在评定岗位申请者的论文时，尝试引入一项兼顾数量和质量的评估指标。",
+          "trunk": {
+            "主语": "Attempts",
+            "谓语": "have been made",
+            "宾语或表语": "—",
+            "主干翻译": "已经采取了若干措施。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作目的状语(不定式)",
+              "原文": "to curb this tendency",
+              "修饰对象": "have been made",
+              "中文翻译": "为遏制这一倾向",
+              "说明": "动词不定式短语作目的状语，说明采取措施的目的。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "for example",
+              "修饰对象": "—",
+              "中文翻译": "比如",
+              "说明": "插入语，引出下文举例说明。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "by trying to incorporate some measure of quality as well as quantity into the assessment of an applicant's papers",
+              "修饰对象": "have been made",
+              "中文翻译": "尝试在评定岗位申请者的论文时引入一项兼顾数量和质量的评估指标",
+              "说明": "by加动名词短语作方式状语，说明采取措施的具体方式。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "quality as well as quantity",
+              "修饰对象": "some measure",
+              "中文翻译": "质量和数量",
+              "说明": "as well as连接并列成分，翻译时应把后者quantity提前处理。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2019-text5-s4",
+          "no": 4,
+          "en": "This would be reasonable if it were not for the fact that scientists can easily arrange to cite themselves in their future publications, or get associates to do so for them in return for similar favours.",
+          "zh": "要不是因为科研人员轻易就能在将来的论文里自我引用，或找同行引用以回报自己提供的类似好处，这项措施本该是合理的。",
+          "trunk": {
+            "主语": "This",
+            "谓语": "would be",
+            "宾语或表语": "reasonable",
+            "主干翻译": "这项措施本该是合理的。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(条件，虚拟语气)",
+              "原文": "if it were not for the fact that scientists can easily arrange to cite themselves in their future publications, or get associates to do so for them in return for similar favours",
+              "修饰对象": "would be",
+              "中文翻译": "要不是因为科研人员轻易就能在将来的论文里自我引用，或找同行引用以回报自己提供的类似好处",
+              "说明": "if引导与现在事实相反的虚拟条件状语从句，故主句用would be。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that scientists can easily arrange to cite themselves in their future publications, or get associates to do so for them in return for similar favours",
+              "修饰对象": "the fact",
+              "中文翻译": "科研人员轻易就能在将来的论文里自我引用，或找同行引用以回报自己提供的类似好处",
+              "说明": "that引导同位语从句，说明the fact的具体内容。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "or get associates to do so for them in return for similar favours",
+              "修饰对象": "scientists",
+              "中文翻译": "或找同行引用以回报自己提供的类似好处",
+              "说明": "与cite themselves并列，共用主语scientists，do so指代前文的cite。"
+            },
+            {
+              "成分类型": "介词短语(状语)",
+              "原文": "in return for similar favours",
+              "修饰对象": "get associates to do so",
+              "中文翻译": "以回报自己提供的类似好处",
+              "说明": "介词短语作状语，说明找同行互引的交换条件。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2019-text5-s5",
+          "no": 5,
+          "en": "If we are serious about ensuring that our science is both meaningful and reproducible, we must ensure that our institutions encourage that kind of science.",
+          "zh": "如果我们想认真确保我们的科学既有意义又可复制，我们就必须确保我们的研究机构鼓励这种科学。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "must ensure",
+            "宾语或表语": "that our institutions encourage that kind of science",
+            "主干翻译": "我们必须确保我们的机构鼓励这种科学。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(条件)",
+              "原文": "If we are serious about ensuring that our science is both meaningful and reproducible",
+              "修饰对象": "must ensure",
+              "中文翻译": "如果我们想认真确保我们的科学既有意义又可复制",
+              "说明": "if引导条件状语从句，交代主句成立的前提。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that our science is both meaningful and reproducible",
+              "修饰对象": "ensuring",
+              "中文翻译": "我们的科学既有意义又可复制",
+              "说明": "that引导宾语从句，作动名词ensuring的宾语。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "both meaningful and reproducible",
+              "修饰对象": "science",
+              "中文翻译": "既有意义又可复制",
+              "说明": "both...and连接两个并列表语，说明science应具备的两个属性。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that our institutions encourage that kind of science",
+              "修饰对象": "ensure",
+              "中文翻译": "我们的机构鼓励这种科学",
+              "说明": "that引导宾语从句，作主句谓语must ensure的宾语。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2020,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2020-text5-s1",
+          "no": 1,
+          "en": "with the Church's teachings and ways of thinking eclipsed by the Renaissance, the gap between the Medieval and modern periods had been bridged leading to new and unexplored intellectual territories.",
+          "zh": "随着教会的教义和思维方式因文艺复兴而黯然失色，中世纪与近现代社会之间的鸿沟得以弥合，从而出现了新的未被探索的知识领域。",
+          "trunk": {
+            "主语": "the gap between the Medieval and modern periods",
+            "谓语": "had been bridged",
+            "宾语或表语": "—",
+            "主干翻译": "中世纪与近现代社会之间的鸿沟得以弥合。"
+          },
+          "components": [
+            {
+              "成分类型": "独立主格(with复合结构作状语)",
+              "原文": "with the Church's teachings and ways of thinking eclipsed by the Renaissance",
+              "修饰对象": "had been bridged",
+              "中文翻译": "随着教会的教义和思维方式因文艺复兴而黯然失色",
+              "说明": "with复合结构作状语，表伴随兼原因；eclipsed by 为过去分词作宾语补足语表被动。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "between the Medieval and modern periods",
+              "修饰对象": "the gap",
+              "中文翻译": "中世纪与近现代社会之间的",
+              "说明": "between...and...介词短语作后置定语修饰 the gap。"
+            },
+            {
+              "成分类型": "非谓语作状语(结果)",
+              "原文": "leading to new and unexplored intellectual territories",
+              "修饰对象": "had been bridged",
+              "中文翻译": "从而出现了新的未被探索的知识领域",
+              "说明": "现在分词短语作结果状语，说明主句动作的继发性后果。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2020-text5-s2",
+          "no": 2,
+          "en": "Before each of their revelations many thinkers at the time had sustained more ancient ways of thinking, including the geocentric view that the Earth was at the centre of our universe.",
+          "zh": "在他们每一次发现之前，当时的许多思想家一直坚持更为古老的思维方式，包括认为地球处于宇宙中心的地心说观点。",
+          "trunk": {
+            "主语": "many thinkers",
+            "谓语": "had sustained",
+            "宾语或表语": "more ancient ways of thinking",
+            "主干翻译": "许多思想家一直坚持更为古老的思维方式。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "Before each of their revelations",
+              "修饰对象": "had sustained",
+              "中文翻译": "在他们每一次发现之前",
+              "说明": "介词短语作时间状语，交代主句动作发生的时间背景。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "at the time",
+              "修饰对象": "many thinkers",
+              "中文翻译": "当时的",
+              "说明": "介词短语作后置定语修饰 thinkers。"
+            },
+            {
+              "成分类型": "介词短语(举例状语)",
+              "原文": "including the geocentric view that the Earth was at the centre of our universe",
+              "修饰对象": "more ancient ways of thinking",
+              "中文翻译": "包括认为地球处于宇宙中心的地心说观点",
+              "说明": "including 引导的介词短语作举例状语，补充说明前面的宾语。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that the Earth was at the centre of our universe",
+              "修饰对象": "the geocentric view",
+              "中文翻译": "地球处于宇宙的中心",
+              "说明": "that 引导同位语从句，解释说明 the geocentric view 的具体内容。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2020-text5-s3",
+          "no": 3,
+          "en": "Despite attempts by the Church to suppress. this new generation of logicians and rationalists, more explanations for how the universe functioned were being made at a rate that the people could no longer ignore",
+          "zh": "尽管教会试图压制这新一代的逻辑学家和理性主义者，但关于宇宙如何运行的更多解释正在以一种人们再也无法忽视的速度不断涌现。",
+          "trunk": {
+            "主语": "more explanations",
+            "谓语": "were being made",
+            "宾语或表语": "—",
+            "主干翻译": "关于宇宙如何运行的更多解释正在不断涌现。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(让步状语)",
+              "原文": "Despite attempts by the Church to suppress. this new generation of logicians and rationalists",
+              "修饰对象": "were being made",
+              "中文翻译": "尽管教会试图压制这新一代的逻辑学家和理性主义者",
+              "说明": "Despite 引导让步状语，其中 to suppress 为不定式作 attempts 的后置定语。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "for how the universe functioned",
+              "修饰对象": "more explanations",
+              "中文翻译": "关于宇宙如何运行的",
+              "说明": "for 介词短语作后置定语修饰 explanations，内含 how 引导的介词宾语从句。"
+            },
+            {
+              "成分类型": "宾语从句(介词宾语)",
+              "原文": "how the universe functioned",
+              "修饰对象": "for",
+              "中文翻译": "宇宙如何运行",
+              "说明": "how 引导的从句作介词 for 的宾语。"
+            },
+            {
+              "成分类型": "介词短语(方式状语)",
+              "原文": "at a rate that the people could no longer ignore",
+              "修饰对象": "were being made",
+              "中文翻译": "以一种人们再也无法忽视的速度",
+              "说明": "介词短语作方式状语，内嵌 that 引导的定语从句。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that the people could no longer ignore",
+              "修饰对象": "a rate",
+              "中文翻译": "人们再也无法忽视的",
+              "说明": "that 引导限制性定语从句修饰 a rate。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2020-text5-s4",
+          "no": 4,
+          "en": "As many took on the duty of trying to integrate reasoning and scientific philosophies into the world, the Renaissance was over and it was time for a new era - the Age of Reason.",
+          "zh": "随着许多人担负起将理性与科学思想融入社会的责任，文艺复兴宣告结束，一个新时代——理性时代——即将到来。",
+          "trunk": {
+            "主语": "the Renaissance",
+            "谓语": "was",
+            "宾语或表语": "over",
+            "主干翻译": "文艺复兴结束了。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间/伴随)",
+              "原文": "As many took on the duty of trying to integrate reasoning and scientific philosophies into the world",
+              "修饰对象": "was over",
+              "中文翻译": "随着许多人担负起将理性与科学思想融入社会的责任",
+              "说明": "As 引导时间兼伴随状语从句。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of trying to integrate reasoning and scientific philosophies into the world",
+              "修饰对象": "the duty",
+              "中文翻译": "将理性与科学思想融入社会的",
+              "说明": "of 介词短语作 the duty 的后置定语，内含动名词 trying。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "it was time for a new era - the Age of Reason",
+              "修饰对象": "—",
+              "中文翻译": "一个新时代——理性时代——即将到来",
+              "说明": "and 连接的并列分句，与前一分句共同构成主句。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "the Age of Reason",
+              "修饰对象": "a new era",
+              "中文翻译": "理性时代",
+              "说明": "名词短语作 a new era 的同位语，进一步说明其名称。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2020-text5-s5",
+          "no": 5,
+          "en": "Such actions to seek knowledge and to understand what information we already knew were captured by the Latin phrase `sapere aude' or `dare to know',",
+          "zh": "这些寻求知识、理解我们已知信息的行动，被拉丁短语“sapere aude”（即“敢于求知”）所概括。",
+          "trunk": {
+            "主语": "Such actions",
+            "谓语": "were captured",
+            "宾语或表语": "—",
+            "主干翻译": "这些行动被概括。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语(不定式)",
+              "原文": "to seek knowledge and to understand what information we already knew",
+              "修饰对象": "Such actions",
+              "中文翻译": "寻求知识并理解我们已知信息的",
+              "说明": "两个并列不定式作 Such actions 的后置定语，说明行动的目的。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "what information we already knew",
+              "修饰对象": "to understand",
+              "中文翻译": "我们已经知道的信息",
+              "说明": "what 引导宾语从句作 understand 的宾语。"
+            },
+            {
+              "成分类型": "介词短语(施动者状语)",
+              "原文": "by the Latin phrase `sapere aude' or `dare to know'",
+              "修饰对象": "were captured",
+              "中文翻译": "被拉丁短语“sapere aude”即“敢于求知”所概括",
+              "说明": "by 介词短语引出被动句的施动者。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "`dare to know'",
+              "修饰对象": "`sapere aude'",
+              "中文翻译": "“敢于求知”",
+              "说明": "or 连接的同位语，是对拉丁短语 sapere aude 的英译解释。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2021-text5-s1",
+          "no": 1,
+          "en": "Those societies came out of the war with levels of enrollment that had been roughly constant at 3-5% of the relevant age groups during the decades before the war",
+          "zh": "战争刚刚结束时，这些社会的适龄群体入学率为3%到5%，这是战前几十年基本恒定未变的水平。",
+          "trunk": {
+            "主语": "Those societies",
+            "谓语": "came out of",
+            "宾语或表语": "the war",
+            "主干翻译": "这些社会从战争中走出来（即战争刚刚结束时）。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(伴随状语)",
+              "原文": "with levels of enrollment",
+              "修饰对象": "came out of",
+              "中文翻译": "带着（这样的）入学率水平",
+              "说明": "with 引导介词短语作伴随状语，说明这些社会走出战争时所处的状态。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that had been roughly constant at 3-5% of the relevant age groups during the decades before the war",
+              "修饰对象": "levels of enrollment",
+              "中文翻译": "在战前几十年间大致恒定维持在适龄群体的3%到5%",
+              "说明": "that 引导限制性定语从句，修饰先行词 levels of enrollment，从数值和时间两方面对入学率加以限定。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "of the relevant age groups",
+              "修饰对象": "3-5%",
+              "中文翻译": "适龄群体的",
+              "说明": "介词短语作分隔定语，说明3%到5%这一比例的所属对象，翻译时可前置为“适龄群体的入学率”。"
+            },
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "during the decades before the war",
+              "修饰对象": "had been roughly constant",
+              "中文翻译": "在战前的几十年间",
+              "说明": "介词短语在定语从句内作时间状语，限定入学率保持恒定的持续时间。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2021-text5-s2",
+          "no": 2,
+          "en": "And the demand that rose in those societies for entry to higher education extended to groups and social classes that had not thought of attending to a university before the war",
+          "zh": "这些社会中，人们对接受高等教育的需求越来越高，甚至蔓延到了战前从未想过上大学的群体和社会阶层。",
+          "trunk": {
+            "主语": "the demand",
+            "谓语": "extended to",
+            "宾语或表语": "groups and social classes",
+            "主干翻译": "这种需求蔓延到了（某些）群体和社会阶层。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "that rose in those societies",
+              "修饰对象": "the demand",
+              "中文翻译": "在这些社会中兴起（不断增长）的",
+              "说明": "that 引导限制性定语从句，修饰先行词 demand，点明需求增长的来源，暗示社会需求催生个人需求。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "for entry to higher education",
+              "修饰对象": "the demand",
+              "中文翻译": "对接受高等教育的",
+              "说明": "介词短语作 demand 的分隔定语，与主干合译为“接受高等教育的需求”。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that had not thought of attending to a university before the war",
+              "修饰对象": "groups and social classes",
+              "中文翻译": "战前从未想过上大学的",
+              "说明": "that 引导限制性定语从句，修饰 groups and social classes，其中 had not thought of 为过去完成时否定式，强调这些群体此前从未有过上大学的念头。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2021-text5-s3",
+          "no": 3,
+          "en": "in many countries of Western Europe the numbers of students in higher education doubled within five-year periods during the decade of the 1960s and doubled again in seven, eight, or 10 years by the middle of the 1970 s",
+          "zh": "在许多西欧国家，高校学生人数在20世纪60年代每5年便翻一番，到70年代中期，这一人数在7、8或10年内又翻了一番。",
+          "trunk": {
+            "主语": "the numbers of students",
+            "谓语": "doubled",
+            "宾语或表语": "—",
+            "主干翻译": "高校学生人数翻了一番（随后又翻了一番）。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(地点状语)",
+              "原文": "in many countries of Western Europe",
+              "修饰对象": "doubled",
+              "中文翻译": "在许多西欧国家",
+              "说明": "介词短语作地点状语，限定所描述现象发生的范围。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "in higher education",
+              "修饰对象": "students",
+              "中文翻译": "接受高等教育的（高校的）",
+              "说明": "介词短语作后置定语，修饰 students，说明是高等教育阶段的学生。"
+            },
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "within five-year periods during the decade of the 1960s",
+              "修饰对象": "doubled",
+              "中文翻译": "在20世纪60年代每5年之内",
+              "说明": "介词短语作时间状语；five-year periods 为复数，指连续的多个五年，故为“每5年”而非“5年内”。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "and doubled again in seven, eight, or 10 years by the middle of the 1970 s",
+              "修饰对象": "the numbers of students",
+              "中文翻译": "并且到70年代中期又在7、8或10年内翻了一番",
+              "说明": "and 连接的并列谓语，与前一 doubled 共用主语，说明学生人数的第二次翻倍。"
+            },
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "by the middle of the 1970 s",
+              "修饰对象": "doubled again",
+              "中文翻译": "到20世纪70年代中期",
+              "说明": "介词短语作时间状语，“in+时间段+by+时间点”结构，标示第二次翻倍完成的时间节点。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2021-text5-s4",
+          "no": 4,
+          "en": "and when the new staff are predominantly young men and women fresh from postgraduate study, they largely define the norms of academic life in that faculty.",
+          "zh": "而且，当新进教员主要是刚从研究生院毕业的青年男女时，他们便在很大程度上界定了这个院系的学术生活规范。",
+          "trunk": {
+            "主语": "they",
+            "谓语": "define",
+            "宾语或表语": "the norms of academic life",
+            "主干翻译": "他们界定了（该院系的）学术生活规范。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "when the new staff are predominantly young men and women fresh from postgraduate study",
+              "修饰对象": "define",
+              "中文翻译": "当新进教员主要是刚从研究生院毕业的青年男女时",
+              "说明": "when 引导时间状语从句，为主句 they largely define... 设定时间条件。"
+            },
+            {
+              "成分类型": "形容词短语(后置定语)",
+              "原文": "fresh from postgraduate study",
+              "修饰对象": "young men and women",
+              "中文翻译": "刚从研究生院毕业的",
+              "说明": "形容词 fresh 引导的短语作后置定语，修饰 young men and women。"
+            },
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "in that faculty",
+              "修饰对象": "the norms of academic life",
+              "中文翻译": "在那个院系里的",
+              "说明": "介词短语作定语，限定学术生活规范的所属范围。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2021-text5-s5",
+          "no": 5,
+          "en": "High growth rates increased the chances for academic innovation; they also weakened the forms and processes by which teachers and students are admitted into a community of scholars during periods of stability or slow growth.",
+          "zh": "高增长率增加了学术创新的机会；但它们也削弱了在稳定或缓慢增长时期教师和学生被吸纳进学者群体所遵循的形式和过程。",
+          "trunk": {
+            "主语": "High growth rates",
+            "谓语": "increased",
+            "宾语或表语": "the chances for academic innovation",
+            "主干翻译": "高增长率增加了学术创新的机会。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(定语)",
+              "原文": "for academic innovation",
+              "修饰对象": "the chances",
+              "中文翻译": "学术创新的",
+              "说明": "介词短语作后置定语，修饰 the chances，说明是何种机会。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "they also weakened the forms and processes by which teachers and students are admitted into a community of scholars during periods of stability or slow growth",
+              "修饰对象": "—",
+              "中文翻译": "它们也削弱了教师和学生被吸纳进学者群体所遵循的形式和过程",
+              "说明": "分号连接的并列分句，与前一分句构成“既增加机会又削弱形式过程”的对照关系。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "by which teachers and students are admitted into a community of scholars during periods of stability or slow growth",
+              "修饰对象": "the forms and processes",
+              "中文翻译": "教师和学生借以被接纳进学者群体的",
+              "说明": "“介词+which”引导限制性定语从句，修饰 the forms and processes，by which 还原为 by the forms and processes。"
+            },
+            {
+              "成分类型": "介词短语(时间状语)",
+              "原文": "during periods of stability or slow growth",
+              "修饰对象": "are admitted",
+              "中文翻译": "在稳定或缓慢增长的时期",
+              "说明": "介词短语在定语从句内作时间状语，限定吸纳教师和学生这一过程所处的时期。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2022-text5-s1",
+          "no": 1,
+          "en": "It was also, and this is unknown even to many people well read about the period, a battle between those who made codes and those who broke them.",
+          "zh": "这也是一场编码者和破译者之间的较量，即便对熟读这段历史的很多人来说，这也是闻所未闻的。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "was",
+            "宾语或表语": "a battle between those who made codes and those who broke them",
+            "主干翻译": "这也是一场编码者和破译者之间的较量。"
+          },
+          "components": [
+            {
+              "成分类型": "插入语",
+              "原文": "and this is unknown even to many people well read about the period",
+              "修饰对象": "It was",
+              "中文翻译": "即便对熟读这段历史的很多人来说，这也是闻所未闻的",
+              "说明": "以逗号隔开的插入成分打断主句，补充说明这一事实鲜为人知，翻译时可后置。"
+            },
+            {
+              "成分类型": "后置定语(形容词短语)",
+              "原文": "well read about the period",
+              "修饰对象": "many people",
+              "中文翻译": "熟读这段历史的",
+              "说明": "read在此为形容词（受well修饰，意为熟知的），形容词短语作后置定语修饰people。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "between those who made codes and those who broke them",
+              "修饰对象": "a battle",
+              "中文翻译": "编码者和破译者之间的",
+              "说明": "介词短语作定语，说明这场较量发生于哪两方之间。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who made codes",
+              "修饰对象": "those",
+              "中文翻译": "编码的（那些人）",
+              "说明": "限制性定语从句修饰前一个those，可连同先行词精炼译为编码者。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who broke them",
+              "修饰对象": "those",
+              "中文翻译": "破译密码的（那些人）",
+              "说明": "限制性定语从句修饰后一个those，them指codes，可连同先行词精炼译为破译者。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2022-text5-s2",
+          "no": 2,
+          "en": "It listed many documents in code that had been captured from the French army of Spain, and whose secrets had been revealed by the work of one George Scovell, an officer in British headquarters.",
+          "zh": "附录列出了从西班牙的法国驻军截获的许多加密文件，将其破译的是英军司令部一位名叫乔治·斯科威尔的军官。",
+          "trunk": {
+            "主语": "It",
+            "谓语": "listed",
+            "宾语或表语": "many documents in code",
+            "主干翻译": "它（附录）列出了许多加密文件。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语",
+              "原文": "in code",
+              "修饰对象": "many documents",
+              "中文翻译": "加密的",
+              "说明": "介词短语作定语，in表示所用的语言/形式，in code即加密。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that had been captured from the French army of Spain",
+              "修饰对象": "many documents in code",
+              "中文翻译": "从西班牙的法国驻军截获的",
+              "说明": "限制性定语从句作定语，过去完成被动态，from表来源。"
+            },
+            {
+              "成分类型": "定语从句(非限制性)",
+              "原文": "whose secrets had been revealed by the work of one George Scovell",
+              "修饰对象": "many documents in code",
+              "中文翻译": "这些文件的秘密由乔治·斯科威尔的工作揭示（破译）",
+              "说明": "whose引导非限制性定语从句，与前一定语从句以and并列，过去完成被动态，可译为独立小句。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "an officer in British headquarters",
+              "修饰对象": "George Scovell",
+              "中文翻译": "英军司令部的一名军官",
+              "说明": "名词短语作同位语，说明George Scovell的身份，可与人名合并翻译。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2022-text5-s3",
+          "no": 3,
+          "en": "he could not analyze carefully what this obscure officer may or may not have contributed to that great struggle between nations or indeed tell us anything much about the man himself.",
+          "zh": "他无法详细分析这位无名军官对那场国家间的大战是否做过什么贡献，也确实无法告诉我们多少此人的个人情况。",
+          "trunk": {
+            "主语": "he",
+            "谓语": "could not analyze carefully",
+            "宾语或表语": "what this obscure officer may or may not have contributed to that great struggle between nations",
+            "主干翻译": "他无法详细分析这位无名军官对那场国家间的大战是否做过什么贡献。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "what this obscure officer may or may not have contributed to that great struggle between nations",
+              "修饰对象": "analyze",
+              "中文翻译": "这位无名军官对那场国家间的大战是否做过什么贡献",
+              "说明": "what引导宾语从句作analyze的宾语，what在从句中作have contributed的宾语，may or may not译为是否。"
+            },
+            {
+              "成分类型": "并列分句(并列谓语)",
+              "原文": "or indeed tell us anything much about the man himself",
+              "修饰对象": "he",
+              "中文翻译": "也确实无法告诉我们多少此人的个人情况",
+              "说明": "or连接的并列谓语，与could not analyze共享主语he及could not，tell us anything为双宾语结构。"
+            },
+            {
+              "成分类型": "后置定语",
+              "原文": "much about the man himself",
+              "修饰对象": "anything",
+              "中文翻译": "关于此人本身的很多情况",
+              "说明": "much about...作anything的后置定语。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "between nations",
+              "修饰对象": "that great struggle",
+              "中文翻译": "国家间的",
+              "说明": "介词短语作定语修饰struggle，指半岛战争涉及多国。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2022-text5-s4",
+          "no": 4,
+          "en": "There may have been many spies and intelligence officers during the Napoleonic Wars, but it is usually extremely difficult to find the material they actually provided or worked on.",
+          "zh": "拿破仑战争期间可能有过很多间谍和情报官，但要找到真正由他们提供或处理过的材料，通常却非常困难。",
+          "trunk": {
+            "主语": "many spies and intelligence officers",
+            "谓语": "may have been",
+            "宾语或表语": "—",
+            "主干翻译": "（拿破仑战争期间）可能有过很多间谍和情报官。"
+          },
+          "components": [
+            {
+              "成分类型": "状语(时间)",
+              "原文": "during the Napoleonic Wars",
+              "修饰对象": "may have been",
+              "中文翻译": "拿破仑战争期间",
+              "说明": "介词短语作时间状语。"
+            },
+            {
+              "成分类型": "并列分句(转折)",
+              "原文": "but it is usually extremely difficult to find the material they actually provided or worked on",
+              "修饰对象": "—",
+              "中文翻译": "但要找到真正由他们提供或处理过的材料通常却非常困难",
+              "说明": "but连接的转折并列分句，it为形式主语，真正主语是不定式to find...。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "they actually provided or worked on",
+              "修饰对象": "the material",
+              "中文翻译": "他们真正提供或处理过的",
+              "说明": "省略引导词that的限制性定语从句修饰the material。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2022-text5-s5",
+          "no": 5,
+          "en": "Just as the code breaking has its wider relevance in the struggle for Spain, so his attempts to make his way up the promotion ladder speak volumes about British society.",
+          "zh": "正如破译密码在争夺西班牙的斗争中具有更广泛的意义一样，他努力沿着晋升的阶梯往上爬也充分说明了英国社会的状况。",
+          "trunk": {
+            "主语": "his attempts",
+            "谓语": "speak volumes",
+            "宾语或表语": "—",
+            "主干翻译": "他的努力充分说明了英国社会的状况。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(比较/方式)",
+              "原文": "Just as the code breaking has its wider relevance in the struggle for Spain",
+              "修饰对象": "speak volumes",
+              "中文翻译": "正如破译密码在争夺西班牙的斗争中具有更广泛的意义一样",
+              "说明": "Just as...so...关联结构，as引导比较/方式状语从句，so引出主句。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "to make his way up the promotion ladder",
+              "修饰对象": "his attempts",
+              "中文翻译": "沿着晋升的阶梯往上爬",
+              "说明": "动词不定式作后置定语修饰attempts，说明努力的内容。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "in the struggle for Spain",
+              "修饰对象": "relevance",
+              "中文翻译": "在争夺西班牙的斗争中",
+              "说明": "介词短语作状语，限定relevance发生的语境。"
+            },
+            {
+              "成分类型": "介词短语",
+              "原文": "about British society",
+              "修饰对象": "speak volumes",
+              "中文翻译": "关于英国社会",
+              "说明": "speak volumes about为固定搭配，意为充分说明……，此处宾语为British society。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2023-text5-s1",
+          "no": 1,
+          "en": "AI can also be used to identify the lifestyle choices of customers regarding their hobbies, favourite celebrities, music choices, and fashions to provide unique content in marketing messages put out through social media.",
+          "zh": "人工智能也可用于识别客户的生活方式选择，包括他们的兴趣爱好、最喜爱的名人、音乐喜好和时尚风格，进而可以通过社交媒体向客户投放针对性的营销内容。",
+          "trunk": {
+            "主语": "AI",
+            "谓语": "can also be used",
+            "宾语或表语": "—",
+            "主干翻译": "人工智能也可以被用来……（做某事）。"
+          },
+          "components": [
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to identify the lifestyle choices of customers",
+              "修饰对象": "used",
+              "中文翻译": "用于识别客户的生活方式选择",
+              "说明": "不定式短语作 used 的目的状语，说明人工智能可实现的作用。"
+            },
+            {
+              "成分类型": "非谓语作定语(现在分词/介词短语)",
+              "原文": "regarding their hobbies, favourite celebrities, music choices, and fashions",
+              "修饰对象": "the lifestyle choices of customers",
+              "中文翻译": "包括他们的兴趣爱好、最喜爱的名人、音乐喜好和时尚风格",
+              "说明": "regarding 作介词引导后置定语，列举生活方式选择的方方面面，因较长宜后置译为插入语。"
+            },
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to provide unique content in marketing messages",
+              "修饰对象": "identify",
+              "中文翻译": "进而提供针对性的营销内容",
+              "说明": "第二个不定式短语作 identify 的目的状语，可增添表先后次序的“进而”。"
+            },
+            {
+              "成分类型": "非谓语作定语(过去分词)",
+              "原文": "put out through social media",
+              "修饰对象": "marketing messages",
+              "中文翻译": "通过社交媒体投放的",
+              "说明": "过去分词短语作后置定语修饰 marketing messages，表被动含义，可前置译为“通过社交媒体投放的”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2023-text5-s2",
+          "no": 2,
+          "en": "Some believe that AI is negatively impacting on the marketer's role by reducing creativity and removing jobs, but they are aware that it is a way of reducing costs and creating new information.",
+          "zh": "有些人认为，人工智能通过降低创新能力和取消工作岗位正在对营销人员的角色产生负面影响，但他们也意识到这是一种削减成本和创造新内容的方式。",
+          "trunk": {
+            "主语": "Some",
+            "谓语": "believe",
+            "宾语或表语": "that AI is negatively impacting on the marketer's role",
+            "主干翻译": "有些人认为，人工智能正在对营销人员的角色产生负面影响。"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that AI is negatively impacting on the marketer's role",
+              "修饰对象": "believe",
+              "中文翻译": "人工智能正在对营销人员的角色产生负面影响",
+              "说明": "that 引导 believe 的宾语从句，negatively 修饰进行时谓语可转译为“产生负面影响”。"
+            },
+            {
+              "成分类型": "方式状语(介词短语)",
+              "原文": "by reducing creativity and removing jobs",
+              "修饰对象": "impacting",
+              "中文翻译": "通过降低创新能力和取消工作岗位",
+              "说明": "by 引导的动名词短语作方式状语，按汉语习惯提至所修饰动词之前。"
+            },
+            {
+              "成分类型": "并列分句",
+              "原文": "but they are aware that it is a way of reducing costs and creating new information",
+              "修饰对象": "—",
+              "中文翻译": "但他们也意识到这是一种削减成本和创造新内容的方式",
+              "说明": "but 连接的第二个并列分句，转折说明人工智能应用也带来好处。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that it is a way of reducing costs and creating new information",
+              "修饰对象": "aware",
+              "中文翻译": "这是一种削减成本和创造新内容的方式",
+              "说明": "that 引导 aware 的宾语从句，of 引导后置定语修饰 a way，说明“做某事的方式”。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2023-text5-s3",
+          "no": 3,
+          "en": "Algorithms that are used to simulate human interactions are creating many of these concerns, especially as no-one is quite sure what the outcomes of using AI to interact with customers will be.",
+          "zh": "用于模拟人类互动的算法正在引发许多这样的担忧，尤其是因为没有人能十分确定使用人工智能与客户互动会带来什么结果。",
+          "trunk": {
+            "主语": "Algorithms",
+            "谓语": "are creating",
+            "宾语或表语": "many of these concerns",
+            "主干翻译": "算法正在引发许多这样的担忧。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "that are used to simulate human interactions",
+              "修饰对象": "Algorithms",
+              "中文翻译": "用于模拟人类互动的",
+              "说明": "that 引导的定语从句修饰核心名词 Algorithms，较短可前置译为“的”字结构。"
+            },
+            {
+              "成分类型": "状语从句(原因)",
+              "原文": "especially as no-one is quite sure what the outcomes of using AI to interact with customers will be",
+              "修饰对象": "are creating",
+              "中文翻译": "尤其是因为没有人能十分确定使用人工智能与客户互动会带来什么结果",
+              "说明": "as 在此表原因，阐述主句“算法引发担忧”的原因。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "what the outcomes of using AI to interact with customers will be",
+              "修饰对象": "sure",
+              "中文翻译": "使用人工智能与客户互动会带来什么结果",
+              "说明": "what 引导的名词性从句作 sure 后逻辑宾语（is...sure+从句的特殊用法）。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of using AI to interact with customers",
+              "修饰对象": "the outcomes",
+              "中文翻译": "使用人工智能与客户互动的",
+              "说明": "of 引导的介词短语作后置定语修饰 the outcomes。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2023-text5-s4",
+          "no": 4,
+          "en": "If customers are not willing to share data, AI will be starved of essential information and will not be able to function effectively or employ machine learning to improve its marketing content and communication.",
+          "zh": "如果客户不愿分享数据，人工智能便会缺乏必要信息，以至于无法有效地运作，也无法利用机器学习来改进其营销内容和传播策略。",
+          "trunk": {
+            "主语": "AI",
+            "谓语": "will be starved of",
+            "宾语或表语": "essential information",
+            "主干翻译": "人工智能便会缺乏必要信息。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(条件)",
+              "原文": "If customers are not willing to share data",
+              "修饰对象": "will be starved",
+              "中文翻译": "如果客户不愿分享数据",
+              "说明": "If 引导条件状语从句，构成“若不分享数据—信息不足”的逻辑链条。"
+            },
+            {
+              "成分类型": "并列分句(并列谓语)",
+              "原文": "will not be able to function effectively or employ machine learning",
+              "修饰对象": "AI",
+              "中文翻译": "也无法有效地运作或利用机器学习",
+              "说明": "and 连接的第二个并列谓语，负面表达强调缺少数据的消极影响。"
+            },
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to improve its marketing content and communication",
+              "修饰对象": "employ machine learning",
+              "中文翻译": "来改进其营销内容和传播策略",
+              "说明": "不定式短语作目的状语，说明利用机器学习的目的。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2023-text5-s5",
+          "no": 5,
+          "en": "The non-intrusive delivery of the marketing messages in a way that is sensitive to the needs of the target customer is one of the critical challenges to the digital marketer.",
+          "zh": "用一种对目标客户的需求保持敏感的方式非侵入性地传递营销信息是数字营销人员面临的关键挑战之一。",
+          "trunk": {
+            "主语": "The non-intrusive delivery of the marketing messages",
+            "谓语": "is",
+            "宾语或表语": "one of the critical challenges to the digital marketer",
+            "主干翻译": "非侵入性地传递营销信息是数字营销人员面临的关键挑战之一。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "of the marketing messages",
+              "修饰对象": "delivery",
+              "中文翻译": "营销信息的（传递）",
+              "说明": "of 引导的介词短语作后置定语修饰主语中心词 delivery。"
+            },
+            {
+              "成分类型": "方式状语(介词短语)",
+              "原文": "in a way that is sensitive to the needs of the target customer",
+              "修饰对象": "delivery",
+              "中文翻译": "以一种对目标客户的需求保持敏感的方式",
+              "说明": "in a way 引导方式状语，修饰主语中心词 delivery，说明传递的方式。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that is sensitive to the needs of the target customer",
+              "修饰对象": "a way",
+              "中文翻译": "对目标客户的需求保持敏感的",
+              "说明": "that 引导定语从句修饰先行词 a way。"
+            },
+            {
+              "成分类型": "介词短语(后置定语)",
+              "原文": "to the digital marketer",
+              "修饰对象": "challenges",
+              "中文翻译": "数字营销人员面临的",
+              "说明": "to 引导的介词短语作后置定语修饰 challenges，说明挑战的对象。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2024-text5-s1",
+          "no": 1,
+          "en": "They sometimes travel more than sixty miles to find food or water, and are very good at working out where other elephants are—even when they are out of sight.",
+          "zh": "它们有时会跋涉60多英里去寻找食物或水源，而且非常善于判断出其他大象的位置——即使那些大象不在视线范围内。",
+          "trunk": {
+            "主语": "They",
+            "谓语": "travel",
+            "宾语或表语": "—",
+            "主干翻译": "它们跋涉……，而且非常擅长判断……"
+          },
+          "components": [
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to find food or water",
+              "修饰对象": "travel",
+              "中文翻译": "去寻找食物或水源",
+              "说明": "不定式短语作 travel 的目的状语，说明长途跋涉是为了什么。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and are very good at working out where other elephants are",
+              "修饰对象": "travel",
+              "中文翻译": "而且非常善于判断出其他大象的位置",
+              "说明": "and 连接两个并列谓语 travel 与 are，共用主语 They。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "where other elephants are",
+              "修饰对象": "working out",
+              "中文翻译": "其他大象在哪里",
+              "说明": "where 引导的宾语从句作 working out 的宾语，从句用陈述语序。"
+            },
+            {
+              "成分类型": "时间状语从句",
+              "原文": "even when they are out of sight",
+              "修饰对象": "are very good at working out",
+              "中文翻译": "即使那些大象不在视线范围内",
+              "说明": "when 引导时间状语从句，even 加强让步意味；they 指代前面的 other elephants，为避免重复可译成「那些大象」。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2024-text5-s2",
+          "no": 2,
+          "en": "The researchers are convinced that the elephants always know precisely where they are in relation to all the resources they need, and can therefore take shortcuts, as well as following familiar routes.",
+          "zh": "研究人员确信，大象总是清楚地知道它们与它们需要的所有资源之间的相对位置，因此它们可以走近路，也可以沿着熟悉的路线走。",
+          "trunk": {
+            "主语": "The researchers",
+            "谓语": "are convinced",
+            "宾语或表语": "that the elephants always know precisely",
+            "主干翻译": "研究人员确信……"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that the elephants always know precisely where they are in relation to all the resources they need",
+              "修饰对象": "are convinced",
+              "中文翻译": "大象总是清楚地知道它们与所需资源之间的相对位置",
+              "说明": "that 引导的从句作 be convinced 的宾语（形容词后接宾语从句）。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "where they are in relation to all the resources they need",
+              "修饰对象": "know",
+              "中文翻译": "它们与所需的全部资源之间的相对位置",
+              "说明": "从句嵌套：where 从句作 know 的宾语，in relation to 意为「相对于……而言」。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "they need",
+              "修饰对象": "all the resources",
+              "中文翻译": "它们需要的",
+              "说明": "省略了关系代词 that/which 的限制性定语从句，修饰 resources。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and can therefore take shortcuts, as well as following familiar routes",
+              "修饰对象": "the elephants",
+              "中文翻译": "因此可以走近路，也可以沿着熟悉的路线走",
+              "说明": "and 连接 know 与 can take 两个并列谓语，主语仍是 the elephants；as well as 引出的动名词短语与 take shortcuts 并列。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2024-text5-s3",
+          "no": 3,
+          "en": "One possibility was that they merely used their eyes and tried out the plants they found, but that would probably result in a lot of wasted time and energy, not least because their eyesight is actually not very good.",
+          "zh": "一种可能性是大象只是用自己的眼睛去寻找，然后尝试它们发现的植物，但那可能会浪费大量的时间和精力，尤其是因为它们的视力实际上不是很好。",
+          "trunk": {
+            "主语": "One possibility",
+            "谓语": "was",
+            "宾语或表语": "that they merely used their eyes",
+            "主干翻译": "一种可能性是……"
+          },
+          "components": [
+            {
+              "成分类型": "表语从句",
+              "原文": "that they merely used their eyes and tried out the plants they found",
+              "修饰对象": "was",
+              "中文翻译": "它们只是用眼睛看，然后试吃发现的植物",
+              "说明": "that 引导表语从句，说明 possibility 的具体内容。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and tried out the plants they found",
+              "修饰对象": "used their eyes",
+              "中文翻译": "然后试吃它们发现的植物",
+              "说明": "and 连接表语从句内部的两个并列谓语 used 与 tried out。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "they found",
+              "修饰对象": "the plants",
+              "中文翻译": "它们发现的",
+              "说明": "省略关系代词的限制性定语从句，修饰 the plants。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "but that would probably result in a lot of wasted time and energy",
+              "修饰对象": "—",
+              "中文翻译": "但那可能会浪费大量的时间和精力",
+              "说明": "but 连接两个并列分句，转折出这种做法的代价；that 指代前面整件事。"
+            },
+            {
+              "成分类型": "原因状语从句",
+              "原文": "not least because their eyesight is actually not very good",
+              "修饰对象": "would result in",
+              "中文翻译": "尤其是因为它们的视力实际上并不好",
+              "说明": "not least because 意为「尤其因为」，引出主要原因。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2024-text5-s4",
+          "no": 4,
+          "en": "The volatile chemicals produced by plants can be carried a long way, and they are very characteristic: Each plant or tree has its own particular odor signature.",
+          "zh": "植物产生的挥发性化学物质可以被远距离传播，而且它们非常有特点：每一种植物或树木都有自己独特的气味特征。",
+          "trunk": {
+            "主语": "The volatile chemicals",
+            "谓语": "can be carried",
+            "宾语或表语": "—",
+            "主干翻译": "挥发性化学物质能被传播……"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "produced by plants",
+              "修饰对象": "The volatile chemicals",
+              "中文翻译": "植物产生的",
+              "说明": "过去分词短语作后置定语，相当于 which are produced by plants。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and they are very characteristic",
+              "修饰对象": "—",
+              "中文翻译": "而且它们非常有特点",
+              "说明": "and 连接两个并列分句；they 回指前面的 chemicals。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "Each plant or tree has its own particular odor signature",
+              "修饰对象": "very characteristic",
+              "中文翻译": "每一种植物或树木都有自己独特的气味特征",
+              "说明": "冒号后的分句是对 characteristic 的具体说明，翻译时可直接用冒号引出。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2024-text5-s5",
+          "no": 5,
+          "en": "The experiment showed that elephants may well use smell to identify patches of trees that are good to eat, and secondly to assess the quality of the trees within each patch.",
+          "zh": "实验表明，大象很可能利用嗅觉来识别可食用的树丛，其次评估每一片树丛中树木的质量。",
+          "trunk": {
+            "主语": "The experiment",
+            "谓语": "showed",
+            "宾语或表语": "that elephants may well use smell",
+            "主干翻译": "实验表明……"
+          },
+          "components": [
+            {
+              "成分类型": "宾语从句",
+              "原文": "that elephants may well use smell to identify patches of trees that are good to eat",
+              "修饰对象": "showed",
+              "中文翻译": "大象很可能利用嗅觉来识别可食用的树丛",
+              "说明": "that 引导宾语从句；may well 意为「很可能」，不是「不妨」。"
+            },
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to identify patches of trees",
+              "修饰对象": "use smell",
+              "中文翻译": "来识别树丛",
+              "说明": "不定式作 use smell 的目的状语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that are good to eat",
+              "修饰对象": "patches of trees",
+              "中文翻译": "可以吃的",
+              "说明": "从句嵌套：that 引导定语从句修饰 trees，good to eat 中不定式作状语表方面。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and secondly to assess the quality of the trees within each patch",
+              "修饰对象": "to identify",
+              "中文翻译": "其次评估每一片树丛中树木的质量",
+              "说明": "and 连接两个并列的不定式目的状语，secondly 提示次序。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "title": "",
+      "sentences": [
+        {
+          "id": "en1-2025-text5-s1",
+          "no": 1,
+          "en": "Recent decades have seen science move into a convention where engagement in the subject can only be done through institutions such as a university.",
+          "zh": "近几十年来，科学界已经形成了一种惯例，即对科学的参与只能通过大学等机构来实现。",
+          "trunk": {
+            "主语": "Recent decades",
+            "谓语": "have seen",
+            "宾语或表语": "science move into a convention",
+            "主干翻译": "近几十年来，科学界已形成一种惯例……"
+          },
+          "components": [
+            {
+              "成分类型": "特殊结构",
+              "原文": "Recent decades have seen science move into a convention",
+              "修饰对象": "—",
+              "中文翻译": "近几十年来，科学已经进入一种惯例",
+              "说明": "「时间/地点作主语 + see + 宾语 + 动词原形」的无灵主语句，直译成「近几十年看见……」不通顺，应转译为「近几十年来，……」。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "where engagement in the subject can only be done through institutions such as a university",
+              "修饰对象": "a convention",
+              "中文翻译": "即对科学的参与只能通过大学等机构来实现",
+              "说明": "where 引导定语从句修饰抽象名词 convention（此处相当于 in which），不表地点。"
+            },
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "in the subject",
+              "修饰对象": "engagement",
+              "中文翻译": "对这一学科的",
+              "说明": "介词短语后置修饰 engagement，the subject 回指 science。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "through institutions such as a university",
+              "修饰对象": "can be done",
+              "中文翻译": "通过大学等机构",
+              "说明": "through 引出方式；such as 举例。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2025-text5-s2",
+          "no": 2,
+          "en": "But by utilising the natural curiosity of the general public it is possible to overcome many of these challenges by engaging non-scientists directly in the research process.",
+          "zh": "但是，借助公众与生俱来的求知欲，让非科学家们直接参与研究过程，就有可能克服许多这样的挑战。",
+          "trunk": {
+            "主语": "it",
+            "谓语": "is",
+            "宾语或表语": "possible",
+            "主干翻译": "……是有可能的"
+          },
+          "components": [
+            {
+              "成分类型": "特殊结构",
+              "原文": "it is possible to overcome many of these challenges",
+              "修饰对象": "—",
+              "中文翻译": "克服许多这样的挑战是有可能的",
+              "说明": "it 作形式主语，真正的主语是后面的不定式短语 to overcome…。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "But by utilising the natural curiosity of the general public",
+              "修饰对象": "is possible",
+              "中文翻译": "但是，借助公众与生俱来的求知欲",
+              "说明": "by + 动名词表方式，置于句首作状语，翻译时保留在前。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "by engaging non-scientists directly in the research process",
+              "修饰对象": "overcome",
+              "中文翻译": "通过让非科学家直接参与研究过程",
+              "说明": "第二个 by 短语说明克服挑战的具体途径；engage sb. in sth. 是固定搭配。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2025-text5-s3",
+          "no": 3,
+          "en": "Scientists have employed a variety of ways to engage the general public in their research, such as making data analysis into an online game or sample collection into a smartphone application.",
+          "zh": "科学家们采用了各种各样的方式让公众参与他们的研究，比如将数据分析做成在线游戏或者将样本采集做成智能手机应用程序。",
+          "trunk": {
+            "主语": "Scientists",
+            "谓语": "have employed",
+            "宾语或表语": "a variety of ways",
+            "主干翻译": "科学家们采用了各种各样的方式……"
+          },
+          "components": [
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to engage the general public in their research",
+              "修饰对象": "ways",
+              "中文翻译": "让公众参与他们的研究",
+              "说明": "不定式作 ways 的后置定语兼目的，engage sb. in sth. 为固定搭配。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "such as making data analysis into an online game",
+              "修饰对象": "ways",
+              "中文翻译": "比如将数据分析做成在线游戏",
+              "说明": "such as 引出举例，后接动名词短语；make A into B 意为「把 A 做成 B」。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "or sample collection into a smartphone application",
+              "修饰对象": "making",
+              "中文翻译": "或者将样本采集做成智能手机应用程序",
+              "说明": "省略结构：or 后承前省略了 making，补全即 or making sample collection into…。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2025-text5-s4",
+          "no": 4,
+          "en": "These groups of people are part of a rapidly expanding biotechnological social movement of citizen scientists and professional scientists seeking to take discovery out of institutions and put it into the hands of anyone with the enthusiasm.",
+          "zh": "这些群体属于快速扩张的生物科技社会运动的一部分，在这场运动中，公民科学家和专业科学家试图将科学发现带离研究机构，让任何有热情的人都能参与其中。",
+          "trunk": {
+            "主语": "These groups of people",
+            "谓语": "are",
+            "宾语或表语": "part of a rapidly expanding biotechnological social movement",
+            "主干翻译": "这些群体属于……运动的一部分"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "of a rapidly expanding biotechnological social movement",
+              "修饰对象": "part",
+              "中文翻译": "快速扩张的生物科技社会运动的",
+              "说明": "of 短语后置修饰 part。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "of citizen scientists and professional scientists",
+              "修饰对象": "social movement",
+              "中文翻译": "由公民科学家和专业科学家组成的",
+              "说明": "第二个 of 短语说明这场运动由谁构成，与前一个 of 短语层层嵌套，翻译时宜拆句。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "seeking to take discovery out of institutions",
+              "修饰对象": "citizen scientists and professional scientists",
+              "中文翻译": "试图将科学发现带离研究机构",
+              "说明": "现在分词短语作后置定语，说明这些人在做什么。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and put it into the hands of anyone with the enthusiasm",
+              "修饰对象": "take",
+              "中文翻译": "并让任何有热情的人都能参与其中",
+              "说明": "and 连接 take 与 put 两个并列的不定式（承前省略 to）；put sth. into the hands of sb. 意为「交到某人手中」。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2025-text5-s5",
+          "no": 5,
+          "en": "They pool resources, collaborate, think outside the box, and find solutions and ways around obstacles to explore science for the sake of science without the traditional boundaries of working inside a formal setting.",
+          "zh": "这些中心汇聚资源、通力合作、打破常规思维，并围绕难题找到解决措施和方法，为了科学而探索科学，不受传统上在正式环境中工作的限制。",
+          "trunk": {
+            "主语": "They",
+            "谓语": "pool",
+            "宾语或表语": "resources",
+            "主干翻译": "它们汇聚资源、通力合作、打破常规思维，并找到解决办法……"
+          },
+          "components": [
+            {
+              "成分类型": "并列结构",
+              "原文": "pool resources, collaborate, think outside the box, and find solutions and ways",
+              "修饰对象": "They",
+              "中文翻译": "汇聚资源、通力合作、打破常规思维，并找到解决措施和方法",
+              "说明": "四个并列谓语共用主语 They，最后一个用 and 连接。"
+            },
+            {
+              "成分类型": "习语",
+              "原文": "think outside the box",
+              "修饰对象": "They",
+              "中文翻译": "打破常规思维",
+              "说明": "固定表达，意为「跳出固有框架思考」，不能直译成「在盒子外思考」。"
+            },
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to explore science for the sake of science",
+              "修饰对象": "find",
+              "中文翻译": "为了科学而探索科学",
+              "说明": "不定式作目的状语；for the sake of 意为「为了……的缘故」。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "without the traditional boundaries of working inside a formal setting",
+              "修饰对象": "explore",
+              "中文翻译": "不受传统上在正式环境中工作的限制",
+              "说明": "without 短语表伴随/条件，boundaries 此处指「条条框框」。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

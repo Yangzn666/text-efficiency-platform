@@ -65,7 +65,8 @@ export default defineConfig({
           '**/SkillTreeView-*.js',
           '**/cose-bilkent-*.js',
           '**/sequenceDiagram-*.js',
-          '**/architectureDiagram-*.js'
+          '**/architectureDiagram-*.js',
+          '**/reading-questions.json'
         ],
         // 运行时缓存策略
         runtimeCaching: [

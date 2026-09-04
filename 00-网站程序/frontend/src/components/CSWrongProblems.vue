@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked, Upload, Picture, CopyDocument, MagicStick, ArrowDown } from '@element-plus/icons-vue'
+import { WANGDAO_CS_SEED } from '../data/wangdao'
 
 interface WrongProblem {
   id: string
@@ -298,6 +299,20 @@ const loadFromLocalStorage = () => {
   const saved = localStorage.getItem('csWrongProblems')
   if (saved) {
     problems.value = JSON.parse(saved)
+  }
+  mergeWangdaoSeed()
+}
+
+// 合并王道小程序错题重练卷种子数据（记录3400/3401/3402，计组90题）
+// 按 id 与题干前20字（去空白后）双重去重，重复导入不会产生冗余
+const mergeWangdaoSeed = () => {
+  const norm = (s: string) => s.replace(/\s/g, '').slice(0, 20)
+  const knownIds = new Set(problems.value.map(p => p.id))
+  const knownStems = new Set(problems.value.map(p => norm(p.content)))
+  const fresh = WANGDAO_CS_SEED.filter(s => !knownIds.has(s.id) && !knownStems.has(norm(s.content)))
+  if (fresh.length > 0) {
+    problems.value.push(...fresh)
+    saveToLocalStorage()
   }
 }
 

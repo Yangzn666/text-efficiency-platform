@@ -11,8 +11,7 @@ const OSLearningView = () => import('@/views/OSLearning.vue')
 const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
 const MathView = () => import('@/views/MathView.vue')
-// 数学一仪表盘 + 速查卡片页
-const ReinforcementDashboard = () => import('@/components/ReinforcementDashboard.vue')
+// 数学一速查卡片页与专题指南页
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
 const MathMethodIndexView = () => import('@/views/MethodIndexView.vue')
@@ -112,17 +111,16 @@ const router = createRouter({
     {
       path: '/math',
       name: 'math',
-      component: ReinforcementDashboard,
+      component: MathView,
       meta: { 
         requiresAuth: true,
-        title: '数学强化学习'
+        title: '数学一知识点'
       }
     },
     {
+      // 旧路径兼容，重定向到数学一知识点主页
       path: '/math/detail',
-      name: 'math-detail',
-      component: MathView,
-      meta: { requiresAuth: true }
+      redirect: '/math'
     },
     {
       path: '/math/quickcards',

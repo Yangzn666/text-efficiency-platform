@@ -6,10 +6,9 @@ import { useTodayStatusStore } from '@/stores/todayStatus'
 // 使用动态导入解决TypeScript默认导出识别问题
 const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingPractice.vue'))
 const VocabularySystem = defineAsyncComponent(() => import('@/components/VocabularyLearning.vue'))
-const EnglishStudyPlan = defineAsyncComponent(() => import('@/components/EnglishStudyPlan.vue'))
 const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/GrammarLearningCenter.vue'))
 const TranslationView = defineAsyncComponent(() => import('@/views/TranslationView.vue'))
-const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning-Premium.vue'))
+const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 const EnglishReadingLog = defineAsyncComponent(() => import('@/components/EnglishReadingLog.vue'))
 
 const route = useRoute()
@@ -31,7 +30,6 @@ const tabItems = [
   { name: 'vocabulary', label: '词汇系统', icon: '🧠' },
   { name: 'writing', label: '写作训练', icon: '✍️' },
   { name: 'translation', label: '翻译', icon: '🔄' },
-  { name: 'studyPlan', label: '学习计划', icon: '🗓️' },
   { name: 'grammarCenter', label: '语法中心', icon: '📐' }
 ]
 
@@ -98,7 +96,6 @@ onMounted(() => {
       <div v-show="activeTab === 'vocabulary'"><VocabularySystem /></div>
       <div v-show="activeTab === 'writing'"><WritingLearning /></div>
       <div v-show="activeTab === 'translation'"><TranslationView :embedded="true" /></div>
-      <div v-show="activeTab === 'studyPlan'"><EnglishStudyPlan /></div>
       <div v-show="activeTab === 'grammarCenter'"><GrammarLearningCenter /></div>
     </div>
   </div>

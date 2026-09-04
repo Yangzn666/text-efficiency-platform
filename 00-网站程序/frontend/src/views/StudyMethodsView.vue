@@ -10,7 +10,8 @@ const subjectTabs = [
   { key: 'cs408', label: '408计算机', icon: '💻', color: '#409EFF' },
   { key: 'english', label: '英语一', icon: '📖', color: '#E6A23C' },
   { key: 'politics', label: '政治', icon: '🚩', color: '#F56C6C' },
-  { key: 'general', label: '高效学习', icon: '🧠', color: '#64748b' }
+  { key: 'general', label: '高效学习', icon: '🧠', color: '#64748b' },
+  { key: 'mind', label: '心态管理', icon: '💚', color: '#e85d9a' }
 ]
 
 const studyMethods = {
@@ -46,7 +47,11 @@ const studyMethods = {
       { icon: '📅', title: '真题早接触', when: '每章复习完', steps: ['每复习完一章就做对应章节的真题分类题', '不用等到9月，基础强化期就并行做', '真题不是用来"测"的，是用来校准方向', '帮你判断哪些是真正考的、哪些是讲义过度展开'] },
       { icon: '📚', title: '线代先做后听法', when: '线代强化', steps: ['先硬着头皮独立做李永乐辅导讲义', '卡住了再回去听对应章节的课', '逼自己主动回忆，而不是被动接收', '线代特点：看课都懂、做题就废，先做能破'] },
       { icon: '🧩', title: '自己动手总结法', when: '每章 / 每专题', steps: ['思维导图和题型总结要自己动手做', '不要下载别人的——知识只有自己加工才长在身上', '输出即学习：边总结边用费曼法讲出来', '这个过程"训练神经元"，比收藏有用得多'] },
-      { icon: '🤖', title: 'AI辅助学习', when: '卡壳 / 想检验时', ai: true, steps: ['概念不懂：让AI用生活例子解释（如"用排队讲极限"）', '错题不会：让AI讲思路，而不是直接抄答案', '让AI出同类型变式题，检验是否真的掌握', '把费曼讲解发给AI，让它指出你哪里讲错了'] }
+      { icon: '🤖', title: 'AI辅助学习', when: '卡壳 / 想检验时', ai: true, steps: ['概念不懂：让AI用生活例子解释（如"用排队讲极限"）', '错题不会：让AI讲思路，而不是直接抄答案', '让AI出同类型变式题，检验是否真的掌握', '把费曼讲解发给AI，让它指出你哪里讲错了'] },
+      { icon: '🔯', title: '三级错题流动复习法', when: '2026真题至上 · 每道错题', src: '2026', steps: ['错题先贴标签分三类：①知识模糊 ②方法错误 ③计算错误，不同类型配不同复习频率', '做对就降级、再错就升级，让错题"流动变少"而非越堆越多', '三误区：别把所有错题全抄、别把答案当过程照搬、别看都懂就不动笔', '三标准：看阶段（基础期以标记为主）、看难度（基础题为主、避开偏怪题）、看类型（纯计算错重算即可，概念题需举反例才入本）', '回顾要"以做代看"，盖住答案动笔重算，蒙对的题同样不放过'] },
+      { icon: '🏟️', title: '全真模拟四指标', when: '8月起 · 套卷阶段', src: '2026', steps: ['判断模拟"够不够真"看四条：① 严格3小时不中断 ② 有研友/机构改卷（不自评放水）③ 播放考场环境音或去阶梯/普通教室 ④ 卡在真实考研时段（上午8:30-11:30）', '前期把套卷当"全知识点循环复盘"用，分数高低不重要，早开模拟对抗"学后忘前"', '真题+模拟合计65套以上（理想约85套）；多做不同来源模拟卷，减少"过拟合"', '平时模考就戴耳机放环境音，大后期去阶梯教室做整场全真'] },
+      { icon: '💪', title: '肌肉反应训练法', when: '每天 · 高压场景', src: '2026', steps: ['考场最后考的不是"你会不会"，而是高压下本能的肌肉反应', '每天进入接近考场的战斗状态，做够"两场考试强度"的全神贯注训练（Attention is All You Need）', '目标：大脑宕机、一片空白时，手凭肌肉也能把题做对，这分才真正是你的', '考场急救：默念"考到目标分就算成功，不会就跳""多做一题赚一题"，最后不改第一感觉的答案'] },
+      { icon: '🏷️', title: '旁标知识点法', when: '刷题全程 · 数一149习惯', src: '2026', steps: ['每刷一道题，在题目旁边写下"这题考的知识点"', '一个知识点的解法就那几种，无非在基础解法上做变化——标注帮你把"题"归到"点"上', '练到看一两分钟就能反推出思路，就可以不写了（内化成条件反射）', '配套：草稿纸写题号+步骤完整，既减少选填低级错误，又方便考后二次核对（数一149靠这个当场查出一道大题算错）'] }
     ],
     phases: [
       { name: '基础入门', time: '2025.5-12月', duration: '8个月',
@@ -100,9 +105,12 @@ const studyMethods = {
     },
     resources: [
       { type: '必备习题集', items: ['李林880题 ⭐⭐⭐⭐⭐', '李永乐660题', '张宇1000题'] },
-      { type: '必做模拟卷', items: ['李林6+4 ⭐⭐⭐⭐⭐', '张宇8+4', '合工大超越'] },
+      { type: '必做模拟卷(2026实测)', items: ['选卷年份总原则：同一系列一律 27 > 26 > 25（新卷更贴当年命题），唯一例外 25超越10 值得跨年份优先做（数一150原则）', '合工大超越：24/25超越强推（25超越10被数一150评为"质量最高一档"），⚠️26超越不推荐（头重脚轻，149/150两帖都踩雷）', '欧几里得3套 ⭐⭐⭐⭐⭐（150帖上修：与25超越10同级、合理难题+计算量足；149帖仅评"可"，两帖合参值得做）', '李林6+4（两帖一致必做：最接近正常难度真题，6比4略难）', '李艳芳3套（149强推·计算量题型好+B站讲解细举一反三；150标注"冲140+专属"——作者25均125~130、26仅110，同期李林稳定140，中分段慎入）', '张宇4套卷：当"起手卷/前期卷"（不难+题型全，利于建自信）', '张宇8套卷：⚠️25版踩雷"不要做、浪费时间"（150帖），26版尚可（中等偏上、含个别偏怪不考的计算法）', '前期开荒/找手感卷（便宜为主·150帖补充）：李良5套、汤家凤8+3、余丙森5套（难度中下、题型偏古老，适合前中期打基础）', '金榜时代冲刺卷 / 周洋鑫（题型略重复）'] },
+      { type: '题量口径(2026)', items: ['真题+模拟合计65套以上，理想约85套；数一149刷130+套、数一150主张"数量+态度决定分数、做满约120套认真钻研也能冲140-150"', '9-10月限时放宽到3.5h保检查；11-12月压到2h40min逼提速', '真题重点在成套限时、不在零散重复（很多原型做题册时已练过）', '多做不同来源模拟卷，减少"过拟合"', '题册顺序：先660后1000（先易后难更易接受）；模拟卷宁缺毋滥，时间紧只刷15套+二刷真题错题也够'] },
+      { type: '时间投入·真实番茄钟(2026)', items: ['数一满分/清深：6.27起6个月，数学总695h52min、日均3h54min', '占比信号：真题+模拟21.7% ≈ 高数强化19.9%（成套限时是重头）', '看网课占比<0.2%——量化印证"以做代看、以题带点"', '数一重广度、数二重深度；考场每道大题验算三四次'] },
       { type: '真题解析', items: ['李艳芳真题解析（强推）', '张宇真题解析'] },
-      { type: 'B站UP主', items: ['喻老（真题讲解）⭐⭐⭐⭐⭐', '处江湖之远（880习题）', '夜雨教你考研竞赛（证明题）'] }
+      { type: '在线实战', items: [{ text: '研砖·数学真题演练', url: 'https://www.mathbrick.cn/' }] },
+      { type: 'B站UP主', items: ['喻老（真题讲解）⭐⭐⭐⭐⭐', '上交Kira老师 / 一高数（知识点梳理极清晰，时间紧时按章看讲解救急）⭐⭐⭐⭐⭐', '处江湖之远（880习题）', '夜雨教你考研竞赛（证明题）'] }
     ],
     levelAdvice: {
       weak: '选择汤家凤/武忠祥基础班，多做660基础部分，目标110-125分',
@@ -138,7 +146,11 @@ const studyMethods = {
       { icon: '🗣️', title: '费曼讲解法', when: '学完一章 / 错题后', steps: ['用自己的话把知识点讲出来（如"什么是死锁"）', '讲不清=没真懂，换个问法就不会说明没理解', '重点讲"为什么"而不是"是什么"', '把讲解发给AI或同学，让对方挑毛病'] },
       { icon: '💡', title: '算法大题分层训练法', when: '强化全程', steps: ['大题=算法设计题约13分，固定三问：算法思想/代码/复杂度，第一三问是送分点', '第一层(跟王道每章)轻量版：读题→一两句话写算法思想→翻答案对核心操作，不写完整代码，攒"题型→数据结构/遍历框架"模式识别', '重灾区是线性表/树/图三章，要重点过', '第二层(强化收尾)3-5天大题专项：历年真题+王道模拟，限时动笔写完整代码，转成考场20分钟写对', '别现在逐题硬刚(打断节奏)，也别全押最后(算法是手感型技能)'] },
       { icon: '🔄', title: '主线串行+滚动保温', when: '强化节奏', steps: ['主线一科一科推(DS→CO→OS→CN)，每科集中做扎实王道大题+选择错题+题型套路，给深度+进度感', '不纯一本一本(学了后面忘前面，408是四科一张卷)，也不纯滚动(大题需持续专注才建得起套路)', '每天留30-45min给已完成科目轻量回捞(用费曼间隔复习卡/选择错题)，防遗忘保温而非重学', '比例动态滑动：DS主线时几乎全砸DS，进CO后DS入保温槽，到CN时前三科轮碰，冲刺四科全温直接上套卷'] },
-      { icon: '🤖', title: 'AI辅助学习', when: '概念抽象时', ai: true, steps: ['抽象概念（如虚拟内存、TCP拥塞控制）让AI画图/举例子', '让AI把算法题思路一步步讲给你听', '让AI出同考点的选择题变式检验', '用AI快速查证细节，但结论以王道书为准'] }
+      { icon: '🤖', title: 'AI辅助学习', when: '概念抽象时', ai: true, steps: ['抽象概念（如虚拟内存、TCP拥塞控制）让AI画图/举例子', '让AI把算法题思路一步步讲给你听', '让AI出同考点的选择题变式检验', '用AI快速查证细节，但结论以王道书为准'] },
+      { icon: '🔁', title: 'N轮学习法', when: '全程 · 408是"理科里的文科"', src: '2026', steps: ['408体系庞杂、四科交错：DS偏理解，计组+OS记忆与理解并存，计网最偏记忆。对策=多轮滚动+记忆卡片+口诀', '第1遍 泛通读搭框架：跟王道书+视频快速过，摸清知识地图，课后题写一写即可（后期会发现有些是"野题"）', '第2遍 扣大纲精读夯基础：对照最新大纲逐点拆解做笔记，每晚把当日所学整理成记忆卡，当日复盘滚动巩固。产出两样：笔记雏形 + 记忆卡片', '第3~N遍 滚笔记+刷真题+专题突破：反复回看自己的笔记越磨越精，按命题规律整理高频/重难点专题', '真题优先于模拟卷：早年真题先做，四本王道再过一遍清死角，近年真题最后做。掌握王道≈135+'] },
+      { icon: '🗂️', title: '记忆卡片碎点法', when: '每晚 · 对抗学后忘前', src: '2026', steps: ['408错题走"卡片快刷"而非数学式深度归类（碎点为主、逻辑链短）', '每晚用墨墨记忆卡/Anki复习当天碎点，懒得复习时靠它逼自己多过', '笔记用飞书/石墨/语雀任选一个（方便插图）', '口诀、易混对照、缓存/页面置换公式等都做成卡片'] },
+      { icon: '🎵', title: '口诀哥 + 手抄书法', when: '遇难记易混点', src: '2026', steps: ['当"口诀哥"：给难记易混点编自己的顺口口诀。例大端模式"大人交叉"（高有效字节放低地址），一遍记牢不混', '"手写抄书哥"：把不会的知识点文字+手绘图手抄一遍，效果极好', '口诀必须是"自己的话"，别人编的记不住', '手抄重在加深理解，不是无脑誊写，抄完合上书复述'] },
+      { icon: '⏱️', title: '真题1.5遍 + 时间账', when: '强化→冲刺', src: '2026', steps: ['真题"1.5遍"口径：完整掐时间做完一套才算1遍，只零散刷题型不算；后0.5遍只回刷差年份/错题', '每科一个专门笔记本，只记"常忘点"和易混对照，不抄题、不抄全板书（抄题=伪勤奋）', '计组+OS放一起学（存储层次、中断、I-O高度重叠，一次理解两科受益）', '时间参考：408单科135全年约627h、总投入2225h；"初试学够约1600h足以拿下华五"——别被"模拟哥/进度哥"带焦虑，比的是吸收不是刷了多少套'] }
     ],
     phases: [
       { name: '基础入门', time: '2025.5-2026.6', duration: '13个月',
@@ -164,9 +176,11 @@ const studyMethods = {
     ],
     teacherComparison: [
       { name: '王道团队', style: '408权威，书籍和视频质量高，强化课"骚图"串联知识点', rating: '⭐⭐⭐⭐⭐', bestFor: '全程核心' },
+      { name: '零壹', style: '2026高分考生实测新宠：数据结构人称"数据机构"，计组、OS讲解成体系、贴真题。真题1.5遍+relax一千题补弱的主推带练', rating: '⭐⭐⭐⭐⭐', bestFor: 'DS/计组/OS（2026实测）' },
+      { name: '咸鱼学长', style: '2026实测：王道计网的平替讲法，把计网琐碎点串成能记住的线，配合湖科大挑重点看', rating: '⭐⭐⭐⭐', bestFor: '计网（2026实测）' },
       { name: '袁春风', style: '南京大学教授，计组讲得深入浅出，配套《计算机系统基础》', rating: '⭐⭐⭐⭐⭐', bestFor: '计算机组成原理' },
       { name: '蒋炎岩（jyy）', style: '南京大学，操作系统并发/PV操作讲得透彻，专治理解难点', rating: '⭐⭐⭐⭐⭐', bestFor: '操作系统' },
-      { name: '湖科大教书匠', style: '计网讲得清晰，补充王道不足', rating: '⭐⭐⭐⭐', bestFor: '计网专项' },
+      { name: '湖科大教书匠', style: '计网讲得清晰，补充王道不足（408计网的"王"，但2026考生提示挑一部分看即可，不必全刷）', rating: '⭐⭐⭐⭐', bestFor: '计网专项' },
       { name: '中科大郑烇', style: '《计算机网络：自顶向下方法》配套课，计网经典', rating: '⭐⭐⭐⭐', bestFor: '计网专项' }
     ],
     commonMistakes: [
@@ -184,8 +198,9 @@ const studyMethods = {
     resources: [
       { type: '核心书籍', items: ['王道四本单科书', '王道历年真题解析'] },
       { type: '视频课', items: ['王道全程班', 'B站王道官方账号'] },
-      { type: '辅助资料', items: ['天勤数据结构', '月暗哥笔记', 'Beokayy笔记'] },
-      { type: '模拟卷', items: ['王道8套卷', '王道4套卷'] }
+      { type: '教材适配度·2026实测', items: ['计网 谢希仁《计算机网络》(8版) 100/100 + 配套PPT', '计网 湖科大教书匠视频+PPT 110/100（408计网的"王"）', '计组 袁春风《计算机组成与系统结构》100/100（最贴命题底层逻辑）', '计组 王爽《汇编语言》90/100（汇编大题性价比高）', 'OS 陈海波《操作系统:原理与实现》90/100、汤小丹 88/100', 'DS 严蔚敏《数据结构C语言版》90/100 + 月暗/relax笔记', '习题 relax《408的一千题》（很"考研味"，二刷配合）'] },
+      { type: '模拟卷·2026实测', items: ['零壹模拟卷（408单科135考生主推，质量最贴真题）', '竟成模拟卷（推荐；注：26版第一套偏怪可不必理会）', '王道8套卷 / 4套卷', 'ACE/天勤/研芝士（写过，普遍反馈不如零壹、竟成，量力做）'] },
+      { type: '在线实战·码砖真题', items: [{ text: '数据结构刷题', url: 'https://www.codebrick.tech/practice/browse/ds' }, { text: '组成原理刷题', url: 'https://www.codebrick.tech/practice/browse/co' }, { text: '操作系统刷题', url: 'https://www.codebrick.tech/practice/browse/os' }, { text: '计算机网络刷题', url: 'https://www.codebrick.tech/practice/browse/cn' }] }
     ],
     levelAdvice: {
       weak: '跨专业考生：从数据结构开始循序渐进，多花时间理解概念',
@@ -219,7 +234,10 @@ const studyMethods = {
       { icon: '🔤', title: '单词艾宾浩斯法', when: '每天30分钟', steps: ['每天100个是底线，断了要2倍补回来', '用APP（不背单词/墨墨）自动安排复习曲线', '结合真题语境记，重点关注熟词僻义', '阅读中不认识的词单独记入生词本'] },
       { icon: '✂️', title: '长难句拆解法', when: '每天3-5句', steps: ['先找主干（主谓宾），再看修饰（定状补）', '标出连接词，判断从句类型', '翻译时先主干后修饰，符合中文语序', '坚持拆真题句，比看语法书有效'] },
       { icon: '✍️', title: '作文模板积累法', when: '9月起', steps: ['分类整理：图表/图画/话题各准备框架', '背万能句型，但组合成自己的模板', '每周动手写1-2篇，不能只看不练', '写完找人/AI批改，重点看逻辑和语法错误'] },
-      { icon: '🤖', title: 'AI辅助学习', when: '随时', ai: true, steps: ['长难句看不懂：发给AI，让它拆分结构并逐段翻译', '作文写完：让AI批改，指出语法错误和逻辑问题', '让AI解释某个熟词僻义在真题中的用法', '阅读错题：让AI分析干扰项为什么错'] }
+      { icon: '🤖', title: 'AI辅助学习', when: '随时', ai: true, steps: ['长难句看不懂：发给AI，让它拆分结构并逐段翻译', '作文写完：让AI批改，指出语法错误和逻辑问题', '让AI解释某个熟词僻义在真题中的用法', '阅读错题：让AI分析干扰项为什么错'] },
+      { icon: '🎯', title: '原文为王', when: '做题前默念', src: '2026', steps: ['选项常和你的朴素认知/价值观冲突，但你做的是"考研阅读"，要"现学现卖"', '严格用原文观点和逻辑选，不是凭知识储备答题', '只死磕真题，别为刷题量去做非真题——别的题做多了会污染做题思路、打乱你摸透的出题逻辑', '近年真题优先（417分经验）：时间紧就直接攻10-26年，精读透近年1篇 > 囫囵刷旧年份10篇', '英一英二底层逻辑相通，冲高分可都刷，冲刺再回归英一'] },
+      { icon: '🧠', title: 'AI逻辑纠偏(2026新武器)', when: '反复栽同类逻辑坑', src: '2026', ai: true, steps: ['把「错题对应原文上下文 + 题干 + 你选错的答案」一起发给大模型', '第一步：让它精准点出你这道题的逻辑漏洞', '第二步：让它严格贴合考研英语出题逻辑，出同类型题给你做针对性纠偏', '把"被动看解析"升级成"被AI追着纠偏"，专治反复错同一类题'] },
+      { icon: '💧', title: '语境背词·核心词优先', when: '背单词', src: '2026', steps: ['吃不消时先保约2000考研核心高频词，不追求"背完"红宝书6000', '抄例句·语境学：用欧路词典把词在牛津/剑桥的核心释义+例句抄写，在context里学', '背词方法对不对，用一段时间后的阅读能力提升来验证', '方法极枯燥又不见效（如A4纸法5个月仍做不下阅读）就果断换，别被沉没成本绑架'] }
     ],
     phases: [
       { name: '词汇积累', time: '现在-持续', duration: '贯穿全程',
@@ -262,11 +280,13 @@ const studyMethods = {
       strategies: ['先做阅读，因为分值最高', '完形填空放在最后', '作文一定要写完，时间不够也要写框架', '涂卡留出5分钟时间']
     },
     resources: [
-      { type: '词汇', items: ['考研英语大纲词汇', '恋练有词', '红宝书'] },
+      { type: '词汇', items: ['考研英语大纲词汇', '恋练有词', '红宝书', '欧路词典（自定义词典·语境抄例句）'] },
       { type: '真题', items: ['《考研真相》', '《黄皮书》', '历年真题（2005-2026）'] },
       { type: '阅读', items: ['唐迟《阅读的逻辑》', '真题阅读手译本'] },
-      { type: '写作', items: ['王江涛高分写作', '潘赟九宫格写作'] },
-      { type: '语法', items: ['田静句句真研', '刘晓艳语法长难句'] }
+      { type: '写作', items: ['王江涛高分写作', '潘赟九宫格写作', '扇贝考研（作文模拟题质量不错）'] },
+      { type: '语法', items: ['田静句句真研', '刘晓艳语法长难句'] },
+      { type: 'AI工具(2026)', items: ['AI逻辑纠偏：错题原文+题干+错选发给大模型追纠', '作文：标准答题卡完整写→识别成文字→AI批改→自建语料库'] },
+      { type: '在线实战·研砖', items: [{ text: '英一翻译真题（含逐句拆解）', url: 'https://www.mathbrick.cn/english/translate?exam=en1' }, { text: '研砖英语模块入口', url: 'https://www.mathbrick.cn/english' }] }
     ],
     levelAdvice: {
       weak: '四级未过：从单词和语法开始，先打好基础再攻阅读',
@@ -277,15 +297,16 @@ const studyMethods = {
   politics: {
     title: '政治', icon: '🚩', color: '#F56C6C',
     intensive: {
-      period: '7月-9月 · 启动期',
-      focus: '7月启动正当时。徐涛强化课 + 肖1000题，选择题是生命线。前期重点仍给数学和408，政治每天2小时内。',
+      period: '8月-9月 · 启动期',
+      focus: '8月正式启动正当时。徐涛强化课 + 肖1000题按章刷，选择题是生命线。现阶段每天 1-1.5 小时即可，重点仍给数学和408。',
       actions: [
+        { tag: '本周', title: '本周启动清单', detail: '①购齐肖1000题+徐涛核心考案 ②从马原第一章开课 ③每天固定时段 1-1.5h（建议午饭后/晚睡前） ④错题当日订正不过夜。' },
         { tag: '顺序', title: '五科时间分配', detail: '马原18天 → 史纲11天 → 思修6天 → 毛中特14天 → 时政3天。马原最难要理解透，毛中特最多靠记忆。' },
         { tag: '节奏', title: '听一节练一节', detail: '看徐涛强化课（可倍速），听完立刻刷肖1000对应章节，错题及时订正，不用急着背。' },
         { tag: '避坑', title: '精讲精练要对上', detail: '徐涛课配《核心考案》，但1000题对应肖秀荣《精讲精练》。听完课做1000题正确率低，就去啃精讲精练。' },
         { tag: '重点', title: '多选是拉分王', detail: '政治拉分主要在选择题，多选尤其重要。大题靠后期肖四，现在不用背。' },
         { tag: '理解', title: '马原重理解', detail: '近年政治考得灵活、重理解，纯背诵题在减少。马原的哲学和政治经济学要花时间真正弄懂。' },
-        { tag: '心态', title: '不用太早焦虑', detail: '政治7月开始完全来得及，多数同学冲刺学习可考60+。把更多时间投入数学和408。' }
+        { tag: '心态', title: '8月开始完全来得及', detail: '多数同学 8 月启动冲刺学习可考 60+。9月底完成五科一轮，10月腿姐技巧班+选择题二刷，11-12月肖8肖4背诵冲刺。' }
       ],
       rhythm: { morning: '徐涛强化课 (1.5h，可倍速)', afternoon: '肖1000对应章节 (1h)', evening: '错题订正 + 易混点整理 (30min)' }
     },
@@ -299,7 +320,10 @@ const studyMethods = {
       { icon: '✅', title: '选择题刷题法', when: '每天1小时', steps: ['听一节徐涛课，立刻刷肖1000对应章节', '错题及时订正，标记原因（不会/粗心/理解偏差）', '多选题是拉分王，宁可慢一点也要想全', '《1000题》至少刷2-3遍，错题反复做'] },
       { icon: '🗂️', title: '易混点整理法', when: '每章结束', steps: ['整理各种"第一次"/"根本"/"核心"/"本质"类表述', '对比记忆：如"根本原因"vs"直接原因"', '马原的哲学概念和政治经济学要真正理解', '做成卡片或用Anki，定期快速过'] },
       { icon: '📕', title: '肖四背诵法', when: '12月', steps: ['肖四大题必须全部背下来，这是神书', '背诵有技巧：理解逻辑→抓关键词→分点记忆', '不要死记硬背，要能结合材料展开', '最后两周全力背，配合腿姐冲刺手册'] },
-      { icon: '🤖', title: 'AI辅助学习', when: '理解困难时', ai: true, steps: ['马原概念抽象：让AI用例子讲清楚（如"用商品讲价值规律"）', '让AI帮你梳理某段历史的时间线和事件联系', '时政热点：让AI总结全年大事及可能考点', '让AI出选择题变式，检验易混点是否分清'] }
+      { icon: '🤖', title: 'AI辅助学习', when: '理解困难时', ai: true, steps: ['马原概念抽象：让AI用例子讲清楚（如"用商品讲价值规律"）', '让AI帮你梳理某段历史的时间线和事件联系', '时政热点：让AI总结全年大事及可能考点', '让AI出选择题变式，检验易混点是否分清'] },
+      { icon: '📱', title: '小程序刷选择题', when: '碎片时间 · 2026', src: '2026', steps: ['用微信小程序磨题感：南山上岸刷题 / 苍顿刷题（26考生亲测）', '坚持刷，一刷稳定在历年平均分上下，依"大数定律"考试分收敛到平均', '市面上所有主流模拟卷都要刷，能多刷就多刷（肖八/腿姐/徐涛等）', '错题当日订正不过夜，标原因（不会/粗心/理解偏差）'] },
+      { icon: '🖊️', title: '大题背板套写法', when: '12月 · 大后期最高效', src: '2026', steps: ['提前背好答题"板子"（腿姐或曲艺老师）', '背完一定要拿着板子去套写历年真题和模拟题——只背不写等于没背', '进阶背写结合：先背牢核心原理（马原必背），答题时把背的内容与材料信息糅合', '用考研答题卡完整模拟写一遍，提前适应书写节奏'] },
+      { icon: '🧩', title: '主观题三段式', when: '分析题作答 · 2026', src: '2026', steps: ['结构：是什么（摆事实）→ 为什么（形势判断/"有利于"）→ 怎么做（坚持…）', '先拆解答案句式，再填关键词，不用一字一句背死书', '结合材料作答，不要脱离材料空谈理论', '最后原则：不改第一选择，以第一感觉为最终感觉'] }
     ],
     phases: [
       { name: '前期了解', time: '现在-2026.6', duration: '可选',
@@ -344,8 +368,10 @@ const studyMethods = {
     },
     resources: [
       { type: '核心书籍', items: ['肖秀荣《精讲精练》', '肖秀荣《1000题》', '肖八', '肖四'] },
-      { type: '视频课', items: ['徐涛强化班', '腿姐技巧班'] },
+      { type: '视频课', items: ['徐涛强化班（马原打底）', '腿姐技巧班'] },
+      { type: '刷题小程序(2026)', items: ['南山上岸刷题', '苍顿刷题', '碎片时间磨选择题题感'] },
       { type: '背诵资料', items: ['腿姐《冲刺背诵手册》', '徐涛《小黄书》', '肖四分析题'] },
+      { type: '大题背板·临门(2026)', items: ['腿姐/曲艺老师答题"板子"（背完要套写真题）', '大李子分析题思维 / 苏一"雷达找原理"', 'PLDY大观、临门一脚、大牙"抄材料"（考场急救）'] },
       { type: '模拟卷', items: ['肖八', '肖四', '腿姐4套卷', '徐涛6套卷'] }
     ],
     levelAdvice: {
@@ -363,14 +389,19 @@ const studyMethods = {
       { title: '番茄工作法', desc: '25分钟专注+5分钟休息，或45/15。强迫自己进入"深度学习"窗口。计时器是对抗拖延最有效的武器。', star: '⭐⭐⭐⭐⭐' },
       { title: '物理隔断', desc: '手机放在看不见够不着的地方，桌面只留当前学科资料。混杂环境不断发出诱惑信号，单靠意志力对抗注定失败。', star: '⭐⭐⭐⭐⭐' },
       { title: '即时反馈', desc: '把每日任务写在纸面上，完成一项用力划掉。这种视觉化反馈比任何电子打卡都踏实，是你每天需要的"进度条"。', star: '⭐⭐⭐⭐' },
-      { title: '交叉复习', desc: '学不进去这科就换那科。用换科目打破厌学情绪，避免长时间集中在同一门课上导致疲劳和效率下降。', star: '⭐⭐⭐⭐' }
+      { title: '交叉复习', desc: '学不进去这科就换那科。用换科目打破厌学情绪，避免长时间集中在同一门课上导致疲劳和效率下降。', star: '⭐⭐⭐⭐' },
+      { title: '输出 > 输入', desc: '26高分考生后期最大的感受：不要什么都想学，也不要一直停留在"看懂"。把时间从"囤知识"切到"大量输出+纠错"，才是真正能涨分的动作。', star: '⭐⭐⭐⭐⭐' },
+      { title: '错题牵动复习', desc: '错一题→回到讲义那一节→补整章知识，用错题精准定位漏洞，而不是把整轮复习推倒重来。这比"感觉哪都没学好就全部重学"高效得多。', star: '⭐⭐⭐⭐⭐' }
     ],
     toolkit: [
       { icon: '🗣️', title: '费曼学习法（通用）', when: '学完任何知识点', steps: ['第一步：拿出一张白纸，写下你要讲的概念', '第二步：假装教给一个完全不懂的人，用大白话讲', '第三步：讲卡壳的地方就是漏洞，回去重学', '第四步：简化语言、打比方，直到能流畅讲完', '检验标准：外行能听懂=你真懂了'] },
       { icon: '📆', title: '间隔重复（Anki法）', when: '对抗遗忘', steps: ['遗忘规律：学完1天后忘70%，必须及时复习', '复习节点：次日→3天后→1周后→2周后', '用Anki/墨墨等工具自动安排复习卡片', '把易混点、公式、单词做成卡片，碎片时间刷'] },
       { icon: '🍅', title: '番茄工作法', when: '难以专注时', steps: ['25分钟专注+5分钟休息，或45/15节奏', '番茄钟内手机放远，只做当前一件事', '每完成一个番茄打个勾，积累成就感', '状态好就连续做，状态差就只做1个番茄'] },
       { icon: '🗺️', title: '思维导图法', when: '建立体系', steps: ['学完一章合上书凭记忆画框架', '画不出=没掌握，回去补', '把知识点间的逻辑关系画出来', '考前用导图快速过完整体系'] },
-      { icon: '🤖', title: 'AI辅助学习', when: '全流程', ai: true, steps: ['把AI当费曼听众：你讲给它听，让它挑毛病', '概念不懂：让AI用生活例子和类比解释', '让AI出变式题检验掌握程度', '让AI帮你总结一章的重点和易错点', '注意：AI是助手不是拐杖，先自己想再问'] }
+      { icon: '🤖', title: 'AI辅助学习', when: '全流程', ai: true, steps: ['把AI当费曼听众：你讲给它听，让它挑毛病', '概念不懂：让AI用生活例子和类比解释', '让AI出变式题检验掌握程度', '让AI帮你总结一章的重点和易错点', '注意：AI是助手不是拐杖，先自己想再问'] },
+      { icon: '🔍', title: '以做代看自测法', when: '每次复习', src: '2026', steps: ['回顾绝不是"再看一遍答案/笔记"，而是盖住动笔重算——眼高手低是最大陷阱', '测试效应：主动回忆比反复阅读记得牢得多', '蒙对的题也算"未掌握"，同样要重做确认', '把"看懂了"和"会做了"当成两件事，考前只信"会做了"'] },
+      { icon: '🏟️', title: '全真模拟环境法', when: '强化后期起', src: '2026', steps: ['平时就进入接近考场的战斗状态：限时、不查、不中断', '模考戴耳机放考场环境音，大后期去阶梯教室做整场', '每天做够"两场考试强度"的专注训练，把"会"练成肌肉反应', '越真的模拟，考场上越不慌——紧张感要提前适应'] },
+      { icon: '⏳', title: '按小时锁定 + 电子错题本', when: '9月起 · 417分跨考985经验', src: '2026', steps: ['把每天排到"每个小时做什么"，用细颗粒计划倒逼专注——空白时段最容易滑向手机', '专业课/数学一门接一门串行推进，不四科同天齐开（切换成本高、每科都学不透）', '随身电子错题本（扇贝考研 / 数学真题宝等）：晚上躺床上也能刷一两道，把碎片时间变成回捞时间', '背单词做取舍：核心高频优先，别被"背完一整本"的执念拖垮进度'] }
     ],
     antiProcrastination: [
       { title: '🔥 为什么会拖延（认清根源）',
@@ -395,6 +426,61 @@ const studyMethods = {
       { type: '记忆与复习', items: ['Anki（间隔重复卡片，可自制题库）', '墨墨背单词 / 不背单词（英语词汇）', 'XMind / 幕布（思维导图）'] },
       { type: 'AI学习助手', items: ['AI讲解概念：让它用生活例子解释难点', 'AI当费曼听众：你讲它挑错', 'AI出变式题：检验是否真掌握', 'AI批改作文 / 讲解错题思路'] },
       { type: '抗拖延心法', items: ['5分钟启动法：先做再说', '任务最小化：小到不需要意志力', '固定时间固定地点：形成条件反射', '学习搭子互相监督'] }
+    ]
+  },
+  mind: {
+    title: '心态管理与励志', icon: '💚', color: '#e85d9a',
+    isMind: true,
+    firstAidNote: '这不是用来看的，是在体感差的当下扫一眼用的。慌了、烦了、想推翻计划时，先打开这一页，再看要不要动。',
+    mindFirstAid: [
+      { trigger: '想推翻整个计划、想回炉重学时',
+        lines: ['念一句：「重新来过，很多时候是逃避真正问题的一种方式。」', '你已经过了两轮的东西，重学既没必要又低效；"感觉重学能解决"本身是累了/慌了的信号，不是方案错了。', '正确动作：硬着头皮往下做，让错题去牵动复习（错一题→讲义一节→知识一章），而不是掀桌子重来。'] },
+      { trigger: '早上/深夜开始想人生意义、过往遗憾时',
+        lines: ['做「睡眠体检」三步：① 我现在累吗？困吗？饿吗？ ② 睡20分钟/吃顿饭，这些念头还会这么重要吗？ ③ 越重要的决定，越要等休息好再做。', '那些宏大的绝望，常常只是身体在喊"我缺觉了"——26考研394分的人花了几十天才想明白这件事。', '与其硬扛"理性学习"，不如提前给自己20分钟趴一会儿。'] },
+      { trigger: '焦虑压不下去、还失眠烦躁时',
+        lines: ['别和世界一起欺负自己：理智硬压情绪，情绪不会消失，只会以失眠、焦躁反噬。', '把闹情绪的那部分自己当同伴，照顾它的需求，一起去扛外部压力，而不是内部先打起来。', '这样做之后，情绪起伏反而变小。'] },
+      { trigger: '觉得"来不及了/进度太慢"时',
+        lines: ['26一战985(408分)的话：「九月之后拼的不是谁前面学得最久，而是谁能把剩下的时间用在真正能涨分的地方。」', '别被"别人几轮复习、几百小时"吓住；从"囤知识"切到"大量输出+纠错"，就是对的解法。', '允许"想一会背一会"：一边慌一边学也算数，不用等状态好了才开始。'] }
+    ],
+    corePrinciples: [
+      { title: '焦虑是合法的，不用先消灭它', desc: '结果不确定性带来的焦虑客观存在、无法消除。不必在"安宁"和"烦躁"之间二选一，不必等最佳状态才开始。承认它的合法性，它就从"要停下手去修的紧急故障"降格成"背景噪音"。', star: '⭐⭐⭐⭐⭐' },
+      { title: '并行操作：情绪后台跑，学习前台不停', desc: '没睡好就趴会儿、心情烦就站起来走走、效率低点就低点，但别关前台的学习进程。焦虑在后台运行（会占点内存），你完全可以带着它继续做题背书。', star: '⭐⭐⭐⭐⭐' },
+      { title: '完成 > 完美，狼狈地推进也是推进', desc: '394分上岸的人，全年也没"状态很好"过——散步假装跟猫说话想引人关心、失眠到凌晨、写数学写到在图书馆外发呆、两小时写不完回去睡一觉。成功是一路爬过来的，你的不完美是这条路本来的样子。', star: '⭐⭐⭐⭐⭐' },
+      { title: '把"会"练成肌肉反应', desc: '考场最后考的不是"你会不会"，而是高压下的本能。平时就以接近考场的强度专注学习、限时训练，练到大脑宕机时手也能把题做对，这分才真正是你的。', star: '⭐⭐⭐⭐⭐' },
+      { title: '用规律行动治愈焦虑', desc: '焦虑的本质常是"想得多、做得少"。持续的、具体的行动是消解它的唯一解药——不是想通了才动，是动起来才想得通。', star: '⭐⭐⭐⭐' }
+    ],
+    toolkit: [
+      { icon: '🛑', title: '三秒刹车法', when: '想推翻计划时', steps: ['察觉"想重学/想掀桌"的冲动，先停3秒', '问自己：这是方案错了，还是我今天累了慌了？', '若是情绪：去睡20分钟/走一圈，回来再判', '若是真问题：只微调，回炉交给"错题牵动复习"'] },
+      { icon: '🎚️', title: '情绪档位法', when: '状态差但必须学', steps: ['把今天定位成"红档/黄档/绿档"', '红档（很差）：只做1件核心小事，允许趴会儿，不苛责', '黄档（一般）：正常3番茄钟，遇难题就跳过不硬刚', '绿档（很好）：上套卷、攻出血点专题', '连续两天走样→复盘把难度回调到"能重新完成"，而非咬牙硬撑'] },
+      { icon: '📝', title: '一路狼狈复盘法', when: '每天睡前5分钟', steps: ['不记"我今天多差"，只记"我今天具体做了哪3件"', '把崩溃时刻写成一行流水（参考394分的时间线）', '周末回看：原来我也一路狼狈，但一直在往前走', '用"具体做过的事"反驳大脑"我什么都没做"的错觉'] },
+      { icon: '🌱', title: '给自己留出口', when: '每周固定', steps: ['每周固定休大半天：约饭/追番/散步，无愧疚地玩', '热爱不是敌人——它给你能量（考研群、动漫、音乐都算）', '别把"休息"过成"消耗"：刷短视频越刷越空，真休息是闭眼/散步/拉伸', '可持续 > 某一天苦撑，持久战拼的是不断电'] },
+      { icon: '🤖', title: 'AI当烦恼树洞', when: '钻牛角尖时', ai: true, steps: ['心里堵得慌，先把念头一股脑发给AI，让它帮你拆逻辑', '很多"人生大事"的焦虑，写出来会发现逻辑根本不成立', '让AI用大白话+生活例子把担心的事讲小', '但别用它替代睡觉——身体累的时候，先睡'] }
+    ],
+    inspiration: [
+      { who: '26考研394分（吃好睡好）', line: '「我确实无法消除情绪……但我可以在安宁和烦躁之间不选，带着情绪学习，想一会背一会。」' },
+      { who: '26双非→985（猫猫绘梨月）', line: '「勇气是人类的赞歌。终究平凡不平庸——也愿诸位读者，终究平凡不平庸。」' },
+      { who: '26中科院计算所441分', line: '「考研群虽耗时间，但现实中没有研友时，它能给你很多能量。」——别彻底孤立自己。' },
+      { who: '26一战985·408分（喵喵）', line: '「九月之后拼的不是谁前面学得最久，而是谁能把剩下的时间用在真正能涨分的地方。」' },
+      { who: '26哈深计专419·408单科135', line: '「当坚冰还盖着北海的时候，我看到了怒放的梅花！」——最难的那段路，恰恰离春天最近。' },
+      { who: '26哈深计专419（去焦虑）', line: '「初试学够约1600h足以拿下华五。别被『模拟哥』『进度哥』带节奏——比的是吸收了多少，不是刷了几套卷。」' }
+    ],
+    milestones: [
+      '计组93道错题一刷全部过完，背诵手册已建成（09-01）',
+      '数学16年真题12道完成首轮二刷，多道独立过关',
+      '数学口诀库 + 每日公式背诵清单已在跑',
+      '英语单词过完6轮底子，真题精读计划已启动',
+      '四科9月配比排定，政治定于9/5启动，没再往后拖'
+    ],
+    commonMistakes: [
+      { mistake: '状态没调好就不开始', consequence: '越想越慌，一整天废掉', solution: '带着情绪先做5分钟，前台进程不关' },
+      { mistake: '把焦虑当"计划失败的信号"', consequence: '体感差就想推翻既定安排', solution: '焦虑是正常反应；先做睡眠体检再判断' },
+      { mistake: '用理智硬压情绪', consequence: '反噬成失眠、焦躁、摆烂', solution: '倾听需求，把自己当同伴而非敌人' },
+      { mistake: '和别人比进度', consequence: '越比越慌、越慌越学不进', solution: '只和昨天的自己比，比"谁学最久"没意义' },
+      { mistake: '把刷短视频当休息', consequence: '越休息越空、内疚加重', solution: '真休息=闭眼/散步/拉伸，无愧疚地玩' }
+    ],
+    resources: [
+      { type: '配套本地文件', items: ['《心态锚点_焦虑来袭时看.md》(05-经验贴整理/分析与总结)', '《2026_考研心态自愈与励志合集.md》(05-经验贴整理/原始经验贴/心态与励志)'] },
+      { type: '能量来源', items: ['考研群/学习搭子（互发完成截图）', '每周固定半天的爱好出口（追番/约饭/散步）', '具象化进度：今日3件必做任务清单'] }
     ]
   }
 }
@@ -562,11 +648,11 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
           <span class="head-note">{{ cm.toolkit.length }} 个方法 · 可直接套用</span>
         </div>
         <div class="toolkit-grid">
-          <div v-for="(tk, ti) in (cm.toolkit as any[])" :key="ti" class="toolkit-card" :class="{ 'tk-ai': tk.ai }">
+          <div v-for="(tk, ti) in (cm.toolkit as any[])" :key="ti" class="toolkit-card" :class="{ 'tk-ai': tk.ai, 'tk-new': tk.src }">
             <div class="tk-head">
               <span class="tk-icon">{{ tk.icon }}</span>
               <div class="tk-title-block">
-                <strong>{{ tk.title }}</strong>
+                <strong>{{ tk.title }}<span v-if="tk.src" class="tk-badge">{{ tk.src }}新增</span></strong>
                 <span class="tk-when">适用 · {{ tk.when }}</span>
               </div>
             </div>
@@ -665,6 +751,51 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
         </div>
       </section>
 
+      <!-- 心态管理专区（仅心态） -->
+      <section v-if="cm.isMind" class="mind-note">
+        <span class="mn-icon">🫀</span>
+        <p>{{ cm.firstAidNote }}</p>
+      </section>
+
+      <section v-if="cm.mindFirstAid" class="card mind-card">
+        <div class="card-head">
+          <h2>焦虑 · 推翻计划急救卡</h2>
+          <span class="head-note">体感差的当下，扫一眼</span>
+        </div>
+        <div class="firstaid-grid">
+          <div v-for="(fa, fi) in (cm.mindFirstAid as any[])" :key="fi" class="firstaid">
+            <div class="fa-trigger">当 {{ fa.trigger }}</div>
+            <ul class="fa-lines">
+              <li v-for="(ln, li) in fa.lines" :key="li">{{ ln }}</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section v-if="cm.milestones" class="card milestone-card">
+        <div class="card-head">
+          <h2>你已经走到的位置</h2>
+          <span class="head-note">反驳"我什么都没做"</span>
+        </div>
+        <p class="ms-intro">焦虑时大脑会抹掉你的进度。下面是你已完成的真实里程碑，慌了先看这里。</p>
+        <ul class="ms-list">
+          <li v-for="(m, mi) in (cm.milestones as any[])" :key="mi"><span class="ms-check">✓</span>{{ m }}</li>
+        </ul>
+      </section>
+
+      <section v-if="cm.inspiration" class="card inspire-card">
+        <div class="card-head">
+          <h2>他们，也是一路狼狈过来的</h2>
+          <span class="head-note">2026 上岸者说</span>
+        </div>
+        <div class="inspire-grid">
+          <div v-for="(ip, ii) in (cm.inspiration as any[])" :key="ii" class="quote">
+            <p class="q-line">{{ ip.line }}</p>
+            <span class="q-who">—— {{ ip.who }}</span>
+          </div>
+        </div>
+      </section>
+
       <!-- 名师推荐 + 考场答题技巧 -->
       <div class="duo">
         <section v-if="cm.teacherComparison" class="card">
@@ -736,7 +867,10 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
           <div v-for="(cat, ci) in cm.resources" :key="ci" class="res-group">
             <h4>{{ cat.type }}</h4>
             <div class="res-tags">
-              <span v-for="(it, ii) in cat.items" :key="ii" class="res-tag">{{ it }}</span>
+              <template v-for="(it, ii) in cat.items" :key="ii">
+                <a v-if="it && it.url" :href="it.url" target="_blank" class="res-tag res-link">{{ it.text }} ↗</a>
+                <span v-else class="res-tag">{{ it }}</span>
+              </template>
             </div>
           </div>
         </div>
@@ -1107,6 +1241,8 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
 .tk-title-block { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .tk-title-block strong { font-size: 1rem; color: var(--ink); }
 .tk-when { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.5px; }
+.tk-badge { display: inline-block; margin-left: 8px; padding: 1px 7px; font-size: 0.62rem; font-weight: 700; color: #fff; background: #2fa36b; border-radius: 999px; vertical-align: middle; letter-spacing: 0.5px; font-family: var(--font-mono); }
+.toolkit-card.tk-new { border-color: rgba(47, 163, 107, 0.45); box-shadow: inset 3px 0 0 #2fa36b; }
 .tk-steps { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; }
 .tk-steps li { font-size: 0.86rem; line-height: 1.65; color: var(--body); }
 .tk-steps li::marker { color: var(--gold); font-weight: 700; font-family: var(--font-display); }
@@ -1284,6 +1420,62 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
 .anti-block:hover { transform: translateY(-3px); box-shadow: 0 5px 14px rgba(22, 52, 92, 0.08); }
 .anti-block h3 { margin: 0 0 12px 0; font-size: 1rem; font-weight: 700; color: var(--ink); }
 
+/* ==================== 心态管理专区 ==================== */
+.mind-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #fff0f6, #ffe9f2);
+  border: 1px solid #f8c8dd;
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+.mind-note .mn-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; }
+.mind-note p { margin: 0; font-size: 0.95rem; line-height: 1.7; color: #b0346a; font-weight: 600; }
+.mind-card { background: linear-gradient(160deg, #fffafc, #fff3f8); border-color: #f6d5e4; }
+.firstaid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.firstaid {
+  background: #fff;
+  border: 1px solid #f4d3e2;
+  border-left: 4px solid #e85d9a;
+  border-radius: 12px;
+  padding: 16px 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.firstaid:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(232, 93, 154, 0.16); }
+.fa-trigger { font-size: 0.95rem; font-weight: 700; color: #b0346a; margin-bottom: 10px; }
+.fa-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.fa-lines li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: var(--body);
+}
+.fa-lines li::before { content: '›'; position: absolute; left: 2px; top: 0; color: #e85d9a; font-weight: 700; }
+.milestone-card { background: #f6fff4; border-color: #cdecc6; }
+.milestone-card .card-head h2::before { background: #67c23a; }
+.ms-intro { margin: 0 0 14px 0; font-size: 0.88rem; line-height: 1.7; color: var(--muted); }
+.ms-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ms-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; line-height: 1.6; color: var(--ink); font-weight: 500; }
+.ms-check {
+  flex-shrink: 0;
+  width: 20px; height: 20px; line-height: 20px; text-align: center;
+  border-radius: 50%; background: #67c23a; color: #fff; font-size: 0.72rem; font-weight: 700; margin-top: 1px;
+}
+.inspire-card { background: linear-gradient(160deg, #fffdf5, #fff6e9); border-color: #f2e2bf; }
+.inspire-card .card-head h2::before { background: #e6a23c; }
+.inspire-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.quote {
+  background: #fff;
+  border: 1px solid #f0e3c5;
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.q-line { margin: 0; font-size: 0.95rem; line-height: 1.7; color: var(--navy); font-weight: 600; }
+.q-who { align-self: flex-end; font-size: 0.78rem; color: #b08a4a; font-family: var(--font-mono); }
+
 /* ==================== 名师 + 答题技巧 ==================== */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
 .teacher-list { display: flex; flex-direction: column; gap: 12px; }
@@ -1386,6 +1578,20 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
   transition: all 0.2s ease;
 }
 .res-tag:hover { border-color: var(--navy); color: var(--navy); transform: translateY(-1px); }
+
+.res-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--navy);
+  border-color: rgba(22, 52, 92, 0.35);
+  background: #f0f7ff;
+  font-weight: 600;
+}
+.res-link:hover {
+  background: var(--navy);
+  color: var(--gold);
+  border-color: var(--navy);
+}
 
 /* ==================== 响应式 ==================== */
 @media (max-width: 1080px) {

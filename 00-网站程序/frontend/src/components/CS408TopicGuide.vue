@@ -1,22 +1,55 @@
 <script setup lang="ts">
-import { CS408_TOPIC_GUIDES } from '@/data/cs408TopicGuides'
+import { CS408_TOPIC_GUIDES, type Cs408TopicGuide } from '@/data/cs408TopicGuides'
 
 const guides = CS408_TOPIC_GUIDES
+
+// ===== 码砖（codebrick）真题跳转 =====
+const BRICK_BASE = 'https://www.codebrick.tech/practice/browse'
+const SUBJECT_NAMES: Record<string, string> = { ds: '数据结构', co: '组成原理', os: '操作系统', cn: '计算机网络' }
+const BRICK_YEARS = Array.from({ length: 18 }, (_, i) => 2009 + i) // 2009-2026
+
+const brickYearUrl = (subject: string, year: number) => `${BRICK_BASE}/${subject}/year/${year}`
+const brickBrowseUrl = (subject: string) => `${BRICK_BASE}/${subject}`
+
+// 将要点文本中的真题年份（2009-2026）自动转成码砖真题跳转链接，其余文本原样转义输出
+const renderPoint = (text: string, subject: string) => {
+  const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return escaped.replace(/\b(20(09|1\d|2[0-6]))\b/g, (y) =>
+    `<a class="year-link" href="${brickYearUrl(subject, Number(y))}" target="_blank" rel="noopener" title="在码砖查看${y}年${SUBJECT_NAMES[subject]}真题">${y}<span class="yl-arrow">↗</span></a>`
+  )
+}
+const subjectName = (g: Cs408TopicGuide) => SUBJECT_NAMES[g.subject] || '408'
 </script>
 
 <template>
   <div class="cs408-guide-container">
-    <div class="guide-intro-box">
-      <p class="guide-intro-text">
-        408 数据结构大题就是一道算法设计题（约13分），固定三问：算法思想 / 代码 / 复杂度分析。十八年真题翻来覆去就是下面几类，先把"题型→结构→套路"的映射背熟，考场上才能20分钟写出来。
-      </p>
-    </div>
-
     <section v-for="g in guides" :key="g.id" class="guide-card">
       <div class="card-head">
         <h2>{{ g.head }}</h2>
         <span class="head-note">{{ g.note }}</span>
       </div>
+
+      <!-- 码砖真题直达 -->
+      <div class="brick-bar">
+        <div class="brick-bar-head">
+          <span class="brick-label">🧱 码砖真题直达</span>
+          <a class="brick-entry" :href="brickBrowseUrl(g.subject)" target="_blank" rel="noopener">
+            按章节刷{{ subjectName(g) }}真题 ↗
+          </a>
+        </div>
+        <div class="brick-years">
+          <a
+            v-for="year in BRICK_YEARS"
+            :key="year"
+            class="brick-year"
+            :href="brickYearUrl(g.subject, year)"
+            target="_blank"
+            rel="noopener"
+            :title="`码砖 ${year}年${subjectName(g)}真题`"
+          >{{ year }}</a>
+        </div>
+      </div>
+
       <div class="guide-intro-wrap">
         <p class="guide-intro">{{ g.intro }}</p>
       </div>
@@ -28,7 +61,7 @@ const guides = CS408_TOPIC_GUIDES
             <span class="gi-tag">{{ item.tag }}</span>
           </div>
           <ul class="gi-points">
-            <li v-for="(p, pi) in item.points" :key="pi">{{ p }}</li>
+            <li v-for="(p, pi) in item.points" :key="pi" v-html="renderPoint(p, g.subject)"></li>
           </ul>
           <div v-if="item.tip" class="gi-tip">⚠️ {{ item.tip }}</div>
         </div>
@@ -256,6 +289,102 @@ const guides = CS408_TOPIC_GUIDES
   border-radius: 10px;
   padding: 10px 14px;
   border: 1px solid rgba(212, 160, 18, 0.15);
+}
+
+/* ── 码砖真题直达条 ─────────────── */
+.brick-bar {
+  margin-bottom: 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(135deg, #fffdf5 0%, #f8fafd 100%);
+  padding: 14px 18px;
+}
+
+.brick-bar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.brick-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+.brick-entry {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  padding: 6px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(22, 52, 92, 0.2);
+}
+
+.brick-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(22, 52, 92, 0.3);
+}
+
+.brick-years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.brick-year {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 4px 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.brick-year:hover {
+  color: #fff;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px var(--gold-glow);
+}
+
+/* ── 要点内联年份链接 ─────────────── */
+:deep(.year-link) {
+  display: inline-block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-weight: 700;
+  font-size: 0.84em;
+  color: var(--navy);
+  background: rgba(22, 52, 92, 0.07);
+  border-radius: 6px;
+  padding: 0 6px;
+  margin: 0 2px;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+:deep(.year-link):hover {
+  color: #fff;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+}
+
+:deep(.year-link .yl-arrow) {
+  font-size: 0.8em;
+  margin-left: 2px;
+  opacity: 0.75;
 }
 
 @media (max-width: 768px) {

@@ -454,6 +454,9 @@ onMounted(async () => {
         // 只对完形填空添加空格样式，传统阅读的<u>是强调标记
         if (section.value === 'Use of English') {
           styledArticle = styledArticle.replace(/<u>/g, '<u style="display: inline-block; min-width: 2.5em; text-align: center; color: #e74c3c; font-weight: bold; text-decoration: none; border-bottom: 2px solid #e74c3c; margin: 0 0.1em; padding: 0 0.2em;">')
+          // 当前数据的空格为裸数字 1-20：转换为金色下划线 + 题号徽标的醒目标记（与真题页一致）
+          styledArticle = styledArticle.replace(/(?<![0-9a-zA-Z])(1\d|20|[1-9])(?![0-9a-zA-Z%])/g,
+            (n: string) => `<span class="cloze-blank-inline" title="第${n}空"><span class="cb-num">${n}</span></span>`)
         }
         
         articleContent.value = styledArticle
@@ -1321,5 +1324,36 @@ onMounted(async () => {
   border-bottom: 2px solid #e74c3c !important;
   margin: 0 0.1em !important;
   padding: 0 0.2em !important;
+}
+
+/* 完形裸数字空位：金色下划线 + 题号徽标（与真题页风格一致） */
+.intensive-reading.use-of-english .article-content .cloze-blank-inline {
+  display: inline-block;
+  min-width: 2.6em;
+  margin: 0 0.15em;
+  border-bottom: 3px solid #ffc53d;
+  text-align: center;
+  vertical-align: baseline;
+  transition: background 0.2s ease;
+}
+.intensive-reading.use-of-english .article-content .cloze-blank-inline:hover {
+  background: rgba(255, 197, 61, 0.12);
+  border-radius: 4px;
+}
+.intensive-reading.use-of-english .article-content .cloze-blank-inline .cb-num {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 0.35em;
+  margin-bottom: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 1.7;
+  color: #0d2137;
+  background: linear-gradient(135deg, #ffc53d, #f0a820);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(255, 197, 61, 0.45);
+  vertical-align: super;
+  text-indent: 0;
 }
 </style>

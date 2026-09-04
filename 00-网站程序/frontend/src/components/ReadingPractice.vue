@@ -249,7 +249,7 @@
             <div class="article-toolbar">
               <span class="article-label">Article</span>
             </div>
-            <div class="article-body cloze-body" v-html="getClozeArticleByYear(year)"></div>
+            <div class="article-body cloze-body" v-html="getClozeArticleByYear(year)" @click="onClozeBodyClick(year, $event)"></div>
             <!-- 段落翻译 -->
             <div v-if="isClozeTranslationVisible(year)" class="paragraph-translations">
               <div v-for="(para, idx) in getClozeParagraphTranslations(year)" :key="idx" class="para-trans">
@@ -265,7 +265,7 @@
           <!-- 题目 -->
           <div class="cloze-questions">
             <div class="section-subtitle">题目</div>
-            <div v-for="(question, idx) in getClozeQuestionsByYear(year)" :key="idx" class="cloze-question-item">
+            <div v-for="(question, idx) in getClozeQuestionsByYear(year)" :key="idx" :id="`cloze-q-${year}-${question.number}`" class="cloze-question-item">
               <div class="question-header">
                 <div class="cloze-number" :class="{
                   'correct': question.userAnswer && question.userAnswer === question.correctAnswer,
@@ -462,10 +462,28 @@ const clozeYears = computed(() =>
 )
 const getClozeQuestionsByYear = (year: number) =>
   clozeQuestions.value.filter(q => q.year === year)
+// 将完形文章中的裸数字 1-20 转换为醒目的横线空位（可点击定位到对应题目）
+const blankifyCloze = (html: string) =>
+  html.replace(/(?<![0-9a-zA-Z])(1\d|20|[1-9])(?![0-9a-zA-Z%])/g, (n) =>
+    `<span class="cloze-blank" data-blank="${n}" title="点击定位到第${n}题"><span class="cb-num">${n}</span></span>`
+  )
+
 const getClozeArticleByYear = (year: number) => {
   const qs = getClozeQuestionsByYear(year)
   if (!qs.length) return ''
-  return qs[0].article || `<p style="color:#999">请导入${year}年完型填空文章</p>`
+  return blankifyCloze(qs[0].article || `<p style="color:#999">请导入${year}年完型填空文章</p>`)
+}
+
+// 空位点击（事件委托）：滚动定位到对应题目卡片
+const onClozeBodyClick = (year: number, e: MouseEvent) => {
+  const blank = (e.target as HTMLElement).closest('.cloze-blank')
+  if (!blank) return
+  const el = document.getElementById(`cloze-q-${year}-${blank.getAttribute('data-blank')}`)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.classList.add('flash-target')
+    setTimeout(() => el.classList.remove('flash-target'), 1600)
+  }
 }
 
 // ===== 新题型 =====
@@ -1109,6 +1127,59 @@ onMounted(async () => {
 /* ===== 完型填空 ===== */
 .cloze-section { max-width: 1000px; margin: 0 auto; }
 .cloze-year-group { margin-bottom: 20px; }
+
+/* 完形文章排版：更大字号、舒展行高、明确段距 */
+.cloze-body {
+  font-size: 1.22em;
+  line-height: 2.7;
+  letter-spacing: 0.02em;
+}
+.cloze-body :deep(p) {
+  margin: 0 0 1.4em;
+}
+
+/* 完形空位：金色下划线 + 悬浮题号徽标，点击定位题目 */
+.cloze-body :deep(.cloze-blank) {
+  display: inline-block;
+  position: relative;
+  min-width: 2.6em;
+  margin: 0 0.15em;
+  border-bottom: 3px solid #ffc53d;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  vertical-align: baseline;
+}
+.cloze-body :deep(.cloze-blank .cb-num) {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 0.35em;
+  margin-bottom: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 1.7;
+  color: #0d2137;
+  background: linear-gradient(135deg, #ffc53d, #f0a820);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(255, 197, 61, 0.45);
+  vertical-align: super;
+  transition: transform 0.2s ease;
+}
+.cloze-body :deep(.cloze-blank:hover) {
+  border-bottom-color: #f0a820;
+  background: rgba(255, 197, 61, 0.12);
+  border-radius: 4px;
+}
+.cloze-body :deep(.cloze-blank:hover .cb-num) {
+  transform: translateY(-2px) scale(1.08);
+}
+
+/* 空位点击后目标题目高亮闪烁 */
+.cloze-question-item.flash-target {
+  border-color: #ffc53d;
+  box-shadow: 0 0 0 3px rgba(255, 197, 61, 0.35), 0 4px 16px rgba(255, 197, 61, 0.25);
+}
 .section-subtitle {
   font-size: 1.15em;
   font-weight: 700;
@@ -1133,18 +1204,19 @@ onMounted(async () => {
 }
 .cloze-number {
   flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
   text-align: center;
-  background: #16345c;
-  color: #fff;
+  background: linear-gradient(135deg, #ffc53d, #f0a820);
+  color: #0d2137;
   border-radius: 50%;
   font-weight: 700;
   font-size: 0.95em;
+  box-shadow: 0 2px 8px rgba(255, 197, 61, 0.4);
 }
-.cloze-number.correct { background: #48bb78 !important; }
-.cloze-number.wrong { background: #f56565 !important; }
+.cloze-number.correct { background: #48bb78 !important; color: #fff; }
+.cloze-number.wrong { background: #f56565 !important; color: #fff; }
 .question-stem-text { flex: 1; font-size: 1em; line-height: 1.6; color: #333; padding-top: 4px; }
 
 .question-detail { margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0f0f0; }

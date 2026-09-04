@@ -14,10 +14,6 @@ const router = useRouter()
       <h1 class="page-title">数学一知识点</h1>
       <p class="page-subtitle">高等数学 · 线性代数 · 概率统计</p>
       <div class="navigation-links">
-        <el-button type="primary" plain @click="router.push('/math')">
-          <el-icon><House /></el-icon>
-          返回数学一首页
-        </el-button>
         <el-button type="success" plain @click="router.push('/')">
           <el-icon><HomeFilled /></el-icon>
           返回网站主页
