@@ -1060,10 +1060,44 @@
       "2026起仅招AI(电子信息已撤销)",
       "AI名额逐年扩招(7→11→13)"
     ],
-    "employment": [],
-    "salary": "待更新",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "互联网/科技公司",
+        "percentage": "32%",
+        "companies": "华为、阿里巴巴、网易、字节、海康威视、微软"
+      },
+      {
+        "direction": "升学深造(读博/读研)",
+        "percentage": "28%",
+        "companies": "本校及国内外高校读博、直博"
+      },
+      {
+        "direction": "国企/央企/选调",
+        "percentage": "20%",
+        "companies": "国家电网、三大运营商、各级定向选调"
+      },
+      {
+        "direction": "AI/集成电路",
+        "percentage": "12%",
+        "companies": "之江实验室、华为海思、大疆、海康研究院"
+      },
+      {
+        "direction": "金融/其他",
+        "percentage": "8%",
+        "companies": "银行、证券、基金"
+      }
+    ],
+    "salary": "30-50万",
+    "pros": [
+      "学科实力：计算机A+、软件工程A+，全国顶尖梯队",
+      "平台资源：C9综合强校，导师、科研、大厂校招目标院校",
+      "区位产业：杭州数字经济高地，阿里/网易及大量科技公司，海宁AI方向性价比较高"
+    ],
+    "cons": [
+      "竞争激烈：复试线高、推免占比大，统考名额被挤压",
+      "本部与海宁/新学院培养体系仍在磨合，方向间资源有差异",
+      "深造内卷：顶尖生源读博/继续深造压力大"
+    ],
     "targetScore": 370,
     "links": {
       "graduate": "http://grs.zju.edu.cn/",
@@ -1177,10 +1211,44 @@
       "深圳研究院",
       "数据来源:灰灰考研"
     ],
-    "employment": [],
-    "salary": "待更新",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "信息技术/互联网",
+        "percentage": "33%",
+        "companies": "华为、字节、腾讯、阿里、百度"
+      },
+      {
+        "direction": "升学深造(读博)",
+        "percentage": "35%",
+        "companies": "本校直博及海外名校读博"
+      },
+      {
+        "direction": "国企/央企/科研院所",
+        "percentage": "20%",
+        "companies": "中电科、航天科技、国家电网、中科院"
+      },
+      {
+        "direction": "金融/咨询",
+        "percentage": "7%",
+        "companies": "中金、投行、咨询公司"
+      },
+      {
+        "direction": "公共部门/选调",
+        "percentage": "5%",
+        "companies": "定向选调、机关事业单位"
+      }
+    ],
+    "salary": "35-55万",
+    "pros": [
+      "顶尖平台：C9顶尖学府，学术与就业品牌天花板",
+      "落实率高：毕业生就业落实率约98%，深造比例约1/3",
+      "IT实力：计算机顶尖，大厂与科研院所重点目标院校"
+    ],
+    "cons": [
+      "统考名额极少：以推免为主，裸分统考录取个位数",
+      "2027改考408：专业课转向统考408，备考强度与不确定性上升",
+      "竞争极致：复试线高、容错率低"
+    ],
     "targetScore": 347,
     "links": {
       "graduate": "https://yz.tsinghua.edu.cn/",
@@ -6063,11 +6131,11 @@
       {
         "year": 2025,
         "direction": "计算机科学与技术(081200)",
-        "scoreLine": "待更新",
+        "scoreLine": "289",
         "avgScore": "待更新",
         "quota": "待更新",
         "ratio": "5.1",
-        "note": "【2026核查·09-05】2025计算机学院081200报名253/录取50≈5.1；来源:chinakaoyan.com/info/article/id/675291 + successkaoyan.com/blb/51026"
+        "note": "【2026核查·09-05】2025计算机科学与技术(081200)复试线289。双源:successkaoyan.com/blb/51026 + jixun.iqihang.com/2025635572"
       },
       {
         "year": 2024,
@@ -7081,10 +7149,11 @@
       {
         "year": 2025,
         "direction": "计算机科学与技术(081200)",
-        "scoreLine": "待更新",
+        "scoreLine": "318",
         "avgScore": "待更新",
         "quota": "待更新",
-        "ratio": "待更新"
+        "ratio": "待更新",
+        "note": "【2026核查·09-05】2025计算机科学与技术(081200)复试线318。双源:noobdream.com/schoolinfo/93 + jixun.iqihang.com/2025700401"
       },
       {
         "year": 2024,
@@ -9221,19 +9290,54 @@
       {
         "year": 2024,
         "direction": "计算机科学与技术(081200)",
-        "scoreLine": "待更新",
+        "scoreLine": "378",
         "avgScore": "待更新",
         "quota": "待更新",
-        "ratio": "待更新"
+        "ratio": "待更新",
+        "note": "【2026核查·09-05】2024复试线378(官方按二级学科计算机应用技术命名,2025起改081200=340)。双源:ece.pku.edu.cn/info/1025/2743(官方)+微博转载"
       }
     ],
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "互联网/通信(珠三角)",
+        "percentage": "40%",
+        "companies": "华为、腾讯、中兴、字节、大疆、Shopee"
+      },
+      {
+        "direction": "芯片/集成电路",
+        "percentage": "15%",
+        "companies": "海思、联发科、比亚迪半导体、寒武纪"
+      },
+      {
+        "direction": "金融科技/企业",
+        "percentage": "15%",
+        "companies": "招银网络、腾讯金融科技、平安科技"
+      },
+      {
+        "direction": "读博/出国深造",
+        "percentage": "20%",
+        "companies": "本校及海外博士、港校"
+      },
+      {
+        "direction": "国企/科研/选调",
+        "percentage": "10%",
+        "companies": "中电科、三大运营商、深圳事业单位"
+      }
+    ],
+    "salary": "35-55万",
+    "pros": [
+      "地理区位：深圳南山，紧邻华为、腾讯、大疆，实习就业一体化",
+      "品牌加持：北大985/C9学历，深研院学位本部认可",
+      "学科交叉：计算机+微电子+集成电路，受益芯片风口"
+    ],
+    "cons": [
+      "校区归属：深研院独立招生培养，与北京本部资源/氛围有差异",
+      "学费偏高：专硕/软工类学费高于本部学硕",
+      "竞争激烈：深圳报考热度高，复试线不低"
+    ],
     "targetScore": 357,
     "links": {
       "graduate": "https://admission.pku.edu.cn/",
@@ -9318,10 +9422,44 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "互联网/科技公司",
+        "percentage": "40%",
+        "companies": "字节、腾讯、百度、阿里、美团、快手"
+      },
+      {
+        "direction": "AI/大模型公司",
+        "percentage": "15%",
+        "companies": "商汤、智谱、月之暗面、DeepSeek"
+      },
+      {
+        "direction": "读博/科研深造",
+        "percentage": "20%",
+        "companies": "本校及海外读博、中科院计算所/软件所"
+      },
+      {
+        "direction": "国企/金融/运营商",
+        "percentage": "15%",
+        "companies": "国有大行信息科技、中金、国家电网、运营商研究院"
+      },
+      {
+        "direction": "出国深造",
+        "percentage": "10%",
+        "companies": "MIT、CMU、斯坦福、NUS 等"
+      }
+    ],
+    "salary": "40-60万",
+    "pros": [
+      "学科实力：计算机A+、双一流，全国顶尖梯队",
+      "平台资源：C9+北京，导师、科研、实习资源密集，大厂校招目标院校",
+      "深造通道：学硕读博/直博比例高，学术声誉强"
+    ],
+    "cons": [
+      "竞争激烈：复试线高、推免占比大，统考名额少",
+      "毕业压力大：课程与科研强度高，毕业要求严",
+      "薪资分化：走纯学术/体制内路线总包显著低于大厂"
+    ],
     "targetScore": 350,
     "links": {
       "graduate": "https://admission.pku.edu.cn/",
@@ -9406,10 +9544,43 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "国企/央企/科研",
+        "percentage": "40%",
+        "companies": "国家电网、三大运营商、中建、航天科技/科工、中电科"
+      },
+      {
+        "direction": "互联网/科技",
+        "percentage": "30%",
+        "companies": "字节、百度、腾讯、阿里、美团、京东、小米"
+      },
+      {
+        "direction": "通信设备",
+        "percentage": "12%",
+        "companies": "华为、中兴、新华三、联想"
+      },
+      {
+        "direction": "银行/金融科技",
+        "percentage": "10%",
+        "companies": "工行、建行、北京银行科技部"
+      },
+      {
+        "direction": "公务员选调",
+        "percentage": "8%",
+        "companies": "北京市选调、机关事业单位"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "区位就业：北京211，留京率高(本科超76%)，本地认可度强",
+      "高性价比：难度低于同城985，就业质量不差、国企通道稳",
+      "学科实力：国家示范性软件学院，计算机ESI前1%"
+    ],
+    "cons": [
+      "非985：头部大厂核心岗简历关略逊于985",
+      "深造平台：学术/读博平台与985有差距"
+    ],
     "targetScore": 375,
     "links": {
       "graduate": "https://yanzhao.bjut.edu.cn/",
@@ -9494,10 +9665,44 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "软件/互联网",
+        "percentage": "30%",
+        "companies": "华为南京研究所、中兴、趋势科技、焦点科技、字节/小米南京"
+      },
+      {
+        "direction": "教育/事业单位",
+        "percentage": "25%",
+        "companies": "中小学信息技术教师、高校、科研院所(师范特色)"
+      },
+      {
+        "direction": "国企/金融/通信",
+        "percentage": "25%",
+        "companies": "银行科技部、三大运营商、国家电网、江苏国企"
+      },
+      {
+        "direction": "公务员选调",
+        "percentage": "12%",
+        "companies": "江苏及各地选调生、公务员"
+      },
+      {
+        "direction": "升学/读博深造",
+        "percentage": "8%",
+        "companies": "本校及985高校读博"
+      }
+    ],
+    "salary": "18-30万",
+    "pros": [
+      "211双一流：江苏省属重点，考研难度相对友好",
+      "区位优势：南京软件/互联网产业发达，华为南研所等岗位多",
+      "师范招牌：教育及公共部门就业稳定、认可度高"
+    ],
+    "cons": [
+      "学科评估一般：计算机专业实力非A类",
+      "大厂竞争力：头部互联网核心技术岗不及985/两电一邮",
+      "薪资偏低：南京应届总包低于北京、深圳同类岗位"
+    ],
     "targetScore": 58,
     "links": {
       "graduate": "https://yjszs.njnu.edu.cn/",
@@ -9582,10 +9787,43 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "港航与交通信息化",
+        "percentage": "22%",
+        "companies": "中远海运、招商局集团、各地港口集团、中国船级社、海事局系统"
+      },
+      {
+        "direction": "软件与信息技术服务",
+        "percentage": "19%",
+        "companies": "华为、腾讯、百度、英特尔(大连)、东软集团"
+      },
+      {
+        "direction": "国企央企与体制内",
+        "percentage": "25%",
+        "companies": "国资委直属央企、交通运输系统机关及事业单位"
+      },
+      {
+        "direction": "互联网大厂",
+        "percentage": "14%",
+        "companies": "字节、美团、京东、快手(主要流向京深广杭)"
+      },
+      {
+        "direction": "升学深造",
+        "percentage": "20%",
+        "companies": "国内双一流高校读博、中科院所、出国"
+      }
+    ],
+    "salary": "20-30万",
+    "pros": [
+      "行业品牌：交通运输部直属211，航运港口物流圈认可度高，智慧港航方向特色明显",
+      "央企通道：进入央企比例高，官方报告届别曾有522人进国资委企业、716人进世界500强",
+      "行业锚点：交通运输业与信息软件业为两大就业行业(官方约22.5%和18.6%)，对口岗位稳定"
+    ],
+    "cons": [
+      "学科实力：计算机第四轮学科评估B，王牌资源向航海技术倾斜",
+      "地域局限：大连本地高薪IT岗位有限，大厂岗多需赴京深，本地实习生态弱"
+    ],
     "targetScore": 73,
     "links": {
       "graduate": "https://grs.dlmu.edu.cn/",
@@ -9670,10 +9908,44 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "互联网与软件",
+        "percentage": "35%",
+        "companies": "字节、美团、拼多多、B站、网易"
+      },
+      {
+        "direction": "电子信息与通信",
+        "percentage": "20%",
+        "companies": "华为、中兴、紫光展锐、中芯国际"
+      },
+      {
+        "direction": "银行与金融科技",
+        "percentage": "15%",
+        "companies": "银行卡中心/科技子公司、券商金融科技岗"
+      },
+      {
+        "direction": "上海国企与科研院所",
+        "percentage": "20%",
+        "companies": "上汽、上海电气、上海微电子、市属科研院所"
+      },
+      {
+        "direction": "升学深造及其他",
+        "percentage": "10%",
+        "companies": "本校及复旦交大等读博、出国"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "地理位置：留沪就业占比超七成(官方签约上海74.04%)，实习校招资源极丰",
+      "211+双一流：上海市属重点，本地认可度高，信息传输软件业为头部就业行业",
+      "体量口径：招生规模大、就业落实稳定，硕博毕业去向以企业为主"
+    ],
+    "cons": [
+      "报考热度高：上海211中的热门校，计算机报录竞争激烈、复试刷人不手软",
+      "非985：头部大厂核心算法岗与部分定向选调中品牌上限受限",
+      "校区位置：宝山校区距市中心企业聚集区通勤较远，日常实习成本偏高"
+    ],
     "targetScore": 0,
     "links": {
       "graduate": "https://yjszs.shu.edu.cn/",
@@ -9758,10 +10030,43 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "智能制造与电子信息",
+        "percentage": "30%",
+        "companies": "华为、上汽、中国商飞、宁德时代、中芯国际、中兴"
+      },
+      {
+        "direction": "软件与互联网",
+        "percentage": "20%",
+        "companies": "阿里巴巴及上海互联网/软件企业"
+      },
+      {
+        "direction": "石化能源央企(含信息化岗)",
+        "percentage": "20%",
+        "companies": "中石化、中石油、万华化学、巴斯夫、上海电气"
+      },
+      {
+        "direction": "金融科技与专业服务",
+        "percentage": "15%",
+        "companies": "国有四大行、四大会计师事务所"
+      },
+      {
+        "direction": "体制内与深造",
+        "percentage": "15%",
+        "companies": "机关事业单位、国内外读博"
+      }
+    ],
+    "salary": "25-40万",
+    "pros": [
+      "上海区位：留沪比例约70%(官方2024届本科口径)，长三角就业半径大",
+      "就业质量硬：研究生落实率约97.5%，各专业岗位供需充沛",
+      "雇主名单强：官方列举中石化、华为、商飞、中芯、四大行、四大所，制造业信息化岗是差异化优势"
+    ],
+    "cons": [
+      "计算机非王牌：资源向化工材料倾斜，学科评估B，校内信息类平台一般",
+      "校名标签：化工印象重，纯IT投递时品牌常被同城985压一头"
+    ],
     "targetScore": 388,
     "links": {
       "graduate": "https://gschool.ecust.edu.cn/",
@@ -9822,10 +10127,44 @@
     "is408Change": true,
     "hasAI": false,
     "tags": [],
-    "employment": [],
-    "salary": "待补充",
-    "pros": [],
-    "cons": [],
+    "employment": [
+      {
+        "direction": "银行与金融科技",
+        "percentage": "30%",
+        "companies": "招行、中行、农行、建行、工行及银行软件中心/卡中心"
+      },
+      {
+        "direction": "公务员与选调体制内",
+        "percentage": "15%",
+        "companies": "税务、银保监、海关等机关"
+      },
+      {
+        "direction": "互联网与软件企业",
+        "percentage": "20%",
+        "companies": "字节、腾讯、华为(武汉研究所)、光谷软件企业"
+      },
+      {
+        "direction": "事务所与金融IT咨询",
+        "percentage": "10%",
+        "companies": "四大会计师事务所、券商IT"
+      },
+      {
+        "direction": "升学深造及其他",
+        "percentage": "25%",
+        "companies": "读博、出国、其他行业"
+      }
+    ],
+    "salary": "18-30万",
+    "pros": [
+      "金融圈品牌：五院四系+财经211，银行招聘大户、校友资源丰富，技术岗面试吃香",
+      "体制内通道：双一流名单内，选调生资格覆盖面广，公共管理就业占比超一成",
+      "交叉定位：金融×IT(风控、量化、审计科技)差异化路线，校友圈辐射湖北与广东"
+    ],
+    "cons": [
+      "计算机学科弱：财经政法院校里属边缘学科，实验室与大项目资源有限",
+      "薪资水平：校址武汉，应届研究生起薪明显低于同城理工与一线城市",
+      "纯技术认可度：大厂研发/算法岗直接对标理工强校，本地互联网实习生态偏薄"
+    ],
     "targetScore": 0,
     "links": {
       "graduate": "https://yzb.zuel.edu.cn/",
