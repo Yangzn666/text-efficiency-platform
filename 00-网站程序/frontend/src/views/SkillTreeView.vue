@@ -168,7 +168,7 @@ function computePositions() {
   chIds.forEach(crank)
   const sorted = chIds.slice().sort((a, b) => (cmemo[a] - cmemo[b]) || a.localeCompare(b))
   const pos: Record<string, { x: number; y: number }> = {}
-  const rowH = 96, colW = 158, itemsStartX = 262
+  const rowH = 96, colW = 172, itemsStartX = 285
   sorted.forEach((ch, r) => {
     pos[ch] = { x: 0, y: r * rowH }
     ;(itemsOfChapter[ch] || []).forEach((it, i) => {
@@ -287,8 +287,8 @@ function closePanel() {
 function cyStyles() {
   return [
     { selector: 'node', style: {
-      'label': 'data(label)', 'font-family': '"Microsoft YaHei",system-ui,sans-serif', 'font-weight': '500',
-      'color': '#E2E8F0', 'text-valign': 'center', 'text-halign': 'center', 'font-size': '14px',
+      'label': 'data(label)', 'font-family': '"Microsoft YaHei",system-ui,sans-serif', 'font-weight': '600',
+      'color': '#F1F5F9', 'text-valign': 'center', 'text-halign': 'center', 'font-size': '16px',
       'text-wrap': 'none', 'transition-property': 'opacity, background-color, border-color, border-width', 'transition-duration': '0.25s'
     } },
     // 章节节点：靛蓝径向渐变 + 柔光，像一颗行星站
@@ -296,13 +296,13 @@ function cyStyles() {
       'shape': 'round-rectangle',
       'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#4F46E5', '#312E81', '#1E1B4B'],
       'background-gradient-stop-positions': [0, 0.55, 1], 'background-gradient-direction': 'right',
-      'border-width': 2, 'border-color': '#818CF8', 'width': 'label', 'height': 46, 'padding': '16px',
-      'font-size': '16px', 'font-weight': '600', 'color': '#EEF2FF',
+      'border-width': 2, 'border-color': '#818CF8', 'width': 'label', 'height': 50, 'padding': '18px',
+      'font-size': '18px', 'font-weight': '700', 'color': '#EEF2FF',
       'shadow-blur': 18, 'shadow-color': 'rgba(99,102,241,0.55)', 'shadow-opacity': 1, 'shadow-offset-x': 0, 'shadow-offset-y': 4
     } },
     { selector: 'node[type="item"]', style: {
-      'shape': 'round-rectangle', 'width': 'label', 'height': 34, 'padding': '11px',
-      'font-size': '14px', 'font-weight': '500', 'border-width': 1.5
+      'shape': 'round-rectangle', 'width': 'label', 'height': 40, 'padding': '14px',
+      'font-size': '16px', 'font-weight': '600', 'border-width': 1.5
     } },
     // 考频配色（线性渐变）
     { selector: 'node.freq-nnk', style: { 'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#FCD34D', '#F59E0B'], 'color': '#3A2600', 'border-color': '#FDE68A' } },
@@ -315,14 +315,14 @@ function cyStyles() {
     { selector: 'node.learning', style: { 'opacity': 1, 'border-width': 2, 'border-style': 'dashed', 'border-color': '#F8FAFC' } },
     { selector: 'node.untested', style: { 'opacity': 1 } },
     // 锁定：保留考频配色，只压暗 + 虚线边框（不再是灰墙）
-    { selector: 'node.locked', style: { 'opacity': 0.46, 'border-style': 'dashed', 'border-color': '#64748B', 'shadow-blur': 0, 'shadow-opacity': 0 } },
+    { selector: 'node.locked', style: { 'opacity': 0.72, 'border-style': 'dashed', 'border-color': '#94A3B8', 'shadow-blur': 0, 'shadow-opacity': 0 } },
     { selector: 'node[type="chapter"].mastered', style: {
       'background-fill': 'linear-gradient', 'background-gradient-stop-colors': ['#FDE68A', '#F59E0B', '#B45309'],
       'border-color': '#FEF08A', 'color': '#3A2600', 'opacity': 1,
       'shadow-blur': 26, 'shadow-color': '#FDE047', 'shadow-opacity': 0.6, 'shadow-offset-y': 0 } },
     { selector: 'node[type="chapter"].locked', style: {
-      'background-fill': 'solid', 'background-color': '#243049', 'border-color': '#475569', 'border-style': 'dashed',
-      'color': '#94A3B8', 'opacity': 0.55, 'shadow-blur': 0, 'shadow-opacity': 0 } },
+      'background-fill': 'solid', 'background-color': '#2E3D5C', 'border-color': '#64748B', 'border-style': 'dashed',
+      'color': '#E2E8F0', 'opacity': 0.9, 'shadow-blur': 0, 'shadow-opacity': 0 } },
     { selector: 'node.selected', style: { 'border-width': 3.5, 'border-color': '#FFFFFF',
       'shadow-blur': 28, 'shadow-color': '#FDE047', 'shadow-opacity': 0.85, 'shadow-offset-x': 0, 'shadow-offset-y': 0 } },
     { selector: 'edge', style: { 'width': 2, 'line-color': '#3B4A63', 'target-arrow-color': '#3B4A63',
@@ -339,6 +339,8 @@ async function initCy() {
     container: cyContainer.value,
     style: cyStyles(),
     wheelSensitivity: 0.2,
+    minZoom: 0.85,
+    maxZoom: 3,
     selectionType: 'single',
     boxSelectionEnabled: false
   })
