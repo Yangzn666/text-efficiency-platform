@@ -193,7 +193,9 @@ const handleContentClick = (e: MouseEvent) => {
   const file = el.getAttribute('data-figure') || ''
   const caption = el.getAttribute('data-caption') || ''
   if (file) {
-    lightbox.value = { src: FIGURE_BASE + file, caption }
+    // 图解已转 WebP（体积仅原 PNG 的 ~1%），内容里仍写 .png，这里统一换成 .webp 提供
+    const served = file.replace(/\.png$/i, '.webp')
+    lightbox.value = { src: FIGURE_BASE + served, caption }
   }
 }
 

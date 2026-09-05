@@ -53,7 +53,7 @@ export default defineConfig({
       },
       workbox: {
         // 预缓存静态资源（含 json/md 学习数据），离线可打开应用并查看章节内容
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,md}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,ico,woff2,json,md}'],
         // 预缓存瘦身：体积大且按需加载的 chunk（思维导图/关系图/图表引擎等）不预缓存，
         // 避免首次访问时 Service Worker 后台下载约 2MB 用不到的代码，拖慢手机网络；
         // 它们改由下方 runtimeCaching 在真正访问对应页面时缓存（仍可离线二次访问）。
@@ -89,7 +89,7 @@ export default defineConfig({
           {
             // 同源静态资源（含未预缓存的懒加载大 chunk）：
             // StaleWhileRevalidate——有缓存先秒开，同时后台更新，兼顾速度与新鲜度
-            urlPattern: /\.(?:js|css|json|md|woff2|png|svg|ico)$/i,
+            urlPattern: /\.(?:js|css|json|md|woff2|png|webp|svg|ico)$/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'static-resources',

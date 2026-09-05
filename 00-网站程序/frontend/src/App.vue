@@ -117,6 +117,18 @@ body {
   font-family: 'FZCuHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: #f5f8fc;
   min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 全局移动端硬化：图片永不撑破窄屏；按钮/链接去掉 300ms 点击延迟 */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+button, a, .tab-pill, .module-card {
+  touch-action: manipulation;
 }
 
 .container {
