@@ -2,106 +2,10 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked, Upload, Picture, MagicStick, ArrowDown } from '@element-plus/icons-vue'
+import type { WrongProblem } from '@/data/osWrongData'
+import { osWrongProblems } from '@/data/osWrongData'
 
-interface WrongProblem {
-  id: string
-  chapterId: string
-  chapterName: string
-  sectionId: string
-  sectionName: string
-  title: string
-  content: string
-  mistakeType: string
-  importance: number
-  correction: string
-  createdAt: string
-  reviewCount: number
-  lastReviewAt: string
-  mastered: boolean
-}
-
-const problems = ref<WrongProblem[]>([
-  {
-    id: 'os_2_1',
-    chapterId: 'ch2',
-    chapterName: '第二章 进程管理',
-    sectionId: '2.1',
-    sectionName: '2.1 进程与线程',
-    title: '进程的基本状态转换',
-    content: '下列选项中，可能导致进程从运行状态变为就绪状态的是（）。\nA. 等待I/O完成\nB. 时间片用完\nC. I/O完成\nD. 进程被杀死',
-    mistakeType: '概念不清',
-    importance: 5,
-    correction: '正确答案：B\n解析：时间片用完后，进程会从运行态转为就绪态，等待下一次调度。A选项会转为阻塞态，C选项从阻塞态转为就绪态，D选项直接终止。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'os_2_2',
-    chapterId: 'ch2',
-    chapterName: '第二章 进程管理',
-    sectionId: '2.2',
-    sectionName: '2.2 CPU调度',
-    title: '调度算法的比较',
-    content: '下列关于CPU调度算法的说法中，正确的是（）。\nA. FCFS算法不会产生饥饿现象\nB. SJF算法的平均等待时间最短\nC. RR算法的时间片越大越好\nD. 多级反馈队列算法不能保证响应时间',
-    mistakeType: '理解偏差',
-    importance: 4,
-    correction: '正确答案：B\n解析：SJF（短作业优先）算法在理论上可以使平均等待时间最短。A错误，FCFS对短作业不利；C错误，RR时间片过大会退化为FCFS；D错误，多级反馈队列可以较好地平衡响应时间和吞吐量。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'os_3_1',
-    chapterId: 'ch3',
-    chapterName: '第三章 内存管理',
-    sectionId: '3.2',
-    sectionName: '3.2 分页存储管理',
-    title: '页表的作用',
-    content: '在分页存储管理系统中，页表的作用是（）。\nA. 实现虚拟地址到物理地址的映射\nB. 保护内存不被非法访问\nC. 实现内存共享\nD. 以上都是',
-    mistakeType: '概念不清',
-    importance: 5,
-    correction: '正确答案：D\n解析：页表不仅实现地址映射，还可以通过权限位实现内存保护，通过标记共享页实现内存共享。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'os_4_1',
-    chapterId: 'ch4',
-    chapterName: '第四章 文件系统',
-    sectionId: '4.2',
-    sectionName: '4.2 文件目录',
-    title: '索引节点的字段',
-    content: '在UNIX文件系统中，索引节点（inode）不包含的信息是（）。\nA. 文件名\nB. 文件大小\nC. 文件所有者\nD. 数据块指针',
-    mistakeType: '记忆混淆',
-    importance: 4,
-    correction: '正确答案：A\n解析：文件名存储在目录项中，不在inode中。inode包含文件大小、所有者、权限、时间戳和数据块指针等信息。一个文件可以有多个硬链接（多个文件名指向同一个inode）。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'os_5_1',
-    chapterId: 'ch5',
-    chapterName: '第五章 I/O管理',
-    sectionId: '5.2',
-    sectionName: '5.2 I/O核心子系统',
-    title: '设备独立性软件的功能',
-    content: '下列功能中，属于设备独立性软件层的是（）。\nA. 中断处理\nB. 设备驱动程序\nC. 统一命名和抽象\nD. DMA控制',
-    mistakeType: '概念不清',
-    importance: 4,
-    correction: '正确答案：C\n解析：设备独立性软件提供统一的设备接口和命名，使应用程序不依赖于具体设备。A和D属于硬件层面，B属于设备驱动层。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  }
-])
+const problems = ref<WrongProblem[]>([...osWrongProblems])
 
 const activeTab = ref('list')
 const showAddDialog = ref(false)

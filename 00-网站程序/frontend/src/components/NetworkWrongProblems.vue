@@ -2,106 +2,10 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked } from '@element-plus/icons-vue'
+import type { WrongProblem } from '@/data/networkWrongData'
+import { networkWrongProblems } from '@/data/networkWrongData'
 
-interface WrongProblem {
-  id: string
-  chapterId: string
-  chapterName: string
-  sectionId: string
-  sectionName: string
-  title: string
-  content: string
-  mistakeType: string
-  importance: number
-  correction: string
-  createdAt: string
-  reviewCount: number
-  lastReviewAt: string
-  mastered: boolean
-}
-
-const problems = ref<WrongProblem[]>([
-  {
-    id: 'net_5_1',
-    chapterId: 'ch5',
-    chapterName: '第五章 传输层',
-    sectionId: '5.3',
-    sectionName: '5.3 TCP',
-    title: 'TCP三次握手过程',
-    content: '在TCP连接建立过程中，客户端发送SYN=1, seq=x后，服务器应该回复（）。\nA. SYN=1, ACK=1, seq=y, ack=x+1\nB. SYN=1, ACK=0, seq=y\nC. ACK=1, seq=y, ack=x\nD. SYN=1, ACK=1, seq=y, ack=x',
-    mistakeType: '概念不清',
-    importance: 5,
-    correction: '正确答案：A\n解析：TCP三次握手的第二次握手，服务器需要同时确认客户端的SYN（ACK=1, ack=x+1）并发送自己的SYN（SYN=1, seq=y）。注意ack=x+1是对x的确认。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'net_4_2',
-    chapterId: 'ch4',
-    chapterName: '第四章 网络层',
-    sectionId: '4.3',
-    sectionName: '4.3 IPv4',
-    title: '子网划分与CIDR计算',
-    content: '某公司申请到一个C类IP地址，但要连接6个子公司，最大的一个子公司有26台计算机，每个子公司在一个网段中，则子网掩码应设为（）。\nA. 255.255.255.0\nB. 255.255.255.128\nC. 255.255.255.192\nD. 255.255.255.224',
-    mistakeType: '计算错误',
-    importance: 5,
-    correction: '正确答案：D\n解析：最大子公司26台主机，需要至少5位主机位（2^5-2=30>=26）。C类地址默认24位网络位，借用3位作为子网位（2^3=8>=6个子网），所以子网掩码为24+3=27位，即255.255.255.224。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'net_3_3',
-    chapterId: 'ch3',
-    chapterName: '第三章 数据链路层',
-    sectionId: '3.4',
-    sectionName: '3.4 介质访问控制',
-    title: 'CSMA/CD协议最小帧长',
-    content: '以太网采用CSMA/CD协议，若网络数据传输速率为1Gbps，电缆长度为2km，信号传播速度为2×10^8m/s，则最小帧长为（）。\nA. 1000bit\nB. 2000bit\nC. 10000bit\nD. 20000bit',
-    mistakeType: '理解偏差',
-    importance: 4,
-    correction: '正确答案：C\n解析：最小帧长 = 2 × 传播时延 × 数据传输速率。传播时延 = 2000m / (2×10^8m/s) = 10μs。最小帧长 = 2 × 10μs × 1Gbps = 20000bit？等等，重新计算：2 × 10×10^-6 × 10^9 = 20000bit。但标准答案是10000bit，因为实际以太网规定最小帧长为64字节=512bit（10Mbps时），千兆以太网为512×100=51200bit。这题应该是理论计算题，答案应为20000bit。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'net_6_4',
-    chapterId: 'ch6',
-    chapterName: '第六章 应用层',
-    sectionId: '6.5',
-    sectionName: '6.5 WWW',
-    title: 'HTTP与HTTPS的区别',
-    content: '下列关于HTTP和HTTPS的说法中，错误的是（）。\nA. HTTPS使用SSL/TLS协议进行加密\nB. HTTP默认端口是80，HTTPS默认端口是443\nC. HTTPS比HTTP更安全，因此速度更快\nD. HTTPS需要对服务器进行身份认证',
-    mistakeType: '记忆混淆',
-    importance: 4,
-    correction: '正确答案：C\n解析：HTTPS由于需要进行加密解密操作，会增加额外的计算开销，因此速度通常比HTTP慢，而不是更快。HTTPS的优势在于安全性，而非速度。其他选项均正确。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  },
-  {
-    id: 'net_4_5',
-    chapterId: 'ch4',
-    chapterName: '第四章 网络层',
-    sectionId: '4.8',
-    sectionName: '4.8 网络层设备',
-    title: '路由器与交换机的区别',
-    content: '下列关于路由器和二层交换机的说法中，正确的是（）。\nA. 路由器工作在网络层，交换机工作在数据链路层\nB. 路由器可以隔离广播域，交换机不能\nC. 路由器根据IP地址转发，交换机根据MAC地址转发\nD. 以上都正确',
-    mistakeType: '概念混淆',
-    importance: 4,
-    correction: '正确答案：D\n解析：三个选项都正确。路由器工作在第3层（网络层），根据IP地址进行路由选择，可以隔离广播域；二层交换机工作在第2层（数据链路层），根据MAC地址进行帧转发，只能隔离冲突域，不能隔离广播域。',
-    createdAt: new Date().toISOString(),
-    reviewCount: 0,
-    lastReviewAt: '',
-    mastered: false
-  }
-])
+const problems = ref<WrongProblem[]>([...networkWrongProblems])
 
 // 表单相关
 const dialogVisible = ref(false)
