@@ -57,6 +57,27 @@
       </div>
     </section>
 
+    <!-- ①.5 战果墙（只增不减 · 与倒计时对照的第二根轴） -->
+    <section class="card wall-card">
+      <div class="wall-head">
+        <h2 class="wall-title">🌱 你已经走了这么远</h2>
+        <p class="wall-sub">下面的数字只会增加、不会减少。每次想放弃，先看看这里，再抬头看倒计时。</p>
+      </div>
+      <div class="wall-grid">
+        <div
+          v-for="t in warTiles"
+          :key="t.label"
+          class="wall-tile"
+          :style="{ '--wc': t.color }"
+        >
+          <span class="wall-icon">{{ t.icon }}</span>
+          <div class="wall-num"><b>{{ t.value }}</b><i v-if="t.suffix">{{ t.suffix }}</i></div>
+          <div class="wall-label">{{ t.label }}</div>
+          <div class="wall-hint">{{ t.hint }}</div>
+        </div>
+      </div>
+    </section>
+
     <!-- ② 非对称 Bento 主区 -->
     <div class="bento">
       <!-- 今日任务（宽列） -->
@@ -262,6 +283,15 @@ function milestoneStatus(m) {
 }
 
 const milestonesDone = computed(() => store.milestoneRows.filter(m => m.done).length)
+
+// ---------- 战果墙（只增不减） ----------
+const warTiles = computed(() => [
+  { icon: '🗓️', value: store.daysTouched, suffix: '天', label: '累计备考', hint: '从第一天走到今天', color: '#4a90d9' },
+  { icon: '✅', value: store.totalCompletedUnits, suffix: '个', label: '完成任务', hint: '一格格亲手勾掉的', color: '#67C23A' },
+  { icon: '⏳', value: store.accumulatedHours, suffix: 'h', label: '已投入', hint: '做题·精读折算', color: '#E6A23C' },
+  { icon: '🔥', value: store.streak, suffix: '天', label: '连续打卡', hint: '断了也接得上', color: '#f0862e' },
+  { icon: '🏁', value: `${store.milestonesDone}/${store.milestonesTotal}`, suffix: '', label: '里程碑', hint: '已经立住的节点', color: '#ffc53d' }
+])
 
 // ---------- 励志语录（6秒轮换） ----------
 const quotes = [
@@ -1125,6 +1155,98 @@ onUnmounted(() => {
 }
 .materials-body {
   margin-top: 16px;
+}
+
+/* ---------- 战果墙（只增不减 · 与倒计时对照） ---------- */
+.wall-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fffdf6 0%, #fff8ec 100%);
+  border-color: #f0dca0;
+  padding-left: 26px;
+}
+.wall-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--gold), #f0a820);
+}
+.wall-head {
+  margin-bottom: 16px;
+}
+.wall-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #9a7b2e;
+  margin: 0 0 6px;
+  letter-spacing: 0.3px;
+}
+.wall-sub {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+.wall-tile {
+  background: #fff;
+  border: 1px solid #f2e6c8;
+  border-radius: 14px;
+  padding: 16px 14px 14px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(184, 134, 11, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wall-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(184, 134, 11, 0.14);
+}
+.wall-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.wall-num {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+  margin: 8px 0 2px;
+  color: var(--wc, var(--gold));
+  line-height: 1;
+}
+.wall-num b {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.5px;
+}
+.wall-num i {
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.wall-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.wall-hint {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.4;
 }
 
 /* ==================== 响应式 ==================== */

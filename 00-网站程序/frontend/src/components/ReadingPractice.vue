@@ -26,6 +26,9 @@
       </div>
     </div>
 
+    <!-- 错因深度分析：套路命中分布 + 位置偏好审计 -->
+    <TrapStats :questions="filteredQuestions" />
+
     <!-- 题型标签切换 -->
     <div class="section-tabs">
       <el-tabs v-model="activeSection" type="card" size="large">
@@ -65,6 +68,7 @@
             <div class="text-header" :class="{ expanded: isTextExpanded(year, textNum) }" @click="toggleText(year, textNum)">
               <el-icon class="expand-icon" :class="{ rotated: isTextExpanded(year, textNum) }"><ArrowRight /></el-icon>
               <h4 class="text-title">Text {{ textNum }}</h4>
+              <span v-if="getTextGist(year, textNum)" class="text-gist" :title="getTextGist(year, textNum)">{{ getTextGist(year, textNum) }}</span>
               <el-tag type="info" size="small">5题</el-tag>
               <el-button type="warning" size="small" @click.stop="toggleIntensiveReading(year, textNum)">
                 {{ isIntensiveReadingOpen(year, textNum) ? '收起精读' : '精读模式' }}
@@ -150,7 +154,7 @@
                 </div>
 
                 <!-- 篇章结构 -->
-                <div v-if="getArticleStructure(year, textNum)" class="ir-block">
+                <div v-if="getArticleStructure(year, textNum).length" class="ir-block">
                   <h5>篇章结构</h5>
                   <div class="structure-list">
                     <div v-for="(p, i) in getArticleStructure(year, textNum)" :key="i" class="structure-item" :class="{ key: p.isKey }">
@@ -161,7 +165,7 @@
                 </div>
 
                 <!-- 无数据提示 -->
-                <div v-if="getVocabulary(year, textNum).length === 0 && getKeySentences(year, textNum).length === 0 && !getArticleStructure(year, textNum)" class="ir-empty">
+                <div v-if="getVocabulary(year, textNum).length === 0 && getKeySentences(year, textNum).length === 0 && getArticleStructure(year, textNum).length === 0" class="ir-empty">
                   精读内容将在后续版本中补充，当前可先对照段落翻译进行精读
                 </div>
               </div>
@@ -178,6 +182,9 @@
                       {{ question.userAnswer === question.correctAnswer ? '正确' : '错误' }}
                     </el-tag>
                   </div>
+
+                  <!-- 方法论视角条 -->
+                  <MethodLens :question="question" />
 
                   <div class="question-stem">{{ question.stem }}</div>
 
@@ -207,8 +214,11 @@
                   </div>
 
                   <div class="analysis-section" v-if="question.analysis">
-                    <div class="analysis-title">答案解析</div>
-                    <div class="analysis-content" v-html="question.analysis"></div>
+                    <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 't'))">
+                      答案解析
+                      <span class="analysis-toggle">{{ isAnalysisOpen(question, 't') ? '收起 ▴' : '展开 ▾' }}</span>
+                    </div>
+                    <div class="analysis-content" v-show="isAnalysisOpen(question, 't')" v-html="question.analysis"></div>
                   </div>
 
                   <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="error-analysis">
@@ -220,8 +230,11 @@
                   </div>
 
                   <div v-if="question.tips" class="tips-section">
-                    <div class="tips-title">解题技巧</div>
-                    <div class="tips-content" v-html="question.tips"></div>
+                    <div class="tips-title" @click="toggleAnalysis(analysisKey(question, 'tip-t'))">
+                      解题技巧
+                      <span class="analysis-toggle">{{ isAnalysisOpen(question, 'tip-t') ? '收起 ▴' : '展开 ▾' }}</span>
+                    </div>
+                    <div class="tips-content" v-show="isAnalysisOpen(question, 'tip-t')" v-html="question.tips"></div>
                   </div>
                 </div>
               </div>
@@ -301,8 +314,15 @@
                   <span class="text-correct">{{ question.correctAnswer }}</span>
                 </div>
 
+                <!-- 方法论视角条 -->
+                <MethodLens :question="question" />
+
                 <div class="cloze-analysis" v-if="question.analysis">
-                  <div class="analysis-content" v-html="question.analysis"></div>
+                  <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'c'))">
+                    答案解析
+                    <span class="analysis-toggle">{{ isAnalysisOpen(question, 'c') ? '收起 ▴' : '展开 ▾' }}</span>
+                  </div>
+                  <div class="analysis-content" v-show="isAnalysisOpen(question, 'c')" v-html="question.analysis"></div>
                 </div>
 
                 <div v-if="question.userAnswer && question.userAnswer !== question.correctAnswer && question.errorAnalysis" class="cloze-error-analysis">
@@ -311,7 +331,11 @@
                 </div>
 
                 <div v-if="question.tips" class="cloze-tips">
-                  <div class="tips-content" v-html="question.tips"></div>
+                  <div class="tips-title" @click="toggleAnalysis(analysisKey(question, 'tip-c'))">
+                    解题技巧
+                    <span class="analysis-toggle">{{ isAnalysisOpen(question, 'tip-c') ? '收起 ▴' : '展开 ▾' }}</span>
+                  </div>
+                  <div class="tips-content" v-show="isAnalysisOpen(question, 'tip-c')" v-html="question.tips"></div>
                 </div>
               </div>
             </div>
@@ -337,6 +361,8 @@
               <el-tag v-if="question.section" size="small" type="info">{{ question.section }}</el-tag>
               <el-tag v-if="question.number" size="small" type="warning">第{{ question.number }}题</el-tag>
             </div>
+            <!-- 方法论视角条 -->
+            <MethodLens :question="question" />
             <div class="question-stem">{{ question.stem }}</div>
             <div v-if="question.options && question.options.length > 0" class="options-list">
               <div v-for="option in question.options" :key="option.label" class="option-item"
@@ -352,7 +378,11 @@
               </div>
             </div>
             <div class="analysis-section" v-if="question.analysis">
-              <div class="analysis-content" v-html="question.analysis"></div>
+              <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'n'))">
+                答案解析
+                <span class="analysis-toggle">{{ isAnalysisOpen(question, 'n') ? '收起 ▴' : '展开 ▾' }}</span>
+              </div>
+              <div class="analysis-content" v-show="isAnalysisOpen(question, 'n')" v-html="question.analysis"></div>
             </div>
           </div>
         </div>
@@ -371,6 +401,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
+// 方法论视角条：把《糖三角》三师方法论（题型要诀/定位/干扰套路/同义改写）叠加到每道真题
+import MethodLens from './MethodLens.vue'
+// 错因深度分析面板：套路命中分布 + 答案位置偏好审计（个人版专属）
+import TrapStats from './TrapStats.vue'
 
 // 数据状态
 const selectedYear = ref('all')
@@ -382,6 +416,14 @@ const expandedClozeYears = ref<number[]>([])
 const expandedTraditionalYears = ref<number[]>([])
 const expandedTexts = ref<string[]>([])
 const expandedQuestions = ref<number[]>([])
+// 解析折叠状态（默认全折叠，点击“答案解析”标题展开，避免长解析占体积）
+const expandedAnalysis = ref<string[]>([])
+const analysisKey = (q: any, prefix: string) => `${prefix}-${q.year}-${q.textNumber ?? ''}-${q.number}`
+const isAnalysisOpen = (q: any, prefix: string) => expandedAnalysis.value.includes(analysisKey(q, prefix))
+const toggleAnalysis = (key: string) => {
+  const i = expandedAnalysis.value.indexOf(key)
+  i > -1 ? expandedAnalysis.value.splice(i, 1) : expandedAnalysis.value.push(key)
+}
 
 // 句子拆解状态
 const parsedKeys = ref<string[]>([]) // "year-textNum-sentenceIdx"
@@ -546,10 +588,25 @@ const isClozeTranslationVisible = (year: number) => translationKeys.value.includ
 // 精读数据访问（后续版本从JSON加载）
 const intensiveReadingData = ref<any>({})
 const getVocabulary = (year: number, textNum: number) => intensiveReadingData.value[`${year}-${textNum}`]?.vocabulary || []
-const getKeySentences = (year: number, textNum: number) => intensiveReadingData.value[`${year}-${textNum}`]?.keySentences || []
-const getArticleStructure = (year: number, textNum: number) => intensiveReadingData.value[`${year}-${textNum}`]?.structure || null
-const getParagraphTranslations = (year: number, textNum: number) => intensiveReadingData.value[`${year}-${textNum}`]?.paragraphTranslations || []
-const getClozeParagraphTranslations = (year: number) => intensiveReadingData.value[`cloze-${year}`]?.paragraphTranslations || []
+const getKeySentences = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.keySentences || []
+const getArticleStructure = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.structure || []
+const getParagraphTranslations = (year: number, textNum: number): string[] => intensiveReadingData.value[`${year}-${textNum}`]?.paragraphTranslations || []
+// 文章大意小标题：取段落翻译首段中文（去①句标记/括号注释）截断，在 Text 折叠条上快速定位文章
+const gistCache = new Map<string, string>()
+const getTextGist = (year: number, textNum: number) => {
+  const key = `${year}-${textNum}`
+  const hit = gistCache.get(key)
+  if (hit) return hit
+  const first = (getParagraphTranslations(year, textNum)[0] || '')
+    .replace(/[①-⑳]/g, '')
+    .replace(/（[^）]*）/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  const gist = first.length > 38 ? first.slice(0, 38) + '…' : first
+  if (gist) gistCache.set(key, gist)
+  return gist
+}
+const getClozeParagraphTranslations = (year: number): string[] => intensiveReadingData.value[`cloze-${year}`]?.paragraphTranslations || []
 
 // ===== 工具函数 =====
 const getCorrectOptionExplanation = (question: any) => {
@@ -787,7 +844,18 @@ onMounted(async () => {
 .text-header:hover { opacity: 0.92; }
 .text-header .expand-icon { transition: transform 0.3s; }
 .text-header .expand-icon.rotated { transform: rotate(90deg); }
-.text-title { font-size: 1.1em; font-weight: 600; flex: 1; margin: 0; }
+.text-title { font-size: 1.1em; font-weight: 600; flex: 0 0 auto; margin: 0; }
+.text-gist {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82em;
+  color: #cfe0f2;
+  margin-left: 10px;
+  font-weight: 400;
+}
 .text-content { padding-left: 4px; }
 
 /* ===== 文章原文区 ===== */
@@ -1067,24 +1135,37 @@ onMounted(async () => {
 
 /* 解析 */
 .analysis-section {
-  padding: 16px;
+  padding: 12px 14px;
   background: #f0f7ff;
   border-left: 3px solid #2c5282;
   border-radius: 0 8px 8px 0;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 .analysis-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 600;
   color: #2c5282;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-size: 0.95em;
+  cursor: pointer;
+  user-select: none;
+}
+.analysis-toggle {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #4a7ab5;
 }
 .analysis-content {
   color: #444;
-  line-height: 1.9;
-  font-size: 0.95em;
+  line-height: 1.65;
+  font-size: 0.93em;
+  margin-top: 8px;
 }
-.analysis-content :deep(p) { margin: 0.4em 0; }
+.analysis-content :deep(p) { margin: 0.2em 0; }
+.analysis-content :deep(p:empty) { display: none; }
+.analysis-content :deep(p:last-child) { margin-bottom: 0; }
 
 /* 错误分析 */
 .error-analysis {
@@ -1106,23 +1187,31 @@ onMounted(async () => {
 
 /* 技巧 */
 .tips-section {
-  padding: 16px;
+  padding: 12px 14px;
   background: #fffff0;
   border-left: 3px solid #ecc94b;
   border-radius: 0 8px 8px 0;
 }
 .tips-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 600;
   color: #b7791f;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-size: 0.95em;
+  cursor: pointer;
+  user-select: none;
 }
 .tips-content {
   color: #555;
-  line-height: 1.9;
-  font-size: 0.95em;
+  line-height: 1.65;
+  font-size: 0.93em;
+  margin-top: 8px;
 }
-.tips-content :deep(p) { margin: 0.4em 0; }
+.tips-content :deep(p) { margin: 0.2em 0; }
+.tips-content :deep(p:empty) { display: none; }
+.tips-content :deep(p:last-child) { margin-bottom: 0; }
 
 /* ===== 完型填空 ===== */
 .cloze-section { max-width: 1000px; margin: 0 auto; }
@@ -1258,11 +1347,11 @@ onMounted(async () => {
 .text-wrong { color: #f56565; font-weight: 700; }
 
 .cloze-analysis {
-  padding: 14px;
+  padding: 12px 14px;
   background: #f0f7ff;
   border-left: 3px solid #2c5282;
   border-radius: 0 6px 6px 0;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .cloze-error-analysis {
   padding: 14px;
@@ -1272,7 +1361,7 @@ onMounted(async () => {
   margin-bottom: 12px;
 }
 .cloze-tips {
-  padding: 14px;
+  padding: 12px 14px;
   background: #fffff0;
   border-left: 3px solid #ecc94b;
   border-radius: 0 6px 6px 0;

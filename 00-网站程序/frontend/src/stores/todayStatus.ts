@@ -119,7 +119,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: 158,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 143,
+        completedUnits: 148,
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
@@ -212,6 +212,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-xiandai-done', title: '线代强化完成', date: '2026-07-26', subject: 'math', done: true, note: '线性代数强化阶段收尾' },
       { id: 'm-ds-reinforce-done', title: '数据结构强化完成', date: '2026-08-11', subject: 'cs408', done: true, note: '除大题外全部完成，大题放408大题最后' },
       { id: 'm-math-papers-09-11', title: '数学真题09-11完成', date: '2026-08-11', subject: 'math', done: true, note: '09-11年真题刷完，11年错题明天整理' },
+      { id: 'm-math-papers-0916', title: '数学真题09-16刷完·错题二刷', date: '2026-09-05', subject: 'math', done: true, note: '09-16年真题限时刷完并二刷错题；当前转入1000题A/B组错题二刷' },
+      { id: 'm-cs408-co-stuck', title: '408·计组强化（当前卡点）', date: '2026-09-15', subject: 'cs408', done: false, note: '强化一直卡在计组、进度偏慢——因数学投入过多挤占；需为408留固定时段、每天雷打不动推进' },
       { id: 'm-co-reinforce-start', title: '计组错题一刷完成', date: '2026-09-01', subject: 'cs408', done: true, note: '王道小程序93道计组错题一轮过完，背诵手册建成，待二刷验收' },
       { id: 'm-politics-mayuan', title: '政治·马原启动', date: '2026-08-01', subject: 'politics', done: false, note: '徐涛强化+肖1000马原部分，重理解轻死记' },
       { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '整理作文模板，翻译真题穿插练采分点' },
@@ -611,6 +613,23 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     return { actual: Math.round(actual * 100), expected: Math.round(expected * 100) }
   })
 
+  // ==================== 战果累计（只增不减，给焦虑时的自己看） ====================
+  /** 累计有效备考天数（有完成记录的天数，从第一天打卡算起） */
+  const daysTouched = computed(() =>
+    Object.values(dailyRecords.value).filter(r => r && r.completedCount > 0).length
+  )
+  /** 累计完成的任务单元数（一格格勾掉的） */
+  const totalCompletedUnits = computed(() =>
+    plans.value.reduce((s, p) => s + p.completedUnits, 0)
+  )
+  /** 累计投入时长（小时，按各科任务预计用时折算，做题/精读口径） */
+  const accumulatedHours = computed(() =>
+    Math.round(plans.value.reduce((s, p) => s + p.completedUnits * (p.estMinutes || 0), 0) / 60)
+  )
+  /** 已完成里程碑数 / 里程碑总数 */
+  const milestonesDone = computed(() => milestones.value.filter(m => m.done).length)
+  const milestonesTotal = computed(() => milestones.value.length)
+
   // ---------- 修改计划（供设置面板用） ----------
   const updatePlan = (key: SubjectKey, patch: Partial<{
     totalUnits: number; dailyQuota: number; completedUnits: number; startDate: string; targetDate: string; active: boolean
@@ -671,6 +690,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     // 预警
     progressWarnings,
     overallPrep,
+    // 战果累计
+    daysTouched,
+    totalCompletedUnits,
+    accumulatedHours,
+    milestonesDone,
+    milestonesTotal,
     // 操作
     load,
     save,

@@ -25,6 +25,36 @@ export const TOTAL_PASSAGES = (END_YEAR - START_YEAR + 1) * TEXTS_PER_YEAR
 
 const STORAGE_KEY = 'english-reading-log-v1'
 
+/**
+ * 已完成篇目的种子数据：key = `${year}-${text}`，value = 已知正确题数。
+ * 该映射同时驱动 seedCompletedPassages 的遍历范围，新做完一篇只需在此加一行。
+ * 数值与 reading-questions.json 中的 userAnswer 保持一致。
+ */
+const SEEDED_CORRECT: Record<string, number> = {
+  '2005-1': 1,
+  '2005-2': 2,
+  '2005-3': 3,
+  '2005-4': 1,
+  '2006-1': 2,
+  '2006-2': 3,
+  '2006-3': 5,
+  '2006-4': 3,
+  '2008-1': 3
+}
+
+/** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
+const SEEDED_NOTES: Record<string, string> = {
+  '2006-4':
+    'function as = 充当/起到…的作用（同义：serve as / act as）。' +
+    '第5题错因：不认识 function as，无法解码 A 选项 Religion once functioned as a reminder of misery（宗教曾充当痛苦的提醒物），' +
+    '转而误选 D（媒体倾向报道灾难死亡，与原文“媒体只贩卖快乐”相反）。' +
+    '补救信号：选项中的时间副词 once / used to / now 常是定位钥匙，本文全程是“过去宗教提醒痛苦 vs 现在广告贩卖幸福”的二元对照。',
+  '2008-1':
+    '第1题错因（形近词误读）：vulnerable（易受伤害的）看成 voluntary（自愿的），误解文意为“女性乐于承受压力”，直接排除了正确答案 A。' +
+    '第3题错因（原词照抄陷阱）：domestic 误读为“动态的”；且看到原文出现该词就直接选含原词的选项，未识别出正确答案 C 是同义替换。' +
+    '共性教训：① 选项词汇要逐字确认再排除；② 原文照抄的选项先怀疑，换了说法的选项先相信。'
+}
+
 function keyOf(year: number, text: number) {
   return `${year}-${text}`
 }
@@ -43,19 +73,31 @@ export const useReadingLogStore = defineStore('readingLog', () => {
     seedCompletedPassages()
   }
 
-  /** 预置已完成的真题记录（2005/2006年全部8篇阅读已完成） */
+  /** 预置已完成的真题记录（遍历范围由 SEEDED_CORRECT 的 key 决定，支持跨年不连续篇目） */
   function seedCompletedPassages() {
     let changed = false
-    for (const year of [2005, 2006]) {
-      for (let text = 1; text <= TEXTS_PER_YEAR; text++) {
-        const k = keyOf(year, text)
-        if (!records.value[k]) {
-          records.value[k] = { year, text, done: true, correct: 0, notes: '' }
-          changed = true
-        } else if (!records.value[k].done) {
-          records.value[k].done = true
-          changed = true
-        }
+    for (const k of Object.keys(SEEDED_CORRECT)) {
+      const [year, text] = k.split('-').map(Number)
+      const seededCorrect = SEEDED_CORRECT[k]
+      if (!records.value[k]) {
+        records.value[k] = { year, text, done: true, correct: seededCorrect, notes: SEEDED_NOTES[k] || '' }
+        changed = true
+        continue
+      }
+      const rec = records.value[k]
+      if (!rec.done) {
+        rec.done = true
+        changed = true
+      }
+      // 仅在用户尚未手动填写时同步，避免覆盖手工记录
+      if (seededCorrect > 0 && rec.correct === 0) {
+        rec.correct = seededCorrect
+        changed = true
+      }
+      const seededNotes = SEEDED_NOTES[k]
+      if (seededNotes && !rec.notes) {
+        rec.notes = seededNotes
+        changed = true
       }
     }
     if (changed) save()

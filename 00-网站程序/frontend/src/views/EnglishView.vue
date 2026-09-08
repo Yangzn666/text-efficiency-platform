@@ -23,9 +23,13 @@ const passagesTotal = computed(() => readingLog.overall.total)
 const readingAccuracy = computed(() => readingLog.overall.accuracy)
 const readingPercent = computed(() => Math.round((passagesDone.value / passagesTotal.value) * 100))
 
+// 阅读方法论手册（糖三角三师合璧提炼版，部署在 public/methods/）
+const methodUrl = `${import.meta.env.BASE_URL}methods/reading-method-handbook.html`
+
 // Tab配置
 const tabItems = [
   { name: 'reading', label: '真题阅读', icon: '📖' },
+  { name: 'method', label: '阅读方法论', icon: '🧭' },
   { name: 'readingLog', label: '阅读记录', icon: '📊' },
   { name: 'vocabulary', label: '词汇系统', icon: '🧠' },
   { name: 'writing', label: '写作训练', icon: '✍️' },
@@ -92,6 +96,13 @@ onMounted(() => {
     <!-- 内容区 -->
     <div class="content-deck">
       <div v-show="activeTab === 'reading'"><ReadingPractice /></div>
+      <div v-show="activeTab === 'method'" class="method-deck">
+        <div class="method-bar">
+          <span class="method-note">糖三角 · 唐迟 × 颉斌斌 × Monkey 三师合璧提炼版 · 支持搜索 / 折叠 / 考场速查 / 打印 / 打卡</span>
+          <a class="method-open" :href="methodUrl" target="_blank" rel="noopener">在新标签打开 ↗</a>
+        </div>
+        <iframe class="method-frame" :src="methodUrl" title="英语阅读方法论手册" loading="lazy"></iframe>
+      </div>
       <div v-show="activeTab === 'readingLog'"><EnglishReadingLog /></div>
       <div v-show="activeTab === 'vocabulary'"><VocabularySystem /></div>
       <div v-show="activeTab === 'writing'"><WritingLearning /></div>
@@ -102,6 +113,46 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.method-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.method-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: linear-gradient(120deg, #0d2137, #16345c);
+  border: 1px solid rgba(255, 197, 61, 0.35);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+.method-note {
+  color: #d7e3f2;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+}
+.method-open {
+  color: #0d2137;
+  background: var(--gold, #ffc53d);
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 0.84rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.method-open:hover { filter: brightness(1.08); }
+.method-frame {
+  width: 100%;
+  height: calc(100vh - 250px);
+  min-height: 560px;
+  border: 1px solid var(--line, #e4ebf3);
+  border-radius: 14px;
+  background: #e8e6e1;
+}
 .english-container {
   --font-display: 'Barlow Condensed', 'FZCuHei', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;

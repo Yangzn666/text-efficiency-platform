@@ -853,7 +853,7 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'curvature',
     sectionName: '曲率与曲率圆',
     title: '【1000题基础5-7/5-10】曲率公式、曲率圆与∞−∞型极限（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 基础5-7：斜率算对了，但求 b 时出现 ∞−∞ 型处理不了；解析里“从对数中提出 e 的 2x 次方”这个操作没想到。\n- 基础5-10：曲率圆知识遗忘得差不多，已不会做，不知道在考什么。\n- 额外：曲率公式和曲率圆公式都忘了。',
+    content: '题面：\n- 5-7：曲线 $y(x)=\\ln|e^{2x}-1|$ 的斜渐近线为（　）A. $y=2x+\\frac1e$　B. $y=2x$　C. $y=-2x+\\frac1e$　D. $y=-2x$\n- 5-10：已知曲线 $y=f(x)$ 在点 $(0,1)$ 处的曲率圆方程为 $(x-1)^2+y^2=2$，且 $x\\to0$ 时二阶可导函数 $f(x)$ 与 $a+bx+cx^2$ 之差为 $o(x^2)$，则（　）A. $a=0,b=1,c=\\frac32$　B. $a=1,b=0,c=1$　C. $a=1,b=1,c=-1$　D. $a=1,b=0,c=-1$\n薄弱点记录（二刷双圈）：\n- 基础5-7：斜率算对了，但求 b 时出现 ∞−∞ 型处理不了；解析里“从对数中提出 e 的 2x 次方”这个操作没想到。\n- 基础5-10：曲率圆知识遗忘得差不多，已不会做，不知道在考什么。\n- 额外：曲率公式和曲率圆公式都忘了。',
     mistakeType: '公式不清',
     importance: 5,
     correction: '【曲率三件套】\n1. 曲率 $K = \\frac{|y′′|}{(1 + y′²)^{3/2}}$（参数式 $K = \\frac{|x′y′′ − y′x′′|}{(x′² + y′²)^{3/2}}$）\n2. 曲率半径 $R = \\frac{1}{K}$\n3. 曲率圆（密切圆）：圆心在凹侧法线上、距切点 R 处，半径 = R，与曲线在切点共切线、共凹向、共曲率。\n【∞−∞ 型】通分／提公因子／倒代换／洛必达；5-7 技巧：对数里提主导项 $\\ln(e^{2x}u) = 2x + \\ln u$，把 ∞−∞ 化 0 型。\n口诀：无穷减无穷，先提最大户；对数提指数，大头拎出来。',
@@ -869,7 +869,7 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'derivative_app',
     sectionName: '导数与微分应用',
     title: '【1000题基础1-4/4-16/5-3/5-4/5-9/5-11】导数应用六连错（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 基础1-4：递推关系题总做错，想不懂新函数定义域和 x 怎么变，把结果算成 x−sinx 和 x，均少了 π。\n- 基础4-16：算错了，但这次没再用 dy/dx/dx 那种错误写法（有进步）。\n- 基础5-3：极值点定义不清，判可导时误当成“左极限=右极限”，应用导数定义，导致错。\n- 基础5-4：没分离变量 a 就直接算，算错。\n- 基础5-9：当隐函数求导做，一阶导忘了负号；又误以为二阶导就是在一阶导基础上再求一次导。其实直接 y 对 x 求导即可。\n- 基础5-11：求导一次后对 xf′(x) − f(x) 不知所措，没看懂 f(0) ≥ 0 的条件有何用。小技巧：求 x^(1/x) 型单调性可取对数（写成 e 的 ln）方便求导。',
+    content: '题面：\n- 1-4：设 $f(x)$ 在 $(-\\infty,+\\infty)$ 上满足 $f(x)=f(x-\\pi)+\\sin x$，且 $f(x)=x,\\ x\\in[0,\\pi)$，求 $f(x)$ 在 $[\\pi,3\\pi)$ 上的表达式。\n- 4-16：若 $\\begin{cases}x=\\ln|t|\\\\y=e^{-t^2}\\end{cases}$，则 $\\frac{d^2y}{dx^2}\\Big|_{t=\\sqrt2}=$______。\n- 5-3：设 $f(x)=\\begin{cases}\\cos|x|-1,&x\\le0\\\\x\\ln x,&x>0\\end{cases}$，则 $x=0$ 是 $f(x)$ 的（　）A.可导点,极值点　B.不可导点,极值点　C.可导点,非极值点　D.不可导点,非极值点\n- 5-4：已知 $x^2+ax^{-3}\\ge\\frac{10}3\\ (x>0)$ 恒成立，则 $a$ 的取值范围为______。\n- 5-9：曲线 $x^2-xy+y^2=1$ 在点 $(1,1)$ 处的曲率为______。\n- 5-11：设在 $(-\\infty,+\\infty)$ 内 $f″(x)<0$、$f(0)\\ge0$，则函数 $\\frac{f(x)}x$（　）A.在$(-\\infty,0)$减、$(0,+\\infty)$增　B.在两区间都减　C.在$(-\\infty,0)$增、$(0,+\\infty)$减　D.在两区间都增\n薄弱点记录（二刷双圈）：\n- 基础1-4：递推关系题总做错，想不懂新函数定义域和 x 怎么变，把结果算成 x−sinx 和 x，均少了 π。\n- 基础4-16：算错了，但这次没再用 dy/dx/dx 那种错误写法（有进步）。\n- 基础5-3：极值点定义不清，判可导时误当成“左极限=右极限”，应用导数定义，导致错。\n- 基础5-4：没分离变量 a 就直接算，算错。\n- 基础5-9：当隐函数求导做，一阶导忘了负号；又误以为二阶导就是在一阶导基础上再求一次导。其实直接 y 对 x 求导即可。\n- 基础5-11：求导一次后对 xf′(x) − f(x) 不知所措，没看懂 f(0) ≥ 0 的条件有何用。小技巧：求 x^(1/x) 型单调性可取对数（写成 e 的 ln）方便求导。',
     mistakeType: '方法不熟',
     importance: 5,
     correction: '【逐条修正】\n- 可导判定（5-3）：一点可导只看差商极限 $\\lim_{h \\to 0}\\frac{f(x_0+h) − f(x_0)}{h}$ 存在（左右导数相等）；“左极限=右极限”是连续不是可导。极值点必须先是连续点，不可导点也可能是极值点（如 |x| 在 0）。\n- 隐函数求导（5-9）：$F(x,y)=0$ 时 $\\frac{dy}{dx} = −\\frac{F_x}{F_y}$（负号别丢）；二阶导是对一阶导结果再对 x 求导（y 仍是 x 的函数，要再乘 y′），不是简单再导一次。能显化就直接显化更稳。\n- 对数求导法（5-11）：幂指函数 $y = u^v$ 两边取对数 $\\ln y = v\\ln u$ 再求导；判 $x^{1/x}$ 单调性即对 $\\frac{\\ln x}{x}$ 求导。\n- 分离参数（5-4）：含参式先分离 a，再求另一边最值，别硬算。\n- 递推定义域（1-4）：$x_{n+1}=f(x_n)$ 型画蛛网图看走向，三角递推注意周期/相位（少 π 多在此）。\n口诀：可导看差商，连续看极限；隐导带负号，二阶再乘 y′；幂指先取对数。',
@@ -885,7 +885,7 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'definite_integral',
     sectionName: '定积分定义与奇偶性',
     title: '【1000题基础8-2】定积分定义题 + 复合函数奇偶性 + P/Q积分（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 基础8-2：长时间没做，忘记这种“定积分定义”题怎么做了。\n- 额外记：复合函数奇偶性判断忘得差不多，如“内偶则偶，内奇看外——外奇则奇，外偶则偶”。\n- 额外记：P积分（幂函数型）和Q积分（对数型）忘得差不多，需要背诵。',
+    content: '题面：\n- 8-2：$\\lim\\limits_{n\\to\\infty}\\frac1{n^3}\\left[\\ln\\frac1n+4\\ln\\frac2n+\\cdots+(n-1)^2\\ln\\frac{n-1}n\\right]=$______。\n薄弱点记录（二刷双圈）：\n- 基础8-2：长时间没做，忘记这种“定积分定义”题怎么做了。\n- 额外记：复合函数奇偶性判断忘得差不多，如“内偶则偶，内奇看外——外奇则奇，外偶则偶”。\n- 额外记：P积分（幂函数型）和Q积分（对数型）忘得差不多，需要背诵。',
     mistakeType: '方法不熟',
     importance: 4,
     correction: '【定积分定义（黎曼和）】识别信号：题目给出 $\\lim_{n \\to \\infty}\\frac{1}{n}\\sum_{i=1}^{n} f\\left(\\frac{i}{n}\\right)$ 形式 → 取 $x_i = \\frac{i}{n}$、$\\Delta x = \\frac{1}{n}$，还原成 $\\int_0^1 f(x)\\,dx$。\n口诀：见 1/n 求和取极限，i/n 当 x、1/n 当 dx，从 0 积到 1。\n【复合函数奇偶性】设 $y = f(g(x))$：内层 g 偶 → 复合必偶（内偶则偶）；内层 g 奇 → 看外层 f（外奇则奇、外偶则偶）。\n【P积分/Q积分】P积分=幂函数型 $\\int\\frac{dx}{x^p}$；Q积分=对数型 $\\int\\frac{dx}{x(\\ln x)^q}$，换元 $u=\\ln x$ 就化成 P积分，方向规律相同（无穷端 $q>1$ 收敛、瑕点端 $\\ln x\\to0$ 处 $q<1$ 收敛）——详见“反常积分判敛”条与背诵清单第六节。',
@@ -901,7 +901,7 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'integral',
     sectionName: '反常积分收敛性',
     title: '【1000题基础8-21】反常积分判敛：瑕点在上下界时 p 级数方向相反（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 基础8-21：拆成两个区间后，第二个 [1/2, 1] 区间不会处理 tan 函数，没做出来。\n- 关键漏洞：没注意“瑕点在积分上界和下界时，P级数判敛公式是相反的”。',
+    content: '题面：\n- 8-21：设 $a,b$ 为常数，$\\int_0^1\\frac{\\ln x}{x^a(\\tan\\frac x2)^b}dx$ 收敛，则（　）A. $a+b>1$且$b>-2$　B. $a+b<1$且$b>-2$　C. $a+b>1$且$b<-2$　D. $a+b<1$且$b<-2$\n薄弱点记录（二刷双圈）：\n- 基础8-21：拆成两个区间后，第二个 [1/2, 1] 区间不会处理 tan 函数，没做出来。\n- 关键漏洞：没注意“瑕点在积分上界和下界时，P级数判敛公式是相反的”。',
     mistakeType: '概念不清',
     importance: 5,
     correction: '【两个 p 积分模型（方向相反！）】\n- 瑕点在有限端（如 $\\int_0^1 \\frac{dx}{x^p}$，x→0 爆炸）：收敛 ⟺ $p < 1$\n- 无穷限（如 $\\int_1^{+\\infty} \\frac{dx}{x^p}$）：收敛 ⟺ $p > 1$\n- 临界 p = 1 两边都发散\n口诀：洞口要小（p<1），长路要降得快（p>1）；代哪个端点，就让那个端点不出事。\n【tan 的处理】$\\tan x = \\frac{\\sin x}{\\cos x}$，在 x→π/2 处 cos→0 是瑕点；某段若无瑕点就正常积，若有瑕点按 p<1 判。多个瑕点先拆段、每段单独判、全部收敛才收敛。（与背诵清单第六节互为印证）',
@@ -917,7 +917,7 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'trig_integral',
     sectionName: '三角函数积分',
     title: '【1000题基础8-23】六个基本三角积分公式 + 漏写常数C（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 基础8-23：这题是排除法做对的，老师在题目旁给的相关知识还不熟。\n- 额外记：积分公式只会 sin 和 cos 的，遇到其他三角函数都转成 sin/cos 做，tan、cot、sec、csc 这四个还没记住。\n- 额外记：求不定积分总是漏写常数 C。',
+    content: '题面：\n- 8-23：下列命题中不成立的是（　）A.若$f(x)$连续,$x\\in[a,b]$，则$\\int_a^x f(t)dt$必为$f(x)$的原函数　B.若$f(x)$可积,$x\\in[a,b]$，则$f(x)$在$(a,b)$内存在原函数　C.若$f(x)$连续且为奇函数,$x\\in[-a,a]$，则$\\int_{-a}^0 f(x)dx=0$　D.若$f(x)$连续,$T$为其周期，则$\\int_a^{a+T}f(x)dx=\\int_0^T f(x)dx$\n薄弱点记录（二刷双圈）：\n- 基础8-23：这题是排除法做对的，老师在题目旁给的相关知识还不熟。\n- 额外记：积分公式只会 sin 和 cos 的，遇到其他三角函数都转成 sin/cos 做，tan、cot、sec、csc 这四个还没记住。\n- 额外记：求不定积分总是漏写常数 C。',
     mistakeType: '公式不清',
     importance: 5,
     correction: '【六个基本三角积分（必背）】\n1. $\\int \\tan x\\,dx = −\\ln|\\cos x| + C$\n2. $\\int \\cot x\\,dx = \\ln|\\sin x| + C$\n3. $\\int \\sec x\\,dx = \\ln|\\sec x + \\tan x| + C$\n4. $\\int \\csc x\\,dx = \\ln|\\csc x − \\cot x| + C$\n5. $\\int \\sec²x\\,dx = \\tan x + C$\n6. $\\int \\csc²x\\,dx = −\\cot x + C$\n补充：$\\int \\sec x\\tan x\\,dx = \\sec x + C$；$\\int \\csc x\\cot x\\,dx = −\\csc x + C$\n记忆钩：切／余切积出 ln；正割配正切、余割配余切（同号加、异号减）；平方积回本身（sec²→tan）。\n【铁律】不定积分结果永远 +C，漏 C 直接扣分，做完扫一眼有没有 C。',
@@ -933,10 +933,412 @@ const problems = ref<WrongProblem[]>([
     sectionId: 'integration_techniques',
     sectionName: '不定积分技巧与定积分计算',
     title: '【1000题基础9系列】不定积分技巧群 + 公式积分性价比判断（二刷仍错）',
-    content: '薄弱点记录（二刷双圈）：\n- 9-3：忘了根式代换，后续裂项的待定系数法也不熟。\n- 9-6：不知道还有“凑分母微分”这种方法。\n- 9-15（两个启示）：①可用特殊值法快速做（如设 f(x)=1）；②区间上下都是参数时，可拆成两个区间（一个上界为 x、一个下界为 x）。\n- 9-20：没想到三角换元，也没想到后续能用递推式做。\n- 9-24：陷阱题，没注意有无定义点，函数不连续不能直接用牛顿-莱布尼茨公式。\n- 9-1-3/4/5/6/11/12 及 9-1-13到24、9-25、9-36：一批公式记忆型/技巧型积分，公式记不住、做不出。你的判断：技巧性太强、真题几乎不考、性价比低。',
+    content: '题面：\n- 9-1-3：$\\int\\sec x\\,dx$；9-1-4：$\\int\\sec^3x\\,dx$\n- 9-1-5：$\\int\\frac{dx}{a^2-x^2}(a\\ne0)$；9-1-6：$\\int\\frac{dx}{x^2-a^2}(a\\ne0)$\n- 9-1-11：$\\int\\frac{dx}{\\sqrt{x^2\\pm a^2}}(a>0)$；9-1-12：$\\int\\frac{dx}{\\sqrt{a^2-x^2}}(a>0)$\n- 9-1-13~24（公式积分群）：$\\int\\frac{dx}{\\sqrt{x^2+a^2}}$、$\\int\\csc^3x\\,dx$、$\\int\\tan^2x\\,dx$、$\\int\\tan^3x\\,dx$、$\\int\\tan^4x\\,dx$、$\\int\\cot^3x\\,dx$、$\\int\\frac{\\cos x}{1+\\sin x}dx$、$\\int\\frac{dx}{a^2\\sin^2x+b^2\\cos^2x}$、$\\int\\frac{dx}{\\sin2x}$、$\\int\\frac{dx}{\\cos2x}$、$\\int\\frac{dx}{a+b\\cos x}$、$\\int\\frac{dx}{a+b\\sin x}$\n- 9-3：$\\int\\ln\\left(1+\\sqrt{\\frac{1+x}x}\\right)dx\\ (x>0)$\n- 9-6：$\\int_0^1\\frac{4x-3}{x^2-x+1}dx$\n- 9-15：设$f(x)$在$[-a,a]$上连续偶函数,$a>0$,$g(x)=\\int_{-a}^a|x-t|\\cdot f(t)dt$，则在$[-a,a]$上（　）A.$g$单调增　B.$g$单调减　C.$g$是偶函数　D.$g$是奇函数\n- 9-20：设$a_n=\\int_0^1x^n\\sqrt{1-x^2}dx\\ (n=0,1,2,\\cdots)$，则$\\lim\\limits_{n\\to\\infty}\\left(\\frac{a_n}{a_{n-2}}\\right)^n=$______。\n- 9-24：$\\int_{-1}^1\\left(\\frac1{1+2^{1/x}}\\right)′dx=$______。\n- 9-25：$\\int_{-1/2}^{1/2}\\frac{|x|(\\arcsin x+\\arccos x)}{\\sqrt{1-x^2}}dx=$______。\n- 9-36：设$f′(e^x)=\\sin x$，求$f(x)$的表达式。\n薄弱点记录（二刷双圈）：\n- 9-3：忘了根式代换，后续裂项的待定系数法也不熟。\n- 9-6：不知道还有“凑分母微分”这种方法。\n- 9-15（两个启示）：①可用特殊值法快速做（如设 f(x)=1）；②区间上下都是参数时，可拆成两个区间（一个上界为 x、一个下界为 x）。\n- 9-20：没想到三角换元，也没想到后续能用递推式做。\n- 9-24：陷阱题，没注意有无定义点，函数不连续不能直接用牛顿-莱布尼茨公式。\n- 9-1-3/4/5/6/11/12 及 9-1-13到24、9-25、9-36：一批公式记忆型/技巧型积分，公式记不住、做不出。你的判断：技巧性太强、真题几乎不考、性价比低。',
     mistakeType: '方法不熟',
     importance: 4,
     correction: '【必会技巧（真题高频，务必掌握）】\n- 根式代换（9-3）：含 $\\sqrt{a²−x²}$ 令 $x=a\\sin t$；$\\sqrt{a²+x²}$ 令 $x=a\\tan t$；$\\sqrt{x²−a²}$ 令 $x=a\\sec t$。裂项用待定系数 $\\frac{1}{(x−a)(x−b)} = \\frac{A}{x−a}+\\frac{B}{x−b}$。\n- 凑微分（9-6）：$\\int f(g(x))g′(x)dx = \\int f(u)du$，把分母的微分凑到分子。\n- 三角换元+递推（9-20）：见根式代换；递推 $I_n$ 与 $I_{n−2}$ 建关系（华里士/点火公式）。\n- 牛-莱陷阱（9-24）：用 $\\int_a^b f = F(b)−F(a)$ 前必须确认 f 在 [a,b] 连续；有无穷间断点要当反常积分处理。\n- 特殊值法+区间拆分（9-15）：抽象函数定积分可设 f=1 验证选项；上下限都含参数时拆成两段分别处理。\n【性价比判断（9-1-13到24、9-25、9-36 等公式积分）】\n你的判断是对的：这批是表格式/技巧型积分，数一真题近十年几乎不直接考，1000题堆量只为练手感。策略：认得出类型 + 知道查哪条公式即可，不必逐条死背；把时间留给真题高频的根式代换、凑微分、分部、有理函数积分。考场真遇到，用万能代换 $t=\\tan\\frac{x}{2}$ 兜底。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  // ==================== 1000题基础篇10~16讲二刷错题（薄弱点记录 · 09-07） ====================
+  // ==================== 1000题10~16讲 逐题录入（题面+解析）· 09-07 ====================
+  {
+    id: 'math_1000_b10_7',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·交换次序',
+    title: '【1000题基础10-7】套娃积分求平均值·交换积分次序',
+    content: '已知函数 $f(x)=x\\int_1^x\\frac{e^{t^2}}{t}\\,dt$，则 $f(x)$ 在 $(0,1)$ 上的平均值为______。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '解析：平均值 $=\\int_0^1 f(x)dx=\\int_0^1 x\\int_1^x\\frac{e^{t^2}}{t}dt\\,dx$。化为二重积分并交换次序（区域 $0\\le x\\le t\\le1$）：$=-\\int_0^1\\frac{e^{t^2}}{t}\\int_0^t x\\,dx\\,dt=-\\frac12\\int_0^1 t e^{t^2}dt=-\\frac14(e-1)$，即平均值 $=\\frac{1-e}{4}$。\n错因（我的记录）：直接算二重积分算不出来，应该交换积分次序的，没想到去交换。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b10_13',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'defint_geometry',
+    sectionName: '旋转体体积',
+    title: '【1000题基础10-13】无穷远旋转体体积·旋转体公式',
+    content: '（数一13/数二13/数三10）曲线 $y=x^2e^{-x}\\ (0\\le x<+\\infty)$ 绕 x 轴旋转一周所得延伸到无穷远的旋转体的体积为______。',
+    mistakeType: '公式不清',
+    importance: 4,
+    correction: '解析：$V=\\pi\\int_0^{+\\infty}y^2dx=\\pi\\int_0^{+\\infty}x^4e^{-2x}dx$。用 $\\int_0^\\infty x^ne^{-ax}dx=\\frac{n!}{a^{n+1}}$：$=\\pi\\cdot\\frac{4!}{2^5}=\\frac{3\\pi}{4}$。\n配套公式：绕x轴 $V=\\pi\\int y^2dx$；绕y轴柱壳 $V=2\\pi\\int xy\\,dx$；二重积分法 $V=2\\pi\\iint_D r(x,y)d\\sigma$。\n错因（我的记录）：右侧的旋转体公式忘掉了，记得的话还蛮好算的。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b10_17',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'defint_geometry',
+    sectionName: '旋转体侧面积',
+    title: '【1000题基础10-17】弧绕y轴旋转侧面积·侧面积公式',
+    content: '（数一/数二）曲线 $y=x^2$ 从点 $(1,1)$ 到点 $(2,4)$ 的一段弧绕 y 轴旋转一周所得旋转体的侧面积为______。',
+    mistakeType: '公式不清',
+    importance: 4,
+    correction: '解析：绕 y 轴侧面积 $S=2\\pi\\int x\\,ds=2\\pi\\int_1^2 x\\sqrt{1+y′^2}dx=2\\pi\\int_1^2 x\\sqrt{1+4x^2}dx$。令 $u=1+4x^2$：$=\\frac{\\pi}{4}\\int_5^{17}\\sqrt u\\,du=\\frac{\\pi}{6}(17\\sqrt{17}-5\\sqrt5)$。\n错因（我的记录）：我也是不知道这也有公式，没算出来。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b13_5',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivariable_diff',
+    sectionName: '变限积分·分离变量',
+    title: '【1000题基础13-5】变限积分二阶偏导和·先分离变量',
+    content: '设 $F(x,y)=\\int_0^{x-y}(x-y-t)e^t\\,dt$，则 $\\frac{\\partial^2F}{\\partial x^2}+\\frac{\\partial^2F}{\\partial y^2}=$______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '解析：先分离变量——令 $u=x-y$，把被积的 $(x-y-t)$ 拆成 $u-t$：$F=u\\int_0^ue^tdt-\\int_0^ute^tdt=u(e^u-1)-(ue^u-e^u+1)=e^u-u-1$，即 $F=e^{x-y}-(x-y)-1$。故 $F_{xx}=e^{x-y}$、$F_{yy}=e^{x-y}$，和 $=2e^{x-y}$。\n错因（我的记录）：变限积分，不知道为啥，我直接把 t 代入 x−y 直接为 0 了，应该先把两个变量和 t 分离的。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b13_7',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivariable_diff',
+    sectionName: '混合偏导·隐含条件',
+    title: '【1000题基础13-7】混合偏导反求函数·隐含f(0,0)=0',
+    content: '设函数 $f(x,y)$ 具有二阶连续偏导数，且满足 $\\frac{\\partial^2[f(x,y)]}{\\partial x\\partial y}=1$，$f(0,y)=\\sin y$，$f(x,0)=\\sin x$，则 $f(\\frac{\\pi}{2},\\frac{\\pi}{2})=$______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '解析：$f_{xy}=1\\Rightarrow f=xy+G(x)+H(y)$。由 $f(0,y)=H(y)=\\sin y$；由 $f(x,0)=G(x)+H(0)=G(x)=\\sin x$（用到隐含条件 $f(0,0)=H(0)=\\sin0=0$）。故 $f=xy+\\sin x+\\sin y$，$f(\\frac\\pi2,\\frac\\pi2)=\\frac{\\pi^2}{4}+2$。\n错因（我的记录）：最后没想到这题隐含了 f(0,0)=0 的条件，没这个条件做不出来。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b13_8',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivariable_diff',
+    sectionName: '抽象复合·设中间变量',
+    title: '【1000题基础13-8】f(x+y,x/y)求偏导·设u/v反解万能法',
+    content: '设 $f(x+y,\\frac xy)=x^2-xy+y^2$，则 $f_x′(x,y)=$______。',
+    mistakeType: '方法不熟',
+    importance: 4,
+    correction: '解析：万能方法——设 $u=x+y,\\ v=\\frac xy$，反解 $x=\\frac{uv}{v+1},\\ y=\\frac{u}{v+1}$，代入：$f(u,v)=\\frac{u^2(v^2-v+1)}{(v+1)^2}$。故 $f_x′=\\frac{\\partial f}{\\partial u}=\\frac{2u(v^2-v+1)}{(v+1)^2}$，回代 $u=x,v=y$ 得 $f_x′(x,y)=\\frac{2x(y^2-y+1)}{(y+1)^2}$。\n错因（我的记录）：我直接去用 x+y 和 x/y 凑后面的形式凑不出来，看答案是设 u 和 v 等于两者再反解出 x,y 写完整表达式，看来这是万能的方法。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b13_9',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivariable_diff',
+    sectionName: '绝对值·分类讨论',
+    title: '【1000题基础13-9】√|xy| 求偏导·绝对值分类讨论',
+    content: '设函数 $f(x,y)=\\sqrt{|xy|}$，求 $\\frac{\\partial[f(x,y)]}{\\partial x}$。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '解析：含绝对值必须分类讨论，不能当它没用直接去掉！① $xy>0$：$f=\\sqrt{xy}$，$f_x=\\frac{y}{2\\sqrt{xy}}=\\frac12\\sqrt{\\frac yx}$；② $xy<0$：$f=\\sqrt{-xy}$，$f_x=\\frac{-y}{2\\sqrt{-xy}}$；③ $y=0$：$f\\equiv0$，$f_x=0$；④ $x=0,y\\ne0$：$f_x=\\lim_{h\\to0}\\frac{\\sqrt{|hy|}}{h}$ 不存在。\n错因（我的记录）：我想根号下面只能是正数，就认为绝对值没用可以直接去掉，但是不能这样想，题目要分类讨论。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b13_16',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivariable_diff',
+    sectionName: '变量代换·链式求导',
+    title: '【1000题基础13-16】偏微分方程变量代换·链式求导',
+    content: '设函数 $u=f(x,y)$ 具有二阶连续偏导数，作变量代换 $\\xi=x,\\ \\eta=y-x$，将方程 $\\frac{\\partial^2u}{\\partial x^2}+2\\frac{\\partial^2u}{\\partial x\\partial y}+\\frac{\\partial^2u}{\\partial y^2}=0$ 化为以 $\\xi,\\eta$ 为自变量的方程。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '解析：链式求导：$u_x=u_\\xi-u_\\eta$，$u_y=u_\\eta$；二阶：$u_{xx}=u_{\\xi\\xi}-2u_{\\xi\\eta}+u_{\\eta\\eta}$，$u_{xy}=u_{\\xi\\eta}-u_{\\eta\\eta}$，$u_{yy}=u_{\\eta\\eta}$。代入原式：$u_{\\xi\\xi}-2u_{\\xi\\eta}+u_{\\eta\\eta}+2u_{\\xi\\eta}-2u_{\\eta\\eta}+u_{\\eta\\eta}=u_{\\xi\\xi}=0$。即化为 $\\frac{\\partial^2u}{\\partial\\xi^2}=0$。\n错因（我的记录）：奇怪的题，不知道在问我什么，看答案才知道这才考链式求导。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_3',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·中值定理',
+    title: '【1000题基础14-3】二重积分中值定理·收缩圆盘求极限',
+    content: '求极限 $\\lim\\limits_{r\\to0^+}\\dfrac{1}{\\pi r^2}\\displaystyle\\iint\\limits_{x^2+y^2\\le r^2}e^{x^2-y^2}\\cos(x+y)\\,dxdy=$（　）\nA. $0$　　B. $1$　　C. $\\pi r^2$　　D. $\\dfrac{1}{\\pi r^2}$',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '正确答案：B\n解析：二重积分中值定理——$f$ 在闭区域 $D$ 上连续，则存在 $(\\xi,\\eta)\\in D$ 使 $\\iint_D f\\,d\\sigma=f(\\xi,\\eta)\\cdot S$。这里 $S=\\pi r^2$，故原式 $=f(\\xi,\\eta)=e^{\\xi^2-\\eta^2}\\cos(\\xi+\\eta)$。当 $r\\to0^+$ 时圆盘收缩到原点，$(\\xi,\\eta)\\to(0,0)$，由连续性极限 $=f(0,0)=e^0\\cos0=1$。\n错因（我的记录）：不知道有“二重积分中值定理”，看到极限+积不出的二重积分没想到用。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_5',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·换序+分部抵项',
+    title: '【1000题基础14-5】积不出换序·分部产生抵消项',
+    content: '计算 $\\displaystyle\\int_0^1 dx\\int_0^{\\sqrt{x}}e^{-y^2/2}\\,dy=$ ______。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '正确答案：$e^{-1/2}$\n解析：内层 $\\int e^{-y^2/2}dy$ 积不出 → 换序。区域 $0\\le x\\le1,\\ 0\\le y\\le\\sqrt{x}$ 即 $0\\le y\\le1,\\ y^2\\le x\\le1$：原式 $=\\int_0^1 e^{-y^2/2}(1-y^2)\\,dy=\\int_0^1 e^{-y^2/2}dy-\\int_0^1 y^2e^{-y^2/2}dy$。第二项分部：$y^2e^{-y^2/2}=-y\\cdot(e^{-y^2/2})′$，$\\int_0^1 y^2e^{-y^2/2}dy=[-ye^{-y^2/2}]_0^1+\\int_0^1 e^{-y^2/2}dy$。两个积不出的项恰好抵消：原式 $=-e^{-1/2}+2\\int_0^1 e^{-y^2/2}dy-2\\int_0^1 e^{-y^2/2}dy$——即原式 $=e^{-1/2}$。\n错因（我的记录）：想到换序，但换完有一个积分积不出；没想到后面分部会产生一项把积不出的抵掉。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_12',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·偏心圆极坐标',
+    title: '【1000题基础14-12】偏心半圆域极坐标·极点钉原点',
+    content: '设 $a>0$，$D=\\{(x,y)\\mid(x-a)^2+y^2\\le a^2,\\ y\\ge0\\}$，求 $\\displaystyle\\iint_D\\sqrt{4a^2-x^2-y^2}\\,dxdy$。',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '正确答案：$\\dfrac{4a^3(3\\pi-4)}{9}$\n解析：圆心 $(a,0)$ 半径 $a$ 的圆，极坐标方程 $r=2a\\cos\\theta$（极点永远钉在原点，不能给 $x$ 代 $r\\cos\\theta+a$！）。上半圆：$\\theta\\in[0,\\frac\\pi2]$，$r\\in[0,2a\\cos\\theta]$。原式 $=\\int_0^{\\pi/2}\\!\\!d\\theta\\int_0^{2a\\cos\\theta}\\!\\!\\sqrt{4a^2-r^2}\\cdot r\\,dr=\\frac13\\int_0^{\\pi/2}\\big[8a^3-(4a^2-4a^2\\cos^2\\theta)^{3/2}\\big]d\\theta=\\frac{8a^3}3\\int_0^{\\pi/2}(1-\\sin^3\\theta)\\,d\\theta$。华里士 $\\int_0^{\\pi/2}\\sin^3=\\frac23$，得 $\\frac{8a^3}3(\\frac\\pi2-\\frac23)=\\frac{4a^3(3\\pi-4)}{9}$。\n错因（我的记录）：错误地把极坐标 $x$ 代成 $r\\cos\\theta+a$；错误认知“极坐标一定要圆心在原点”。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_14',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·轮换对称性',
+    title: '【1000题基础14-14】轮换对称化简·分母 x+y 对消',
+    content: '设 $D=\\{(x,y)\\mid1\\le x^2+y^2\\le4,\\ x\\ge0,\\ y\\ge0\\}$，求 $\\displaystyle\\iint_D\\frac{x\\cos\\sqrt{x^2+y^2}}{x+y}\\,dxdy$。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '正确答案：$\\dfrac\\pi4(2\\sin2-\\sin1+\\cos2-\\cos1)$\n解析：$D$ 关于 $y=x$ 对称 → 轮换对称性 $\\iint_D f(x,y)=\\iint_D f(y,x)$。记 $I_x=\\iint\\frac{x\\cos\\sqrt{x^2+y^2}}{x+y}$，$I_y=\\iint\\frac{y\\cos\\sqrt{x^2+y^2}}{x+y}$，则 $I_x=I_y$，$2I_x=I_x+I_y=\\iint_D\\cos\\sqrt{x^2+y^2}\\,dxdy$（分母 $x+y$ 对消！）。极坐标：$=\\int_0^{\\pi/2}\\!\\!d\\theta\\int_1^2\\cos r\\cdot r\\,dr=\\frac\\pi2[r\\sin r+\\cos r]_1^2$。故 $I_x=\\frac\\pi4(2\\sin2+\\cos2-\\sin1-\\cos1)$。\n错因（我的记录）：看到 $x^2+y^2$ 直接上极坐标很难积，应先用轮换对称性化简；偏心圆用换元法（雅可比）更方便但不会。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_17',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·辅助线构对称',
+    title: '【1000题基础14-17】无对称区域·辅助线构造对称+奇偶消项',
+    content: '设 $a\\ge1$，$f(x)$ 在 $[-a,a]$ 上连续，$D=\\{(x,y)\\mid x^3\\le y\\le1,\\ -1\\le x\\le1\\}$，求 $\\displaystyle\\iint_D\\big[(x+1)f(x)+(x-1)f(-x)\\big]\\sin y\\,dxdy$。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '解析：$D$ 本身无对称性，作辅助线 $y=-x^3$ 把 $D$ 分成两块：$D_1$（$-x^3\\le y\\le x^3$ 型，关于 $x$ 轴对称）与 $D_2$（上半剩余部分关于原点对称的配对区）。在关于原点对称的区域上，被积函数按 $(x,y)\\to(-x,-y)$ 判奇偶：$(x+1)f(x)\\sin y$ 与 $(x-1)f(-x)\\sin y$ 的奇部相互抵消，只剩偶部贡献；在关于 $x$ 轴对称的 $D_1$ 上，含 $\\sin y$ 奇函数项积分为 0。核心思想：无对称 → 添辅助线补出对称区域，用「大区域 − 补的部分」+奇偶消项，全程不需要求出 $f$ 的具体形式。\n错因（我的记录）：区域无对称性，没想到用辅助线构造两个对称区域。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b14_20',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'double_integral',
+    sectionName: '二重积分·极坐标sec技巧',
+    title: '【1000题基础14-20】分段函数二重积分·上下同除cosθ',
+    content: '计算 $\\displaystyle\\iint_D f(x,y)\\,d\\sigma$，其中 $D=\\{(x,y)\\mid x^2+y^2\\ge2x\\}$，$f(x,y)=\\begin{cases}y,&1\\le x\\le2,\\ 0\\le y\\le x\\\\0,&\\text{其他}\\end{cases}$。',
+    mistakeType: '方法不熟',
+    importance: 4,
+    correction: '正确答案：$\\dfrac56$\n解析：有效区域 = 矩形三角区 $\\{1\\le x\\le2,\\ 0\\le y\\le x\\}$ 挖去圆盘 $x^2+y^2<2x$。极坐标：$\\theta\\in[0,\\frac\\pi4]$，$r$ 从 $2\\cos\\theta$（圆）到 $2\\sec\\theta$（直线 $x=2$）。原式 $=\\int_0^{\\pi/4}\\!\\!d\\theta\\int_{2\\cos\\theta}^{2\\sec\\theta}\\!\\!r\\sin\\theta\\cdot r\\,dr=\\frac{\\sin\\theta}3\\Big[\\frac{r^3}3\\Big]$ 代入后关键是“上下同除 $\\cos\\theta$”：$\\frac{8\\sec^3\\theta-8\\cos^3\\theta}{3}$ 同除 $\\cos$ 化出 $\\tan$ 的幂再凑微分，逐项积分（$\\int\\tan^2=\\tan\\theta-\\theta$ 等）得 $\\frac56$。\n错因（我的记录）：极坐标换元后积分难积，“上下同除 $\\cos\\theta$”想不到，且 $\\sec$ 不熟。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_4',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·x视为y的函数',
+    title: '【1000题基础15-4】把 x 视为 y 的函数·一阶线性',
+    content: '求微分方程 $(2x-3xy^2-y^3)y′+y^3=0$ 的通解。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '解析：x 关于 y 更简单，把 x 看作 y 的函数。$\\frac{dy}{dx}=\\frac{-y^3}{2x-3xy^2-y^3}$，取倒数 $\\frac{dx}{dy}=\\frac{(3y^2-2)x}{y^3}+1$，即一阶线性 $\\frac{dx}{dy}-\\frac{3y^2-2}{y^3}x=1$。积分因子 $\\mu=y^{-3}e^{-1/y^2}$，$\\int y^{-3}e^{-1/y^2}dy=\\frac12e^{-1/y^2}$，故通解 $x=\\frac{y^3}2+Cy^3e^{1/y^2}$。\n错因（我的记录）：x 比 y 的形式明显简单，将 x 作为被求导的函数会简单很多，但我没想到。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_5',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·换元u=x+y',
+    title: '【1000题基础15-5】(x+y)² 型换元·幂指极限',
+    content: '设 $y=y(x)$ 过原点且满足 $\\frac{dy}{dx}=(x+y)^2$，求 $\\lim\\limits_{x\\to0^+}[y(x)]^x$。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '正确答案：$1$\n解析：令 $u=x+y$，则 $\\frac{du}{dx}=1+u^2$，分离变量 $\\arctan u=x+C$，$u=\\tan(x+C)$。过原点 $y(0)=0\\Rightarrow u(0)=0\\Rightarrow C=0$，故 $y=\\tan x-x$。极限：$\\tan x-x\\sim\\frac{x^3}3$，$[y]^x=e^{x\\ln(x^3/3)}=e^{x(3\\ln x-\\ln3)}$，$x\\to0^+$ 时 $x\\ln x\\to0$，故极限 $=e^0=1$。\n错因（我的记录）：遇到 xy 组合形式的微分方程应换元（把 x+y 换成 u），长时间没做微分方程有些经验不足。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_6',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·凑导数(siny)′',
+    title: '【1000题基础15-6】乘 cos y 凑 (sin y)′·一阶线性',
+    content: '求微分方程 $y′=(x+1)\\sec y-\\tan y$ 的通解。',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '解析：两边乘 $\\cos y$：$y′\\cos y=(x+1)-\\sin y$。关键识别 $y′\\cos y=(\\sin y)′$，令 $z=\\sin y$ 得 $z′+z=x+1$。积分因子 $e^x$：$(ze^x)′=(x+1)e^x$，$\\int(x+1)e^x dx=xe^x$，故 $ze^x=xe^x+C$，$z=x+Ce^{-x}$，即通解 $\\sin y=x+Ce^{-x}$。\n错因（我的记录）：做不出来，中间把 $y′\\cos y$ 看作 $(\\sin y)′$ 的操作是真想不到。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_8',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·旋转体应用',
+    title: '【1000题基础15-8】旋转容器注水·变截面微分方程',
+    content: 'yOz 面上曲线 $y=f(z)\\ (z\\ge0)$ 绕 z 轴旋转成容器，以 $3\\,cm^3/s$ 注水，水面面积以 $\\pi\\,cm^2/s$ 增大，底面积 $16\\pi\\,cm^2$，求 $f(z)$。',
+    mistakeType: '方法不熟',
+    importance: 3,
+    correction: '正确答案：$f(z)=4e^{\\pi z/6}$\n解析：底面积 $\\pi f(0)^2=16\\pi\\Rightarrow f(0)=4$。水面高 z 时体积 $V=\\int_0^z\\pi f^2 dt$，$\\frac{dV}{dt}=\\pi f^2\\frac{dz}{dt}=3$；水面面积 $S=\\pi f^2$，$\\frac{dS}{dt}=2\\pi f f′\\frac{dz}{dt}=\\pi$。两式相除：$\\frac{2f′}{f}=\\frac{\\pi}3$，即 $\\frac{f′}f=\\frac\\pi6$，解得 $f=4e^{\\pi z/6}$。\n错因（我的记录）：此类物理应用题很少做，解析很烦，优先级放后面。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_10',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·变限积分初值',
+    title: '【1000题基础15-10】变限积分定特解·不等式放缩',
+    content: '设 $\\varphi(x)$ 连续且 $|\\varphi(x)|\\le k$，求 $\\frac{dy}{dx}+y=\\varphi(x)$ 满足 $y(0)=0$ 的特解，并证明 $x\\ge0$ 时 $|y(x)|\\le k(1-e^{-x})$。',
+    mistakeType: '方法不熟',
+    importance: 4,
+    correction: '解析：积分因子 $e^x$：$(ye^x)′=\\varphi e^x$，变限积分 $ye^x=\\int_0^x\\varphi(t)e^t dt+C$，代入 $y(0)=0$ 得 $C=0$，特解 $y=e^{-x}\\int_0^x\\varphi(t)e^t dt$。放缩：$|y|\\le e^{-x}\\int_0^x|\\varphi|e^t dt\\le e^{-x}\\cdot k\\int_0^x e^t dt=ke^{-x}(e^x-1)=k(1-e^{-x})$。变限积分的好处：直接代初值消去 C，积分区间明确便于放缩。\n错因（我的记录）：变限积分用于带初值的微分方程这一后续处理不熟。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_16',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·由通解反求方程',
+    title: '【1000题基础15-16】由通解定特征根·反求三阶方程',
+    content: '已知某三阶常系数齐次线性方程的通解为 $y=C_1+e^x(C_2\\cos2x+C_3\\sin2x)$，求该方程。',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '正确答案：$y‴-2y″+5y′=0$\n解析：从通解读特征根——常数项 $C_1$ 对应 $\\lambda=0$；$e^x(\\cos2x,\\sin2x)$ 对应共轭复根 $\\lambda=1\\pm2i$。特征多项式 $\\lambda(\\lambda-(1+2i))(\\lambda-(1-2i))=\\lambda(\\lambda^2-2\\lambda+5)=\\lambda^3-2\\lambda^2+5\\lambda$，故方程 $y‴-2y″+5y′=0$。设解形式（含三角）：$e^{\\alpha x}(C_1\\cos\\beta x+C_2\\sin\\beta x)$ 对应 $\\alpha\\pm\\beta i$。\n错因（我的记录）：此类题型设解的形式（尤其含三角）总忘，已补进背诵清单十三节。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_21',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'ode',
+    sectionName: '微分方程·欧拉方程',
+    title: '【1000题基础15-21】欧拉方程·固定解法',
+    content: '求欧拉方程 $x^2y″+3xy′+3y=0$ 满足 $y(1)=0,\\ y′(1)=\\sqrt2$ 的特解。',
+    mistakeType: '方法不熟',
+    importance: 4,
+    correction: '正确答案：$y=\\frac{\\sin(\\sqrt2\\ln x)}{x}$\n解析：欧拉方程令 $y=x^m$：$m(m-1)+3m+3=m^2+2m+3=0$，$m=-1\\pm\\sqrt2 i$。通解 $y=x^{-1}[C_1\\cos(\\sqrt2\\ln x)+C_2\\sin(\\sqrt2\\ln x)]$。$y(1)=0\\Rightarrow C_1=0$。求导代 $y′(1)=\\sqrt2$ 得 $C_2=1$，故 $y=\\frac{\\sin(\\sqrt2\\ln x)}{x}$。欧拉方程固定步骤：令 $x=e^t$ 化常系数，或直接设 $y=x^m$ 解特征方程。\n错因（我的记录）：欧拉方程解题步骤固定但我忘光了，冷门但数一要掌握，已补进背诵清单十三节。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b16_1',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '级数·等比+p级数判敛',
+    title: '【1000题基础16-1】两级数均收敛求 p·抓大头+等比/p级数',
+    content: '设 $p$ 为常数，若级数 $\\sum\\limits_{n=1}^\\infty\\frac{(\\sqrt{n+1}-\\sqrt n)^p}{n}$ 与 $\\sum\\limits_{n=1}^\\infty\\left[\\frac1{n^p}-\\frac1{(n+1)^p}\\right]$ 均收敛，则（　）\nA. $-2<p\\le-1$　B. $-1\\le p<0$　C. $-1<p\\le0$　D. $p>0$',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '正确答案：D\n解析：第一级数：$\\sqrt{n+1}-\\sqrt n=\\frac1{\\sqrt{n+1}+\\sqrt n}\\sim\\frac1{2\\sqrt n}$，故 $\\frac{(\\sqrt{n+1}-\\sqrt n)^p}{n}\\sim\\frac1{2^p n^{1+p/2}}$，收敛 $\\iff1+\\frac p2>1\\iff p>0$（抓大头后读 p 级数）。第二级数是 telescoping：部分和 $=1-\\frac1{(n+1)^p}$，仅当 $p>0$ 时 $\\to1$ 收敛。两都收敛 $\\iff p>0$，选 D。\n错因（我的记录）：只有相加和相乘才能抓大头，开局直接抓大头分子为 0；等比级数知识点也不知道，已补进背诵清单十四节。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b16_3',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '级数·泰勒判敛+条件收敛',
+    title: '【1000题基础16-3】泰勒展开判敛·条件收敛',
+    content: '设 $\\lambda>0$ 是常数，则 $\\sum\\limits_{n=1}^\\infty(-1)^n\\sin\\frac{\\lambda+2n^2}{n^3}$（　）\nA. 发散　B. 条件收敛　C. 绝对收敛　D. 敛散性与 $\\lambda$ 有关',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '正确答案：B\n解析：$\\frac{\\lambda+2n^2}{n^3}=\\frac2n+\\frac{\\lambda}{n^3}\\to0$，泰勒 $\\sin x=x-\\frac{x^3}6+\\cdots$：$\\sin\\frac{\\lambda+2n^2}{n^3}=\\frac2n+\\frac{\\lambda-4/3}{n^3}+o(\\frac1{n^3})$。通项 $=(-1)^n\\frac2n+(-1)^nO(\\frac1{n^3})$：前者莱布尼茨收敛（交错调和），后者绝对收敛，故原级数收敛；但取绝对值 $\\sim\\frac2n$ 调和发散，故条件收敛，选 B。$\\lambda$ 只落在绝对收敛的余项里，与敛散性无关。\n错因（我的记录）：没想到用泰勒展开和等价替换；交错级数敛散性判别、条件收敛、绝对收敛的定义都遗忘了，已补进背诵清单十四节。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b16_4',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '级数·偶/奇次方敛散',
+    title: '【1000题基础16-4】偶次方必绝对收敛·奇次方举反例',
+    content: '以下结论，正确的是（　）\nA. 若 $\\sum\\limits_{n=0}^\\infty a_n^2$ 收敛，则 $\\sum\\limits_{n=0}^\\infty a_n^3$ 收敛\nB. 若 $\\sum\\limits_{n=0}^\\infty a_n^2$ 发散，则 $\\sum\\limits_{n=0}^\\infty a_n^3$ 发散\nC. 若 $\\sum\\limits_{n=0}^\\infty a_n^3$ 收敛，则 $\\sum\\limits_{n=0}^\\infty a_n^4$ 收敛\nD. 若 $\\sum\\limits_{n=0}^\\infty a_n^3$ 发散，则 $\\sum\\limits_{n=0}^\\infty a_n^4$ 发散',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '正确答案：A\n解析：偶次方天然非负：$\\sum a_n^2$ 收敛本身就是绝对收敛；且 $a_n\\to0\\Rightarrow$ 充分大 n 有 $|a_n|\\le1\\Rightarrow|a_n^3|=|a_n|\\cdot a_n^2\\le a_n^2$，比较判别绝对收敛，A 正确。奇次方符号可变、可能条件收敛，故 B/D 的“发散”推断不成立。反例库：B 取 $a_n=\\frac{(-1)^n}{\\sqrt n}$（$\\sum a_n^2=\\sum\\frac1n$ 发散但 $\\sum a_n^3$ 收敛）；C 取 $a_n=\\frac{(-1)^n}{n^{1/4}}$（$\\sum a_n^3=\\sum\\frac{(-1)^n}{n^{3/4}}$ 收敛但 $\\sum a_n^4=\\sum\\frac1n$ 发散）；D 取 $a_n=\\frac1{n^{1/3}}$（$\\sum a_n^3=\\sum\\frac1n$ 发散但 $\\sum a_n^4=\\sum\\frac1{n^{4/3}}$ 收敛）。\n错因（我的记录）：偶次方天然非负若收敛必绝对收敛、奇次方符号可变若收敛可能条件收敛；无穷级数太弱，反例级数库已补进背诵清单十四节。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b16_6',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '级数·telescoping+反例',
+    title: '【1000题基础16-6】telescoping 收敛·举反例排除',
+    content: '设 $\\sum\\limits_{n=1}^\\infty(u_{n+1}-u_n)$ 收敛，则下列级数中收敛的是（　）\nA. $\\sum\\limits_{n=1}^\\infty\\frac{u_n}{n}$　B. $\\sum\\limits_{n=1}^\\infty(-1)^n\\frac1{u_n}$　C. $\\sum\\limits_{n=1}^\\infty\\left(1-\\frac{u_n}{u_{n+1}}\\right)$　D. $\\sum\\limits_{n=1}^\\infty(u_{n+1}^2-u_n^2)$',
+    mistakeType: '方法不熟',
+    importance: 4,
+    correction: '正确答案：D\n解析：$\\sum(u_{n+1}-u_n)$ 收敛 $\\iff$ telescoping 部分和 $S_N=u_{N+1}-u_1$ 有极限 $\\iff u_n\\to L$ 存在。D 又是 telescoping：部分和 $=u_{N+1}^2-u_1^2\\to L^2-u_1^2$，必收敛，选 D。反例排除（取 $u_n=\\frac1n$，满足前提 $u_n\\to0$）：B 的 $(-1)^n\\frac1{u_n}=(-1)^n n$ 通项无界发散；C 的 $1-\\frac{u_n}{u_{n+1}}=1-\\frac{n+1}n=-\\frac1n$ 发散。取 $u_n=1+\\frac1n$（$u_n\\to1$）：A 的 $\\frac{u_n}n\\sim\\frac1n$ 发散。故只有 D 必收敛。\n错因（我的记录）：太难做了，举反例速度快；收敛区间/收敛域与反例级数库已补进背诵清单十四节。',
     createdAt: new Date().toISOString(),
     reviewCount: 0,
     lastReviewAt: '',
@@ -1001,7 +1403,7 @@ const problems = ref<WrongProblem[]>([
     content: '设 $L$ 是柱面 $x^2+y^2=1$ 与平面 $z=x+y$ 的交线，从 $z$ 轴正向往 $z$ 轴负向看去为逆时针方向，则曲线积分 $\\displaystyle\\oint_L xz\\,dx+x\\,dy+\\frac{y^2}{2}\\,dz=$ ______。',
     mistakeType: '思路错误',
     importance: 5,
-    correction: '正确答案：$\\pi$\n解析：用 Stokes 公式。$P=xz,Q=x,R=\\frac{y^2}{2}$，旋度 $\\text{rot}=(R_y-Q_z,\\ P_z-R_x,\\ Q_x-P_y)=(y,\\ z,\\ 1)$。取 $L$ 围成的平面片 $z=x+y$（$x^2+y^2\\le1$），上侧法向 $(-z_x,-z_y,1)=(-1,-1,1)$。被积 $(y,z,1)\\cdot(-1,-1,1)=-y-z+1=-y-(x+y)+1=-x-2y+1$。在圆盘上积分，$x,2y$ 为奇函数积分为 0，剩 $\\iint 1\\,dxdy=\\pi$。\n错因（我的记录）：依旧不熟练，遇到此类问题不知道运用什么方法最简便。',
+    correction: '正确答案：$\\pi$\n解析：用 Stokes 公式。$P=xz,Q=x,R=\\frac{y^2}{2}$，旋度 $\\text{rot}=(R_y-Q_z,\\ P_z-R_x,\\ Q_x-P_y)=(y,\\ x,\\ 1)$。取 $L$ 围成的平面片 $z=x+y$（$x^2+y^2\\le1$），上侧法向 $(-z_x,-z_y,1)=(-1,-1,1)$。被积 $(y,x,1)\\cdot(-1,-1,1)=-y-x+1$。在圆盘上积分，$x,y$ 为奇函数积分为 0，剩 $\\iint 1\\,dxdy=\\pi$。\n错因（我的记录）：依旧不熟练，遇到此类问题不知道运用什么方法最简便。',
     createdAt: new Date().toISOString(),
     reviewCount: 0,
     lastReviewAt: '',
@@ -1232,6 +1634,151 @@ const problems = ref<WrongProblem[]>([
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  // ==================== 1000题基础15-18讲二刷错题（薄弱点记录+例题 · 09-08 重灾区专项）====================
+  {
+    id: 'math_1000_b15_7',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'green_formula',
+    sectionName: '曲线积分·格林公式',
+    title: '【1000题基础15-7】格林公式几何意义+使用条件（二刷仍错·重灾区）',
+    content: '格林公式的几何意义和使用条件我都忘了，这道题基本没怎么看懂。（二刷双圈·数一重灾区）',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '【格林公式】$\\oint_L P\\,dx+Q\\,dy=\\iint_D\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dxdy$\n【三个使用条件】①L 必须封闭（不封闭先补线，最后减去补的那段）②正向：沿 L 行走时区域 D 始终在左侧（即逆时针）③P、Q 在 D 上有连续偏导数（D 内有奇点要挖去，用小圆周围绕）\n【几何意义】$\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}$ 是向量场的二维旋度，格林公式把边界环量转成内部旋度之和；特别取 $P=-y,\\ Q=x$ 得面积公式 $\\oint_L x\\,dy-y\\,dx=2\\iint_D dxdy=2S$。\n【简单例题】求 $\\oint_L(x^2-y)dx+(x^2+y)dy$，L 为单位圆盘 $x^2+y^2\\le1$ 的正向边界。解：$Q_x-P_y=2x-(-1)=2x+1$，原式 $=\\iint_D(2x+1)dxdy=\\iint_D 2x\\,dxdy+\\iint_D 1\\,dxdy=0+\\pi$（$2x$ 关于 y 轴奇对称为 0，常数 1 的积分=面积 π）。\n口诀：格林三条件——封闭、正向、偏导连续；不封闭补线要减，有奇点挖洞要绕。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b15_9',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'power_series',
+    sectionName: '幂级数·收敛半径不变性',
+    title: '【1000题基础15-9】收敛半径四条不变性+收敛区间vs收敛域（二刷仍错·重灾区）',
+    content: '此类题不太会做，得记住四个收敛半径不变性；同时记住收敛区间不考虑端点、收敛域才考虑端点。（二刷双圈·重灾区）',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '【收敛半径四条不变性】幂级数 $\\sum a_nx^n$ 与下列级数收敛半径 R 完全相同：①$\\sum a_nx^{n+1}$（整体乘 x）②$\\sum\\frac{a_n}{n+1}x^{n+1}$（逐项积分）③$\\sum na_nx^{n-1}$（逐项求导）。即“乘除 x、逐项求导、逐项积分都不改变收敛半径 R”。\n【收敛区间 vs 收敛域】收敛区间 $(-R,R)$ 是开区间，天然不含端点；收敛域 = 收敛区间 + 单独验证端点 $x=\\pm R$ 后收敛的那些端点。求导/积分后 R 不变，但端点敛散性可能变，必须重新验证。\n口诀：求导积分不动 R，收敛区间开区间，收敛域才验端点。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b16_14',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'power_series_sum',
+    sectionName: '幂级数·求和函数综合',
+    title: '【1000题基础16-14】幂级数求和函数综合：先判收敛域+统一幂次+积分公式（究极难题·重灾区）',
+    content: '究极难题，全方位考察：①求和函数前就忘记判断收敛域了 ②和函数的化简、统一幂次等操作不熟练 ③里面的积分公式都没怎么记清楚。这题质量确实太高了。（二刷双圈·重灾区）',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '【求和函数三步铁律】①先求收敛域：算半径 R + 验端点，和函数表达式只在收敛域内成立（这题就栽在求和前忘了判收敛域）②统一幂次：把通项通过提出 x 的幂、逐项求导或逐项积分，凑成标准形（$\\sum x^n$、$\\sum nx^{n-1}$、$\\sum\\frac{x^n}{n}$、$\\sum\\frac{x^n}{n!}$ 之一）③套基本和函数。\n【四个基本和函数（|x|<1）】$\\sum_{n=0}^{\\infty}x^n=\\frac1{1-x}$；$\\sum_{n=1}^{\\infty}nx^{n-1}=\\frac1{(1-x)^2}$；$\\sum_{n=1}^{\\infty}\\frac{x^n}{n}=-\\ln(1-x)$；$\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}=e^x$。\n【积分公式回顾】化简中常用 $\\int xe^xdx=(x-1)e^x+C$、$\\int\\frac{dx}{\\sqrt{1+x^2}}=\\ln(x+\\sqrt{1+x^2})+C$ 等，详见背诵清单第三章。\n口诀：求和先问收敛域，统一幂次凑标准；导一次升幂分母、积一次出对数，端点最后单独验。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b17_1',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'total_differential',
+    sectionName: '多元微分·全微分四种等价',
+    title: '【1000题基础17-1】全微分的四种等价表示（二刷仍错·重灾区）',
+    content: '微分相关定义忘差不多了，背诵讲义得添加全微分的四种等价表示。（二刷双圈·重灾区）',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '【全微分定义】若 $\\Delta z=A\\Delta x+B\\Delta y+o(\\rho)$（$\\rho=\\sqrt{(\\Delta x)^2+(\\Delta y)^2}$），则称 f 可微，$dz=A\\,dx+B\\,dy$。\n【四种等价表示】①$dz=\\frac{\\partial z}{\\partial x}dx+\\frac{\\partial z}{\\partial y}dy$　②$dz=f_x(x,y)dx+f_y(x,y)dy$　③可微 $\\iff\\Delta z-f_x\\Delta x-f_y\\Delta y=o(\\rho)$（余项是 ρ 的高阶无穷小）　④一阶全微分形式不变性：无论 x、y 是自变量还是中间变量，$dz=\\frac{\\partial z}{\\partial x}dx+\\frac{\\partial z}{\\partial y}dy$ 形式不变。\n【三者关系链】偏导连续 $\\Rightarrow$ 可微 $\\Rightarrow$ 连续、偏导存在（反向都不成立；可微必连续，但偏导存在未必连续）。\n口诀：全微分=两偏导各乘增量再相加；可微看余项是不是 o(ρ)；偏导连续是可微的充分非必要条件。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b17_7',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'surface_equation',
+    sectionName: '空间曲面·准线与母线',
+    title: '【1000题基础17-7】准线与母线定义+空间曲面方程（二刷仍错·重灾区）',
+    content: '准线和母线的定义忘完了，此类题型完全不会，不知道如何描述这样一个空间体的方程。（二刷双圈·重灾区）',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '【柱面定义】一条动直线（母线）沿一条定曲线（准线）平行移动形成的曲面。准线是空间一条曲线（通常由两个曲面方程联立给出），母线是平行于某坐标轴的直线。\n【柱面方程】母线平行于 z 轴时，方程只含 x、y：$F(x,y)=0$。规律：方程缺哪个变量，母线就平行于哪个轴（缺 z → 母线平行 z 轴）。\n【旋转曲面】平面曲线绕轴旋转——“绕谁转谁不动，另一个换成 ±√(另两坐标平方和)”。如 xOy 面上曲线 $f(x,y)=0$ 绕 x 轴旋转得 $f(x,\\pm\\sqrt{y^2+z^2})=0$。\n【简单例题】yOz 面上直线 $z=2y$ 绕 z 轴旋转：z 不动，把 y 换成 $\\pm\\sqrt{x^2+y^2}$，得 $z=2(\\pm\\sqrt{x^2+y^2})$，两边平方即 $z^2=4(x^2+y^2)$（圆锥面）。\n口诀：缺谁平行谁（柱面）；绕谁谁不动，另两平方开根带 ±（旋转面）。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b17_8',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'directional_derivative',
+    sectionName: '多元微分·方向导数与旋度',
+    title: '【1000题基础17-8】方向导数(l°单位向量)+旋度公式概念（二刷仍错·重灾区）',
+    content: '方向导数的内容真忘得差不多了，图中下方老师给的知识点和公式完全忘了，需要加一个简单例题辅助记忆；甚至这个 l°（lo）符号都不知道啥意思。补充：旋度的相关公式和概念也忘差不多了。（二刷双圈·重灾区）',
+    mistakeType: '公式不清',
+    importance: 5,
+    correction: '【$l^0$ 是什么】方向 $l$ 的单位向量（上标 0 = 单位化），$l^0=(\\cos\\alpha,\\cos\\beta)$，α、β 是方向 l 与 x 轴、y 轴正向的夹角（方向角）。\n【方向导数】$\\frac{\\partial f}{\\partial l}=\\nabla f\\cdot l^0=f_x\\cos\\alpha+f_y\\cos\\beta$，表示 f 沿 l 方向的变化率；最大方向导数沿梯度 $\\nabla f$ 方向，最大值 $=|\\nabla f|$。\n【简单例题】$f=x^2+2xy$ 在点 (1,0) 沿与 x 轴成 45° 方向：$\\nabla f=(2x+2y,\\,2x)$ 在 (1,0) 处 $=(2,2)$；$l^0=(\\cos45°,\\sin45°)=(\\frac{\\sqrt2}2,\\frac{\\sqrt2}2)$；$\\frac{\\partial f}{\\partial l}=2\\cdot\\frac{\\sqrt2}2+2\\cdot\\frac{\\sqrt2}2=2\\sqrt2$。\n【旋度】$\\operatorname{rot}\\vec F=\\nabla\\times\\vec F=(R_y-Q_z,\\ P_z-R_x,\\ Q_x-P_y)$（写成 i、j、k 三阶行列式按第一行展开）；概念：描述向量场在某点旋转的强弱与转轴方向，每个分量“右减左”、j 分量天然带负号。\n口诀：l° 是单位方向向量；方向导数=梯度点单位；最大沿梯度=模长；旋度画行列式右减左。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b18_1',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'solid_revolution',
+    sectionName: '重积分应用·旋转曲面方程',
+    title: '【1000题基础18-1】旋转体（旋转曲面）方程记错（二刷仍错·重灾区）',
+    content: '旋转体的公式记错了，这题写成 $(y+z)^2=2x$ 了，导致后面都算错了。（二刷双圈·重灾区）',
+    mistakeType: '公式不清',
+    importance: 5,
+    correction: '【旋转曲面方程】平面曲线绕轴旋转——“绕谁转谁不动，另一个换成 ±√(另两坐标平方和)”。xOy 面上曲线 $f(x,y)=0$ 绕 x 轴 $\\Rightarrow f(x,\\pm\\sqrt{y^2+z^2})=0$；绕 y 轴 $\\Rightarrow f(\\pm\\sqrt{x^2+z^2},y)=0$。\n【错因针对】旋转半径是到旋转轴的**距离**，绕 x 轴时半径 $=\\sqrt{y^2+z^2}$，不是 $y+z$！把 $(y+z)^2$ 当半径平方是概念错误（两个坐标相加≠到轴距离）。\n【简单例题】xOy 面上抛物线 $y^2=2x$ 绕 x 轴旋转：把 y 换成 $\\pm\\sqrt{y^2+z^2}$，得 $y^2+z^2=2x$（旋转抛物面）——注意是 $y^2+z^2$ 不是 $(y+z)^2$。\n【旋转体体积】绕 x 轴 $V=\\pi\\int_a^b y^2dx$；绕 y 轴柱壳 $V=2\\pi\\int_a^b xy\\,dx$。\n口诀：绕 x 轴，半径是 √(y²+z²)；谁转谁留，另两平方开根，绝不是两坐标相加。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b18_2',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'triple_integral_order',
+    sectionName: '三重积分·先一后二/先二后一+对称性',
+    title: '【1000题基础18-2】三重积分先一后二vs先二后一步骤+对称性优先（二刷仍错·重灾区）',
+    content: '先二后一和先一后二的步骤记混了，需要用简单例题告诉我两者步骤以及如何选择。补充：做重积分总是忘记先考虑对称性，直接就猛干了，记得多提醒我。（二刷双圈·重灾区）',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '【先一后二（投影穿针法）】先对 z 积分（z 上下限是 x、y 的函数），再在 xOy 投影域 D 上做二重积分：$\\iiint_\\Omega f\\,dV=\\iint_D[\\int_{z_1(x,y)}^{z_2(x,y)}f\\,dz]dxdy$。适用：Ω 上下边界曲面易解出 z。\n【先二后一（切片截面法）】先用平面 z=c 截 Ω 得截面 $D_z$，在 $D_z$ 上做二重积分，再对 z 从 $c_1$ 到 $c_2$ 积分：$\\iiint_\\Omega f\\,dV=\\int_{c_1}^{c_2}[\\iint_{D_z}f\\,dxdy]dz$。适用：f 只含 z（如 $z^2$）且截面 $D_z$ 是圆/矩形等易算区域。\n【简单例题】$\\iiint_\\Omega z^2dV$，Ω 为球 $x^2+y^2+z^2\\le R^2$。选**先二后一**（f=z² 只含 z、截面是圆）：固定 z，截面 $D_z$ 半径 $\\sqrt{R^2-z^2}$、面积 $\\pi(R^2-z^2)$，原式 $=\\int_{-R}^R z^2\\cdot\\pi(R^2-z^2)dz=\\pi\\int_{-R}^R(R^2z^2-z^4)dz=\\frac{4\\pi R^5}{15}$。\n【对称性优先铁律】（用户要求多提醒）动手前必看 Ω 与被积函数的对称性：Ω 关于 xOy 面对称、f 关于 z 是奇函数 $\\Rightarrow$ 积分=0；f 关于 z 偶 $\\Rightarrow$ =2 倍上半区域。同理看 x、y。\n口诀：f 只含一个变量、截面规整 → 先二后一；边界曲面易解 z → 先一后二；动手前先问对称性，能砍一半砍一半，奇函数对称直接零。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'math_1000_b18_5',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'curve_integral',
+    sectionName: '曲线积分·第一类+路径无关',
+    title: '【1000题基础18-5】第一类曲线积分步骤+参数方程表达几何图形+路径无关（二刷仍错·重灾区）',
+    content: '第一类曲线积分的步骤也忘了，只记得格林公式，请用简单例题的方式补上；类似用参数方程表达几何图形的能力也不足。补充：曲线积分与路径无关的知识点也忘差不多了。（二刷双圈·重灾区）',
+    mistakeType: '方法不熟',
+    importance: 5,
+    correction: '【第一类曲线积分（对弧长）四步】①写曲线 L 的参数方程 $x=x(t),y=y(t),t\\in[\\alpha,\\beta]$ ②算弧微分 $ds=\\sqrt{x′^2+y′^2}\\,dt$ ③把 $f(x,y)$ 用 t 表示 ④$\\int_L f\\,ds=\\int_\\alpha^\\beta f(x(t),y(t))\\sqrt{x′^2+y′^2}\\,dt$。注意：ds 恒正，下限必小于上限。\n【简单例题】$\\int_L(x^2+y^2)ds$，L 为圆 $x^2+y^2=4$ 一周。参数 $x=2\\cos t,y=2\\sin t,t\\in[0,2\\pi]$，$ds=\\sqrt{(-2\\sin t)^2+(2\\cos t)^2}dt=2dt$，被积 $x^2+y^2=4$，$\\int_0^{2\\pi}4\\cdot2\\,dt=16\\pi$。\n【参数方程表达几何图形】圆 $x^2+y^2=a^2\\to(a\\cos t,a\\sin t)$；椭圆 $\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1\\to(a\\cos t,b\\sin t)$；两点 $(x_0,y_0)$ 到 $(x_1,y_1)$ 的直线段 $\\to x=x_0+(x_1-x_0)t,y=y_0+(y_1-y_0)t,t\\in[0,1]$。\n【曲线积分与路径无关四等价】（单连通域、P/Q 有连续偏导）①$\\int_L P\\,dx+Q\\,dy$ 与路径无关 ②沿任意闭曲线 $\\oint_L P\\,dx+Q\\,dy=0$ ③$\\frac{\\partial Q}{\\partial x}=\\frac{\\partial P}{\\partial y}$ ④$P\\,dx+Q\\,dy$ 是某函数 u 的全微分。\n口诀：第一类弧长 ds 恒正、参数化四步走；路径无关看 $Q_x=P_y$（等价于闭曲线积分为零）。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
@@ -1240,6 +1787,21 @@ const activeTab = ref('gaoshu')
 const gaoshuProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_gaoshu'))
 const xiandaiProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_xiandai'))
 const gailvProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_gailv'))
+
+const openCorrections = ref<Set<string>>(new Set())
+
+function isCorrectionOpen(id: string): boolean {
+  return openCorrections.value.has(id)
+}
+
+function toggleCorrection(id: string) {
+  const s = openCorrections.value
+  if (s.has(id)) {
+    s.delete(id)
+  } else {
+    s.add(id)
+  }
+}
 
 function toggleMastered(problem: WrongProblem) {
   problem.mastered = !problem.mastered
@@ -1283,7 +1845,13 @@ function getMistakeTypeColor(type: string): string {
               </el-tag>
             </div>
             <div class="problem-content" v-html="renderMath(p.content)"></div>
-            <div class="problem-correction" v-if="p.correction" v-html="renderMath(p.correction)"></div>
+            <div class="correction-collapse" v-if="p.correction">
+              <div class="correction-toggle" @click="toggleCorrection(p.id)">
+                <span class="toggle-arrow">{{ isCorrectionOpen(p.id) ? '▾' : '▸' }}</span>
+                <span>{{ isCorrectionOpen(p.id) ? '收起解析与错因' : '展开解析与错因' }}</span>
+              </div>
+              <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
+            </div>
             <div class="problem-actions">
               <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
                 {{ p.mastered ? '已掌握' : '标记掌握' }}
@@ -1308,7 +1876,13 @@ function getMistakeTypeColor(type: string): string {
               </el-tag>
             </div>
             <div class="problem-content" v-html="renderMath(p.content)"></div>
-            <div class="problem-correction" v-if="p.correction" v-html="renderMath(p.correction)"></div>
+            <div class="correction-collapse" v-if="p.correction">
+              <div class="correction-toggle" @click="toggleCorrection(p.id)">
+                <span class="toggle-arrow">{{ isCorrectionOpen(p.id) ? '▾' : '▸' }}</span>
+                <span>{{ isCorrectionOpen(p.id) ? '收起解析与错因' : '展开解析与错因' }}</span>
+              </div>
+              <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
+            </div>
             <div class="problem-actions">
               <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
                 {{ p.mastered ? '已掌握' : '标记掌握' }}
@@ -1333,7 +1907,13 @@ function getMistakeTypeColor(type: string): string {
               </el-tag>
             </div>
             <div class="problem-content" v-html="renderMath(p.content)"></div>
-            <div class="problem-correction" v-if="p.correction" v-html="renderMath(p.correction)"></div>
+            <div class="correction-collapse" v-if="p.correction">
+              <div class="correction-toggle" @click="toggleCorrection(p.id)">
+                <span class="toggle-arrow">{{ isCorrectionOpen(p.id) ? '▾' : '▸' }}</span>
+                <span>{{ isCorrectionOpen(p.id) ? '收起解析与错因' : '展开解析与错因' }}</span>
+              </div>
+              <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
+            </div>
             <div class="problem-actions">
               <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
                 {{ p.mastered ? '已掌握' : '标记掌握' }}
@@ -1419,6 +1999,34 @@ function getMistakeTypeColor(type: string): string {
   border-radius: 4px;
   margin-bottom: 12px;
   white-space: pre-wrap;
+}
+
+.correction-collapse {
+  margin-bottom: 12px;
+}
+
+.correction-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #8ab4a0;
+  font-size: 0.85em;
+  user-select: none;
+  padding: 4px 0;
+}
+
+.correction-toggle:hover {
+  color: #a8d4be;
+}
+
+.toggle-arrow {
+  font-size: 0.8em;
+}
+
+.correction-collapse .problem-correction {
+  margin-bottom: 0;
+  margin-top: 6px;
 }
 
 .problem-actions {

@@ -41,6 +41,62 @@
         "description": "函数在某点的多项式逼近",
         "application": "极限计算、近似计算、不等式证明",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f01-06",
+        "name": "保号性（双向）",
+        "latex": "\\lim f = A > 0 \\Rightarrow f > 0(\\text{去心邻域});\\quad f \\ge 0 \\Rightarrow \\lim f = A \\ge 0",
+        "description": "脱帽变严格、戴帽留等号",
+        "application": "极限符号与函数符号互推、证明题",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-07",
+        "name": "洛必达法则的边界与可用阶数",
+        "latex": "\\lim\\frac{f'}{g'}\\text{ 存在} \\Rightarrow \\lim\\frac{f}{g}\\text{ 存在且相等；反之不成立。仅 } n \\text{ 阶可导最多用到 } f^{(n-1)}\\text{，} n \\text{ 阶连续可导才到 } f^{(n)}",
+        "description": "洛必达是单行道：导数极限不存在不能反推原极限不存在",
+        "application": "未定式极限、判断能否用洛必达",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f01-08",
+        "name": "增长天梯（含阶乘与 n^n）",
+        "latex": "\\ln^\\alpha n \\ll n^\\beta \\ll a^n \\ll n! \\ll n^n \\quad (\\alpha,\\beta>0,\\, a>1)",
+        "description": "无穷大阶的比较：对数<幂<指数<阶乘<n^n",
+        "application": "极限比较、判敛",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-09",
+        "name": "高阶等价无穷小补充",
+        "latex": "\\arcsin x - x \\sim \\frac{1}{6}x^3;\\quad 1 - \\cos^k x \\sim \\frac{k}{2}x^2",
+        "description": "与 x-\\sin x~x^3/6、\\tan x-x~x^3/3 配套",
+        "application": "高精度等价替换",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f01-10",
+        "name": "(1+x)^(1/x) 与 e 的差",
+        "latex": "(1+x)^{1/x} - e \\sim -\\frac{e}{2}x \\quad (x \\to 0^+)",
+        "description": "第二重要极限的精细估计",
+        "application": "1^∞ 型极限精细化",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f01-11",
+        "name": "夹逼不等式库",
+        "latex": "0<x<\\frac{\\pi}{2}: \\sin x > \\frac{2}{\\pi}x;\\quad 0\\le x\\le 1: \\arctan x \\le x \\le \\arcsin x;\\quad x>0: \\frac{x}{1+x} < \\ln(1+x) < x",
+        "description": "证明题放缩三件套",
+        "application": "不等式证明、夹逼准则",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f01-12",
+        "name": "子列与数列敛散",
+        "latex": "\\text{某子列发散} \\Rightarrow \\text{原数列发散};\\quad \\text{两子列收敛于不同值} \\Rightarrow \\text{原数列发散}",
+        "description": "用子列判断发散",
+        "application": "数列极限证明",
+        "difficulty": "基础"
       }
     ]
   },
@@ -78,6 +134,38 @@
         "description": "连接函数值与导数值的重要定理",
         "application": "不等式证明、方程根的讨论",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f02-05",
+        "name": "反函数的二阶导数",
+        "latex": "y''_{xx} = -\\frac{x''_{yy}}{(x'_y)^3}",
+        "description": "一阶取倒数、二阶带负号除立方",
+        "application": "反函数求导",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f02-06",
+        "name": "常用 n 阶导数",
+        "latex": "(e^{ax+b})^{(n)} = a^n e^{ax+b};\\ (\\sin(ax+b))^{(n)} = a^n\\sin(ax+b+\\frac{n\\pi}{2});\\ (\\ln(ax+b))^{(n)} = (-1)^{n-1}a^n\\frac{(n-1)!}{(ax+b)^n};\\ (\\frac{1}{ax+b})^{(n)} = (-1)^n a^n\\frac{n!}{(ax+b)^{n+1}}",
+        "description": "高阶导数速查",
+        "application": "高阶导数、莱布尼茨公式",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f02-07",
+        "name": "周期函数的导数与积分",
+        "latex": "f \\text{ 以 } T \\text{ 周期可导} \\Rightarrow f' \\text{ 亦以 } T \\text{ 周期};\\quad \\int_0^x f\\,dt \\text{ 以 } T \\text{ 周期} \\iff \\int_0^T f\\,dx = 0",
+        "description": "求导保周期；积分保周期需一个周期积分为零",
+        "application": "周期函数性质题",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f02-08",
+        "name": "参数方程的二阶导数",
+        "latex": "y'' = \\frac{x'y'' - y'x''}{(x')^3}",
+        "description": "分子交叉相减、分母 x' 立方（不是 y''/x''）",
+        "application": "参数方程求二阶导",
+        "difficulty": "进阶"
       }
     ]
   },
@@ -107,6 +195,210 @@
         "description": "通过变量替换简化积分计算",
         "application": "复合函数积分",
         "difficulty": "基础"
+      },
+      {
+        "id": "f03-04",
+        "name": "区间再现公式",
+        "latex": "\\int_a^b f(x)\\,dx = \\int_a^b f(a+b-x)\\,dx",
+        "description": "对称换元，常与奇偶性配合",
+        "application": "定积分化简",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f03-05",
+        "name": "Wallis（点火）公式",
+        "latex": "\\int_0^{\\pi/2}\\sin^n x\\,dx = \\int_0^{\\pi/2}\\cos^n x\\,dx = \\frac{(n-1)!!}{n!!}\\cdot\\begin{cases}\\frac{\\pi}{2}, & n \\text{ 偶}\\\\ 1, & n \\text{ 奇}\\end{cases}",
+        "description": "双阶乘往下跳，偶补 π/2 奇补 1；递推 b_{n+2}=\\frac{n+1}{n+2}b_n",
+        "application": "三角幂次定积分",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f03-06",
+        "name": "定积分三角三式",
+        "latex": "\\int_0^{\\pi/2}f(\\sin x)dx = \\int_0^{\\pi/2}f(\\cos x)dx;\\ \\int_0^\\pi x f(\\sin x)dx = \\frac{\\pi}{2}\\int_0^\\pi f(\\sin x)dx;\\ \\int_0^\\pi f(\\sin x)dx = 2\\int_0^{\\pi/2}f(\\sin x)dx",
+        "description": "半区间 sin/cos 互换；x 乘 sin 把 x 换 π/2 提出；全区间折半",
+        "application": "含三角的定积分",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f03-07",
+        "name": "星形线围成面积",
+        "latex": "x^{2/3}+y^{2/3}=a^{2/3} \\Rightarrow S = \\frac{3\\pi a^2}{8}",
+        "description": "星形线面积直接公式",
+        "application": "平面图形面积",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-08",
+        "name": "弧长公式（参数 / 极坐标）",
+        "latex": "L = \\int_\\alpha^\\beta\\sqrt{(x')^2+(y')^2}\\,dt;\\quad L = \\int_\\alpha^\\beta\\sqrt{r^2+(r')^2}\\,d\\theta",
+        "description": "参数两导平方和、极坐标 r 与 r' 平方和",
+        "application": "曲线弧长",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-09",
+        "name": "球坐标变换与体积元",
+        "latex": "x=r\\sin\\varphi\\cos\\theta,\\ y=r\\sin\\varphi\\sin\\theta,\\ z=r\\cos\\varphi;\\quad dV = r^2\\sin\\varphi\\,dr\\,d\\varphi\\,d\\theta",
+        "description": "φ 管上下、θ 管转；体积元带 r²sinφ",
+        "application": "三重积分",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-10",
+        "name": "补充积分四式",
+        "latex": "\\int xe^x dx = (x-1)e^x+C;\\ \\int e^{ax}\\cos bx\\,dx = \\frac{e^{ax}}{a^2+b^2}(a\\cos bx+b\\sin bx)+C;\\ \\int\\frac{dy}{\\sqrt{1+y^2}} = \\ln(y+\\sqrt{1+y^2})+C;\\ \\int\\frac{du}{\\sqrt{u^2-a^2}} = \\ln|u+\\sqrt{u^2-a^2}|+C",
+        "description": "后两式为「对数装根式」",
+        "application": "不定积分速查",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "ch04": {
+    "title": "无穷级数",
+    "formulas": [
+      {
+        "id": "f04-01",
+        "name": "阿贝尔定理",
+        "latex": "\\sum a_nx^n \\text{ 在 } x_0\\ne0 \\text{ 收敛} \\Rightarrow |x|<|x_0| \\text{ 绝对收敛};\\quad \\text{在 } x_0 \\text{ 发散} \\Rightarrow |x|>|x_0| \\text{ 发散}",
+        "description": "幂级数收敛的内外控制",
+        "application": "收敛半径/收敛域",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f04-02",
+        "name": "收敛域操作律",
+        "latex": "\\text{逐项求导/积分不改变收敛半径，但端点(收敛域)要重验};\\quad \\text{乘/除 } x \\text{ 不改变收敛域}",
+        "description": "求导积分半径不动、端点重验",
+        "application": "求收敛域",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f04-03",
+        "name": "傅里叶级数狄利克雷收敛定理",
+        "latex": "S(x) = \\frac{f(x^-)+f(x^+)}{2}",
+        "description": "连续点等于 f(x)，间断点等于左右极限平均",
+        "application": "傅里叶级数求和",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f04-04",
+        "name": "Bertrand（广义 p）级数",
+        "latex": "\\sum\\frac{1}{n^p(\\ln n)^q}:\\ p>1 \\text{ 收敛};\\ p=1 \\text{ 且 } q>1 \\text{ 收敛};\\ \\text{其余发散}",
+        "description": "p=1 时对数指数 q 定生死",
+        "application": "级数判敛",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "ch05": {
+    "title": "微分方程",
+    "formulas": [
+      {
+        "id": "f05-01",
+        "name": "一阶线性通解",
+        "latex": "y'+P(x)y=Q(x):\\quad y = \\left(\\int Q(x)e^{\\int P dx}dx + C\\right)e^{-\\int P dx}",
+        "description": "Q=0 时退化为 y=Ce^{-∫Pdx}",
+        "application": "一阶线性微分方程",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f05-02",
+        "name": "二阶常系数非齐次特解形式",
+        "latex": "f=P_m e^{\\lambda x} \\Rightarrow y^*=x^kQ_m e^{\\lambda x};\\quad f=e^{\\alpha x}(P\\cos\\beta x+Q\\sin\\beta x) \\Rightarrow y^*=x^ke^{\\alpha x}(A\\cos\\beta x+B\\sin\\beta x)",
+        "description": "k 为特征根重数（三角型看 α±iβ 是否特征根）",
+        "application": "二阶常系数非齐次",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "la01": {
+    "title": "线性代数",
+    "formulas": [
+      {
+        "id": "la01-01",
+        "name": "伴随矩阵公式群",
+        "latex": "AA^*=A^*A=|A|E;\\ |A^*|=|A|^{n-1};\\ (kA)^*=k^{n-1}A^*;\\ (A^*)^*=|A|^{n-2}A;\\ (AB)^*=B^*A^*;\\ A \\text{ 可逆} \\Rightarrow A^*=|A|A^{-1}",
+        "description": "伴随行列式降一次幂、乘积伴随反序",
+        "application": "伴随矩阵计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-02",
+        "name": "伴随矩阵的秩",
+        "latex": "R(A^*) = \\begin{cases} n, & R(A)=n \\\\ 1, & R(A)=n-1 \\\\ 0, & R(A)<n-1 \\end{cases}",
+        "description": "满秩伴随满、掉一秩伴随一、再掉伴随零",
+        "application": "秩的计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-03",
+        "name": "特征值映射表",
+        "latex": "A\\to\\lambda;\\ kA\\to k\\lambda;\\ A^k\\to\\lambda^k;\\ f(A)\\to f(\\lambda);\\ A^{-1}\\to1/\\lambda;\\ A^*\\to|A|/\\lambda;\\ P^{-1}AP\\to\\lambda;\\ \\sum\\lambda=\\operatorname{tr}A,\\ \\prod\\lambda=|A|",
+        "description": "多项式照代、逆倒数、伴随 |A| 除",
+        "application": "特征值性质",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-04",
+        "name": "同时对角化条件",
+        "latex": "A,B \\text{ 均可对角化时，可被同一 } P \\text{ 同时对角化} \\iff AB=BA",
+        "description": "限定：两者都要可对角化",
+        "application": "矩阵同时对角化",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-05",
+        "name": "三次方程韦达定理",
+        "latex": "ax^3+bx^2+cx+d=0:\\ \\sum x_i=-\\frac{b}{a},\\ \\sum_{i<j}x_ix_j=\\frac{c}{a},\\ x_1x_2x_3=-\\frac{d}{a}",
+        "description": "符号 +−+ 交替",
+        "application": "特征多项式求根",
+        "difficulty": "基础"
+      }
+    ]
+  },
+  "pr01": {
+    "title": "概率论与数理统计",
+    "formulas": [
+      {
+        "id": "pr01-01",
+        "name": "正态总体抽样分布三大件",
+        "latex": "\\bar X\\sim N(\\mu,\\sigma^2/n);\\quad \\frac{(n-1)S^2}{\\sigma^2}\\sim\\chi^2(n-1);\\quad T=\\frac{\\bar X-\\mu}{S/\\sqrt n}\\sim t(n-1);\\quad \\bar X \\text{ 与 } S^2 \\text{ 独立}",
+        "description": "均值正态除 n、方差卡方 n−1、t 是均值除 S 根 n",
+        "application": "置信区间、假设检验",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "pr01-02",
+        "name": "样本矩的期望与方差",
+        "latex": "E\\bar X=\\mu,\\quad D\\bar X=\\sigma^2/n,\\quad ES^2=\\sigma^2",
+        "description": "S² 是 σ² 的无偏估计",
+        "application": "抽样分布",
+        "difficulty": "基础"
+      },
+      {
+        "id": "pr01-03",
+        "name": "常见分布数字特征表",
+        "latex": "B(n,p):np,np(1-p);\\ P(\\lambda):\\lambda,\\lambda;\\ G(p):\\frac1p,\\frac{1-p}{p^2};\\ U(a,b):\\frac{a+b}2,\\frac{(b-a)^2}{12};\\ E(\\lambda):\\frac1\\lambda,\\frac1{\\lambda^2};\\ N(\\mu,\\sigma^2):\\mu,\\sigma^2",
+        "description": "八大分布期望方差速查",
+        "application": "数字特征计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "pr01-04",
+        "name": "标准正态绝对值期望 / 指数无记忆性",
+        "latex": "E|Z| = \\sqrt{2/\\pi}\\ (Z\\sim N(0,1));\\quad \\text{指数分布无记忆性，} \\min(X_1,\\dots,X_n) \\text{ 仍指数}",
+        "description": "唯一具有无记忆性的连续分布",
+        "application": "数字特征、极值分布",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "pr01-05",
+        "name": "max/min 的代数表示",
+        "latex": "\\max\\{X,Y\\} = \\frac{X+Y+|X-Y|}{2},\\quad \\min\\{X,Y\\} = \\frac{X+Y-|X-Y|}{2}",
+        "description": "和加差绝对除2是max，和减差绝对除2是min",
+        "application": "极值分布、数字特征",
+        "difficulty": "进阶"
       }
     ]
   }

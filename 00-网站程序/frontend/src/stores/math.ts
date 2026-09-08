@@ -84,7 +84,7 @@ interface ExtendedMathChapter extends MathChapter {
 // 三大学科的数据源配置
 // DATA_BASE：生产环境部署在 GitHub Pages 子路径下，必须拼上 base，否则 /data/... 会指向域名根目录 404
 const DATA_BASE = import.meta.env.BASE_URL
-const MATH_DATA_VERSION = 'v4-2026-07-22-baseurl'
+const MATH_DATA_VERSION = 'v5-2026-09-07-tips'
 const SUBJECT_SOURCES = [
   { subject: '高等数学', base: 'data/math/higher-math/' },
   { subject: '线性代数', base: 'data/math/linear-algebra/' },
