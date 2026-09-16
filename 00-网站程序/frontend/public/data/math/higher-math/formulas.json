@@ -288,6 +288,38 @@
         "description": "p=1 时对数指数 q 定生死",
         "application": "级数判敛",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f04-05",
+        "name": "等比数列通项公式",
+        "latex": "a_n = a_1\\,q^{\\,n-1}\\ ;\\quad \\text{推广 } a_n = a_m\\,q^{\\,n-m}",
+        "description": "公比为 q，任一项 = 首项 × 公比的 (项数-1) 次方；知道任意两项可直接求公比",
+        "application": "求数列某一项、指数增长/衰减模型",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f04-06",
+        "name": "等比数列前 n 项和",
+        "latex": "S_n = \\dfrac{a_1(1-q^{n})}{1-q} = \\dfrac{a_1-a_n q}{1-q}\\ (q\\neq 1);\\quad S_n = n a_1\\ (q=1)",
+        "description": "错位相减所得，q≠1 才能用；q=1 退化为等差(常数列)需单独讨论——考试最爱挖这个坑",
+        "application": "数列求和",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f04-07",
+        "name": "无穷等比级数（等比级数）",
+        "latex": "\\sum_{n=0}^{\\infty} a q^{n} = a + aq + aq^2 + \\cdots = \\dfrac{a}{1-q}\\quad (|q|<1)",
+        "description": "公比绝对值小于 1 才收敛，和 = 首项 a ÷ (1−q)；|q|≥1 发散。a 是 n=0 项(首项)",
+        "application": "幂级数求和、判敛基准、几何概型",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f04-08",
+        "name": "等比数列性质（中项与下标和）",
+        "latex": "a_n^{2} = a_{n-k}\\cdot a_{n+k}\\ ;\\quad m+n = p+q \\Rightarrow a_m\\,a_n = a_p\\,a_q",
+        "description": "与等差中项 a_n=(a_{n-k}+a_{n+k})/2 对照记：等比是“平方=两端乘积”，下标和相等则对应项乘积相等",
+        "application": "选择题快速判定、求乘积",
+        "difficulty": "基础"
       }
     ]
   },
