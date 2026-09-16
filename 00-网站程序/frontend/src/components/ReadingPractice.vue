@@ -101,16 +101,19 @@
                   </div>
                 </div>
 
-                <div class="article-body" v-html="getArticleByYearAndText(year, textNum)"></div>
-                <!-- 段落翻译 -->
-                <div v-if="isTranslationVisible(year, textNum)" class="paragraph-translations">
-                  <div v-for="(para, idx) in getParagraphTranslations(year, textNum)" :key="idx" class="para-trans">
-                    <span class="para-num">{{ idx + 1 }}</span>
-                    <span class="para-cn">{{ para }}</span>
-                  </div>
-                  <div v-if="getParagraphTranslations(year, textNum).length === 0" class="no-data-hint">
-                    暂无段落翻译数据，后续版本将补充
-                  </div>
+                <!-- 原文与译文逐段对照：译文紧跟在对应原文段落下，便于同屏对照 -->
+                <div v-if="getArticleParagraphs(year, textNum).length" class="article-body">
+                  <template v-for="(paraHtml, idx) in getArticleParagraphs(year, textNum)" :key="idx">
+                    <div v-html="paraHtml"></div>
+                    <div v-if="isTranslationVisible(year, textNum) && getParagraphTranslations(year, textNum)[idx]" class="para-trans">
+                      <span class="para-num">{{ idx + 1 }}</span>
+                      <span class="para-cn">{{ getParagraphTranslations(year, textNum)[idx] }}</span>
+                    </div>
+                  </template>
+                </div>
+                <div v-else class="article-body" v-html="getArticleByYearAndText(year, textNum)"></div>
+                <div v-if="isTranslationVisible(year, textNum) && getParagraphTranslations(year, textNum).length === 0" class="no-data-hint">
+                  暂无段落翻译数据，后续版本将补充
                 </div>
               </div>
 
@@ -124,7 +127,7 @@
                   <div class="vocab-grid">
                     <div v-for="(v, i) in getVocabulary(year, textNum)" :key="i" class="vocab-card">
                       <span class="vocab-word">{{ v.word }}</span>
-                      <span class="vocab-phonetic">{{ v.phonetic || '' }}</span>
+                      <span v-if="v.phonetic" class="vocab-phonetic">{{ v.phonetic }}</span>
                       <span class="vocab-meaning">{{ v.meaning }}</span>
                       <span v-if="v.example" class="vocab-example">{{ v.example }}</span>
                     </div>
@@ -143,9 +146,9 @@
                   </span></h5>
                   <div v-for="(s, i) in getKeySentences(year, textNum)" :key="i" class="sentence-card">
                     <div class="sentence-en-row">
-                      <div class="sentence-en" v-html="parsedKeys.includes(`${year}-${textNum}-${i}`) && s.parse ? s.parse : escapeHtml(s.sentence)"></div>
-                      <el-button size="small" :type="parsedKeys.includes(`${year}-${textNum}-${i}`) ? 'info' : 'warning'" plain @click.stop="toggleParse(year, textNum, i)">
-                        {{ parsedKeys.includes(`${year}-${textNum}-${i}`) ? '收起拆解' : '拆解' }}
+                      <div class="sentence-en" v-html="s.parse && !parsedKeys.includes(`${year}-${textNum}-${i}`) ? s.parse : escapeHtml(s.sentence)"></div>
+                      <el-button v-if="s.parse" size="small" :type="parsedKeys.includes(`${year}-${textNum}-${i}`) ? 'warning' : 'info'" plain @click.stop="toggleParse(year, textNum, i)">
+                        {{ parsedKeys.includes(`${year}-${textNum}-${i}`) ? '语法拆解' : '纯净原句' }}
                       </el-button>
                     </div>
                     <div class="sentence-cn">{{ s.translation }}</div>
@@ -262,16 +265,18 @@
             <div class="article-toolbar">
               <span class="article-label">Article</span>
             </div>
-            <div class="article-body cloze-body" v-html="getClozeArticleByYear(year)" @click="onClozeBodyClick(year, $event)"></div>
-            <!-- 段落翻译 -->
-            <div v-if="isClozeTranslationVisible(year)" class="paragraph-translations">
-              <div v-for="(para, idx) in getClozeParagraphTranslations(year)" :key="idx" class="para-trans">
-                <span class="para-num">{{ idx + 1 }}</span>
-                <span class="para-cn">{{ para }}</span>
-              </div>
-              <div v-if="getClozeParagraphTranslations(year).length === 0" class="no-data-hint">
-                暂无段落翻译数据，后续版本将补充
-              </div>
+            <div v-if="getClozeArticleParagraphs(year).length" class="article-body cloze-body" @click="onClozeBodyClick(year, $event)">
+              <template v-for="(paraHtml, idx) in getClozeArticleParagraphs(year)" :key="idx">
+                <div v-html="paraHtml"></div>
+                <div v-if="isClozeTranslationVisible(year) && getClozeParagraphTranslations(year)[idx]" class="para-trans">
+                  <span class="para-num">{{ idx + 1 }}</span>
+                  <span class="para-cn">{{ getClozeParagraphTranslations(year)[idx] }}</span>
+                </div>
+              </template>
+            </div>
+            <div v-else class="article-body cloze-body" v-html="getClozeArticleByYear(year)" @click="onClozeBodyClick(year, $event)"></div>
+            <div v-if="isClozeTranslationVisible(year) && getClozeParagraphTranslations(year).length === 0" class="no-data-hint">
+              暂无段落翻译数据，后续版本将补充
             </div>
           </div>
 
@@ -494,6 +499,24 @@ const getArticleByYearAndText = (year: number, textNum: number) => {
   if (!qs.length) return ''
   return qs[0].article || `<p style="color:#999">请导入${year}年Text ${textNum}的文章原文</p>`
 }
+// 原文按 <p> 拆段（保留标签以继承 .article-body p 样式），与段落译文逐段对照；105 篇已校验段数与译文数一致
+const paraCache = new Map<string, string[]>()
+const getArticleParagraphs = (year: number, textNum: number): string[] => {
+  const key = `${year}-${textNum}`
+  const hit = paraCache.get(key)
+  if (hit) return hit
+  const paras = getArticleByYearAndText(year, textNum).match(/<p[^>]*>[\s\S]*?<\/p>/g) || []
+  paraCache.set(key, paras)
+  return paras
+}
+const getClozeArticleParagraphs = (year: number): string[] => {
+  const key = `cloze-${year}`
+  const hit = paraCache.get(key)
+  if (hit) return hit
+  const paras = getClozeArticleByYear(year).match(/<p[^>]*>[\s\S]*?<\/p>/g) || []
+  paraCache.set(key, paras)
+  return paras
+}
 
 // ===== 完型填空 =====
 const clozeQuestions = computed(() =>
@@ -591,12 +614,17 @@ const getVocabulary = (year: number, textNum: number) => intensiveReadingData.va
 const getKeySentences = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.keySentences || []
 const getArticleStructure = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.structure || []
 const getParagraphTranslations = (year: number, textNum: number): string[] => intensiveReadingData.value[`${year}-${textNum}`]?.paragraphTranslations || []
-// 文章大意小标题：取段落翻译首段中文（去①句标记/括号注释）截断，在 Text 折叠条上快速定位文章
+// 文章大意小标题：优先用 intensive-reading 的精炼标题 title，无标题才回退首段译文截断
 const gistCache = new Map<string, string>()
 const getTextGist = (year: number, textNum: number) => {
   const key = `${year}-${textNum}`
   const hit = gistCache.get(key)
   if (hit) return hit
+  const titled = intensiveReadingData.value[key]?.title
+  if (titled) {
+    gistCache.set(key, titled)
+    return titled
+  }
   const first = (getParagraphTranslations(year, textNum)[0] || '')
     .replace(/[①-⑳]/g, '')
     .replace(/（[^）]*）/g, '')
@@ -920,6 +948,22 @@ onMounted(async () => {
   align-items: flex-start;
 }
 .para-trans:last-child { border-bottom: none; }
+/* 逐段对照模式：译文块紧贴原文段落下，浅金底+左金边与原文区分 */
+.article-body .para-trans {
+  display: flex;
+  gap: 10px;
+  margin: -0.15em 0 0.9em;
+  padding: 8px 12px;
+  background: #faf6ea;
+  border: none;
+  border-left: 3px solid #d9b96a;
+  border-radius: 0 6px 6px 0;
+  align-items: flex-start;
+}
+.article-body .para-cn {
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.92em;
+}
 .para-num {
   flex-shrink: 0;
   width: 24px;

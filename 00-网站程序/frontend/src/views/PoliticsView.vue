@@ -1,10 +1,33 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, computed, onMounted, defineAsyncComponent } from 'vue'
+import {
+  useTodayStatusStore,
+  POLITICS_COURSE_LESSONS,
+  POLITICS_COURSE_HOURS_2X,
+  POLITICS_COURSE_RAW_HOURS
+} from '@/stores/todayStatus'
 
 const PoliticsKnowledge = defineAsyncComponent(() => import('@/components/PoliticsKnowledge.vue'))
 const PoliticsReciteCards = defineAsyncComponent(() => import('@/components/PoliticsReciteCards.vue'))
 
 const activeTab = ref('roadmap')
+
+// 课程盘点对账：数据源统一取 todayStatus 里的串讲课程结构，避免两处数字说两套话
+const todayStore = useTodayStatusStore()
+onMounted(() => { todayStore.load() })
+
+/** 串讲一刷硬截止线（过了这天就没时间二刷和刷肖八） */
+const ROUND1_DEADLINE = '2026-10-20'
+const courseLessons = POLITICS_COURSE_LESSONS
+const courseDone = computed(() => {
+  const p = todayStore.plans.find(x => x.key === 'politics')
+  return Math.min(courseLessons, p?.completedUnits ?? 0)
+})
+const courseLeft = computed(() => courseLessons - courseDone.value)
+const perDayNeeded = computed(() => {
+  const days = Math.max(1, Math.round((new Date(ROUND1_DEADLINE).getTime() - Date.now()) / 86400000))
+  return (courseLeft.value / days).toFixed(1)
+})
 
 // 备考路线图三阶段数据
 const stages = [
@@ -15,8 +38,8 @@ const stages = [
     color: 'gold',
     goal: '搭建框架 · 理解考点 · 刷透肖1000题',
     tasks: [
-      '主线课程：徐涛强化班（或腿姐考点清单），按马原→毛中特→史纲→思修顺序过一遍',
-      '每看完一章立即对应刷肖秀荣《1000题》该章节，当天错题当天订正',
+      '主线课程：考点串讲五模块共 58 讲，按网盘目录顺序（马原→思修→史纲→毛中特→新思想）2 倍速过一遍；想把纯记忆的思修挪到最后也行',
+      '每看完一讲立即对应刷肖秀荣《1000题》该章节，当天错题当天订正',
       '马原哲学部分重理解：矛盾、实践、认识论必须能用自己的话讲出来',
       '形策暂不系统投入，每天刷新闻留印象即可'
     ],
@@ -77,6 +100,28 @@ const stages = [
             <div>
               <strong>8月启动，完全来得及</strong>
               <p>政治是所有科目中启动最晚、性价比最高的。现阶段每天 1-1.5 小时足够，切忌过早投入挤压数学与408。以下三阶段计划与主流名师节奏一致，照着执行即可。</p>
+            </div>
+          </div>
+
+          <div class="budget-card">
+            <h3>📚 课程盘点对账（考点串讲 · 五模块）</h3>
+            <div class="budget-grid">
+              <div class="budget-item">
+                <strong>{{ courseLessons }} 讲</strong>
+                <span>马原21 · 思修8 · 史纲9 · 毛中特7 · 新思想13</span>
+              </div>
+              <div class="budget-item">
+                <strong>{{ POLITICS_COURSE_HOURS_2X }} h</strong>
+                <span>2 倍速净看课（原始约 {{ POLITICS_COURSE_RAW_HOURS }} h）</span>
+              </div>
+              <div class="budget-item">
+                <strong>{{ courseDone }}/{{ courseLessons }} 讲</strong>
+                <span>已看完 · 剩 {{ courseLeft }} 讲</span>
+              </div>
+              <div class="budget-item">
+                <strong>{{ perDayNeeded }} 讲/天</strong>
+                <span>10-20 前过完一轮的日配额（约 {{ Math.round(Number(perDayNeeded) * 50) }} min/天）</span>
+              </div>
             </div>
           </div>
 

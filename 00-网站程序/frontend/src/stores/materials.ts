@@ -37,6 +37,8 @@ export function materialStatus(m: Material): 'todo' | 'doing' | 'done' {
 }
 
 const STORAGE_KEY = 'materials-progress-v2'
+/** 已废弃的条目 id：课程结构对账后改名的旧条目，加载时清除，避免与新条目重复计数 */
+const LEGACY_IDS = ['politics-徐涛强化班视频']
 
 function seed(): Material[] {
   const mk = (
@@ -67,8 +69,10 @@ function seed(): Material[] {
     mk('english', '05-26英一真题', '篇', 88, 8, '按篇'),
     mk('english', '写作功能句库', '模块', 10, 0, '8月中旬启动'),
     // ---- 政治 ----
-    mk('politics', '徐涛强化班视频', '讲', 30, 0, '7月启动'),
-    mk('politics', '肖秀荣1000题', '章', 20, 0, '随视频同步刷'),
+    // 2026-09-16 课程结构对账：真实串讲课为五模块 58 讲（马原21/思修8/史纲9/毛中特7/新思想13），
+    // 体积 59.4 GB ≈ 原始 44.5 h，2 倍速净看课仅 22.3 h，所以瓶颈在刷题不在看课。
+    mk('politics', '考点串讲网课（五模块）', '讲', 58, 5, '09-15 看完马原第5讲 · 2倍速全程约22.3h'),
+    mk('politics', '肖秀荣1000题', '章', 20, 0, '随课同步一刷（马原前5讲对应章节欠着）'),
     mk('politics', '肖八', '套', 8, 0, '11月出版'),
     mk('politics', '肖四', '套', 4, 0, '12月出版，选择题+背大题')
   ]
@@ -81,7 +85,7 @@ export const useMaterialsStore = defineStore('materials', () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       if (saved) {
-        materials.value = JSON.parse(saved)
+        materials.value = (JSON.parse(saved) as Material[]).filter(m => m && !LEGACY_IDS.includes(m.id))
         // 版本升级合并：seed 中新增的资料自动补入已有存档
         const ids = new Set(materials.value.map(m => m.id))
         for (const item of seed()) {

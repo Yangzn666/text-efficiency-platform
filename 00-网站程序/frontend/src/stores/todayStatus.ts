@@ -90,7 +90,71 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 4
+const PLAN_VERSION = 11
+/** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
+const MILESTONE_VERSION = 5
+
+// ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
+/**
+ * 课程为「考点串讲」五模块，共 58 讲（各模块末讲为阶段测试；史纲目录未见测试课，暂按 9 讲计）。
+ * 网盘只给体积不给时长，按录播常见码率 1 GB ≈ 45 min 折算原始时长，再按 2 倍速折半得净看课时长：
+ *   体积合计 59.4 GB → 原始 44.5 h → 2 倍速 22.3 h（平均每讲 46 min / 23 min）
+ * 日后拿到真实时长只需改 rawMin，进度百分比与任务标签会自动跟着重算。
+ * tags 只写中性短标签（学科术语/序号），不抄完整课名，避免敏感表述。
+ */
+const POLITICS_COURSE: { code: string; lessons: number; rawMin: number; tags: string[] }[] = [
+  {
+    code: '马原', lessons: 21, rawMin: 968, // 21.51 GB
+    tags: ['导论', '哲学基本问题', '物质观', '意识与物质统一', '两大总特征', '对立统一', '质变与否定之否定', '五对范畴', '实践', '认识', '真理与价值', '历史观·社会矛盾', '社会形态·群众', '简单商品经济上', '简单商品经济下', '发达商品经济上', '发达商品经济中', '发达商品经济下', '垄断与当代资本', '科学社会主义', '阶段测试']
+  },
+  {
+    code: '思修', lessons: 8, rawMin: 291, // 6.46 GB
+    tags: ['绪论·人生观', '理想信念', '中国精神', '核心价值', '道德', '法律特征与运行', '宪法权威', '阶段测试']
+  },
+  {
+    code: '史纲', lessons: 9, rawMin: 583, // 12.96 GB
+    tags: ['近代磨难与抗争', '出路早期探索', '辛亥革命', '新文化·五四·建党', '革命新局面', '革命新道路', '抗战', '解放战争·建国', '新中国时期']
+  },
+  {
+    code: '毛中特', lessons: 7, rawMin: 285, // 6.34 GB
+    tags: ['导论·思想地位', '新民主主义革命上', '新民主主义革命下', '改造理论', '建设道路探索', '理论体系', '阶段测试']
+  },
+  {
+    code: '新思想', lessons: 13, rawMin: 545, // 12.10 GB
+    tags: ['新时代总论', '中国式现代化', '领导力量·人民立场', '改革开放', '高质量发展上', '高质量发展下', '教育科技人才', '民主', '法治', '文化', '民生·生态', '内外条件', '阶段测试']
+  }
+]
+
+/** 串讲课总讲数（58） */
+export const POLITICS_COURSE_LESSONS = POLITICS_COURSE.reduce((s, m) => s + m.lessons, 0)
+/** 串讲课原始时长（分钟，2672 ≈ 44.5 h） */
+const POLITICS_COURSE_RAW_MIN = POLITICS_COURSE.reduce((s, m) => s + m.rawMin, 0)
+/** 2 倍速后的净看课小时数（≈22.3 h），供页面展示 */
+export const POLITICS_COURSE_HOURS_2X = Math.round(POLITICS_COURSE_RAW_MIN / 2 / 60 * 10) / 10
+/** 串讲课原始时长（小时，≈44.5 h） */
+export const POLITICS_COURSE_RAW_HOURS = Math.round(POLITICS_COURSE_RAW_MIN / 60 * 10) / 10
+/** 政治总单元 = 串讲 58 讲（含同步一刷） + 1000 题二刷 20 章 + 肖八 8 套 + 肖四 4 套 */
+const POLITICS_TOTAL_UNITS = POLITICS_COURSE_LESSONS + 20 + 8 + 4
+
+/** 把政治串讲的单元序号翻译成「模块 + 课号 + 短标签 + 2 倍速净时长」 */
+const politicsCourseUnit = (n: number) => {
+  let i = n - 1
+  for (const m of POLITICS_COURSE) {
+    if (i < m.lessons) {
+      const tag = m.tags[i] || ''
+      return {
+        code: m.code,
+        idx: i + 1,
+        total: m.lessons,
+        tag,
+        perMin: Math.round(m.rawMin / m.lessons / 2),
+        isTest: tag.includes('测试')
+      }
+    }
+    i -= m.lessons
+  }
+  return null
+}
 
 export const useTodayStatusStore = defineStore('todayStatus', () => {
   // ---------- 持久化状态 ----------
@@ -116,28 +180,40 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         name: '数学一',
         color: '#67C23A',
         icon: '📐',
-        totalUnits: 158,
+        // 2026-09-10 进度对账：660题主动放弃（1000题+880已够用），故不计入 totalUnits；
+        // 1000题B组概率9讲因题目质量低主动放弃，同样不计入；中值定理证明题性价比低，延后为独立单元。
+        // 880 的定位是「真题套卷暴露出的弱点章节」，改为按需专题而非线性推进。
+        // 单指针无法表达中间有洞，故沿用「已完成单元排在前」的排序惯例。
+        // 2026-09-14 更新：1000题概率基础二刷实际在推进（已到第3讲），原模型把它压在 n=133
+        // 的单个单元里，导致指针落点 n=123 显示「真题套卷 剩余第1套」与实际任务不符。
+        // 故按讲拆成 9 个单元并前移到 n=123~131：totalUnits 139 -> 147，completedUnits 122 -> 125。
+        // 2026-09-16 更新：1000题二刷全部结束。概率基础只刷到第 4 讲（用户判断后续题目质量
+        // 不高，第 5~9 讲主动放弃 -> 删掉这 5 个单元）；高数强化/线代强化/真题09-16 三块错题
+        // 二刷同时收尾，按「已完成排在前」惯例前移到 n=127~129。
+        // totalUnits 147 -> 142，completedUnits 125 -> 129，指针落点 n=130 = 真题套卷剩余第 1 套。
+        totalUnits: 142,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 148,
+        completedUnits: 129,
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
         unitLabel: (n) => {
           if (n <= 30) return `基础30讲 第${n}讲`
           if (n <= 48) return `武忠详强化 第${n - 30}讲`
-          if (n <= 66) return `1000题A组 高数第${n - 48}讲`
-          if (n <= 75) return `1000题A组 线代第${n - 66}讲`
-          if (n <= 84) return `1000题A组 概率第${n - 75}讲`
-          if (n <= 101) return `1000题B组 高数第${n - 84}讲`
-          if (n <= 107) return `1000题B组 线代第${n - 101}讲`
-          if (n <= 110) return `1000题B组 概率第${n - 107}讲`
-          if (n <= 111) return `1000题B组 高数第18讲`
-          if (n <= 114) return `1000题B组 线代第${n - 105}讲`
-          if (n <= 120) return `1000题B组 概率第${n - 111}讲`
-          if (n <= 130) return `660题 第${n - 120}章 + 错题回顾`
-          if (n <= 140) return `李林880 第${n - 130}章`
-          if (n <= 158) return `真题套卷 第${n - 140}套（限时3h + 订正）`
+          if (n <= 66) return `1000题A组基础 高数第${n - 48}讲`
+          if (n <= 75) return `1000题A组基础 线代第${n - 66}讲`
+          if (n <= 84) return `1000题A组基础 概率第${n - 75}讲`
+          if (n <= 102) return `1000题B组强化 高数第${n - 84}讲`
+          if (n <= 111) return `1000题B组强化 线代第${n - 102}讲`
+          if (n <= 119) return `真题套卷 ${2008 + (n - 111)}年（限时3h + 订正）`
+          if (n <= 121) return `错题二刷 ${['1000题高数基础', '1000题线代基础'][n - 120]}（已完成）`
+          if (n <= 122) return `880专题 概率论（真题弱点驱动，已完成三分之二）`
+          if (n <= 126) return `错题二刷 1000题概率基础 第${n - 122}讲（已完成·第5~9讲题目质量低主动放弃）`
+          if (n <= 129) return `错题二刷 ${['1000题高数强化', '1000题线代强化', '真题09-16错题'][n - 127]}（已完成）`
+          if (n <= 139) return `真题套卷 剩余第${n - 129}套（限时3h + 订正）`
+          if (n <= 141) return `880专题 ${['高数', '线代'][n - 140]}（真题暴露的弱点章节）`
+          if (n <= 142) return `中值定理证明题专项（延后·性价比低）`
           return `数学冲刺回顾`
         }
       },
@@ -146,17 +222,28 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         name: '408计算机',
         color: '#409EFF',
         icon: '💻',
-        totalUnits: 74,
+        // 2026-09-10 进度对账：原模型只有「基础40 + 大题强化26 + 模拟卷8」，
+        // 缺了实际在走的「四门强化轮」这条线（数据结构已完成、计组卡住、操作系统与网络未开始）。
+        // 补入 4 个强化轮单元后 totalUnits 74 -> 78，下一任务指针正好落在计组强化。
+        // 2026-09-16 更新：09-15 计组费曼复习一轮全部过完（co-01~co-07，31 问、新建 13 个 gap
+        // C-035~C-047，见 feynman-review/sessions/2026-09-15.json），completedUnits 50 -> 51，
+        // 指针落点 n=52 = 强化轮 操作系统。新 gap 的二刷验收归入阶段三「408 错题 / gap 回捞」。
+        totalUnits: 78,
         dailyQuota: 1,
         estMinutes: 150,
-        completedUnits: 49,
+        completedUnits: 51,
         startDate: '2026-07-01',
         targetDate: '2026-12-12',
         active: true,
         unitLabel: (n) => {
           if (n <= 40) return `基础轮 第${n}章`
-          if (n <= 66) return `王道大题强化 第${n - 40}章（费曼讲解→大题）`
-          if (n <= 74) return `王道26模拟卷 第${n - 66}套`
+          if (n <= 41) return `强化轮 数据结构（除大题外全部完成）`
+          if (n <= 50) return `王道大题强化 第${n - 41}章（费曼讲解→大题）`
+          if (n <= 51) return `强化轮 计算机组成原理（09-15 费曼一轮过完 co-01~07·13 个新 gap 待验收）`
+          if (n <= 52) return `强化轮 操作系统`
+          if (n <= 53) return `强化轮 计算机网络`
+          if (n <= 70) return `王道大题强化 第${n - 53}章（费曼讲解→大题）`
+          if (n <= 78) return `王道26模拟卷 第${n - 70}套`
           return `408冲刺回顾`
         }
       },
@@ -165,21 +252,43 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         name: '英语一',
         color: '#E6A23C',
         icon: '📖',
-        totalUnits: 147,
+        // 2026-09-10 进度对账：真题精读原为 88 篇笼统计数，且完型无任何对应单元（做完即蒸发）。
+        // 拆成「阅读84篇 + 完型21篇」，并按 readingLog.ts 的 SEEDED_CORRECT 事实校准完成数。
+        // 2026-09-14 更新一：2009 年四篇传统阅读刷完，阅读累计 12 -> 16 篇。
+        // 2026-09-14 更新二：核 public/data/english/reading-questions.json 的 userAnswer 发现完型实际已做 3 篇
+        // （2005 得 11/20、2006 得 13/20、2008 得 5/20，累计 29/60 = 48.3%），旧注释「2篇 24/40」是 09-10 的快照。
+        // 2026-09-14 决策：2010 年及之前尚未做的完型（2007/2009/2010）主动跳过，不计入 totalUnits。
+        // 理由：完型仅 10 分、每题 0.5 分，老完型题材陈旧，且 2011 年起命题重心转向逻辑衔接；
+        // 同样 0.4 h 投在阅读上的边际收益是它的数倍。后期 6 套模考自带完型，届时暴露弱点再按需回补。
+        // 故完型 21 篇 -> 15 篇（2011-2025），totalUnits 164 -> 161，completedUnits 32 -> 33，
+        // 指针落点仍为 n=34 = 阅读第 17 篇。阅读剩余 84 - 16 = 68 篇。
+        // 2026-09-16 更新：09-15 做完 2010 年前两篇传统阅读（T1《艺术报道的衰落》2/5、
+        // T2《商业方法专利之争》0/5，英一史上最难年），阅读累计 16 -> 18 篇、41/90 = 45.6%。
+        // completedUnits 33 -> 35，按惯例把这两篇前移为已完成单元，n<=101 的第 n-17 篇公式不变
+        // （n=36 起自然对应第 19~84 篇，共 66 篇）。指针落点 n=36 = 阅读第 19 篇（2010 T3）。
+        // 2026-09-16 校正：套卷模考原定 11 套，规划里已主动砍到 6 套（模考边际收益后期递减，
+        // 释放的 15 h 挪给肖四大题背诵），但单元模型一直还挂着 11 个，导致网站剩余单元比手册多 5 个。
+        // 本次对齐决策：totalUnits 161 -> 156（n=151~156 = 模考第 1~6 套），completedUnits 35 不变。
+        totalUnits: 156,
         dailyQuota: 1,
         estMinutes: 75,
-        completedUnits: 22,
+        completedUnits: 35,
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
         unitLabel: (n) => {
           if (n <= 4) return `单词 第${n}轮`
           if (n <= 14) return `语法长难句 第${n - 4}讲`
-          if (n <= 102) return `英一真题 第${n - 14}篇精读（生词+长难句）`
-          if (n <= 116) return `新题型 第${n - 102}篇`
-          if (n <= 126) return `翻译 第${n - 116}篇`
-          if (n <= 136) return `作文 第${n - 126}个模块`
-          if (n <= 147) return `套卷模考 第${n - 136}套`
+          if (n <= 26) return `真题阅读精读 第${n - 14}篇（2005/2006/2008 各4篇，已完成）`
+          if (n <= 29) return `完型 ${[2005, 2006, 2008][n - 27]}年（已完成，累计29/60）`
+          if (n <= 33) return `真题阅读精读 2009年第${n - 29}篇（已完成）`
+          if (n <= 35) return `真题阅读精读 2010年第${n - 33}篇（已完成·英一最难年，T1 2/5、T2 0/5）`
+          if (n <= 101) return `真题阅读精读 第${n - 17}篇（生词+长难句+逻辑信号词）`
+          if (n <= 116) return `完型 ${2011 + (n - 102)}年（逻辑衔接题为主，非词义题）`
+          if (n <= 130) return `新题型 第${n - 116}篇`
+          if (n <= 140) return `翻译 第${n - 130}篇（采分点拆解）`
+          if (n <= 150) return `作文 第${n - 140}个模块`
+          if (n <= 156) return `套卷模考 第${n - 150}套（原 11 套已主动砍到 6 套）`
           return `英语冲刺回顾`
         }
       },
@@ -188,18 +297,31 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         name: '政治',
         color: '#F56C6C',
         icon: '🚩',
-        totalUnits: 62,
+        // 2026-09-10 进度对账：串讲 09-09 才听第1讲、09-10 第2讲，completedUnits 0 -> 2。
+        // startDate 由计划值 07-15 改为真实启动日 09-09：应达刻度线才有可执行意义
+        //（否则永远显示追不上的 -34%，失去指导价值）；落后 56 天这一事实记在里程碑里。
+        // 2026-09-14 更新：前三课已结束，completedUnits 2 -> 3。
+        // 2026-09-16 结构重建：原「30 讲」是拍脑袋的占位数，真实课程为五模块 58 讲（见 POLITICS_COURSE）。
+        // 单元序号 1-58 = 串讲各讲（绑定同讲对应的 1000 题一刷），59-78 = 1000 题二刷，79-86 肖八，87-90 肖四。
+        // estMinutes 50 = 视频 2 倍速平均 23 min + 对应选择题 27 min；净看课全程仅 22.3 h，瓶颈在题不在课。
+        // completedUnits 3 -> 5（09-15 看完马原第 5 讲）；1000 题对应章节尚未动，故资料墙里 1000 题仍记 0。
+        totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 0,
-        startDate: '2026-07-15',
+        completedUnits: 5,
+        startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
         unitLabel: (n) => {
-          if (n <= 30) return `徐涛强化 第${n}讲 + 肖1000对应章节`
-          if (n <= 50) return `肖1000 第${n - 30}章（二刷错题）`
-          if (n <= 58) return `肖八 第${n - 50}套（选择题+订正）`
-          if (n <= 62) return `肖四 第${n - 58}套（选择+背大题）`
+          if (n <= POLITICS_COURSE_LESSONS) {
+            const u = politicsCourseUnit(n)
+            if (!u) return `串讲 第${n}讲`
+            const pad = String(u.idx).padStart(2, '0')
+            return `串讲·${u.code} ${pad}/${u.total} ${u.tag}（2倍速约${u.perMin}min）+ ${u.isTest ? '测试卷错题回炉' : '肖1000对应章节'}`
+          }
+          if (n <= POLITICS_COURSE_LESSONS + 20) return `肖1000 第${n - POLITICS_COURSE_LESSONS}章（二刷错题）`
+          if (n <= POLITICS_COURSE_LESSONS + 28) return `肖八 第${n - POLITICS_COURSE_LESSONS - 20}套（选择题+订正）`
+          if (n <= POLITICS_COURSE_LESSONS + 32) return `肖四 第${n - POLITICS_COURSE_LESSONS - 28}套（选择+背大题）`
           return `政治冲刺回顾`
         }
       }
@@ -212,11 +334,17 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-xiandai-done', title: '线代强化完成', date: '2026-07-26', subject: 'math', done: true, note: '线性代数强化阶段收尾' },
       { id: 'm-ds-reinforce-done', title: '数据结构强化完成', date: '2026-08-11', subject: 'cs408', done: true, note: '除大题外全部完成，大题放408大题最后' },
       { id: 'm-math-papers-09-11', title: '数学真题09-11完成', date: '2026-08-11', subject: 'math', done: true, note: '09-11年真题刷完，11年错题明天整理' },
-      { id: 'm-math-papers-0916', title: '数学真题09-16刷完·错题二刷', date: '2026-09-05', subject: 'math', done: true, note: '09-16年真题限时刷完并二刷错题；当前转入1000题A/B组错题二刷' },
-      { id: 'm-cs408-co-stuck', title: '408·计组强化（当前卡点）', date: '2026-09-15', subject: 'cs408', done: false, note: '强化一直卡在计组、进度偏慢——因数学投入过多挤占；需为408留固定时段、每天雷打不动推进' },
+      { id: 'm-math-papers-0916', title: '数学真题09-16刷完·错题二刷', date: '2026-09-05', subject: 'math', done: true, note: '09-16年共8套限时刷完并二刷错题；真题剩10套' },
       { id: 'm-co-reinforce-start', title: '计组错题一刷完成', date: '2026-09-01', subject: 'cs408', done: true, note: '王道小程序93道计组错题一轮过完，背诵手册建成，待二刷验收' },
-      { id: 'm-politics-mayuan', title: '政治·马原启动', date: '2026-08-01', subject: 'politics', done: false, note: '徐涛强化+肖1000马原部分，重理解轻死记' },
-      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '整理作文模板，翻译真题穿插练采分点' },
+      { id: 'm-math-b18-xd2', title: '1000题B组高数18讲收尾·高数与线代基础二刷完成', date: '2026-09-09', subject: 'math', done: true, note: 'B组强化高数18讲、线代9讲全部完成；概率9讲因题目质量低主动放弃；660题决定不做。错题二刷已过高数基础与线代基础，错题本累计121条（高数82/线代21/概率18）' },
+      { id: 'm-math-1000-done', title: '1000题二刷全部结束', date: '2026-09-16', subject: 'math', done: true, note: '高数基础/线代基础/高数强化/线代强化四块二刷全部收尾，概率基础刷到第4讲（第5~9讲因题目质量低主动放弃）；本批录入线代16条+概率9条，错题本累计146条（高数82/线代37/概率27）。数学进入真题套卷阶段，剩10套' },
+      { id: 'm-politics-mayuan', title: '政治·串讲启动', date: '2026-09-09', subject: 'politics', done: true, note: '计划07-15启动，实际09-09启动，落后56天；90单元压缩进97天，日均0.93单元。肖1000刷题尚未开始' },
+      { id: 'm-politics-course-audit', title: '政治·课程结构对账', date: '2026-09-16', subject: 'politics', done: true, note: '按网盘目录逐课核对：串讲五模块共58讲（马原21/思修8/史纲9/毛中特7/新思想13），体积59.4GB≈原始44.5h，2倍速净看课22.3h。进度模型 totalUnits 62→90、completedUnits 3→5（马原前5讲已看完，09-15 到第5讲）' },
+      { id: 'm-politics-round1', title: '政治·串讲58讲+1000题一刷收尾', date: '2026-10-20', subject: 'politics', done: false, note: '剩53讲要在34天内过完=每天1.6讲（2倍速约1.4h/天）。这是政治真正的硬截止线：拖到10月下旬就没有时间做二刷和肖八，12月只能靠死背肖四' },
+      { id: 'm-cs408-co-stuck', title: '408·计组强化（卡点已破）', date: '2026-09-16', subject: 'cs408', done: true, note: '09-15 计组费曼复习一轮全部过完：co-01~co-07 共 31 问，新建 13 个 gap（C-035~C-047），state.json 指针推进到 co-07。卡了两个月的计组终于推过去了。重复错 C-001（存储程序混合存放）/ C-005（执行时间是乘不是除）与 co-02 补码/IEEE754 整片薄弱是下一轮验收重点' },
+      { id: 'm-eng-2010', title: '英语·2010 最难年 T1/T2 收尾', date: '2026-09-16', subject: 'english', done: true, note: 'T1 2/5、T2 0/5，阅读累计 18 篇 41/90 = 45.6%。本轮确诊跨篇系统恶习＝「选项/词在文中出现频次高就选它」（T1Q5 critics、T2Q4 legal、T2Q5 法律案件三题同栽）；铁律：高频词与论据多是例子不是答案，论点与正确答案常是抽象同义改写。熟词僻义族再添 big deal / about-face / patent' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期。英语是当前最大缺口：剩136单元/96天=每天1.42篇，必须每天拿到2个任务槽位才做得完' },
+      { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
       { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' }
     ]
@@ -248,8 +376,9 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     }
 
     // 恢复里程碑：先置默认，再按 id 叠加已存的 done/date，最后追加用户自定义节点
+    // 里程碑版本过旧时不叠加，强制用新默认——否则存档里的旧 done 会把进度对账结果覆盖回去
     initDefaultMilestones()
-    if (Array.isArray(data.milestones)) {
+    if (Array.isArray(data.milestones) && (data.milestoneVersion || 0) >= MILESTONE_VERSION) {
       const savedMap = new Map<string, any>(data.milestones.map((m: any) => [m.id, m]))
       milestones.value = milestones.value.map(def => {
         const s = savedMap.get(def.id)
@@ -303,6 +432,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     try {
       const data: any = {
         planVersion: PLAN_VERSION,
+        milestoneVersion: MILESTONE_VERSION,
         examDate: examDate.value,
         dailyRecords: dailyRecords.value,
         todayDone: todayDone.value,
@@ -338,7 +468,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
 
   // ==================== 今日任务生成器（时间预算制） ====================
   /** 快照格式版本：升级后强制重生当日快照 */
-  const SNAPSHOT_VERSION = 3
+  const SNAPSHOT_VERSION = 11
   /** 每日推荐总时长预算（分钟），约 8 小时，超出则不再追加任务 */
   const DAILY_TIME_BUDGET = 480
   /** 单科单日任务上限（避免欠账一次性堆出十几条） */
