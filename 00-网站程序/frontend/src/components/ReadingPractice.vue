@@ -121,6 +121,24 @@
               <div v-if="isIntensiveReadingOpen(year, textNum)" class="intensive-reading-panel">
                 <h4 class="panel-title">精读 · {{ year }}年 Text {{ textNum }}</h4>
 
+                <!-- 精读四步法方法指引 -->
+                <div class="ir-sop">
+                  <div class="ir-sop-head" @click="toggleSop(`${year}-${textNum}`)">
+                    <span class="ir-sop-badge">📚 精读四步法</span>
+                    <span class="ir-sop-sub">25–30 分钟 / 篇 · 靶向翻译 + 选项尸检，不做全文逐句翻译</span>
+                    <span class="ir-sop-toggle">{{ isSopOpen(`${year}-${textNum}`) ? '收起 ▴' : '展开 ▾' }}</span>
+                  </div>
+                  <div v-show="isSopOpen(`${year}-${textNum}`)" class="ir-sop-body">
+                    <div v-for="(st, i) in INTENSIVE_SOP" :key="i" class="ir-sop-step">
+                      <span class="ir-sop-icon">{{ st.icon }}</span>
+                      <div class="ir-sop-text">
+                        <div class="ir-sop-title">{{ st.title }} <em>{{ st.minutes }}</em></div>
+                        <div class="ir-sop-how">{{ st.how }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- 核心词汇 -->
                 <div v-if="getVocabulary(year, textNum).length > 0" class="ir-block">
                   <h5>核心词汇</h5>
@@ -188,6 +206,8 @@
 
                   <!-- 方法论视角条 -->
                   <MethodLens :question="question" />
+                  <!-- 思考路径：遇到这类题怎么一步步想 -->
+                  <ThinkingPath :question="question" />
 
                   <div class="question-stem">{{ question.stem }}</div>
 
@@ -321,6 +341,8 @@
 
                 <!-- 方法论视角条 -->
                 <MethodLens :question="question" />
+                <!-- 思考路径：遇到这类题怎么一步步想 -->
+                <ThinkingPath :question="question" />
 
                 <div class="cloze-analysis" v-if="question.analysis">
                   <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'c'))">
@@ -368,6 +390,8 @@
             </div>
             <!-- 方法论视角条 -->
             <MethodLens :question="question" />
+            <!-- 思考路径：遇到这类题怎么一步步想 -->
+            <ThinkingPath :question="question" />
             <div class="question-stem">{{ question.stem }}</div>
             <div v-if="question.options && question.options.length > 0" class="options-list">
               <div v-for="option in question.options" :key="option.label" class="option-item"
@@ -408,6 +432,10 @@ import { ref, computed, onMounted } from 'vue'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
 // 方法论视角条：把《糖三角》三师方法论（题型要诀/定位/干扰套路/同义改写）叠加到每道真题
 import MethodLens from './MethodLens.vue'
+// 思考路径卡：颉斌斌「三步走+复盘四件事」按题型定制的解题思路（两站共用）
+import ThinkingPath from './ThinkingPath.vue'
+// 精读四步法 SOP：靶向翻译 + 选项尸检（精读面板方法指引）
+import { INTENSIVE_SOP } from '@/utils/thinkingPath'
 // 错因深度分析面板：套路命中分布 + 答案位置偏好审计（个人版专属）
 import TrapStats from './TrapStats.vue'
 
@@ -593,6 +621,14 @@ const toggleIntensiveReading = (year: number, textNum: number) => {
   i > -1 ? intensiveReadingKeys.value.splice(i, 1) : intensiveReadingKeys.value.push(key)
 }
 const isIntensiveReadingOpen = (year: number, textNum: number) => intensiveReadingKeys.value.includes(`${year}-${textNum}`)
+
+// 精读四步法指引展开状态（默认折叠，不挡精读正文）
+const sopKeys = ref<string[]>([])
+const toggleSop = (key: string) => {
+  const i = sopKeys.value.indexOf(key)
+  i > -1 ? sopKeys.value.splice(i, 1) : sopKeys.value.push(key)
+}
+const isSopOpen = (key: string) => sopKeys.value.includes(key)
 
 // ===== 段落翻译 =====
 const toggleTranslations = (year: number, textNum: number) => {
@@ -1004,6 +1040,35 @@ onMounted(async () => {
   margin: 0 0 20px;
   font-weight: 700;
 }
+/* 精读四步法方法指引 */
+.ir-sop {
+  margin-bottom: 22px;
+  border: 1px solid #c8dff5;
+  border-left: 3px solid #2c7be5;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.ir-sop-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+.ir-sop-head:hover { background: rgba(44, 123, 229, 0.05); }
+.ir-sop-badge { font-size: 0.9em; font-weight: 700; color: #16345c; }
+.ir-sop-sub { flex: 1; font-size: 0.8em; color: #7a8ba3; }
+.ir-sop-toggle { font-size: 0.8em; color: #2c7be5; flex-shrink: 0; }
+.ir-sop-body { padding: 4px 16px 12px; }
+.ir-sop-step { display: flex; gap: 12px; padding: 9px 0; border-top: 1px dashed #e2edf9; }
+.ir-sop-step:first-child { border-top: none; }
+.ir-sop-icon { font-size: 1.3em; flex-shrink: 0; line-height: 1.4; }
+.ir-sop-text { flex: 1; min-width: 0; }
+.ir-sop-title { font-size: 0.95em; font-weight: 700; color: #1e4576; margin-bottom: 3px; }
+.ir-sop-title em { font-style: normal; font-weight: 400; font-size: 0.82em; color: #e08b1e; margin-left: 6px; }
+.ir-sop-how { font-size: 0.86em; line-height: 1.7; color: #44546a; }
 .ir-block {
   margin-bottom: 24px;
 }
