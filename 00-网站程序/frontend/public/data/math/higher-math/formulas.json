@@ -433,5 +433,18 @@
         "difficulty": "进阶"
       }
     ]
+  },
+  "tr01": {
+    "title": "解三角形 · 常用公式",
+    "formulas": [
+      {
+        "id": "js01-01",
+        "name": "三角形面积公式（两边夹角）",
+        "latex": "S = \\dfrac{1}{2}ab\\sin C = \\dfrac{1}{2}bc\\sin A = \\dfrac{1}{2}ac\\sin B",
+        "description": "面积 = ½ · 两边之积 · 它们的夹角正弦，三组任选其一",
+        "application": "解三角形 / 定积分求面积 / 叉积模的几何意义",
+        "difficulty": "基础"
+      }
+    ]
   }
 }
