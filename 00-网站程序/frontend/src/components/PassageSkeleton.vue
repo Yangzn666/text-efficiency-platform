@@ -1,26 +1,53 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-// 全文脉络卡：放在每篇第一题之前，用考研「串读法」先搭骨架——
-// 各段功能角色（段首话语标记 + 位置先验）+ 段首句 + 段落译文大意。
-// 只读原文段落与译文，不碰作答数据，个人版 / 共享版两站共用。
-const props = defineProps<{ paragraphs: string[]; translations: string[] }>()
+// 全文脉络卡：放在每篇第一题之前，用考研「串读法」先搭论证骨架。
+// 只输出"每段在论证中干什么 + 段间逻辑关系 + 一条论证主线"，不重复原文与译文
+// （原文/译文正文里已有，重复无意义）。只读段落文本做角色判定，不碰作答数据，两站共用。
+const props = defineProps<{ paragraphs: string[]; translations?: string[] }>()
 
 const strip = (html: string) =>
   String(html || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/\s+/g, ' ').trim()
 
-interface Role { name: string; color: string }
+interface Role {
+  name: string      // 角色标签
+  short: string     // 论证主线里的简称
+  link: string      // 与上段的逻辑关系
+  func: string      // 这段在论证中干什么 + 对应的解题动作
+  color: string
+}
 const ROLES: Record<string, Role> = {
-  intro:    { name: '引入话题 / 现象', color: '#2c7be5' },
-  turn:     { name: '转折 · 作者立场', color: '#e5484d' },
-  example:  { name: '举例 / 论据 · 服务论点', color: '#30a46c' },
-  conclude: { name: '结论 / 态度 · 主旨区', color: '#8e4ec6' },
-  list:     { name: '并列 / 递进展开', color: '#12a594' },
-  quote:    { name: '引观点 / 设问', color: '#f5a623' },
-  develop:  { name: '展开 · 分析论证', color: '#697386' }
+  intro: {
+    name: '引入话题 / 现象', short: '立话题', link: '开篇立靶', color: '#2c7be5',
+    func: '抛出话题或现象，全文的"靶子"在这；主旨题先回这段圈话题词。'
+  },
+  turn: {
+    name: '转折 · 作者立场', short: '亮立场', link: '↩ 转折上段', color: '#e5484d',
+    func: '转折=作者真正立场。But/However 后一句是全文最重要的一句，态度题、主旨题的答案区。'
+  },
+  example: {
+    name: '举例 / 论据', short: '举例证', link: '↳ 举例证上段', color: '#30a46c',
+    func: '举例只为证明上一段的观点；例子本身的人名、数字、细节一律不是答案，问"例子说明什么"要往上找观点句。'
+  },
+  conclude: {
+    name: '结论 / 态度 · 主旨区', short: '收主旨', link: '↳ 收束全文', color: '#8e4ec6',
+    func: '收束全文，主旨与作者态度藏在这；主旨题正确项常是这段的同义改写。'
+  },
+  list: {
+    name: '并列 / 递进展开', short: '并列展', link: '↳ 同向补充', color: '#12a594',
+    func: '并列/递进补充论据，与上段同向、不产生新立场；多为细节题定位区。'
+  },
+  quote: {
+    name: '引观点 / 设问', short: '引观点', link: '↳ 引入他者', color: '#f5a623',
+    func: '引他人观点或设问；分清"别人的话"和"作者的话"，态度题别把引用当作者立场。'
+  },
+  develop: {
+    name: '展开 · 分析论证', short: '析论证', link: '↳ 承接展开', color: '#697386',
+    func: '承接上文展开分析论证；抓段首主题句即可，不必逐句细读。'
+  }
 }
 
-/** 段首句（到第一个句末标点为止） */
+/** 段首句（到第一个句末标点为止），仅用于角色判定 */
 const firstSentence = (text: string) => (text.match(/^[^.!?]*[.!?]/)?.[0] || text).trim()
 
 /** 段落功能判定：话语标记优先，位置先验兜底（P1 引入 / 末段结论） */
@@ -45,35 +72,32 @@ const skeleton = computed(() => {
   return paras
     .map((text, i) => ({ text, i }))
     .filter(x => x.text.length > 40)
-    .map(({ text, i }) => {
-      const en = firstSentence(text)
-      const cn = (props.translations?.[i] || '').replace(/[①-⑳]/g, '').replace(/\s+/g, ' ').trim()
-      return {
-        p: i + 1,
-        role: roleOf(text, i, total),
-        en: en.length > 96 ? en.slice(0, 96) + '…' : en,
-        cn: cn ? (cn.length > 42 ? cn.slice(0, 42) + '…' : cn) : ''
-      }
-    })
+    .map(({ text, i }) => ({ p: i + 1, role: roleOf(text, i, total) }))
 })
+
+/** 顶部一条论证主线：把各段角色串成流向 */
+const flowLine = computed(() => skeleton.value.map(s => s.role.short).join(' → '))
 </script>
 
 <template>
   <div v-if="skeleton.length" class="passage-skeleton">
     <div class="ps-head">
       <span class="ps-badge">🧭 全文脉络</span>
-      <span class="ps-sub">串读骨架 · 各段首句 + 转折串起来，先搭骨架再解题</span>
+      <span class="ps-sub">论证骨架 · 每段在干什么、段间怎么连，先搭骨架再解题</span>
     </div>
+    <div class="ps-flow">论证主线：{{ flowLine }}</div>
     <div class="ps-list">
       <div v-for="s in skeleton" :key="s.p" class="ps-row">
         <span class="ps-p">P{{ s.p }}</span>
         <div class="ps-body">
-          <span
-            class="ps-role"
-            :style="{ color: s.role.color, borderColor: s.role.color, background: s.role.color + '14' }"
-          >{{ s.role.name }}</span>
-          <div class="ps-en">{{ s.en }}</div>
-          <div v-if="s.cn" class="ps-cn">{{ s.cn }}</div>
+          <div class="ps-tags">
+            <span
+              class="ps-role"
+              :style="{ color: s.role.color, borderColor: s.role.color, background: s.role.color + '14' }"
+            >{{ s.role.name }}</span>
+            <span class="ps-link">{{ s.role.link }}</span>
+          </div>
+          <div class="ps-func">{{ s.role.func }}</div>
         </div>
       </div>
     </div>
@@ -95,7 +119,7 @@ const skeleton = computed(() => {
   align-items: baseline;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .ps-badge {
   font-size: 0.88rem;
@@ -106,6 +130,16 @@ const skeleton = computed(() => {
 .ps-sub {
   font-size: 0.76rem;
   color: #a08b4f;
+}
+.ps-flow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8a6a00;
+  background: #f7edd0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
 }
 .ps-list {
   display: flex;
@@ -131,6 +165,13 @@ const skeleton = computed(() => {
   margin-top: 1px;
 }
 .ps-body { flex: 1; min-width: 0; }
+.ps-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
 .ps-role {
   display: inline-block;
   padding: 1px 9px;
@@ -138,19 +179,15 @@ const skeleton = computed(() => {
   border-radius: 10px;
   font-size: 0.72rem;
   font-weight: 600;
-  margin-bottom: 3px;
 }
-.ps-en {
-  font-family: 'Georgia', serif;
-  font-size: 0.84rem;
-  line-height: 1.55;
-  color: #4a4436;
+.ps-link {
+  font-size: 0.72rem;
+  color: #9a8a5c;
 }
-.ps-cn {
+.ps-func {
   font-size: 0.78rem;
   line-height: 1.6;
-  color: #8a7d55;
-  margin-top: 2px;
+  color: #5c5340;
 }
 .ps-note {
   margin-top: 10px;
