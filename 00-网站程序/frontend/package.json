@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:share": "vite build --mode share && node scripts/prune-share-dist.mjs",
     "build:check": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -15,6 +16,7 @@
     "@types/markdown-it": "^14.1.2",
     "axios": "^1.6.2",
     "cytoscape": "^3.34.0",
+    "echarts": "^6.1.0",
     "element-plus": "^2.4.4",
     "katex": "^0.16.28",
     "localforage": "^1.10.0",

@@ -1,0 +1,17 @@
+{
+  "date": "2026-07-24",
+  "subject": "ds",
+  "chapter": "ds-02",
+  "chapterName": "线性表",
+  "phase1": {
+    "totalQuestions": 8,
+    "correct": 4,
+    "partial": 3,
+    "wrong": 1
+  },
+  "gaps_created": [
+    "C-023"
+  ],
+  "spaced_reviewed": 0,
+  "notes": "整体较好，地址公式/插入移动/随机访问都掌握。头指针vs头结点概念混淆，循环链表判空表述不精确"
+}

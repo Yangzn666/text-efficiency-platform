@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 11
+const PLAN_VERSION = 12
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 5
+const MILESTONE_VERSION = 6
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -191,10 +191,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 不高，第 5~9 讲主动放弃 -> 删掉这 5 个单元）；高数强化/线代强化/真题09-16 三块错题
         // 二刷同时收尾，按「已完成排在前」惯例前移到 n=127~129。
         // totalUnits 147 -> 142，completedUnits 125 -> 129，指针落点 n=130 = 真题套卷剩余第 1 套。
+        // 2026-09-16 更新二：限时刷完 2017 年真题（n=130 就是这一套），completedUnits 129 -> 130，
+        // 指针落点 n=131 = 剩余第 2 套 = 2018 年。顺手给「剩余第 n 套」补上年份，避免只报序号。
         totalUnits: 142,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 129,
+        completedUnits: 130,
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
@@ -211,7 +213,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           if (n <= 122) return `880专题 概率论（真题弱点驱动，已完成三分之二）`
           if (n <= 126) return `错题二刷 1000题概率基础 第${n - 122}讲（已完成·第5~9讲题目质量低主动放弃）`
           if (n <= 129) return `错题二刷 ${['1000题高数强化', '1000题线代强化', '真题09-16错题'][n - 127]}（已完成）`
-          if (n <= 139) return `真题套卷 剩余第${n - 129}套（限时3h + 订正）`
+          if (n <= 139) return `真题套卷 ${2016 + (n - 129)}年·剩余第${n - 129}套（限时3h + 订正）`
           if (n <= 141) return `880专题 ${['高数', '线代'][n - 140]}（真题暴露的弱点章节）`
           if (n <= 142) return `中值定理证明题专项（延后·性价比低）`
           return `数学冲刺回顾`
@@ -228,6 +230,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 2026-09-16 更新：09-15 计组费曼复习一轮全部过完（co-01~co-07，31 问、新建 13 个 gap
         // C-035~C-047，见 feynman-review/sessions/2026-09-15.json），completedUnits 50 -> 51，
         // 指针落点 n=52 = 强化轮 操作系统。新 gap 的二刷验收归入阶段三「408 错题 / gap 回捞」。
+        // 2026-09-16 更新二：OS 费曼一轮过了前三章（os-01 概述 / os-02 进程管理 / os-03 内存管理，
+        // 5 个 session、23 问、新建 16 个 gap C-048~C-063，指针推到 os-04 文件管理，
+        // 见 feynman-review/sessions/2026-09-16.json）。但 n=52 这一整单元要求 os-01~05 全过，
+        // 单指针不能中途记分，故 completedUnits 保持 51，完成度写进 n<=52 的标签里。
+        // 63 条 gap 已同步到 data/feynman/cs408.json（public 与 dist 一致）。
         totalUnits: 78,
         dailyQuota: 1,
         estMinutes: 150,
@@ -240,7 +247,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           if (n <= 41) return `强化轮 数据结构（除大题外全部完成）`
           if (n <= 50) return `王道大题强化 第${n - 41}章（费曼讲解→大题）`
           if (n <= 51) return `强化轮 计算机组成原理（09-15 费曼一轮过完 co-01~07·13 个新 gap 待验收）`
-          if (n <= 52) return `强化轮 操作系统`
+          if (n <= 52) return `强化轮 操作系统（费曼已过 os-01~03·16 个新 gap 待验收·指针 os-04 文件管理）`
           if (n <= 53) return `强化轮 计算机网络`
           if (n <= 70) return `王道大题强化 第${n - 53}章（费曼讲解→大题）`
           if (n <= 78) return `王道26模拟卷 第${n - 70}套`
@@ -269,10 +276,14 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 2026-09-16 校正：套卷模考原定 11 套，规划里已主动砍到 6 套（模考边际收益后期递减，
         // 释放的 15 h 挪给肖四大题背诵），但单元模型一直还挂着 11 个，导致网站剩余单元比手册多 5 个。
         // 本次对齐决策：totalUnits 161 -> 156（n=151~156 = 模考第 1~6 套），completedUnits 35 不变。
+        // 2026-09-16 更新二：刷完 2010 年后两篇传统阅读（T3/T4），2010 年四篇收官，阅读累计 18 -> 20 篇。
+        // completedUnits 35 -> 37（把 T3/T4 也前移为已完成单元），已完成的 2010 年分支放宽到 n <= 37；
+        // n<=101 的「第 n-17 篇」公式无需改（n=38 自然对应第 21 篇，剩余 84-20=64 篇）。
+        // 指针落点 n=38 = 阅读第 21 篇（2011 年 T1）。
         totalUnits: 156,
         dailyQuota: 1,
         estMinutes: 75,
-        completedUnits: 35,
+        completedUnits: 37,
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -282,7 +293,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           if (n <= 26) return `真题阅读精读 第${n - 14}篇（2005/2006/2008 各4篇，已完成）`
           if (n <= 29) return `完型 ${[2005, 2006, 2008][n - 27]}年（已完成，累计29/60）`
           if (n <= 33) return `真题阅读精读 2009年第${n - 29}篇（已完成）`
-          if (n <= 35) return `真题阅读精读 2010年第${n - 33}篇（已完成·英一最难年，T1 2/5、T2 0/5）`
+          if (n <= 37) return `真题阅读精读 2010年第${n - 33}篇（已完成·英一最难年四篇全过，T1 2/5、T2 0/5）`
           if (n <= 101) return `真题阅读精读 第${n - 17}篇（生词+长难句+逻辑信号词）`
           if (n <= 116) return `完型 ${2011 + (n - 102)}年（逻辑衔接题为主，非词义题）`
           if (n <= 130) return `新题型 第${n - 116}篇`
@@ -305,10 +316,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 单元序号 1-58 = 串讲各讲（绑定同讲对应的 1000 题一刷），59-78 = 1000 题二刷，79-86 肖八，87-90 肖四。
         // estMinutes 50 = 视频 2 倍速平均 23 min + 对应选择题 27 min；净看课全程仅 22.3 h，瓶颈在题不在课。
         // completedUnits 3 -> 5（09-15 看完马原第 5 讲）；1000 题对应章节尚未动，故资料墙里 1000 题仍记 0。
+        // 2026-09-16 更新二：看完马原第 6 讲「对立统一」（矛盾规律），completedUnits 5 -> 6。
+        // 该讲对应的肖1000章节仍未动，一刷欠账随讲数累积（现欠 6 讲的选择量）。
         totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 5,
+        completedUnits: 6,
         startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
@@ -338,11 +351,15 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-co-reinforce-start', title: '计组错题一刷完成', date: '2026-09-01', subject: 'cs408', done: true, note: '王道小程序93道计组错题一轮过完，背诵手册建成，待二刷验收' },
       { id: 'm-math-b18-xd2', title: '1000题B组高数18讲收尾·高数与线代基础二刷完成', date: '2026-09-09', subject: 'math', done: true, note: 'B组强化高数18讲、线代9讲全部完成；概率9讲因题目质量低主动放弃；660题决定不做。错题二刷已过高数基础与线代基础，错题本累计121条（高数82/线代21/概率18）' },
       { id: 'm-math-1000-done', title: '1000题二刷全部结束', date: '2026-09-16', subject: 'math', done: true, note: '高数基础/线代基础/高数强化/线代强化四块二刷全部收尾，概率基础刷到第4讲（第5~9讲因题目质量低主动放弃）；本批录入线代16条+概率9条，错题本累计146条（高数82/线代37/概率27）。数学进入真题套卷阶段，剩10套' },
+      { id: 'm-math-2017', title: '数学·2017年真题限时刷完', date: '2026-09-16', subject: 'math', done: true, note: '09-16 限时 3h 刷完 2017 年数一（剩余第 1 套），第 3/6/8/10/15/16/17/18/22/23 题共 10 道错题进入录入流程。completedUnits 129→130，指针落点 n=131 = 2018 年，真题剩 9 套' },
       { id: 'm-politics-mayuan', title: '政治·串讲启动', date: '2026-09-09', subject: 'politics', done: true, note: '计划07-15启动，实际09-09启动，落后56天；90单元压缩进97天，日均0.93单元。肖1000刷题尚未开始' },
       { id: 'm-politics-course-audit', title: '政治·课程结构对账', date: '2026-09-16', subject: 'politics', done: true, note: '按网盘目录逐课核对：串讲五模块共58讲（马原21/思修8/史纲9/毛中特7/新思想13），体积59.4GB≈原始44.5h，2倍速净看课22.3h。进度模型 totalUnits 62→90、completedUnits 3→5（马原前5讲已看完，09-15 到第5讲）' },
-      { id: 'm-politics-round1', title: '政治·串讲58讲+1000题一刷收尾', date: '2026-10-20', subject: 'politics', done: false, note: '剩53讲要在34天内过完=每天1.6讲（2倍速约1.4h/天）。这是政治真正的硬截止线：拖到10月下旬就没有时间做二刷和肖八，12月只能靠死背肖四' },
+      { id: 'm-politics-round1', title: '政治·串讲58讲+1000题一刷收尾', date: '2026-10-20', subject: 'politics', done: false, note: '剩52讲要在34天内过完=每天1.5讲（2倍速约1.4h/天）。这是政治真正的硬截止线：拖到10月下旬就没有时间做二刷和肖八，12月只能靠死背肖四' },
       { id: 'm-cs408-co-stuck', title: '408·计组强化（卡点已破）', date: '2026-09-16', subject: 'cs408', done: true, note: '09-15 计组费曼复习一轮全部过完：co-01~co-07 共 31 问，新建 13 个 gap（C-035~C-047），state.json 指针推进到 co-07。卡了两个月的计组终于推过去了。重复错 C-001（存储程序混合存放）/ C-005（执行时间是乘不是除）与 co-02 补码/IEEE754 整片薄弱是下一轮验收重点' },
       { id: 'm-eng-2010', title: '英语·2010 最难年 T1/T2 收尾', date: '2026-09-16', subject: 'english', done: true, note: 'T1 2/5、T2 0/5，阅读累计 18 篇 41/90 = 45.6%。本轮确诊跨篇系统恶习＝「选项/词在文中出现频次高就选它」（T1Q5 critics、T2Q4 legal、T2Q5 法律案件三题同栽）；铁律：高频词与论据多是例子不是答案，论点与正确答案常是抽象同义改写。熟词僻义族再添 big deal / about-face / patent' },
+      { id: 'm-eng-2010-tail', title: '英语·2010 年四篇阅读收官', date: '2026-09-16', subject: 'english', done: true, note: '09-16 刷完后两篇 T3/T4，2010 年（英一史上最难年）四篇全部过完，阅读累计 20 篇。completedUnits 35→37，指针落点 n=38 = 阅读第 21 篇（2011 T1），剩余 64 篇' },
+      { id: 'm-os-feynman-os123', title: '408·操作系统费曼一轮（os-01~03）', date: '2026-09-16', subject: 'cs408', done: true, note: 'OS 前三章费曼过完：5 个 session、23 问，新建 16 个 gap（C-048~C-063），gaps-408.json 累计 63 条并已同步到网站 data/feynman/cs408.json；state.json 指针推到 os-04 文件管理。命门＝内外碎片反复混淆（C-059 标 S1）、IPC 整块全忘、RR 退化误答成 SJF；C-052/C-059 为 S1，09-17 就到期。os-04/05 未动，故 n=52 这一单元仍不算完成' },
+      { id: 'm-politics-mayuan-06', title: '政治·马原第6讲（对立统一）', date: '2026-09-16', subject: 'politics', done: true, note: '串讲进度 6/58，completedUnits 5→6。该讲对应的肖1000章节仍未动，一刷欠账累积到 6 讲；马原剩 15 讲是 10-20 硬截止线的主要压力源' },
       { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期。英语是当前最大缺口：剩136单元/96天=每天1.42篇，必须每天拿到2个任务槽位才做得完' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
@@ -468,7 +485,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
 
   // ==================== 今日任务生成器（时间预算制） ====================
   /** 快照格式版本：升级后强制重生当日快照 */
-  const SNAPSHOT_VERSION = 11
+  const SNAPSHOT_VERSION = 12
   /** 每日推荐总时长预算（分钟），约 8 小时，超出则不再追加任务 */
   const DAILY_TIME_BUDGET = 480
   /** 单科单日任务上限（避免欠账一次性堆出十几条） */

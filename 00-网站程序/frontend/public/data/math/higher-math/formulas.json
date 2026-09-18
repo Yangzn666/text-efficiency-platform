@@ -97,6 +97,54 @@
         "description": "用子列判断发散",
         "application": "数列极限证明",
         "difficulty": "基础"
+      },
+      {
+        "id": "f01-13",
+        "name": "极限的三大性质",
+        "latex": "\\lim_{x\\to x_0}f(x)=A\\Rightarrow \\text{①唯一 ②局部有界 }(|f|\\le M) \\text{ ③局部保号 }(A>0\\Rightarrow f>0)",
+        "description": "极限存在⟹值唯一、去心邻域内有界、保号；反推保不等式带等号（脱帽变严格、戴帽留等号）",
+        "application": "极限性质判断 / 选择题 / 证明铺垫",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-14",
+        "name": "两角差公式（差角）",
+        "latex": "\\sin(\\alpha-\\beta)=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta;\\ \\cos(\\alpha-\\beta)=\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta;\\ \\tan(\\alpha-\\beta)=\\frac{\\tan\\alpha-\\tan\\beta}{1+\\tan\\alpha\\tan\\beta}",
+        "description": "正弦差=正余余正中间减；余弦差=余正正负中间加；和角把 β 换成 −β",
+        "application": "三角化简 / 积化和差 / 极限积分换元",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-15",
+        "name": "证明数列收敛两法（单调有界+压缩映射）",
+        "latex": "\\text{①单调有界:}\\ x_n\\uparrow\\ \\text{且}\\ \\exists M,x_n\\le M\\Rightarrow\\lim x_n;\\quad \\text{②压缩映射:}\\ |f'(x)|\\le r<1\\ \\text{或}\\ |x_{n+1}-a|\\le r|x_n-a|\\Rightarrow\\{x_n\\}\\ \\text{收敛},\\ \\lim x_n=a",
+        "description": "单调性判法：作差、作商、归纳、递推 xₙ₊₁=f(xₙ) 看 f′（f′≥0 单调、f′<0 则不单调奇偶子列分开）。有界性判法：不等式放缩、归纳、先斩后奏(先解 A=f(A) 当界)。压缩映射 r∈(0,1) 为压缩常数，误差每次缩 r 倍",
+        "application": "证明递推数列收敛并求极限",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f01-16",
+        "name": "奇偶性传递链（复合·导数·原函数）",
+        "latex": "\\text{复合:内偶必偶,内奇看外};\\ \\text{导数:奇}\\to\\text{偶,偶}\\to\\text{奇};\\ f\\text{奇}\\Rightarrow\\int_0^x\\!f\\text{偶(全体原函数偶)};\\ f\\text{偶}\\Rightarrow\\int_0^x\\!f\\text{为唯一奇原函数}",
+        "description": "可导奇函数求导为偶、偶函数求导为奇；奇函数的全部原函数都是偶函数，偶函数只有下限为0的变限积分∫₀ˣf是奇原函数,加常数C(C≠0)即非奇非偶。",
+        "application": "判断原函数/变限积分奇偶性、简化对称区间定积分(f奇∫=0,f偶∫=2∫₀ᵃ)、复合函数奇偶性快速定性。",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-17",
+        "name": "同角三角恒等（平方·倒数）",
+        "latex": "\\sin^2x+\\cos^2x=1;\\ 1+\\tan^2x=\\sec^2x;\\ 1+\\cot^2x=\\csc^2x;\\ \\sin\\csc=\\cos\\sec=\\tan\\cot=1",
+        "description": "平方关系三式+倒数关系三对;口诀割²=1+切²、对角互为倒数",
+        "application": "三角化简、求导与积分前的恒等变形",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f01-18",
+        "name": "对数放缩不等式（夹逼库）",
+        "latex": "x>0:\\ \\frac{x}{1+x}<\\ln(1+x)<x;\\quad \\frac{1}{1+x}<\\ln\\left(1+\\frac1x\\right)<\\frac1x\\ (\\text{令 }x\\to\\frac1x)",
+        "description": "两式互为倒数代换;ln(1+x)被 x/(1+x) 与 x 夹住,ln(1+1/x)被 1/(1+x) 与 1/x 夹住",
+        "application": "数列(1+1/n)^n 有界单调、级数∑ln(1+1/k) 放缩、极限证明",
+        "difficulty": "进阶"
       }
     ]
   },
@@ -166,6 +214,54 @@
         "description": "分子交叉相减、分母 x' 立方（不是 y''/x''）",
         "application": "参数方程求二阶导",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f02-09",
+        "name": "导数定义（几种形式）",
+        "latex": "f'(x_0)=\\lim_{\\Delta x\\to0}\\frac{f(x_0+\\Delta x)-f(x_0)}{\\Delta x}=\\lim_{x\\to x_0}\\frac{f(x)-f(x_0)}{x-x_0}",
+        "description": "可导⟺左右导数存在且相等；对称差商存在推不出可导（如 |x| 在 0）",
+        "application": "用定义求导 / 判断可导性",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-10",
+        "name": "微分的定义",
+        "latex": "\\Delta y=A\\,\\Delta x+o(\\Delta x)\\Rightarrow dy=A\\,\\Delta x=f'(x_0)\\,dx",
+        "description": "一元可微⟺可导；dy 是 Δy 的线性主部，Δy−dy=o(Δx)",
+        "application": "近似计算 / 微分形式不变性",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-11",
+        "name": "反函数求导",
+        "latex": "\\frac{dx}{dy}=\\frac{1}{\\,dy/dx\\,},\\quad \\varphi'(y_0)=\\frac{1}{f'(x_0)}\\ (f'(x_0)\\neq0)",
+        "description": "反函数导数=原导数取倒数；二阶 d²x/dy²=−f''/(f')³",
+        "application": "求反函数导数 / 参数方程",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-12",
+        "name": "三个中值定理",
+        "latex": "\\text{罗尔: }f'(\\xi)=0;\\ \\text{拉氏: }f(b)-f(a)=f'(\\xi)(b-a);\\ \\text{柯西: }\\frac{f'(\\xi)}{g'(\\xi)}=\\frac{f(b)-f(a)}{g(b)-g(a)}",
+        "description": "前提 [a,b] 连续、(a,b) 可导；罗尔需 f(a)=f(b)；柯西取 g=x 退回拉氏",
+        "application": "证明等式/不等式 / 构造辅助函数",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f02-13",
+        "name": "凹凸性与拐点",
+        "latex": "f''(x)>0\\Rightarrow\\text{凹}(\\cup);\\quad f''(x)<0\\Rightarrow\\text{凸}(\\cap)",
+        "description": "拐点需 f''=0 或不存在且两侧变号；f''=0 未必是拐点（如 x⁴）",
+        "application": "判凹凸 / 求拐点 / 不等式证明",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f02-14",
+        "name": "三角函数求导四式",
+        "latex": "(\\tan x)'=\\sec^2x;\\ (\\sec x)'=\\sec x\\tan x;\\ (\\cot x)'=-\\csc^2x;\\ (\\csc x)'=-\\csc x\\cot x",
+        "description": "tan/cot 求导得带负号与否的平方项,sec/csc 求导得自身×同名切;与六个三角积分互逆",
+        "application": "求导、凑微分、验证积分",
+        "difficulty": "基础"
       }
     ]
   },
@@ -251,6 +347,38 @@
         "description": "后两式为「对数装根式」",
         "application": "不定积分速查",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f03-11",
+        "name": "指数×三角积分·行列式记忆法",
+        "latex": "\\int e^{ax}\\cos bx\\,dx=\\frac{1}{a^2+b^2}\\begin{vmatrix}(e^{ax})'&(\\cos bx)'\\\\ e^{ax}&\\cos bx\\end{vmatrix}+C;\\ \\int e^{ax}\\sin bx\\,dx=\\frac{1}{a^2+b^2}\\begin{vmatrix}(e^{ax})'&(\\sin bx)'\\\\ e^{ax}&\\sin bx\\end{vmatrix}+C",
+        "description": "行列式＝主对角减副对角,上行求导下行原样;展开得 cos 版 e^{ax}(a cos bx+b sin bx)/(a²+b²)、sin 版 e^{ax}(a sin bx−b cos bx)/(a²+b²)",
+        "application": "∫e^{ax}三角 型不定积分,免做两次分部",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f03-12",
+        "name": "正割余割三次积分",
+        "latex": "\\int\\sec^3x\\,dx=\\frac12(\\sec x\\tan x+\\ln|\\sec x+\\tan x|)+C;\\ \\int\\csc^3x\\,dx=-\\frac12(\\csc x\\cot x+\\ln|\\csc x+\\cot x|)+C",
+        "description": "分部降次所得;sec 版正号、csc 版整体带负号",
+        "application": "∫sec³、∫csc³ 及旋转体侧面积弧长计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f03-13",
+        "name": "反三角积分两式",
+        "latex": "\\int\\frac{dx}{a^2+x^2}=\\frac1a\\arctan\\frac xa+C;\\ \\int\\frac{dx}{\\sqrt{a^2-x^2}}=\\arcsin\\frac xa+C",
+        "description": "口诀塞进去弹出来、a在前用arc;与 ∫dx/√(x²±a²)=ln|x+√(x²±a²)| 凑成经典三式",
+        "application": "有理式/根式不定积分基本表",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f03-14",
+        "name": "六个基本三角积分",
+        "latex": "\\int\\tan x\\,dx=-\\ln|\\cos x|+C;\\ \\int\\cot x\\,dx=\\ln|\\sin x|+C;\\ \\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C;\\ \\int\\csc x\\,dx=\\ln|\\csc x-\\cot x|+C;\\ \\int\\sec^2x\\,dx=\\tan x+C;\\ \\int\\csc^2x\\,dx=-\\cot x+C;\\ \\int\\sec x\\tan x\\,dx=\\sec x+C;\\ \\int\\csc x\\cot x\\,dx=-\\csc x+C",
+        "description": "切／余切积出 ln（切余切，对数装）；正割配正切、余割配余切（同号加、异号减）；平方积回本身 sec²→tan、csc²→−cot。与三角求导四式互逆。铁律：结果永远 +C",
+        "application": "不定积分基本表、凑微分",
+        "difficulty": "基础"
       }
     ]
   },
@@ -320,6 +448,30 @@
         "description": "与等差中项 a_n=(a_{n-k}+a_{n+k})/2 对照记：等比是“平方=两端乘积”，下标和相等则对应项乘积相等",
         "application": "选择题快速判定、求乘积",
         "difficulty": "基础"
+      },
+      {
+        "id": "f04-09",
+        "name": "收敛半径·收敛区间·收敛域 求解流程",
+        "latex": "R=\\lim_{n\\to\\infty}\\left|\\frac{a_n}{a_{n+1}}\\right|\\ \\text{或}\\ \\frac{1}{\\lim\\limits_{n\\to\\infty}\\sqrt[n]{|a_n|}};\\quad \\text{收敛区间}(c-R,\\,c+R)\\xrightarrow{\\ \\text{验端点}\\ }\\text{收敛域}",
+        "description": "先求半径 R（比值/根值），写开区间=收敛区间，再单独验 $x=c\\pm R$ 敛散，收敛的端点并入得收敛域",
+        "application": "求幂级数收敛半径 / 收敛域",
+        "difficulty": "基础"
+      },
+      {
+        "id": "f04-10",
+        "name": "傅里叶系数与展开式",
+        "latex": "f(x)\\sim\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}\\left(a_n\\cos nx+b_n\\sin nx\\right);\\quad a_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f\\cos nx\\,dx,\\ b_n=\\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}f\\sin nx\\,dx",
+        "description": "2l 周期版把 π→l、nx→nπx/l、前面 1/π→1/l；先用 ~ 连接、不写等号",
+        "application": "求傅里叶级数展开",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f04-11",
+        "name": "傅里叶级数 · 奇偶与延拓",
+        "latex": "\\text{偶: } f\\sim\\frac{a_0}{2}+\\sum a_n\\cos nx,\\ a_n=\\frac{2}{\\pi}\\int_0^{\\pi}f\\cos nx\\,dx,\\ b_n=0;\\quad \\text{奇: } f\\sim\\sum b_n\\sin nx,\\ b_n=\\frac{2}{\\pi}\\int_0^{\\pi}f\\sin nx\\,dx,\\ a_n=0",
+        "description": "偶余弦、奇正弦——见偶 $b_n=0$、见奇 $a_n=0$；非周期先偶/奇延拓再套表，积分区间减半、前面乘 2",
+        "application": "半区间展开 / 正弦余弦级数",
+        "difficulty": "进阶"
       }
     ]
   },
@@ -341,6 +493,99 @@
         "description": "k 为特征根重数（三角型看 α±iβ 是否特征根）",
         "application": "二阶常系数非齐次",
         "difficulty": "进阶"
+      },
+      {
+        "id": "f05-03",
+        "name": "全微分方程",
+        "latex": "M\\,dx+N\\,dy=0\\ \\text{为全微分方程}\\iff \\frac{\\partial M}{\\partial y}=\\frac{\\partial N}{\\partial x};\\quad du=M\\,dx+N\\,dy,\\ \\text{通解}\\ u(x,y)=C",
+        "description": "求 u：偏积分 u=∫M dx+φ(y) 再定 φ′；或折线积分；或凑微分。M_y≠N_x 时找积分因子 μ（只含 x 用 (M_y−N_x)/N，只含 y 用 (N_x−M_y)/M）",
+        "application": "一阶方程化为全微分求解",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f05-04",
+        "name": "高于二阶常系数线性齐次方程",
+        "latex": "y^{(n)}+p_1y^{(n-1)}+\\cdots+p_ny=0\\to\\lambda^n+p_1\\lambda^{n-1}+\\cdots+p_n=0;\\quad \\text{单根}\\to e^{\\lambda x},\\ \\text{k重根}\\to x^{j}e^{\\lambda_0 x}",
+        "description": "n 个不同实根→ΣC_i e^{λ_i x}；k 重实根 λ₀→(C₁+C₂x+…+C_k x^{k-1})e^{λ₀x}；共轭复根 α±βi→e^{αx}(cos βx, sin βx)",
+        "application": "三阶及以上常系数齐次方程",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f05-05",
+        "name": "可降阶微分方程",
+        "latex": "y^{(n)}=f(x)\\text{ 逐次积分};\\quad y''=f(x,y')\\xrightarrow{\\ u=y'\\ }u'=f(x,u);\\quad y''=f(y,y')\\xrightarrow{\\ u=y'\\ }u\\frac{du}{dy}=f(y,u)",
+        "description": "缺 y：令 u=y′ 对 x 化一阶；缺 x：令 u=y′、用 y″=u·du/dy 对 y 化一阶；y⁽ⁿ=f(x) 直接连积 n 次",
+        "application": "特殊高阶方程降阶求解",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "f05-06",
+        "name": "一阶常系数差分方程",
+        "latex": "y_{t+1}+ay_t=f(t);\\quad \\text{齐次通解}\\ \\bar y_t=C(-a)^t,\\quad \\text{非齐次通解}\\ y_t=C(-a)^t+y_t^{*}",
+        "description": "a≠0；f(t)≡0 齐次。特解按 f(t) 设：常数/多项式设同次多项式，c·μ^t 设 A·μ^t（μ=−a 为特征根则乘 t）",
+        "application": "差分方程求解（数一）",
+        "difficulty": "进阶"
+      }
+    ]
+  },
+  "mv01": {
+    "title": "多元函数微积分 · 向量场（数一）",
+    "formulas": [
+      {
+        "id": "mv01-01",
+        "name": "全微分与可微·偏导·连续的关系",
+        "latex": "dz=f_x\\,dx+f_y\\,dy;\\quad \\text{偏导连续}\\Rightarrow\\text{可微}\\Rightarrow(\\text{连续 且 偏导存在}),\\ \\text{反向均不成立}",
+        "description": "可微⇏偏导连续、偏导存在⇏连续、连续⇏可微；判断题记四大反例",
+        "application": "多元可微性判断 / 全微分计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "mv01-02",
+        "name": "三重积分中值定理",
+        "latex": "f\\in C(\\Omega)\\Rightarrow\\exists(\\xi,\\eta,\\zeta)\\in\\Omega,\\quad \\iiint_\\Omega f\\,dV=f(\\xi,\\eta,\\zeta)\\cdot V",
+        "description": "积分 = 中值点函数值 × 体积；二重换面积、三重换体积",
+        "application": "含三重积分的极限 / 估值",
+        "difficulty": "基础"
+      },
+      {
+        "id": "mv01-03",
+        "name": "曲线（曲面）积分化为定积分",
+        "latex": "\\int_L f\\,ds=\\int_\\alpha^\\beta f\\sqrt{x'^2+y'^2+z'^2}\\,dt;\\quad \\int_L P\\,dx+Q\\,dy+R\\,dz=\\int_\\alpha^\\beta(Px'+Qy'+Rz')\\,dt",
+        "description": "第一类带弧微分根式、第二类带 $Px'+Qy'+Rz'$；参数化后线面积分一律变定（累次）积分",
+        "application": "曲线积分计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "mv01-04",
+        "name": "空间曲面的面积",
+        "latex": "S=\\iint_{D_{xy}}\\sqrt{1+z_x^2+z_y^2}\\,dxdy=\\iint_D|\\vec r_u\\times\\vec r_v|\\,dudv;\\quad S_{\\text{旋}}=2\\pi\\int_a^b|y|\\sqrt{1+y'^2}\\,dx",
+        "description": "面积元 $\\sqrt{1+z_x^2+z_y^2}$；锥面/平面这类齐次根式常化成『常数 × 投影面积』",
+        "application": "曲面面积计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "mv01-05",
+        "name": "转动惯量",
+        "latex": "I=\\iiint_\\Omega\\rho\\,r^2\\,dV;\\quad r_{x\\text{轴}}^2=y^2+z^2,\\ r_{y\\text{轴}}^2=x^2+z^2,\\ r_{z\\text{轴}}^2=x^2+y^2",
+        "description": "对哪根轴，距离² = 另两坐标平方和；曲线/薄片把 ∭ 换成 ∫/∬",
+        "application": "转动惯量计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "mv01-06",
+        "name": "空间物体对质点的引力",
+        "latex": "F_x=G\\iiint_\\Omega\\frac{\\rho(x,y,z)\\,(x_0-x)}{r^3}\\,dV,\\quad r=\\sqrt{(x_0-x)^2+(y_0-y)^2+(z_0-z)^2}",
+        "description": "$F_y,F_z$ 循环；分子=指向 $P_0$ 的坐标差、分母 $r^3$=平方反比×单位化；先靠对称砍分量",
+        "application": "引力计算",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "mv01-07",
+        "name": "通量 · 散度 · 旋度",
+        "latex": "\\Phi=\\iint_\\Sigma\\vec F\\cdot\\vec n\\,dS;\\quad \\operatorname{div}\\vec F=P_x+Q_y+R_z;\\quad \\operatorname{rot}\\vec F=(R_y-Q_z,\\ P_z-R_x,\\ Q_x-P_y)",
+        "description": "$\\operatorname{div}=0$ 无源场、$\\operatorname{rot}=\\vec{0}$ 无旋⟺保守场；高斯=闭面通量↔体散度，斯托克斯=环流量↔面旋度",
+        "application": "向量场分析 / 场论公式",
+        "difficulty": "进阶"
       }
     ]
   },
@@ -350,8 +595,8 @@
       {
         "id": "la01-01",
         "name": "伴随矩阵公式群",
-        "latex": "AA^*=A^*A=|A|E;\\ |A^*|=|A|^{n-1};\\ (kA)^*=k^{n-1}A^*;\\ (A^*)^*=|A|^{n-2}A;\\ (AB)^*=B^*A^*;\\ A \\text{ 可逆} \\Rightarrow A^*=|A|A^{-1}",
-        "description": "伴随行列式降一次幂、乘积伴随反序",
+        "latex": "AA^*=A^*A=|A|E;\\ (kA)^*=k^{n-1}A^*\\ (n\\ge2);\\ (AB)^*=B^*A^*;\\ |A^*|=|A|^{n-1}\\ (n\\ge2);\\ (A^*)^{-1}=(A^{-1})^*=\\frac{1}{|A|}A;\\ (A^*)^T=(A^T)^*;\\ (A^*)^*=|A|^{n-2}A\\ (n\\ge3)",
+        "description": "伴随七律（含阶数条件 n≥2/n≥3）：伴随行列式降一次幂、k 伴随降一次、再伴随降两次；乘积伴随反序；伴随与转置可交换",
         "application": "伴随矩阵计算",
         "difficulty": "进阶"
       },
@@ -386,6 +631,230 @@
         "description": "符号 +−+ 交替",
         "application": "特征多项式求根",
         "difficulty": "基础"
+      },
+      {
+        "id": "la01-06",
+        "name": "抽象型行列式七公式",
+        "latex": "|A^T|=|A|;\\ |\\lambda A|=\\lambda^n|A|;\\ |AB|=|BA|=|A|\\,|B|,\\ |A^k|=|A|^k;\\ |A^{-1}|=\\frac{1}{|A|};\\ |A^*|=|A|^{n-1}\\,(n\\ge2);\\ |A|=\\lambda_1\\lambda_2\\cdots\\lambda_n;\\ A\\sim B\\Rightarrow|A|=|B|",
+        "description": "A、B 为 n 阶方阵时化简字母行列式七式。⚠ 一般 |A+B|≠|A|+|B|，加法不分配，只有乘法可拆",
+        "application": "求 |kA|、|A+B|、|A*|、|A⁻¹| 等抽象行列式",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-07",
+        "name": "抽象型行列式补充公式",
+        "latex": "|A^TA|=|AA^T|=|A|^2;\\ |A^n|=|A|^n;\\ |kA^*|=k^n|A|^{n-1};\\ |(A^*)^*|=|A|^{(n-1)^2};\\ |\\lambda E-A|=\\prod(\\lambda-\\lambda_i);\\ |E-A|=\\prod(1-\\lambda_i);\\ 正交阵|A|=\\pm1;\\ 奇数阶反对称|A|=0",
+        "description": "常与抽象行列式七式连用。补充：|A|=0 ⟺ A 不可逆 ⟺ 0 是特征值 ⟺ Ax=0 有非零解 ⟺ 行列向量组线性相关",
+        "application": "求 |AᵀA|、|(A*)*|、|E−A| 等，判定 |A|=0",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-08",
+        "name": "矩阵转置运算律",
+        "latex": "(A^T)^T=A;\\ (A\\pm B)^T=A^T\\pm B^T;\\ (kA)^T=kA^T;\\ (AB)^T=B^TA^T;\\ (A^{-1})^T=(A^T)^{-1}",
+        "description": "转置四律：加法对转置可分配、乘积转置反序。对照 |A+B|≠|A|+|B|（行列式加法不分配）。推论 AᵀA、A+Aᵀ 对称，A−Aᵀ 反对称",
+        "application": "转置化简 / 证对称·反对称阵 / (AB)ᵀ=BᵀAᵀ",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-09",
+        "name": "矩阵可逆的充要条件（等价链）",
+        "latex": "A\\text{ 可逆}\\iff|A|\\ne0\\iff AB=E(\\text{或 }BA=E)\\iff R(A)=n\\iff A^*\\text{ 可逆}\\iff A\\text{ 可表为初等矩阵之积}\\iff A\\text{ 与 }E\\text{ 等价}\\iff Ax=0\\text{ 只有零解}\\iff \\forall b,\\ Ax=b\\text{ 有唯一解}\\iff \\text{列(行)无关}\\iff \\text{特征值全}\\ne0",
+        "description": "n 阶矩阵可逆的十条等价条件（含初等阵之积、∀b 唯一解）；反之不可逆 ⟺ |A|=0 ⟺ r<n ⟺ Ax=0 有非零解 ⟺ 行列向量相关 ⟺ 0 是特征值",
+        "application": "判断可逆性、可逆条件的等价转化与证明",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-10",
+        "name": "逆矩阵运算性质",
+        "latex": "(A^{-1})^{-1}=A;\\ (kA)^{-1}=\\frac{1}{k}A^{-1};\\ (AB)^{-1}=B^{-1}A^{-1};\\ (A^T)^{-1}=(A^{-1})^T;\\ |A^{-1}|=\\frac{1}{|A|};\\ (A^n)^{-1}=(A^{-1})^n",
+        "description": "乘积求逆要反序、转置与求逆可交换；k≠0。例 (A⁻¹B)⁻¹=B⁻¹A",
+        "application": "逆矩阵化简、求 (A⁻¹B)⁻¹ 等",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-11",
+        "name": "矩阵的秩·性质与不等式群",
+        "latex": "0\\le R(A_{m\\times n})\\le\\min\\{m,n\\};\\ R(A)=R(A^T)=R(AA^T),\\ R(kA)=R(A)(k\\ne0);\\ R(A+B)\\le R(A)+R(B);\\ \\max\\{R(A),R(B)\\}\\le R(A,B)\\le R(A)+R(B);\\ R(AB)\\le\\min\\{R(A),R(B)\\};\\ A\\text{ 可逆}\\Rightarrow R(AB)=R(B);\\ AB=O\\Rightarrow R(A)+R(B)\\le n",
+        "description": "秩的八大结论 (1)–(7)（(8) 伴随的秩见「伴随的秩三档」卡）。(A,B) 为列拼接；AB=O 中 n=A 的列数=B 的行数，且 B 的每一列都是 Ax=0 的解向量（不等式的由来）",
+        "application": "矩阵秩的不等式证明、AB=O 判秩、拼接矩阵求秩范围",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-12",
+        "name": "分块行列式与分块求逆",
+        "latex": "|kA|=k^n|A|;\\ \\begin{vmatrix}A&C\\\\O&B\\end{vmatrix}=|A||B|;\\ \\begin{vmatrix}O&A\\\\B&O\\end{vmatrix}=(-1)^{mn}|A||B|;\\ \\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}^{-1}=\\begin{pmatrix}A^{-1}&O\\\\O&B^{-1}\\end{pmatrix};\\ \\begin{pmatrix}O&A\\\\B&O\\end{pmatrix}^{-1}=\\begin{pmatrix}O&B^{-1}\\\\A^{-1}&O\\end{pmatrix}",
+        "description": "分块行列式：主对角块=|A||B|，副对角带 (−1)^{mn}（A 为 m 阶、B 为 n 阶）。副对角分块求逆＝先换位再各自求逆",
+        "application": "分块矩阵的行列式与逆",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-13",
+        "name": "矩阵的二项式定理",
+        "latex": "A=kE+B\\Rightarrow A^n=\\sum_i\\binom{n}{i}k^{\\,n-i}B^i;\\quad B^2=O\\Rightarrow A^n=k^nE+nk^{n-1}B",
+        "description": "仅当 A=kE+B（E 与任意阵可交换）或两阵可交换时才能二项式展开；一般 AB≠BA 不成立。B 幂零则只剩有限项",
+        "application": "求 Aⁿ",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-14",
+        "name": "线性相关/无关的等价刻画",
+        "latex": "\\alpha_1,\\dots,\\alpha_s\\text{ 相关}\\iff Ax=0\\text{ 有非零解}\\iff R(A)<s;\\ \\text{无关}\\iff\\text{只有零解}\\iff R(A)=s;\\ s>n\\Rightarrow\\text{必相关}",
+        "description": "记 A=(α₁,…,α_s)。含零向量必相关；相关可扩、无关可缩；α 组无关而加 β 后相关 ⟺ β 可由 α 唯一线性表示",
+        "application": "判向量组相关性",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-15",
+        "name": "线性方程组：秩-解关系与解结构",
+        "latex": "\\text{无解}\\iff R(A)<R(\\bar A);\\ \\text{唯一解}\\iff R(A)=R(\\bar A)=n;\\ \\text{无穷解}\\iff R(A)=R(\\bar A)=r<n;\\ Ax=0\\text{ 有非零解}\\iff r<n",
+        "description": "基础解系含 n−r 个向量。非齐次通解=特解 η*+导出组通解；η₁,η₂ 为 Ax=b 的解 ⟹ η₁−η₂ 为 Ax=0 的解；Σk_iη_i 仍是解 ⟺ Σk_i=1",
+        "application": "方程组解的判定与结构",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-16",
+        "name": "秩一矩阵 αβᵀ 全套",
+        "latex": "R(A)=1\\iff A=\\alpha\\beta^T;\\ A^2=(\\beta^T\\alpha)A=(\\operatorname{tr}A)A;\\ A^k=(\\operatorname{tr}A)^{k-1}A;\\ \\lambda:\\ \\operatorname{tr}A,0,\\dots,0;\\ \\text{可对角化}\\iff\\operatorname{tr}A\\ne0",
+        "description": "tr(αβᵀ)=βᵀα（一个数）。|A+kE|=k^{n-1}(k+trA)。trA=0 时 A²=O 幂零不可对角化；3 阶非零且 A²=O ⟹ R(A)=1",
+        "application": "秩一矩阵的幂、特征值、行列式",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-17",
+        "name": "四个子空间：列空间·行空间·解空间",
+        "latex": "C(A)=\\{Ax\\}\\subseteq\\mathbb{R}^m,\\ \\dim=r;\\ C(A^T)\\subseteq\\mathbb{R}^n,\\dim=r;\\ N(A)=\\{x\\mid Ax=0\\},\\dim=n-r;\\ N(A^T),\\dim=m-r",
+        "description": "秩-零化度 dim C(Aᵀ)+dim N(A)=n。列空间装得下 b 才有解(b∈C(A))；齐次解与每个行向量正交(ξ⊥行空间)；两非齐次特解相减得齐次解",
+        "application": "解的结构、正交关系判断",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-18",
+        "name": "施密特正交化",
+        "latex": "\\beta_1=\\alpha_1;\\ \\beta_2=\\alpha_2-\\frac{(\\alpha_2,\\beta_1)}{(\\beta_1,\\beta_1)}\\beta_1;\\ \\beta_3=\\alpha_3-\\frac{(\\alpha_3,\\beta_1)}{(\\beta_1,\\beta_1)}\\beta_1-\\frac{(\\alpha_3,\\beta_2)}{(\\beta_2,\\beta_2)}\\beta_2;\\ \\eta_i=\\frac{\\beta_i}{\\|\\beta_i\\|}",
+        "description": "(α,β)=αᵀβ。要正交矩阵 Q/正交基/正交变换化二次型必先施密特，别拿 αᵀβ=0 硬凑；三维可用叉乘 ξ₁×ξ₂ 替代",
+        "application": "正交化、构造正交矩阵",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-19",
+        "name": "合同·相似·等价·正交 四者辨析",
+        "latex": "A\\cong B\\iff R(A)=R(B);\\quad A\\sim B:\\ \\exists P^{-1}AP=B\\ (\\text{保特征值});\\quad A\\simeq B:\\ \\exists C^{T}AC=B\\ (\\text{保}\\ p,q)",
+        "description": "等价看秩、合同看正负惯性指数(p,q)、相似看特征值；正交变换既相似又合同；实对称阵时 相似⟺合同⟺特征值相同",
+        "application": "判别矩阵间的关系",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-20",
+        "name": "化二次型为标准形的方法对比",
+        "latex": "\\text{正交变换 }x=Qy:\\ f=\\lambda_1y_1^2+\\cdots+\\lambda_ny_n^2;\\quad \\text{配方法 }x=Cy:\\ \\text{系数符号}=p,q",
+        "description": "正交法系数＝特征值(保形)、配方法是拉伸(只定 p,q)；无平方项先换 x₁=y₁+y₂ 再配；合同变换在 (A∣E) 上 A 行列都做、E 只做列",
+        "application": "化二次型为标准形",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-21",
+        "name": "矩阵求幂 Aⁿ 四法",
+        "latex": "\\text{①找规律}\\ A^2=E\\Rightarrow A^{2m}=E;\\ \\text{②}A=kE+B\\text{ 二项式};\\ \\text{③秩1: }A^n=(\\operatorname{tr}A)^{n-1}A;\\ \\text{④可对角化: }A=P\\Lambda P^{-1}\\Rightarrow A^n=P\\Lambda^n P^{-1}",
+        "description": "四类求幂路径按结构择一：幂零/对合/幂等找规律；kE+幂零用二项式；秩一套 (trA)ⁿ⁻¹A；一般可对角化阵放大招 Aⁿ=PΛP⁻¹，Λ=diag(λᵢⁿ)",
+        "application": "计算矩阵的高次幂",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-22",
+        "name": "可对角化判定（充分·充要·秩判据）",
+        "latex": "\\text{充分: 实对称 或 }n\\text{ 个互异特征值};\\quad \\text{充要: }k\\text{ 重特征值满足 }r(\\lambda_i E-A)=n-k\\ (\\text{几何重数}=\\text{代数重数})",
+        "description": "实对称、n个单根→直接可对角化（充分）。有重根时逐值验：k重特征值要有k个无关特征向量 ⟺ 几何重数 n−r(λE−A)=k。几何重数=λE−A解空间维数。重根≠不可对角化",
+        "application": "判断能否相似对角化、求P",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-23",
+        "name": "满秩矩阵保秩（列满秩/行满秩）",
+        "latex": "P\\text{ 列满秩}\\Rightarrow R(PA)=R(A);\\quad Q\\text{ 行满秩}\\Rightarrow R(AQ)=R(A)",
+        "description": "左乘列满秩(秩=列数)P、右乘行满秩(秩=行数)Q 都不改变 A 的秩，比『乘可逆阵秩不变』更宽。理由：P列满秩⟹PAx=0与Ax=0同解；行满秩对转置用左条。可逆方阵既列满秩又行满秩是其特例",
+        "application": "秩的化简、等价标准形、证明秩相等",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-24",
+        "name": "A²=O 推秩 + 伴随归零",
+        "latex": "A^2=O,\\ A\\ne O\\ (n\\text{阶})\\Rightarrow R(A)\\le\\lfloor n/2\\rfloor;\\ \\text{若 }R(A)<n-1\\Rightarrow R(A^*)=0\\ (n=4:R(A)\\le2<3\\Rightarrow A^*=O)",
+        "description": "幂零推秩上界来自 Sylvester R(A²)≥2R(A)−n。n=4 时 R(A)≤2<n−1=3，套伴随三档(秩<n−1→伴随秩0)得 A*=O。三阶非零 A²=O 则 R(A)=1",
+        "application": "A²=O 型题求伴随矩阵的秩",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-25",
+        "name": "同解方程组三判据",
+        "latex": "Ax=0\\text{ 与 }Bx=0\\text{ 同解}\\iff R(A)=R(B)=R\\begin{pmatrix}A\\\\B\\end{pmatrix}\\iff A,B\\text{ 行向量组等价};\\ \\text{非齐次比增广 }R(A\\mid\\xi)=R(B\\mid\\eta)=R\\text{竖拼}",
+        "description": "同解＝解集互含＝行空间相同＝行向量组等价＝竖拼不增秩。最硬判据：各化行最简，一模一样即同解。非齐次把常数项并进增广矩阵再比",
+        "application": "判断两方程组是否同解、反求参数",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-26",
+        "name": "基础解系定义与解向量个数",
+        "latex": "\\text{基础解系}=Ax=0\\ \\text{全部解的极大线性无关组},\\ \\text{含}\\ n-r(A)\\ \\text{个};\\ Ax=b\\ \\text{的解向量中线性无关的最多有}\\ n-r(A)+1\\ \\text{个}",
+        "description": "基础解系即解空间的基,线性无关且能表出全部解;非齐次比齐次多 1 个来自特解 η*,η*,ξ_1,…,ξ_{n-r} 线性无关",
+        "application": "判定解空间维数、构造通解、解向量线性无关个数",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-27",
+        "name": "Gram判据与平方和型正定",
+        "latex": "A=C^TC\\Rightarrow x^TAx=\\|Cx\\|^2\\ge0\\ (\\text{半正定}),\\ C\\ \\text{列满秩}\\iff A\\ \\text{正定};\\quad f=\\sum_i\\Big(\\sum_j a_{ij}x_j\\Big)^2\\ (\\text{矩阵}=C^TC),\\ p=r(C^TC)=r(C)",
+        "description": "A写成C转置乘C则半正定,C列满秩升为正定;平方和型二次型矩阵即C转置C,正惯性指数等于系数矩阵C的秩,判正定只看r(C)是否等于n",
+        "application": "正定二次型判定、平方和型标准形、由表达式反推惯性指数",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-28",
+        "name": "谱分解与实对称正交谱分解",
+        "latex": "A=P\\Lambda P^{-1}=\\sum_{i=1}^n \\lambda_i\\xi_i\\eta_i^T\\ (\\eta_i^T=P^{-1}\\ \\text{第}i\\ \\text{行},\\ \\text{每块秩一});\\ \\text{实对称}: A=\\sum\\lambda_i\\xi_i\\xi_i^T\\ (\\xi_i\\ \\text{单位正交});\\ \\text{两同一异}(a,a,b):\\ A=aE+(b-a)\\xi_3\\xi_3^T",
+        "description": "谱分解=特征值乘投影块求和;实对称写λξξᵀ;特征值a,a,b用快捷式aE+(b-a)挖掉ξ₃;谁是0就从E里减谁",
+        "application": "已知特征值与特征向量反求A、求A的幂、实对称展开",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-29",
+        "name": "二次型性质群·正定六等价与幂等反推",
+        "latex": "A\\ \\text{正定}\\iff \\text{所有}\\lambda\\gt0\\iff p=n\\iff \\text{顺序主子式全}\\gt0\\iff A=C^TC(C\\ \\text{可逆})\\iff A\\ \\text{与}E\\ \\text{合同}\\iff x^TAx=0\\ \\text{只有零解};\\ \\text{负定}\\iff -A\\ \\text{正定}\\iff \\text{顺序主子式奇负偶正};\\ A^2=A\\Rightarrow\\lambda\\in\\{0,1\\},\\ r=\\operatorname{tr}A;\\ A^2=kA\\Rightarrow \\operatorname{tr}A=kr",
+        "description": "正定六条等价判据;负定奇负偶正;半正定只看特征值不能用顺序主子式≥0(diag(0,-1)反例);幂等秩等于迹、AB=O推r(A)+r(B)≤n",
+        "application": "判正定/半正定、由等式反推秩与特征值",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-30",
+        "name": "相似的必要条件 + 特征值不可加减乘除",
+        "latex": "A\\sim B\\Rightarrow |\\lambda E-A|=|\\lambda E-B|,\\ \\text{特征值/迹/行列式/秩全同}\\ (\\text{反向全不成立});\\ A+B\\ \\text{特征值}\\ne\\lambda_A+\\lambda_B,\\ AB\\ \\text{特征值}\\ne\\lambda_A\\lambda_B\\ (\\text{除非共享特征向量});\\ \\text{只有}\\ A+kE\\to\\lambda+k,\\ A^m\\to\\lambda^m,\\ A^{-1}\\to1/\\lambda\\ \\text{能搬运特征值}",
+        "description": "相似是特征值相同的充分非必要;特征值不能加减乘除,只有平移/乘方/求逆/换基能搬运它",
+        "application": "判断题、由相似推不变量",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-31",
+        "name": "正交对角化列对应 + 二次型矩阵对称化",
+        "latex": "Q^TAQ=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)\\iff Q\\ \\text{第}i\\ \\text{列是}\\lambda_i\\ \\text{的单位特征向量}\\ (\\text{列与对角元一一对应不乱序});\\ \\text{二次型矩阵}:\\ \\text{对角元=平方项系数},\\ \\text{非对角元}=a_{ij}=(x_ix_j\\ \\text{交叉项系数})\\div2;\\ (\\alpha^Tx)^2=x^T(\\alpha\\alpha^T)x",
+        "description": "拼Q时列顺序必须跟Λ对角元对齐;写二次型矩阵交叉项系数平分到a_ij与a_ji;见线性式的平方想列向量外积ααᵀ",
+        "application": "正交变换化标准形、由f写出对称矩阵A",
+        "difficulty": "基础"
+      },
+      {
+        "id": "la01-32",
+        "name": "证某数是特征值的三条路",
+        "latex": "\\text{证}\\lambda_0\\ \\text{是特征值三法}:\\ \\text{①定义法找}\\xi\\ne0\\ \\text{使}A\\xi=\\lambda_0\\xi;\\ \\text{②多项式法证}|\\lambda_0E-A|=0;\\ \\text{③秩法证}r(\\lambda_0E-A)\\lt n.\\ \\text{收尾必写}A\\xi=\\lambda_0\\xi\\ \\text{且}\\xi\\ne0;\\ (-A)\\xi=(-\\lambda)\\xi\\ \\text{特征向量全不变}",
+        "description": "三条路凑向量/算行列式/看秩不够;证明题收尾必须落在定义式那一行否则扣分;变号只动特征值不动特征向量",
+        "application": "证明某数是特征值、负定借-A正定捷径",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "la01-33",
+        "name": "特征值定义四边界 + 三阶特征多项式",
+        "latex": "A\\xi=\\lambda\\xi,\\ \\xi\\ne0;\\ \\lambda\\ \\text{可为}0,\\ \\lambda=0\\ \\text{是特征值}\\iff|A|=0\\iff A\\ \\text{不可逆};\\ \\text{异值特征向量之和不再是特征向量};\\ |\\lambda E-A|=\\lambda^3-(\\operatorname{tr}A)\\lambda^2+S_2\\lambda-|A|,\\ S_2=\\text{三主子式之和}=\\lambda_1\\lambda_2+\\lambda_1\\lambda_3+\\lambda_2\\lambda_3;\\ \\text{验算}\\sum\\lambda_i=\\operatorname{tr}A,\\ \\prod\\lambda_i=|A|",
+        "description": "特征向量必非零、特征值可以为零;三阶特征多项式=λ³−迹λ²+主子式和λ−行列式;算完拿迹和行列式各验一遍",
+        "application": "快速求三阶特征值、校验特征值结果",
+        "difficulty": "进阶"
       }
     ]
   },
@@ -431,11 +900,51 @@
         "description": "和加差绝对除2是max，和减差绝对除2是min",
         "application": "极值分布、数字特征",
         "difficulty": "进阶"
+      },
+      {
+        "id": "pr01-06",
+        "name": "三类大数定律",
+        "latex": "\\text{辛钦: }X_i\\ \\text{i.i.d.},\\ EX=\\mu\\Rightarrow\\bar X\\xrightarrow{P}\\mu;\\quad \\text{伯努利: }\\frac{n_A}{n}\\xrightarrow{P}p;\\quad \\text{切比雪夫: }P\\{|X-EX|\\ge\\varepsilon\\}\\le\\frac{DX}{\\varepsilon^2}",
+        "description": "依概率收敛＝任意ε偏差的概率趋于0；方差有界用切比雪夫、i.i.d.期望存在用辛钦、频率用伯努利；D(X̄)=σ²/n",
+        "application": "证明依概率收敛 / 样本均值估计",
+        "difficulty": "基础"
+      },
+      {
+        "id": "pr01-07",
+        "name": "两类中心极限定理",
+        "latex": "\\text{L-L: }\\frac{\\bar X-\\mu}{\\sigma/\\sqrt n}\\xrightarrow{\\ d\\ }N(0,1);\\qquad \\text{D-L: }\\frac{n_A-np}{\\sqrt{npq}}\\xrightarrow{\\ d\\ }N(0,1)",
+        "description": "独立同分布求和→N(nμ,nσ²)、均值→N(μ,σ²/n)；二项成功次数用 D-L 近似；n 越大越准，方差 npq 记得开根",
+        "application": "大量独立因素之和的概率近似",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "pr01-08",
+        "name": "两个正态总体的抽样分布",
+        "latex": "\\frac{(\\bar X-\\bar Y)-(\\mu_1-\\mu_2)}{\\sqrt{\\sigma_1^2/n_1+\\sigma_2^2/n_2}}\\sim N(0,1);\\quad \\frac{(\\bar X-\\bar Y)-(\\mu_1-\\mu_2)}{S_w\\sqrt{1/n_1+1/n_2}}\\sim t(n_1+n_2-2);\\quad \\frac{S_1^2/\\sigma_1^2}{S_2^2/\\sigma_2^2}\\sim F(n_1-1,\\,n_2-1)",
+        "description": "均值差：知方差配 Z、等方差配 t(合并方差 S_w²)；方差比一律配 F(大的放分子)；1/F~F(n,m)、t²(n)=F(1,n)",
+        "application": "两正态总体均值差与方差比的推断",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "pr01-09",
+        "name": "估计量的无偏·有效·一致",
+        "latex": "\\text{无偏: }E(\\hat\\theta)=\\theta;\\quad \\text{有效: }D(\\hat\\theta_1)\\le D(\\hat\\theta_2)\\ (\\text{均无偏});\\quad \\text{一致: }\\hat\\theta_n\\xrightarrow{P}\\theta",
+        "description": "无偏看E＝真值、有效在无偏类里比D、一致看 n→∞ 依概率收敛；S² 分母取 n−1 才对 σ² 无偏，取 n 有偏却一致",
+        "application": "评价点估计量优劣",
+        "difficulty": "基础"
+      },
+      {
+        "id": "pr01-10",
+        "name": "一个正态总体区间估计·四情形",
+        "latex": "\\mu(\\sigma^2\\text{已知}):\\bar X\\pm z_{\\alpha/2}\\frac{\\sigma}{\\sqrt n};\\ \\mu(\\sigma^2\\text{未知}):\\bar X\\pm t_{\\alpha/2}(n-1)\\frac{S}{\\sqrt n};\\ \\sigma^2(\\mu\\text{已知}):\\Big(\\frac{\\sum(X_i-\\mu)^2}{\\chi^2_{\\alpha/2}(n)},\\frac{\\sum(X_i-\\mu)^2}{\\chi^2_{1-\\alpha/2}(n)}\\Big);\\ \\sigma^2(\\mu\\text{未知}):\\Big(\\frac{(n-1)S^2}{\\chi^2_{\\alpha/2}(n-1)},\\frac{(n-1)S^2}{\\chi^2_{1-\\alpha/2}(n-1)}\\Big)",
+        "description": "四情形齐全：μ 用 z(σ²知)/t(σ²未知)；σ² 用卡方——μ已知除 χ²(n)、μ未知除 χ²(n−1)。上侧分位大者放下界",
+        "application": "正态总体均值与方差的置信区间",
+        "difficulty": "进阶"
       }
     ]
   },
   "tr01": {
-    "title": "解三角形 · 常用公式",
+    "title": "常用几何公式（三角形 · 圆锥 · 球）",
     "formulas": [
       {
         "id": "js01-01",
@@ -443,6 +952,91 @@
         "latex": "S = \\dfrac{1}{2}ab\\sin C = \\dfrac{1}{2}bc\\sin A = \\dfrac{1}{2}ac\\sin B",
         "description": "面积 = ½ · 两边之积 · 它们的夹角正弦，三组任选其一",
         "application": "解三角形 / 定积分求面积 / 叉积模的几何意义",
+        "difficulty": "基础"
+      },
+      {
+        "id": "js01-02",
+        "name": "圆锥 侧面积 / 表面积 / 体积",
+        "latex": "S_{\\text{侧}}=\\pi r l;\\ S_{\\text{表}}=\\pi r l+\\pi r^{2}=\\pi r(l+r);\\ V=\\tfrac{1}{3}\\pi r^{2}h\\ (l^{2}=r^{2}+h^{2})",
+        "description": "侧=½·底面周长·母线=πrl；表=侧+底πr²；体积=⅓·底面积·高",
+        "application": "旋转体速查 / 立体几何 / 表面积体积计算",
+        "difficulty": "基础"
+      },
+      {
+        "id": "js01-03",
+        "name": "球 表面积与体积",
+        "latex": "S=4\\pi R^{2};\\quad V=\\dfrac{4}{3}\\pi R^{3}",
+        "description": "表面积是体积对 R 求导：(4/3·πR³)′=4πR²",
+        "application": "球体速查 / 高斯公式 / 球坐标",
+        "difficulty": "基础"
+      }
+    ]
+  },
+  "sa01": {
+    "title": "向量代数与空间解析几何（数一）",
+    "formulas": [
+      {
+        "id": "sa01-01",
+        "name": "方向余弦",
+        "latex": "\\cos\\alpha=\\frac{a_1}{|\\vec a|},\\ \\cos\\beta=\\frac{a_2}{|\\vec a|},\\ \\cos\\gamma=\\frac{a_3}{|\\vec a|},\\quad \\cos^2\\alpha+\\cos^2\\beta+\\cos^2\\gamma=1",
+        "description": "各分量除模长；平方和恒为 1（即单位向量的三个坐标）",
+        "application": "求方向角 / 单位化 / 通量",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-02",
+        "name": "平面方程三种形式",
+        "latex": "\\text{点法式 }A(x-x_0)+B(y-y_0)+C(z-z_0)=0;\\ \\text{一般式 }Ax+By+Cz+D=0;\\ \\text{截距式 }\\frac xa+\\frac yb+\\frac zc=1",
+        "description": "法向量 n=(A,B,C)；点法式即 n·(r−r0)=0",
+        "application": "求平面方程 / 距离 / 夹角",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-03",
+        "name": "直线方程（平面与空间）",
+        "latex": "\\text{空间点向式 }\\frac{x-x_0}{m}=\\frac{y-y_0}{n}=\\frac{z-z_0}{p};\\ \\text{交线 }\\begin{cases}A_1x+B_1y+C_1z+D_1=0\\\\A_2x+B_2y+C_2z+D_2=0\\end{cases}",
+        "description": "对称式分母即方向向量 s；两平面交线方向 s=n1×n2",
+        "application": "求直线方程 / 参数化",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-04",
+        "name": "点到平面 / 点到直线 距离",
+        "latex": "d_{\\text{面}}=\\frac{|Ax_0+By_0+Cz_0+D|}{\\sqrt{A^2+B^2+C^2}};\\quad d_{\\text{线}}=\\frac{|\\vec{M_0P}\\times\\vec s|}{|\\vec s|}",
+        "description": "面：代方程除模；空间线：叉乘模除方向模；面内线用 |Ax0+By0+C|/√(A²+B²)",
+        "application": "求距离 / 切平面",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-05",
+        "name": "线面·面面·线线 平行/垂直/夹角",
+        "latex": "\\text{线面}\\parallel\\iff \\vec s\\cdot\\vec n=0;\\ \\text{线面}\\perp\\iff \\vec s\\parallel\\vec n;\\ \\sin\\theta=\\frac{|\\vec s\\cdot\\vec n|}{|\\vec s||\\vec n|}",
+        "description": "线面夹角用 sin；面面/线线夹角用 cos 取绝对值；平行=方向成比例，垂直=点积 0",
+        "application": "判位置关系 / 求夹角",
+        "difficulty": "进阶"
+      },
+      {
+        "id": "sa01-06",
+        "name": "空间曲线在坐标面上的投影",
+        "latex": "\\Gamma:\\begin{cases}F(x,y,z)=0\\\\ G(x,y,z)=0\\end{cases}\\xrightarrow{\\ \\text{消 }z\\ }\\begin{cases}H(x,y)=0\\\\ z=0\\end{cases}\\ (\\text{投到 }xOy)",
+        "description": "消去哪个变量，就得母线平行于该轴的投影柱面；投影曲线 = 柱面 ∩ 对应坐标面",
+        "application": "求空间曲线在坐标面的投影",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-07",
+        "name": "空间曲线的切线与法平面",
+        "latex": "\\vec T=(x',y',z');\\ \\text{切线}\\ \\frac{x-x_0}{x'}=\\frac{y-y_0}{y'}=\\frac{z-z_0}{z'};\\quad \\text{法平面}\\ x'(x-x_0)+y'(y-y_0)+z'(z-z_0)=0",
+        "description": "切线用对称式（分母=导数）、法平面用点法式（法向=切向量）；交线式给时取 $\\vec T=\\nabla F\\times\\nabla G$",
+        "application": "求曲线切线 / 法平面方程",
+        "difficulty": "基础"
+      },
+      {
+        "id": "sa01-08",
+        "name": "曲面的对称性判据",
+        "latex": "F(x,y,z)=0:\\ x\\to-x\\ \\text{不变}\\iff\\ \\text{关于}\\ yOz\\ \\text{面对称};\\ y\\to-y\\ \\text{不变}\\iff\\ zOx\\ \\text{面};\\ z\\to-z\\ \\text{不变}\\iff\\ xOy\\ \\text{面}",
+        "description": "换哪个变量方程不变,就关于不含它的那个坐标面对称;换两个关于剩下的轴对称,全换关于原点对称",
+        "application": "判断曲面形状、简化曲面积分/三重积分的对称性分析",
         "difficulty": "基础"
       }
     ]

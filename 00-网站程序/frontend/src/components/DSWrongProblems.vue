@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked, Upload, Picture, CopyDocument, MagicStick, ArrowDown } from '@element-plus/icons-vue'
@@ -20,7 +21,7 @@ interface WrongProblem {
   mastered: boolean
 }
 
-const problems = ref<WrongProblem[]>([
+const wp = useWrongProblemsStore(); const problems = wp.bind('ds', [
   {
     id: 'ds_1_7',
     chapterId: 'ch1',
@@ -1148,15 +1149,10 @@ const deleteProblem = (id: string) => {
 }
 
 const saveToLocalStorage = () => {
-  localStorage.setItem('dsWrongProblems', JSON.stringify(problems.value))
+  wp.persist()
 }
 
-const loadFromLocalStorage = () => {
-  const saved = localStorage.getItem('dsWrongProblems')
-  if (saved) {
-    problems.value = JSON.parse(saved)
-  }
-}
+const loadFromLocalStorage = () => { /* 统一 store 托管载入与持久化 */ }
 
 // ==================== 图片录入相关函数 ====================
 

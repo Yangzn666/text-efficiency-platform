@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked, Upload, Picture, MagicStick, ArrowDown } from '@element-plus/icons-vue'
 import type { WrongProblem } from '@/data/osWrongData'
 import { osWrongProblems } from '@/data/osWrongData'
 
-const problems = ref<WrongProblem[]>([...osWrongProblems])
+const wp = useWrongProblemsStore(); const problems = wp.bind('os', [...osWrongProblems])
 
 const activeTab = ref('list')
 const showAddDialog = ref(false)
@@ -139,19 +140,10 @@ const deleteProblem = (id: string) => {
 }
 
 const saveToLocalStorage = () => {
-  localStorage.setItem('os_wrong_problems', JSON.stringify(problems.value))
+  wp.persist()
 }
 
-const loadFromLocalStorage = () => {
-  const saved = localStorage.getItem('os_wrong_problems')
-  if (saved) {
-    try {
-      problems.value = JSON.parse(saved)
-    } catch (e) {
-      console.error('加载错题失败:', e)
-    }
-  }
-}
+const loadFromLocalStorage = () => { /* 统一 store 托管载入与持久化 */ }
 
 const getMistakeTypeTag = (type: string): 'success' | 'warning' | 'danger' | 'info' => {
   const map: Record<string, 'success' | 'warning' | 'danger' | 'info'> = {

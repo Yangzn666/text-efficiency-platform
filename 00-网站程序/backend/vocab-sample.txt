@@ -1,0 +1,166 @@
+=== 2008-4 ===
+  [T1] evidence — n. 证据，证明
+        e.g. They have been spurred in part by DNA evidence made available in 1998, which almost certainly proved Thomas Jefferson had fathered at least one …
+  [T1] compromise — n./v. 妥协，折中
+        e.g. Works of several historians reveal the moral compromises made by the nation’s early leaders and the fragile nature of the country’s infancy.
+  [T2] fragile — adj. 脆弱的，易碎的
+        e.g. Works of several historians reveal the moral compromises made by the nation’s early leaders and the fragile nature of the country’s infancy.
+  [T3] infancy — n. 婴儿期，初期
+        e.g. Works of several historians reveal the moral compromises made by the nation’s early leaders and the fragile nature of the country’s infancy.
+  [T1] significant — adj. 显著的，重要的
+        e.g. More significantly, they argue that many of the Founding Fathers knew slavery was wrong — and yet most did little to fight it.
+  [T1] argue — v. 主张，认为；论证，争辩
+        e.g. More significantly, they argue that many of the Founding Fathers knew slavery was wrong — and yet most did little to fight it.
+  [T3] hamper — v. 阻碍，束缚
+        e.g. More than anything, the historians say, the founders were hampered by the culture of their time.
+  [T2] electoral — adj. 选举的
+        e.g. The three-fifths formula handed Jefferson his narrow victory in the presidential election of 1800 by inflating the votes of the southern states in the Electoral College.
+  [T2] approximate — adj. 大约的 v. 近似
+        e.g. Still, Jefferson freed Hemings’s children — though not Hemings herself or his approximately 150 other slaves.
+  [T2] revolutionary — adj. 革命的，突破性的
+        e.g. … equal after observing the bravery of the black soldiers during the Revolutionary War, overcame the strong opposition of his relatives to grant his slaves their freedom in his will.
+=== 2008-3 ===
+  [T1] genetic — adj. 基因的，遗传的
+        e.g. “In the general population today, at this genetic, environmental level, we’ve pretty much gone as far as we can go,” says anthropologist William …
+  [T2] recruit — v. 招募，招聘
+        e.g. In the case of NBA players, their increase in height appears to result from the increasingly common practice of recruiting players from all over the world.
+  [T3] infection — n. 感染，传染
+        e.g. At the start of the 20th century, under-nutrition and childhood infections got in the way.
+  [T2] adolescent — n. 青少年 adj. 青春期的
+        e.g. But as diet and health improved, children and adolescents have, on average, increased in height by about an inch and a half every 20 years, a pattern known …
+  [T3] disease — n. 疾病
+        e.g. Yet according to the Centers for Disease Control and Prevention, average height — 5′9″ for men, 5′4″ for women — hasn’t really changed since 1960.
+  [T1] substantial — adj. 大量的，实质性的
+        e.g. Genetically speaking, there are advantages to avoiding substantial height.
+  [T2] upright — adj./adv. 直立的（地）
+        e.g. Moreover, even though humans have been upright for millions of years, our feet and back continue to struggle with bipedal posture and cannot …
+  [T2] withstand — v. 经受住，抵抗
+        e.g. … and back continue to struggle with bipedal posture and cannot easily withstand repeated strain imposed by oversize limbs.
+  [T1] impose — v. 强加，征收
+        e.g. … with bipedal posture and cannot easily withstand repeated strain imposed by oversize limbs.
+  [T3] alteration — n. 改动，变更
+        e.g. Gordon, senior anthropologist at the Army Research Center in Natick, Mass, ensures that 90 percent of the uniforms and workstations fit recruits without alteration.
+=== 2008-2 ===
+  [T2] straightforward — adj. 简单明了的，坦诚的
+        e.g. It used to be so straightforward.
+  [T2] submit — v. 提交；服从
+        e.g. A team of researchers working together in the laboratory would submit the results of their research to a journal.
+  [T3] affiliation — n. 隶属关系，关联
+        e.g. A journal editor would then remove the authors’ names and affiliations from the paper and send it to their peers for review.
+  [T1] decline — v./n. 下降，衰退；婉拒
+        e.g. Depending on the comments received, the editor would accept the paper for publication or decline it.
+  [T2] subscribe — v. 订阅；赞成
+        e.g. Copyright rested with the journal publisher, and researchers seeking knowledge of the results would have to subscribe to the journal.
+  [T1] restrict — v. 限制，约束
+        e.g. … publishers are making money from government-funded research by restricting access to it — is making free access to scientific results a reality.
+  [T1] consequence — n. 后果，结果；重要性
+        e.g. The Organization for Economic Co-operation and Development (OECD) has just issued a report describing the far-reaching consequences of this.
+  [T2] endeavor — n./v. 努力，尽力
+        e.g. It signals a change in what has, until now, been a key element of scientific endeavor.
+  [T1] specialize — v. 专门研究，专攻
+        e.g. The International Association of Scientific, Technical and Medical Publishers says that there are more than 2,000 publishers worldwide specializing in these subjects.
+  [T3] subscriber — n. 订户，订阅者
+        e.g. There is the so-called big deal, where institutional subscribers pay for access to a collection of online journal titles through site-licensing agreements.
+=== 2008-1 ===
+  [T2] sphere — n. 领域，范围；球体
+        e.g. While still catching up to men in some spheres of modern life, women appear to be way ahead in at least one undesirable category.
+  [T2] undesirable — adj. 不受欢迎的，不良的
+        e.g. While still catching up to men in some spheres of modern life, women appear to be way ahead in at least one undesirable category.
+  [T3] susceptible — adj. 易受影响的，易感的
+        e.g. “Women are particularly susceptible to developing depression and anxiety disorders in response to stress compared to men,” according to Dr.
+  [T1] disorder — n. 紊乱，失调；混乱
+        e.g. “Women are particularly susceptible to developing depression and anxiety disorders in response to stress compared to men,” according to Dr.
+  [T2] veteran — n. 老手，老兵 adj. 经验丰富的
+        e.g. Yehuda, chief psychiatrist at New York’s Veteran’s Administration Hospital.
+  [T1] administration — n. 政府，管理
+        e.g. Yehuda, chief psychiatrist at New York’s Veteran’s Administration Hospital.
+  [T3] reproductive — adj. 生殖的，繁殖的
+        e.g. … studies, when stressed-out female rats had their ovaries (the female reproductive organs) removed, their chemical responses became equal to those of the males.
+  [T2] chronic — adj. 慢性的，长期的
+        e.g. “I think that the kinds of things that women are exposed to tend to be in more of a chronic or repeated nature.
+  [T1] domestic — adj. 国内的，家庭的
+        e.g. … of interpersonal violence that women are exposed to tend to be in domestic situations, by, unfortunately, parents or other family members, and they tend not to be one-shot …
+  [T1] demonstrate — v. 证明，论证；演示
+        e.g. Alvarez’s experience demonstrates the importance of finding ways to diffuse stress before it threatens your health and your ability to function.
+=== 2006-4 ===
+  [T3] onward — adj./adv. 向前的（地）
+        e.g. But somewhere from the 19th century onward, more artists began seeing happiness as meaningless, phony or, worst of all, boring, as we went …
+  [T1] argue — v. 主张，认为；论证，争辩
+        e.g. You could argue that art became more skeptical of happiness because modern times have seen so much misery.
+  [T1] skeptical — adj. 怀疑的
+        e.g. You could argue that art became more skeptical of happiness because modern times have seen so much misery.
+  [T3] perpetual — adj. 永久的，持续不断的
+        e.g. But it's not as if earlier times didn't know perpetual war, disaster and the massacre of innocents.
+  [T2] ideology — n. 意识形态，思想体系
+        e.g. The rise of anti-happy art almost exactly tracks the emergence of mass media, and with it, a commercial culture in which happiness is not just an ideal but an ideology.
+  [T2] exhaust — v. 耗尽，使精疲力竭
+        e.g. They worked until exhausted, lived with few protections and died young.
+  [T3] literacy — n. 读写能力，素养
+        e.g. In the West, before mass communication and literacy, the most powerful mass medium was the church, which reminded worshippers that their souls were in …
+  [T2] unreliable — adj. 不可靠的
+        e.g. And since these messages have an agenda — to lure us to open our wallets — they make the very idea of happiness seem unreliable.
+  [T2] disappointment — n. 失望
+        e.g. The things that bring the greatest joy carry the greatest potential for loss and disappointment.
+  [T3] deny — v. 否认，拒绝
+        e.g. … you will die, that everything ends, and that happiness comes not in denying this but in living with it.
+=== 2005-1 ===
+  [T1] reputation — n. 名声，声誉
+        e.g. Indeed, if he has a reputation for slacking, you might even be outraged.
+  [T2] outrage — n./v. 义愤，激怒
+        e.g. Indeed, if he has a reputation for slacking, you might even be outraged.
+  [T1] underlying — adj. 潜在的，根本的
+        e.g. Such behavior is regarded as “all too human”, with the underlying assumption that other animals would not be capable of this finely developed sense of grievance.
+  [T1] assumption — n. 假定，设想；承担
+        e.g. Such behavior is regarded as “all too human”, with the underlying assumption that other animals would not be capable of this finely developed sense of grievance.
+  [T3] token — n. 象征，代币 adj. 象征性的
+        e.g. The researchers spent two years teaching their monkeys to exchange tokens for food.
+  [T3] resentment — n. 怨恨，愤恨
+        e.g. Indeed, the mere presence of a grape in the other chamber (without an actual monkey to eat it) was enough to induce resentment in a female capuchin.
+  [T1] species — n. 物种（单复同形）
+        e.g. In the wild, they are a co-operative, group-living species.
+  [T2] abundant — adj. 丰富的，充裕的
+        e.g. Refusing a lesser reward completely makes these feelings abundantly clear to other members of the group.
+  [T2] evolve — v. 演变，进化
+        e.g. However, whether such a sense of fairness evolved independently in capuchins and humans, or whether it stems from the common ancestor that the …
+  [T2] ancestor — n. 祖先，原种
+        e.g. … in capuchins and humans, or whether it stems from the common ancestor that the species had 35 million years ago, is, as yet, an unanswered question.
+=== cloze-2008 ===
+  [T3] disease — n. 疾病
+        e.g. He helped popularize the idea that some diseases not ____ thought to have a bacterial cause were actually infections, which aroused much controversy …
+  [T3] infection — n. 感染，传染
+        e.g. … diseases not ____ thought to have a bacterial cause were actually infections, which aroused much controversy when it was first suggested.
+  [T2] arouse — v. 引起，唤醒
+        e.g. … thought to have a bacterial cause were actually infections, which aroused much controversy when it was first suggested.
+  [T1] controversy — n. 争议，争论
+        e.g. … have a bacterial cause were actually infections, which aroused much controversy when it was first suggested.
+  [T2] originate — v. 起源，创始
+        e.g. The group in ____ are a particular people originated from central Europe.
+  [T1] intellectual — adj. 智力的 n. 知识分子
+        e.g. … points above the ____ value of 100, and have contributed ____ to the intellectual and cultural life of the West, as the ____ of their elites, including several world-renowned …
+  [T1] genetic — adj. 基因的，遗传的
+        e.g. They also suffer more often than most people from a number of nasty genetic diseases, such as breast cancer.
+  [T2] isolation — n. 隔离，孤立
+        e.g. The latter was seen as a (an) ____ of genetic isolation.
+  [T3] intimate — adj. 亲密的 n. 密友
+        e.g. Cochran suggests that the intelligence and diseases are intimately ____.
+  [T2] evolutionary — adj. 进化的，逐步发展的
+        e.g. His argument is that the unusual history of these people has ____ them to unique evolutionary pressures that have resulted in this ____ state of affairs.
+=== cloze-2023 ===
+  [T3] roadside — n. 路边 adj. 路旁的
+        e.g. Caravanserais were roadside inns that were built along the Silk Road in areas including China, North Africa and the Middle East.
+  [T3] fund — n. 基金 v. 资助
+        e.g. They were typically ____ outside the walls of a city or village and were usually funded by local governments or ____.
+  [T3] caravan — n. 商队，大蓬车
+        e.g. This word “caravanserai” is a ____ of the Persian words “karvan”, which means a group of travellers or a caravan, and “seray”, a palace or enclosed building.
+  [T2] merchant — n. 商人，批发商
+        e.g. The term caravan was used to ____ groups of people who travelled together across the ancient network for safety reasons, ____ merchants, travellers or pilgrims.
+  [T3] pilgrim — n. 朝圣者，香客
+        e.g. The term caravan was used to ____ groups of people who travelled together across the ancient network for safety reasons, ____ merchants, travellers or pilgrims.
+  [T3] onward — adj./adv. 向前的（地）
+        e.g. From the 10th century onwards, as merchant and travel routes became more developed, the ____ of the caravanserais increased and …
+  [T2] civilisation — n. 文明（英式拼法）
+        e.g. … taking knowledge with them, greatly ____ the development of several civilisations.
+  [T3] marketplace — n. 市场，市集
+        e.g. Caravanserais were also an important marketplace for commodities and ____ in the trade of goods along the Silk Road.
+  [T2] commodity — n. 商品，货物
+        e.g. Caravanserais were also an important marketplace for commodities and ____ in the trade of goods along the Silk Road.

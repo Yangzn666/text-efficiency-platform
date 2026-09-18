@@ -1,0 +1,2885 @@
+{
+  "version": 2,
+  "note": "数学题型技能树。chapter=章节里程碑(门节点,解锁即mastered)，item=题型。解锁规则:节点所有前置mastered才解锁。",
+  "chapterPrereqs": {
+    "gaoshu-01": [],
+    "gaoshu-02": [
+      "gaoshu-01"
+    ],
+    "gaoshu-03": [
+      "gaoshu-02"
+    ],
+    "gaoshu-04": [
+      "gaoshu-03"
+    ],
+    "gaoshu-05": [
+      "gaoshu-02"
+    ],
+    "gaoshu-06": [
+      "gaoshu-03",
+      "gaoshu-05"
+    ],
+    "gaoshu-07": [
+      "gaoshu-03"
+    ],
+    "gaoshu-08": [
+      "gaoshu-05"
+    ],
+    "gaoshu-09": [
+      "gaoshu-06",
+      "gaoshu-08"
+    ],
+    "xiandai-01": [],
+    "xiandai-02": [
+      "xiandai-01"
+    ],
+    "xiandai-03": [
+      "xiandai-02"
+    ],
+    "xiandai-04": [
+      "xiandai-03"
+    ],
+    "xiandai-05": [
+      "xiandai-04"
+    ],
+    "xiandai-06": [
+      "xiandai-05"
+    ],
+    "gailv-01": [],
+    "gailv-02": [
+      "gailv-01"
+    ],
+    "gailv-03": [
+      "gailv-02"
+    ],
+    "gailv-04": [
+      "gailv-02"
+    ],
+    "gailv-05": [
+      "gailv-04"
+    ],
+    "gailv-06": [
+      "gailv-04"
+    ],
+    "gailv-07": [
+      "gailv-06"
+    ],
+    "gailv-08": [
+      "gailv-07"
+    ]
+  },
+  "nodes": [
+    {
+      "data": {
+        "id": "gaoshu-01",
+        "label": "第一章 函数 极限 连续",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-01",
+        "label": "等价无穷小",
+        "fullTitle": "题型一 等价无穷小 + 洛必达求极限",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-02",
+        "label": "1^∞型极限",
+        "fullTitle": "题型二 $1^\\infty$ 型极限",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-03",
+        "label": "分段函数极限",
+        "fullTitle": "题型三 分段函数/绝对值函数的极限与连续性",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-04",
+        "label": "间断点分类",
+        "fullTitle": "题型四 间断点分类",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-05",
+        "label": "数列极限",
+        "fullTitle": "题型五 数列极限（单调有界/夹逼）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-06",
+        "label": "零点介值定理",
+        "fullTitle": "题型六 用零点定理/介值定理证明",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-01-07",
+        "label": "无穷小的比较",
+        "fullTitle": "题型七 无穷小的比较与定阶",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-01",
+        "chapterName": "第一章 函数 极限 连续",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02",
+        "label": "第二章 一元函数微分学",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-01",
+        "label": "导数定义与极限",
+        "fullTitle": "题型一 导数定义与极限形式",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-02",
+        "label": "各类函数求导",
+        "fullTitle": "题型二 各类函数求导（隐函数/参数方程/幂指）",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-03",
+        "label": "中值定理证明",
+        "fullTitle": "题型三 中值定理证明题",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-04",
+        "label": "极值拐点单调性",
+        "fullTitle": "题型四 极值、拐点、单调性分析",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-05",
+        "label": "渐近线",
+        "fullTitle": "题型五 渐近线",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-06",
+        "label": "不等式证明",
+        "fullTitle": "题型六 不等式证明（利用单调性）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-02-07",
+        "label": "曲率与曲率半径",
+        "fullTitle": "题型七 曲率与曲率半径",
+        "type": "item",
+        "freq": "中频",
+        "tags": [
+          "数一专属"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-02",
+        "chapterName": "第二章 一元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03",
+        "label": "第三章 一元函数积分学",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-01",
+        "label": "不定积分计算",
+        "fullTitle": "题型一 不定积分计算（换元/分部）",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-02",
+        "label": "变上限积分求导",
+        "fullTitle": "题型二 变上限积分求导 + 极限",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-03",
+        "label": "定积分计算",
+        "fullTitle": "题型三 定积分计算（奇偶性/周期性/华里士）",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-04",
+        "label": "反常积分敛散性",
+        "fullTitle": "题型四 反常积分敛散性",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-05",
+        "label": "定积分几何应用",
+        "fullTitle": "题型五 定积分的几何应用（旋转体体积）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-06",
+        "label": "积分等式证明",
+        "fullTitle": "题型六 积分等式/不等式证明",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-03-07",
+        "label": "定积分物理应用",
+        "fullTitle": "题型七 定积分的物理应用（功/压力/质心）",
+        "type": "item",
+        "freq": "中频",
+        "tags": [
+          "数一专属"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-03",
+        "chapterName": "第三章 一元函数积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04",
+        "label": "第四章 常微分方程",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-01",
+        "label": "一阶线性方程",
+        "fullTitle": "题型一 一阶线性方程",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-02",
+        "label": "可分离变量",
+        "fullTitle": "题型二 可分离变量 / 齐次方程",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-03",
+        "label": "二阶常系数齐次",
+        "fullTitle": "题型三 二阶常系数齐次方程",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-04",
+        "label": "二阶常系数非齐",
+        "fullTitle": "题型四 二阶常系数非齐次方程",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-05",
+        "label": "三角型非齐次",
+        "fullTitle": "题型五 三角型非齐次特解",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-06",
+        "label": "利用解的结构",
+        "fullTitle": "题型六 利用解的结构求方程",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-04-07",
+        "label": "可降阶高阶方程",
+        "fullTitle": "题型七 可降阶的高阶微分方程",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "数一专属"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-04",
+        "chapterName": "第四章 常微分方程",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05",
+        "label": "第五章 多元函数微分学",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-01",
+        "label": "复合函数求偏导",
+        "fullTitle": "题型一 复合函数求偏导",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-02",
+        "label": "隐函数求导",
+        "fullTitle": "题型二 隐函数求导",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-03",
+        "label": "无条件极值",
+        "fullTitle": "题型三 无条件极值",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-04",
+        "label": "条件极值",
+        "fullTitle": "题型四 条件极值（拉格朗日乘数法）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-05",
+        "label": "可微性判定",
+        "fullTitle": "题型五 可微性判定（选择题）",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-06",
+        "label": "方向导数与梯度",
+        "fullTitle": "题型六 方向导数与梯度",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-05-07",
+        "label": "切平面与法线",
+        "fullTitle": "题型七 曲面切平面与法线",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "数一专属"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-05",
+        "chapterName": "第五章 多元函数微分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06",
+        "label": "第六章 二重积分",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-01",
+        "label": "直角坐标计算",
+        "fullTitle": "题型一 直角坐标计算（选择积分次序）",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-02",
+        "label": "交换积分次序",
+        "fullTitle": "题型二 交换积分次序",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-03",
+        "label": "极坐标计算",
+        "fullTitle": "题型三 极坐标计算",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-04",
+        "label": "利用对称性化简",
+        "fullTitle": "题型四 利用对称性化简",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-05",
+        "label": "二重积分与极限",
+        "fullTitle": "题型五 二重积分与极限/导数综合",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-06",
+        "label": "二重积分的应用",
+        "fullTitle": "题型六 二重积分的应用（面积/体积）",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-06-07",
+        "label": "分段二重积分",
+        "fullTitle": "题型七 分段函数/绝对值函数的二重积分",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-06",
+        "chapterName": "第六章 二重积分",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07",
+        "label": "第七章 无穷级数",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-01",
+        "label": "数项级数敛散性",
+        "fullTitle": "题型一 数项级数敛散性判别",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-02",
+        "label": "幂级数收敛域",
+        "fullTitle": "题型二 幂级数收敛域",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-03",
+        "label": "幂级数的和函数",
+        "fullTitle": "题型三 求幂级数的和函数",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-04",
+        "label": "数项级数求和",
+        "fullTitle": "题型四 数项级数求和（利用幂级数）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-05",
+        "label": "幂级数展开",
+        "fullTitle": "题型五 函数的幂级数展开",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-07-06",
+        "label": "傅里叶级数",
+        "fullTitle": "题型六 傅里叶级数",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-07",
+        "chapterName": "第七章 无穷级数",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08",
+        "label": "第八章 空间解析几何",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08-01",
+        "label": "求平面方程",
+        "fullTitle": "题型一 求平面方程",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-08",
+        "chapterName": "第八章 空间解析几何",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08-02",
+        "label": "求直线方程",
+        "fullTitle": "题型二 求直线方程",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-08",
+        "chapterName": "第八章 空间解析几何",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08-03",
+        "label": "位置关系与夹角",
+        "fullTitle": "题型三 位置关系与夹角",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-08",
+        "chapterName": "第八章 空间解析几何",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08-04",
+        "label": "投影与对称问题",
+        "fullTitle": "题型四 投影与对称问题",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-08",
+        "chapterName": "第八章 空间解析几何",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-08-05",
+        "label": "二次曲面与旋转",
+        "fullTitle": "题型五 二次曲面与旋转曲面",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-08",
+        "chapterName": "第八章 空间解析几何",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09",
+        "label": "第九章 多元积分学",
+        "type": "chapter",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-01",
+        "label": "三重积分计算",
+        "fullTitle": "题型一 三重积分计算",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-02",
+        "label": "格林公式曲线积分",
+        "fullTitle": "题型二 格林公式求曲线积分",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-03",
+        "label": "第二类曲面积分",
+        "fullTitle": "题型三 第二类曲面积分（投影法）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-04",
+        "label": "高斯公式",
+        "fullTitle": "题型四 高斯公式",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-05",
+        "label": "斯托克斯公式",
+        "fullTitle": "题型五 斯托克斯公式",
+        "type": "item",
+        "freq": "中频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-06",
+        "label": "路径无关与原函数",
+        "fullTitle": "题型六 路径无关与求原函数",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "gaoshu-09-07",
+        "label": "第一类曲线积分",
+        "fullTitle": "题型七 第一类曲线/曲面积分",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gaoshu-09",
+        "chapterName": "第九章 多元积分学",
+        "subject": "gaoshu"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01",
+        "label": "第一章 行列式",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01-01",
+        "label": "数值型行列式",
+        "fullTitle": "题型一 数值型行列式计算（化三角形）",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-01",
+        "chapterName": "第一章 行列式",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01-02",
+        "label": "降阶法",
+        "fullTitle": "题型二 降阶法（按行/列展开）",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-01",
+        "chapterName": "第一章 行列式",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01-03",
+        "label": "递推法",
+        "fullTitle": "题型三 递推法（n阶三对角行列式）",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-01",
+        "chapterName": "第一章 行列式",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01-04",
+        "label": "抽象行列式计算",
+        "fullTitle": "题型四 抽象行列式计算",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-01",
+        "chapterName": "第一章 行列式",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-01-05",
+        "label": "余子式线性组合",
+        "fullTitle": "题型五 代数余子式线性组合",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-01",
+        "chapterName": "第一章 行列式",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02",
+        "label": "第二章 矩阵",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-01",
+        "label": "求逆矩阵",
+        "fullTitle": "题型一 求逆矩阵（初等变换法）",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-02",
+        "label": "伴随矩阵相关",
+        "fullTitle": "题型二 伴随矩阵相关计算",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-03",
+        "label": "矩阵方程求解",
+        "fullTitle": "题型三 矩阵方程求解",
+        "type": "item",
+        "freq": "中频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-04",
+        "label": "矩阵可逆性证明",
+        "fullTitle": "题型四 矩阵可逆性的证明",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-05",
+        "label": "秩的判定与证明",
+        "fullTitle": "题型五 秩的判定与证明",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-02-06",
+        "label": "初等变换与矩阵",
+        "fullTitle": "题型六 初等变换与初等矩阵",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-02",
+        "chapterName": "第二章 矩阵",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03",
+        "label": "第三章 向量",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-01",
+        "label": "线性相关性判定",
+        "fullTitle": "题型一 判定向量组的线性相关性",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-02",
+        "label": "线性表示问题",
+        "fullTitle": "题型二 线性表示问题",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-03",
+        "label": "线性相关性证明",
+        "fullTitle": "题型三 线性相关性的证明",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-04",
+        "label": "求极大无关组",
+        "fullTitle": "题型四 求极大无关组与秩",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-05",
+        "label": "施密特正交化",
+        "fullTitle": "题型五 施密特正交化计算",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-03-06",
+        "label": "向量空间",
+        "fullTitle": "题型六 向量空间（基/坐标/过渡矩阵）",
+        "type": "item",
+        "freq": "低频",
+        "tags": [
+          "数一专属"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-03",
+        "chapterName": "第三章 向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04",
+        "label": "第四章 线性方程组",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04-01",
+        "label": "齐次方程组通解",
+        "fullTitle": "题型一 求齐次方程组的基础解系与通解",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-04",
+        "chapterName": "第四章 线性方程组",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04-02",
+        "label": "非齐次方程组通解",
+        "fullTitle": "题型二 求非齐次方程组的通解",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-04",
+        "chapterName": "第四章 线性方程组",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04-03",
+        "label": "利用解的结构",
+        "fullTitle": "题型三 利用解的结构反推方程组",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-04",
+        "chapterName": "第四章 线性方程组",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04-04",
+        "label": "含参数方程组讨论",
+        "fullTitle": "题型四 含参数的方程组讨论",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-04",
+        "chapterName": "第四章 线性方程组",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-04-05",
+        "label": "公共解与同解",
+        "fullTitle": "题型五 公共解与同解问题",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-04",
+        "chapterName": "第四章 线性方程组",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05",
+        "label": "第五章 特征值与特征向量",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-01",
+        "label": "特征值与特征向量",
+        "fullTitle": "题型一 求特征值与特征向量",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-02",
+        "label": "判断能否对角化",
+        "fullTitle": "题型二 判断能否对角化 + 求P",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-03",
+        "label": "实对称正交对角化",
+        "fullTitle": "题型三 实对称矩阵的正交对角化",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-04",
+        "label": "利用特征值性质",
+        "fullTitle": "题型四 利用特征值性质求行列式/迹",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-05",
+        "label": "抽象矩阵特征值",
+        "fullTitle": "题型五 抽象矩阵的特征值问题",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-05-06",
+        "label": "矩阵相似的判定",
+        "fullTitle": "题型六 矩阵相似的判定",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "选择题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-05",
+        "chapterName": "第五章 特征值与特征向量",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06",
+        "label": "第六章 二次型",
+        "type": "chapter",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06-01",
+        "label": "正交变换化标准形",
+        "fullTitle": "题型一 用正交变换化二次型为标准形",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "xiandai-06",
+        "chapterName": "第六章 二次型",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06-02",
+        "label": "配方法化标准形",
+        "fullTitle": "题型二 配方法化标准形",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-06",
+        "chapterName": "第六章 二次型",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06-03",
+        "label": "正定性判定",
+        "fullTitle": "题型三 正定性判定",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-06",
+        "chapterName": "第六章 二次型",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06-04",
+        "label": "合同与相似判定",
+        "fullTitle": "题型四 合同与相似的判定",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-06",
+        "chapterName": "第六章 二次型",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "xiandai-06-05",
+        "label": "标准形反求参数",
+        "fullTitle": "题型五 已知标准形/特征值反求参数",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "xiandai-06",
+        "chapterName": "第六章 二次型",
+        "subject": "xiandai"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-01",
+        "label": "第一章 随机事件与概率",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-01-01",
+        "label": "事件关系运算",
+        "fullTitle": "题型一 事件关系运算求概率",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-01",
+        "chapterName": "第一章 随机事件与概率",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-01-02",
+        "label": "全概率与贝叶斯",
+        "fullTitle": "题型二 全概率公式与贝叶斯公式",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-01",
+        "chapterName": "第一章 随机事件与概率",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-01-03",
+        "label": "独立性与伯努利",
+        "fullTitle": "题型三 独立性与伯努利试验",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-01",
+        "chapterName": "第一章 随机事件与概率",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-02",
+        "label": "第二章 随机变量及其分布",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-02-01",
+        "label": "利用分布函数",
+        "fullTitle": "题型一 利用分布函数/密度性质求参数",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-02",
+        "chapterName": "第二章 随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-02-02",
+        "label": "常见分布概率计算",
+        "fullTitle": "题型二 常见分布的概率计算",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-02",
+        "chapterName": "第二章 随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-02-03",
+        "label": "正态分布标准化",
+        "fullTitle": "题型三 正态分布标准化计算",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-02",
+        "chapterName": "第二章 随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-02-04",
+        "label": "一维随机变量",
+        "fullTitle": "题型四 一维随机变量函数的分布",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-02",
+        "chapterName": "第二章 随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-03",
+        "label": "第三章 二维随机变量及其分布",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-03-01",
+        "label": "边缘与条件密度",
+        "fullTitle": "题型一 求边缘密度与条件密度",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-03",
+        "chapterName": "第三章 二维随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-03-02",
+        "label": "联合分布与区域",
+        "fullTitle": "题型二 联合分布与区域概率",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-03",
+        "chapterName": "第三章 二维随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-03-03",
+        "label": "二维随机变量",
+        "fullTitle": "题型三 二维随机变量函数的分布",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-03",
+        "chapterName": "第三章 二维随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-03-04",
+        "label": "独立性判定",
+        "fullTitle": "题型四 独立性判定",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-03",
+        "chapterName": "第三章 二维随机变量及其分布",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-04",
+        "label": "第四章 随机变量的数字特征",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-04-01",
+        "label": "期望与方差计算",
+        "fullTitle": "题型一 期望与方差的计算",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-04",
+        "chapterName": "第四章 随机变量的数字特征",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-04-02",
+        "label": "随机变量函数",
+        "fullTitle": "题型二 随机变量函数的期望与方差",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-04",
+        "chapterName": "第四章 随机变量的数字特征",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-04-03",
+        "label": "协方差与相关系数",
+        "fullTitle": "题型三 协方差与相关系数",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-04",
+        "chapterName": "第四章 随机变量的数字特征",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-04-04",
+        "label": "独立与不相关",
+        "fullTitle": "题型四 独立、不相关、线性相关辨析",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "选择题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-04",
+        "chapterName": "第四章 随机变量的数字特征",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-05",
+        "label": "第五章 大数定律与中心极限定理",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-05-01",
+        "label": "中心极限定理",
+        "fullTitle": "题型一 中心极限定理近似计算",
+        "type": "item",
+        "freq": "中频",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-05",
+        "chapterName": "第五章 大数定律与中心极限定理",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-05-02",
+        "label": "二项分布正态近似",
+        "fullTitle": "题型二 二项分布的正态近似",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-05",
+        "chapterName": "第五章 大数定律与中心极限定理",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-05-03",
+        "label": "切比雪夫不等式",
+        "fullTitle": "题型三 切比雪夫不等式",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-05",
+        "chapterName": "第五章 大数定律与中心极限定理",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-06",
+        "label": "第六章 数理统计的基本概念",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-06-01",
+        "label": "三大抽样分布",
+        "fullTitle": "题型一 三大抽样分布的构造",
+        "type": "item",
+        "freq": "高频",
+        "tags": [
+          "选择题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-06",
+        "chapterName": "第六章 数理统计的基本概念",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-06-02",
+        "label": "统计量数字特征",
+        "fullTitle": "题型二 统计量的数字特征",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-06",
+        "chapterName": "第六章 数理统计的基本概念",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-06-03",
+        "label": "正态总体抽样分布",
+        "fullTitle": "题型三 正态总体的抽样分布",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-06",
+        "chapterName": "第六章 数理统计的基本概念",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-07",
+        "label": "第七章 参数估计",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-07-01",
+        "label": "最大似然估计",
+        "fullTitle": "题型一 最大似然估计",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-07",
+        "chapterName": "第七章 参数估计",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-07-02",
+        "label": "矩估计",
+        "fullTitle": "题型二 矩估计",
+        "type": "item",
+        "freq": "年年考",
+        "tags": [
+          "大题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-07",
+        "chapterName": "第七章 参数估计",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-07-03",
+        "label": "无偏性验证",
+        "fullTitle": "题型三 无偏性验证",
+        "type": "item",
+        "freq": "高频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-07",
+        "chapterName": "第七章 参数估计",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-07-04",
+        "label": "置信区间",
+        "fullTitle": "题型四 置信区间",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-07",
+        "chapterName": "第七章 参数估计",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-08",
+        "label": "第八章 假设检验",
+        "type": "chapter",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-08-01",
+        "label": "均值假设检验",
+        "fullTitle": "题型一 单个正态总体均值的假设检验",
+        "type": "item",
+        "freq": "中频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-08",
+        "chapterName": "第八章 假设检验",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-08-02",
+        "label": "方差假设检验",
+        "fullTitle": "题型二 单个正态总体方差的假设检验",
+        "type": "item",
+        "freq": "低频",
+        "tags": [],
+        "mastery": "untested",
+        "chapter": "gailv-08",
+        "chapterName": "第八章 假设检验",
+        "subject": "gailv"
+      }
+    },
+    {
+      "data": {
+        "id": "gailv-08-03",
+        "label": "两类错误与概念",
+        "fullTitle": "题型三 两类错误与基本概念",
+        "type": "item",
+        "freq": "低频",
+        "tags": [
+          "选择题"
+        ],
+        "mastery": "untested",
+        "chapter": "gailv-08",
+        "chapterName": "第八章 假设检验",
+        "subject": "gailv"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "gaoshu-01",
+        "target": "gaoshu-01-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-01",
+        "target": "gaoshu-01-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-02",
+        "target": "gaoshu-01-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-03",
+        "target": "gaoshu-01-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-04",
+        "target": "gaoshu-01-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-05",
+        "target": "gaoshu-01-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-06",
+        "target": "gaoshu-01-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-01-07",
+        "target": "gaoshu-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02",
+        "target": "gaoshu-02-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-01",
+        "target": "gaoshu-02-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-02",
+        "target": "gaoshu-02-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-03",
+        "target": "gaoshu-02-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-04",
+        "target": "gaoshu-02-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-05",
+        "target": "gaoshu-02-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-06",
+        "target": "gaoshu-02-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-07",
+        "target": "gaoshu-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03",
+        "target": "gaoshu-03-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-01",
+        "target": "gaoshu-03-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-02",
+        "target": "gaoshu-03-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-03",
+        "target": "gaoshu-03-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-04",
+        "target": "gaoshu-03-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-05",
+        "target": "gaoshu-03-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-06",
+        "target": "gaoshu-03-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-07",
+        "target": "gaoshu-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04",
+        "target": "gaoshu-04-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-01",
+        "target": "gaoshu-04-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-02",
+        "target": "gaoshu-04-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-03",
+        "target": "gaoshu-04-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-04",
+        "target": "gaoshu-04-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-05",
+        "target": "gaoshu-04-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-04-06",
+        "target": "gaoshu-04-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-02-07",
+        "target": "gaoshu-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05",
+        "target": "gaoshu-05-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-01",
+        "target": "gaoshu-05-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-02",
+        "target": "gaoshu-05-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-03",
+        "target": "gaoshu-05-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-04",
+        "target": "gaoshu-05-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-05",
+        "target": "gaoshu-05-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-06",
+        "target": "gaoshu-05-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-07",
+        "target": "gaoshu-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-07",
+        "target": "gaoshu-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06",
+        "target": "gaoshu-06-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-01",
+        "target": "gaoshu-06-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-02",
+        "target": "gaoshu-06-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-03",
+        "target": "gaoshu-06-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-04",
+        "target": "gaoshu-06-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-05",
+        "target": "gaoshu-06-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-06",
+        "target": "gaoshu-06-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-03-07",
+        "target": "gaoshu-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07",
+        "target": "gaoshu-07-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07-01",
+        "target": "gaoshu-07-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07-02",
+        "target": "gaoshu-07-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07-03",
+        "target": "gaoshu-07-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07-04",
+        "target": "gaoshu-07-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-07-05",
+        "target": "gaoshu-07-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-05-07",
+        "target": "gaoshu-08"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08",
+        "target": "gaoshu-08-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08-01",
+        "target": "gaoshu-08-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08-02",
+        "target": "gaoshu-08-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08-03",
+        "target": "gaoshu-08-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08-04",
+        "target": "gaoshu-08-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-06-07",
+        "target": "gaoshu-09"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-08-05",
+        "target": "gaoshu-09"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09",
+        "target": "gaoshu-09-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-01",
+        "target": "gaoshu-09-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-02",
+        "target": "gaoshu-09-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-03",
+        "target": "gaoshu-09-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-04",
+        "target": "gaoshu-09-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-05",
+        "target": "gaoshu-09-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gaoshu-09-06",
+        "target": "gaoshu-09-07"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01",
+        "target": "xiandai-01-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01-01",
+        "target": "xiandai-01-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01-02",
+        "target": "xiandai-01-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01-03",
+        "target": "xiandai-01-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01-04",
+        "target": "xiandai-01-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-01-05",
+        "target": "xiandai-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02",
+        "target": "xiandai-02-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-01",
+        "target": "xiandai-02-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-02",
+        "target": "xiandai-02-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-03",
+        "target": "xiandai-02-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-04",
+        "target": "xiandai-02-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-05",
+        "target": "xiandai-02-06"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-02-06",
+        "target": "xiandai-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03",
+        "target": "xiandai-03-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-01",
+        "target": "xiandai-03-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-02",
+        "target": "xiandai-03-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-03",
+        "target": "xiandai-03-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-04",
+        "target": "xiandai-03-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-05",
+        "target": "xiandai-03-06"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-03-06",
+        "target": "xiandai-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04",
+        "target": "xiandai-04-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04-01",
+        "target": "xiandai-04-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04-02",
+        "target": "xiandai-04-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04-03",
+        "target": "xiandai-04-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04-04",
+        "target": "xiandai-04-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-04-05",
+        "target": "xiandai-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05",
+        "target": "xiandai-05-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-01",
+        "target": "xiandai-05-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-02",
+        "target": "xiandai-05-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-03",
+        "target": "xiandai-05-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-04",
+        "target": "xiandai-05-05"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-05",
+        "target": "xiandai-05-06"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-05-06",
+        "target": "xiandai-06"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-06",
+        "target": "xiandai-06-01"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-06-01",
+        "target": "xiandai-06-02"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-06-02",
+        "target": "xiandai-06-03"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-06-03",
+        "target": "xiandai-06-04"
+      }
+    },
+    {
+      "data": {
+        "source": "xiandai-06-04",
+        "target": "xiandai-06-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-01",
+        "target": "gailv-01-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-01-01",
+        "target": "gailv-01-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-01-02",
+        "target": "gailv-01-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-01-03",
+        "target": "gailv-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02",
+        "target": "gailv-02-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02-01",
+        "target": "gailv-02-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02-02",
+        "target": "gailv-02-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02-03",
+        "target": "gailv-02-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02-04",
+        "target": "gailv-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-03",
+        "target": "gailv-03-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-03-01",
+        "target": "gailv-03-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-03-02",
+        "target": "gailv-03-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-03-03",
+        "target": "gailv-03-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-02-04",
+        "target": "gailv-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04",
+        "target": "gailv-04-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04-01",
+        "target": "gailv-04-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04-02",
+        "target": "gailv-04-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04-03",
+        "target": "gailv-04-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04-04",
+        "target": "gailv-05"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-05",
+        "target": "gailv-05-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-05-01",
+        "target": "gailv-05-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-05-02",
+        "target": "gailv-05-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-04-04",
+        "target": "gailv-06"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-06",
+        "target": "gailv-06-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-06-01",
+        "target": "gailv-06-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-06-02",
+        "target": "gailv-06-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-06-03",
+        "target": "gailv-07"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-07",
+        "target": "gailv-07-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-07-01",
+        "target": "gailv-07-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-07-02",
+        "target": "gailv-07-03"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-07-03",
+        "target": "gailv-07-04"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-07-04",
+        "target": "gailv-08"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-08",
+        "target": "gailv-08-01"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-08-01",
+        "target": "gailv-08-02"
+      }
+    },
+    {
+      "data": {
+        "source": "gailv-08-02",
+        "target": "gailv-08-03"
+      }
+    }
+  ]
+}

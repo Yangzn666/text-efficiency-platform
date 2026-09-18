@@ -4,9 +4,12 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import { useMaterialsStore, materialStatus } from '@/stores/materials'
 import { exportAllData, importAllData } from '@/utils/dataBackup'
+import { useWrongProblemsStore, type WrongSubject } from '@/stores/wrongProblems'
+
 
 const store = useTodayStatusStore()
 const matStore = useMaterialsStore()
+const wp = useWrongProblemsStore()
 
 // ---------- 励志标语 ----------
 const quotes = [
@@ -63,6 +66,28 @@ const heatLevel = (count: number) => {
 const doneMaterials = computed(() =>
   matStore.materials.filter(m => materialStatus(m) === 'done')
 )
+
+// ---------- 错题概览（全科数据打通 2026-09-18 P1）----------
+const WP_LABELS: Record<string, string> = {
+  math: '数学', cs: '408综合', ds: '数据结构', os: '操作系统',
+  network: '计算机网络', english: '英语', politics: '政治'
+}
+const WP_ORDER: WrongSubject[] = ['math', 'ds', 'cs', 'os', 'network', 'english', 'politics']
+const wrongSummary = computed(() => {
+  wp.init()
+  const rows = WP_ORDER
+    .map(k => ({ key: k, label: WP_LABELS[k], total: wp.countOf(k), mastered: wp.masteredOf(k) }))
+    .filter(r => r.total > 0)
+  return {
+    total: wp.total,
+    mastered: wp.masteredCount,
+    rate: wp.masteredRate,
+    rows,
+    weak: wp.weakChapters.slice(0, 5),
+    mistakes: wp.mistakeDistribution.slice(0, 6)
+  }
+})
+
 
 // ---------- 时长格式化 ----------
 const fmtHours = (min: number) => {
@@ -186,6 +211,7 @@ const handleImportFile = async (e: Event) => {
 
 onMounted(async () => {
   await store.load()
+  wp.init()
   quoteTimer = setInterval(() => {
     quoteIdx.value = (quoteIdx.value + 1) % quotes.length
   }, 6000)
@@ -337,6 +363,40 @@ onUnmounted(() => {
         <div class="milestones-empty" v-else>完成第一份资料后，这里会出现你的战利品</div>
       </section>
     </div>
+
+    <!-- ② .5 错题概览（全科数据打通）-->
+    <section class="card wrong-card">
+      <div class="card-head">
+        <h2>错题概览</h2>
+        <span class="head-note" v-if="wrongSummary.total">{{ wrongSummary.total }} 道 · 已掌握 {{ wrongSummary.rate }}%</span>
+      </div>
+      <p v-if="!wrongSummary.total" style="font-size:13px;color:#98a6ba;margin:6px 0">还没有错题记录，去各科错题本记录后会自动汇总到这里。</p>
+      <template v-else>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 16px">
+          <span v-for="r in wrongSummary.rows" :key="r.key"
+                style="padding:6px 14px;border-radius:999px;background:#eef2fb;font-size:14px;color:#1f2d3d">
+            {{ r.label }} <b style="color:#3a6df0">{{ r.mastered }}/{{ r.total }}</b>
+          </span>
+        </div>
+        <div v-if="wrongSummary.weak.length" style="margin-bottom:16px">
+          <div style="font-size:13px;color:#5b6b7f;margin-bottom:6px;font-weight:600">薄弱章节 TOP（未掌握）</div>
+          <div v-for="w in wrongSummary.weak" :key="w.subject + w.chapter"
+               style="display:flex;justify-content:space-between;font-size:14px;padding:5px 0;border-bottom:1px dashed #eceff3">
+            <span>{{ WP_LABELS[w.subject] }} · {{ w.chapter }}</span>
+            <span style="color:#e6544f">{{ w.count }} 道</span>
+          </div>
+        </div>
+        <div v-if="wrongSummary.mistakes.length">
+          <div style="font-size:13px;color:#5b6b7f;margin-bottom:6px;font-weight:600">主要错因分布</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span v-for="m in wrongSummary.mistakes" :key="m.type"
+                  style="padding:5px 12px;border-radius:8px;background:#fff6e5;font-size:13px;color:#8a6d1f">
+              {{ m.type }} × {{ m.count }}
+            </span>
+          </div>
+        </div>
+      </template>
+    </section>
 
     <!-- ③ 冲刺配速测算 + 行动建议 -->
     <div class="bento direction-bento">

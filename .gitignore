@@ -21,3 +21,11 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Python 缓存（py_compile / 运行产物）
+**/__pycache__/
+*.pyc
+
+# 邮箱 SMTP 授权码不入库：真值只放用户目录 ~/.config/qqsmtp.json
+qqsmtp.json
+smtp.local.json

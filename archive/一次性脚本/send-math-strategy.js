@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   service: 'qq',
   auth: {
     user: '2142744149@qq.com',
-    pass: 'ushjvvzxbhqfbjie'
+    pass: '（授权码已迁出仓库：本地 ~/.config/qqsmtp.json）'
   }
 });
 

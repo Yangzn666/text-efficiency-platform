@@ -1,0 +1,189 @@
+{
+  "date": "2026-09-18",
+  "sessions": [
+    {
+      "date": "2026-09-18",
+      "subject": "os",
+      "phase1_firstDiagnosis": {
+        "chapter": "os-04",
+        "chapterName": "文件管理",
+        "mode": "re-diagnosis (09-17首诊全忘, 今日二诊)",
+        "result": "Q1-Q5 全部再次✗/忘 (fd三张表/物理结构/目录/文件系统四层/空闲空间管理)",
+        "verdict": "os-04 仍不通过, current.os 保留 os-04, 明日三诊",
+        "keyFinding": "被动听讲=流利度错觉。昨日单向讲解, 用户从未主动回忆, 今晨原封不动复现遗忘。建议改主动回忆骨架默写。"
+      },
+      "phase2_feynman": {
+        "note": "os-04 二诊全忘, 讲解后仍无主动复述; 记为明日骨架默写重点",
+        "items": [
+          "fd三张表",
+          "物理结构(连续/链接/索引)与随机访问",
+          "目录DAG不能成环",
+          "文件系统四层",
+          "位示图/成组链接"
+        ]
+      },
+      "phase3_spaced": {
+        "due": [
+          {
+            "id": "C-29",
+            "topic": "内核态vs用户态特权指令",
+            "verdict": "△",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-31",
+            "topic": "OS四大管理功能",
+            "verdict": "△",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-32",
+            "topic": "批处理/分时/实时核心追求",
+            "verdict": "✓",
+            "next": "09-20",
+            "interval": 2
+          },
+          {
+            "id": "C-33",
+            "topic": "并发vs并行",
+            "verdict": "✗",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-34",
+            "topic": "多道程序设计目的",
+            "verdict": "✗",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-052",
+            "topic": "信号量S物理含义/P-V",
+            "verdict": "✓",
+            "next": "09-20",
+            "interval": 2
+          },
+          {
+            "id": "C-059",
+            "topic": "内外碎片",
+            "verdict": "✓",
+            "next": "09-20",
+            "interval": 2
+          }
+        ],
+        "summary": "7题: 3✓(信号量推演/内外碎片/三类系统核心追求) 2△ 2✗(并发并行仍混/多道目的没答到)"
+      },
+      "phase4_record": "os-04二诊保留明日三诊; C-32/052/059通过interval翻倍; C-29/31 partial明日再看; C-33/34失败重置明日.",
+      "summary": "OS今日巩固3个旧错点(信号量/碎片/三类系统), 但文件管理(os-04)连续两日全忘+并发并行/多道目的旧错重犯, 转为主动回忆默写."
+    },
+    {
+      "date": "2026-09-18",
+      "subject": "cn",
+      "phase1_firstDiagnosis": {
+        "chapter": "cn-01",
+        "chapterName": "计算机网络概述",
+        "mode": "re-test (09-17首诊, 今日复测到期6项)"
+      },
+      "phase3_spaced": {
+        "due": [
+          {
+            "id": "C-076",
+            "topic": "TCP/IP四层合并",
+            "verdict": "△",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-077",
+            "topic": "数据单位报文/段/分组/帧/比特",
+            "verdict": "△",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-078",
+            "topic": "封装方向+透明传输",
+            "verdict": "✓",
+            "next": "09-20",
+            "interval": 2
+          },
+          {
+            "id": "C-079",
+            "topic": "BDP单位与含义",
+            "verdict": "✗",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-080",
+            "topic": "三硬件+通信/资源子网",
+            "verdict": "✗",
+            "next": "09-19",
+            "interval": 1
+          },
+          {
+            "id": "C-081",
+            "topic": "PAN/LAN/MAN/WAN+三交换",
+            "verdict": "✗",
+            "next": "09-19",
+            "interval": 1
+          }
+        ],
+        "summary": "6题: 1✓(封装方向) 2△(合并/数据单位仍漏) 3✗(BDP单位又答bps/三硬件子网术语全错/三交换答管道虚电路)"
+      },
+      "phase4_record": "cn-01到期6项: C-078通过interval2; 其余partial明日/失败重置明日. 老错点(BDP单位/三交换/子网术语)与昨日几乎一致, 未真正吸收.",
+      "summary": "计网cn-01复测暴露与OS相同问题: 昨日听讲今日原样重错, 需今晚背+明日主动默写."
+    },
+    {
+      "date": "2026-09-18",
+      "subject": "cn",
+      "chapter": "cn-02",
+      "phase1_firstDiagnosis": {
+        "chapter": "cn-02",
+        "chapterName": "物理层",
+        "mode": "first-diagnosis",
+        "items_probed": [
+          "通信基础(信道分类)",
+          "奈奎斯特vs香农",
+          "编码调制(曼彻斯特)",
+          "传输介质(光纤)",
+          "物理层设备(集线器)"
+        ],
+        "result": "信道三分类例子✗→建gap C-082; 奈/香首诊忘→讲解后Q1回忆+Q4连对2次→建轻量gap C-083; 曼彻斯特20MBaud/光纤传光/集线器一个冲突域 均✓"
+      },
+      "phase2_feynman": {
+        "断裂点": "信道方向三分类只记得半双工,例子归属没锚; 奈/香谁管无噪声谁管有噪声初始分不清",
+        "修正": "对讲机半双工/打电话全双工; 干净奈奎斯特(电平级数)吵闹香农(信噪比); 曼彻斯特每比特2码元波特率翻倍"
+      },
+      "phase4_record": "current.cn 推进 cn-02; 新增 gap C-082(S1)/C-083(S2)入队 nextReview 09-19",
+      "summary": "cn-02物理层首诊完成, 唯一硬伤=信道三分类例子; 设备/介质/编码/公式分工过关."
+    },
+    {
+      "date": "2026-09-18",
+      "subject": "cn",
+      "chapter": "cn-03",
+      "phase1_firstDiagnosis": {
+        "chapter": "cn-03",
+        "chapterName": "数据链路层",
+        "mode": "first-diagnosis",
+        "items_probed": [
+          "随机访问MAC(CSMA/CD)",
+          "以太网交换机(自学习+域)",
+          "GBN/SR可靠传输",
+          "以太网最小帧长"
+        ],
+        "result": "CSMA/CD流程/网卡/无线CA 首诊全错->建gap C-084(S1); 交换机源目的反->C-085(S2); 最小帧长忘->C-086(S2); GBN/SR+冲突域广播域 首诊即对"
+      },
+      "phase2_feynman": {
+        "断裂点": "CSMA/CD没建立'网卡里跑的四步'心智模型+把无线CA原因误记成冲突概率小; 交换机学习/转发看的地址混了; 最小帧长与争用期的因果没连上",
+        "corrected": "学习看源转发看目的; 帧发送时间>=2τ否则漏检冲突"
+      },
+      "recall_note": "★本章三处首诊失分, 但每处'讲完合书主动回忆'全部一次答对, 比昨日被动听讲有效. 延续此节奏",
+      "phase4_record": "current.cn->cn-03; 新增C-084/085/086入队nextReview 09-19; bank cn-03-01/04/05置learning,wrong++,03-06 correct++",
+      "summary": "cn-03链路层首诊完成; 硬伤=CSMA/CD机制+以太网帧下限, 均费曼+主动回忆修复"
+    }
+  ]
+}

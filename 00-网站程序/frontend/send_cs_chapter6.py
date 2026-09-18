@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 提取计组第六章知识点并发送邮件
-授权码: ushjvvzxbhqfbjie
+授权码: （授权码已迁出仓库：本地 ~/.config/qqsmtp.json）
 """
 
 import smtplib
@@ -12,16 +12,16 @@ from email.header import Header
 import os
 from datetime import datetime
 import re
+from smtp_auth import AUTH_CODE as SENDER_PASSWORD  # 授权码不入库，见 ~/.config/qqsmtp.json
 
 # ==================== 配置区域 ====================
 SENDER_EMAIL = "2142744149@qq.com"
-SENDER_PASSWORD = "ushjvvzxbhqfbjie"
 RECEIVER_EMAIL = "2142744149@qq.com"
 
 SMTP_SERVER = "smtp.qq.com"
 SMTP_PORT = 465
 
-AUTH_CODE = "ushjvvzxbhqfbjie"
+AUTH_CODE = SENDER_PASSWORD
 # ================================================
 
 
@@ -63,7 +63,6 @@ def extract_chapter6_content():
         markdown = "# 📧 计组第六章知识点 - 邮件内容\n\n"
         markdown += "**收件人**: 2142744149@qq.com  \n"
         markdown += "**主题**: 【408计算机组成原理】第六章 总线系统完整知识点总结  \n"
-        markdown += "**授权码**: ushjvvzxbhqfbjie\n\n---\n\n"
         markdown += "## 📋 邮件正文\n\n你好！\n\n这是计算机组成原理第六章（总线系统）的完整知识点总结，请查收。\n\n---\n\n"
         
         # 添加章节标题
@@ -104,7 +103,6 @@ def extract_chapter6_content():
         markdown += f"**发送日期**: {datetime.now().strftime('%Y-%m-%d')}  \n"
         markdown += "**科目**: 计算机组成原理（408）  \n"
         markdown += "**章节**: 第六章 总线系统  \n"
-        markdown += "**授权码**: ushjvvzxbhqfbjie  \n\n"
         markdown += "**祝学习顺利，考研成功！** 💪🎓✨\n\n---\n\n"
         markdown += "**备注**: 本总结基于408考研大纲整理，涵盖了第六章的核心知识点、重点考点和解题技巧。建议结合教材和真题进行深入学习和练习。\n"
         

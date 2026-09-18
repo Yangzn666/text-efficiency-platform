@@ -1,0 +1,992 @@
+{
+  "version": 1,
+  "examDate": "2026-12-19",
+  "startDate": "2026-07-23",
+  "current": {
+    "gaoshu": "gaoshu-01",
+    "xiandai": "xiandai-01",
+    "gailv": "gailv-01",
+    "ds": "ds-04",
+    "co": "co-07",
+    "os": "os-04",
+    "cn": "cn-03"
+  },
+  "chapters": {
+    "math": [
+      {
+        "id": "gaoshu-01",
+        "name": "第一章 函数 极限 连续"
+      },
+      {
+        "id": "gaoshu-02",
+        "name": "第二章 一元函数微分学"
+      },
+      {
+        "id": "gaoshu-03",
+        "name": "第三章 一元函数积分学"
+      },
+      {
+        "id": "gaoshu-04",
+        "name": "第四章 常微分方程"
+      },
+      {
+        "id": "gaoshu-05",
+        "name": "第五章 多元函数微分学"
+      },
+      {
+        "id": "gaoshu-06",
+        "name": "第六章 二重积分"
+      },
+      {
+        "id": "gaoshu-07",
+        "name": "第七章 无穷级数"
+      },
+      {
+        "id": "gaoshu-08",
+        "name": "第八章 空间解析几何"
+      },
+      {
+        "id": "gaoshu-09",
+        "name": "第九章 多元积分学"
+      },
+      {
+        "id": "xiandai-01",
+        "name": "第一章 行列式"
+      },
+      {
+        "id": "xiandai-02",
+        "name": "第二章 矩阵"
+      },
+      {
+        "id": "xiandai-03",
+        "name": "第三章 向量"
+      },
+      {
+        "id": "xiandai-04",
+        "name": "第四章 线性方程组"
+      },
+      {
+        "id": "xiandai-05",
+        "name": "第五章 特征值与特征向量"
+      },
+      {
+        "id": "xiandai-06",
+        "name": "第六章 二次型"
+      },
+      {
+        "id": "gailv-01",
+        "name": "第一章 随机事件与概率"
+      },
+      {
+        "id": "gailv-02",
+        "name": "第二章 随机变量及其分布"
+      },
+      {
+        "id": "gailv-03",
+        "name": "第三章 二维随机变量及其分布"
+      },
+      {
+        "id": "gailv-04",
+        "name": "第四章 随机变量的数字特征"
+      },
+      {
+        "id": "gailv-05",
+        "name": "第五章 大数定律与中心极限定理"
+      },
+      {
+        "id": "gailv-06",
+        "name": "第六章 数理统计的基本概念"
+      },
+      {
+        "id": "gailv-07",
+        "name": "第七章 参数估计"
+      },
+      {
+        "id": "gailv-08",
+        "name": "第八章 假设检验"
+      }
+    ],
+    "cs408": [
+      {
+        "id": "ds-01",
+        "name": "数据结构·绪论"
+      },
+      {
+        "id": "ds-02",
+        "name": "线性表"
+      },
+      {
+        "id": "ds-03",
+        "name": "栈·队列·数组"
+      },
+      {
+        "id": "ds-04",
+        "name": "树与二叉树"
+      },
+      {
+        "id": "ds-05",
+        "name": "图"
+      },
+      {
+        "id": "ds-06",
+        "name": "查找"
+      },
+      {
+        "id": "ds-07",
+        "name": "排序"
+      },
+      {
+        "id": "co-01",
+        "name": "计算机系统概述"
+      },
+      {
+        "id": "co-02",
+        "name": "数据的表示与运算"
+      },
+      {
+        "id": "co-03",
+        "name": "存储系统"
+      },
+      {
+        "id": "co-04",
+        "name": "指令系统"
+      },
+      {
+        "id": "co-05",
+        "name": "中央处理器"
+      },
+      {
+        "id": "co-06",
+        "name": "总线"
+      },
+      {
+        "id": "co-07",
+        "name": "输入输出系统"
+      },
+      {
+        "id": "os-01",
+        "name": "操作系统概述"
+      },
+      {
+        "id": "os-02",
+        "name": "进程管理"
+      },
+      {
+        "id": "os-03",
+        "name": "内存管理"
+      },
+      {
+        "id": "os-04",
+        "name": "文件管理"
+      },
+      {
+        "id": "os-05",
+        "name": "输入输出管理"
+      },
+      {
+        "id": "cn-01",
+        "name": "计算机网络概述"
+      },
+      {
+        "id": "cn-02",
+        "name": "物理层"
+      },
+      {
+        "id": "cn-03",
+        "name": "数据链路层"
+      },
+      {
+        "id": "cn-04",
+        "name": "网络层"
+      },
+      {
+        "id": "cn-05",
+        "name": "传输层"
+      },
+      {
+        "id": "cn-06",
+        "name": "应用层"
+      }
+    ]
+  },
+  "completed": {
+    "math": [],
+    "cs408": [
+      "co-01",
+      "co-02",
+      "co-03",
+      "ds-01",
+      "ds-02",
+      "ds-03",
+      "co-04",
+      "co-05",
+      "co-06",
+      "co-07",
+      "os-01",
+      "os-02",
+      "os-03"
+    ]
+  },
+  "spacedQueue": [
+    {
+      "id": "C-001",
+      "chapter": "co-01",
+      "topic": "存储程序含义(混合存储)",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "理解偏差(重复错)"
+    },
+    {
+      "id": "C-002",
+      "chapter": "co-01",
+      "topic": "冯诺依曼以运算器为中心vs现代以存储器为中心",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-003",
+      "chapter": "co-01",
+      "topic": "控制器=取指译码发信号非执行",
+      "severity": "S3",
+      "interval": 14,
+      "nextReview": "2026-09-29",
+      "correctStreak": 1,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-004",
+      "chapter": "co-01",
+      "topic": "PC属于控制器不属于运算器",
+      "severity": "S1",
+      "interval": 2,
+      "nextReview": "2026-09-17",
+      "correctStreak": 1,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-005",
+      "chapter": "co-01",
+      "topic": "执行时间=指令数*CPI*T(乘非除)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆(重复错)"
+    },
+    {
+      "id": "C-006",
+      "chapter": "co-01",
+      "topic": "微指令解释机器指令",
+      "severity": "S3",
+      "interval": 14,
+      "nextReview": "2026-09-29",
+      "correctStreak": 1,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-007",
+      "chapter": "co-02",
+      "topic": "补码优势=减法变加法+符号位参与运算",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-008",
+      "chapter": "co-02",
+      "topic": "IEEE754结构1S+8E+23M",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-009",
+      "chapter": "co-02",
+      "topic": "补码加法最高位进位丢弃(非溢出判断)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-010",
+      "chapter": "co-02",
+      "topic": "E全0M全0=±0,非规格化数需M≠0",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-011",
+      "chapter": "co-02",
+      "topic": "规格化目的=隐含1提高精度",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-012",
+      "chapter": "co-03",
+      "topic": "SRAM快贵做Cache,DRAM慢廉做主存",
+      "severity": "S1",
+      "interval": 2,
+      "nextReview": "2026-09-17",
+      "correctStreak": 1,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-013",
+      "chapter": "co-03",
+      "topic": "局部性原理=时间局部性+空间局部性",
+      "severity": "S2",
+      "interval": 6,
+      "nextReview": "2026-09-21",
+      "correctStreak": 1,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-014",
+      "chapter": "co-03",
+      "topic": "Tag=地址高位,确认Cache行存的是哪个主存块",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "方法未知"
+    },
+    {
+      "id": "C-015",
+      "chapter": "co-03",
+      "topic": "Tag位数=总地址-行号-偏移",
+      "severity": "S2",
+      "interval": 6,
+      "nextReview": "2026-09-21",
+      "correctStreak": 1,
+      "errorType": "计算失误"
+    },
+    {
+      "id": "C-016",
+      "chapter": "co-03",
+      "topic": "写直达≠写回,两种不同写策略",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-017",
+      "chapter": "co-03",
+      "topic": "页表=虚实映射,TLB=加速页表查询",
+      "severity": "S2",
+      "interval": 6,
+      "nextReview": "2026-09-21",
+      "correctStreak": 1,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-018",
+      "chapter": "ds-01",
+      "topic": "数据结构三方面",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-019",
+      "chapter": "ds-01",
+      "topic": "逻辑结构四类vs存储结构四种",
+      "severity": "S3",
+      "interval": 7,
+      "nextReview": "2026-07-31",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-020",
+      "chapter": "ds-01",
+      "topic": "算法五特性",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-021",
+      "chapter": "ds-01",
+      "topic": "顺序vs链式空间优缺点",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-022",
+      "chapter": "ds-01",
+      "topic": "确定性含义",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-07-25",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-023",
+      "chapter": "ds-02",
+      "topic": "头指针vs头结点",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-024",
+      "chapter": "ds-03",
+      "topic": "循环队列队满队空条件",
+      "severity": "S3",
+      "interval": 7,
+      "nextReview": "2026-07-31",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-025",
+      "chapter": "ds-03",
+      "topic": "行优先地址公式(0-based)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-026",
+      "chapter": "ds-03",
+      "topic": "括号匹配原理",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-027",
+      "chapter": "ds-03",
+      "topic": "对称矩阵压缩公式",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-07-27",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-28",
+      "chapter": "os-01",
+      "topic": "OS四特征及最基本特征",
+      "severity": "S2",
+      "interval": 6,
+      "nextReview": "2026-09-22",
+      "correctStreak": 1,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-29",
+      "chapter": "os-01",
+      "topic": "内核态vs用户态及特权指令",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-18复测△ 特权指令in/out仍漏, 中断/陷入/I/O对"
+    },
+    {
+      "id": "C-30",
+      "chapter": "os-01",
+      "topic": "系统调用vs普通函数调用",
+      "severity": "S1",
+      "interval": 2,
+      "nextReview": "2026-09-19",
+      "correctStreak": 1,
+      "errorType": "遗忘",
+      "lastNote": "✓ 系统调用 3/3 全对"
+    },
+    {
+      "id": "C-31",
+      "chapter": "os-01",
+      "topic": "OS四大管理功能",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-18复测△ 四大管理会归类, 术语处理机/存储器/设备未校准"
+    },
+    {
+      "id": "C-32",
+      "chapter": "os-01",
+      "topic": "批处理/分时/实时核心追求",
+      "severity": "S2",
+      "interval": 2,
+      "nextReview": "2026-09-20",
+      "correctStreak": 1,
+      "errorType": "遗忘",
+      "lastNote": "09-18复测✓ 批处理(吞吐)/分时(交互)/实时(及时)核心追求答对"
+    },
+    {
+      "id": "C-33",
+      "chapter": "os-01",
+      "topic": "并发vs并行区别",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "理解偏差",
+      "lastNote": "09-18复测✗ 又把微观轮转归到并行, 并发≠并行没分清"
+    },
+    {
+      "id": "C-34",
+      "chapter": "os-01",
+      "topic": "多道程序设计目的",
+      "severity": "S3",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "理解偏差",
+      "lastNote": "09-18复测✗ 多道目的(提高CPU利用率)仍没答到点"
+    },
+    {
+      "id": "C-035",
+      "chapter": "co-04",
+      "topic": "扩展操作码=字长固定下 操作码数↔地址数 权衡",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-036",
+      "chapter": "co-04",
+      "topic": "寻址方式访存次数(寄存器0/直接1/一次间接2;读寄存器不算访存)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-037",
+      "chapter": "co-04",
+      "topic": "变址(IX用户改,A固定,数组)/基址(BR是OS改,A变,重定位)/相对(PC+A,程序浮动)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "方法未知"
+    },
+    {
+      "id": "C-038",
+      "chapter": "co-04",
+      "topic": "二地址ADD R1,R2:结果放R1(第一地址兼目的),R2不变,被改的是R1和PC;零地址=栈/停机",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-039",
+      "chapter": "co-05",
+      "topic": "取指通路:PC→MAR→访存→MDR→IR,操作码才送译码器;PC取指末尾自动+1",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-16",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-040",
+      "chapter": "co-05",
+      "topic": "流水线三大冒险:数据(结果没出)/结构(抢硬件)/控制(转移断流,漏)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-041",
+      "chapter": "co-06",
+      "topic": "系统总线三分类方向记反+漏地址总线",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-042",
+      "chapter": "co-06",
+      "topic": "按字节编址寻址空间误用÷8",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-043",
+      "chapter": "co-06",
+      "topic": "总线定时(同步/异步)遗忘",
+      "severity": "S3",
+      "interval": 7,
+      "nextReview": "2026-09-22",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-044",
+      "chapter": "co-06",
+      "topic": "总线仲裁目的与分类混淆",
+      "severity": "S3",
+      "interval": 7,
+      "nextReview": "2026-09-22",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-045",
+      "chapter": "co-07",
+      "topic": "四种I/O控制方式排序及数据是否经CPU遗忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-046",
+      "chapter": "co-07",
+      "topic": "中断现场漏PSW+响应时机与优先级混淆",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-047",
+      "chapter": "co-07",
+      "topic": "I/O接口功能不完整",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-18",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-048",
+      "chapter": "os-02",
+      "topic": "进程vs线程本质+线程轻量点",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-049",
+      "chapter": "os-02",
+      "topic": "进程三态转换成因混淆(时间片用完误答阻塞)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-050",
+      "chapter": "os-02",
+      "topic": "临界资源/临界区定义+访问四原则遗忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-051",
+      "chapter": "os-02",
+      "topic": "互斥vs同步定义(同步≠同时开始)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "理解偏差"
+    },
+    {
+      "id": "C-052",
+      "chapter": "os-02",
+      "topic": "信号量S物理含义/P-V操作/初值(打印机初值误设-1)",
+      "severity": "S1",
+      "interval": 2,
+      "nextReview": "2026-09-20",
+      "correctStreak": 1,
+      "errorType": "理解偏差",
+      "lastNote": "09-18复测✓ S物理含义/P-V推演对(S=0拿到,S=-1阻塞,S=-2一用一排)"
+    },
+    {
+      "id": "C-053",
+      "chapter": "os-02",
+      "topic": "死锁四条件不全+把根本成因误列进条件",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-054",
+      "chapter": "os-02",
+      "topic": "三级调度概念+低级调度必存原因",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-055",
+      "chapter": "os-02",
+      "topic": "高响应比HRRN公式遗忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-056",
+      "chapter": "os-02",
+      "topic": "RR时间片太大误答退化SJF(应FCFS)+多级反馈队列忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-057",
+      "chapter": "os-02",
+      "topic": "IPC通信方式全忘(共享内存最快须配同步)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-058",
+      "chapter": "os-03",
+      "topic": "页式地址转换结构(页表/PTBR)+W不变原因",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-059",
+      "chapter": "os-03",
+      "topic": "内外碎片反复混淆(本session连错两回)",
+      "severity": "S1",
+      "interval": 2,
+      "nextReview": "2026-09-20",
+      "correctStreak": 1,
+      "errorType": "混淆",
+      "lastNote": "09-18复测✓ 内外碎片归类对(外-内-外-内)"
+    },
+    {
+      "id": "C-060",
+      "chapter": "os-03",
+      "topic": "页面置换OPT不可实现+FIFO才Belady异常+LRU术语",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-061",
+      "chapter": "os-03",
+      "topic": "虚存三特征+缺页属故障Fault重新执行本条",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-062",
+      "chapter": "os-03",
+      "topic": "页框分配位示图概念遗忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-063",
+      "chapter": "os-03",
+      "topic": "静态vs动态重定位遗忘",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-076",
+      "chapter": "cn-01",
+      "topic": "TCP/IP四层合并(上三层+下两组都合并)",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "理解偏差",
+      "lastNote": "09-18复测△ 会话层并入应用对, 物理层应并数据链路成网络接口层说反"
+    },
+    {
+      "id": "C-077",
+      "chapter": "cn-01",
+      "topic": "数据单位精确: 报文/段/分组/帧/比特",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆",
+      "lastNote": "09-18复测△ 数据单位仍漏'段', 报文/帧混"
+    },
+    {
+      "id": "C-078",
+      "chapter": "cn-01",
+      "topic": "封装方向: 分组装进帧不是反过来+透明传输用途",
+      "severity": "S2",
+      "interval": 2,
+      "nextReview": "2026-09-20",
+      "correctStreak": 1,
+      "errorType": "混淆",
+      "lastNote": "09-18复测✓ 封装方向'分组装进帧'+'让上层看到传输过程'对"
+    },
+    {
+      "id": "C-079",
+      "chapter": "cn-01",
+      "topic": "时延带宽积BDP=带宽×传播时延,单位bit,含义=链路装多少比特",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-18复测✗ BDP单位又答bps(应bit), 且没算数值(10Mbps*50ms=500000bit)"
+    },
+    {
+      "id": "C-080",
+      "chapter": "cn-01",
+      "topic": "网络三硬件(端系统+通信链路+分组交换设备),通信子网+资源子网",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆",
+      "lastNote": "09-18复测✗ 三硬件/通信子网资源子网答'传输/通信'术语全错"
+    },
+    {
+      "id": "C-081",
+      "chapter": "cn-01",
+      "topic": "PAN/LAN/MAN/WAN四范围+三交换(电路/报文/分组)特征与顺序",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-18复测✗ 三交换答'管道/虚电路', 电路/报文/分组没记牢"
+    },
+    {
+      "id": "C-082",
+      "chapter": "cn-02",
+      "topic": "信道三分类及例子归属(单工/半双工/全双工)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-083",
+      "chapter": "cn-02",
+      "topic": "奈奎斯特(无噪声)vs香农(有噪声)极限公式分工",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-084",
+      "chapter": "cn-03",
+      "topic": "CSMA/CD四步流程+烧在网卡+无线改CA的原因",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    },
+    {
+      "id": "C-085",
+      "chapter": "cn-03",
+      "topic": "交换机自学习记录源MAC(学习看源/转发看目的)+端口冲突域",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "混淆"
+    },
+    {
+      "id": "C-086",
+      "chapter": "cn-03",
+      "topic": "以太网最小帧长64字节与争用期2τ的关系",
+      "severity": "S2",
+      "interval": 1,
+      "nextReview": "2026-09-19",
+      "correctStreak": 0,
+      "errorType": "遗忘"
+    }
+  ],
+  "stats": {
+    "totalSessions": 16,
+    "totalQuestions": 171,
+    "totalGaps": 86,
+    "mastered": 0
+  }
+}

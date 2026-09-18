@@ -9,7 +9,7 @@
     <div class="container">
       <header class="header">
         <div class="header-content">
-          <h1>🎓 考研效率平台</h1>
+          <h1>{{ appTitle }}</h1>
 
           <!-- 移动端汉堡菜单按钮 -->
           <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="切换菜单">
@@ -51,7 +51,14 @@
       </main>
 
       <footer class="footer">
-        <p>© 2026 考研效率平台 · 浙大海宁 · 27考研必胜</p>
+        <div v-if="isShare">
+          <p>考研知识库 · 知识点整理与备考参考 · 仅供学习交流</p>
+          <p class="footer-version">
+            <span class="fv-updated">🕒 最近更新 {{ lastUpdated }}</span>
+            <span class="fv-build">构建 {{ builtAt }}</span>
+          </p>
+        </div>
+        <p v-else>© 2026 考研效率平台 · 浙大海宁 · 27考研必胜</p>
       </footer>
     </div>
   </div>
@@ -61,10 +68,17 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+// P5 方案 B：构建模式（个人版默认 / 共享版 --mode share）；import.meta.env 在构建期静态替换
+const isShare = import.meta.env.VITE_APP_MODE === 'share'
+const appTitle = isShare ? '📚 考研知识库' : '🎓 考研效率平台'
+// 版本时间戳由 vite.config define 注入（个人版页脚不渲染，但一并声明）
+const lastUpdated = __LAST_UPDATED__
+const builtAt = __BUILD_TIME__
+
 const isLoading = ref(true)
 const mobileMenuOpen = ref(false)
 
-const routes = [
+const personalRoutes = [
   { path: '/', name: '今日状态' },
   { path: '/math', name: '数学一' },
   { path: '/english', name: '英语一' },
@@ -74,8 +88,21 @@ const routes = [
   { path: '/universities', name: '🏫 院校查询' },
   { path: '/analytics', name: '数据分析' },
   { path: '/skilltree', name: '🌳 技能树' },
+  { path: '/srs', name: '🧠 记忆卡' },
   { path: '/study-methods', name: '学习方法' }
 ]
+
+// 共享版精简导航（与 share 路由子集对应）
+const shareRoutes = [
+  { path: '/', name: '首页' },
+  { path: '/math', name: '数学一' },
+  { path: '/math/quickcards', name: '速查卡片' },
+  { path: '/cs408', name: '408计算机' },
+  { path: '/study-methods', name: '学习方法' },
+  { path: '/universities', name: '🏫 院校查询' },
+  { path: '/srs', name: '🧠 记忆卡' }
+]
+const routes = isShare ? shareRoutes : personalRoutes
 
 const router = useRouter()
 

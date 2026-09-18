@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-24",
+  "subject": "ds",
+  "chapter": "ds-03",
+  "chapterName": "栈·队列·数组",
+  "phase1": {
+    "totalQuestions": 8,
+    "correct": 2,
+    "partial": 2,
+    "wrong": 4
+  },
+  "gaps_created": [
+    "C-024",
+    "C-025",
+    "C-026",
+    "C-027"
+  ],
+  "spaced_reviewed": 0,
+  "notes": "公式记忆薄弱(地址公式/矩阵压缩)，循环队列条件说反，括号匹配与表达式求值混淆。费曼修复后括号匹配原理已理解"
+}

@@ -1,0 +1,2826 @@
+{
+  "version": 1,
+  "source": "codebrick.tech 考频地图 (2009-2026 共18年408真题, 846题, 3792分)",
+  "generatedAt": "2026-07-25",
+  "masteryRule": "untested→(诊断答对≥2次)→mastered；答错→建gap置learning→gap间隔复习通过→mastered",
+  "freqOrder": "高频 > 中频 > 低频 > 冷门（诊断按此优先抽题，跳过mastered）",
+  "note": "章节结构对齐 state.json；ds-string(KMP/模式匹配)并入ds-03；item.score=该考点18年总分值，yrs=考察年数",
+  "subjects": {
+    "ds": {
+      "name": "数据结构",
+      "chapters": [
+        {
+          "id": "ds-01",
+          "name": "数据结构·绪论",
+          "items": [
+            {
+              "id": "ds-01-01",
+              "title": "时间空间复杂度分析",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "ds-01-02",
+              "title": "算法基本概念",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "ds-01-03",
+              "title": "数据结构基本概念",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-02",
+          "name": "线性表",
+          "items": [
+            {
+              "id": "ds-02-01",
+              "title": "顺序表",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 86,
+              "yrs": 8
+            },
+            {
+              "id": "ds-02-02",
+              "title": "单链表",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 63,
+              "yrs": 8
+            },
+            {
+              "id": "ds-02-03",
+              "title": "循环链表",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 3
+            },
+            {
+              "id": "ds-02-04",
+              "title": "双链表",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-02-05",
+              "title": "静态链表",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-03",
+          "name": "栈·队列·数组",
+          "items": [
+            {
+              "id": "ds-03-01",
+              "title": "栈的应用",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 32,
+              "yrs": 12
+            },
+            {
+              "id": "ds-03-02",
+              "title": "队列",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 20,
+              "yrs": 6
+            },
+            {
+              "id": "ds-03-03",
+              "title": "特殊矩阵压缩存储",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "ds-03-04",
+              "title": "多维数组存储",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "ds-03-05",
+              "title": "KMP 算法",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "ds-03-06",
+              "title": "顺序栈",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "ds-03-07",
+              "title": "双端队列",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-03-08",
+              "title": "循环队列",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-03-09",
+              "title": "链栈",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "ds-03-10",
+              "title": "队列的应用",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "ds-03-11",
+              "title": "字符串模式匹配（朴素）",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-04",
+          "name": "树与二叉树",
+          "items": [
+            {
+              "id": "ds-04-01",
+              "title": "哈夫曼树与编码",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 44,
+              "yrs": 14
+            },
+            {
+              "id": "ds-04-02",
+              "title": "二叉树基础（性质+存储）",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 42,
+              "yrs": 13
+            },
+            {
+              "id": "ds-04-03",
+              "title": "树与森林",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 60,
+              "yrs": 9
+            },
+            {
+              "id": "ds-04-04",
+              "title": "堆",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 22,
+              "yrs": 7
+            },
+            {
+              "id": "ds-04-05",
+              "title": "前序遍历",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 21,
+              "yrs": 5
+            },
+            {
+              "id": "ds-04-06",
+              "title": "后序遍历",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "ds-04-07",
+              "title": "由遍历序列构造二叉树",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "ds-04-08",
+              "title": "中序遍历",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 34,
+              "yrs": 3
+            },
+            {
+              "id": "ds-04-09",
+              "title": "线索二叉树",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "ds-04-10",
+              "title": "森林与二叉树的转换",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-04-11",
+              "title": "层序遍历",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-04-12",
+              "title": "树和森林的遍历",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-04-13",
+              "title": "并查集",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-05",
+          "name": "图",
+          "items": [
+            {
+              "id": "ds-05-01",
+              "title": "图基本概念",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 95,
+              "yrs": 14
+            },
+            {
+              "id": "ds-05-02",
+              "title": "邻接矩阵",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 48,
+              "yrs": 5
+            },
+            {
+              "id": "ds-05-03",
+              "title": "拓扑排序",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 39,
+              "yrs": 9
+            },
+            {
+              "id": "ds-05-04",
+              "title": "关键路径",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 26,
+              "yrs": 6
+            },
+            {
+              "id": "ds-05-05",
+              "title": "Dijkstra 最短路径",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 26,
+              "yrs": 5
+            },
+            {
+              "id": "ds-05-06",
+              "title": "Prim 最小生成树",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 26,
+              "yrs": 5
+            },
+            {
+              "id": "ds-05-07",
+              "title": "Kruskal 最小生成树",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 20,
+              "yrs": 5
+            },
+            {
+              "id": "ds-05-08",
+              "title": "邻接表",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 18,
+              "yrs": 5
+            },
+            {
+              "id": "ds-05-09",
+              "title": "广度优先搜索",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "ds-05-10",
+              "title": "深度优先搜索",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-05-11",
+              "title": "邻接多重表/十字链表",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-05-12",
+              "title": "Floyd 最短路径",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-06",
+          "name": "查找",
+          "items": [
+            {
+              "id": "ds-06-01",
+              "title": "B 树",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 22,
+              "yrs": 11
+            },
+            {
+              "id": "ds-06-02",
+              "title": "二叉搜索树",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 46,
+              "yrs": 7
+            },
+            {
+              "id": "ds-06-03",
+              "title": "散列表-开放定址",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 28,
+              "yrs": 6
+            },
+            {
+              "id": "ds-06-04",
+              "title": "折半/二分查找",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 27,
+              "yrs": 7
+            },
+            {
+              "id": "ds-06-05",
+              "title": "各查找算法比较",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 22,
+              "yrs": 7
+            },
+            {
+              "id": "ds-06-06",
+              "title": "平衡二叉树（AVL）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 18,
+              "yrs": 9
+            },
+            {
+              "id": "ds-06-07",
+              "title": "散列表-拉链法",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 17,
+              "yrs": 2
+            },
+            {
+              "id": "ds-06-08",
+              "title": "顺序查找",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 3
+            },
+            {
+              "id": "ds-06-09",
+              "title": "B+ 树",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "ds-06-10",
+              "title": "分块查找",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-06-11",
+              "title": "红黑树",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "ds-07",
+          "name": "排序",
+          "items": [
+            {
+              "id": "ds-07-01",
+              "title": "归并排序",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 20,
+              "yrs": 6
+            },
+            {
+              "id": "ds-07-02",
+              "title": "各排序算法比较",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 16,
+              "yrs": 5
+            },
+            {
+              "id": "ds-07-03",
+              "title": "直接插入排序",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "ds-07-04",
+              "title": "快速排序",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "ds-07-05",
+              "title": "希尔排序",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "ds-07-06",
+              "title": "外部排序",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 16,
+              "yrs": 4
+            },
+            {
+              "id": "ds-07-07",
+              "title": "基数排序",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "ds-07-08",
+              "title": "堆排序",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-07-09",
+              "title": "简单选择排序",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "ds-07-10",
+              "title": "排序通论",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 15,
+              "yrs": 1
+            },
+            {
+              "id": "ds-07-11",
+              "title": "冒泡排序",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "ds-07-12",
+              "title": "折半插入排序",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        }
+      ]
+    },
+    "co": {
+      "name": "计算机组成原理",
+      "chapters": [
+        {
+          "id": "co-01",
+          "name": "计算机系统概述",
+          "items": [
+            {
+              "id": "co-01-01",
+              "title": "计算机性能指标",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 32,
+              "yrs": 12
+            },
+            {
+              "id": "co-01-02",
+              "title": "计算机系统层次结构",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            }
+          ]
+        },
+        {
+          "id": "co-02",
+          "name": "数据的表示与运算",
+          "items": [
+            {
+              "id": "co-02-01",
+              "title": "定点数编码（原/反/补/移）",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 49,
+              "yrs": 17
+            },
+            {
+              "id": "co-02-02",
+              "title": "IEEE754 浮点表示",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 41,
+              "yrs": 15
+            },
+            {
+              "id": "co-02-03",
+              "title": "整数加减运算",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 54,
+              "yrs": 9
+            },
+            {
+              "id": "co-02-04",
+              "title": "整数乘除运算",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 24,
+              "yrs": 3
+            },
+            {
+              "id": "co-02-05",
+              "title": "浮点数运算",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "co-02-06",
+              "title": "校验码",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 1
+            },
+            {
+              "id": "co-02-07",
+              "title": "进位计数制与转换",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "co-03",
+          "name": "存储系统",
+          "items": [
+            {
+              "id": "co-03-01",
+              "title": "Cache 映射方式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 142,
+              "yrs": 17
+            },
+            {
+              "id": "co-03-02",
+              "title": "虚拟存储器（计组视角）",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 88,
+              "yrs": 13
+            },
+            {
+              "id": "co-03-03",
+              "title": "主存与 CPU 连接",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 52,
+              "yrs": 15
+            },
+            {
+              "id": "co-03-04",
+              "title": "Cache 写策略",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 45,
+              "yrs": 6
+            },
+            {
+              "id": "co-03-05",
+              "title": "半导体存储器（SRAM/DRAM/Flash）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 18,
+              "yrs": 8
+            },
+            {
+              "id": "co-03-06",
+              "title": "磁盘存储器",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 4
+            },
+            {
+              "id": "co-03-07",
+              "title": "存储器层次结构",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "co-03-08",
+              "title": "固态硬盘 SSD（计组视角）",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "co-04",
+          "name": "指令系统",
+          "items": [
+            {
+              "id": "co-04-01",
+              "title": "指令格式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 2,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 86,
+              "yrs": 10
+            },
+            {
+              "id": "co-04-02",
+              "title": "寻址方式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 2,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 69,
+              "yrs": 12
+            },
+            {
+              "id": "co-04-03",
+              "title": "CISC 与 RISC",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 27,
+              "yrs": 4
+            },
+            {
+              "id": "co-04-04",
+              "title": "高级语言到机器级代码",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "co-05",
+          "name": "中央处理器",
+          "items": [
+            {
+              "id": "co-05-01",
+              "title": "CPU 基础（结构+取指执行+数据通路）",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 87,
+              "yrs": 14
+            },
+            {
+              "id": "co-05-02",
+              "title": "异常与中断（计组视角）",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 1,
+                "wrong": 0,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 59,
+              "yrs": 12
+            },
+            {
+              "id": "co-05-03",
+              "title": "指令流水线",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 48,
+              "yrs": 13
+            },
+            {
+              "id": "co-05-04",
+              "title": "控制器",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "co-05-05",
+              "title": "多处理器基本概念",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            }
+          ]
+        },
+        {
+          "id": "co-06",
+          "name": "总线",
+          "items": [
+            {
+              "id": "co-06-01",
+              "title": "总线基本概念与组成",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 36,
+              "yrs": 15
+            },
+            {
+              "id": "co-06-02",
+              "title": "总线定时",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "co-06-03",
+              "title": "总线仲裁",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "co-07",
+          "name": "输入输出系统",
+          "items": [
+            {
+              "id": "co-07-01",
+              "title": "DMA 方式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 1,
+                "wrong": 0,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 38,
+              "yrs": 10
+            },
+            {
+              "id": "co-07-02",
+              "title": "程序中断方式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 20,
+              "yrs": 10
+            },
+            {
+              "id": "co-07-03",
+              "title": "I/O 接口",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "co-07-04",
+              "title": "程序查询方式",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-15"
+              },
+              "score": 12,
+              "yrs": 3
+            }
+          ]
+        }
+      ]
+    },
+    "os": {
+      "name": "操作系统",
+      "chapters": [
+        {
+          "id": "os-01",
+          "name": "操作系统概述",
+          "items": [
+            {
+              "id": "os-01-01",
+              "title": "系统调用",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 1,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 16,
+              "yrs": 8
+            },
+            {
+              "id": "os-01-02",
+              "title": "中断与异常（OS 视角）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 1,
+                "wrong": 0,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 12,
+              "yrs": 6
+            },
+            {
+              "id": "os-01-03",
+              "title": "操作系统引导",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 12,
+              "yrs": 3
+            },
+            {
+              "id": "os-01-04",
+              "title": "操作系统概念与发展",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 4,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 10,
+              "yrs": 4
+            },
+            {
+              "id": "os-01-05",
+              "title": "CPU 运行模式",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 1,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "os-01-06",
+              "title": "程序链接与装入",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "os-01-07",
+              "title": "OS 结构",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "os-01-08",
+              "title": "虚拟机",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            }
+          ]
+        },
+        {
+          "id": "os-02",
+          "name": "进程管理",
+          "items": [
+            {
+              "id": "os-02-01",
+              "title": "同步与互斥基本概念",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 88,
+              "yrs": 13
+            },
+            {
+              "id": "os-02-02",
+              "title": "信号量",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 2,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 75,
+              "yrs": 12
+            },
+            {
+              "id": "os-02-03",
+              "title": "进程与线程基本概念",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 49,
+              "yrs": 14
+            },
+            {
+              "id": "os-02-04",
+              "title": "CPU 调度基本概念",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 43,
+              "yrs": 15
+            },
+            {
+              "id": "os-02-05",
+              "title": "死锁",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 32,
+              "yrs": 12
+            },
+            {
+              "id": "os-02-06",
+              "title": "CPU 调度算法",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 28,
+              "yrs": 12
+            },
+            {
+              "id": "os-02-07",
+              "title": "进程间通信",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 40,
+              "yrs": 9
+            },
+            {
+              "id": "os-02-08",
+              "title": "进程状态与转换",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 18,
+              "yrs": 9
+            },
+            {
+              "id": "os-02-09",
+              "title": "经典同步问题",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 23,
+              "yrs": 3
+            },
+            {
+              "id": "os-02-10",
+              "title": "上下文切换",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "os-02-11",
+              "title": "管程与条件变量",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "os-02-12",
+              "title": "线程实现",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            }
+          ]
+        },
+        {
+          "id": "os-03",
+          "name": "内存管理",
+          "items": [
+            {
+              "id": "os-03-01",
+              "title": "页式管理",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 62,
+              "yrs": 12
+            },
+            {
+              "id": "os-03-02",
+              "title": "页面置换算法",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 31,
+              "yrs": 10
+            },
+            {
+              "id": "os-03-03",
+              "title": "虚拟内存（OS 视角）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 23,
+              "yrs": 6
+            },
+            {
+              "id": "os-03-04",
+              "title": "页框分配与回收",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 21,
+              "yrs": 8
+            },
+            {
+              "id": "os-03-05",
+              "title": "内存管理基础",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-16"
+              },
+              "score": 20,
+              "yrs": 7
+            },
+            {
+              "id": "os-03-06",
+              "title": "连续分配",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 2,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "os-03-07",
+              "title": "段式管理",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "os-03-08",
+              "title": "内存映射文件",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "os-03-09",
+              "title": "段页式管理",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "os-04",
+          "name": "文件管理",
+          "items": [
+            {
+              "id": "os-04-01",
+              "title": "文件基本概念",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 89,
+              "yrs": 16
+            },
+            {
+              "id": "os-04-02",
+              "title": "文件物理结构",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 35,
+              "yrs": 8
+            },
+            {
+              "id": "os-04-03",
+              "title": "目录管理",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 25,
+              "yrs": 6
+            },
+            {
+              "id": "os-04-04",
+              "title": "文件系统全局结构",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 21,
+              "yrs": 4
+            },
+            {
+              "id": "os-04-05",
+              "title": "外存空闲空间管理",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "os-04-06",
+              "title": "虚拟文件系统与挂载",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "os-04-07",
+              "title": "文件逻辑结构",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "os-05",
+          "name": "输入输出管理",
+          "items": [
+            {
+              "id": "os-05-01",
+              "title": "I/O 控制方式",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 34,
+              "yrs": 12
+            },
+            {
+              "id": "os-05-02",
+              "title": "I/O 软件层次结构",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 33,
+              "yrs": 10
+            },
+            {
+              "id": "os-05-03",
+              "title": "磁盘调度",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 24,
+              "yrs": 7
+            },
+            {
+              "id": "os-05-04",
+              "title": "缓冲区管理",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "os-05-05",
+              "title": "I/O 设备分类与接口",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "os-05-06",
+              "title": "假脱机 SPOOL",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "os-05-07",
+              "title": "SSD 读写特性与磨损均衡",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        }
+      ]
+    },
+    "cn": {
+      "name": "计算机网络",
+      "chapters": [
+        {
+          "id": "cn-01",
+          "name": "计算机网络概述",
+          "items": [
+            {
+              "id": "cn-01-01",
+              "title": "网络分层与参考模型",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 24,
+              "yrs": 11
+            },
+            {
+              "id": "cn-01-02",
+              "title": "网络性能指标",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "cn-01-03",
+              "title": "网络概念组成与功能",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-01-04",
+              "title": "网络分类",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "learning",
+              "stats": {
+                "correct": 0,
+                "wrong": 1,
+                "lastProbed": "2026-09-17"
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "cn-02",
+          "name": "物理层",
+          "items": [
+            {
+              "id": "cn-02-01",
+              "title": "通信基础",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 18,
+              "yrs": 9
+            },
+            {
+              "id": "cn-02-02",
+              "title": "奈奎斯特与香农定理",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "cn-02-03",
+              "title": "编码与调制",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "cn-02-04",
+              "title": "传输介质",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-02-05",
+              "title": "物理层设备",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "cn-02-06",
+              "title": "电路/报文/分组交换",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "cn-03",
+          "name": "数据链路层",
+          "items": [
+            {
+              "id": "cn-03-01",
+              "title": "随机访问 MAC",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 42,
+              "yrs": 14
+            },
+            {
+              "id": "cn-03-02",
+              "title": "无线局域网",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 21,
+              "yrs": 7
+            },
+            {
+              "id": "cn-03-03",
+              "title": "后退 N 帧（GBN）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 17,
+              "yrs": 5
+            },
+            {
+              "id": "cn-03-04",
+              "title": "以太网交换机",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "cn-03-05",
+              "title": "以太网 / IEEE802.3",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 6
+            },
+            {
+              "id": "cn-03-06",
+              "title": "流量控制与可靠传输",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "cn-03-07",
+              "title": "选择重传（SR）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "cn-03-08",
+              "title": "停止-等待协议",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "cn-03-09",
+              "title": "差错控制（链路层）",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "cn-03-10",
+              "title": "VLAN",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "cn-03-11",
+              "title": "数据链路层功能与组帧",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-03-12",
+              "title": "信道划分 MAC",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-03-13",
+              "title": "轮询访问 / 令牌",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "cn-03-14",
+              "title": "广域网与 PPP",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "cn-04",
+          "name": "网络层",
+          "items": [
+            {
+              "id": "cn-04-01",
+              "title": "子网划分 / 子网掩码 / CIDR / NAT",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 82,
+              "yrs": 14
+            },
+            {
+              "id": "cn-04-02",
+              "title": "路由协议（RIP/OSPF/BGP）",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 37,
+              "yrs": 8
+            },
+            {
+              "id": "cn-04-03",
+              "title": "IPv4 分组与地址",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 34,
+              "yrs": 8
+            },
+            {
+              "id": "cn-04-04",
+              "title": "ARP / DHCP / ICMP",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 28,
+              "yrs": 6
+            },
+            {
+              "id": "cn-04-05",
+              "title": "网络层功能",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 25,
+              "yrs": 9
+            },
+            {
+              "id": "cn-04-06",
+              "title": "路由器组成与功能",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 13,
+              "yrs": 3
+            },
+            {
+              "id": "cn-04-07",
+              "title": "路由算法",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 6,
+              "yrs": 3
+            },
+            {
+              "id": "cn-04-08",
+              "title": "拥塞控制（网络层视角）",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-04-09",
+              "title": "IPv6",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            },
+            {
+              "id": "cn-04-10",
+              "title": "IP 组播",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            },
+            {
+              "id": "cn-04-11",
+              "title": "移动 IP",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 0,
+              "yrs": 0
+            }
+          ]
+        },
+        {
+          "id": "cn-05",
+          "name": "传输层",
+          "items": [
+            {
+              "id": "cn-05-01",
+              "title": "TCP 连接管理",
+              "freq": "高频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 60,
+              "yrs": 13
+            },
+            {
+              "id": "cn-05-02",
+              "title": "TCP 拥塞控制",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 14,
+              "yrs": 7
+            },
+            {
+              "id": "cn-05-03",
+              "title": "TCP 可靠传输",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "cn-05-04",
+              "title": "TCP 流量控制",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "cn-05-05",
+              "title": "UDP 协议",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 8,
+              "yrs": 4
+            },
+            {
+              "id": "cn-05-06",
+              "title": "传输层功能",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            }
+          ]
+        },
+        {
+          "id": "cn-06",
+          "name": "应用层",
+          "items": [
+            {
+              "id": "cn-06-01",
+              "title": "DNS 系统",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 17,
+              "yrs": 5
+            },
+            {
+              "id": "cn-06-02",
+              "title": "电子邮件",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 12,
+              "yrs": 6
+            },
+            {
+              "id": "cn-06-03",
+              "title": "WWW 与 HTTP",
+              "freq": "中频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 10,
+              "yrs": 5
+            },
+            {
+              "id": "cn-06-04",
+              "title": "FTP 协议",
+              "freq": "低频",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 4,
+              "yrs": 2
+            },
+            {
+              "id": "cn-06-05",
+              "title": "网络应用模型",
+              "freq": "冷门",
+              "tags": [],
+              "mastery": "untested",
+              "stats": {
+                "correct": 0,
+                "wrong": 0,
+                "lastProbed": null
+              },
+              "score": 2,
+              "yrs": 1
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

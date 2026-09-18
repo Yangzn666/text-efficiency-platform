@@ -1,60 +1,81 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
+import type { WrongProblem } from '@/data/wrongProblemTypes'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+import { useSrsStore } from '@/stores/srs'
 
-// 各科统计数据（手动维护，与各科组件数据同步）
-const subjectStats = [
-  {
-    key: 'math',
-    name: '数学一',
-    icon: '📐',
-    color: '#e74c3c',
-    total: 39,
-    mastered: 0,
-    unmastered: 39,
-    subs: [
-      { key: 'gaoshu', name: '高数', total: 21, mastered: 0, unmastered: 21 },
-      { key: 'xiandai', name: '线代', total: 7, mastered: 0, unmastered: 7 },
-      { key: 'gailv', name: '概率论', total: 11, mastered: 0, unmastered: 11 },
-    ],
-  },
-  {
-    key: 'english',
-    name: '英语一',
-    icon: '📚',
-    color: '#27ae60',
-    total: 0,
-    mastered: 0,
-    unmastered: 0,
-  },
-  {
-    key: 'politics',
-    name: '政治',
-    icon: '',
-    color: '#f39c12',
-    total: 0,
-    mastered: 0,
-    unmastered: 0,
-  },
-  {
-    key: 'cs408',
-    name: '408 计算机',
-    icon: '',
-    color: '#3498db',
-    total: 62,
-    mastered: 0,
-    unmastered: 62,
-    subs: [
-      { key: 'ds', name: '数据结构', total: 62, mastered: 0, unmastered: 62 },
-      { key: 'co', name: '计组', total: 0, mastered: 0, unmastered: 0 },
-      { key: 'os', name: '操作系统', total: 0, mastered: 0, unmastered: 0 },
-      { key: 'network', name: '计算机网络', total: 0, mastered: 0, unmastered: 0 },
-    ],
-  },
-]
+const wp = useWrongProblemsStore()
+wp.init()
+
+const srs = useSrsStore()
+const router = useRouter()
+
+// 未掌握错题 → 记忆卡（按 id 幂等去重，重复点只补新增）
+function wrongToCards(go = false) {
+  srs.init()
+  const list = wp.all.value.filter((p) => !p.mastered)
+  const cards = list
+    .filter((p) => (p.content || p.title))
+    .map((p) => ({
+      id: `wrong:${p.subject || 'x'}:${p.id}`,
+      pool: 'wrong',
+      poolLabel: '错题本',
+      subject: 'wrong',
+      front: p.content && p.content.length > 6 ? p.content : (p.title || p.content),
+      back: p.correction || (p.title && p.title !== p.content ? p.title : '回原文确认正解'),
+      chapter: p.chapterName || undefined,
+    }))
+  if (!cards.length) { ElMessage.info('没有可转的未掌握错题'); return }
+  const added = srs.addCards(cards)
+  ElMessage.success(added
+    ? `已加入 ${added} 张记忆卡` + (added < cards.length ? `，${cards.length - added} 张此前已在卡池` : '')
+    : '这些错题此前都已加入记忆卡')
+  if (go) router.push('/srs')
+}
+function goSrs() { srs.init(); router.push('/srs') }
+
+function sum(list: WrongProblem[]) {
+  const total = list.length
+  const mastered = list.filter((p) => p.mastered).length
+  return { total, mastered, unmastered: total - mastered }
+}
+
+const subjectStats = computed(() => {
+  const m = sum(wp.db.math)
+  const e = sum(wp.db.english)
+  const po = sum(wp.db.politics)
+  const ds = sum(wp.db.ds)
+  const co = sum(wp.db.cs)
+  const os = sum(wp.db.os)
+  const net = sum(wp.db.network)
+  const cs408 = {
+    total: ds.total + co.total + os.total + net.total,
+    mastered: ds.mastered + co.mastered + os.mastered + net.mastered,
+    unmastered: ds.unmastered + co.unmastered + os.unmastered + net.unmastered,
+  }
+  const mathSubs = [
+    { key: 'gaoshu', name: '高数', ...sum(wp.db.math.filter((p) => p.chapterId === 'ch_gaoshu')) },
+    { key: 'xiandai', name: '线代', ...sum(wp.db.math.filter((p) => p.chapterId === 'ch_xiandai')) },
+    { key: 'gailv', name: '概率论', ...sum(wp.db.math.filter((p) => p.chapterId === 'ch_gailv')) },
+  ].filter((s) => s.total > 0)
+  return [
+    { key: 'math', name: '数学一', icon: '📐', color: '#e74c3c', ...m, subs: mathSubs },
+    { key: 'english', name: '英语一', icon: '📚', color: '#27ae60', ...e },
+    { key: 'politics', name: '政治', icon: '', color: '#f39c12', ...po },
+    { key: 'cs408', name: '408 计算机', icon: '', color: '#3498db', ...cs408, subs: [
+      { key: 'ds', name: '数据结构', ...ds },
+      { key: 'co', name: '计组', ...co },
+      { key: 'os', name: '操作系统', ...os },
+      { key: 'network', name: '计算机网络', ...net },
+    ] },
+  ]
+})
 
 const totalStats = computed(() => {
   let total = 0, mastered = 0, unmastered = 0
-  for (const s of subjectStats) {
+  for (const s of subjectStats.value) {
     total += s.total
     mastered += s.mastered
     unmastered += s.unmastered
@@ -156,17 +177,17 @@ function masteryRate(s: { total: number; mastered: number }) {
     <div class="quick-actions">
       <h4 class="section-title">快速操作</h4>
       <div class="action-grid">
-        <div class="action-card">
-          <span class="action-icon">📝</span>
-          <span class="action-label">录入新错题</span>
+        <div class="action-card" @click="wrongToCards(false)">
+          <span class="action-icon">🧠</span>
+          <span class="action-label">未掌握错题转记忆卡</span>
         </div>
-        <div class="action-card">
-          <span class="action-icon"></span>
-          <span class="action-label">开始复习</span>
+        <div class="action-card" @click="wrongToCards(true)">
+          <span class="action-icon">🔁</span>
+          <span class="action-label">转卡并立即刷</span>
         </div>
-        <div class="action-card">
-          <span class="action-icon">📊</span>
-          <span class="action-label">统计分析</span>
+        <div class="action-card" @click="goSrs">
+          <span class="action-icon">📚</span>
+          <span class="action-label">去刷记忆卡</span>
         </div>
       </div>
     </div>

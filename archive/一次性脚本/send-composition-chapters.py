@@ -15,7 +15,7 @@ import re
 SMTP_SERVER = "smtp.qq.com"
 SMTP_PORT = 465  # 使用SSL端口
 SENDER_EMAIL = "2142744149@qq.com"  # 使用记忆中的邮箱
-AUTH_CODE = "ushjvvzxbhqfbjie"  # 使用记忆中的授权码
+AUTH_CODE = "（授权码已迁出仓库：本地 ~/.config/qqsmtp.json）"  # 使用记忆中的授权码
 RECEIVER_EMAIL = "2142744149@qq.com"
 
 def extract_sections():

@@ -4,44 +4,48 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import {
   useMaterialsStore,
   MATERIAL_SUBJECTS,
-  materialStatus,
   type Material,
   type MaterialSubject
 } from '@/stores/materials'
 
 const store = useMaterialsStore()
 
-const statusMap = {
-  todo: { icon: '⬜', label: '未开始', cls: 'ms-todo' },
-  doing: { icon: '🔄', label: '进行中', cls: 'ms-doing' },
-  done: { icon: '✅', label: '已完成', cls: 'ms-done' }
+// ---------- 新增 ----------
+const addVisible = ref(false)
+const addForm = ref({ subject: 'math' as MaterialSubject, name: '', note: '' })
+function confirmAdd() {
+  if (!addForm.value.name.trim()) {
+    ElMessage.warning('请填写资料名称')
+    return
+  }
+  store.addMaterial({
+    subject: addForm.value.subject,
+    name: addForm.value.name.trim(),
+    unit: '项',
+    total: 1,
+    done: 0,
+    note: addForm.value.note
+  })
+  ElMessage.success('资料已添加')
+  addForm.value = { subject: 'math', name: '', note: '' }
+  addVisible.value = false
 }
 
-function subjectMeta(key: MaterialSubject) {
-  return MATERIAL_SUBJECTS.find(s => s.key === key)!
-}
-
-function percent(m: Material) {
-  return m.total ? Math.round((m.done / m.total) * 100) : 0
-}
-
-// ---------- 编辑弹窗 ----------
+// ---------- 编辑（只改名与备注） ----------
 const editVisible = ref(false)
 const editing = ref<Material | null>(null)
-const editDone = ref(0)
-const editTotal = ref(1)
-
+const editName = ref('')
+const editNote = ref('')
 function openEdit(m: Material) {
   editing.value = m
-  editDone.value = m.done
-  editTotal.value = m.total
+  editName.value = m.name
+  editNote.value = m.note || ''
   editVisible.value = true
 }
-
 function confirmEdit() {
   if (editing.value) {
-    store.update(editing.value, editDone.value, editTotal.value)
-    ElMessage.success('进度已更新')
+    store.rename(editing.value, editName.value, editNote.value)
+    ElMessage.success('已更新')
   }
   editVisible.value = false
 }
@@ -58,92 +62,50 @@ function handleRemove(m: Material) {
     })
     .catch(() => {})
 }
-
-// ---------- 新增弹窗 ----------
-const addVisible = ref(false)
-const addForm = ref({
-  subject: 'math' as MaterialSubject,
-  name: '',
-  unit: '套',
-  total: 10,
-  note: ''
-})
-
-function confirmAdd() {
-  if (!addForm.value.name.trim()) {
-    ElMessage.warning('请填写资料名称')
-    return
-  }
-  store.addMaterial({
-    subject: addForm.value.subject,
-    name: addForm.value.name.trim(),
-    unit: addForm.value.unit || '套',
-    total: Math.max(1, addForm.value.total),
-    done: 0,
-    note: addForm.value.note
-  })
-  ElMessage.success('资料已添加')
-  addForm.value = { subject: 'math', name: '', unit: '套', total: 10, note: '' }
-  addVisible.value = false
-}
 </script>
 
 <template>
   <div class="materials-wall">
-    <!-- 顶部统计 + 新增按钮 -->
     <div class="wall-top">
       <div class="wall-summary">
         <span class="sum-item">共 <strong>{{ store.overall.total }}</strong> 份资料</span>
-        <span class="sum-item ms-done">✅ {{ store.overall.done }}</span>
-        <span class="sum-item ms-doing">🔄 {{ store.overall.doing }}</span>
-        <span class="sum-item ms-todo">⬜ {{ store.overall.todo }}</span>
       </div>
-      <el-button type="primary" size="small" round @click="addVisible = true">＋ 新增资料</el-button>
+      <el-button type="primary" size="small" round @click="addVisible = true">＋ 添加资料</el-button>
     </div>
 
-    <!-- 按科目分组 -->
+    <p class="wall-hint">
+      这里只记「手头有哪些资料」。做题进度以 <b>100 天作战计划 / 今日任务</b> 为准。
+    </p>
+
     <div v-for="sub in MATERIAL_SUBJECTS" :key="sub.key" class="subject-group">
-      <div class="subject-title" :style="{ color: sub.color }">
-        {{ sub.icon }} {{ sub.name }}
-      </div>
-      <div class="material-list">
-        <div
-          v-for="m in store.bySubject(sub.key).value"
-          :key="m.id"
-          class="material-card"
-          :class="statusMap[materialStatus(m)].cls"
-        >
-          <div class="mat-main">
-            <div class="mat-head">
+      <template v-if="store.bySubject(sub.key).value.length">
+        <div class="subject-title" :style="{ color: sub.color }">
+          {{ sub.icon }} {{ sub.name }}
+          <span class="subject-count">{{ store.bySubject(sub.key).value.length }} 项</span>
+        </div>
+        <div class="material-list">
+          <div v-for="m in store.bySubject(sub.key).value" :key="m.id" class="material-row">
+            <div class="mat-main">
               <span class="mat-name">{{ m.name }}</span>
-              <span class="mat-status">{{ statusMap[materialStatus(m)].icon }} {{ statusMap[materialStatus(m)].label }}</span>
+              <span v-if="m.note" class="mat-note">{{ m.note }}</span>
             </div>
-            <div v-if="m.note" class="mat-note">{{ m.note }}</div>
-            <div class="mat-progress">
-              <div class="mat-bar-track">
-                <div class="mat-bar-fill" :style="{ width: percent(m) + '%', background: sub.color }"></div>
-              </div>
-              <span class="mat-count">{{ m.done }}/{{ m.total }} {{ m.unit }}</span>
+            <div class="mat-actions">
+              <button class="row-btn" title="编辑" @click="openEdit(m)">✎</button>
+              <button class="row-btn danger" title="删除" @click="handleRemove(m)">✕</button>
             </div>
-          </div>
-          <div class="mat-actions">
-            <button class="step-btn" @click="store.decrement(m)" :disabled="m.done <= 0">−</button>
-            <button class="step-btn primary" @click="store.increment(m)" :disabled="m.done >= m.total">＋1</button>
-            <button class="step-btn ghost" @click="openEdit(m)">✎</button>
-            <button class="step-btn ghost danger" @click="handleRemove(m)">✕</button>
           </div>
         </div>
-      </div>
+      </template>
     </div>
 
     <!-- 编辑弹窗 -->
-    <el-dialog v-model="editVisible" title="修改进度" width="360px">
+    <el-dialog v-model="editVisible" title="编辑资料" width="360px">
       <el-form label-position="top">
-        <el-form-item :label="`已完成（${editing?.unit || ''}）`">
-          <el-input-number v-model="editDone" :min="0" :max="editTotal" style="width: 100%" />
+        <el-form-item label="名称">
+          <el-input v-model="editName" placeholder="资料名称" />
         </el-form-item>
-        <el-form-item :label="`总量（${editing?.unit || ''}）`">
-          <el-input-number v-model="editTotal" :min="1" style="width: 100%" />
+        <el-form-item label="备注（可选）">
+          <el-input v-model="editNote" type="textarea" :rows="2" placeholder="例如：11月出版 / 已刷两轮" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -153,7 +115,7 @@ function confirmAdd() {
     </el-dialog>
 
     <!-- 新增弹窗 -->
-    <el-dialog v-model="addVisible" title="新增资料" width="400px">
+    <el-dialog v-model="addVisible" title="添加资料" width="400px">
       <el-form label-position="top">
         <el-form-item label="科目">
           <el-select v-model="addForm.subject" style="width: 100%">
@@ -163,14 +125,8 @@ function confirmAdd() {
         <el-form-item label="资料名称">
           <el-input v-model="addForm.name" placeholder="例如：张宇8套卷" />
         </el-form-item>
-        <el-form-item label="进度单位">
-          <el-input v-model="addForm.unit" placeholder="套 / 章 / 篇 / 讲" />
-        </el-form-item>
-        <el-form-item label="总量">
-          <el-input-number v-model="addForm.total" :min="1" style="width: 100%" />
-        </el-form-item>
         <el-form-item label="备注（可选）">
-          <el-input v-model="addForm.note" placeholder="例如：11月出版" />
+          <el-input v-model="addForm.note" type="textarea" :rows="2" placeholder="例如：11月出版" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -185,7 +141,7 @@ function confirmAdd() {
 .materials-wall {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .wall-top {
@@ -206,6 +162,13 @@ function confirmAdd() {
   color: #16345c;
   font-size: 1.15em;
 }
+.wall-hint {
+  margin: 0;
+  font-size: 0.82em;
+  color: #909399;
+  line-height: 1.5;
+}
+.wall-hint b { color: #606266; }
 
 .subject-group {
   background: #fff;
@@ -214,146 +177,80 @@ function confirmAdd() {
   padding: 14px;
 }
 .subject-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 700;
   font-size: 1.05em;
   margin-bottom: 10px;
+}
+.subject-count {
+  font-size: 0.72em;
+  font-weight: 500;
+  color: #909399;
+  background: #f4f7fb;
+  border-radius: 999px;
+  padding: 2px 9px;
 }
 
 .material-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2px;
 }
-
-.material-card {
+.material-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #ebeef5;
-  background: #fafbfc;
-  transition: box-shadow 0.2s;
+  padding: 9px 10px;
+  border-radius: 10px;
+  transition: background 0.2s;
 }
-.material-card:hover {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+.material-row:hover {
+  background: #f7f9fc;
 }
-.material-card.ms-done {
-  background: #f0f9eb;
-  border-color: #c2e7b0;
-}
-
 .mat-main {
   flex: 1;
   min-width: 0;
-}
-.mat-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  flex-direction: column;
+  gap: 2px;
 }
 .mat-name {
   font-weight: 600;
   color: #303133;
 }
-.mat-status {
-  font-size: 0.8em;
-  white-space: nowrap;
-}
-.ms-todo {
-  color: #303133;
-}
-.ms-doing {
-  color: #e6a23c;
-}
-.ms-done {
-  color: #67c23a;
-}
 .mat-note {
-  font-size: 0.8em;
-  color: #303133;
-  opacity: 0.7;
-  margin-top: 2px;
-}
-.mat-progress {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-.mat-bar-track {
-  flex: 1;
-  height: 8px;
-  background: #ebeef5;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.mat-bar-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-.mat-count {
   font-size: 0.82em;
-  color: #303133;
-  white-space: nowrap;
+  color: #909399;
 }
 
 .mat-actions {
   display: flex;
   align-items: center;
   gap: 6px;
+  opacity: 0.55;
+  transition: opacity 0.2s;
 }
-.step-btn {
+.material-row:hover .mat-actions { opacity: 1; }
+.row-btn {
   border: 1px solid #dcdfe6;
   background: #fff;
   color: #303133;
   border-radius: 8px;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 0.85em;
   transition: all 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.step-btn:hover:not(:disabled) {
-  border-color: #ffc53d;
-  color: #16345c;
-}
-.step-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-.step-btn.primary {
-  background: #16345c;
-  border-color: #ffc53d;
-  color: #fff;
-  width: auto;
-  padding: 0 12px;
-  font-weight: 600;
-}
-.step-btn.primary:hover:not(:disabled) {
-  background: #16345c;
-  color: #fff;
-}
-.step-btn.ghost {
-  background: transparent;
-}
-.step-btn.ghost.danger:hover {
-  border-color: #f56c6c;
-  color: #f56c6c;
-}
+.row-btn:hover { border-color: #ffc53d; color: #16345c; }
+.row-btn.danger:hover { border-color: #f56c6c; color: #f56c6c; }
 
 @media (max-width: 600px) {
-  .material-card {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .mat-actions {
-    justify-content: flex-end;
-  }
+  .mat-actions { opacity: 1; }
 }
 </style>

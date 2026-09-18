@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 发送语法学习计划到邮箱
-授权码: ushjvvzxbhqfbjie
+授权码: （授权码已迁出仓库：本地 ~/.config/qqsmtp.json）
 """
 
 import smtplib
@@ -11,11 +11,11 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 import os
 from datetime import datetime
+from smtp_auth import AUTH_CODE as SENDER_PASSWORD  # 授权码不入库，见 ~/.config/qqsmtp.json
 
 # ==================== 配置区域 ====================
 # 请在这里填写你的邮箱信息
 SENDER_EMAIL = "2142744149@qq.com"  # 发件人邮箱（建议使用QQ邮箱或163邮箱）
-SENDER_PASSWORD = "ushjvvzxbhqfbjie"  # 邮箱授权码（不是登录密码）
 RECEIVER_EMAIL = "2142744149@qq.com"  # 收件人邮箱
 
 # SMTP服务器配置
@@ -23,7 +23,7 @@ SMTP_SERVER = "smtp.qq.com"  # QQ邮箱: smtp.qq.com, 163邮箱: smtp.163.com
 SMTP_PORT = 465  # SSL端口
 
 # 授权码验证
-AUTH_CODE = "ushjvvzxbhqfbjie"
+AUTH_CODE = SENDER_PASSWORD
 # ================================================
 
 
@@ -190,3 +190,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

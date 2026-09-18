@@ -88,6 +88,111 @@
       </div>
     </div>
 
+    <!-- 择校推荐器（冲 / 稳 / 保） -->
+    <div class="matcher-card">
+      <div class="matcher-head">
+        <h3>🧭 择校推荐器 · 输入你的目标分，一键分档</h3>
+        <p class="matcher-sub">以院校「录取均分 / 最新复试线」为参照线，按 ±5 / +20 阈值划分冲稳保，仅供初筛，最终请结合大小年与自身实力。</p>
+      </div>
+      <div class="matcher-controls">
+        <label class="mc-field">
+          <span class="mc-label">目标总分</span>
+          <input type="number" v-model.number="recScore" min="250" max="450" step="5" class="mc-input" />
+        </label>
+        <label class="mc-field">
+          <span class="mc-label">意向地区</span>
+          <select v-model="recRegion" class="mc-select">
+            <option value="">不限地区</option>
+            <option v-for="r in matcherRegions" :key="r" :value="r">{{ r }}</option>
+          </select>
+        </label>
+        <div class="mc-checks">
+          <label class="mc-check"><input type="checkbox" v-model="rec408Only" /><span>只看改考408</span></label>
+          <label class="mc-check"><input type="checkbox" v-model="recExclude408" /><span>排除改考408</span></label>
+          <label class="mc-check"><input type="checkbox" v-model="recAIOnly" /><span>只看AI专硕</span></label>
+        </div>
+      </div>
+
+      <div class="matcher-cols">
+        <div class="mc-col rush">
+          <div class="mc-col-head">
+            <span class="mc-tag">🔥 冲</span>
+            <span class="mc-count">{{ recommend.rush.length }} 所</span>
+          </div>
+          <p class="mc-col-tip">目标分略低于参照线，搏一搏</p>
+          <ul class="mc-list">
+            <li v-for="item in recommend.rush.slice(0, 8)" :key="item.uni.name" class="mitem" @click="showDetail(item.uni)">
+              <div class="mitem-top">
+                <span class="mitem-name">{{ item.uni.name }}</span>
+                <span class="mitem-ref">参照 {{ item.ref }}</span>
+              </div>
+              <div class="mitem-sub">
+                <span class="mitem-badge">{{ item.uni.level }} · {{ item.uni.difficulty }}</span>
+                <span class="mitem-reason">{{ recReason(item, 'rush') }}</span>
+              </div>
+            </li>
+            <li v-if="!recommend.rush.length" class="mitem-empty">暂无匹配，放宽地区或调低目标分</li>
+          </ul>
+        </div>
+
+        <div class="mc-col stable">
+          <div class="mc-col-head">
+            <span class="mc-tag">✅ 稳</span>
+            <span class="mc-count">{{ recommend.stable.length }} 所</span>
+          </div>
+          <p class="mc-col-tip">目标分与参照线持平，主战场</p>
+          <ul class="mc-list">
+            <li v-for="item in recommend.stable.slice(0, 8)" :key="item.uni.name" class="mitem" @click="showDetail(item.uni)">
+              <div class="mitem-top">
+                <span class="mitem-name">{{ item.uni.name }}</span>
+                <span class="mitem-ref">参照 {{ item.ref }}</span>
+              </div>
+              <div class="mitem-sub">
+                <span class="mitem-badge">{{ item.uni.level }} · {{ item.uni.difficulty }}</span>
+                <span class="mitem-reason">{{ recReason(item, 'stable') }}</span>
+              </div>
+            </li>
+            <li v-if="!recommend.stable.length" class="mitem-empty">暂无匹配</li>
+          </ul>
+        </div>
+
+        <div class="mc-col safety">
+          <div class="mc-col-head">
+            <span class="mc-tag">🛡️ 保</span>
+            <span class="mc-count">{{ recommend.safety.length }} 所</span>
+          </div>
+          <p class="mc-col-tip">目标分明显高于参照线，兜底</p>
+          <ul class="mc-list">
+            <li v-for="item in recommend.safety.slice(0, 8)" :key="item.uni.name" class="mitem" @click="showDetail(item.uni)">
+              <div class="mitem-top">
+                <span class="mitem-name">{{ item.uni.name }}</span>
+                <span class="mitem-ref">参照 {{ item.ref }}</span>
+              </div>
+              <div class="mitem-sub">
+                <span class="mitem-badge">{{ item.uni.level }} · {{ item.uni.difficulty }}</span>
+                <span class="mitem-reason">{{ recReason(item, 'safety') }}</span>
+              </div>
+            </li>
+            <li v-if="!recommend.safety.length" class="mitem-empty">暂无匹配</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 择校方法论 / 避坑指南 -->
+    <div class="method-card">
+      <button class="method-toggle" @click="methodOpen = !methodOpen">
+        <span class="mt-title">📖 择校方法论 · 避坑指南</span>
+        <span class="mt-arrow" :class="{ open: methodOpen }">▾</span>
+      </button>
+      <div v-show="methodOpen" class="method-grid">
+        <div v-for="m in methodology" :key="m.title" class="method-item">
+          <div class="mi-head"><span class="mi-icon">{{ m.icon }}</span><span class="mi-title">{{ m.title }}</span></div>
+          <p class="mi-body">{{ m.body }}</p>
+        </div>
+      </div>
+    </div>
+
     <!-- 院校卡片列表 -->
     <div class="universities-grid">
       <div 
@@ -216,6 +321,8 @@
               </tbody>
             </table>
             </div>
+            <p class="chart-caption">📈 历年走势（复试线 / 录取均分 / 报录比）——识别大小年</p>
+            <div ref="trendEl" class="chart-box"></div>
           </section>
 
           <!-- 专业分数线 -->
@@ -294,6 +401,10 @@
                 <span class="percentage">{{ job.percentage }}</span>
                 <span class="companies">{{ job.companies }}</span>
               </div>
+            </div>
+            <div v-if="selectedUni.employment && selectedUni.employment.length" class="pie-wrap">
+              <p class="chart-caption">🥧 就业去向分布</p>
+              <div ref="pieEl" class="chart-box pie"></div>
             </div>
             <div class="salary-info">
               <p><strong>硕士起薪：</strong>{{ selectedUni.salary }}</p>
@@ -414,6 +525,10 @@
               </tbody>
             </table>
           </div>
+          <div v-if="compareList.length >= 2" class="radar-wrap">
+            <p class="chart-caption">🕸️ 五维能力雷达（院校名气 / 学科实力 / 就业薪资 / 上岸难度 / 招生规模）</p>
+            <div ref="radarEl" class="chart-box radar"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -421,8 +536,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import universitiesData from '../data/universities.json'
+
+// ECharts 按需引入(仅择校页用到, 懒加载分包, 控制包体积)
+import * as echarts from 'echarts/core'
+import { LineChart, PieChart, RadarChart, BarChart } from 'echarts/charts'
+import { GridComponent, TooltipComponent, LegendComponent, TitleComponent } from 'echarts/components'
+import { CanvasRenderer } from 'echarts/renderers'
+echarts.use([LineChart, PieChart, RadarChart, BarChart, GridComponent, TooltipComponent, LegendComponent, TitleComponent, CanvasRenderer])
 
 // 类型定义
 interface Major {
@@ -667,6 +789,207 @@ const getLevelBadgeText = (level: string | undefined) => {
   if (level.includes('211')) return '211'
   return ''
 }
+
+// 取字符串里第一个数字(处理 "36+1专项"、"35-50万" 这类)
+const firstNum = (v: any): number | null => {
+  if (v === null || v === undefined) return null
+  const m = String(v).match(/\d+(\.\d+)?/)
+  return m ? parseFloat(m[0]) : null
+}
+
+/* ============================================================
+   ECharts 可视化
+   ============================================================ */
+let trendChart: any = null
+let pieChart: any = null
+let radarChart: any = null
+const trendEl = ref<HTMLElement | null>(null)
+const pieEl = ref<HTMLElement | null>(null)
+const radarEl = ref<HTMLElement | null>(null)
+
+// 按年份聚合某字段(该年多方向取均值), 返回 { years, values }
+function yearlySeries(uni: any, field: string) {
+  const byYear: Record<number, number[]> = {}
+  ;(uni.scoreHistory || []).forEach((h: any) => {
+    const v = numVal(h[field])
+    if (v === null || !h.year) return
+    ;(byYear[h.year] = byYear[h.year] || []).push(v)
+  })
+  const years = Object.keys(byYear).map(Number).sort((a, b) => a - b)
+  const values = years.map(y => {
+    const arr = byYear[y]
+    return Math.round(arr.reduce((s, x) => s + x, 0) / arr.length)
+  })
+  return { years, values }
+}
+
+function renderDetailCharts(uni: any) {
+  // —— 历年趋势折线 + 报录比柱 ——
+  if (trendEl.value) {
+    trendChart?.dispose()
+    trendChart = echarts.init(trendEl.value)
+    const line = yearlySeries(uni, 'scoreLine')
+    const avg = yearlySeries(uni, 'avgScore')
+    const ratio = yearlySeries(uni, 'ratio')
+    const years = Array.from(new Set([...line.years, ...avg.years])).sort((a, b) => a - b)
+    const pick = (s: { years: number[]; values: number[] }, y: number) => {
+      const i = s.years.indexOf(y)
+      return i < 0 ? null : s.values[i]
+    }
+    trendChart.setOption({
+      tooltip: { trigger: 'axis' },
+      legend: { data: ['复试线', '录取均分', '报录比'], bottom: 0, textStyle: { color: '#4a5568' } },
+      grid: { left: 46, right: 48, top: 28, bottom: 42 },
+      xAxis: { type: 'category', data: years.map(String), axisLine: { lineStyle: { color: '#cbd5e0' } } },
+      yAxis: [
+        { type: 'value', name: '分', scale: true, axisLabel: { color: '#718096' }, splitLine: { lineStyle: { color: '#eef3f8' } } },
+        { type: 'value', name: '报录比', position: 'right', axisLabel: { color: '#718096' }, splitLine: { show: false } }
+      ],
+      series: [
+        { name: '报录比', type: 'bar', yAxisIndex: 1, barWidth: '36%', data: years.map(y => pick(ratio, y)), itemStyle: { color: 'rgba(240,168,32,0.32)', borderRadius: [4, 4, 0, 0] } },
+        { name: '复试线', type: 'line', smooth: true, data: years.map(y => pick(line, y)), itemStyle: { color: '#16345c' }, lineStyle: { width: 3 } },
+        { name: '录取均分', type: 'line', smooth: true, data: years.map(y => pick(avg, y)), itemStyle: { color: '#ffc53d' }, lineStyle: { width: 3 } }
+      ]
+    })
+  }
+  // —— 就业去向饼 ——
+  const emp = (uni.employment || [])
+    .map((e: any) => ({ name: e.direction, value: firstNum(e.percentage) }))
+    .filter((e: any) => e.value && e.value > 0)
+  if (pieEl.value && emp.length) {
+    pieChart?.dispose()
+    pieChart = echarts.init(pieEl.value)
+    pieChart.setOption({
+      tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+      legend: { bottom: 0, type: 'scroll', textStyle: { color: '#4a5568', fontSize: 11 } },
+      color: ['#16345c', '#ffc53d', '#4facfe', '#43e97b', '#f093fb', '#f5576c', '#a8edea'],
+      series: [{
+        name: '就业去向', type: 'pie', radius: ['42%', '66%'], center: ['50%', '44%'],
+        data: emp, label: { formatter: '{b}\n{c}%', fontSize: 11, color: '#4a5568' },
+        itemStyle: { borderColor: '#fff', borderWidth: 2 }
+      }]
+    })
+  }
+}
+
+// 归一化打分(0-100) 供雷达图
+const levelScore = (l = '') => l.includes('C9') ? 100 : l.includes('985') ? 85 : l.includes('211') ? 65 : l.includes('双一流') ? 58 : 45
+const gradeScore = (g = '') => (({ 'A+': 100, 'A': 92, 'A-': 82, 'B+': 72, 'B': 62, 'B-': 52, 'C+': 42 } as Record<string, number>)[g] || 55)
+const salaryScore = (s: any) => { const n = firstNum(s); return n === null ? 50 : Math.min(100, Math.round(n * 2)) }
+const diffScore = (d = '') => (({ 'S+': 100, 'S': 95, 'A+': 85, 'A': 72, 'A-': 60, 'B+': 48, 'B': 40 } as Record<string, number>)[d] || 55)
+const quotaScore = (q: number | null) => q === null ? 50 : Math.min(100, Math.round((Math.min(q, 40) / 40) * 100))
+
+function renderRadar() {
+  if (!radarEl.value || compareList.value.length < 2) return
+  radarChart?.dispose()
+  radarChart = echarts.init(radarEl.value)
+  const indicators = [
+    { name: '院校名气', max: 100 }, { name: '学科实力', max: 100 }, { name: '就业薪资', max: 100 },
+    { name: '上岸难度', max: 100 }, { name: '招生规模', max: 100 }
+  ]
+  const colors = ['#16345c', '#ffc53d', '#43e97b']
+  const data = compareList.value.map((u, i) => ({
+    name: u.name, type: 'radar', areaStyle: { opacity: 0.12 },
+    lineStyle: { color: colors[i % 3], width: 2 }, itemStyle: { color: colors[i % 3] },
+    value: [levelScore(u.level), gradeScore(u.grade), salaryScore(u.salary), diffScore(u.difficulty), quotaScore(getLatestStat(u, 'quota'))]
+  }))
+  radarChart.setOption({
+    tooltip: {}, legend: { bottom: 0, textStyle: { color: '#4a5568' } },
+    radar: {
+      indicator: indicators, radius: '62%', center: ['50%', '46%'],
+      axisName: { color: '#4a5568', fontSize: 12 },
+      splitLine: { lineStyle: { color: '#dbe4ee' } }, splitArea: { areaStyle: { color: ['#fff', '#f7fafc'] } },
+      axisLine: { lineStyle: { color: '#cbd5e0' } }
+    },
+    series: [{ type: 'radar', data }]
+  })
+}
+
+watch(selectedUni, async (uni) => {
+  trendChart?.dispose(); pieChart?.dispose(); trendChart = null; pieChart = null
+  if (uni) { await nextTick(); renderDetailCharts(uni) }
+})
+watch(compareVisible, async (v) => {
+  radarChart?.dispose(); radarChart = null
+  if (v) { await nextTick(); renderRadar() }
+})
+const handleResize = () => { trendChart?.resize(); pieChart?.resize(); radarChart?.resize() }
+onMounted(() => window.addEventListener('resize', handleResize))
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+  trendChart?.dispose(); pieChart?.dispose(); radarChart?.dispose()
+})
+
+/* ============================================================
+   择校推荐器（冲 / 稳 / 保）
+   ============================================================ */
+const recScore = ref(360)
+const recRegion = ref('')
+const rec408Only = ref(false)
+const recAIOnly = ref(false)
+const recExclude408 = ref(false)
+
+const referenceScore = (uni: any): number | null => {
+  const raw = getLatestStat(uni, 'avgScore') ?? numVal(uni.targetScore) ?? numVal(uni.scoreLine)
+  // 过滤 0 / "待更新" / 明显不合理的占位值（考研总分线不会低于 200）
+  return (raw !== null && Number.isFinite(raw) && raw >= 200) ? raw : null
+}
+
+const matchPool = computed(() => {
+  return universitiesData.filter((u: any) => {
+    if (referenceScore(u) === null) return false
+    if (recRegion.value) {
+      const region = u.region || ''
+      if (recRegion.value === '其他') {
+        const c = ['北京', '上海', '江苏', '浙江', '广东', '湖北', '四川']
+        if (c.some(x => region.includes(x))) return false
+      } else if (!region.includes(recRegion.value)) return false
+    }
+    if (rec408Only.value && !u.is408Change) return false
+    if (recAIOnly.value && !u.hasAI) return false
+    if (recExclude408.value && u.is408Change) return false
+    return true
+  })
+})
+
+const recommend = computed(() => {
+  const t = numVal(recScore.value)
+  const buckets: any = { rush: [], stable: [], safety: [] }
+  if (t === null) return buckets
+  matchPool.value.forEach((u: any) => {
+    const ref = referenceScore(u)!
+    const diff = t - ref
+    const item = { uni: u, ref, gap: diff }
+    if (diff < -5) buckets.rush.push(item)
+    else if (diff <= 20) buckets.stable.push(item)
+    else buckets.safety.push(item)
+  })
+  buckets.rush.sort((a: any, b: any) => a.ref - b.ref)        // 冲: 最接近的在前
+  buckets.stable.sort((a: any, b: any) => b.ref - a.ref)
+  buckets.safety.sort((a: any, b: any) => b.ref - a.ref)
+  return buckets
+})
+
+const recReason = (item: any, type: string): string => {
+  if (type === 'rush') return `往年参照线约 ${item.ref} 分，比你目标高 ${item.gap < 0 ? -item.gap : item.gap} 分，需冲`
+  if (type === 'stable') return `参照线约 ${item.ref} 分，与目标分基本持平，较稳`
+  return `高出参照线约 ${item.gap} 分，可作保底`
+}
+
+const matcherRegions = ['北京', '上海', '江苏', '浙江', '广东', '湖北', '四川', '其他']
+
+/* ============================================================
+   择校方法论 / 避坑指南
+   ============================================================ */
+const methodOpen = ref(true)
+const methodology = [
+  { icon: '🎯', title: '冲稳保怎么定', body: '以"录取均分/最新复试线"为参照线：目标分低于参照线 5 分以上=冲；持平或高 20 分以内=稳；高出 20 分以上=保。建议 1 冲 + 1~2 稳 + 1 保，别全冲也别全保。' },
+  { icon: '🔁', title: '警惕大小年', body: '单看一年分数线容易被骗。前一年暴涨、复试线偏高往往是"大年"，次年常回落。一定看 3 年以上的走势（点开详情看折线图），判断是趋势还是波动。' },
+  { icon: '📉', title: '报录比 ≠ 复录比', body: '报录比含弃考/划水，真实竞争看"录取数 ÷ 进复试数"。名额被推免大幅挤占的专业，统考实际名额要单独确认，别看简章总数。' },
+  { icon: '⚠️', title: '改考 408 的机会与风险', body: '改统考 408 通常更公平、可参考全国数据、复习方向明确；但对基础弱者难度上升。自命题改 408 的当年往往是"大小年"拐点，值得博，但要用实力兜底。' },
+  { icon: '🏫', title: '校区与学院口径', body: '哈工大(深圳)、山大(威海)、各类"研究院/校区"分数线和培养可能不同。对比时确认口径一致，别把学硕(081200)线和专硕(085404)线混看。' },
+  { icon: '🛡️', title: '保护一志愿/复试公平', body: '优先选保护一志愿、复试刷人比例稳定、不歧视双非的院校。查拟录取名单看是否有大量调剂、双非考生占比，判断实际友好度。' }
+]
 </script>
 
 <style scoped>
@@ -2011,5 +2334,329 @@ const getLevelBadgeText = (level: string | undefined) => {
     padding: 10px 12px;
     font-size: 13px;
   }
+}
+
+/* ================= 择校推荐器 ================= */
+.matcher-card {
+  background: linear-gradient(160deg, #ffffff 0%, #f5f8fc 100%);
+  border: 1px solid #e4ebf3;
+  border-top: 4px solid #16345c;
+  border-radius: 16px;
+  padding: 20px 22px 24px;
+  margin: 0 0 22px;
+  box-shadow: 0 8px 28px rgba(13, 33, 55, 0.08);
+}
+
+.matcher-head h3 {
+  margin: 0 0 6px;
+  font-size: 1.28em;
+  color: #16345c;
+  letter-spacing: 0.3px;
+}
+
+.matcher-sub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.6;
+}
+
+.matcher-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 22px;
+  padding: 14px 16px;
+  background: rgba(22, 52, 92, 0.03);
+  border: 1px solid #e6ecf3;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.mc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mc-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.mc-input,
+.mc-select {
+  padding: 9px 12px;
+  border: 1.5px solid #d6e0ec;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #16345c;
+  background: white;
+  min-width: 110px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.mc-input:focus,
+.mc-select:focus {
+  outline: none;
+  border-color: #ffc53d;
+  box-shadow: 0 0 0 3px rgba(255, 197, 61, 0.18);
+}
+
+.mc-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-left: auto;
+}
+
+.mc-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #4a5568;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mc-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: #16345c;
+  cursor: pointer;
+}
+
+.matcher-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.mc-col {
+  background: white;
+  border: 1px solid #eaeff5;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mc-col.rush { border-top: 3px solid #f5576c; }
+.mc-col.stable { border-top: 3px solid #ffc53d; }
+.mc-col.safety { border-top: 3px solid #4facfe; }
+
+.mc-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.mc-tag {
+  font-size: 1.05em;
+  font-weight: 800;
+  color: #16345c;
+}
+
+.mc-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #718096;
+  background: #f0f4f9;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+.mc-col-tip {
+  margin: 2px 0 12px;
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.mc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mitem {
+  padding: 9px 11px;
+  border: 1px solid #eef2f7;
+  border-radius: 9px;
+  background: #fafcfe;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mitem:hover {
+  border-color: #16345c;
+  background: #fffdf5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 33, 55, 0.12);
+}
+
+.mitem-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mitem-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #16345c;
+}
+
+.mitem-ref {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e53e3e;
+  white-space: nowrap;
+}
+
+.mitem-sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.mitem-badge {
+  font-size: 11px;
+  color: #718096;
+  background: #eef3f8;
+  padding: 1px 7px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.mitem-reason {
+  font-size: 11.5px;
+  color: #8a97a8;
+  flex: 1;
+  min-width: 120px;
+}
+
+.mitem-empty {
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #b0bac6;
+  border: 1px dashed #e2e8f0;
+  border-radius: 9px;
+}
+
+/* ================= 择校方法论 ================= */
+.method-card {
+  background: white;
+  border: 1px solid #e4ebf3;
+  border-radius: 16px;
+  margin: 0 0 22px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(13, 33, 55, 0.06);
+}
+
+.method-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+  border: none;
+  cursor: pointer;
+}
+
+.mt-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #ffc53d;
+  letter-spacing: 0.3px;
+}
+
+.mt-arrow {
+  font-size: 18px;
+  color: #ffc53d;
+  transition: transform 0.25s;
+}
+
+.mt-arrow.open { transform: rotate(180deg); }
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 20px 22px;
+}
+
+.method-item {
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #eef2f7;
+  border-left: 3px solid #ffc53d;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.method-item:hover {
+  background: #fffdf5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 33, 55, 0.08);
+}
+
+.mi-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mi-icon { font-size: 18px; }
+
+.mi-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #16345c;
+}
+
+.mi-body {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+/* ================= 图表容器 ================= */
+.chart-caption {
+  margin: 18px 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16345c;
+}
+
+.chart-box {
+  width: 100%;
+  height: 300px;
+}
+
+.chart-box.pie { height: 280px; }
+.chart-box.radar { height: 380px; }
+
+@media (max-width: 768px) {
+  .matcher-card { padding: 16px 12px 18px; }
+  .matcher-controls { gap: 12px; }
+  .mc-checks { margin-left: 0; width: 100%; }
+  .matcher-cols { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: 1fr; padding: 16px 14px; }
+  .chart-box { height: 240px; }
+  .chart-box.radar { height: 320px; }
 }
 </style>

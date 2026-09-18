@@ -1,3 +1,8 @@
+/**
+ * 资料清单：本 store 现在只承担"我手头有哪些资料"的清单角色（名称/科目/备注）。
+ * 进度权威在 stores/todayStatus.ts 的 plans（即「100 天作战计划 / 今日任务」），资料墙不再记进度。
+ * done/total 字段保留仅为向后兼容旧 localStorage 与数据分析页的 materialStatus，UI 不再展示/编辑。
+ */
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
@@ -131,6 +136,13 @@ export const useMaterialsStore = defineStore('materials', () => {
     save()
   }
 
+  /** 清单纯编辑：只改名称与备注（不涉及进度） */
+  function rename(m: Material, name: string, note: string) {
+    if (name.trim()) m.name = name.trim()
+    m.note = note
+    save()
+  }
+
   function bySubject(key: MaterialSubject) {
     return computed(() => materials.value.filter(m => m.subject === key))
   }
@@ -151,6 +163,7 @@ export const useMaterialsStore = defineStore('materials', () => {
     increment,
     decrement,
     update,
+    rename,
     addMaterial,
     removeMaterial
   }

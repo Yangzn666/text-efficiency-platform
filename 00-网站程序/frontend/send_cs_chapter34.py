@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 发送计组第三第四章知识点到邮箱
-授权码: ushjvvzxbhqfbjie
+授权码: （授权码已迁出仓库：本地 ~/.config/qqsmtp.json）
 """
 
 import smtplib
@@ -12,16 +12,16 @@ from email.header import Header
 import os
 from datetime import datetime
 import re
+from smtp_auth import AUTH_CODE as SENDER_PASSWORD  # 授权码不入库，见 ~/.config/qqsmtp.json
 
 # ==================== 配置区域 ====================
 SENDER_EMAIL = "2142744149@qq.com"
-SENDER_PASSWORD = "ushjvvzxbhqfbjie"
 RECEIVER_EMAIL = "2142744149@qq.com"
 
 SMTP_SERVER = "smtp.qq.com"
 SMTP_PORT = 465
 
-AUTH_CODE = "ushjvvzxbhqfbjie"
+AUTH_CODE = SENDER_PASSWORD
 # ================================================
 
 
@@ -339,3 +339,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -1,0 +1,171 @@
+{
+  "date": "2026-09-15",
+  "sessions": [
+    {
+      "subject": "co",
+      "chapter": "co-04",
+      "chapterName": "指令系统",
+      "date": "2026-09-15",
+      "questions": 4,
+      "results": [
+        {
+          "item": "co-04-01 指令格式/扩展操作码",
+          "verdict": "△"
+        },
+        {
+          "item": "co-04-02 寻址方式访存次数",
+          "verdict": "✗→repaired"
+        },
+        {
+          "item": "co-04-02 变址/基址/相对",
+          "verdict": "✗→repaired"
+        },
+        {
+          "item": "co-04-01 零地址/二地址",
+          "verdict": "✗→repaired"
+        }
+      ],
+      "gapsCreated": [
+        "C-035",
+        "C-036",
+        "C-037",
+        "C-038"
+      ],
+      "pointerAdvancedTo": "co-05"
+    },
+    {
+      "subject": "co",
+      "chapter": "co-05",
+      "chapterName": "中央处理器",
+      "date": "2026-09-15",
+      "questions": 3,
+      "results": [
+        {
+          "item": "co-05-01 CPU基础/取指通路",
+          "verdict": "✗→讲解"
+        },
+        {
+          "item": "co-05-02 异常与中断",
+          "verdict": "✓"
+        },
+        {
+          "item": "co-05-03 指令流水线三大冒险",
+          "verdict": "△(漏控制冒险)"
+        }
+      ],
+      "gapsCreated": [
+        "C-039",
+        "C-040"
+      ],
+      "pointerAdvancedTo": "co-06"
+    },
+    {
+      "subject": "co",
+      "chapter": "co-01/02/03 间隔复习",
+      "date": "2026-09-15",
+      "questions": 13,
+      "results": [
+        {
+          "item": "co-03 C-012/013/015/017",
+          "verdict": "✓"
+        },
+        {
+          "item": "co-03 C-014(放高位原因)/C-016(写回脏位)",
+          "verdict": "△/✗"
+        },
+        {
+          "item": "co-01 C-003/004/006",
+          "verdict": "✓"
+        },
+        {
+          "item": "co-01 C-001(存储程序混合)/C-005(执行时间乘非除)",
+          "verdict": "✗重复错"
+        },
+        {
+          "item": "co-01 C-002 中心转移原因",
+          "verdict": "△"
+        },
+        {
+          "item": "co-02 C-007~011 补码/IEEE754/规格化",
+          "verdict": "整体薄弱,多数✗"
+        }
+      ],
+      "note": "计组到期项全部扫过一遍;重复错C-001/C-005重点标记"
+    },
+    {
+      "subject": "co",
+      "chapter": "co-06",
+      "chapterName": "总线",
+      "date": "2026-09-15",
+      "questions": 6,
+      "results": [
+        {
+          "item": "co-06-01 系统总线三分类/方向",
+          "verdict": "✗→讲解"
+        },
+        {
+          "item": "co-06-01 带宽公式 bit→Byte",
+          "verdict": "✓"
+        },
+        {
+          "item": "co-06-01 寻址空间20位→÷8误用",
+          "verdict": "✗→讲解"
+        },
+        {
+          "item": "co-06-01 4GB→32根地址线",
+          "verdict": "✓"
+        },
+        {
+          "item": "co-06-02 总线定时",
+          "verdict": "✗(遗忘)"
+        },
+        {
+          "item": "co-06-03 总线仲裁",
+          "verdict": "△(归类混淆)"
+        }
+      ],
+      "gapsCreated": [
+        "C-041",
+        "C-042",
+        "C-043",
+        "C-044"
+      ],
+      "pointerAdvancedTo": "co-07"
+    },
+    {
+      "subject": "co",
+      "chapter": "co-07",
+      "chapterName": "输入输出系统",
+      "date": "2026-09-15",
+      "questions": 5,
+      "results": [
+        {
+          "item": "co-07-01 DMA首尾介入/抢总线(周期窃取)",
+          "verdict": "✓(讲解后)"
+        },
+        {
+          "item": "co-07-04 四种I/O方式排序+数据是否经CPU",
+          "verdict": "✗(遗忘)"
+        },
+        {
+          "item": "co-07-02 中断现场(PSW)/响应时机",
+          "verdict": "△"
+        },
+        {
+          "item": "co-07-03 I/O接口功能",
+          "verdict": "△"
+        }
+      ],
+      "gapsCreated": [
+        "C-045",
+        "C-046",
+        "C-047"
+      ],
+      "note": "计组 co-01..co-07 一轮全部过完"
+    }
+  ],
+  "stats": {
+    "totalQuestions": 31,
+    "totalGaps": 13
+  }
+}

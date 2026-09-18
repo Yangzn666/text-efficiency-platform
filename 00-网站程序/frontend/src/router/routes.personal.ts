@@ -1,0 +1,196 @@
+// 个人版完整路由表（P5 方案 B：单树双版本）
+// 由 vite 构建期别名 `@/router/routes` 选择装载：默认(个人)模式指向本文件，
+// `--mode share` 指向 routes.share.ts。放在同一 index.ts 里用运行时 import.meta.env 分支
+// 会把两表都打进包，故用构建期别名做代码级裁剪。
+import type { RouteRecordRaw } from 'vue-router'
+
+const HomeView = () => import('@/views/HomeView.vue')
+const TodayStatusView = () => import('@/views/TodayStatusView.vue')
+const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
+const CS408View = () => import('@/views/CS408View.vue')
+const CSLearningView = () => import('@/views/CSLearning.vue')
+const DSLearningView = () => import('@/views/DSLearning.vue')
+const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
+const OSLearningView = () => import('@/views/OSLearning.vue')
+const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
+const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
+const MathView = () => import('@/views/MathView.vue')
+const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
+const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
+const MathMethodIndexView = () => import('@/views/MethodIndexView.vue')
+const EnglishView = () => import('@/views/EnglishView.vue')
+const PoliticsView = () => import('@/views/PoliticsView.vue')
+const DataAnalyticsView = () => import('@/views/DataAnalyticsView.vue')
+const IntensiveReadingView = () => import('@/views/IntensiveReadingView.vue')
+const UniversitiesView = () => import('@/views/UniversitiesView.vue')
+const TranslationView = () => import('@/views/TranslationView.vue')
+const SkillTreeView = () => import('@/views/SkillTreeView.vue')
+const SrsView = () => import('@/views/SrsView.vue')
+
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'today-status',
+    component: TodayStatusView
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/study-methods',
+    name: 'study-methods',
+    component: StudyMethodsView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/cs408',
+    name: 'cs408',
+    component: CS408View,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/cs408/composition',
+    name: 'cs-composition',
+    component: CSLearningView,
+    meta: {
+      requiresAuth: true,
+      title: '计算机组成原理',
+      subject: '计算机组成原理'
+    }
+  },
+  {
+    path: '/cs408/datastructure',
+    name: 'cs-datastructure',
+    component: DSLearningView,
+    meta: {
+      requiresAuth: true,
+      title: '数据结构',
+      subject: '数据结构'
+    }
+  },
+  {
+    path: '/cs408/network',
+    name: 'cs-network',
+    component: NetworkLearningView,
+    meta: {
+      requiresAuth: true,
+      title: '计算机网络',
+      subject: '计算机网络'
+    }
+  },
+  {
+    path: '/cs408/os',
+    name: 'cs-os',
+    component: OSLearningView,
+    meta: {
+      requiresAuth: true,
+      title: '操作系统',
+      subject: '操作系统'
+    }
+  },
+  {
+    path: '/cs408/feynman',
+    name: 'cs408-feynman',
+    component: FeynmanLearning,
+    meta: {
+      requiresAuth: true,
+      title: '费曼学习法'
+    }
+  },
+  {
+    path: '/wrong-problems',
+    name: 'wrong-problems',
+    component: WrongProblemsView,
+    meta: {
+      requiresAuth: true,
+      title: '全科错题本'
+    }
+  },
+  {
+    path: '/math',
+    name: 'math',
+    component: MathView,
+    meta: {
+      requiresAuth: true,
+      title: '数学一知识点'
+    }
+  },
+  {
+    // 旧路径兼容，重定向到数学一知识点主页
+    path: '/math/detail',
+    redirect: '/math'
+  },
+  {
+    path: '/math/quickcards',
+    name: 'math-quickcards',
+    component: MathQuickCardsView,
+    meta: { requiresAuth: true, title: '速查卡片' }
+  },
+  {
+    path: '/math/guide',
+    name: 'math-guide',
+    component: MathTopicGuideView,
+    meta: { requiresAuth: true, title: '专题指南' }
+  },
+  {
+    path: '/math/methods',
+    name: 'math-methods',
+    component: MathMethodIndexView,
+    meta: { requiresAuth: true, title: '方法索引' }
+  },
+  {
+    path: '/english',
+    name: 'english',
+    component: EnglishView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/politics',
+    name: 'politics',
+    component: PoliticsView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/analytics',
+    name: 'analytics',
+    component: DataAnalyticsView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/intensive-reading',
+    name: 'intensive-reading',
+    component: IntensiveReadingView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/universities',
+    name: 'universities',
+    component: UniversitiesView,
+    meta: { requiresAuth: false }
+  },
+  // 翻译模块（6个子模块合并为单页标签，通过 ?tab= 定位）
+  {
+    path: '/translation',
+    name: 'translation',
+    component: TranslationView,
+    meta: { requiresAuth: true, title: '翻译学习模块' }
+  },
+  // 技能树（数学题型掌握度可视化，数据来自费曼复习题库）
+  {
+    path: '/skilltree',
+    name: 'skilltree',
+    component: SkillTreeView,
+    meta: { requiresAuth: true, title: '技能树' }
+  },
+  // 记忆卡 SRS（全站间隔重复复习）
+  {
+    path: '/srs',
+    name: 'srs',
+    component: SrsView,
+    meta: { requiresAuth: true, title: '记忆卡' }
+  }
+]
+
+export default routes

@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked } from '@element-plus/icons-vue'
 import type { WrongProblem } from '@/data/networkWrongData'
 import { networkWrongProblems } from '@/data/networkWrongData'
 
-const problems = ref<WrongProblem[]>([...networkWrongProblems])
+const wp = useWrongProblemsStore(); const problems = wp.bind('network', [...networkWrongProblems])
 
 // 表单相关
 const dialogVisible = ref(false)
@@ -237,16 +238,11 @@ const getSectionName = (chapterId: string, sectionId: string): string => {
 
 // 保存到localStorage
 const saveToLocalStorage = () => {
-  localStorage.setItem('networkWrongProblems', JSON.stringify(problems.value))
+  wp.persist()
 }
 
 // 从localStorage加载
-const loadFromLocalStorage = () => {
-  const saved = localStorage.getItem('networkWrongProblems')
-  if (saved) {
-    problems.value = JSON.parse(saved)
-  }
-}
+const loadFromLocalStorage = () => { /* 统一 store 托管载入与持久化 */ }
 
 onMounted(() => {
   loadFromLocalStorage()

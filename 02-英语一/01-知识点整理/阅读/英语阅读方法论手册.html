@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语阅读方法论手册 · 糖三角三师合璧</title>
+<meta name="description" content="唐迟 × 颉斌斌 × Monkey 阅读方法论提炼版：考场五步流程、定位五招、找主旨四法、态度三钥匙、正确选项3+6套路、错误选项11套路、六大题型速查、复盘五步法">
+<style>
+  :root{
+    --ink:#1f2933; --ink2:#44403c; --ink3:#57534e;
+    --paper:#ffffff; --bg:#e8e6e1;
+    --c0:#b45309;  /* 总纲 金 */
+    --c1:#2563eb;  /* 做题顺序 蓝 */
+    --c2:#0d9488;  /* 定位 青 */
+    --c3:#7c3aed;  /* 读文章 紫 */
+    --c4:#dc2626;  /* 找主旨 红 */
+    --c5:#db2777;  /* 态度 品红 */
+    --c6:#059669;  /* 正确选项 绿 */
+    --c7:#ea580c;  /* 错误选项 橙 */
+    --c8:#4f46e5;  /* 做题技巧 靛 */
+    --c9:#0891b2;  /* 蒙题 湖蓝 */
+    --c10:#9333ea; /* 题型 紫罗兰 */
+    --c11:#16a34a; /* 复盘 草绿 */
+    --c12:#111827; /* 速查卡 墨 */
+    --c13:#65a30d; /* 打卡 橄榄 */
+    --c14:#0369a1; /* 完型 海蓝 */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  /* 方正粗黑宋简体：本身已是粗体设计，全页任何元素永远不加粗 */
+  *,*::before,*::after{font-weight:normal !important;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"方正粗黑宋简体","FZCuHeiSong-B09S","Microsoft YaHei",sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.75; font-size:16px;
+    -webkit-text-size-adjust:100%;
+  }
+  .page-wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px;}
+
+  /* ================= 顶部工具条 ================= */
+  .toolbar{
+    position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);
+    border-radius:0 0 14px 14px;box-shadow:0 3px 14px rgba(0,0,0,.1);
+    padding:9px 14px;margin:-20px -16px 20px;backdrop-filter:blur(6px);
+  }
+  .tb-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .tb-title{font-size:15px;letter-spacing:2px;color:var(--c0);white-space:nowrap;}
+  .tb-search{
+    flex:1;min-width:140px;border:1.5px solid #d6d3d1;border-radius:20px;
+    padding:5px 14px;font-size:14px;font-family:inherit;color:var(--ink);background:#fafaf9;
+  }
+  .tb-search:focus{outline:none;border-color:var(--c0);background:#fff;}
+  .tb-btn{
+    border:1.5px solid #d6d3d1;background:#fafaf9;border-radius:20px;cursor:pointer;
+    padding:5px 14px;font-size:13.5px;font-family:inherit;color:var(--ink2);white-space:nowrap;
+    transition:all .18s;
+  }
+  .tb-btn:hover{border-color:var(--c0);color:var(--c0);background:#fffbeb;}
+  .tb-btn.on{background:var(--c12);border-color:var(--c12);color:#fff;}
+  .tb-prog{font-size:12.5px;color:var(--ink3);white-space:nowrap;}
+  .chips{display:flex;gap:6px;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;}
+  .chips::-webkit-scrollbar{height:0;}
+  .chip{
+    flex-shrink:0;font-size:12.5px;padding:3px 11px;border-radius:14px;cursor:pointer;
+    color:#fff;opacity:.82;transition:opacity .18s;text-decoration:none;
+  }
+  .chip:hover{opacity:1;}
+
+  /* ================= 卡片 / 章节 ================= */
+  section.card{
+    background:var(--paper);border-radius:14px;padding:32px 38px;margin-bottom:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);page-break-inside:auto;
+  }
+  .ch-head{
+    display:flex;align-items:center;gap:13px;margin-bottom:16px;padding-bottom:9px;
+    border-bottom:3px solid;cursor:pointer;user-select:none;
+  }
+  .ch-num{
+    width:44px;height:44px;border-radius:12px;color:#fff;font-size:21px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;letter-spacing:0;
+  }
+  .ch-head h2{font-size:22px;letter-spacing:1px;line-height:1.3;}
+  .ch-head .tag{margin-left:auto;font-size:12.5px;padding:3px 11px;border-radius:20px;color:#fff;white-space:nowrap;}
+  .ch-head .fold{font-size:15px;color:#a8a29e;margin-left:8px;transition:transform .2s;flex-shrink:0;}
+  section.folded .ch-body{display:none;}
+  section.folded .fold{transform:rotate(-90deg);}
+  .ch-body{}
+  h3{font-size:17.5px;margin:20px 0 8px;padding-left:10px;border-left:4px solid #cbd5e1;color:var(--ink);}
+  h4{font-size:16px;margin:14px 0 6px;color:var(--ink2);}
+  p{margin:8px 0;}
+  ul,ol{padding-left:22px;margin:8px 0;}
+  li{margin:6px 0;}
+  .ch-body > p:first-child{margin-top:2px;}
+
+  /* 章节配色 */
+  .s0 .ch-head{border-color:var(--c0)}  .s0 .ch-num,.s0 .tag{background:var(--c0)}  .s0 th{background:#fef3c7} .s0 h3{border-color:var(--c0)}
+  .s1 .ch-head{border-color:var(--c1)}  .s1 .ch-num,.s1 .tag{background:var(--c1)}  .s1 th{background:#dbeafe} .s1 h3{border-color:var(--c1)}
+  .s2 .ch-head{border-color:var(--c2)}  .s2 .ch-num,.s2 .tag{background:var(--c2)}  .s2 th{background:#ccfbf1} .s2 h3{border-color:var(--c2)}
+  .s3 .ch-head{border-color:var(--c3)}  .s3 .ch-num,.s3 .tag{background:var(--c3)}  .s3 th{background:#ede9fe} .s3 h3{border-color:var(--c3)}
+  .s4 .ch-head{border-color:var(--c4)}  .s4 .ch-num,.s4 .tag{background:var(--c4)}  .s4 th{background:#fee2e2} .s4 h3{border-color:var(--c4)}
+  .s5 .ch-head{border-color:var(--c5)}  .s5 .ch-num,.s5 .tag{background:var(--c5)}  .s5 th{background:#fce7f3} .s5 h3{border-color:var(--c5)}
+  .s6 .ch-head{border-color:var(--c6)}  .s6 .ch-num,.s6 .tag{background:var(--c6)}  .s6 th{background:#d1fae5} .s6 h3{border-color:var(--c6)}
+  .s7 .ch-head{border-color:var(--c7)}  .s7 .ch-num,.s7 .tag{background:var(--c7)}  .s7 th{background:#ffedd5} .s7 h3{border-color:var(--c7)}
+  .s8 .ch-head{border-color:var(--c8)}  .s8 .ch-num,.s8 .tag{background:var(--c8)}  .s8 th{background:#e0e7ff} .s8 h3{border-color:var(--c8)}
+  .s9 .ch-head{border-color:var(--c9)}  .s9 .ch-num,.s9 .tag{background:var(--c9)}  .s9 th{background:#cffafe} .s9 h3{border-color:var(--c9)}
+  .s10 .ch-head{border-color:var(--c10)} .s10 .ch-num,.s10 .tag{background:var(--c10)} .s10 th{background:#f3e8ff} .s10 h3{border-color:var(--c10)}
+  .s11 .ch-head{border-color:var(--c11)} .s11 .ch-num,.s11 .tag{background:var(--c11)} .s11 th{background:#dcfce7} .s11 h3{border-color:var(--c11)}
+  .s12 .ch-head{border-color:var(--c12)} .s12 .ch-num,.s12 .tag{background:var(--c12)} .s12 th{background:#e7e5e4} .s12 h3{border-color:var(--c12)}
+  .s13 .ch-head{border-color:var(--c13)} .s13 .ch-num,.s13 .tag{background:var(--c13)} .s13 th{background:#ecfccb} .s13 h3{border-color:var(--c13)}
+  .s14 .ch-head{border-color:var(--c14)} .s14 .ch-num,.s14 .tag{background:var(--c14)} .s14 th{background:#e0f2fe} .s14 h3{border-color:var(--c14)}
+
+  /* ================= 表格 ================= */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14.8px;page-break-inside:avoid;}
+  th{background:#f1f5f9;padding:8px 10px;border:1px solid #cbd5e1;text-align:left;font-size:14px;}
+  td{padding:7px 10px;border:1px solid #e2e8f0;vertical-align:top;}
+  tr:nth-child(even) td{background:#fafafa;}
+  /* 荧光笔关键词：红字+淡黄底，扫读时眼睛直接命中 */
+  b{color:#b91c1c;background:#fef9c3;padding:0 4px;border-radius:4px;box-decoration-break:clone;}
+  .blue{color:#1d4ed8;} .green{color:#047857;} .purple{color:#6d28d9;} .orange{color:#c2410c;}
+  .en{font-family:"Segoe UI","Times New Roman",serif;color:#1e3a8a;}
+  .gray-note{font-size:13px;color:var(--ink3);}
+
+  /* ================= 语义块 ================= */
+  .hook{
+    background:#fef3c7;border-left:6px solid #f59e0b;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;
+    box-shadow:0 2px 6px rgba(245,158,11,.16);page-break-inside:avoid;
+  }
+  .hook::before{content:"🪝 记忆钩：";color:#b45309;letter-spacing:1px;}
+  .warn{
+    background:#fee2e2;border-left:6px solid #dc2626;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .warn::before{content:"⚠ 陷阱：";color:#b91c1c;letter-spacing:1px;}
+  .law{
+    background:#ecfeff;border-left:6px solid #0891b2;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .law::before{content:"⚖ 铁律：";color:#0e7490;letter-spacing:1px;}
+  .tip{
+    background:#f0fdf4;border-left:6px solid #16a34a;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .tip::before{content:"💡 实战 tip：";color:#15803d;letter-spacing:1px;}
+  .case{
+    background:#f8fafc;border:1.5px dashed #94a3b8;border-radius:8px;
+    padding:12px 16px;margin:12px 0;font-size:14.8px;line-height:1.85;page-break-inside:avoid;
+  }
+  .case .ct{color:#334155;letter-spacing:1px;font-size:14px;margin-bottom:5px;display:block;}
+  .who{
+    display:inline-block;font-size:12px;padding:1px 9px;border-radius:12px;color:#fff;
+    margin-right:6px;vertical-align:1px;
+  }
+  .who.tang{background:#2563eb;} .who.xie{background:#0d9488;}
+  .who.monkey{background:#7c3aed;} .who.shi{background:#d97706;} .who.bo{background:#db2777;}
+
+  /* ================= 流程图 ================= */
+  .flow{margin:14px 0;}
+  .step{
+    display:flex;gap:14px;align-items:flex-start;background:#fafaf9;border:1.5px solid #e7e5e4;
+    border-radius:11px;padding:13px 16px;margin-bottom:9px;page-break-inside:avoid;transition:all .18s;
+  }
+  .step:hover{border-color:var(--c0);background:#fffbeb;transform:translateX(3px);}
+  .step .sn{
+    flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--c12);color:#fff;
+    font-size:15px;display:flex;align-items:center;justify-content:center;letter-spacing:0;
+  }
+  .step .sb{flex:1;min-width:0;}
+  .step .st{font-size:16px;color:var(--ink);margin-bottom:2px;}
+  .step .sd{font-size:14.3px;color:var(--ink2);line-height:1.7;}
+  .step .smin{
+    flex-shrink:0;font-size:12px;color:#fff;background:var(--c0);border-radius:12px;
+    padding:2px 10px;align-self:center;font-family:"JetBrains Mono",Consolas,monospace;
+  }
+
+  /* ================= 频率条形图 ================= */
+  .bars{margin:14px 0;}
+  .bar-row{display:flex;align-items:center;gap:9px;margin:5px 0;page-break-inside:avoid;}
+  .bar-name{flex-shrink:0;width:104px;font-size:14px;color:var(--ink2);text-align:right;}
+  .bar-track{flex:1;background:#f1f5f9;border-radius:5px;height:20px;overflow:hidden;min-width:40px;}
+  .bar-fill{
+    height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,#fb923c,#dc2626);
+    display:flex;align-items:center;transition:width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .bar-fill.cold{background:linear-gradient(90deg,#93c5fd,#4f46e5);}
+  .bar-pct{
+    flex-shrink:0;width:52px;font-size:13px;color:#b91c1c;
+    font-family:"JetBrains Mono",Consolas,monospace;
+  }
+
+  /* ================= 词表胶囊 ================= */
+  .pills{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0;}
+  .pill{
+    font-size:13.5px;padding:4px 12px;border-radius:16px;line-height:1.5;
+    font-family:"Segoe UI","方正粗黑宋简体",sans-serif;
+  }
+  .pill.bad{background:#fee2e2;color:#991b1b;border:1.5px solid #fca5a5;}
+  .pill.good{background:#dcfce7;color:#166534;border:1.5px solid #86efac;}
+  .pill.mid{background:#fef9c3;color:#854d0e;border:1.5px solid #fde047;}
+  .pill i{font-style:normal;font-family:"方正粗黑宋简体",sans-serif;color:#57534e;font-size:12.5px;margin-left:5px;}
+
+  /* ================= 封面 ================= */
+  .cover{text-align:center;padding:52px 38px;}
+  .cover h1{font-size:38px;letter-spacing:5px;color:var(--ink);margin-bottom:9px;line-height:1.35;}
+  .cover .sub{font-size:16px;color:#b45309;letter-spacing:3px;margin-bottom:24px;}
+  .cover .three{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:24px;}
+  .cover .three span{
+    font-size:15px;padding:6px 18px;border-radius:22px;color:#fff;letter-spacing:2px;
+  }
+  .cover .meta{
+    display:inline-block;text-align:left;background:#fffbeb;border:2px solid #f59e0b;
+    border-radius:10px;padding:14px 24px;font-size:14.8px;line-height:2;max-width:100%;
+  }
+  .cover .meta b{color:#b45309;}
+  .cover .rule{
+    margin-top:26px;font-size:15px;color:var(--ink2);background:#fef2f2;border:2px solid #fca5a5;
+    border-radius:10px;padding:12px 18px;display:inline-block;
+  }
+  .cover .rule b{color:#dc2626;}
+
+  /* ================= 速查卡 ================= */
+  .quickcard{background:#0f172a !important;color:#e2e8f0;}
+  .quickcard .ch-head{border-color:#f59e0b !important;}
+  .quickcard .ch-head h2{color:#fbbf24;}
+  .quickcard .fold{color:#64748b;}
+  .qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .qc-box{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:12px 14px;}
+  .qc-box h4{color:#fbbf24;font-size:14.5px;margin:0 0 7px;letter-spacing:1px;}
+  .qc-box ul{padding-left:17px;margin:0;}
+  .qc-box li{font-size:13.5px;color:#cbd5e1;margin:4px 0;line-height:1.65;}
+  .qc-box li b{background:rgba(251,191,36,.22);color:#fde68a;}
+  .qc-full{grid-column:1/-1;}
+
+  /* ================= 打卡表 ================= */
+  .check-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:12px 0;}
+  .ck{
+    background:#fafaf9;border:1.5px solid #e7e5e4;border-radius:9px;padding:9px 4px;
+    text-align:center;cursor:pointer;transition:all .18s;font-size:13px;color:var(--ink2);
+    user-select:none;
+  }
+  .ck:hover{border-color:var(--c13);background:#f7fee7;}
+  .ck.done{background:#dcfce7;border-color:#16a34a;color:#166534;}
+  .ck .d{font-size:12px;color:var(--ink3);display:block;font-family:"JetBrains Mono",Consolas,monospace;}
+  .ck.done .d{color:#15803d;}
+  .ck .m{font-size:17px;display:block;margin-top:2px;}
+
+  /* ================= 搜索高亮 / 隐藏 ================= */
+  mark.hl{background:#fde047;color:#713f12;padding:0 2px;border-radius:3px;}
+  body.exam-mode section.card:not(.quickcard):not(.cover){display:none;}
+  body.exam-mode .chips{display:none;}
+  .no-result{display:none;text-align:center;padding:40px;color:var(--ink3);font-size:15px;}
+
+  footer{text-align:center;font-size:12.5px;color:#78716c;padding:14px 0 10px;line-height:1.9;}
+
+  /* ================= 打印 ================= */
+  @page{size:A4;margin:13mm 12mm;}
+  @media print{
+    body{background:#fff;font-size:14px;}
+    .toolbar,.no-result{display:none !important;}
+    .page-wrap{max-width:none;padding:0;}
+    section.card{box-shadow:none;border-radius:0;padding:6mm 4mm;margin-bottom:0;page-break-before:always;}
+    section.card:first-of-type{page-break-before:auto;}
+    section.folded .ch-body{display:block;}
+    .cover{padding:26mm 0;}
+    .quickcard{background:#fff !important;color:#000;}
+    .quickcard .ch-head h2{color:#000;}
+    .qc-grid{grid-template-columns:1fr 1fr;}
+    .qc-box{background:#fff;border:1px solid #94a3b8;}
+    .qc-box h4{color:#b45309;}
+    .qc-box li{color:#1f2933;}
+    .qc-box li b{background:#fef9c3;color:#b91c1c;}
+    .ck{border:1px solid #94a3b8;}
+    .bar-fill{transition:none;}
+    .step:hover{transform:none;background:#fafaf9;border-color:#e7e5e4;}
+  }
+
+  /* ================= 手机适配 ================= */
+  @media (max-width:640px){
+    body{font-size:15px;line-height:1.82;background:#f3f1ec;}
+    .page-wrap{padding:14px 8px 44px;}
+    .toolbar{margin:-14px -8px 14px;padding:8px 10px;border-radius:0 0 12px 12px;}
+    .tb-title{font-size:13px;letter-spacing:1px;}
+    .tb-search{min-width:100%;order:9;}
+    .tb-btn{font-size:12.5px;padding:4px 11px;}
+    section.card{padding:20px 14px;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+    .cover{padding:32px 12px;}
+    .cover h1{font-size:25px;letter-spacing:2px;}
+    .cover .sub{font-size:13.5px;letter-spacing:1.5px;}
+    .cover .three span{font-size:13px;padding:5px 13px;letter-spacing:1px;}
+    .cover .meta{padding:11px 14px;font-size:13.3px;line-height:1.9;}
+    .cover .rule{font-size:13.5px;padding:10px 13px;}
+    .ch-head{flex-wrap:wrap;gap:9px;}
+    .ch-head h2{font-size:18px;}
+    .ch-head .tag{margin-left:0;font-size:11.5px;}
+    .ch-num{width:36px;height:36px;font-size:17px;border-radius:10px;}
+    h3{font-size:16px;margin:16px 0 7px;}
+    table{font-size:13.3px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    th{font-size:12.8px;padding:6px 7px;}
+    td{padding:6px 7px;}
+    .hook,.warn,.law,.tip{font-size:14.2px;padding:10px 12px;margin:11px 0;}
+    .case{font-size:13.8px;padding:10px 12px;}
+    .step{padding:11px 12px;gap:10px;}
+    .step .sn{width:32px;height:32px;font-size:13px;}
+    .step .st{font-size:15px;}
+    .step .sd{font-size:13.5px;}
+    .step .smin{font-size:11px;padding:2px 8px;}
+    .bar-name{width:76px;font-size:12.5px;}
+    .bar-pct{width:44px;font-size:12px;}
+    .qc-grid{grid-template-columns:1fr;}
+    .qc-box li{font-size:13px;}
+    .check-grid{grid-template-columns:repeat(4,1fr);}
+    ul,ol{padding-left:19px;}
+    .pill{font-size:12.8px;padding:3px 10px;}
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ================= 工具条 ================= -->
+<div class="toolbar">
+  <div class="tb-row">
+    <span class="tb-title">阅读方法论手册</span>
+    <input class="tb-search" id="q" type="search" placeholder="🔍 搜技巧 / 搜标志词 / 搜套路…" autocomplete="off">
+    <button class="tb-btn" id="btnExam">🎯 考场速查</button>
+    <button class="tb-btn" id="btnFold">🗂 全部折叠</button>
+    <button class="tb-btn" id="btnPrint">🖨 打印</button>
+    <span class="tb-prog" id="prog">打卡 0 / 28</span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<!-- ================= 封面 ================= -->
+<section class="card cover" id="top">
+  <h1>英语阅读方法论手册</h1>
+  <div class="sub">糖三角 · 三师合璧提炼版</div>
+  <div class="three">
+    <span style="background:#2563eb">唐迟 · 逻辑派</span>
+    <span style="background:#0d9488">颉斌斌 · 技巧派</span>
+    <span style="background:#7c3aed">Monkey · 命题派</span>
+  </div>
+  <div class="meta">
+    <b>用途</b>：做题前扫「考场速查卡」，做题中按「五步流程」走，复盘时用「错误选项11套路」给每道错题归类。<br>
+    <b>来源</b>：《糖三角阅读技巧课》官方配套讲义（8.3版）· 上岸诗兄 / 北大菠萝喵学姐整理。<br>
+    <b>本质</b>：阅读不是「读懂每一句」，而是<b style="background:#fef9c3">「找到命题人埋答案的那句话」</b>。<br>
+    <b>生成</b>：2026-09-07 · 手机 / 打印双适配。
+  </div>
+  <div class="rule">三遍默念：<b>拒绝黄 · 拒绝赌 · 拒绝脑补</b>。答案都在文章里，客观存在，只跟作者有关，跟你无关。</div>
+</section>
+
+<!-- ================= 一、考场五步流程 ================= -->
+<section class="card s0" id="c1">
+  <div class="ch-head"><div class="ch-num">一</div><h2>考场五步流程（总纲）</h2><div class="tag">每篇 ≤ 17 分钟</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>全书所有技巧，最后都要收进这一条流水线。<b>先把流程走成肌肉记忆，再谈技巧。</b>4 篇阅读 65 分钟是红线，超了就是流程不熟。</p>
+    <div class="flow">
+      <div class="step"><div class="sn">1</div><div class="sb">
+        <div class="st">串读题干 · 读 9 项</div>
+        <div class="sd">读 5 个题干 + 最后一题的 4 个选项。<b>题干中重复出现的单词 = 文章关键词</b>，用铅笔圈画。题目顺序 = 段落顺序，串读完就能预判文章走向和写作思路。<span class="gray-note">（不要 5 题选项全读：费时，且 75% 是错误信息，会污染你对文章的理解）</span></div>
+      </div><div class="smin">40 秒</div></div>
+
+      <div class="step"><div class="sn">2</div><div class="sb">
+        <div class="st">定位 · 题目找段，选项找句</div>
+        <div class="sd">第一题对应第一段，第二题对应的段落<b>一定在第一段之后</b>。出现不按顺序对应，就说明你找错了。定位词：大写字母、人名、地点、时间、时代、数字、名词、形容词。</div>
+      </div><div class="smin">20 秒</div></div>
+
+      <div class="step"><div class="sn">3</div><div class="sb">
+        <div class="st">边读边做 · 读 1–2 段做 1 题</div>
+        <div class="sd"><b>不要跳读，整篇文章全部都读。</b>不要一次性读完所有段落再做题。重点盯：转折词、时间对比标志词（现在的内容才是重点）、情态动词、感情色彩词、同义改写。</div>
+      </div><div class="smin">10 分</div></div>
+
+      <div class="step"><div class="sn">4</div><div class="sb">
+        <div class="st">卡住先放 · 细节服从主旨</div>
+        <div class="sd">不会做的先跳过，<b>后面的题目和文章一般有提示</b>。在应该出现答案的地方没找到答案 → 继续往后读，答案大概率在后面。全篇做完后回来看主旨，拿不准的题选「与全文主旨一致」的那个。</div>
+      </div><div class="smin">2 分</div></div>
+
+      <div class="step"><div class="sn">5</div><div class="sb">
+        <div class="st">检查 · 答案内在一致性</div>
+        <div class="sd">5 道题围绕同一篇文章命题，答案<b>必然具有内在一致性</b>。若你的 5 个答案彼此打架（比如两个选项互相矛盾却都选了），其中必有一个错。同时核对选项分布，ABCD 大致均衡。</div>
+      </div><div class="smin">1 分</div></div>
+    </div>
+    <div class="law">流程优先级 &gt; 技巧优先级 &gt; 语感。考场上想不起技巧没关系，五步走完了，分数不会差。</div>
+  </div>
+</section>
+
+<!-- ================= 二、做题顺序：三师方案 ================= -->
+<section class="card s1" id="c2">
+  <div class="ch-head"><div class="ch-num">二</div><h2>做题顺序 · 三师方案对照</h2><div class="tag">选一个练到熟</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <table>
+      <tr><th style="width:14%">老师</th><th style="width:22%">方案</th><th>要点</th></tr>
+      <tr>
+        <td><span class="who tang">唐迟</span></td>
+        <td><b>先题后文</b><br>只看题干，不读选项</td>
+        <td>① 题干中出现次数多的单词即为文章关键词，准备好铅笔圈一圈画一画<br>② 题目顺序和文章段落顺序一致，串读题干可预判文章基本走向与写作思路<br>③ 不要一次性全读完，<b>读 1–2 段做 1 道题</b></td>
+      </tr>
+      <tr>
+        <td><span class="who xie">颉斌斌</span></td>
+        <td><b>读 9 项</b><br>5 个题干 + 最后一题 4 个选项</td>
+        <td>① 若最后一题是主旨题，这个方法能帮我们<b>快速了解文章主旨</b><br>② 不要把 5 道题全部选项都读：很费时间，而且 <b>75% 是错误信息</b>，影响理解文章</td>
+      </tr>
+      <tr>
+        <td><span class="who monkey">Monkey</span></td>
+        <td><b>末题 95% 是主旨题</b></td>
+        <td>正因为最后一题是主旨题的概率高达 95%，「读 9 项」的性价比才极高 —— 花 20 秒读 4 个选项，换整篇文章的主旨预判。</td>
+      </tr>
+    </table>
+    <div class="tip"><span class="who shi">诗兄</span>我就经常用「读 9 项」这个方法，读完非常有助于了解文章主旨。</div>
+    <h3>完整做题顺序（可直接背）</h3>
+    <ol>
+      <li><b>串读 5 道题干</b>，有主旨题的话把这道题的选项也读了。</li>
+      <li><b>按题目顺序定位</b>，边读文章边做题，读 1–2 段做一道题。不会做的先放一放，后面的题目和文章一般有提示。<br><span class="gray-note">读的时候盯四件事：转折词 / 时间对比标志词（现在才是重点）/ 情态动词与感情色彩词（与作者态度相关）/ 文章内部的同义改写。</span></li>
+      <li><b>检查</b>，利用答案的内在一致性检查。</li>
+    </ol>
+    <div class="warn">「不跳读」在讲义里被连写了三遍：<b>不要跳读、不要跳读、不要跳读。</b>跳读是错因里最难自查的一种 —— 你会以为自己读懂了。</div>
+
+    <div class="case"><span class="ct">▍串读题干实战 · 2011 英语一 Text 3</span>
+      31 Consumers may create "earned" media when they are ___ .<br>
+      32 According to Paragraph 2, sold media feature ___ .<br>
+      33 The author indicates in Paragraph 3 that earned media ___ .<br>
+      34 Toyota Motor's experience is cited as an example of ___ .<br>
+      35 Which of the following is the text mainly about?<br>
+      <b>推导过程：</b>读 31–34 题干 → 初判文章围绕 <span class="en">media</span> 展开；第 35 题是主旨题，把选项也读了 → 四个选项都出现 <span class="en">media</span>，于是<b>断定全文就写 media</b>，且重点是 <span class="en">earned media</span> 与 <span class="en">sold media</span>。<br>
+      <b>定位推导：</b>第 1 题无定位词，但第 2 题明写 Paragraph 2，由「题目与文章顺序一致」→ 第 1 题大概率在第 1 段；第 4 题有 <span class="en">Toyota Motor</span>，很容易发现它在第 4 段；第 5 题主旨题，结合全文。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 三、定位五招 ================= -->
+<section class="card s2" id="c3">
+  <div class="ch-head"><div class="ch-num">三</div><h2>定位五招</h2><div class="tag">题目找段 · 选项找句</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p class="law" style="border-left-color:var(--c2);background:#f0fdfa">定位总纲：<b>题目找到定位段，选项找到定位句。</b>段是范围，句才是答案。</p>
+    <table>
+      <tr><th style="width:8%">招</th><th style="width:24%">名称</th><th>操作</th></tr>
+      <tr><td>1</td><td><b>顺序一致</b></td><td>题目与文章顺序一致。第一题对应第一段，第二题对应的段落一定在第一段之后，以此类推。<b>出现不按顺序对应的情况，就说明你找错了。</b></td></tr>
+      <tr><td>2</td><td><b>定位词定位</b></td><td>定位词有这些：<b>大写的单词、人名、地点、时间、时代、数字、名词、形容词</b>。优先找「独一无二」的词（专有名词、数字），它们无法被同义改写，一眼可见。</td></tr>
+      <tr><td>3</td><td><b>找第一次出现</b></td><td>定位词在原文中出现很多次时，<b>重点找第一次出现的句子</b>。首次出现处通常是概念被引入、被定义的地方，也就是命题点。</td></tr>
+      <tr><td>4</td><td><b>长难句即出题句</b></td><td>长难句蕴含信息丰富，命题人觉得长难句有难度。<b>找不到定位句的时候，重点读长难句。</b></td></tr>
+      <tr><td>5</td><td><b>S 形定位<br>（只找不读）</b></td><td><span class="who xie">颉斌斌</span>第一行从左到右，第二行从右到左，呈 <b>S 型</b>寻找定位词，<b>找到定位词就停止</b>。目的是「定位」而非「理解」，不要在扫描阶段消耗脑力去翻译。</td></tr>
+    </table>
+    <div class="tip"><span class="who shi">诗兄</span>我习惯用 S 形找到定位句之后，再用<b>唐叔的方法</b>来做：<b>从头开始读这一段，坚决不跳读，重点去读包含定位词的那一句。</b>这样正确率更高一些。<br><span class="gray-note">→ 两派融合：颉斌斌负责「快」，唐迟负责「准」。先 S 形扫到句，再整段通读兜住上下文。</span></div>
+
+    <h3>定位失败回退阶梯（五级）</h3>
+    <p>定位词找不到，多半是<b>被同义改写了</b>。按顺序回退，每级停留不超过 15 秒，走完五级仍无果就先放：</p>
+    <table>
+      <tr><th style="width:8%">级</th><th style="width:24%">回退动作</th><th>依据</th></tr>
+      <tr><td>1</td><td><b>原词扫描</b></td><td>先扫<b>无法被改写</b>的词：大写字母、数字、人名、专名。</td></tr>
+      <tr><td>2</td><td><b>同义改写词扫描</b></td><td>用主旨词 / 题干核心词的<b>近义形式</b>再扫一遍（技巧 3：反复强调会被改写成其他词）。</td></tr>
+      <tr><td>3</td><td><b>段首句回退</b></td><td>由「题目顺序 = 段落顺序」直接锁定该段，读<b>段首句</b>（技巧 6：整段无转折时，段首句就是主旨句）。</td></tr>
+      <tr><td>4</td><td><b>长难句回退</b></td><td>读该段<b>最长的那句</b>（技巧 4：长难句一般是出题句）。</td></tr>
+      <tr><td>5</td><td><b>主旨回退</b></td><td>仍无果则先放，全篇做完后用<b>细节服从主旨</b>兜底（铁律 2）。</td></tr>
+    </table>
+    <div class="hook">回退阶梯的本质：<b>从「找词」退到「找意思」，再退到「找结构」，最后退到「找主旨」。</b>定位不是玄学，是一级一级降精度的搜索。</div>
+
+    <div class="case"><span class="ct">▍S 形定位示范 · 2024 英语一</span>
+      <b>题干：</b>The example of early 17th-century Virginians is used to ___ .<br>
+      <span class="gray-note">A. highlight the thriftiness of early American colonists.<br>
+      B. illustrate the high status of blacksmiths in that period.<br>
+      C. contrast the attitudes of different civilisations towards nails.<br>
+      D. show the preciousness of nail-making technology at that time.</span><br>
+      <b>S 形扫到：</b><span class="en">"…early 17th-century Virginians would sometimes burn down their homes if they were planning to relocate. This was an attempt to recover the valuable nails… The idea that one might burn down an entire house just to reclaim the nails underlines how <b style="background:#fef9c3">scarce, costly and valuable</b> the simple-seeming technology was."</span><br>
+      <b>命中：</b>观点句在例子之后，<span class="en">scarce / costly / valuable</span> 三个词并列强调「珍贵」→ <b>D</b>。A「节俭」是把「烧房取钉」这个行为常识化脑补了，属于典型的<b>常识套用</b>陷阱。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 四、读文章十技巧 ================= -->
+<section class="card s3" id="c4">
+  <div class="ch-head"><div class="ch-num">四</div><h2>读文章十技巧</h2><div class="tag">主旨是灵魂</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="law">阅读最重要的就是找到文章主旨。<b>阅读只讲一件事，这件事就是主旨。</b>作者举例子、引经据典、正话反说、反话正说，都是为了论证观点、表达文章主旨。</div>
+
+    <h3>技巧 2 · 如何快速找到文章主旨（三招）</h3>
+    <ul>
+      <li>① <b>串联首尾句</b> —— 首句和尾句最容易出现作者的观点。</li>
+      <li>② <b>反复出现的词就是主旨词</b>。</li>
+      <li>③ <b>首尾段问句 或 独句段</b>，一般包含着文章主旨。</li>
+    </ul>
+
+    <h3>技巧 3 · 反复强调的是重点</h3>
+    <p>它不会简单地反复出现，而是会<b>被同义改写成其他词</b>。比如 <span class="en">how science is done</span> → 同义替换成 <span class="en">practice of science</span>。<br><span class="gray-note">→ 所以「找重复词」实际是「找重复的意思」，详见第七章同义改写五型。</span></p>
+
+    <h3>技巧 4 · 文章同时出现过去和现在，「现在」更重要</h3>
+    <p>看到 <span class="en">used to do / no longer / today / now</span>，就要重点看发生在<b>「现在」</b>的内容 —— 它通常预示着文章的中心主旨，也是命题组喜欢的出题点。</p>
+    <div class="tip"><span class="who monkey">Monkey</span>补充：当我们遇到<b>带有时间限定词的题目</b>时，它的答案一般<b>与主旨不同或者相反</b>，大家很容易忽视这些限定词。四类必须警觉的限定词：
+      <table style="margin-top:8px">
+        <tr><th style="width:34%">限定类型</th><th>标志词</th></tr>
+        <tr><td>过去 …… 但现在呢？</td><td><span class="en">used to / before / previous</span></td></tr>
+        <tr><td>初衷 …… 但现在呢？</td><td><span class="en">was intended to / original purpose</span></td></tr>
+        <tr><td>一般认为 …… 但实际呢？</td><td><span class="en">commonly / often</span></td></tr>
+        <tr><td>大众认为 …… 但研究表明呢？</td><td><span class="en">most people / general public</span></td></tr>
+      </table>
+    </div>
+
+    <h3>技巧 5 · 转折之后是重点</h3>
+    <p>转折词是<b>观点变化、强调重点、引出结论</b>的信号。转折处在不同的位置，作用不一样：</p>
+    <table>
+      <tr><th style="width:22%">位置</th><th>作用</th></tr>
+      <tr><td><b>首段转折</b></td><td>常引出<b>全文主旨</b></td></tr>
+      <tr><td><b>段中转折</b></td><td>多用于<b>细节论证</b>，强调本段核心</td></tr>
+      <tr><td><b>尾段转折</b></td><td>可能暗示<b>作者态度</b>或<b>未来研究方向</b></td></tr>
+    </table>
+
+    <h3>技巧 6 · 整段无转折 → 段首句就是主旨句</h3>
+    <p>如果一个段落从头到尾都没有转折，那<b>段首句就是主旨句</b>。这条技巧是「串读首句找主旨」能成立的底层原因。</p>
+
+    <h3>技巧 7 · 两事物对立，作者站弱势一方</h3>
+    <p>文章中两个事物是对立的，作者通常与<b>弱势的一方</b>站在一起，态度通常是 <span class="en"><b>sympathetic</b></span>（同情的）。</p>
+
+    <h3>技巧 8 & 9 · 卡住了怎么办</h3>
+    <ul>
+      <li><b>技巧 8</b>：若某句或某段没看懂，<b>不要反复纠结</b>，接着读后面的话，后面的内容能帮你理解。</li>
+      <li><b>技巧 9</b>：在应该出现答案的地方没找到答案，<b>继续往后读</b>，答案大概率在后面。</li>
+    </ul>
+
+    <h3>技巧 10 · 标点符号是隐藏在文本中的「路标」</h3>
+    <table>
+      <tr><th style="width:14%">标点</th><th style="width:32%">作用</th><th>命题含义</th></tr>
+      <tr><td><b>冒号 :</b></td><td>解释说明</td><td><b>冒号前内容 = 冒号后内容</b>。冒号后的内容常与文章主旨密切相关（有总结作用）。</td></tr>
+      <tr><td><b>破折号 —</b></td><td>对前面内容的补充说明</td><td><b>破折号前后内容基本一样</b>。同样常与主旨密切相关。</td></tr>
+      <tr><td><b>分号 ;</b></td><td>前后两句并列</td><td><b>语义相同</b>。看懂一半即可推出另一半。</td></tr>
+      <tr><td><b>引号 " "</b></td><td>作者引用别人的话来说明自己的观点</td><td>可从引号内容里读出作者的态度和观点。<br><b>★ 固定出题方式：原文某句/某词带引号，选项把引号去掉了 → 这个选项肯定是错的，直接排除。</b></td></tr>
+    </table>
+    <div class="hook">冒号、破折号、分号 = <b>等号</b>；引号 = <b>态度探测器</b>。看到标点先看标点，比先啃单词快得多。</div>
+  </div>
+</section>
+
+<!-- ================= 五、找主旨四法 ================= -->
+<section class="card s4" id="c5">
+  <div class="ch-head"><div class="ch-num">五</div><h2>找主旨 · 四法合一</h2><div class="tag">串首句是必杀</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <h3>什么时候需要找主旨</h3>
+    <p>任何时候都需要，<b>主旨是灵魂</b>。需要特意找主旨的只有 2 种情况：① 做主旨题的时候；② 遇到拿不准的题目 —— <b>细节服从主旨</b>。</p>
+    <div class="tip"><span class="who shi">诗兄</span>不要遇到不会的立刻就找主旨。<b>先把能做上来的题都做了 → 然后找文章主旨 → 最后再把不会的题做了。</b>这样主旨是被题目"喂"出来的，找得又快又准。</div>
+
+    <h3>方法 A · 串读首句法（三师共识，必须掌握）</h3>
+    <p>具体操作：<b>把每一段的第一句摘出来进行串读</b>。每一段的首句最容易出现本段的主旨句。</p>
+    <div class="tip"><span class="who shi">诗兄</span>这是<b>3 位老师都认同</b>的方法，<b>几乎适用于所有的文章</b>，必须要掌握。</div>
+
+    <div class="case"><span class="ct">▍示范一 · 2013 英语一 Text 3（七段首句串读）</span>
+      ① 以前，人们对未来乐观。<br>
+      ② 现在，人们对未来<b>不再</b>乐观。<br>
+      ③ <b>但</b>如此悲观是杞人忧天。<br>
+      ④ 长远的未来是什么样子？<br>
+      ⑤ 思考长远未来比思考近期未来更容易。<br>
+      ⑥ <b>但</b>从长远的角度来看，我们能确定地预言未来很多事情。<br>
+      ⑦ 从这种长远的视角下，人们对前景的悲观不过是一时的风气。<br>
+      <b>串读结论：</b>①②③ 是「乐观 → 悲观 → 驳悲观」的时间对比 + 转折；⑥⑦ 再次转折重申。<b>作者站「乐观」这一边。</b><br>
+      <span class="gray-note">[A] Uncertainty about Our Future 未来的不确定性 · [B] Evolution of the Human Species 人类的进化 · [C] The Ever-bright Prospects of Mankind 人类未来一片光明 · [D] Science, Technology and Humanity 科学、技术与人类</span><br>
+      <b>正确答案 C。</b>注意时间对比：过去和现在表达的内容一般是相反的；<span class="en">But</span> 表转折，前后意思相反。
+    </div>
+
+    <div class="case"><span class="ct">▍示范二 · 2014 英语一 Text 2（六段首句串读 · 问题—解决型）</span>
+      ① 律师在全世界招人恨。<br>
+      ② 美国在法律服务方面的支出增速太快。 <span class="gray-note">← 问题</span><br>
+      ③ 造成「支出增速快」的原因一。 <span class="gray-note">← 归因</span><br>
+      ④ 解决「支出增速快」的第一个方案。 <span class="gray-note">← 解决</span><br>
+      ⑤ 造成「支出增速快」的原因二。 <span class="gray-note">← 归因</span><br>
+      ⑥ 解决「支出增速快」的第二个方案。 <span class="gray-note">← 解决</span><br>
+      <b>串读结论：</b>一个「问题 + 两个原因 + 两个方案」的完整结构。<br>
+      <span class="gray-note">[A] 美国律所所有制的缺陷及其成因（只覆盖⑤⑥，以偏概全）· [B] 造就成功律师的因素（无中生有）· [C] 美国法律行业中的一个问题及解决方案 · [D] 本科阶段学习在美国法律教育中的作用（只覆盖④的局部细节）</span><br>
+      <b>正确答案 C。</b>A 和 D 都是「把某一段的局部当成全文」—— 这是主旨题最典型的坑。
+    </div>
+
+    <h3>方法 B · 中心词法</h3>
+    <ul>
+      <li>① <b>题干中反复出现的名词</b>。</li>
+      <li>② 最后一道题 <b>95% 的概率是主旨题</b><span class="gray-note">（Monkey）</span>，主旨题里会包含中心词。</li>
+      <li>③ <b>文章里反复出现的词</b>。</li>
+    </ul>
+    <div class="hook">中心词多以<b>同义改写</b>的形式出现；中心词可能有<b>多个</b>，<b>只有内容全面的选项才是正确答案</b>。→ 看到只覆盖一个中心词的选项，直接排除。</div>
+
+    <h3>方法 C · 首尾段问句、独段句法</h3>
+    <table>
+      <tr><th style="width:24%">信号</th><th style="width:16%">出处</th><th>含义</th></tr>
+      <tr><td><b>首段 / 尾段的问句</b></td><td><span class="who tang">唐迟</span><span class="who monkey">Monkey</span></td><td>一般就是<b>主旨围绕的问题</b>。问句是作者抛给读者的钩子，全文都在回答它。</td></tr>
+      <tr><td><b>独句成段</b><br><span class="gray-note">（某段只有一个长难句）</span></td><td><span class="who tang">唐迟</span></td><td>出现在<b>首段、第二段、尾段</b>的时候，<b>表达主旨概率非常大</b>。</td></tr>
+      <tr><td><b>黄金段</b><br><span class="gray-note">（独句段出现在中间）</span></td><td><span class="who monkey">Monkey</span></td><td>在文章中间某一段出现时，除了<b>承上启下</b>作用外，还有<b>再次强调主旨</b>的作用。</td></tr>
+    </table>
+    <div class="case"><span class="ct">▍独句成段示范 · 2010 英语一 Text 1</span>
+      <b>①（首段独句）</b><span class="en">Of all the changes that have taken place in English-language newspapers during the past quarter-century, perhaps the most far-reaching has been the inexorable decline in the scope and seriousness of their arts coverage.</span><br>
+      译：过去 25 年间英文报纸发生的所有改变中，或许影响最深远的是，这些报纸中<b>艺术评论</b>的范围和严肃性呈现出不可遏止的<b>衰落</b>之势。<br>
+      <b>②（第二段独句）</b>40 岁以下的普通读者，很难想象一个可以在大多数城市报纸中看到高质量艺术评论的时代。<br>
+      <b>→ 主旨锁定：</b>报纸上「艺术评论」的衰落。<br>
+      <span class="gray-note">[A] Newspapers of the Good Old Days 报纸昔日的黄金岁月 · [B] The Lost Horizon in Newspapers 报纸中消失的视野 · [C] Mournful Decline of Journalism 新闻业可悲的衰落 · [D] Prominent Critics in Memory 过去杰出的评论家们</span><br>
+      <b>排除 [D] 的三种思路（多思路解题示范）：</b><br>
+      &nbsp;&nbsp;思路一：不符合主旨（主旨是「评论的衰落」，不是「评论家本人」）。<br>
+      &nbsp;&nbsp;思路二：[D] 出现在<b>例子中</b>。出现在例子里的不重要，它的作用是辅证，<b>重要的内容在例子前后</b>。<br>
+      &nbsp;&nbsp;思路三：[D] 内容是关于<b>过去</b>的。文章同时出现「过去」与「现在」，<b>「现在」更重要</b>。
+    </div>
+
+    <h3>方法 D · 四个补充信号</h3>
+    <table>
+      <tr><th style="width:16%">出处</th><th style="width:30%">信号</th><th>说明</th></tr>
+      <tr><td><span class="who monkey">Monkey</span></td><td><b>书名（斜体字）</b></td><td>书名最直接反映该书乃至全文的主旨。<span class="gray-note">斜体好辨识，但<b>不要把常见期刊当作书名</b>。</span></td></tr>
+      <tr><td><span class="who monkey">Monkey</span></td><td><b>正数第二段 &amp; 倒数第二段</b></td><td>这两段出现主旨的概率更大。</td></tr>
+      <tr><td><span class="who xie">颉斌斌</span></td><td><b>作者的态度</b></td><td>作者的态度一般<b>就是</b>全文主旨。（态度题与主旨题互为验证）</td></tr>
+      <tr><td><span class="who xie">颉斌斌</span></td><td><b>研究 / 实验结果</b></td><td>研究或实验结果一般<b>就是</b>全文主旨。前面大段的背景铺垫都是为它服务的。</td></tr>
+    </table>
+    <div class="warn"><span class="who shi">诗兄</span><b>作者观点是正确答案，你的观点不重要，千万不要脑补！</b>主旨题错，八成不是没读懂，而是选了「我觉得对」而不是「作者觉得对」。</div>
+  </div>
+</section>
+
+<!-- ================= 六、态度题 ================= -->
+<section class="card s5" id="c6">
+  <div class="ch-head"><div class="ch-num">六</div><h2>态度题 · 三把钥匙 + 两张词表</h2><div class="tag">小墓碑选项先排</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <h3>钥匙 1 · 关注感情色彩词</h3>
+    <p>感情色彩词通常包含两类：① <b>本身就带有鲜明感情色彩的形容词或副词</b>；② <b>某些名词和动词</b>。</p>
+    <div class="tip"><span class="who shi">诗兄</span>中英互译的时候，拿捏词的感情色彩是极其重要的，要做到<b>重感情而轻意思</b>。<br><span class="gray-note">→ 例：<span class="en">recklessly modest</span>（鲁莽地谦虚=不该谦虚）、<span class="en">lame argument</span>（站不住脚的论点）、<span class="en">fat pay packets</span>（肥得流油的薪酬）。这些词的字面意思不重要，它们的<b>贬义色彩</b>就是作者的态度。</span></div>
+
+    <h3>钥匙 2 · 转折词后有态度</h3>
+    <p>作者通常在转折词后表达态度和观点。</p>
+    <div class="hook">当转折出现在<b>句内</b>时，观点态度一般<b>没有变化</b>；当转折出现在<b>句子和句子之间</b>时，意味着<b>态度出现了变化</b>。</div>
+    <div class="case"><span class="ct">▍真题 · 2014 英语一 Text 4</span>
+      <span class="en">"The Heart of the Matter," the just-released report … <b style="background:#fef9c3">deserves praise</b> for affirming the importance of … <b style="background:#fef9c3">Regrettably, however</b>, the report's failure to address the true nature of the crisis … may cause <b style="background:#fef9c3">more harm than good</b>.</span><br>
+      译：这篇报告<b>值得称赞</b>，因为它肯定了人文学科的重要性。<b>然而，令人遗憾的是</b>，该报告未能指出危机的实质，其结果可能<b>弊大于利</b>。<br>
+      <b>35. 作者对 AAAS 报告的态度？</b> [A] Critical 批判的 · [B] Appreciative 欣赏的 · [C] Contemptuous 蔑视的 · [D] Tolerant 容忍的<br>
+      <b>正确答案 A。</b>句间 <span class="en">however</span> 之后态度反转 → 重点在「遗憾 / 弊大于利」。B 只截取了转折前的半句（<b>信息拼凑</b>）；C 程度过重（<b>偷换程度</b>）；D 是小墓碑选项。
+    </div>
+
+    <h3>钥匙 3 · 情态动词之后常接作者观点</h3>
+    <p>情态动词也是一种表示语气的词，可以体现说话者对这一行为或状态的<b>主观看法或建议</b>。常见情态动词：<span class="en"><b>may / would / could / must / should</b></span></p>
+    <div class="case"><span class="ct">▍真题 · 2012 英语一 Text 4</span>
+      <span class="en">… a public-sector system that does not reward high achievers <b style="background:#fef9c3">may be</b> a much bigger problem for America.</span><br>
+      译：不奖励成绩斐然者的公共部门体系<b>或许才是</b>美国面临的更大问题。<br>
+      <b>40. John Donahue 对公共部门体系的态度？</b> [A] disapproval 不赞同 · [B] appreciation 欣赏 · [C] tolerance 容忍 · [D] indifference 冷漠<br>
+      <b>正确答案 A。</b><span class="en">may be a much bigger problem</span> = 情态动词后接负面判断。C、D 均为小墓碑选项。
+    </div>
+    <div class="case"><span class="ct">▍真题 · 2014 英语二 Text 1</span>
+      <span class="en">… spend more time with friends and family and less of it watching television (something the average American spends a whopping two months a year doing, and is <b style="background:#fef9c3">hardly jollier</b> for it).</span><br>
+      译：少看电视（美国人每年平均花在这上面的时间长达两个月，<b>却并未因此更快乐</b>）。<br>
+      <b>22. 作者对美国人看电视的态度？</b> [A] critical 批评的 · [B] supportive 支持的 · [C] sympathetic 同情的 · [D] ambiguous 模棱两可的<br>
+      <b>正确答案 A。</b><span class="en">hardly jollier</span> 是否定式贬义 + <span class="en">whopping</span>（大得惊人的）带讥讽色彩。D 是小墓碑选项。
+    </div>
+
+    <h3>🪦 小墓碑选项表（出现即排除）</h3>
+    <p class="gray-note">唐迟老师称之为「小墓碑选项」。<b>底层逻辑：</b>作者愿意写这篇文章，就必然有态度 → 「无态度」必错；作者面向大众读者发行 → 「失公允 / 极端」必错。</p>
+    <div class="pills">
+      <span class="pill bad">indifferent <i>冷漠的</i></span>
+      <span class="pill bad">unconcerned <i>不关心的</i></span>
+      <span class="pill bad">uninterested <i>不感兴趣的</i></span>
+      <span class="pill bad">tolerant <i>容忍的</i></span>
+      <span class="pill bad">ambiguous <i>模棱两可</i></span>
+      <span class="pill bad">uncertain <i>不确定的</i></span>
+      <span class="pill bad">puzzled <i>困惑的</i></span>
+      <span class="pill bad">perplexed <i>困惑的</i></span>
+      <span class="pill bad">confused <i>迷惑的</i></span>
+      <span class="pill bad">biased <i>有偏见的</i></span>
+      <span class="pill bad">prejudiced <i>有成见的</i></span>
+      <span class="pill bad">subjective <i>主观的</i></span>
+      <span class="pill bad">contemptuous <i>蔑视的</i></span>
+      <span class="pill bad">scornful <i>轻蔑的</i></span>
+      <span class="pill bad">detached <i>超然的</i></span>
+      <span class="pill bad">exaggerated <i>疯狂吹嘘</i></span>
+      <span class="pill bad">hopeless <i>无可救药</i></span>
+    </div>
+    <div class="warn">态度题里 <b>tolerant / uncertain</b> 是最高频的两个错误答案（讲义原话：「B 和 C 又是典型的错误答案」）。看到它们，先排掉再想别的。</div>
+
+    <h3>✅ 高频正确选项表</h3>
+    <table>
+      <tr><th style="width:26%">类别</th><th>常见词</th></tr>
+      <tr><td><b>中立客观</b></td><td><span class="en">objective / neutral / impartial / cautious</span></td></tr>
+      <tr><td><b>有保留的肯定 / 否定（批判）</b></td><td><span class="en">critical / skeptical / questioning / reserved</span></td></tr>
+      <tr><td><b>探讨性</b></td><td><span class="en">exploratory / speculative</span></td></tr>
+      <tr><td><b>正向支持</b></td><td><span class="en">supportive / approving / appreciative / optimistic</span></td></tr>
+      <tr><td><b>负向质疑</b></td><td><span class="en">doubtful / disapproving / concerned / worried</span></td></tr>
+      <tr><td><b>站弱势方</b></td><td><span class="en">sympathetic</span> <span class="gray-note">（文中两事物对立时）</span></td></tr>
+    </table>
+
+    <h3>Monkey 四原则</h3>
+    <ol>
+      <li>作者一般与<b>广大人民群众</b>站在一起（考虑到受众和阅读量）。</li>
+      <li>作者<b>很少站在资本家的角度</b>（偶尔站在企业家的角度，主要是提供一些改革建议）。</li>
+      <li>某选项<b>无态度</b>或<b>有失公允</b>，均错误。</li>
+      <li>某选项<b>疯狂吹嘘</b>，或者讨论该事物已经<b>坏到无可救药</b>，也一般是错的。</li>
+    </ol>
+    <div class="hook">态度题一句话口诀：<b>「有态度的中庸派」</b> —— 作者一定有态度（排掉冷漠/容忍/模糊），但态度一定不极端（排掉蔑视/吹嘘/绝望）。</div>
+  </div>
+</section>
+
+<!-- ================= 七、正确选项套路 ================= -->
+<section class="card s6" id="c7">
+  <div class="ch-head"><div class="ch-num">七</div><h2>正确选项 · 3 大套路 + 6 小套路</h2><div class="tag">同义改写是第一性</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="law">命题组设置正确选项的<b>一个大原则</b>：<b>真正的正确答案一定是在定位区间有过暗示的！</b>这是命题组最根本的一个原则，<b>所有的命题套路无出其右</b>。</div>
+
+    <h3>3 个大套路（命题组最常用，频率非常高）</h3>
+    <table>
+      <tr><th style="width:20%">套路</th><th style="width:34%">特征</th><th>真题示例</th></tr>
+      <tr>
+        <td><b>1 · 同义改写</b></td>
+        <td>不会直接照抄原文原词（尤其是<b>核心名词、动词</b>），而是用<b>近义词、反义词、短语替换、词性转换、概括性表述</b>等方式改写。</td>
+        <td><span class="gray-note">2010 英一 T1</span><br>原文 <span class="en">the brain's plasticity allows it to <b>reorganize</b> itself</span><br>正确项 <span class="en">The brain can <b>reshape</b> itself through learning</span><br><b>名转动，核心概念一致：大脑可以重塑。</b></td>
+      </tr>
+      <tr>
+        <td><b>2 · 与主旨密切相关</b></td>
+        <td>① 选项中包含文章<b>反复出现的核心概念词汇</b>或其同义改写；② 能<b>概括一段或全文核心论点</b>；③ 与<b>作者观点保持一致</b>。</td>
+        <td><span class="gray-note">抽象动词 → 具体事物</span><br>原文 <span class="en">The policy might <b>exacerbate social inequality</b></span><br>正确项 <span class="en">The measure could <b>widen the gap between rich and poor</b></span><br>加剧不平等 → 扩大贫富差距。</td>
+      </tr>
+      <tr>
+        <td><b>3 · 委婉与中庸</b></td>
+        <td>① 经常有<b>情态动词</b>（<span class="en">may, might, could, possible, probable</span>）和<b>程度副词</b>（<span class="en">often, sometimes, largely, frequently, not necessarily</span>）等表示可能性的词汇；<br>② 表达具有<b>限定性和客观性</b>，绝对化词（<span class="en">never, all, every, always, absolutely, must</span>）大概率不出现在正确选项里。<br><b>★ 但真理性和常识性判断是可以绝对化的。</b></td>
+        <td><span class="gray-note">2015 英一 T4</span><br>原文 <span class="en">Government policies <b>might</b> influence public behavior, though evidence is <b>inconclusive</b></span><br>正确项 <span class="en">Official measures <b>may not necessarily</b> help modify citizen actions</span><br><b>保留了不确定性：</b><span class="en">might → may</span>，<span class="en">inconclusive → not necessarily</span>。</td>
+      </tr>
+    </table>
+    <div class="case"><span class="ct">▍绝对化选项反例（错误示范）· 2018 英语二 Text 1</span>
+      原文 <span class="en"><b>In some cases</b>, corporate mergers <b>reduce</b> market competition.</span>（在某些情况下，企业合并会减少市场竞争）<br>
+      错误项 <span class="en">Business integrations <b>inevitably harm</b> fair competition.</span><br>
+      <b>错误点：双偷换</b> —— ① <span class="en">some cases → inevitably</span>（特例变绝对必然）；② <span class="en">reduce → harm</span>（弱程度变强程度）。
+    </div>
+
+    <h3>6 个小套路</h3>
+    <table>
+      <tr><th style="width:8%">#</th><th style="width:26%">套路</th><th style="width:12%">频率</th><th>操作要点</th></tr>
+      <tr><td>1</td><td><b>更具概括性</b></td><td>中高频</td><td>表述越<b>具体</b>的选项越容易出错（断章取义、表达不完整），越<b>概括</b>的选项越容易是正确答案。把原文的具体细节、事例、数据进行<b>总结概括</b>，选项通常比原文更精炼或范围更广。</td></tr>
+      <tr><td>2</td><td><b>排除干扰后剩下的那个</b></td><td>中高频</td><td>颉斌斌的<b>「选项比错」</b>：排除掉有明显硬伤的选项，在剩下的选项里选择错误没那么多的。<b>细节题和推理题用得最多</b>，一般排除俩之后极限二选一。紧盯四种硬伤：<b>与原文信息直接矛盾 / 偷换概念 / 绝对化表达 / 无中生有</b>。</td></tr>
+      <tr><td>3</td><td><b>难的可能是正确选项</b></td><td>中频</td><td>否定的 &gt; 肯定的（包括双重、多重否定）；抽象深刻的 &gt; 具体肤浅的；<b>动态变化的</b> &gt; 静态的；<b>未知的</b> &gt; 已知的。</td></tr>
+      <tr><td>4</td><td><b>正面积极、符合逻辑的</b></td><td>中频</td><td>正面积极、符合逻辑的可能是正确选项；内容负面消极、不符合逻辑的不是。</td></tr>
+      <tr><td>5</td><td><b>观点新且合理的</b></td><td>低频</td><td>常规的不是答案，观点新且合理的是答案。</td></tr>
+      <tr><td>6</td><td><b>含义相反的两项有一对</b></td><td>低频</td><td>四个选项中若有两个含义相反，其中<b>有一个是正确的</b> —— 命题人喜欢用「正反颠倒」造干扰项，副作用就是它和正确答案成对出现。</td></tr>
+    </table>
+    <div class="tip"><span class="who bo">菠萝喵</span><b>概括 ≠ 模糊！</b>正确选项必须<b>完全覆盖原文核心信息</b>，而错误选项才是拘泥于细节的。<br><span class="gray-note">→ 判别方法：把概括项拆回去，看能不能还原出原文那几条细节。能还原 = 概括；还原不了 = 模糊/以偏概全。</span></div>
+    <div class="case"><span class="ct">▍概括性示范 · 2015 英语二 Text 1（段落主旨题）</span>
+      原文细节：研究表明多任务处理 → ① 降低生产力 40%；② 错误率增加 50%；③ 妨碍创造性思维。<br>
+      正确项 <span class="en">Multitasking has <b>detrimental effects</b> on work performance.</span><br>
+      <b>三条具体表现 → 概括为「不利影响」。</b>任何一个只说其中一条的选项都是错的。
+    </div>
+
+    <h3>识别同义改写 · 五种形态（第 07 节）</h3>
+    <table>
+      <tr><th style="width:22%">形态</th><th style="width:34%">说明</th><th>例</th></tr>
+      <tr><td><b>① 近义词</b></td><td>最常见，整理自唐迟《词汇的逻辑》</td><td><span class="en">are wary of → approach with caution</span>；<span class="en">challenged → questioned</span>；<span class="en">hinges on → depends heavily on</span></td></tr>
+      <tr><td><b>② 代词 + 名词</b></td><td>遇到 <span class="en">this / that / these / those / such / the</span> + 名词的结构，往往意味着<b>前文提到的内容在这里进行了同义改写</b>。<br><b>指代原则：</b>优先指代前文的<b>主语</b>、或者<b>核心内容</b>或<b>前文整体内容</b>。</td><td><span class="en">… a considerable number of the most significant <b>collections of criticism</b> … consisted of newspaper reviews. To read <b>such books</b> today …</span><br>→ <span class="en">such books</span> = <span class="en">collections of criticism / newspaper reviews</span></td></tr>
+      <tr><td><b>③ 词性转换</b></td><td>名词 ↔ 动词、形容词短语 ↔ 动词短语</td><td><span class="en">reorganize → reshape</span>；<span class="en">are wary of → approach with caution</span></td></tr>
+      <tr><td><b>④ 反义对比 → 正向概括</b></td><td>原文用「不是 A 而是 B」，选项直接说 B</td><td><span class="en">not a static body … but a dynamic process → constantly evolving</span></td></tr>
+      <tr><td><b>⑤ 具体条件 → 抽象概括</b></td><td>原文的 if 从句被抽象成范围状语</td><td><span class="en">if applied without considering local context → under certain circumstances</span></td></tr>
+    </table>
+    <div class="tip"><span class="who bo">菠萝喵</span>「代词 + 名词」<b>指代名词的概率比较大</b>，它也遵循<b>就近原则</b>，重点看前一句。</div>
+    <div class="case"><span class="ct">▍同义改写解题实战 · 2009 英语一 Text 1</span>
+      原文 <span class="en">We reach for them <b>mindlessly</b>, setting our brains on <b>auto-pilot</b> and relaxing into the <b>unconscious</b> comfort of familiar routine.</span><br>
+      <b>22. In Wordsworth's view, "habit" is claimed by being ___ .</b><br>
+      <span class="gray-note">[A] casual 随意的 · [B] familiar 熟悉的 · [C] mechanical 机械的 · [D] changeable 易变的</span><br>
+      <b>思路 2：</b>找到关键词 <span class="en">auto-pilot</span>，其中的 <span class="en">auto</span> 和 C 选项「机械的」比较搭配。<br>
+      <b>思路 3：</b><b>选项比错</b> —— 段落表达的是「无意识的」，A、C 都能表现出这个意思；二选一时发现 <b>C「机械的」更合适</b>。<br>
+      <b>坑：</b>B「familiar」是<b>原词照抄</b>（原文 <span class="en">familiar routine</span>），照抄原词的选项通常不是答案 —— 这正是大套路 1 的反面。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 八、错误选项11套路 ================= -->
+<section class="card s7" id="c8">
+  <div class="ch-head"><div class="ch-num">八</div><h2>错误选项 · 11 套路</h2><div class="tag">复盘必用 · 按频率排</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>这张频率表是<b>整个手册里最该背下来的一张</b>。复盘时给每道错题贴一个标签，一个月后统计自己最常掉进哪个坑 —— 那就是你的专属薄弱点。</p>
+    <div class="bars">
+      <div class="bar-row"><span class="bar-name">偷换程度</span><div class="bar-track"><div class="bar-fill" data-w="94"></div></div><span class="bar-pct">28.3%</span></div>
+      <div class="bar-row"><span class="bar-name">偷换概念</span><div class="bar-track"><div class="bar-fill" data-w="87"></div></div><span class="bar-pct">26.1%</span></div>
+      <div class="bar-row"><span class="bar-name">无中生有</span><div class="bar-track"><div class="bar-fill" data-w="62"></div></div><span class="bar-pct">18.7%</span></div>
+      <div class="bar-row"><span class="bar-name">正反颠倒</span><div class="bar-track"><div class="bar-fill" data-w="35"></div></div><span class="bar-pct">10.5%</span></div>
+      <div class="bar-row"><span class="bar-name">拼凑歪曲</span><div class="bar-track"><div class="bar-fill cold" data-w="23"></div></div><span class="bar-pct">6.8%</span></div>
+      <div class="bar-row"><span class="bar-name">以偏概全</span><div class="bar-track"><div class="bar-fill cold" data-w="16"></div></div><span class="bar-pct">4.9%</span></div>
+      <div class="bar-row"><span class="bar-name">常识套用</span><div class="bar-track"><div class="bar-fill cold" data-w="14"></div></div><span class="bar-pct">4.3%</span></div>
+      <div class="bar-row"><span class="bar-name">时间线干扰</span><div class="bar-track"><div class="bar-fill cold" data-w="12"></div></div><span class="bar-pct">3.7%</span></div>
+      <div class="bar-row"><span class="bar-name">绝对化用词</span><div class="bar-track"><div class="bar-fill cold" data-w="9"></div></div><span class="bar-pct">2.6%</span></div>
+      <div class="bar-row"><span class="bar-name">虚实混杂</span><div class="bar-track"><div class="bar-fill cold" data-w="7"></div></div><span class="bar-pct">2.1%</span></div>
+      <div class="bar-row"><span class="bar-name">过度推理</span><div class="bar-track"><div class="bar-fill cold" data-w="6"></div></div><span class="bar-pct">1.9%</span></div>
+    </div>
+    <div class="hook">前四类（偷换程度 + 偷换概念 + 无中生有 + 正反颠倒）合计 <b>83.6%</b>。<b>复盘时先在这四类里找错因</b>，命中率最高；剩下七类是低频补充。</div>
+    <div class="warn">注意：11 个频率相加是 <b>109.9%</b>，不是 100% —— 因为这是<b>多标签</b>统计：<b>一道干扰项可以同时命中多类</b>（讲义自己的例子就有「双偷换」：<span class="en">may→must</span> 且 <span class="en">some→all</span>）。<b>复盘贴标签时允许一题贴 2 个</b>，别为了凑成单选而扭曲错因；网站端的错因统计也按多标签计。</div>
+
+    <table>
+      <tr><th style="width:15%">套路</th><th style="width:31%">命题人怎么干</th><th>识别标志 &amp; 真题例</th></tr>
+      <tr>
+        <td><b>1 偷换程度</b><br><span class="gray-note">28.3%</span></td>
+        <td>改变原意的<b>程度或情态</b>，把程度变弱了或者变强了。</td>
+        <td><b>标志：</b>情态动词被换掉（<span class="en">may→must / could→will</span>）、范围被换掉（<span class="en">some→all / specific→across all</span>）、强弱词被换掉（<span class="en">reduce→harm</span>、<span class="en">significantly→slightly</span>）<br><b>例：</b>原文 <span class="en">Social media <b>may</b> trigger anxiety in <b>some</b> teenagers</span> → 干扰项 <span class="en">Online platforms <b>must</b> cause mental illness in <b>all</b> adolescents</span>（<b>双偷换</b>）</td>
+      </tr>
+      <tr>
+        <td><b>2 偷换概念</b><br><span class="gray-note">26.1%</span></td>
+        <td>将原文中<b>行为的实施者</b>，或者<b>主语、宾语</b>等进行偷换。</td>
+        <td><b>标志：</b>动作主体换了、动作性质换了、比较维度换了<br><b>例1：</b>原文 <span class="en"><b>Nonprofit organizations</b> <b>monitor</b> corporate carbon emissions</span> → 干扰项 <span class="en"><b>Government agencies</b> <b>regulate</b> industrial pollution</span>（主体 + 性质双换）<br><b>例2：</b>原文 <span class="en">Organic farms use 30% less <b>energy</b></span> → 干扰项 <span class="en">Organic farms produce 30% less <b>output</b></span>（能耗 ↔ 产量，比较维度被换）</td>
+      </tr>
+      <tr>
+        <td><b>3 无中生有</b><br><span class="gray-note">18.7%</span></td>
+        <td>编出一些<b>貌似正确但原文里没有提到</b>的信息。</td>
+        <td><b>标志：</b>选项里出现了原文从未提及的新名词、新结论<br><b>例：</b>原文 <span class="en">Online reviews <b>influence</b> purchasing decisions</span> → 干扰项 <span class="en">Customer feedback <b>determines product design modifications</b></span>（① 添加结果：design modifications 原文未提及；② 强化程度：influence → determines）</td>
+      </tr>
+      <tr>
+        <td><b>4 正反颠倒</b><br><span class="gray-note">10.5%</span></td>
+        <td>编出一个选项，它的<b>语义</b>或者<b>作者的情感态度</b>与原文相反。</td>
+        <td><b>标志：</b>反义动词对照 <span class="en">reduce ↔ increase</span>、<span class="en">improve ↔ reduce</span>、<span class="en">criticize ↔ praise</span><br><b>例：</b>原文 <span class="en">The author <b>criticizes</b> fast fashion for exploiting labor</span> → 干扰项 <span class="en">The author <b>praises</b> fast fashion for protecting workers' rights</span></td>
+      </tr>
+      <tr>
+        <td><b>5 信息拼凑 / 歪曲</b><br><span class="gray-note">6.8%</span></td>
+        <td><b>拼凑：</b>从原文<b>不同的句子</b>中截取碎片信息胡乱拼凑。<br><b>歪曲：</b>从原文中截取部分碎片化信息，故意对其进行歪曲。</td>
+        <td><b>标志：</b>选项的每一半都能在原文找到出处，但<b>拼在一起是错的</b>（跨段嫁接、跨阶段嫁接）<br><b>例：</b>段1 <span class="en">Blockchain enhances data security</span> + 段3 <span class="en">Digital ledgers reduce transaction costs</span> → 干扰项 <span class="en">Cryptocurrencies achieve <b>secure and low-cost</b> deals</span>（secure 取自段1，low-cost 取自段3）</td>
+      </tr>
+      <tr>
+        <td><b>6 以偏概全</b><br><span class="gray-note">4.9%</span></td>
+        <td>把<b>局部特征扩大为整体结论</b>。</td>
+        <td><b>标志：</b><span class="en">some → all</span>；<b>删掉时间 / 条件限定</b>（<span class="en">during economic recessions → regardless of economic conditions</span>）；<b>动物实验 → 人类</b>；<b>延缓 → 治愈</b><br><b>例：</b>原文 <span class="en">In controlled lab settings, a new drug <b>slowed</b> disease progression in 60% of <b>mice</b></span> → 干扰项 <span class="en">The new drug can <b>cure</b> 60% of <b>patients</b></span></td>
+      </tr>
+      <tr>
+        <td><b>7 常识套用</b><br><span class="gray-note">4.3%</span></td>
+        <td>用<b>生活常识替代原文信息</b>，等着你用生活经验脑补。</td>
+        <td><b>标志：</b>选项读起来「说得通」，但原文没有这句话<br><b>例：</b>原文 <span class="en">Online interaction <b>correlates with</b> loneliness <b>in some studies</b></span> → 干扰项 <span class="en">Social media <b>inevitably causes</b> social isolation</span>（相关 ≠ 因果 + 绝对化）</td>
+      </tr>
+      <tr>
+        <td><b>8 时间线干扰</b><br><span class="gray-note">3.7%</span></td>
+        <td>混淆<b>事件时序</b>与<b>因果关系</b>。</td>
+        <td><b>标志：</b>选项里的先后顺序与原文相反，或把「因为」说成「之后」<br><b>例：</b>原文 <span class="en">Clinical trials (B) should <b>follow</b> preclinical assessments (A)</span> → 干扰项 <span class="en">Human trials (B) were conducted <b>before</b> animal tests (A) completed</span>（A→B 被颠倒成 B→A）</td>
+      </tr>
+      <tr>
+        <td><b>9 绝对化用词</b><br><span class="gray-note">2.6%</span></td>
+        <td>用 <span class="en">only / must / exclusively / never / all</span> 这样的绝对化用词，把选项设置得很绝对。</td>
+        <td><b>例：</b>原文 <span class="en">AI <b>may assist</b> in early disease detection</span> → 干扰项 <span class="en">Machine learning <b>will definitely replace</b> doctors</span>（may → will definitely；assist → replace）</td>
+      </tr>
+      <tr>
+        <td><b>10 虚实混杂</b><br><span class="gray-note">2.1%</span></td>
+        <td><b>半句真半句假。</b></td>
+        <td><b>例：</b>原文1 <span class="en">Apps collect location data</span>；原文2 <span class="en">Data may be sold to advertisers</span><br>干扰项 <span class="en">Tech firms <b>legally</b> sell user GPS records <b>to governments</b></span><br><b>真的</b>：科技公司可以把数据卖给别人；<b>假的</b>：可以「合法地」卖给「政府」。<br><span class="gray-note">→ 对策：<b>选项必须整句都对</b>，只要有半句无原文对应就排除。</span></td>
+      </tr>
+      <tr>
+        <td><b>11 过度推理</b><br><span class="gray-note">1.9%</span></td>
+        <td>根据原文信息，做了一种<b>貌似合理的推理</b>。</td>
+        <td><b>例：</b>原文 <span class="en">Solar power <b>could potentially</b> replace fossil fuels</span> → 干扰项 <span class="en">Renewable energy <b>will inevitably dominate</b> global markets</span>（太阳能→全部可再生能源；可能取代→必然主导，推了两级）</td>
+      </tr>
+    </table>
+    <div class="tip"><span class="who bo">菠萝喵</span>选项含以下词<b>且无原文对应</b>时，<b>98% 为绝对化干扰</b>：<br>
+      <div class="pills" style="margin-top:7px">
+        <span class="pill bad">fully</span><span class="pill bad">entirely</span><span class="pill bad">absolutely</span>
+        <span class="pill bad">inevitably</span><span class="pill bad">invariably</span><span class="pill bad">undoubtedly</span>
+        <span class="pill bad">only</span><span class="pill bad">exclusively</span><span class="pill bad">never</span>
+        <span class="pill bad">all</span><span class="pill bad">every</span><span class="pill bad">always</span>
+        <span class="pill bad">must</span><span class="pill bad">definitely</span>
+      </div>
+    </div>
+    <div class="warn">「偷换程度」和「绝对化用词」看起来像一类，其实是两类：前者是<b>把原文的程度改掉了</b>（原文有依据但被扭曲），后者是<b>凭空加了绝对词</b>（原文根本没这个判断）。复盘时分开记，能更精准定位自己是在「比对」上失手还是在「语气」上失手。</div>
+  </div>
+</section>
+
+<!-- ================= 九、做题技巧 ================= -->
+<section class="card s8" id="c9">
+  <div class="ch-head"><div class="ch-num">九</div><h2>做题铁律 · 四条 + 极限二选一</h2><div class="tag">拒绝脑补</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="law">拒绝黄 · 拒绝赌 · <b>拒绝脑补！拒绝脑补！拒绝脑补！</b></div>
+    <table>
+      <tr><th style="width:16%">铁律</th><th style="width:20%">出处</th><th>完整表述</th></tr>
+      <tr>
+        <td><b>1 不要过度理解</b></td>
+        <td>全书底线</td>
+        <td>不能是依靠你<b>脑补</b>出来的东西把这个选项选了或者排除了，<b>一定要在原文中找到依据才行</b>。你在做题的时候充满了主观的判断，但是题目考查的不是你的观点，千万别根据自己的知识和生活经验脑补 —— <b>所有的答案都在文章里，是客观存在的，只跟作者有关，跟你无关。</b></td>
+      </tr>
+      <tr>
+        <td><b>2 细节服从主旨</b></td>
+        <td><span class="who tang">唐迟</span><span class="gray-note">至理名言</span></td>
+        <td>如果有一道题你就是选不出来，这时候去看下<b>哪个选项与全文主旨一致就选哪个</b>。反过来，如果它与中心主旨不符，那这个选项就可以<b>排除</b>掉了。<br><span class="gray-note">→ 双向使用：既能「选」，也能「排」。</span></td>
+      </tr>
+      <tr>
+        <td><b>3 答案是比较出来的</b><br><span class="gray-note">不是选出来的</span></td>
+        <td><span class="who xie">颉斌斌</span><span class="gray-note">「选项比错」</span></td>
+        <td>经过反复比较之后，选择一个<b>出错概率最小</b>的选项。三步操作：① <b>排除掉一定错的</b> → ② <b>排除掉相对不好的</b> → ③ <b>选择那个排除不掉的</b>。</td>
+      </tr>
+      <tr>
+        <td><b>4 主旨题在最后一题</b></td>
+        <td><span class="who monkey">Monkey</span></td>
+        <td>做主旨题的时候，要注意<b>首尾句</b>还有<b>转折词</b>，这几个地方一般会出现答案。</td>
+      </tr>
+    </table>
+
+    <h3>极限二选一怎么办（唐迟两法）</h3>
+    <div class="step"><div class="sn">A</div><div class="sb">
+      <div class="st">去同存异法</div>
+      <div class="sd">把这两个选项中<b>相同的单词去掉</b>，它们的<b>差异点就会被放大凸显</b>出来，然后你再拿这些信息和原文去比较，这样就能更加准确地排除掉那个错误选项。</div>
+    </div></div>
+    <div class="step"><div class="sn">B</div><div class="sb">
+      <div class="st">主旨回归法</div>
+      <div class="sd">遵循<b>细节服从主旨</b>的原则，你看这俩捣不准的选项，<b>哪一个跟原文中心主旨的意思相近，你就选哪个</b>。</div>
+    </div></div>
+
+    <h3>四条隐形信号（容易忽略但很好用）</h3>
+    <ul>
+      <li><b>作者观点一般是少数派。</b>选项里「大家都这么认为」的那个，往往不是作者的观点。</li>
+      <li><b>情态动词后藏着作者态度。</b><span class="en">should / would / could / must / can / may / might</span> 之后往往会出现<b>主观的看法或愿望</b>，这些就是和作者态度相关的，也就跟全文的中心思想有关。</li>
+      <li><b>作者描述态度的时候多为第一人称。</b>看到 <span class="en">I / we / our</span> 要立刻提高警觉。</li>
+      <li><b>态度题选项出现小墓碑词，坚决不选。</b>详见第六章词表。</li>
+    </ul>
+
+    <div class="case"><span class="ct">▍多思路解题示范 · 2016 英语一 Text 3（第 34 题）</span>
+      <b>题干：</b>When prosecutors evaluate a case, a company's CSR record ___ .（当检察官评估一个案例时，一家公司的 CSR 记录会 ___ ）<br>
+      <span class="gray-note">[A] has an impact on their decision 对他们的决定有影响<br>
+      [B] comes across as reliable evidence 被看作可靠的根据<br>
+      [C] increases the chance of being penalized 增加了企业被处罚的可能性<br>
+      [D] constitutes part of the investigation 是调查的一个组成部分</span><br>
+      <b>思路一：</b>阅读全文，定位到第五段硬碰硬。<br>
+      <b>思路二：</b>容易成为正确选项的词 —— <b>「影响」</b>（范國大、委婉、不绝对）。<br>
+      <b>思路三：</b><b>[A] 包含了 [B]、[D] 的意思，是内容全面的选项。</b><br>
+      <b>正确答案 A。</b>
+      <div class="tip" style="margin-top:9px">更妙的一步：还没读文章时，第 32 题题干里的 <span class="en">CSR <b>helps</b> a company</span> 已经说明作者对 CSR 的态度是<b>认同的，至少不是反对的</b> —— 这样就能直接排除 34 题的 <b>C</b>（增加被处罚可能性）。<br><b>→ 题干与题干之间也有逻辑关系，串读题干不只是定位，还能互相排除。</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 十、蒙题技巧 ================= -->
+<section class="card s9" id="c10">
+  <div class="ch-head"><div class="ch-num">十</div><h2>蒙题技巧</h2><div class="tag">实在不会时才用</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="warn">前提：以下所有方法都是<b>实在选不出来时的兵家必争之地</b>，不是平时的做题习惯。北大菠萝喵学姐原话：<b>阅读技巧的使用是建立在你能看懂文章的前提之上的。</b></div>
+    <table>
+      <tr><th style="width:6%">#</th><th style="width:26%">方法</th><th>原理与操作</th></tr>
+      <tr><td>1</td><td><b>选含糊词</b></td><td>选项里这种很含糊的词，比如<b>作用、影响、关系</b>，因为这些词<b>范围比较大，怎么解释都对</b>，所以错的概率小。<span class="gray-note">（对应第七章大套路 3「委婉中庸」的逆向应用）</span></td></tr>
+      <tr><td>2</td><td><b>避开例子</b></td><td><b>例子里一般没有正确答案，答案藏在例子前后。</b>选项如果只是在复述例子内部的细节，基本可以排除。</td></tr>
+      <tr><td>3</td><td><b>内在一致性</b></td><td>因为 5 个阅读题都是<b>围绕同一篇文章</b>命题的，所以答案必然具有<b>内在一致性</b>。如果你选的五个答案彼此矛盾，一定有一个错。</td></tr>
+      <tr><td>4</td><td><b>选项分布规律</b></td><td>研究选项分布规律：一篇 5 题的 ABCD 分布<b>大致均衡</b>，很少出现某个字母占 3 个以上。已确定答案的题可作为未确定题的参考。</td></tr>
+      <tr><td>5</td><td><b>题干串读预判</b></td><td>题干重复词 = 主旨词。<b>与主旨词无关的选项先排除</b>。这是不读文章就能白捐分的一步。</td></tr>
+    </table>
+    <div class="case"><span class="ct">▍串读预判实战 · 2012 英语二 Text 3（基因专利）</span>
+      <b>Step 1 找主旨词：</b>32、33、35 题的题干中都出现了 <span class="en">gene patent</span> 的相关表达 → 主题关键词就是它。<br>
+      <b>Step 2 预判 31 题：</b>第 33 题的题干信息刚好回答了第 31 题。<b>31 题问公司想要什么，33 题问公司想要赢得专利的目的是什么</b> → 可知 31 题的答案应该是<b>公司要赢得专利</b>。于是：A「他们的经理更活跃」、D「BIO 组织发布一个警告」均与「基因专利」无关 → <b>直接排除 A、D</b>。<br>
+      <b>Step 3 不认识的词也能推：</b>如果对 <span class="en">rule out</span> 这一动词词组不熟悉，重点可以放在介词 <span class="en"><b>out</b></span> 上 —— <span class="en">out</span> 通常表示「在……外面」，可以推测 <span class="en">rule out</span> 表达的是<b>否定的逻辑</b>。于是 B 是否定基因专利，C 是肯定基因专利 → <b>C 可能性最高</b>。<br>
+      <b>Step 4 预判 34 题：</b>根据「细节服从主旨」，未读文章也能预判该题答案应与「基因专利」相关 → 四个选项里<b>只有 C</b>（genepatenting was a great concern）与这一内容有关 → 先预判选 C，再回文中验证。
+      <div class="tip" style="margin-top:9px"><span class="who bo">菠萝喵</span>个人感觉这边有点<b>看着答案倒推过程</b>了，我们只要能排除 A、D 就够啦。大家学习的时候也要<b>学会批判</b>，觉得不对劲的地方相信自己的判断。</div>
+    </div>
+    <div class="law">正途：好好背单词 → 好好练习长难句翻译 → 提升翻译能力 → <b>再</b>辅助一些阅读技巧 → 大量练习真题、复盘真题。不要抱着投机取巧的心态去学。</div>
+  </div>
+</section>
+
+<!-- ================= 十一、六大题型速查 ================= -->
+<section class="card s10" id="c11">
+  <div class="ch-head"><div class="ch-num">十一</div><h2>六大题型速查</h2><div class="tag">标志词 → 打法 → 坑</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>考场上看到题干，<b>先判题型，再选打法</b>。题型一错，后面全错。</p>
+    <table>
+      <tr><th style="width:11%">题型</th><th style="width:23%">题干标志词</th><th style="width:36%">核心打法</th><th>高频坑</th></tr>
+      <tr>
+        <td><b>细节题</b></td>
+        <td><span class="en">According to … / The author indicates … / Which of the following is true … / Paragraph X</span></td>
+        <td>① 用定位词回原文找句（题目找段、选项找句）；② 把选项<b>逐个词</b>与定位句比对，找同义改写；③ <b>动词对不上就直接排除</b>（名词容易同义改写，动词是命题人下手最重的地方）。</td>
+        <td>偷换概念（主体/宾语被换）、无中生有、原词照抄</td>
+      </tr>
+      <tr>
+        <td><b>推理题</b></td>
+        <td><span class="en">infer / imply / suggest / learn from / conclude / It can be inferred</span></td>
+        <td>① 定位句 + <b>前后各一句</b>一起读；② <b>推理 ≠ 脑补</b>：考研的推理题，答案往往就是<b>原文的同义改写</b>，只比原文多走半步；③ 选「推得最近」的，不选「推得最远」的。</td>
+        <td>过度推理、常识套用</td>
+      </tr>
+      <tr>
+        <td><b>例证题</b></td>
+        <td><span class="en">example / cited / used to / the case of / mention … to</span></td>
+        <td>① <b>例子本身不是答案</b>，它的作用是辅证；② <b>重要的内容在例子前后</b>，重点是例子<b>前一句</b>的观点句；③ 2024 英一「烧房取钉」例：观点句就在例子后（<span class="en">underlines how scarce, costly and valuable</span>）。</td>
+        <td>选项复述例子细节 = 以偏概全</td>
+      </tr>
+      <tr>
+        <td><b>态度题</b></td>
+        <td><span class="en">attitude / view / tone / regard … as / feel about</span></td>
+        <td>见第六章三把钥匙：① 感情色彩词；② 转折词后；③ 情态动词后。<b>先排小墓碑选项，再在剩下的里找。</b>注意区分<b>作者态度 vs 文中人物态度</b>（题干问的是谁？）。</td>
+        <td>tolerant / uncertain / indifferent / biased 四大坑</td>
+      </tr>
+      <tr>
+        <td><b>词汇题</b></td>
+        <td><span class="en">closest in meaning to / the expression "X" (Para. N) / the word "X" most probably means</span></td>
+        <td>① <b>代入原句</b>，把选项逐个填回去读；② 看<b>逻辑连接词</b>（<span class="en">and / but / or</span>）先定<b>袋贬方向</b>；③ 再用<b>构词法</b>验证；④ 2016 英一 T3 <span class="en">more lenient</span> 就是典型：靠上下文「处罚变轻」定方向。</td>
+        <td>只凭该词的<b>常见义</b>选 —— 考的就是<b>熟词僻义 / 语境义</b></td>
+      </tr>
+      <tr>
+        <td><b>主旨题</b></td>
+        <td><span class="en">mainly about / the best title / main idea / purpose / the text is mainly</span></td>
+        <td>① <b>95% 在最后一题</b>；② 串读首句法为主，中心词法 + 首尾段问句/独段句法为辅（见第五章）；③ <b>正确项必须覆盖全部中心词</b>；④ 拿不准时看哪个选项<b>与作者态度一致</b>。</td>
+        <td>以偏概全（只覆盖某段）、<b>范围扩大</b>（对但说太大）、无中生有</td>
+      </tr>
+    </table>
+    <div class="case"><span class="ct">▍「范围扩大」专题示范 · 2010 英语二 Text 1（艺术品市场）</span>
+      <b>首句串读：</b>① 一个世纪以来最长的牛市结束了 → ② 全球艺术品市场失去了原有的势头 → ③ 牛市结束后再去购买艺术品是不合时宜的 → ④ 目前艺术品市场的低迷是最糟糕的一次 → ⑤ 仍然在说艺术品市场的衰退。<br>
+      <span class="gray-note">[A] Fluctuation of Art Prices 艺术价格的波动 · [B] Up-to-date Art Auctions 最新的艺术拍卖 · [C] Art Market in Decline 衰退中的艺术品市场 · [D] Shifted Interest in Arts 对艺术兴趣的转移</span>
+      <table style="margin-top:8px">
+        <tr><th style="width:10%">选项</th><th style="width:18%">错误类型</th><th style="width:10%">出处</th><th>分析</th></tr>
+        <tr><td>A</td><td><b>范围扩大</b></td><td>段 IV</td><td>波动有可能向上也有可能向下，而文中谈论的是<b>衰退</b> → 扩大了范围。</td></tr>
+        <tr><td>B</td><td><b>以偏概全</b></td><td>段 I、III</td><td>拍卖仅在第一段和第三段出现的<b>细节信息</b>，无法概括全文主旨。</td></tr>
+        <tr><td>D</td><td><b>过度推理</b></td><td>段 III</td><td>文中只说艺术品消费变得不合时宜，但这<b>并不代表消费者兴趣转移了</b>。</td></tr>
+      </table>
+      <b>正确答案 C。</b>五段首句全在说同一件事：衰退。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 十二、完型填空 ================= -->
+<section class="card s14" id="c15">
+  <div class="ch-head"><div class="ch-num">十二</div><h2>完型填空 · 逻辑衔接词四分类</h2><div class="tag">讲义外补充 · 你的实测盲区</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="law">糖三角讲义只覆盖阅读，但完型是 10 分的实打实分值。<b>完型与阅读共用同一套底层逻辑：句间逻辑信号词。</b>你的实测数据：2006 完型 7 道错题里 <b>5 道是逻辑衔接题</b> —— 所以这一章不是补充知识，是补你的靶心。</div>
+    <h3>四类逻辑衔接词（先定方向，再选词）</h3>
+    <table>
+      <tr><th style="width:16%">类别</th><th style="width:40%">标志词</th><th>空格两侧语义关系</th></tr>
+      <tr><td><b>转折 / 让步</b></td><td><span class="en">but / however / yet / nevertheless / although / though / instead / rather / instead of</span></td><td><b>反向</b>：空格处与已知句意思相反。对应阅读技巧 5「转折之后是重点」。</td></tr>
+      <tr><td><b>因果</b></td><td><span class="en">because / since / for / therefore / thus / hence / so / as a result / lead to</span></td><td><b>推导</b>：空格是原因或结果，方向由连接词决定（前因后果 / 前果后因）。</td></tr>
+      <tr><td><b>并列 / 递进</b></td><td><span class="en">and / also / moreover / furthermore / in addition / as well as / likewise</span></td><td><b>同向</b>：空格与已知句感情色彩一致。<b>同向选近义、反向选反义</b>是完型第一口诀。</td></tr>
+      <tr><td><b>条件 / 假设</b></td><td><span class="en">if / unless / provided / suppose / otherwise</span></td><td><b>虚拟</b>：空格内容未必发生，选项里太绝对的词先排。</td></tr>
+    </table>
+    <h3>完型三步打法</h3>
+    <ol>
+      <li><b>首句不设空，先读首句 + 跳空通读全文</b>抓主旨。完型首句几乎从不设空，它就是这篇文章的「串读首句」。</li>
+      <li>每个空只看<b>空格前后各一句</b>，用连接词定逻辑方向（and 同向 / but 反向）。</li>
+      <li>同向选近义、反向选反义；<b>固定搭配题不靠语感靠积累</b>，把每次错的搭配抄进单词本，和同义改写对放在一起背。</li>
+    </ol>
+    <div class="warn"><b>伪否定词是你与完型、态度题共用的第一大坑：</b><span class="en">hardly / scarcely / rarely / little / seldom / few</span> 形式肯定、意思否定，读反一次就连带错两题（实测 06T1 Q3、Q5）。看到它们先在旁边画一个「−」号。</div>
+    <div class="hook">完型一句话口诀：<b>「首句定主旨，连词定方向，同向近义反向反义」</b>。逻辑衔接题永远比词汇题先做对，因为逻辑词不会骗你，生词会。</div>
+  </div>
+</section>
+
+<!-- ================= 十三、提升正确率 + 复盘五步法 ================= -->
+<section class="card s11" id="c12">
+  <div class="ch-head"><div class="ch-num">十三</div><h2>提升正确率七件事 + 复盘五步法</h2><div class="tag">分数的真正来源</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <h3>第 17 节 · 如何提升正确率（七件事）</h3>
+    <table>
+      <tr><th style="width:8%">#</th><th style="width:24%">事项</th><th>要点</th></tr>
+      <tr><td>1</td><td><b>精复盘</b></td><td>一篇阅读搞到极致，而不是刷十篇走过场。详见下方五步法。</td></tr>
+      <tr><td>2</td><td><b>学会多思路解题</b></td><td>同一道题至少给出 <b>2–3 条</b>不同解法（例：阅读全文 / 抓易对词 / 选项包含关系）。考场上第一条思路卡住时，第二条能救你。</td></tr>
+      <tr><td>3</td><td><b>把握命题人的出题套路</b></td><td>就是本手册第七、八章。<b>知道坑长什么样，比多做十道题有用。</b></td></tr>
+      <tr><td>4</td><td><b>背单词</b></td><td>一切的<b>前提</b>。技巧不能代替词汇量。</td></tr>
+      <tr><td>5</td><td><b>掌握阅读技巧</b></td><td>本手册第二至六章，选<b>一套</b>练到自动化，不要每篇换方法。</td></tr>
+      <tr><td>6</td><td><b>外刊</b></td><td>保持语感与题材熟悉度，<b>优先级低于真题</b>。</td></tr>
+      <tr><td>7</td><td><b>刷哪些题、刷几遍</b></td><td><b>英语没有模拟题，只有真题。</b>真题刷三遍，每遍目标不同。</td></tr>
+    </table>
+
+    <h3>第 18 节 · 复盘五步法（每篇阅读搞到极致）</h3>
+    <p class="gray-note">⚠ 讲义此节仅列出「复盘五步法」标题，正文未随 PDF 提供。以下为<b>结合本项目已有「精读四步」经验 + 讲义前 17 节方法论补全的五步版</b>，可直接执行。</p>
+    <div class="flow">
+      <div class="step"><div class="sn">1</div><div class="sb">
+        <div class="st">限时做题（不看任何解析）</div>
+        <div class="sd">标段落序号；<b>只看题干不看选项</b>（末题主旨题除外）；通读<b>不跳读</b>；严格计时 ≤ 17 分钟。做完先<b>不定对错</b>，直接把错题号记下来。</div>
+      </div></div>
+      <div class="step"><div class="sn">2</div><div class="sb">
+        <div class="st">逐句手译（全文，不只错题段）</div>
+        <div class="sd"><b>红标生词</b>（不认识）、<b>蓝标熟词僻义</b>（认识但这里意思不对 —— 这才是真正的失分重灾区）；<b>每段用一句中文总结段意</b>，写在段旁。</div>
+      </div></div>
+      <div class="step"><div class="sn">3</div><div class="sb">
+        <div class="st">自己解释错因（先别看解析）</div>
+        <div class="sd">判定标准：<b>能自己解释 = 单词问题</b>（背词就能解决）；<b>不能解释 = 能力问题</b>（方法/逻辑有漏洞，要回头重读本章）。<b>这一步不能跳</b> —— 直接看解析会让你「看懂了」却「不会做」。</div>
+      </div></div>
+      <div class="step"><div class="sn">4</div><div class="sb">
+        <div class="st">按「11 套路」给干扰项贴标签</div>
+        <div class="sd">对着第八章，逐个写出<b>三个错误选项分别属于哪一类坑</b>（偷换程度 / 偷换概念 / 无中生有 …），并写出<b>命题人具体换了哪个词</b>。每周统计一次自己最常中的套路。</div>
+      </div></div>
+      <div class="step"><div class="sn">5</div><div class="sb">
+        <div class="st">多思路重做 + 沉淀同义改写</div>
+        <div class="sd">① 用<b>第二条思路</b>重做这道题（例：不看原文，只用「细节服从主旨」能不能选出同一个答案？）；② 把本篇出现的<b>同义改写对</b>拄进单词本（例：<span class="en">reorganize → reshape</span>）—— <b>同义改写是阅读的核心资产，拄够 500 对，正确率会阶跃式上涨。</b></div>
+      </div></div>
+    </div>
+    <div class="hook">一句话记住五步：<b>做题 → 手译 → 自解释 → 贴标签 → 换思路重做</b>。前三步是「搞懂文章」，后两步是「搞懂命题人」。</div>
+    <div class="warn"><b>字母偏差自审（进攻性检查，复盘第 0 步）：</b>统计本篇你选 A/B/C/D 各几次。考研一篇 5 题的分布大致均衡；<b>若某个字母你选了 3 次以上，先怀疑自己是在「凭感觉填」而不是在「比对」</b>。实测案例：2006 完型 20 题选 D 达 8 次 —— 这个「不确定时选 D」的位置偏好不是运气问题，是<b>放弃比对的信号</b>，必须被看见。</div>
+    <div class="tip">三刷目标分层（与本项目已有经验一致）：<b>一刷</b>练方法 + 补基本功；<b>二刷</b>抓「反复错的真实薄弱点 / 词义偏差」；<b>三刷</b>纠正做题习惯（钻牛角尖、漏看错看）。<b>年份取舍：</b>06–10 仅练手、10–15 风格未定可少刷、<b>15–24 重点三刷</b>。</div>
+  </div>
+</section>
+
+<!-- ================= 十三、考场速查卡 ================= -->
+<section class="card s12 quickcard" id="c13">
+  <div class="ch-head"><div class="ch-num">速</div><h2>考场速查卡 · 考前最后一眼</h2><div class="tag">A4 一页</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="qc-grid">
+      <div class="qc-box"><h4>① 五步流程</h4><ul>
+        <li>串读 <b>5 题干 + 末题 4 选项</b>（读 9 项）</li>
+        <li>题干重复词 = <b>文章关键词</b></li>
+        <li>题目找<b>段</b>，选项找<b>句</b></li>
+        <li>读 <b>1–2 段做 1 题</b>，不跳读</li>
+        <li>卡住先放，后文有提示</li>
+        <li>收尾用<b>内在一致性</b>检查</li>
+        <li>一篇 <b>≤ 17 分</b>，4 篇 65 分是红线</li>
+      </ul></div>
+      <div class="qc-box"><h4>② 定位五招</h4><ul>
+        <li>顺序一致（乱序 = 找错了）</li>
+        <li>定位词：<b>大写 / 人名 / 地点 / 时间 / 数字 / 名词 / 形容词</b></li>
+        <li>多次出现 → 找<b>第一次</b></li>
+        <li>找不到 → 读<b>长难句</b>（长难句一般是出题句）</li>
+        <li><b>S 形扫描</b>只找不读，找到后<b>整段通读</b></li>
+        <li>找不到 → 回退阶梯：<b>原词→改写词→段首句→长难句→主旨</b></li>
+      </ul></div>
+      <div class="qc-box"><h4>③ 主旨五信号</h4><ul>
+        <li>串读<b>每段首句</b>（万能）</li>
+        <li><b>反复出现</b>的词 = 主旨词</li>
+        <li><b>首尾段问句 / 独句段</b></li>
+        <li><b>转折之后</b>是重点（首段转 = 全文主旨）</li>
+        <li>整段无转折 → <b>段首句就是主旨句</b></li>
+        <li>过去 vs 现在 → <b>现在更重要</b></li>
+        <li>两方对立 → 作者站<b>弱势方</b></li>
+      </ul></div>
+      <div class="qc-box"><h4>④ 标点路标</h4><ul>
+        <li><b>冒号 / 破折号</b>：前后相等，常接主旨</li>
+        <li><b>分号</b>：前后并列，语义相同</li>
+        <li><b>引号</b>：读作者态度</li>
+        <li>★ 原文带引号、选项去掉引号 → <b>必错</b></li>
+        <li><b>情态动词</b>后藏着作者态度</li>
+      </ul></div>
+      <div class="qc-box"><h4>⑤ 正确项长相</h4><ul>
+        <li><b>同义改写</b>（不照抄原词）</li>
+        <li>与<b>主旨</b>密切相关</li>
+        <li><b>委婉中庸</b>：may / might / often / not necessarily</li>
+        <li>更<b>概括</b>（但必须完全覆盖原文）</li>
+        <li>更<b>难</b>：否定 &gt; 肯定、抽象 &gt; 具体、动态 &gt; 静态</li>
+        <li><b>正面积极、合逻辑</b></li>
+      </ul></div>
+      <div class="qc-box"><h4>⑥ 错误项长相</h4><ul>
+        <li>偷换程度 <b>28.3%</b>（may→must / some→all）</li>
+        <li>偷换概念 <b>26.1%</b>（主体 / 宾语 / 维度被换）</li>
+        <li>无中生有 <b>18.7%</b>（新名词新结论）</li>
+        <li>正反颠倒 <b>10.5%</b>（reduce ↔ increase）</li>
+        <li>拼凑歪曲 6.8% · 以偏概全 4.9% · 常识套用 4.3%</li>
+        <li>时间线 3.7% · 绝对化 2.6% · 虚实混杂 2.1% · 过度推理 1.9%</li>
+        <li>⚠ <b>fully / entirely / absolutely / inevitably / invariably / undoubtedly</b> 且无原文对应 → <b>98% 错</b></li>
+      </ul></div>
+      <div class="qc-box"><h4>⑦ 态度题</h4><ul>
+        <li>三钥匙：<b>感情词 / 转折后 / 情态动词后</b></li>
+        <li>句<b>内</b>转折 → 态度不变；句<b>间</b>转折 → 态度变</li>
+        <li>🪦 先排：<b>indifferent / tolerant / uncertain / ambiguous / biased / subjective / puzzled / contemptuous</b></li>
+        <li>✅ 再选：<b>critical / objective / skeptical / supportive / cautious / sympathetic</b></li>
+        <li>Monkey：作者站<b>人民群众</b>，很少站<b>资本家</b></li>
+      </ul></div>
+      <div class="qc-box"><h4>⑧ 二选一 &amp; 蒙题</h4><ul>
+        <li><b>去掉相同单词</b>，差异点被放大 → 拿差异比原文</li>
+        <li><b>细节服从主旨</b>：哪个更贴主旨选哪个</li>
+        <li>蒙：选<b>作用 / 影响 / 关系</b>等含糊词</li>
+        <li>蒙：<b>例子里没答案</b>，答案在例子前后</li>
+        <li>蒙：与<b>主旨词无关</b>的选项先排</li>
+        <li>蒙：ABCD <b>分布均衡</b>，连出 3 个同字母概率极低</li>
+      </ul></div>
+      <div class="qc-box"><h4>⑨ 完型四逻辑</h4><ul>
+        <li>首句不设空 → <b>先读首句抓主旨</b></li>
+        <li>只看空格<b>前后各一句</b>定方向</li>
+        <li>转折/让步 → <b>反向</b>；因果 → <b>推导</b></li>
+        <li>并列/递进 → <b>同向</b>；条件 → <b>虚拟</b></li>
+        <li>口诀：<b>同向近义，反向反义</b></li>
+        <li>⚠ 伪否定 <b>hardly/scarcely/rarely/little</b> 先画「−」</li>
+        <li>自审：某字母选 ≥3 次 = 放弃比对的信号</li>
+      </ul></div>
+      <div class="qc-box qc-full"><h4>⑩ 进场前默念三遍</h4><ul>
+        <li style="font-size:15px"><b>拒绝黄 · 拒绝赌 · 拒绝脑补</b>。题目考查的不是我的观点，所有答案都在文章里，客观存在，只跟作者有关，跟我无关。</li>
+        <li>概括 ≠ 模糊：正确项能<b>拆回原文细节</b>；拆不回去的就是以偏概全。</li>
+        <li>作者观点是正确答案，<b>我的观点不重要</b>。</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 十四、打卡 ================= -->
+<section class="card s13" id="c14">
+  <div class="ch-head"><div class="ch-num">打</div><h2>四周方法论内化打卡</h2><div class="tag">点击格子打卡</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>每日任务（约 50 分钟）：<b>扫一遍速查卡（3 分）→ 限时做 1 篇真题（17 分）→ 复盘五步法（30 分）</b>。每天完成后点一下当天格子，数据存在本地浏览器。</p>
+    <div class="check-grid" id="ckGrid"></div>
+    <p class="gray-note">阶段建议：<b>第 1 周</b> 只练「串读题干 + 定位」两件事；<b>第 2 周</b> 加入「串首句找主旨」；<b>第 3 周</b> 复盘时严格按 11 套路贴标签；<b>第 4 周</b> 练「多思路解题」，每题至少两条思路。</p>
+    <div class="hook">四周后回看自己的标签统计：如果「偷换程度 + 偷换概念」占了你错因的 60% 以上，说明你的问题在<b>比对精度</b>，下一步该练「选项逐词回带原文」；如果「无中生有 + 过度推理」占大头，说明你的问题在<b>脑补</b>，下一步该练「每个选项都要求自己在原文划出依据句」。</div>
+  </div>
+</section>
+
+<div class="no-result" id="noResult">没找到包含该关键词的内容。试试：主旨 / 转折 / 定位词 / 偷换 / 同义改写 / 小墓碑</div>
+
+<footer>
+  英语阅读方法论手册 · 提炼自《糖三角阅读技巧课》官方配套讲义（8.3 版）<br>
+  方法论来源：唐迟 · 颉斌斌 · Monkey 三位老师 · 整理：上岸诗兄 / 北大菠萝喵学姐<br>
+  本页可离线使用 · 支持 A4 打印 · 生成于 2026-09-07
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var CH = [
+    ['c1','一 五步流程','var(--c0)'],['c2','二 做题顺序','var(--c1)'],['c3','三 定位五招','var(--c2)'],
+    ['c4','四 读文十技巧','var(--c3)'],['c5','五 找主旨四法','var(--c4)'],['c6','六 态度题','var(--c5)'],
+    ['c7','七 正确选项','var(--c6)'],['c8','八 错误11套路','var(--c7)'],['c9','九 做题铁律','var(--c8)'],
+    ['c10','十 蒙题','var(--c9)'],['c11','十一 题型速查','var(--c10)'],['c15','十二 完型衔接','var(--c14)'],['c12','十三 复盘五步','var(--c11)'],
+    ['c13','速查卡','var(--c12)'],['c14','打卡','var(--c13)']
+  ];
+
+  /* ---- 章节胶囊导航 ---- */
+  var chips = document.getElementById('chips');
+  CH.forEach(function(c){
+    var a = document.createElement('a');
+    a.className='chip'; a.href='#'+c[0]; a.textContent=c[1]; a.style.background=c[2];
+    chips.appendChild(a);
+  });
+
+  /* ---- 章节折叠 ---- */
+  Array.prototype.forEach.call(document.querySelectorAll('.ch-head'), function(h){
+    h.addEventListener('click', function(){ h.parentNode.classList.toggle('folded'); });
+  });
+  var btnFold = document.getElementById('btnFold');
+  var allFolded = false;
+  btnFold.addEventListener('click', function(){
+    allFolded = !allFolded;
+    Array.prototype.forEach.call(document.querySelectorAll('section.card:not(.cover)'), function(s){
+      s.classList.toggle('folded', allFolded);
+    });
+    btnFold.textContent = allFolded ? '📖 全部展开' : '🗂 全部折叠';
+    btnFold.classList.toggle('on', allFolded);
+  });
+
+  /* ---- 考场速查模式 ---- */
+  var btnExam = document.getElementById('btnExam');
+  btnExam.addEventListener('click', function(){
+    var on = document.body.classList.toggle('exam-mode');
+    btnExam.classList.toggle('on', on);
+    btnExam.textContent = on ? '↩ 退出速查' : '🎯 考场速查';
+    if(on){
+      document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+      allFolded = false; btnFold.textContent = '🗂 全部折叠'; btnFold.classList.remove('on');
+      var qc = document.getElementById('c13');
+      if(qc) qc.scrollIntoView({behavior:'smooth', block:'start'});
+    } else {
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  });
+
+  /* ---- 打印 ---- */
+  document.getElementById('btnPrint').addEventListener('click', function(){
+    document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+    setTimeout(function(){ window.print(); }, 120);
+  });
+
+  /* ---- 搜索：命中高亮 + 无命中章节折叠 ---- */
+  var q = document.getElementById('q'), noRes = document.getElementById('noResult');
+  var bodies = Array.prototype.slice.call(document.querySelectorAll('section.card .ch-body'));
+  var orig = bodies.map(function(b){ return b.innerHTML; });
+  var timer = null;
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  q.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(run, 220);
+  });
+  function run(){
+    var kw = q.value.trim();
+    bodies.forEach(function(b,i){ b.innerHTML = orig[i]; });
+    buildGrid();
+    if(!kw){
+      document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+      noRes.style.display='none';
+      setBars(false);
+      return;
+    }
+    var re = new RegExp(esc(kw),'gi'), hitAny = false;
+    document.querySelectorAll('section.card').forEach(function(s){
+      var body = s.querySelector('.ch-body');
+      var txt = body ? body.textContent : s.textContent;
+      var hit = re.test(txt); re.lastIndex = 0;
+      if(hit && body){
+        hitAny = true;
+        s.classList.remove('folded');
+        walk(body);
+      } else if(!s.classList.contains('cover') && !s.classList.contains('quickcard')){
+        s.classList.add('folded');
+      } else {
+        if(hit) hitAny = true;
+        s.classList.remove('folded');
+      }
+    });
+    noRes.style.display = hitAny ? 'none' : 'block';
+    var first = document.querySelector('mark.hl');
+    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function walk(node){
+    if(node.nodeType === 3){
+      var v = node.nodeValue;
+      if(v && v.toLowerCase().indexOf(q.value.trim().toLowerCase()) > -1){
+        var span = document.createElement('span');
+        span.innerHTML = v.replace(new RegExp(esc(q.value.trim()),'gi'), function(m){ return '<mark class="hl">'+m+'</mark>'; });
+        node.parentNode.replaceChild(span, node);
+      }
+    } else if(node.nodeType === 1 && node.tagName !== 'MARK' && node.tagName !== 'SCRIPT'){
+      Array.prototype.slice.call(node.childNodes).forEach(walk);
+    }
+  }
+
+  /* ---- 频率条形图入场动画 ---- */
+  function setBars(animate){
+    var fills = document.querySelectorAll('.bar-fill');
+    Array.prototype.forEach.call(fills, function(f,i){
+      var w = f.getAttribute('data-w') + '%';
+      if(!animate){ f.style.width = w; return; }
+      setTimeout(function(){ f.style.width = w; }, i*70);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var barSec = document.querySelector('.bars');
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ setBars(true); io.disconnect(); } });
+    }, {threshold:.25});
+    if(barSec) io.observe(barSec);
+    /* 兜底：IO 未触发（隐藏页 / 打印前）也要保证长度正确 */
+    setTimeout(function(){ setBars(false); }, 1500);
+  } else { setBars(true); }
+  window.addEventListener('beforeprint', function(){ setBars(false); });
+
+  /* ---- 28 天打卡（localStorage 持久化） ---- */
+  var KEY = 'engReadMethodCheckin_v1';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ saved = {}; }
+  var prog = document.getElementById('prog');
+  var TOTAL = 28;
+  var today = new Date();
+  function ymd(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+  /* 声明式函数（提升）：搜索还原 innerHTML 后需重建打卡格，故 run() 可提前调用 */
+  function buildGrid(){
+    var grid = document.getElementById('ckGrid');
+    if(!grid || grid.childNodes.length) return;
+    for(var i = TOTAL-1; i >= 0; i--){
+      var d = new Date(today.getTime() - i*86400000);
+      var k = ymd(d);
+      var el = document.createElement('div');
+      el.className = 'ck' + (saved[k] ? ' done' : '');
+      el.setAttribute('data-k', k);
+      el.innerHTML = '<span class="d">'+k.slice(5).replace('-','/')+'</span><span class="m">'+(saved[k]?'✓':'○')+'</span>';
+      el.addEventListener('click', function(){
+        var kk = this.getAttribute('data-k');
+        saved[kk] = !saved[kk];
+        if(!saved[kk]) delete saved[kk];
+        this.classList.toggle('done', !!saved[kk]);
+        this.querySelector('.m').textContent = saved[kk] ? '✓' : '○';
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
+        render();
+      });
+      grid.appendChild(el);
+    }
+  }
+  function render(){
+    var n = Object.keys(saved).length;
+    prog.textContent = '打卡 ' + n + ' / ' + TOTAL;
+    prog.style.color = n >= 21 ? '#15803d' : (n >= 7 ? '#b45309' : '');
+  }
+  buildGrid();
+  render();
+
+  /* ---- 滚动时高亮当前章节胶囊 ---- */
+  var secs = CH.map(function(c){ return document.getElementById(c[0]); }).filter(Boolean);
+  var chipEls = Array.prototype.slice.call(chips.children);
+  function onScroll(){
+    var y = window.scrollY + 130, cur = -1;
+    secs.forEach(function(s,i){ if(s.offsetTop <= y) cur = i; });
+    chipEls.forEach(function(c,i){ c.style.opacity = (i===cur) ? '1' : '.6'; c.style.transform = (i===cur)?'scale(1.06)':'none'; });
+    if(cur >= 0 && chipEls[cur]){
+      var c = chipEls[cur];
+      if(c.offsetLeft < chips.scrollLeft || c.offsetLeft + c.offsetWidth > chips.scrollLeft + chips.clientWidth){
+        chips.scrollLeft = c.offsetLeft - chips.clientWidth/2 + c.offsetWidth/2;
+      }
+    }
+  }
+  var st = null;
+  window.addEventListener('scroll', function(){ if(st) return; st = requestAnimationFrame(function(){ st=null; onScroll(); }); }, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

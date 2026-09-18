@@ -16,7 +16,7 @@ def send_prediction_email():
     # 邮件配置
     sender = '2142744149@qq.com'
     receiver = '2142744149@qq.com'
-    password = 'ushjvvzxbhqfbjie'  # SMTP授权码
+    password = '（授权码已迁出仓库：本地 ~/.config/qqsmtp.json）'  # SMTP授权码
     
     # 读取文档文件
     doc_path = os.path.join(os.path.dirname(__file__), 

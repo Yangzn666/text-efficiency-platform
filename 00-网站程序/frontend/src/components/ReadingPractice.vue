@@ -73,6 +73,9 @@
               <el-button type="warning" size="small" @click.stop="toggleIntensiveReading(year, textNum)">
                 {{ isIntensiveReadingOpen(year, textNum) ? '收起精读' : '精读模式' }}
               </el-button>
+              <el-button type="primary" size="small" plain @click.stop="openDeepReading(year, textNum)">
+                逐句精读
+              </el-button>
             </div>
 
             <div v-show="isTextExpanded(year, textNum)" class="text-content">
@@ -425,7 +428,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
 // 方法论视角条：把《糖三角》三师方法论（题型要诀/定位/干扰套路/同义改写）叠加到每道真题
 import MethodLens from './MethodLens.vue'
@@ -473,6 +477,56 @@ const translationKeys = ref<string[]>([]) // "year-textNum" or "cloze-year"
 
 // 可用年份（2005-2025）
 const availableYears = Array.from({ length: 21 }, (_, i) => 2005 + i).reverse()
+// ===== P2 · 按年份懒加载重字段（article/analysis/tips/errorAnalysis）=====
+// 首屏只加载轻量索引（题干/选项/答案，约 400KB），点开某年/某篇时才拉取该年份的重字段，
+// 手机端首开英语阅读网络量从 ~6MB 降到几十 KB。原始整文件仍保留供精读页使用。
+const HEAVY_FIELDS = ['article', 'analysis', 'tips', 'errorAnalysis']
+const BASE_URL = import.meta.env.BASE_URL
+const heavyReady = ref<Set<number>>(new Set())
+const heavyLoading = new Set<number>()
+const qKey = (q: any) => `${q.year}-${q.section}-${q.textNumber}-${q.number}`
+const keyToItem = new Map<string, any>()
+function invalidateParaCache(year: number) {
+  Array.from(paraCache.keys()).forEach(k => {
+    if (String(k).startsWith(year + '-') || String(k) === 'cloze-' + year) paraCache.delete(k)
+  })
+}
+function ensureHeavy(year: number) {
+  if (!year || Number.isNaN(year)) return
+  if (heavyReady.value.has(year) || heavyLoading.has(year)) return
+  heavyLoading.add(year)
+  fetch(`${BASE_URL}data/english/reading/by-year/${year}.json`)
+    .then(r => (r.ok ? r.json() : {}))
+    .then(map => {
+      Object.keys(map).forEach(k => {
+        const item = keyToItem.get(k)
+        if (!item) return
+        const h = map[k]
+        HEAVY_FIELDS.forEach(f => { if (h[f] !== undefined) item[f] = h[f] })
+      })
+      invalidateParaCache(year)
+      heavyLoading.delete(year)
+      heavyReady.value = new Set(heavyReady.value).add(year)
+    })
+    .catch(e => { console.warn('阅读重字段加载失败', year, e); heavyLoading.delete(year) })
+}
+// 收集所有因展开/筛选而需要重字段的年份
+const openYears = computed<number[]>(() => {
+  const s = new Set<number>()
+  expandedTraditionalYears.value.forEach(y => s.add(Number(y)))
+  expandedClozeYears.value.forEach(y => s.add(Number(y)))
+  expandedTexts.value.forEach(k => { const y = parseInt(String(k).split('-')[0], 10); if (y) s.add(y) })
+  expandedAnalysis.value.forEach(k => { const m = String(k).match(/(20\d{2})/); if (m) s.add(parseInt(m[1], 10)) })
+  if (selectedYear.value !== 'all') { const y = parseInt(String(selectedYear.value), 10); if (y) s.add(y) }
+  return Array.from(s)
+})
+watch(openYears, (ys) => ys.forEach(y => ensureHeavy(y)))
+
+// P3：跳转到整页逐句精读（IntensiveReadingView，逐句精读·深度解析），goBack 用 router.back() 原路返回
+const router = useRouter()
+const openDeepReading = (year: number, textNum: number) =>
+  router.push({ path: '/intensive-reading', query: { section: 'Traditional Reading', year: String(year), text: String(textNum) } })
+
 
 // 过滤后的题目
 const filteredQuestions = computed(() => {
@@ -522,7 +576,9 @@ const getTextTitle = (year: number, textNum: number) => {
 const getArticleByYearAndText = (year: number, textNum: number) => {
   const qs = getQuestionsByYearAndText(year, textNum)
   if (!qs.length) return ''
-  return qs[0].article || `<p style="color:#999">请导入${year}年Text ${textNum}的文章原文</p>`
+  if (qs[0].article) return qs[0].article
+  if (!heavyReady.value.has(year)) return '' // 该年份重字段仍在加载，先留空避免误显示占位
+  return `<p style="color:#999">请导入${year}年Text ${textNum}的文章原文</p>`
 }
 // 原文按 <p> 拆段（保留标签以继承 .article-body p 样式），与段落译文逐段对照；105 篇已校验段数与译文数一致
 const paraCache = new Map<string, string[]>()
@@ -561,7 +617,8 @@ const blankifyCloze = (html: string) =>
 const getClozeArticleByYear = (year: number) => {
   const qs = getClozeQuestionsByYear(year)
   if (!qs.length) return ''
-  return blankifyCloze(qs[0].article || `<p style="color:#999">请导入${year}年完型填空文章</p>`)
+  if (!qs[0].article) return heavyReady.value.has(year) ? blankifyCloze(`<p style="color:#999">请导入${year}年完型填空文章</p>`) : ''
+  return blankifyCloze(qs[0].article)
 }
 
 // 空位点击（事件委托）：滚动定位到对应题目卡片
@@ -730,7 +787,7 @@ const filterQuestions = () => {
 onMounted(async () => {
   try {
     console.log('加载英语真题数据...')
-    const response = await fetch(`${import.meta.env.BASE_URL}data/english/reading-questions.json`)
+    const response = await fetch(`${import.meta.env.BASE_URL}data/english/reading/index.json`)
     if (response.ok) {
       const data = await response.json()
       if (data.questions && data.questions.length > 0) {
@@ -767,7 +824,8 @@ onMounted(async () => {
           }
         }
 
-        console.log(`成功加载 ${data.questions.length} 道题目`)
+        allQuestions.value.forEach(it => keyToItem.set(qKey(it), it))
+        console.log(`成功加载 ${data.questions.length} 道题目（轻量索引，重字段按需加载）`)
 
         // 加载精读数据
         try {

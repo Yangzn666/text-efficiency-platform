@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, DocumentChecked, Upload, Picture, CopyDocument, MagicStick, ArrowDown } from '@element-plus/icons-vue'
@@ -22,7 +23,7 @@ interface WrongProblem {
   subject?: string
 }
 
-const problems = ref<WrongProblem[]>([
+const wp = useWrongProblemsStore(); const problems = wp.bind('cs', [
   {
     id: 'co_1_1',
     chapterId: 'ch1',
@@ -292,14 +293,10 @@ const deleteProblem = (id: string) => {
 }
 
 const saveToLocalStorage = () => {
-  localStorage.setItem('csWrongProblems', JSON.stringify(problems.value))
+  wp.persist()
 }
 
 const loadFromLocalStorage = () => {
-  const saved = localStorage.getItem('csWrongProblems')
-  if (saved) {
-    problems.value = JSON.parse(saved)
-  }
   mergeWangdaoSeed()
 }
 

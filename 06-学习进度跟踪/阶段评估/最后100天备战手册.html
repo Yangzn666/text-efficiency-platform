@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最后 100 天备战手册 · 2026-12-19 初试</title>
+<meta name="description" content="27考研最后100天作战手册：总账与容错、三阶段任务表、每日A/B/C三档骨架、四条红线、100天档位打卡墙、周检查点、四科工时明细、今日速查卡。零CDN依赖，离线可打开，手机与A4打印双适配。">
+<style>
+  :root{
+    --ink:#1f2933; --ink2:#44403c; --ink3:#57534e;
+    --paper:#ffffff; --bg:#e8e6e1;
+    --c0:#b45309;  /* 总账 金 */
+    --c1:#2563eb;  /* 阶段一 蓝 */
+    --c2:#0d9488;  /* 阶段二 青 */
+    --c3:#7c3aed;  /* 阶段三 紫 */
+    --c4:#dc2626;  /* 每日三档 红 */
+    --c5:#db2777;  /* 红线 品红 */
+    --c6:#059669;  /* 打卡墙 绿 */
+    --c7:#ea580c;  /* 周检查点 橙 */
+    --c8:#4f46e5;  /* 工时明细 靛 */
+    --c9:#111827;  /* 速查卡 墨 */
+    --math:#16a34a; --cs:#2563eb; --eng:#ea580c; --pol:#dc2626;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  /* 方正粗黑宋简体：本身已是粗体设计，全页任何元素永远不加粗 */
+  *,*::before,*::after{font-weight:normal !important;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"方正粗黑宋简体","FZCuHeiSong-B09S","Microsoft YaHei",sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.75; font-size:16px;
+    -webkit-text-size-adjust:100%;
+  }
+  .mono{font-family:"JetBrains Mono",Consolas,"Courier New",monospace;}
+  .page-wrap{max-width:900px;margin:0 auto;padding:20px 16px 60px;}
+
+  /* ================= 顶部工具条 ================= */
+  .toolbar{
+    position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);
+    border-radius:0 0 14px 14px;box-shadow:0 3px 14px rgba(0,0,0,.1);
+    padding:9px 14px;margin:-20px -16px 20px;backdrop-filter:blur(6px);
+  }
+  .tb-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .tb-title{font-size:15px;letter-spacing:2px;color:var(--c0);white-space:nowrap;}
+  .tb-cd{
+    font-size:13px;color:#fff;background:var(--c9);border-radius:20px;padding:4px 13px;
+    letter-spacing:1px;white-space:nowrap;
+  }
+  .tb-cd i{font-style:normal;color:#fbbf24;font-size:15px;}
+  .tb-search{
+    flex:1;min-width:130px;border:1.5px solid #d6d3d1;border-radius:20px;
+    padding:5px 14px;font-size:14px;font-family:inherit;color:var(--ink);background:#fafaf9;
+  }
+  .tb-search:focus{outline:none;border-color:var(--c0);background:#fff;}
+  .tb-btn{
+    border:1.5px solid #d6d3d1;background:#fafaf9;border-radius:20px;cursor:pointer;
+    padding:5px 14px;font-size:13.5px;font-family:inherit;color:var(--ink2);white-space:nowrap;
+    transition:all .18s;
+  }
+  .tb-btn:hover{border-color:var(--c0);color:var(--c0);background:#fffbeb;}
+  .tb-btn.on{background:var(--c9);border-color:var(--c9);color:#fff;}
+  .chips{display:flex;gap:6px;overflow-x:auto;padding:8px 2px 2px;-webkit-overflow-scrolling:touch;}
+  .chips::-webkit-scrollbar{height:0;}
+  .chip{
+    flex-shrink:0;font-size:12.5px;padding:3px 11px;border-radius:14px;cursor:pointer;
+    color:#fff;opacity:.72;transition:opacity .18s;text-decoration:none;
+  }
+  .chip:hover{opacity:1;}
+
+  /* ================= 卡片 / 章节 ================= */
+  section.card{
+    background:var(--paper);border-radius:14px;padding:32px 38px;margin-bottom:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);page-break-inside:auto;
+  }
+  .ch-head{
+    display:flex;align-items:center;gap:13px;margin-bottom:16px;padding-bottom:9px;
+    border-bottom:3px solid;cursor:pointer;user-select:none;
+  }
+  .ch-num{
+    width:44px;height:44px;border-radius:12px;color:#fff;font-size:21px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ch-head h2{font-size:22px;letter-spacing:1px;line-height:1.3;}
+  .ch-head .tag{margin-left:auto;font-size:12.5px;padding:3px 11px;border-radius:20px;color:#fff;white-space:nowrap;}
+  .ch-head .fold{font-size:15px;color:#a8a29e;margin-left:8px;transition:transform .2s;flex-shrink:0;}
+  section.folded .ch-body{display:none;}
+  section.folded .fold{transform:rotate(-90deg);}
+  h3{font-size:17.5px;margin:20px 0 8px;padding-left:10px;border-left:4px solid #cbd5e1;color:var(--ink);}
+  h4{font-size:16px;margin:14px 0 6px;color:var(--ink2);}
+  p{margin:8px 0;}
+  ul,ol{padding-left:22px;margin:8px 0;}
+  li{margin:6px 0;}
+
+  /* 章节配色 */
+  .s0 .ch-head{border-color:var(--c0)} .s0 .ch-num,.s0 .tag{background:var(--c0)} .s0 th{background:#fef3c7} .s0 h3{border-color:var(--c0)}
+  .s1 .ch-head{border-color:var(--c1)} .s1 .ch-num,.s1 .tag{background:var(--c1)} .s1 th{background:#dbeafe} .s1 h3{border-color:var(--c1)}
+  .s2 .ch-head{border-color:var(--c2)} .s2 .ch-num,.s2 .tag{background:var(--c2)} .s2 th{background:#ccfbf1} .s2 h3{border-color:var(--c2)}
+  .s3 .ch-head{border-color:var(--c3)} .s3 .ch-num,.s3 .tag{background:var(--c3)} .s3 th{background:#ede9fe} .s3 h3{border-color:var(--c3)}
+  .s4 .ch-head{border-color:var(--c4)} .s4 .ch-num,.s4 .tag{background:var(--c4)} .s4 th{background:#fee2e2} .s4 h3{border-color:var(--c4)}
+  .s5 .ch-head{border-color:var(--c5)} .s5 .ch-num,.s5 .tag{background:var(--c5)} .s5 th{background:#fce7f3} .s5 h3{border-color:var(--c5)}
+  .s6 .ch-head{border-color:var(--c6)} .s6 .ch-num,.s6 .tag{background:var(--c6)} .s6 th{background:#d1fae5} .s6 h3{border-color:var(--c6)}
+  .s7 .ch-head{border-color:var(--c7)} .s7 .ch-num,.s7 .tag{background:var(--c7)} .s7 th{background:#ffedd5} .s7 h3{border-color:var(--c7)}
+  .s8 .ch-head{border-color:var(--c8)} .s8 .ch-num,.s8 .tag{background:var(--c8)} .s8 th{background:#e0e7ff} .s8 h3{border-color:var(--c8)}
+  .s9 .ch-head{border-color:#f59e0b}     .s9 .ch-num,.s9 .tag{background:var(--c9)} .s9 th{background:#e7e5e4} .s9 h3{border-color:var(--c9)}
+  .sa .ch-head{border-color:#0f766e} .sa .ch-num,.sa .tag{background:#0f766e} .sa th{background:#ccfbf1} .sa h3{border-color:#0f766e}
+
+  /* 当前所处阶段：左侧金色粗条 + 淡金底，一眼定位 */
+  section.now{border-left:7px solid #f59e0b;background:#fffdf5;box-shadow:0 6px 24px rgba(245,158,11,.2);}
+  section.past{opacity:.62;}
+  .now-badge{
+    display:inline-block;font-size:12px;color:#fff;background:#f59e0b;border-radius:12px;
+    padding:2px 11px;margin-left:8px;letter-spacing:1px;vertical-align:2px;
+  }
+
+  /* ================= 表格 ================= */
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14.8px;page-break-inside:avoid;}
+  th{background:#f1f5f9;padding:8px 10px;border:1px solid #cbd5e1;text-align:left;font-size:14px;}
+  td{padding:7px 10px;border:1px solid #e2e8f0;vertical-align:top;}
+  tr:nth-child(even) td{background:#fafafa;}
+  tr.sum td{background:#fffbeb !important;border-top:2.5px solid #f59e0b;}
+  /* 荧光笔关键词：红字+淡黄底，扫读时眼睛直接命中 */
+  b{color:#b91c1c;background:#fef9c3;padding:0 4px;border-radius:4px;box-decoration-break:clone;}
+  .gray-note{font-size:13px;color:var(--ink3);}
+  .num{font-family:"JetBrains Mono",Consolas,monospace;color:#1e3a8a;}
+
+  /* ================= 语义块 ================= */
+  .hook{
+    background:#fef3c7;border-left:6px solid #f59e0b;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;
+    box-shadow:0 2px 6px rgba(245,158,11,.16);page-break-inside:avoid;
+  }
+  .hook::before{content:"🪝 记住这句：";color:#b45309;letter-spacing:1px;}
+  .warn{
+    background:#fee2e2;border-left:6px solid #dc2626;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .warn::before{content:"⚠ 红线：";color:#b91c1c;letter-spacing:1px;}
+  .law{
+    background:#ecfeff;border-left:6px solid #0891b2;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .law::before{content:"⚖ 原则：";color:#0e7490;letter-spacing:1px;}
+  .tip{
+    background:#f0fdf4;border-left:6px solid #16a34a;border-radius:8px;
+    padding:11px 15px;margin:13px 0;font-size:15.5px;line-height:1.8;page-break-inside:avoid;
+  }
+  .tip::before{content:"💡 为什么：";color:#15803d;letter-spacing:1px;}
+
+  /* ================= 封面 ================= */
+  .cover{text-align:center;padding:46px 38px 40px;}
+  .cover h1{font-size:38px;letter-spacing:5px;color:var(--ink);margin-bottom:8px;line-height:1.35;}
+  .cover .sub{font-size:15.5px;color:#b45309;letter-spacing:3px;margin-bottom:20px;}
+  .cd-box{
+    display:flex;align-items:baseline;justify-content:center;gap:12px;margin:6px 0 20px;
+  }
+  .cd-num{
+    font-size:88px;line-height:1;letter-spacing:-2px;color:#dc2626;
+    font-family:"JetBrains Mono",Consolas,monospace;
+  }
+  .cd-lab{font-size:17px;color:var(--ink2);letter-spacing:3px;}
+  .cover .three{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;}
+  .cover .three span{font-size:15px;padding:6px 18px;border-radius:22px;color:#fff;letter-spacing:2px;}
+  .cover .meta{
+    display:inline-block;text-align:left;background:#fffbeb;border:2px solid #f59e0b;
+    border-radius:10px;padding:13px 22px;font-size:14.5px;line-height:2;max-width:100%;
+  }
+  .cover .meta b{color:#b45309;}
+  .cover .rule{
+    margin-top:22px;font-size:15.5px;color:var(--ink2);background:#fef2f2;border:2px solid #fca5a5;
+    border-radius:10px;padding:13px 20px;display:inline-block;text-align:left;line-height:2;
+  }
+  .cover .rule b{color:#dc2626;}
+
+  /* ================= 今日战情面板 ================= */
+  .today{
+    background:#0f172a;border-radius:12px;padding:16px 18px;margin:0 0 22px;color:#e2e8f0;
+    text-align:left;box-shadow:0 6px 22px rgba(15,23,42,.28);
+  }
+  .td-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .td-phase{font-size:15px;color:#fbbf24;letter-spacing:2px;}
+  .td-day{font-size:13px;color:#94a3b8;font-family:"JetBrains Mono",Consolas,monospace;}
+  .td-gears{margin-left:auto;display:flex;gap:7px;}
+  .gear{
+    border:1.5px solid #334155;background:#1e293b;color:#cbd5e1;border-radius:9px;cursor:pointer;
+    font-family:inherit;font-size:13.5px;padding:5px 13px;transition:all .16s;letter-spacing:1px;
+  }
+  .gear:hover{border-color:#fbbf24;color:#fbbf24;}
+  .gear.on-A{background:#b45309;border-color:#b45309;color:#fff;}
+  .gear.on-B{background:#2563eb;border-color:#2563eb;color:#fff;}
+  .gear.on-C{background:#64748b;border-color:#64748b;color:#fff;}
+  .gear.on-R{background:#059669;border-color:#059669;color:#fff;}
+  .td-hint{font-size:13px;color:#94a3b8;margin-top:9px;line-height:1.7;}
+  .td-hint em{font-style:normal;color:#fde68a;}
+
+  /* ================= 进度条 ================= */
+  .bars{margin:14px 0;}
+  .bar-row{display:flex;align-items:center;gap:9px;margin:7px 0;page-break-inside:avoid;}
+  .bar-name{flex-shrink:0;width:74px;font-size:14px;color:var(--ink2);text-align:right;}
+  .bar-track{flex:1;background:#f1f5f9;border-radius:5px;height:23px;overflow:hidden;min-width:40px;position:relative;}
+  .bar-fill{height:100%;width:0;border-radius:5px;transition:width .9s cubic-bezier(.4,0,.2,1);}
+  .bar-txt{
+    position:absolute;left:9px;top:0;line-height:23px;font-size:12.5px;color:#334155;
+    font-family:"JetBrains Mono",Consolas,monospace;pointer-events:none;
+  }
+  .bar-right{flex-shrink:0;width:112px;font-size:12.5px;color:var(--ink3);font-family:"JetBrains Mono",Consolas,monospace;}
+
+  /* ================= 每日三档卡 ================= */
+  .gear-card{
+    border:2px solid #e7e5e4;border-radius:12px;padding:15px 18px;margin:13px 0;page-break-inside:avoid;
+    background:#fafaf9;
+  }
+  .gear-card.gA{border-color:#f59e0b;background:#fffdf5;}
+  .gear-card.gB{border-color:#2563eb;background:#f7faff;}
+  .gear-card.gC{border-color:#94a3b8;background:#f8fafc;}
+  .gear-card.gR{border-color:#059669;background:#f4fdf8;}
+  .gc-head{display:flex;align-items:center;gap:11px;margin-bottom:9px;flex-wrap:wrap;}
+  .gc-badge{
+    width:38px;height:38px;border-radius:11px;color:#fff;font-size:19px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .gA .gc-badge{background:#b45309;} .gB .gc-badge{background:#2563eb;}
+  .gC .gc-badge{background:#64748b;} .gR .gc-badge{background:#059669;}
+  .gc-title{font-size:17.5px;letter-spacing:1px;}
+  .gc-sum{margin-left:auto;font-size:13px;color:#fff;background:#111827;border-radius:14px;padding:3px 13px;}
+  .gc-list{list-style:none;padding:0;margin:0;}
+  .gc-list li{
+    display:flex;align-items:baseline;gap:9px;padding:5px 0;border-bottom:1px dashed #e7e5e4;font-size:14.8px;
+  }
+  .gc-list li:last-child{border-bottom:none;}
+  .gc-list .mn{
+    margin-left:auto;flex-shrink:0;font-size:12.5px;color:#fff;background:#78716c;border-radius:11px;
+    padding:1px 10px;font-family:"JetBrains Mono",Consolas,monospace;
+  }
+  .gc-list .skip{color:#a8a29e;text-decoration:line-through;}
+
+  /* ================= 红线卡 ================= */
+  .redline{
+    display:flex;gap:14px;align-items:flex-start;background:#fff5f7;border:1.5px solid #fca5a5;
+    border-radius:11px;padding:13px 16px;margin-bottom:10px;page-break-inside:avoid;
+  }
+  .redline .rn{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#dc2626;color:#fff;font-size:16px;
+    display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",Consolas,monospace;
+  }
+  .redline .rb{flex:1;min-width:0;}
+  .redline .rt{font-size:15.8px;color:#991b1b;margin-bottom:3px;}
+  .redline .rd{font-size:14.3px;color:var(--ink2);line-height:1.75;}
+
+  /* ================= 100 天打卡墙 ================= */
+  .wall-stat{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;}
+  .ws{
+    font-size:13px;padding:4px 13px;border-radius:15px;border:1.5px solid #e7e5e4;background:#fafaf9;
+    color:var(--ink2);font-family:"JetBrains Mono",Consolas,monospace;
+  }
+  .ws i{font-style:normal;font-size:15px;margin-left:3px;}
+  .wall{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:12px 0;}
+  .day{
+    background:#fafaf9;border:1.5px solid #e7e5e4;border-radius:8px;padding:6px 2px;text-align:center;
+    cursor:pointer;transition:all .15s;user-select:none;min-height:52px;
+  }
+  .day:hover{transform:translateY(-2px);box-shadow:0 3px 9px rgba(0,0,0,.13);}
+  .day .dd{font-size:11px;color:var(--ink3);display:block;font-family:"JetBrains Mono",Consolas,monospace;line-height:1.3;}
+  .day .dm{font-size:16px;display:block;margin-top:1px;line-height:1.25;color:#a8a29e;}
+  .day.today{border-color:#dc2626;border-width:2.5px;box-shadow:0 0 0 3px rgba(220,38,38,.13);}
+  .day.exam{background:#111827;border-color:#111827;cursor:default;}
+  .day.exam .dd,.day.exam .dm{color:#fbbf24;}
+  .day.gA{background:#fef3c7;border-color:#f59e0b;} .day.gA .dm{color:#b45309;}
+  .day.gB{background:#dbeafe;border-color:#2563eb;} .day.gB .dm{color:#1d4ed8;}
+  .day.gC{background:#f1f5f9;border-color:#94a3b8;} .day.gC .dm{color:#475569;}
+  .day.gR{background:#d1fae5;border-color:#059669;} .day.gR .dm{color:#047857;}
+  .day.gA .dd,.day.gB .dd,.day.gC .dd,.day.gR .dd{color:var(--ink2);}
+  .wall-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink3);margin-top:8px;}
+  .wall-legend span{display:flex;align-items:center;gap:5px;}
+  .lg{width:14px;height:14px;border-radius:4px;display:inline-block;}
+
+  /* ================= 周检查点表单 ================= */
+  .week{border:1.5px solid #e7e5e4;border-radius:11px;margin-bottom:10px;background:#fafaf9;overflow:hidden;}
+  .week.cur{border-color:#ea580c;background:#fffaf5;}
+  .wk-head{
+    display:flex;align-items:center;gap:10px;padding:10px 15px;cursor:pointer;user-select:none;font-size:15px;
+  }
+  .wk-head .wno{
+    background:#ea580c;color:#fff;border-radius:9px;padding:2px 11px;font-size:13px;flex-shrink:0;
+    font-family:"JetBrains Mono",Consolas,monospace;
+  }
+  .week:not(.cur) .wk-head .wno{background:#a8a29e;}
+  .wk-head .wdate{color:var(--ink2);font-size:13.5px;font-family:"JetBrains Mono",Consolas,monospace;}
+  .wk-head .wfold{margin-left:auto;color:#a8a29e;font-size:14px;transition:transform .2s;}
+  .week.closed .wk-body{display:none;}
+  .week.closed .wfold{transform:rotate(-90deg);}
+  .wk-body{padding:4px 15px 14px;}
+  .wk-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 14px;}
+  .fld{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2);}
+  .fld label{flex-shrink:0;width:118px;text-align:right;color:var(--ink3);font-size:13.5px;}
+  .fld input{
+    flex:1;min-width:0;border:1.5px solid #e7e5e4;border-radius:8px;padding:5px 10px;font-size:14px;
+    font-family:inherit;color:var(--ink);background:#fff;
+  }
+  .fld input:focus{outline:none;border-color:#ea580c;}
+  .fld.wide{grid-column:1/-1;}
+  .fld.wide label{width:118px;}
+  .wk-saved{font-size:12px;color:#059669;margin-left:6px;opacity:0;transition:opacity .3s;}
+  .wk-saved.show{opacity:1;}
+
+  /* ================= 速查卡（深色） ================= */
+  .quickcard{background:#0f172a !important;color:#e2e8f0;}
+  .quickcard .ch-head h2{color:#fbbf24;}
+  .quickcard .fold{color:#64748b;}
+  .qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .qc-box{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:12px 15px;}
+  .qc-box h4{color:#fbbf24;font-size:15px;margin:0 0 8px;letter-spacing:1px;}
+  .qc-box ul{padding-left:17px;margin:0;}
+  .qc-box li{font-size:13.8px;color:#cbd5e1;margin:5px 0;line-height:1.7;}
+  .qc-box li b{background:rgba(251,191,36,.22);color:#fde68a;}
+  .qc-full{grid-column:1/-1;}
+
+  /* ================= 搜索 / 模式 ================= */
+  mark.hl{background:#fde047;color:#713f12;padding:0 2px;border-radius:3px;}
+  body.gear-mode section.card:not(.quickcard):not(.cover){display:none;}
+  body.gear-mode .chips{display:none;}
+  .no-result{display:none;text-align:center;padding:40px;color:var(--ink3);font-size:15px;}
+  footer{text-align:center;font-size:12.5px;color:#78716c;padding:14px 0 10px;line-height:1.9;}
+
+  /* ================= 打印 ================= */
+  @page{size:A4;margin:13mm 12mm;}
+  @media print{
+    body{background:#fff;font-size:14px;}
+    .toolbar,.no-result,.td-gears,.wk-saved{display:none !important;}
+    .page-wrap{max-width:none;padding:0;}
+    section.card{box-shadow:none;border-radius:0;padding:6mm 4mm;margin-bottom:0;page-break-before:always;}
+    section.card:first-of-type{page-break-before:auto;}
+    section.folded .ch-body{display:block;}
+    section.past{opacity:1;}
+    .cover{padding:20mm 0;}
+    .cd-num{font-size:64px;}
+    .today{background:#fff !important;color:#000;border:2px solid #111827;box-shadow:none;}
+    .td-phase{color:#b45309;} .td-day,.td-hint{color:#44403c;} .td-hint em{color:#b91c1c;}
+    .quickcard{background:#fff !important;color:#000;}
+    .quickcard .ch-head h2{color:#000;}
+    .qc-grid{grid-template-columns:1fr 1fr;}
+    .qc-box{background:#fff;border:1px solid #94a3b8;}
+    .qc-box h4{color:#b45309;} .qc-box li{color:#1f2933;}
+    .qc-box li b{background:#fef9c3;color:#b91c1c;}
+    .bar-fill{transition:none;}
+    .lb{display:none !important;}
+    .fig .zx{display:none !important;}
+    .fig{cursor:default;transform:none !important;box-shadow:none;border:1px solid #cbd5e1;}
+    .medals{grid-template-columns:repeat(6,1fr);}
+    .medal{border:1px solid #f59e0b;background:#fffbeb;}
+    .week.closed .wk-body{display:block;}
+    .day{min-height:0;padding:3px 1px;}
+    .day .dm{font-size:12px;}
+    .fld input{border:1px solid #94a3b8;}
+  }
+
+  /* ================= 可视化图表（纯 SVG / 零依赖 / 点击放大） ================= */
+  .chart-grid{display:grid;gap:13px;margin:14px 0;}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .fig{position:relative;background:#fcfcfb;border:1.5px solid #e7e5e4;border-radius:12px;padding:11px 11px 7px;text-align:center;cursor:zoom-in;transition:box-shadow .18s,transform .18s;page-break-inside:avoid;min-width:0;}
+  .fig:hover{box-shadow:0 5px 18px rgba(0,0,0,.13);transform:translateY(-2px);}
+  .fig svg{width:100%;height:auto;display:block;overflow:visible;}
+  .fig figcaption{font-size:12.5px;color:var(--ink3);margin-top:5px;line-height:1.55;}
+  .fig .zx{position:absolute;right:8px;top:5px;font-size:11px;color:#c7c2bd;letter-spacing:1px;}
+  .fig:hover .zx{color:var(--c0);}
+  .fig.wide{grid-column:1/-1;}
+  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:18px;align-items:center;margin:20px 0 6px;text-align:center;}
+  .hero .fig{background:#fff;}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .kpi{background:#fafaf9;border:1.5px solid #e7e5e4;border-radius:11px;padding:9px 13px;text-align:left;}
+  .kpi .kv{font-size:26px;line-height:1.1;font-family:"JetBrains Mono",Consolas,monospace;color:var(--ink);}
+  .kpi .kl{font-size:11.5px;color:var(--ink3);letter-spacing:1.5px;margin-top:3px;}
+  .kpi.good .kv{color:var(--math);} .kpi.gold .kv{color:var(--c0);} .kpi.cool .kv{color:var(--c1);}
+  /* 缓冲格：40 个可废掉的日子 */
+  .buf{display:flex;flex-wrap:wrap;gap:3px;margin:9px auto 3px;max-width:430px;}
+  .buf i{width:15px;height:15px;border-radius:3px;background:#d1fae5;border:1px solid #6ee7b7;display:block;}
+  .buf i.used{background:#fca5a5;border-color:#f87171;}
+  /* 勋章墙 */
+  .medals{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:12px 0 4px;}
+  .medal{border-radius:11px;padding:9px 5px 8px;text-align:center;border:1.5px solid #f59e0b;background:linear-gradient(160deg,#fffbeb,#fef3c7);page-break-inside:avoid;}
+  .medal .mi{font-size:23px;line-height:1.25;}
+  .medal .mt{font-size:12px;color:#92400e;margin-top:3px;line-height:1.35;}
+  .medal .md{font-size:10.5px;color:#b45309;font-family:"JetBrains Mono",Consolas,monospace;margin-top:2px;}
+  .medal.lock{border-color:#e7e5e4;background:#fafaf9;}
+  .medal.lock .mi{filter:grayscale(1);opacity:.4;}
+  .medal.lock .mt{color:#a8a29e;} .medal.lock .md{color:#c7c2bd;}
+  /* 数据来源折叠：把长注收起来，正文只留结论 */
+  details.src{margin:11px 0;border:1.5px dashed #d6d3d1;border-radius:9px;padding:7px 13px;background:#fafaf9;}
+  details.src summary{cursor:pointer;font-size:13.5px;color:var(--ink3);letter-spacing:1px;list-style:none;}
+  details.src summary::-webkit-details-marker{display:none;}
+  details.src summary::before{content:"\25B8  ";color:#a8a29e;}
+  details.src[open] summary::before{content:"\25BE  ";}
+  details.src[open] summary{margin-bottom:6px;border-bottom:1px dashed #e7e5e4;padding-bottom:5px;}
+  details.src p{font-size:13.3px;color:var(--ink3);}
+  /* 点击放大 */
+  .lb{position:fixed;left:0;top:0;right:0;bottom:0;z-index:90;background:rgba(15,23,42,.88);display:none;align-items:center;justify-content:center;padding:24px;}
+  .lb.on{display:flex;}
+  .lb-inner{background:#fff;border-radius:14px;max-width:1150px;width:100%;max-height:90vh;overflow:auto;padding:24px 26px 18px;box-shadow:0 18px 60px rgba(0,0,0,.45);}
+  .lb-inner svg{width:100%;height:auto;display:block;}
+  .lb-cap{font-size:14px;color:var(--ink2);margin-top:10px;text-align:center;line-height:1.7;}
+  .lb-x{position:fixed;right:28px;top:22px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:#111827;font-size:21px;cursor:pointer;font-family:inherit;}
+  .lb-x:hover{background:#fff;color:var(--c4);}
+  .lb-hint{position:fixed;left:28px;bottom:20px;font-size:12.5px;color:#94a3b8;}
+  .ring-fill{transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1);}
+
+  /* ================= 手机适配 ================= */
+  @media (max-width:640px){
+    body{font-size:15px;line-height:1.82;background:#f3f1ec;}
+    .page-wrap{padding:14px 8px 44px;}
+    .toolbar{margin:-14px -8px 14px;padding:8px 10px;border-radius:0 0 12px 12px;}
+    .tb-title{font-size:13px;letter-spacing:1px;}
+    .tb-cd{font-size:12px;padding:3px 11px;}
+    .tb-search{min-width:100%;order:9;}
+    .tb-btn{font-size:12.5px;padding:4px 11px;}
+    section.card{padding:20px 14px;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+    .cover{padding:28px 12px 26px;}
+    .cover h1{font-size:24px;letter-spacing:2px;}
+    .cover .sub{font-size:13px;letter-spacing:1.5px;}
+    .cd-num{font-size:62px;}
+    .cd-lab{font-size:14px;letter-spacing:2px;}
+    .cover .three span{font-size:12.8px;padding:5px 13px;letter-spacing:1px;}
+    .cover .meta{padding:11px 14px;font-size:13.2px;line-height:1.9;}
+    .cover .rule{font-size:13.8px;padding:11px 14px;line-height:1.95;}
+    .today{padding:13px 13px;}
+    .td-gears{margin-left:0;width:100%;}
+    .gear{flex:1;padding:6px 4px;font-size:13px;}
+    .ch-head{flex-wrap:wrap;gap:9px;}
+    .ch-head h2{font-size:18px;}
+    .ch-head .tag{margin-left:0;font-size:11.5px;}
+    .ch-num{width:36px;height:36px;font-size:17px;border-radius:10px;}
+    h3{font-size:16px;margin:16px 0 7px;}
+    table{font-size:13.2px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    th{font-size:12.6px;padding:6px 7px;} td{padding:6px 7px;}
+    .hook,.warn,.law,.tip{font-size:14.2px;padding:10px 12px;margin:11px 0;}
+    .chart-grid.g4{grid-template-columns:repeat(2,1fr);}
+    .g2,.g3{grid-template-columns:1fr;}
+    .hero{grid-template-columns:1fr;gap:13px;}
+    .medals{grid-template-columns:repeat(3,1fr);gap:8px;}
+    .medal .mi{font-size:19px;} .medal .mt{font-size:11px;}
+    .fig{padding:9px 7px 5px;border-radius:10px;} .fig figcaption{font-size:11.5px;}
+    .fig .zx{display:none;}
+    .kpi .kv{font-size:21px;} .kpi .kl{font-size:10.5px;}
+    .lb-inner{padding:16px 12px 12px;} .lb-x{right:14px;top:12px;}
+    .bar-name{width:58px;font-size:12.5px;}
+    .bar-right{width:92px;font-size:11.5px;}
+    .bar-track{height:20px;} .bar-txt{line-height:20px;font-size:11.5px;}
+    .gear-card{padding:13px 13px;}
+    .gc-list li{font-size:14px;flex-wrap:wrap;}
+    .gc-list .mn{margin-left:0;}
+    .redline{padding:11px 12px;gap:10px;}
+    .redline .rn{width:30px;height:30px;font-size:14px;}
+    .redline .rt{font-size:15px;} .redline .rd{font-size:13.6px;}
+    .wall{grid-template-columns:repeat(5,1fr);gap:5px;}
+    .qc-grid{grid-template-columns:1fr;}
+    .qc-box li{font-size:13.2px;}
+    .wk-grid{grid-template-columns:1fr;}
+    .fld label{width:96px;font-size:13px;}
+    ul,ol{padding-left:19px;}
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ================= 工具条 ================= -->
+<div class="toolbar">
+  <div class="tb-row">
+    <span class="tb-title">100天备战手册</span>
+    <span class="tb-cd" id="tbCd">距初试 <i>--</i> 天</span>
+    <input class="tb-search" id="q" type="search" placeholder="🔍 搜任务 / 搜红线 / 搜科目…" autocomplete="off">
+    <button class="tb-btn" id="btnGear">🎯 今日速查</button>
+    <button class="tb-btn" id="btnFold">🗂 全部折叠</button>
+    <button class="tb-btn" id="btnPrint">🖨 打印</button>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<!-- ================= 封面 ================= -->
+<section class="card cover" id="top">
+  <h1>最后 100 天备战手册</h1>
+  <div class="sub">2026-09-10 起 · 初试 2026-12-19 · 27 考研</div>
+
+  <div class="cd-box">
+    <div class="cd-num" id="cdNum">--</div>
+    <div class="cd-lab">天后开考</div>
+  </div>
+
+  <div class="three">
+    <span style="background:#b45309">日均 5.6 h</span>
+    <span style="background:#0d9488">缓冲 225 h</span>
+    <span style="background:#7c3aed">容错 38 天</span>
+  </div>
+
+  <!-- 今日战情：阶段自动定位 + 档位手动切换（存 localStorage） -->
+  <div class="today" id="todayPanel">
+    <div class="td-row">
+      <span class="td-phase" id="tdPhase">阶段定位中…</span>
+      <span class="td-day" id="tdDay"></span>
+      <span class="td-gears">
+        <button class="gear" data-g="A">A 真题</button>
+        <button class="gear" data-g="B">B 常规</button>
+        <button class="gear" data-g="C">C 保底</button>
+        <button class="gear" data-g="R">休</button>
+      </span>
+    </div>
+    <div class="td-hint" id="tdHint"></div>
+  </div>
+
+  <div class="meta">
+    <b>怎么用</b>：每天早上打开，先看第〇章战绩看板（知道自己在哪），再看顶部「今日战情」确定今天走哪一档，然后翻到第十章速查卡照着做。<br>
+    <b>怎么记</b>：晚上在第七章打卡墙点一下今天的格子，选 A / B / C / 休，自动存在本机浏览器里。<br>
+    <b>怎么调</b>：触发第六章任一条红线就按红线动作改，不要硬扛；每周日填第八章检查点。<br>
+    <b>数据源</b>：<span class="mono">todayStatus.ts</span>（PLAN_VERSION 12），最近更新 2026-09-17。<br>
+    <b>依赖</b>：零 CDN、零网络，双击即开。手机与 A4 打印双适配。
+  </div>
+
+  <div class="rule">
+    <b>① 时间不是瓶颈。</b>日均 5.6 小时够，你有 225 小时缓冲、38 个可以彻底废掉的日子。<br>
+    <b>② 英语是唯一不能断的。</b>它没有后期爆发的可能，少一天就永久少一天。<br>
+    <b>③ 计组和 OS 的重活都过去了，剩下的攻坚点是政治。</b>09-15 计组费曼一轮全部过完，卡了两个月的骨头啃下来了；09-16 OS 最重的两章（进程管理、内存管理）也费曼过完（os-01~03、5 个 session、23 问、16 个新 gap），408 剩 27 个单元按序推即可。真正会勒住你的是政治——10-20 前必须把串讲 58 讲过完，否则二刷与肖八没有时间。
+  </div>
+</section>
+
+<!-- ================= 零、战绩看板 ================= -->
+<section class="card sa" id="c0">
+  <div class="ch-head"><div class="ch-num">零</div><h2>战绩看板 · 你已经走了多远</h2><div class="tag">先看这个再看账</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>这一屏不讲道理，只给你看结果。<b>四科合计 466 个单元，你已经啃下 224 个</b>——下面的偏差图里，零线是「应达刻度」，柱子在零线右边就是<b>跑赢了自己</b>。</p>
+
+    <div class="hero">
+      <figure class="fig">
+        <svg viewBox="0 0 440 136" role="img" aria-label="四科实际与应达偏差">
+          <line x1="119" y1="22" x2="119" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="162" y1="22" x2="162" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="205" y1="22" x2="205" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="291" y1="22" x2="291" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="334" y1="22" x2="334" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="377" y1="22" x2="377" y2="126" stroke="#eceae8" stroke-width="1"/>
+          <line x1="248" y1="18" x2="248" y2="128" stroke="#78716c" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="119" y="14" font-size="9.5" fill="#a8a29e" text-anchor="middle">落后30</text>
+          <text x="183" y="14" font-size="9.5" fill="#a8a29e" text-anchor="middle">落后10</text>
+          <text x="248" y="14" font-size="9.5" fill="#78716c" text-anchor="middle">应达</text>
+          <text x="313" y="14" font-size="9.5" fill="#a8a29e" text-anchor="middle">超前10</text>
+          <text x="377" y="14" font-size="9.5" fill="#a8a29e" text-anchor="middle">超前30</text>
+          <text x="6" y="38" font-size="11.5" fill="#1f2933">数学一</text>
+          <rect x="248" y="25" width="128" height="17" rx="3" fill="#16a34a" opacity=".85"/>
+          <text x="370" y="38" font-size="11" fill="#14532d" text-anchor="end">+29.7</text>
+          <text x="6" y="64" font-size="11.5" fill="#1f2933">408</text>
+          <rect x="248" y="51" width="77" height="17" rx="3" fill="#2563eb" opacity=".85"/>
+          <text x="319" y="64" font-size="11" fill="#1e3a8a" text-anchor="end">+17.8</text>
+          <text x="6" y="90" font-size="11.5" fill="#1f2933">英语一</text>
+          <rect x="129" y="77" width="119" height="17" rx="3" fill="#ea580c" opacity=".85"/>
+          <text x="135" y="90" font-size="11" fill="#7c2d12">-27.7</text>
+          <text x="6" y="116" font-size="11.5" fill="#1f2933">政治</text>
+          <rect x="241" y="103" width="7" height="17" rx="2" fill="#dc2626" opacity=".9"/>
+          <text x="236" y="116" font-size="11" fill="#7f1d1d" text-anchor="end">-1.5</text>
+          <text x="434" y="132" font-size="9" fill="#a8a29e" text-anchor="end">单位：百分点 ｜ 09-17</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption>绿蓝 = 跑赢应达；橙红 = 欠着。<b>只有英语是真欠账</b>，政治几乎贴线。</figcaption>
+      </figure>
+      <div class="kpis">
+        <div class="kpi good"><div class="kv">224<span style="font-size:13px;color:#57534e"> / 466</span></div><div class="kl">已攻克单元</div></div>
+        <div class="kpi gold"><div class="kv">48.1%</div><div class="kl">整体完成度</div></div>
+        <div class="kpi cool"><div class="kv">+29.7</div><div class="kl">数学超前百分点</div></div>
+        <div class="kpi"><div class="kv">38<span style="font-size:13px;color:#57534e"> 天</span></div><div class="kl">可随时作废</div></div>
+      </div>
+    </div>
+
+    <div class="wall-stat" id="streakStat"></div>
+
+    <h3>四科完成度环（实心 = 实际，虚线刻度 = 应达）</h3>
+    <div class="chart-grid g4">
+      <figure class="fig">
+        <svg viewBox="0 0 100 100" role="img" aria-label="数学一完成度">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#eceae8" stroke-width="9"/>
+          <circle class="ring-fill" data-off="21.4" cx="50" cy="50" r="40" fill="none" stroke="#16a34a" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="21.4" transform="rotate(-90 50 50)"/>
+          <line x1="28" y1="73.2" x2="17" y2="84.8" stroke="#78716c" stroke-width="2"/>
+          <text x="50" y="50" font-size="21" fill="#16a34a" text-anchor="middle">91.5%</text>
+          <text x="50" y="66" font-size="9.5" fill="#57534e" text-anchor="middle">130 / 142</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption><b>数学一</b>｜应达 61.8%｜超前 29.7</figcaption>
+      </figure>
+      <figure class="fig">
+        <svg viewBox="0 0 100 100" role="img" aria-label="408完成度">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#eceae8" stroke-width="9"/>
+          <circle class="ring-fill" data-off="86.9" cx="50" cy="50" r="40" fill="none" stroke="#2563eb" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="86.9" transform="rotate(-90 50 50)"/>
+          <line x1="54.8" y1="81.6" x2="57.2" y2="97.5" stroke="#78716c" stroke-width="2"/>
+          <text x="50" y="50" font-size="21" fill="#2563eb" text-anchor="middle">65.4%</text>
+          <text x="50" y="66" font-size="9.5" fill="#57534e" text-anchor="middle">51 / 78</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption><b>408</b>｜应达 47.6%｜超前 17.8</figcaption>
+      </figure>
+      <figure class="fig">
+        <svg viewBox="0 0 100 100" role="img" aria-label="英语一完成度">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#eceae8" stroke-width="9"/>
+          <circle class="ring-fill" data-off="191.8" cx="50" cy="50" r="40" fill="none" stroke="#ea580c" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="191.8" transform="rotate(-90 50 50)"/>
+          <line x1="47.2" y1="81.9" x2="45.8" y2="97.8" stroke="#78716c" stroke-width="2"/>
+          <text x="50" y="50" font-size="21" fill="#ea580c" text-anchor="middle">23.7%</text>
+          <text x="50" y="66" font-size="9.5" fill="#57534e" text-anchor="middle">37 / 156</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption><b>英语一</b>｜应达 51.4%｜欠 27.7</figcaption>
+      </figure>
+      <figure class="fig">
+        <svg viewBox="0 0 100 100" role="img" aria-label="政治完成度">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#eceae8" stroke-width="9"/>
+          <circle class="ring-fill" data-off="234.4" cx="50" cy="50" r="40" fill="none" stroke="#dc2626" stroke-width="9" stroke-linecap="round" stroke-dasharray="251.33" stroke-dashoffset="234.4" transform="rotate(-90 50 50)"/>
+          <line x1="65.8" y1="22.2" x2="73.6" y2="8.2" stroke="#78716c" stroke-width="2"/>
+          <text x="50" y="50" font-size="21" fill="#dc2626" text-anchor="middle">6.7%</text>
+          <text x="50" y="66" font-size="9.5" fill="#57534e" text-anchor="middle">6 / 90</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption><b>政治</b>｜应达 8.2%｜欠 1.5（贴线）</figcaption>
+      </figure>
+    </div>
+
+    <h3>勋章墙 · 已经拿下的硬骨头</h3>
+    <div class="medals">
+      <div class="medal"><div class="mi">🧱</div><div class="mt">计组费曼一轮全过</div><div class="md">09-15 · co-01~07</div></div>
+      <div class="medal"><div class="mi">⚙️</div><div class="mt">OS 两块最重的啃完</div><div class="md">09-16 · os-01~03</div></div>
+      <div class="medal"><div class="mi">📿</div><div class="mt">1000题二刷清零</div><div class="md">09-16 · 147→142</div></div>
+      <div class="medal"><div class="mi">📖</div><div class="mt">2010 最难年四篇收官</div><div class="md">09-16 · 阅读满 20</div></div>
+      <div class="medal"><div class="mi">🧮</div><div class="mt">17 数一套卷限时</div><div class="md">09-16 · +10 错题</div></div>
+      <div class="medal"><div class="mi">🩸</div><div class="mt">政治破土</div><div class="md">09-09~16 · 6 讲</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">63 条 gap 验收清零</div><div class="md">目标 09-22</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">OS 五章全过</div><div class="md">目标 10-08</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">计网强化过完</div><div class="md">目标 10-15</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">英语阅读 58 篇</div><div class="md">目标 10-15</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">政治串讲 58 讲清零</div><div class="md">目标 10-20</div></div>
+      <div class="medal lock"><div class="mi">🔓</div><div class="mt">真题 9 套收官</div><div class="md">目标 阶段二末</div></div>
+    </div>
+    <div class="hook">六枚已经亮了，最难得的不是数量，是<b>计组那两个卡了你两个月的重复错终于过去了</b>。空着的六枚全都有明确日期，不是愿望。</div>
+
+    <h3>时间从哪来：需求 vs 预算</h3>
+    <div class="chart-grid g2">
+      <figure class="fig">
+        <svg viewBox="0 0 440 176" role="img" aria-label="时间需求与预算对比">
+          <line x1="40" y1="146" x2="420" y2="146" stroke="#a8a29e" stroke-width="1.5"/>
+          <rect x="96" y="62.7" width="92" height="83.3" rx="4" fill="#b45309" opacity=".88"/>
+          <rect x="252" y="26" width="92" height="120" rx="4" fill="#0f766e" opacity=".2"/>
+          <rect x="252" y="62.7" width="92" height="83.3" rx="4" fill="#0f766e" opacity=".88"/>
+          <line x1="252" y1="62.7" x2="344" y2="62.7" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
+          <text x="142" y="56" font-size="13" fill="#1f2933" text-anchor="middle">519 h</text>
+          <text x="142" y="162" font-size="11" fill="#57534e" text-anchor="middle">需要（93 学习日 × 5.6 h）</text>
+          <text x="298" y="20" font-size="13" fill="#1f2933" text-anchor="middle">744 h</text>
+          <text x="298" y="46" font-size="10.5" fill="#0f766e" text-anchor="middle">缓冲 225 h</text>
+          <text x="298" y="162" font-size="11" fill="#57534e" text-anchor="middle">可用（93 学习日 × 8 h）</text>
+        </svg>
+        <span class="zx">点击放大</span>
+        <figcaption>上面空出来的那截就是 225 小时——<b>多出四成的时间</b>。</figcaption>
+      </figure>
+      <div class="fig" style="cursor:default">
+        <div class="buf">
+          <i class="used"></i><i class="used"></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div style="font-size:12.5px;color:#57534e;margin-top:8px;line-height:1.6">
+          40 格 = 40 个可以彻底废掉的日子。红掉的 2 格是 09-12~09-13 回家休息，<b>净剩 38 格</b>。
+        </div>
+      </div>
+    </div>
+    <div class="tip">这一屏的唯一用途是：状态差的时候回来看一眼，确认自己<b>并没有在原地</b>。数字每天在涨，涨的就是成绩。</div>
+  </div>
+</section>
+
+<!-- ================= 一、总账 ================= -->
+<section class="card s0" id="c1">
+  <div class="ch-head"><div class="ch-num">一</div><h2>总账 · 盘子有多大</h2><div class="tag">519 h / 93 学习日</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>先把总量算清，才知道每天该背多少。<b>四科剩余 242 个单元，折算 361 小时</b>，加上每日背诵与冲刺期回顾，全程 519 小时。<span class="gray-note">（09-17 重算：原 531 h 降 12 h——数学真题 -3.5、英语阅读 -2.5、政治串讲 -0.8、OS 五章已过三章 -8.0、gap 验收由 47 条增至 63 条 +3.0）</span></p>
+
+    <table>
+      <tr><th style="width:26%">科目</th><th style="width:14%">剩余单元</th><th style="width:15%">预估工时</th><th style="width:13%">日均</th><th>定位</th></tr>
+      <tr><td>408 计算机</td><td class="num">27</td><td class="num">97.5 h</td><td class="num">1.0 h</td><td><b>卡点已破·按序推</b></td></tr>
+      <tr><td>英语一</td><td class="num">119</td><td class="num">127.7 h</td><td class="num">1.4 h</td><td><b>唯一硬约束</b></td></tr>
+      <tr><td>政治</td><td class="num">84</td><td class="num">87.2 h</td><td class="num">0.9 h</td><td><b>10-20 硬截止</b></td></tr>
+      <tr><td>数学一</td><td class="num">12</td><td class="num">48.5 h</td><td class="num">0.5 h</td><td>维持 + 真题</td></tr>
+      <tr class="sum"><td>四科小计</td><td class="num">242</td><td class="num">360.9 h</td><td></td><td></td></tr>
+      <tr><td>每日背诵<span class="gray-note">（不在单元模型内）</span></td><td>—</td><td class="num">117.0 h</td><td class="num">1.2 h</td><td>固定动作</td></tr>
+      <tr><td>冲刺期回顾 / 三刷 / gap 回捞<span class="gray-note">（含 63 条 gap 验收 11 h）</span></td><td>—</td><td class="num">41.0 h</td><td>—</td><td>阶段三</td></tr>
+      <tr class="sum"><td>总计</td><td></td><td class="num">519 h</td><td class="num">5.6 h/天</td><td>预算 8 h</td></tr>
+    </table>
+
+    <figure class="fig" style="cursor:default">
+      <svg viewBox="0 0 440 86" role="img" aria-label="四科剩余单元分布">
+        <text x="12" y="16" font-size="11" fill="#57534e">四科剩余 242 个单元 · 谁占得多</text>
+        <rect x="12"  y="26" width="204.4" height="26" fill="#ea580c" opacity=".85"/>
+        <rect x="216.4" y="26" width="144.3" height="26" fill="#dc2626" opacity=".85"/>
+        <rect x="360.7" y="26" width="46.4"  height="26" fill="#2563eb" opacity=".85"/>
+        <rect x="407.1" y="26" width="20.6"  height="26" fill="#16a34a" opacity=".9"/>
+        <text x="114" y="44" font-size="11.5" fill="#fff" text-anchor="middle">英语 119</text>
+        <text x="288" y="44" font-size="11.5" fill="#fff" text-anchor="middle">政治 84</text>
+        <text x="384" y="44" font-size="10.5" fill="#fff" text-anchor="middle">408 27</text>
+        <text x="12" y="70" font-size="10.5" fill="#57534e">英语一 119（49.2%）</text>
+        <text x="130" y="70" font-size="10.5" fill="#57534e">政治 84（34.7%）</text>
+        <text x="248" y="70" font-size="10.5" fill="#57534e">408 27（11.2%）</text>
+        <text x="352" y="70" font-size="10.5" fill="#57534e">数学 12（5.0%）</text>
+      </svg>
+      <figcaption>一眼看出盘子重心：<b>每两个单元里有一个是英语</b>，而英语最不能断。</figcaption>
+    </figure>
+
+    <h3>当前四科进度</h3>
+    <div class="bars" id="bars">
+      <div class="bar-row"><span class="bar-name">数学一</span>
+        <span class="bar-track"><span class="bar-fill" data-w="91.5" style="background:linear-gradient(90deg,#86efac,#16a34a)"></span><span class="bar-txt">130 / 142</span></span>
+        <span class="bar-right">91.5% ｜应达 61.8%</span></div>
+      <div class="bar-row"><span class="bar-name">408</span>
+        <span class="bar-track"><span class="bar-fill" data-w="65.4" style="background:linear-gradient(90deg,#93c5fd,#2563eb)"></span><span class="bar-txt">51 / 78</span></span>
+        <span class="bar-right">65.4% ｜应达 47.6%</span></div>
+      <div class="bar-row"><span class="bar-name">英语一</span>
+        <span class="bar-track"><span class="bar-fill" data-w="23.7" style="background:linear-gradient(90deg,#fdba74,#ea580c)"></span><span class="bar-txt">37 / 156</span></span>
+        <span class="bar-right">23.7% ｜应达 51.4%</span></div>
+      <div class="bar-row"><span class="bar-name">政治</span>
+        <span class="bar-track"><span class="bar-fill" data-w="6.7" style="background:linear-gradient(90deg,#fca5a5,#dc2626)"></span><span class="bar-txt">6 / 90</span></span>
+        <span class="bar-right">6.7% ｜应达 8.2%</span></div>
+    </div>
+    <details class="src"><summary>进度口径与 09-17 同步明细（点开看，平时不用读）</summary>
+    <p class="gray-note"><b>数学</b> 1000 题二刷全部收尾（147 → 142）后限时刷完 2017 年套卷，129 → 130，指针落点 n=131 = 2018 年；<b>408</b> 计组费曼一轮（co-01~07）50 → 51，OS 费曼已过 os-01 概述 / os-02 进程管理 / os-03 内存管理（5 个 session、23 问、新建 16 个 gap C-048~C-063），但 n=52 这一整单元要 os-01~05 全过、单指针不能中途记分，故仍算 51，完成度写进任务标签；<b>英语</b> 2010 年四篇阅读全部收官（最难年，T1 2/5、T2 0/5），33 → 35 → 37，阅读累计 20 篇；<b>政治</b> 马原第6讲「对立统一」，3 → 5 → 6（对应肖1000 一刷欠账累计 6 讲）。应达刻度按各科 startDate → targetDate 线性折算至 09-17。</p>
+    </details>
+
+    <h3>容错账：这份规划最值钱的一条</h3>
+    <details class="src"><summary>93 学习日 / 5.6 h 日均 / 225 h 缓冲是怎么算出来的</summary>
+    <ul>
+      <li>学习日按 <b>93 天</b>算 —— 100 天里每周留半天完全休息，共扣 7 天。这不是放纵，是防止第 6 周崩盘的必要设计。</li>
+      <li>日均需 <b>5.6 小时</b>，而你的可用预算是 <b>8 小时</b>。</li>
+      <li>富余 <b>225 小时 = 40 个完整学习日</b>的容错（已用掉 2 天：09-12~09-13 回家休息，净剩 <b>38 天</b>）。</li>
+    </ul>
+    </details>
+    <div class="hook">这 100 天里，你可以彻底废掉四成日子，规划依然成立。<b>所以任何一天的状态崩盘都不构成灾难</b>——真正会毁掉这 100 天的，只有"崩了一天之后连续崩十天"。</div>
+    <div class="tip">225 小时的缓冲不是拿来提前透支的。它的用途是：生病、有事、状态差、以及<b>某科实际耗时超出估算</b>（这几乎必然发生，尤其是 408 大题强化）。把它当保险，不当余额。</div>
+  </div>
+</section>
+
+<!-- ================= 二、阶段一 ================= -->
+<section class="card s1" id="c2" data-phase="0">
+  <div class="ch-head"><div class="ch-num">二</div><h2>阶段一 · 攻坚期</h2><div class="tag">09-10 ~ 10-15 ｜5.5 h/天</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p><b>主题变了：从「破计组」转成「推 OS + 计网，并把政治串讲追上去」。</b>计组已于 09-15 费曼一轮全部过完（co-01~co-07、31 问）；OS 最重的两章（进程管理、内存管理）也已于 09-16 费曼过完（os-01~03）。剩下的硬骨头：OS 收尾＋计网强化（27 h）、政治串讲 46 讲——政治 <b>10-20 是硬截止线</b>，拖过去二刷与肖八就没时间了。</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 440 128" role="img" aria-label="三阶段时间轴与硬截止线">
+        <line x1="30" y1="112" x2="425" y2="112" stroke="#a8a29e" stroke-width="1"/>
+        <rect x="30" y="46" width="140.8" height="20" rx="4" fill="#2563eb" opacity=".85"/>
+        <rect x="170.8" y="46" width="136.9" height="20" rx="4" fill="#0d9488" opacity=".85"/>
+        <rect x="311.6" y="46" width="109.5" height="20" rx="4" fill="#7c3aed" opacity=".85"/>
+        <text x="100" y="40" font-size="10.5" fill="#1e3a8a" text-anchor="middle">攻坚 171.9 h</text>
+        <text x="239" y="40" font-size="10.5" fill="#115e59" text-anchor="middle">收尾 199.9 h</text>
+        <text x="366" y="40" font-size="10.5" fill="#5b21b6" text-anchor="middle">冲刺 164 h</text>
+        <line x1="166.9" y1="68" x2="166.9" y2="84" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="186.4" y1="68" x2="186.4" y2="84" stroke="#b91c1c" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="233.4" y1="68" x2="233.4" y2="84" stroke="#78716c" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="350.7" y1="68" x2="350.7" y2="84" stroke="#78716c" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="421.1" y1="68" x2="421.1" y2="84" stroke="#111827" stroke-width="1.4"/>
+        <text x="166.9" y="94" font-size="9" fill="#b91c1c" text-anchor="middle">10-15</text>
+        <text x="186.4" y="105" font-size="9" fill="#b91c1c" text-anchor="middle">10-20</text>
+        <text x="233.4" y="94" font-size="9" fill="#57534e" text-anchor="middle">11-01</text>
+        <text x="350.7" y="94" font-size="9" fill="#57534e" text-anchor="middle">12-01</text>
+        <text x="424" y="94" font-size="9" fill="#111827" text-anchor="end">12-19 初试</text>
+        <line x1="57.4" y1="20" x2="57.4" y2="112" stroke="#dc2626" stroke-width="1.6"/>
+        <polygon points="57.4,20 52.6,11 62.2,11" fill="#dc2626"/>
+        <text x="57.4" y="8" font-size="10" fill="#dc2626" text-anchor="middle">今天 09-17</text>
+        <text x="30" y="123" font-size="9" fill="#a8a29e" text-anchor="middle">09-10</text>
+        <text x="112" y="123" font-size="9" fill="#a8a29e" text-anchor="middle">10-01</text>
+        <text x="233.4" y="123" font-size="9" fill="#a8a29e" text-anchor="middle">11-01</text>
+        <text x="350.7" y="123" font-size="9" fill="#a8a29e" text-anchor="middle">12-01</text>
+      </svg>
+      <span class="zx">点击放大</span>
+      <figcaption>你现在在第 8 天／共 101 天。<b>两道红线（10-15 / 10-20）都在前 33 天内</b>，过了它们后面两条路平得多。注：阶段表含各自机动项，与总账口径有 ±17 h 出入，在 225 h 缓冲范围内。</figcaption>
+    </figure>
+
+    <table>
+      <tr><th style="width:44%">任务</th><th style="width:18%">量</th><th style="width:16%">工时</th><th>优先级</th></tr>
+      <tr><td>408 计组强化<span class="gray-note">（09-15 费曼一轮过完 co-01~07）</span></td><td class="num">已完成</td><td class="num">0 h</td><td>—</td></tr>
+      <tr><td>408 gap 二刷验收<span class="gray-note">（计组 47 条 C-001~C-047 + OS 16 条 C-048~C-063；重复错 C-001/C-005 与 co-02 补码/IEEE754 优先）</span></td><td class="num">63 条</td><td class="num">11 h</td><td><b>最高</b></td></tr>
+      <tr><td>408 操作系统强化<span class="gray-note">（os-01~03 费曼已过，剩 os-04~05）</span></td><td>—</td><td class="num">12 h</td><td><b>最高</b></td></tr>
+      <tr><td>408 计算机网络强化</td><td>—</td><td class="num">15 h</td><td>高</td></tr>
+      <tr><td>英语阅读精读<span class="gray-note">（起点 20 篇 → 目标 58 篇）</span></td><td class="num">38 篇</td><td class="num">47.5 h</td><td><b>不可断</b></td></tr>
+      <tr><td>数学真题<span class="gray-note">（每 3 天 1 套，2017 已做）</span></td><td class="num">5 套</td><td class="num">17.5 h</td><td>中</td></tr>
+      <tr><td>数学错题二刷<span class="gray-note">（1000题二刷已于 09-16 全部收尾）</span></td><td class="num">已完成</td><td class="num">0 h</td><td>—</td></tr>
+      <tr><td>政治串讲<span class="gray-note">（五模块 58 讲，含同步肖1000 一刷）</span></td><td class="num">46 讲</td><td class="num">38.2 h</td><td><b>硬截止</b></td></tr>
+      <tr><td>每日背诵</td><td class="num">33.5 天</td><td class="num">30.7 h</td><td><b>不可断</b></td></tr>
+      <tr class="sum"><td>合计</td><td></td><td class="num">171.9 h</td><td class="num">≈ 5.1 h/天（原 183.7 h / 5.5）</td></tr>
+    </table>
+
+    <h3>OS / 计网推进 + 63 条 gap 验收的顺序</h3>
+    <ol>
+      <li><b>计组 + OS 验收（即刻起 ~ 09-22，11 h）</b>：63 条到期 gap 一起回炉（计组 <span class="mono">C-001~C-047</span> + OS <span class="mono">C-048~C-063</span>）。<b>先搞命门</b>：<span class="mono">C-059</span>（内部碎片 vs 外部碎片）、<span class="mono">C-052</span> 两条 S1 已于 09-17 到期；计组两个重复错 <span class="mono">C-001</span>（存储程序混合存放）与 <span class="mono">C-005</span>（执行时间 = 指令数 × CPI × T，是乘不是除）紧跟着；co-02 数据表示（补码 / IEEE754 / 规格化）整片薄弱，单独拿一个半天重过。</li>
+      <li><b>操作系统剩余（~ 10-08，12 h）</b>：os-01 概述 / os-02 进程管理 / os-03 内存管理已费曼过完，指针落在 <span class="mono">os-04 文件管理</span>；最重的两块已经拿下，剩下 os-04~05 与 CPU / 同步互斥偏轻。</li>
+      <li><b>计算机网络（~ 10-15，15 h）</b>：网络层与传输层是重点，物理层可略。</li>
+    </ol>
+
+    <h3>阶段末检查线（10-15 对照）</h3>
+    <ul>
+      <li>计组 + OS 共 63 条 gap <b>二刷验收完毕</b> + 操作系统与计网两门强化<b>全部过完</b></li>
+      <li>英语阅读累计 <b>58 篇</b>（起点 20 篇 + 本阶段 38 篇；剩 26 篇留给阶段二）</li>
+      <li>政治串讲累计 <b>52 讲</b>（起点 6 讲 + 本阶段 46 讲，日均 1.6 讲）</li>
+      <li>数学真题累计 <b>15 套</b>（起点 10 套 · 2008~2017 + 本阶段 5 套）</li>
+    </ul>
+    <div class="warn">10-15 操作系统或计网仍未过完 → 立即执行第六章红线 1，不要硬推到阶段二（那里已经压着 42.5 h 的大题强化）。政治日均不足 1.6 讲 → 执行红线 3，砍掉当日英语以外的所有机动项。</div>
+  </div>
+</section>
+
+<!-- ================= 三、阶段二 ================= -->
+<section class="card s2" id="c3" data-phase="1">
+  <div class="ch-head"><div class="ch-num">三</div><h2>阶段二 · 收尾期</h2><div class="tag">10-16 ~ 11-20 ｜6.0 h/天</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p><b>主题：408 大题攻坚 + 英语全题型铺开 + 肖八进场。</b>这是三阶段里日均最高的一段（6.0 h），因为四条线同时推进。</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 440 136" role="img" aria-label="阶段五科工时">
+        <text x="6" y="13" font-size="11" fill="#57534e">本阶段 199.9 h 按科目拆开</text>
+        <text x="6" y="37" font-size="11" fill="#1f2933">英语</text>
+        <rect x="64" y="24" width="261" height="15" rx="3" fill="#ea580c" opacity=".85"/>
+        <text x="330" y="36" font-size="10.5" fill="#7c2d12">62.2 h</text>
+        <text x="6" y="59" font-size="11" fill="#1f2933">408</text>
+        <rect x="64" y="46" width="179" height="15" rx="3" fill="#2563eb" opacity=".85"/>
+        <text x="248" y="58" font-size="10.5" fill="#1e3a8a">42.5 h</text>
+        <text x="6" y="81" font-size="11" fill="#1f2933">背诵</text>
+        <rect x="64" y="68" width="165" height="15" rx="3" fill="#b45309" opacity=".85"/>
+        <text x="234" y="80" font-size="10.5" fill="#78350f">39.2 h</text>
+        <text x="6" y="103" font-size="11" fill="#1f2933">政治</text>
+        <rect x="64" y="90" width="155" height="15" rx="3" fill="#dc2626" opacity=".85"/>
+        <text x="224" y="102" font-size="10.5" fill="#7f1d1d">37.0 h</text>
+        <text x="6" y="125" font-size="11" fill="#1f2933">数学</text>
+        <rect x="64" y="112" width="80" height="15" rx="3" fill="#16a34a" opacity=".85"/>
+        <text x="149" y="124" font-size="10.5" fill="#14532d">19.0 h</text>
+        <line x1="64" y1="20" x2="64" y2="129" stroke="#a8a29e" stroke-width="1"/>
+      </svg>
+      <span class="zx">点击放大</span>
+      <figcaption>英语 62.2 h = 阅读 26 篇 + 完型/新题型/翻译 + 作文；408 的 42.5 h <b>全部压在王道大题 17 章上</b>，是全规划单块最重的。</figcaption>
+    </figure>
+
+    <table>
+      <tr><th style="width:44%">任务</th><th style="width:18%">量</th><th style="width:16%">工时</th><th>优先级</th></tr>
+      <tr><td>408 王道大题强化</td><td class="num">17 章</td><td class="num">42.5 h</td><td><b>最高</b></td></tr>
+      <tr><td>英语阅读精读<span class="gray-note">（收尾 84 篇）</span></td><td class="num">26 篇</td><td class="num">32.5 h</td><td><b>不可断</b></td></tr>
+      <tr><td>英语完型 + 新题型 + 翻译</td><td class="num">15+14+10</td><td class="num">19.7 h</td><td>高</td></tr>
+      <tr><td>英语作文模块</td><td class="num">10 个</td><td class="num">10 h</td><td>高</td></tr>
+      <tr><td>数学真题</td><td class="num">4 套</td><td class="num">14 h</td><td>中</td></tr>
+      <tr><td>数学 880 专题<span class="gray-note">（高数 / 线代，错题二刷已收尾）</span></td><td class="num">2 个</td><td class="num">5 h</td><td>中</td></tr>
+      <tr><td>政治串讲剩余 + 肖1000 二刷</td><td class="num">6 讲 + 20 章</td><td class="num">25.0 h</td><td>高</td></tr>
+      <tr><td>肖八<span class="gray-note">（11-01 上市）</span></td><td class="num">8 套</td><td class="num">12 h</td><td>高</td></tr>
+      <tr><td>每日背诵</td><td class="num">33.5 天</td><td class="num">39.2 h</td><td><b>不可断</b></td></tr>
+      <tr class="sum"><td>合计</td><td></td><td class="num">199.9 h</td><td class="num">≈ 6.0 h/天</td></tr>
+    </table>
+
+    <h3>这一阶段的两个关键点</h3>
+    <ul>
+      <li><b>英语从"单一阅读"转"全题型"</b>：完型 15 篇（2011-2025）走逻辑衔接题（不是词义题），新题型 14 篇，翻译 10 篇按采分点拆解，作文 10 个模块开始攒模板。<b>作文必须在本阶段启动</b>，它原定 09-01 就已经逾期了。</li>
+      <li><b>408 大题强化 17 章是全规划最重的一块</b>（42.5 h）。走"费曼讲解 → 大题"的路子：先自己讲一遍思路，再动手写。讲不出来就说明还没过，别急着刷题。</li>
+    </ul>
+
+    <h3>阶段末检查线（11-20 对照）</h3>
+    <ul>
+      <li>408 王道大题强化 <b>17 章过完</b></li>
+      <li>英语全题型<b>至少各刷一轮</b>（阅读 84 篇全清：18 + 40 + 26；完型 15、新题型 14、翻译 10、作文 10 模块）</li>
+      <li>肖八选择题<b>做完并订正</b></li>
+      <li>政治串讲 58 讲全部过完 + 肖1000 二刷 20 章<b>收尾</b></li>
+      <li>数学真题累计 <b>18 套</b>（全部刷完）</li>
+    </ul>
+    <div class="warn">11-01 肖八上市时串讲还没过完 58 讲 → 执行红线 3，直接放弃剩余讲次转肖八，别有沉没成本心态。</div>
+  </div>
+</section>
+
+<!-- ================= 四、阶段三 ================= -->
+<section class="card s3" id="c4" data-phase="2">
+  <div class="ch-head"><div class="ch-num">四</div><h2>阶段三 · 冲刺期</h2><div class="tag">11-21 ~ 12-19 ｜6.0 h/天</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p><b>主题：模拟卷 + 肖四背诵 + 全科回顾。政治在此阶段升为第一优先。</b>最后 29 天，背诵类任务的边际收益全面超过刷题类。</p>
+    
+    <figure class="fig">
+      <svg viewBox="0 0 440 136" role="img" aria-label="冲刺阶段五科工时">
+        <text x="6" y="13" font-size="11" fill="#57534e">本阶段 164 h 按科目拆开 · 政治与背诵合计已近一半</text>
+        <text x="6" y="37" font-size="11" fill="#1f2933">408</text>
+        <rect x="64" y="24" width="193" height="15" rx="3" fill="#2563eb" opacity=".85"/>
+        <text x="262" y="36" font-size="10.5" fill="#1e3a8a">46 h</text>
+        <text x="6" y="59" font-size="11" fill="#1f2933">政治</text>
+        <rect x="64" y="46" width="168" height="15" rx="3" fill="#dc2626" opacity=".85"/>
+        <text x="237" y="58" font-size="10.5" fill="#7f1d1d">40 h · 肖四</text>
+        <text x="6" y="81" font-size="11" fill="#1f2933">背诵</text>
+        <rect x="64" y="68" width="147" height="15" rx="3" fill="#b45309" opacity=".85"/>
+        <text x="216" y="80" font-size="10.5" fill="#78350f">35 h</text>
+        <text x="6" y="103" font-size="11" fill="#1f2933">英语</text>
+        <rect x="64" y="90" width="97" height="15" rx="3" fill="#ea580c" opacity=".85"/>
+        <text x="166" y="102" font-size="10.5" fill="#7c2d12">23 h</text>
+        <text x="6" y="125" font-size="11" fill="#1f2933">数学</text>
+        <rect x="64" y="112" width="84" height="15" rx="3" fill="#16a34a" opacity=".85"/>
+        <text x="153" y="124" font-size="10.5" fill="#14532d">20 h · 维持手感</text>
+        <line x1="64" y1="20" x2="64" y2="129" stroke="#a8a29e" stroke-width="1"/>
+      </svg>
+      <span class="zx">点击放大</span>
+      <figcaption>数学只占 12%，<b>这是故意设计的</b>——前期已经挣够了，后期每一小时挪给政治都能直接换算成分数。</figcaption>
+    </figure>
+
+    <table>
+      <tr><th style="width:44%">任务</th><th style="width:18%">量</th><th style="width:16%">工时</th><th>优先级</th></tr>
+      <tr><td>政治肖四<span class="gray-note">（12-01 上市）</span>+ 大题背诵 + 时政</td><td class="num">4 套</td><td class="num">40 h</td><td><b>最高</b></td></tr>
+      <tr><td>408 模拟卷</td><td class="num">8 套</td><td class="num">28 h</td><td><b>最高</b></td></tr>
+      <tr><td>408 错题 / gap 回捞 + 手册<span class="gray-note">（含 63 条 gap 验收 11 h）</span></td><td>—</td><td class="num">18 h</td><td>高</td></tr>
+      <tr><td>数学中值定理专项 + 错题本三刷 + 体系回顾</td><td>—</td><td class="num">20 h</td><td>高</td></tr>
+      <tr><td>英语套卷模考<span class="gray-note">（原 11 套砍到 6 套）</span></td><td class="num">6 套</td><td class="num">18 h</td><td>中</td></tr>
+      <tr><td>英语作文模板巩固</td><td>—</td><td class="num">5 h</td><td>高</td></tr>
+      <tr><td>每日背诵<span class="gray-note">（政治大题为主）</span></td><td class="num">27 天</td><td class="num">35 h</td><td><b>不可断</b></td></tr>
+      <tr class="sum"><td>合计</td><td></td><td class="num">164 h</td><td class="num">≈ 6.0 h/天</td></tr>
+    </table>
+
+    <h3>主动砍掉的：英语套卷模考 11 套 → 6 套</h3>
+    <div class="tip">模考的边际收益在后期递减——前 6 套能暴露问题，后 5 套只是在重复确认已知水平。而肖四大题背诵是<b>直接换算成分数</b>的，15 小时挪过去性价比高得多。这是全规划里唯一主动砍量的地方。</div>
+
+    <h3>最后 10 天（12-10 ~ 12-19）</h3>
+    <ul>
+      <li>不再做任何新题。只回看：错题本、背诵手册、肖四大题、英语作文模板。</li>
+      <li>数学保持手感：每天 30 分钟基础计算题（求极限、求积分、行列式），不做难题。</li>
+      <li>作息对齐考场：上午 8:30 起做数学/政治类任务，下午 14:00 起做英语/408 类任务。</li>
+      <li><b>12-18 晚不学习</b>。收拾好准考证、身份证、文具，早点睡。</li>
+    </ul>
+    <div class="hook">最后 10 天的任务不是"多学一点"，是<b>把已经会的东西稳稳带到考场上</b>。这时候新增的知识几乎不会留存，而心态和手感的价值远高于多刷两套卷。</div>
+  </div>
+</section>
+
+<!-- ================= 五、每日三档 ================= -->
+<section class="card s4" id="c5">
+  <div class="ch-head"><div class="ch-num">五</div><h2>每日骨架 · 四档</h2><div class="tag">每天只问一件事</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p><b>不要按时刻表排，按「今天走哪一档」排。</b>时刻表一旦被打乱就全线崩，档位制打乱了也只是换个档。</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 440 106" role="img" aria-label="四档时长对比">
+        <text x="6" y="13" font-size="11" fill="#57534e">四个档位的一天到底多长（小时）</text>
+        <text x="6" y="36" font-size="11" fill="#1f2933">A 真题</text>
+        <rect x="58" y="23" width="273" height="15" rx="3" fill="#f59e0b" opacity=".9"/>
+        <text x="335" y="35" font-size="10.5" fill="#78350f">6.2 h</text>
+        <text x="6" y="58" font-size="11" fill="#1f2933">B 常规</text>
+        <rect x="58" y="45" width="286" height="15" rx="3" fill="#2563eb" opacity=".9"/>
+        <text x="348" y="57" font-size="10.5" fill="#1e3a8a">6.5 h</text>
+        <text x="6" y="80" font-size="11" fill="#1f2933">C 保底</text>
+        <rect x="58" y="67" width="132" height="15" rx="3" fill="#94a3b8" opacity=".95"/>
+        <text x="194" y="79" font-size="10.5" fill="#334155">3.0 h</text>
+        <text x="6" y="100" font-size="11" fill="#1f2933">休</text>
+        <rect x="58" y="89" width="4" height="9" fill="#059669"/>
+        <text x="68" y="98" font-size="10.5" fill="#065f46">0 h · 这是规划的一部分</text>
+        <line x1="58" y1="19" x2="58" y2="101" stroke="#a8a29e" stroke-width="1"/>
+      </svg>
+      <span class="zx">点击放大</span>
+      <figcaption>A 与 C 只差 3.2 小时，<b>但 C 档保住了断链不起头</b>。崩一天从 A 降到 C 不叫退化，叫调度。</figcaption>
+    </figure>
+
+    <h3>到图书馆的前 21 分钟（固定不变，不分档）</h3>
+    <ol>
+      <li><b>坐下 → 点今天的档位</b><span class="mono">60 s</span>。战情面板上的 A / B / C / 休 四个按钮，点一下，今天就不用再想「我该干嘛」。这一步消灭的是<b>决策疲劳</b>，不是时间。</li>
+      <li><b>数学公式手册背诵 20 min</b>。这是全天唯一一个「无论状态如何都不会失败」的任务——不需要理解、不需要灵感、不需要先进入状态。刚坐下脑子还没热的时候，正好做它。</li>
+      <li>20 分钟之后，再碰 408 攻坚块或真题。此时启动阻力已经付掉了。</li>
+    </ol>
+    <div class="tip">「脑子最清醒的时段给最难的」这句话对，但<b>最清醒不是刚坐下</b>。刚坐下是全天最不清醒的时刻，真正的清醒期出现在启动后 30~60 分钟。用最难的任务冷启动，等于拿全天最大的阻力去撞全天最低的状态——这是很多人上午直接报废的原因。</div>
+    <div class="warn">三件事绝对不要当第一件事做：<b>看手机</b>、<b>整理桌面 / 倒水 / 削笔</b>、<b>纠结「今天要不要走 C 档」</b>。前两件是伪启动，能消耗 20 分钟而进度为零；第三件的纠结本身就是消耗——档位是<b>点</b>出来的，不是想出来的。</div>
+    <div class="hook">如果连 20 分钟背诵都不想做：<b>只承诺 5 分钟</b>，到点想停就停，不愧疚。绝大多数情况你会继续做下去。难点从来不在第 6 分钟，在第 0 分钟。</div>
+
+    <h3>前一天晚上做的两件事（把决策前移）</h3>
+    <ul>
+      <li><b>在打卡墙点掉今天的格子</b>，顺手看一眼明天是 A 档还是 B 档。A 档每 3 天一次是算出来的，不用猜。</li>
+      <li><b>把明天开场要用的东西摊在桌上</b>：数学公式手册翻到要背的那一节，压上笔。早上坐下就能开始，不用做任何选择。</li>
+    </ul>
+    <div class="law">启动阻力的大头从来不是「开始做」，是<b>「决定做什么」</b>。把决定挪到前一天晚上，早上就只剩执行——而执行不需要意志力。</div>
+
+    <div class="gear-card gA">
+      <div class="gc-head"><div class="gc-badge">A</div><div class="gc-title">真题日</div><div class="gc-sum">约 6.2 h ｜每 3 天 1 次，共 10 次</div></div>
+      <ul class="gc-list">
+        <li>数学真题限时 3 h<span class="mn">180</span></li>
+        <li>当天粗订正<span class="gray-note">（只对答案 + 标记，不深究）</span><span class="mn">30</span></li>
+        <li>英语阅读精读 1 篇<span class="mn">75</span></li>
+        <li>政治串讲 1 讲 + 肖1000 对应章节<span class="mn">50</span></li>
+        <li>背诵三小段<span class="gray-note">（数学手册 20 / 408 手册 15 / 英语 20）</span><span class="mn">55</span></li>
+        <li class="skip">408 当天休息<span class="mn">0</span></li>
+      </ul>
+    </div>
+    <div class="tip">真题的<b>详细订正放到次日 B 档</b>的数学槽位（1 h），不在真题日硬撑。连续 4.5 小时高强度数学之后的订正效率接近于零——那时候你只会抄答案，不会真正消化。</div>
+
+    <div class="gear-card gB">
+      <div class="gc-head"><div class="gc-badge">B</div><div class="gc-title">常规日</div><div class="gc-sum">约 6.5 h ｜其余 83 天</div></div>
+      <ul class="gc-list">
+        <li>408 攻坚块<span class="gray-note">（脑子最清醒的时段给最难的）</span><span class="mn">120</span></li>
+        <li>英语阅读精读 1 篇 + 轻量题型 1 篇<span class="gray-note">（完型 / 新题型）</span><span class="mn">100</span></li>
+        <li>数学：真题详细订正 1 h ／ 或错题口述验收 20 min + 880<span class="mn">20~60</span></li>
+        <li>政治串讲 1.6 讲 + 肖1000 对应章节<span class="mn">80</span></li>
+        <li>背诵三小段<span class="mn">55</span></li>
+      </ul>
+    </div>
+    <p class="gray-note">408 攻坚块的内容随阶段变：<b>阶段一</b> = 63 条 gap 验收（计组 47 + OS 16）+ OS 收尾与计网强化｜<b>阶段二</b> = 王道大题强化｜<b>阶段三</b> = 模拟卷。政治日均 1.6 讲是 10-20 硬截止线算出来的，不是拍脑袋。</p>
+
+    <div class="gear-card gC">
+      <div class="gc-head"><div class="gc-badge">C</div><div class="gc-title">最低维持线</div><div class="gc-sum">约 3 h ｜状态崩的日子</div></div>
+      <ul class="gc-list">
+        <li>英语阅读精读 1 篇<span class="mn">75</span></li>
+        <li>政治 1 讲<span class="mn">50</span></li>
+        <li>背诵三小段<span class="mn">55</span></li>
+        <li class="skip">不碰 408<span class="mn">0</span></li>
+        <li class="skip">不碰数学<span class="mn">0</span></li>
+      </ul>
+    </div>
+    <div class="hook">C 档存在的意义，是让你在任何状态下都有<b>「今天没断」</b>的确定感。断链的代价远大于做少的代价——100 天里最贵的就是这个确定感。状态差就走 C，不要愧疚，更不要干脆整天不学。</div>
+
+    <div class="gear-card gR">
+      <div class="gc-head"><div class="gc-badge">休</div><div class="gc-title">完全休息</div><div class="gc-sum">0 h ｜每周 1 个半天</div></div>
+      <ul class="gc-list">
+        <li>不学习，不愧疚，不复盘<span class="mn">—</span></li>
+        <li>建议放在周日下午或晚上<span class="mn">—</span></li>
+      </ul>
+    </div>
+    <div class="law">每周必须有 1 个半天完全没学习。这已经算进 93 个学习日里了，是规划的一部分，不是偷懒。<b>连续 7 天不休息的人，第 3 周一定会崩。</b></div>
+
+    <h3>背诵三小段的具体内容与时段</h3>
+    <ul>
+      <li><b>数学公式手册 20 min ｜早上开场</b>：《每日公式背诵清单.md》，按章节轮转，重点在薄弱点记忆钩那几节。复习已暴露的漏洞属于<b>激活</b>，正好拿来启动。</li>
+      <li><b>408 背诵手册 15 min ｜睡前</b>：计组手册优先（当前卡点），阶段二起加入操作系统与计网。</li>
+      <li><b>英语 20 min ｜睡前</b>：单词 1 轮 + 作文模板句型。11 月起改成政治大题背诵 15 min + 英语 5 min。</li>
+    </ul>
+    <p class="gray-note">睡前那 35 min 是<b>新输入</b>，靠睡眠巩固；早上那 20 min 是<b>旧内容</b>，靠重复提取。总时长仍是 55 min，只是拆成两段。</p>
+  </div>
+</section>
+
+<!-- ================= 六、四条红线 ================= -->
+<section class="card s5" id="c6">
+  <div class="ch-head"><div class="ch-num">六</div><h2>四条红线 · 触发即调整</h2><div class="tag">不要硬扛</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>规划一定会偏离，<b>偏离本身不是问题，硬扛才是</b>。以下四条是预先写好的应对动作，触发就照做，不用临场纠结、不用自责。</p>
+
+    <div class="redline"><div class="rn">1</div><div class="rb">
+      <div class="rt">10-15 408 操作系统或计网强化仍未过完</div>
+      <div class="rd">停止硬推。把王道大题强化从 17 章砍到 <b>12 章</b>（只保留高频：树 / 图 / 查找 / 排序 / 存储 / CPU），释放 12.5 h 补两门强化。63 条 gap 验收（计组 47 + OS 16）可顺延，但 <span class="mono">C-001</span>（存储程序混合存放）与 <span class="mono">C-005</span>（执行时间是乘不是除）两个重复错、以及 <span class="mono">C-059</span>（内外碎片）必须先过。</div>
+    </div></div>
+
+    <div class="redline"><div class="rn">2</div><div class="rb">
+      <div class="rt">10-15 英语阅读累计不足 58 篇</div>
+      <div class="rd">政治串讲日均从 1.6 讲压到 <b>1.2 讲</b>（硬截止 10-20 顺延到 10-28），计组 gap 验收的 8 h 先挪给英语。<b>英语没有后期爆发的可能，政治与 408 有。</b></div>
+    </div></div>
+
+    <div class="redline"><div class="rn">3</div><div class="rb">
+      <div class="rt">11-01 肖八上市时串讲未过完 58 讲</div>
+      <div class="rd">直接放弃串讲剩余讲次，转肖八。<b>政治后期边际收益远高于听课</b>，不要有沉没成本心态——已经听过的讲次不会因为停下而作废。</div>
+    </div></div>
+
+    <div class="redline"><div class="rn">4</div><div class="rb">
+      <div class="rt">连续 3 天走 C 档</div>
+      <div class="rd"><b>不是加码，是减量。</b>把当前阶段目标整体后移 3 天，同时检查睡眠。连续崩是身体信号，不是意志问题。缓冲里有 225 小时，后移 3 天完全付得起。</div>
+    </div></div>
+
+    <div class="law">红线的设计目的是<b>把「我失败了」翻译成「执行预案 2」</b>。前者消耗你，后者只是一个动作。四条都用完了也还有 225 小时缓冲垫底。</div>
+    <div class="hook">触发红线时，先改这份手册，再继续学。<b>规划跟着现实走，不是现实跟着规划走。</b>把手册改成能执行的样子，永远比逼自己执行一份错的规划有效。</div>
+  </div>
+</section>
+
+<!-- ================= 七、100 天打卡墙 ================= -->
+<section class="card s6" id="c7">
+  <div class="ch-head"><div class="ch-num">七</div><h2>100 天档位打卡墙</h2><div class="tag">点格子记录 · 本机保存</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>每天晚上点一下今天的格子，循环切换 <b>A 真题 → B 常规 → C 保底 → 休 → 清空</b>。记录存在本机浏览器，不上传、不联网。</p>
+
+    <div class="wall-stat" id="wallStat"></div>
+    <div class="wall" id="wall"></div>
+
+    <div class="wall-legend">
+      <span><i class="lg" style="background:#f59e0b"></i>A 真题日</span>
+      <span><i class="lg" style="background:#2563eb"></i>B 常规日</span>
+      <span><i class="lg" style="background:#94a3b8"></i>C 保底线</span>
+      <span><i class="lg" style="background:#059669"></i>完全休息</span>
+      <span><i class="lg" style="background:#111827"></i>初试日</span>
+      <span><i class="lg" style="border:2.5px solid #dc2626;background:#fff"></i>今天</span>
+    </div>
+
+    <div class="tip">这面墙真正的用途不是「督促」，是<b>事后看清楚自己的节奏</b>。到 10 月中旬回头看，你会知道自己是哪种人：是稳定 B 档型，还是 A/B/C 交替型，还是每周崩一次型。知道了才能把后面的规划调成你真的走得动样子。</div>
+    <div class="hook">墙上出现 C 档和「休」不是污点。<b>100 天全是 A/B 的墙才是危险的</b>——那通常意味着前面在透支，后面会整片空白。</div>
+  </div>
+</section>
+
+<!-- ================= 八、周检查点 ================= -->
+<section class="card s7" id="c8">
+  <div class="ch-head"><div class="ch-num">八</div><h2>周检查点 · 15 周</h2><div class="tag">每周日 15 分钟</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>每周日花 15 分钟填当前周。<b>填完自动保存在本机</b>，下次打开还在。当前周默认展开，历史周折叠。</p>
+    <div id="weekWrap"></div>
+    <div class="law">检查点看的不是「完成多少」，是<b>「偏差往哪个方向」</b>。英语篇数连续两周低于 8 篇，就该动红线 2；C 档次数连续上升，就该动红线 4。数字本身没有意义，趋势才有。</div>
+  </div>
+</section>
+
+<!-- ================= 九、工时明细 ================= -->
+<section class="card s8" id="c9">
+  <div class="ch-head"><div class="ch-num">九</div><h2>四科工时明细 · 核算依据</h2><div class="tag">519 h 怎么来的</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <p>所有阶段表里的工时都从这里折算而来。<b>如果某项实际耗时和估算差得远，改这里，上面的阶段表跟着重算。</b></p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 440 146" role="img" aria-label="剩余工时排序">
+        <text x="6" y="14" font-size="11" fill="#57534e">剩 242 个单元折算成的工时（小时）· 剩余任务重不重看这张</text>
+        <text x="6" y="39" font-size="11" fill="#1f2933">英语</text>
+        <rect x="52" y="26" width="255" height="15" rx="3" fill="#ea580c" opacity=".85"/>
+        <text x="311" y="38" font-size="10.5" fill="#7c2d12">127.7</text>
+        <text x="6" y="61" font-size="11" fill="#1f2933">背诵</text>
+        <rect x="52" y="48" width="234" height="15" rx="3" fill="#b45309" opacity=".85"/>
+        <text x="290" y="60" font-size="10.5" fill="#78350f">117.0</text>
+        <text x="6" y="83" font-size="11" fill="#1f2933">408</text>
+        <rect x="52" y="70" width="195" height="15" rx="3" fill="#2563eb" opacity=".85"/>
+        <text x="251" y="82" font-size="10.5" fill="#1e3a8a">97.5</text>
+        <text x="6" y="105" font-size="11" fill="#1f2933">政治</text>
+        <rect x="52" y="92" width="174" height="15" rx="3" fill="#dc2626" opacity=".85"/>
+        <text x="230" y="104" font-size="10.5" fill="#7f1d1d">87.2</text>
+        <text x="6" y="127" font-size="11" fill="#1f2933">数学</text>
+        <rect x="52" y="114" width="97" height="15" rx="3" fill="#16a34a" opacity=".85"/>
+        <text x="153" y="126" font-size="10.5" fill="#14532d">48.5</text>
+        <text x="228" y="126" font-size="10" fill="#a8a29e">← 数学只剩零头</text>
+        <line x1="52" y1="22" x2="52" y2="131" stroke="#a8a29e" stroke-width="1"/>
+      </svg>
+      <span class="zx">点击放大</span>
+      <figcaption>合计 519 h ÷ 93 学习日 = <b>日均 5.6 h</b>，而预算是 8 h。英语最长那根不是因为它难，是因为它<b>每天只能推一截</b>。</figcaption>
+    </figure>
+
+    <h3>数学一 · 48.5 h</h3>
+    <table>
+      <tr><th style="width:46%">项目</th><th style="width:20%">量</th><th style="width:18%">单位耗时</th><th>小计</th></tr>
+      <tr><td>真题套卷（限时 3 h + 订正）<span class="gray-note">（2017 已于 09-16 完成）</span></td><td class="num">9 套</td><td class="num">3.5 h</td><td class="num">31.5 h</td></tr>
+      <tr><td>880 专题（高数 / 线代，真题弱点驱动）</td><td class="num">2 个</td><td class="num">2.5 h</td><td class="num">5 h</td></tr>
+      <tr><td>中值定理证明题专项<span class="gray-note">（延后·性价比低）</span></td><td class="num">1</td><td class="num">2 h</td><td class="num">2 h</td></tr>
+      <tr><td>错题本三刷 + 体系回顾<span class="gray-note">（156 条，含 09-17 录入的 17 数一 10 道）</span></td><td>—</td><td>—</td><td class="num">10 h</td></tr>
+      <tr class="sum"><td>合计</td><td class="num">12 单元</td><td></td><td class="num">48.5 h</td></tr>
+    </table>
+    <p class="gray-note">已完成部分不计入：基础 30 讲、武忠祥强化 18 讲、1000题A组36讲、1000题B组高数18+线代9、<b>真题 10 套（2008~2017，2017 于 09-16 限时完成）</b>、880概率专题，以及 <b>1000 题错题二刷全部五块（09-16 收尾）</b>：高数基础、线代基础、高数强化、线代强化、概率基础前 4 讲。<b>660题、1000题B组概率9讲、1000题概率基础二刷第 5~9 讲均已主动放弃（题目质量低），不在模型内。</b>数学下一个真实任务 = 真题套卷剩余第 2 套 = 2018 年（指针 n=131）。</p>
+
+    <h3>408 · 97.5 h</h3>
+    <table>
+      <tr><th style="width:46%">项目</th><th style="width:20%">量</th><th style="width:18%">单位耗时</th><th>小计</th></tr>
+      <tr><td>强化轮 计算机组成原理<span class="gray-note">（09-15 费曼一轮已完）</span></td><td>—</td><td>—</td><td class="num">0 h</td></tr>
+      <tr><td>强化轮 操作系统<span class="gray-note">（os-01~03 费曼已过，按五章比例扣除 8 h）</span></td><td>—</td><td>—</td><td class="num">12 h</td></tr>
+      <tr><td>强化轮 计算机网络</td><td>—</td><td>—</td><td class="num">15 h</td></tr>
+      <tr><td>王道大题强化（费曼讲解 → 大题）</td><td class="num">17 章</td><td class="num">2.5 h</td><td class="num">42.5 h</td></tr>
+      <tr><td>王道 26 模拟卷</td><td class="num">8 套</td><td class="num">3.5 h</td><td class="num">28 h</td></tr>
+      <tr class="sum"><td>合计</td><td class="num">27 单元</td><td></td><td class="num">97.5 h</td></tr>
+    </table>
+    <p class="gray-note">已完成部分不计入：基础轮 40 章、强化轮数据结构、<b>强化轮计组（09-15 费曼 co-01~co-07 全部过完，31 问）</b>、王道大题强化前 9 章。<b>gap 现共 63 条：计组侧 47 条（含 09-15 新建 C-035~C-047）+ OS 新建 16 条 C-048~C-063，待二刷验收 11 h。</b>⚠ OS 虽已过三章，但 n=52 这一整单元要求 os-01~05 全过，<b>单元模型仍算 27 个未动</b>（单指针不能中途记分），只有工时按实际进度扣了 8 h。<span class="gray-note">（大题强化 9 章这一数字沿用旧值，未能从代码核实，待自行核对）</span></p>
+
+    <h3>英语一 · 127.7 h</h3>
+    <table>
+      <tr><th style="width:46%">项目</th><th style="width:20%">量</th><th style="width:18%">单位耗时</th><th>小计</th></tr>
+      <tr><td>真题阅读精读<span class="gray-note">（生词+长难句+逻辑信号词）</span></td><td class="num">64 篇</td><td class="num">1.25 h</td><td class="num">80.0 h</td></tr>
+      <tr><td>完型<span class="gray-note">（2011-2025，逻辑衔接题为主）</span></td><td class="num">15 篇</td><td class="num">0.4 h</td><td class="num">6.0 h</td></tr>
+      <tr><td>新题型</td><td class="num">14 篇</td><td class="num">0.5 h</td><td class="num">7 h</td></tr>
+      <tr><td>翻译<span class="gray-note">（采分点拆解）</span></td><td class="num">10 篇</td><td class="num">0.67 h</td><td class="num">6.7 h</td></tr>
+      <tr><td>作文模块</td><td class="num">10 个</td><td class="num">1 h</td><td class="num">10 h</td></tr>
+      <tr><td>套卷模考<span class="gray-note">（原 11 套砍到 6 套）</span></td><td class="num">6 套</td><td class="num">3 h</td><td class="num">18 h</td></tr>
+      <tr class="sum"><td>合计</td><td class="num">119 单元</td><td></td><td class="num">127.7 h</td></tr>
+    </table>
+    <p class="gray-note">已完成部分不计入：单词 4 轮、语法长难句 10 讲、<b>阅读精读 20 篇（2005/2006/2008/2009/2010 各 4 篇，2010 年 09-16 四篇收官）</b>、完型 3 篇（2005 得 11/20、2006 得 13/20、2008 得 5/20，累计 29/60 = 48.3%）。阅读总量按 84 篇计，剩 64 篇（指针 n=38 = 2011 年 T1）。套卷模考原 11 套已主动砍到 6 套，09-16 同步修正单元模型（161 → 156）。<b>2010 年及之前尚未做的完型（2007/2009/2010）已主动跳过</b>：完型仅 10 分、每题 0.5 分，老完型题材陈旧且 2011 年起命题重心转向逻辑衔接；后期 6 套模考自带完型，暴露弱点再按需回补。</p>
+
+    <h3>政治 · 87.2 h</h3>
+    <table>
+      <tr><th style="width:46%">项目</th><th style="width:20%">量</th><th style="width:18%">单位耗时</th><th>小计</th></tr>
+      <tr><td>串讲五模块 58 讲<span class="gray-note">（含同步肖1000 一刷，已看完 6 讲）</span></td><td class="num">52 讲</td><td class="num">0.83 h</td><td class="num">43.2 h</td></tr>
+      <tr><td>肖1000 二刷错题</td><td class="num">20 章</td><td class="num">1 h</td><td class="num">20 h</td></tr>
+      <tr><td>肖八（选择题 + 订正）</td><td class="num">8 套</td><td class="num">1.5 h</td><td class="num">12 h</td></tr>
+      <tr><td>肖四（选择 + 背大题）</td><td class="num">4 套</td><td class="num">3 h</td><td class="num">12 h</td></tr>
+      <tr class="sum"><td>合计</td><td class="num">84 单元</td><td></td><td class="num">87.2 h</td></tr>
+    </table>
+    <p class="gray-note">已完成：马原前 6 讲（09-09 第1讲 / 09-10 第2讲 / 09-14 前三课结束 / 09-15 第5讲 / 09-16 第6讲「对立统一」）。<b>09-16 按网盘目录逐课对账：真实课程为五模块 58 讲（马原21/思修8/史纲9/毛中特7/新思想13），体积 59.4 GB ≈ 原始 44.5 h、2 倍速净看课 22.3 h；单元模型 62 → 90（58 讲 + 1000题二刷 20 + 肖八 8 + 肖四 4）。</b>计划 07-15 启动、实际 09-09 启动，落后 56 天；剩 52 讲要在 33 天内过完（至 10-20）= 日均 1.6 讲（约 1.4 h/天），<b>10-20 是政治真正的硬截止线</b>：拖到 10 月下旬就没时间做二刷和肖八，12 月只能靠死背肖四。瓶颈在题不在课——<b>这 6 讲对应的肖1000 选择一刷全部欠账。</b></p>
+
+    <h3>每日背诵 · 117 h</h3>
+    <table>
+      <tr><th style="width:46%">项目</th><th style="width:20%">每日</th><th>说明</th></tr>
+      <tr><td>数学公式背诵手册</td><td class="num">20 min</td><td>《每日公式背诵清单.md》，按章节轮转，薄弱点记忆钩优先</td></tr>
+      <tr><td>408 背诵手册</td><td class="num">15 min</td><td>09-16 起计组让位，改以操作系统（进程 / 内存）与计网为主</td></tr>
+      <tr><td>英语单词 + 作文模板</td><td class="num">20 min</td><td>11 月起压缩到 5 min，让位给政治大题</td></tr>
+      <tr><td>政治大题背诵</td><td class="num">0 → 15 min</td><td>11 月肖八上市后启动，12 月肖四上市后再加码</td></tr>
+      <tr class="sum"><td>合计</td><td class="num">55~70 min</td><td class="num">100 天 ≈ 117 h</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 十、今日速查卡 ================= -->
+<section class="card s9 quickcard" id="c10">
+  <div class="ch-head"><div class="ch-num">十</div><h2>今日速查卡</h2><div class="tag">每天早上看这一屏</div><div class="fold">▼</div></div>
+  <div class="ch-body">
+    <div class="qc-grid">
+      <div class="qc-box qc-full">
+        <h4>开场 21 分钟（不分档，每天一模一样）</h4>
+        <ul>
+          <li>① 坐下 → 点今天的档位 <b>60 s</b>（档位是<b>点</b>出来的，不是想出来的）</li>
+          <li>② 数学公式手册背诵 <b>20 min</b>——全天唯一一个不会失败的任务</li>
+          <li>③ 然后才碰 <b>408 攻坚块 / 真题</b>，此时启动阻力已付掉</li>
+          <li>不当第一件事做：<b>看手机</b>、<b>整理桌面 / 倒水 / 削笔</b>、<b>纠结要不要走 C 档</b></li>
+          <li>一点不想动 → <b>只承诺 5 分钟</b>。难点不在第 6 分钟，在第 0 分钟</li>
+          <li>前一晚：点掉今天格子 + 把手册翻到要背那节摊在桌上（把决策前移）</li>
+        </ul>
+      </div>
+      <div class="qc-box">
+        <h4>A 档 · 真题日（6.2 h）</h4>
+        <ul>
+          <li>数学真题限时 <b>3 h</b></li>
+          <li>粗订正 <b>30 min</b>（只标记）</li>
+          <li>英语阅读 <b>1 篇</b></li>
+          <li>政治 <b>1 讲</b> + 肖1000</li>
+          <li>背诵 <b>55 min</b></li>
+          <li>408 <b>休息</b></li>
+        </ul>
+      </div>
+      <div class="qc-box">
+        <h4>B 档 · 常规日（6.0 h）</h4>
+        <ul>
+          <li>408 攻坚 <b>2 h</b>（最清醒时）</li>
+          <li>英语阅读 1 篇 + 轻量 1 篇 <b>100 min</b></li>
+          <li>数学订正或错题口述 <b>20~60 min</b></li>
+          <li>政治 <b>1 讲</b></li>
+          <li>背诵 <b>55 min</b></li>
+        </ul>
+      </div>
+      <div class="qc-box">
+        <h4>C 档 · 保底线（3 h）</h4>
+        <ul>
+          <li>英语阅读 <b>1 篇</b></li>
+          <li>政治 <b>1 讲</b></li>
+          <li>背诵 <b>55 min</b></li>
+          <li>不碰 408，不碰数学</li>
+          <li><b>不愧疚</b></li>
+        </ul>
+      </div>
+      <div class="qc-box">
+        <h4>休 · 每周半天</h4>
+        <ul>
+          <li>不学习</li>
+          <li>不愧疚</li>
+          <li>不复盘</li>
+          <li>建议周日下午或晚上</li>
+          <li><b>这是规划的一部分</b></li>
+        </ul>
+      </div>
+
+      <div class="qc-box qc-full">
+        <h4>四条红线（触发即改，不硬扛）</h4>
+        <ul>
+          <li><b>10-15</b> 408 OS 或计网未过完 → 大题强化 17 章砍到 12 章，释放 12.5 h 补强化</li>
+          <li><b>10-15</b> 英语阅读不足 58 篇 → 政治日均 1.6 讲压到 1.2 讲 + 63 条 gap 验收 11 h 挪给英语</li>
+          <li><b>11-01</b> 串讲未过完 58 讲 → 放弃剩余讲次，直接转肖八</li>
+          <li><b>连续 3 天 C 档</b> → 减量而非加码，阶段目标后移 3 天 + 查睡眠</li>
+        </ul>
+      </div>
+
+      <div class="qc-box qc-full">
+        <h4>关键数字（背下来）</h4>
+        <ul>
+          <li>总需 <b>519 h</b> ｜日均 <b>5.6 h</b> ｜预算 <b>8 h</b> ｜缓冲 <b>225 h = 40 天容错（净剩 38）</b></li>
+          <li>英语 <b>119 单元 / 92 天 = 日均 1.29</b>，必须一天不落（阅读剩 64 篇）</li>
+          <li>408 <b>27 单元</b>，计组 09-15 过完、OS 09-16 过完 os-01~03（共 63 条 gap 待验收），剩 os-04~05 + 计网 + 大题 17 章 + 模拟卷 8 套</li>
+          <li>数学 <b>12 单元 / 48.5 h</b>，维持模式；1000 题二刷已全部收尾，剩下的只有真题 9 套 + 880 两专题 + 错题本三刷（156 条）</li>
+          <li>政治 <b>84 单元 / 92 天 = 日均 0.91</b>，串讲日均 <b>1.6 讲</b>，10-20 是硬截止线</li>
+        </ul>
+      </div>
+
+      <div class="qc-box qc-full">
+        <h4>时间冲突时，让位顺序</h4>
+        <ul>
+          <li>先砍 <b>数学</b>（已超前 30 个百分点）</li>
+          <li>再砍 <b>408 大题强化</b>（还没到期）</li>
+          <li>英语和计组 <b>不砍</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="no-result" id="noResult">没有命中的内容，换个关键词试试</div>
+
+<footer>
+  最后 100 天备战手册 · 生成于 2026-09-10 · 最近更新 2026-09-17（17 年数一真题限时完成 + 10 道错题录入并补强背诵手册 + 2010 四篇收官 + OS 费曼 os-01~03 + 政治第6讲） · 数据源：todayStatus.ts（PLAN_VERSION 12）<br>
+  倒计时、阶段定位、打卡墙与周检查点均为本机实时计算，打卡与表单数据仅存于本浏览器 localStorage
+</footer>
+
+</div>
+
+<!-- 图表点击放大遮罩 -->
+<div class="lb" id="lb">
+  <button class="lb-x" id="lbX" type="button">✕</button>
+  <div class="lb-inner"><div id="lbBox"></div><div class="lb-cap" id="lbCap"></div></div>
+  <div class="lb-hint">点空白处或按 Esc 关闭</div>
+</div>
+
+<script>
+(function(){
+  /* =====================================================================
+     【可编辑区】所有会随反馈变动的数字都集中在这里，改完刷新即生效
+     ===================================================================== */
+  var PLAN = {
+    examDate   : '2026-12-19',   /* 初试日 */
+    startDate  : '2026-09-10',   /* 100 天起点，打卡墙第一格 */
+    paperAnchor: '2026-09-11',   /* 第一个 A 档真题日 */
+    paperCycle : 3,              /* 每几天一个 A 档 */
+    phases:[
+      { name:'攻坚期', from:'2026-09-10', to:'2026-10-15', note:'OS+计网强化 · 政治追讲' },
+      { name:'收尾期', from:'2026-10-16', to:'2026-11-20', note:'大题攻坚 + 英语全题型' },
+      { name:'冲刺期', from:'2026-11-21', to:'2026-12-19', note:'模拟卷 + 肖四背诵' }
+    ],
+    weekFields:[
+      ['eng','英语阅读累计(篇)'], ['cs','408 推进到'],
+      ['pol','串讲累计(讲)'],     ['math','数学真题累计(套)'],
+      ['mast','mastered 计数'],   ['wrong','错题划掉(/156)'],
+      ['rest','有半天休息吗'],   ['cday','本周 C 档次数'],
+      ['adj','最需调整的一件事']
+    ]
+  };
+
+  var CH=[
+    ['c0','战绩','#0f766e'], ['c1','总账','#b45309'],   ['c2','阶段一','#2563eb'], ['c3','阶段二','#0d9488'],
+    ['c4','阶段三','#7c3aed'], ['c5','每日四档','#dc2626'],['c6','四条红线','#db2777'],
+    ['c7','打卡墙','#059669'], ['c8','周检查点','#ea580c'],['c9','工时明细','#4f46e5'],
+    ['c10','今日速查','#111827']
+  ];
+
+  var GEAR_HINT={
+    A:'数学真题限时 3h + 粗订正 30min ｜ 英语阅读 1 篇 ｜ 政治 1 讲 ｜ 背诵 55min ｜ <em>408 休息</em>',
+    B:'408 攻坚 2h ｜ 英语阅读 1 篇 + 轻量题型 1 篇 ｜ 数学订正或错题口述 ｜ 政治 1 讲 ｜ 背诵 55min',
+    C:'英语阅读 1 篇 ｜ 政治 1 讲 ｜ 背诵 55min ｜ <em>不碰 408 与数学，不愧疚</em>',
+    R:'完全休息。<em>不学习，不愧疚，不复盘。</em>'
+  };
+  var GEAR_NAME={A:'A 真题',B:'B 常规',C:'C 保底',R:'休'};
+  var CYCLE=['','A','B','C','R'];
+
+  /* ---- 日期工具：不用正则，避开转义坑 ---- */
+  function pd(s){ var a=s.split('-'); return new Date(+a[0],(+a[1])-1,+a[2]); }
+  function ymd(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+  function short(s){ return s.slice(5).split('-').join('/'); }
+  function dd(a,b){ return Math.round((pd(b).getTime()-pd(a).getTime())/86400000); }
+  var TODAY=ymd(new Date());
+  var TOTAL=dd(PLAN.startDate,PLAN.examDate);   /* 100 */
+  var WEEKS=Math.ceil((TOTAL+1)/7);             /* 15  */
+
+  function load(k){ try{ return JSON.parse(localStorage.getItem(k)||'{}'); }catch(e){ return {}; } }
+  function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+  var WALL_KEY='plan100_wall_v1', WEEK_KEY='plan100_week_v1';
+  var wall=load(WALL_KEY), week=load(WEEK_KEY);
+
+  /* ---- 倒计时 ---- */
+  var left=Math.max(dd(TODAY,PLAN.examDate),0);
+  document.getElementById('cdNum').textContent=left;
+  document.getElementById('tbCd').innerHTML='距初试 <i>'+left+'</i> 天';
+
+  /* ---- 阶段定位：当前阶段金框高亮，已过阶段淡化 ---- */
+  function paintPhase(){
+    var pi=-1;
+    PLAN.phases.forEach(function(p,i){ if(TODAY>=p.from && TODAY<=p.to) pi=i; });
+    if(pi<0) pi = (TODAY<PLAN.phases[0].from) ? 0 : PLAN.phases.length-1;
+    var ph=PLAN.phases[pi];
+    var pStart=Math.max(dd(ph.from,TODAY)+1,1), pTotal=dd(ph.from,ph.to)+1;
+    document.getElementById('tdPhase').textContent='第 '+(pi+1)+' 阶段 · '+ph.name+' — '+ph.note;
+    document.getElementById('tdDay').textContent='阶段第 '+Math.min(pStart,pTotal)+' / '+pTotal+' 天';
+    Array.prototype.forEach.call(document.querySelectorAll('section[data-phase]'),function(s){
+      var i=+s.getAttribute('data-phase');
+      s.classList.toggle('now', i===pi);
+      s.classList.toggle('past', i<pi);
+      var h=s.querySelector('h2'), old=h.querySelector('.now-badge');
+      if(old) old.parentNode.removeChild(old);
+      if(i===pi){ var b=document.createElement('span'); b.className='now-badge'; b.textContent='你在这里'; h.appendChild(b); }
+    });
+    return pi;
+  }
+
+  /* ---- 今日档位：自动推荐 + 手动覆盖 ---- */
+  function recGear(){
+    var n=dd(PLAN.paperAnchor,TODAY);
+    return (n>=0 && n%PLAN.paperCycle===0) ? 'A' : 'B';
+  }
+  function paintGears(){
+    var g=wall[TODAY], rec=recGear(), show=g||rec;
+    Array.prototype.forEach.call(document.querySelectorAll('.gear'),function(b){
+      var v=b.getAttribute('data-g');
+      b.className='gear'+(g===v?' on-'+v:'');
+    });
+    document.getElementById('tdHint').innerHTML=
+      (g ? '今天已记录为 <em>'+GEAR_NAME[g]+'</em> 档：' : '今天推荐 <em>'+GEAR_NAME[rec]+'</em> 档（未记录，点右侧按钮或晚上到打卡墙点格子）：')
+      + GEAR_HINT[show];
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.gear'),function(b){
+    b.addEventListener('click',function(){
+      var v=b.getAttribute('data-g');
+      if(wall[TODAY]===v) delete wall[TODAY]; else wall[TODAY]=v;
+      save(WALL_KEY,wall);
+      paintGears(); paintWallDay(TODAY); stat(); paintStreak();
+    });
+  });
+
+  /* ---- 100 天打卡墙 ---- */
+  function buildWall(){
+    var el=document.getElementById('wall');
+    if(!el || el.childNodes.length) return;
+    for(var i=0;i<=TOTAL;i++){
+      var k=ymd(new Date(pd(PLAN.startDate).getTime()+i*86400000));
+      var d=document.createElement('div');
+      d.setAttribute('data-k',k);
+      var isExam=(k===PLAN.examDate);
+      d.className='day'+(wall[k]&&!isExam?' g'+wall[k]:'')+(k===TODAY?' today':'')+(isExam?' exam':'');
+      d.innerHTML='<span class="dd">'+short(k)+'</span><span class="dm">'+(isExam?'考':(wall[k]||'○'))+'</span>';
+      if(!isExam){
+        d.addEventListener('click',function(){
+          var kk=this.getAttribute('data-k'), cur=wall[kk]||'';
+          var nx=CYCLE[(CYCLE.indexOf(cur)+1)%CYCLE.length];
+          if(nx) wall[kk]=nx; else delete wall[kk];
+          save(WALL_KEY,wall);
+          paintWallDay(kk); stat(); paintGears(); paintStreak();
+        });
+      }
+      el.appendChild(d);
+    }
+  }
+  function paintWallDay(k){
+    var el=document.querySelector('.day[data-k="'+k+'"]');
+    if(!el) return;
+    el.className='day'+(wall[k]?' g'+wall[k]:'')+(k===TODAY?' today':'');
+    el.querySelector('.dm').textContent=wall[k]||'○';
+  }
+  function stat(){
+    var c={A:0,B:0,C:0,R:0}, done=0;
+    Object.keys(wall).forEach(function(k){ if(wall[k]){ c[wall[k]]++; done++; } });
+    var past=Math.min(Math.max(dd(PLAN.startDate,TODAY)+1,0),TOTAL);
+    document.getElementById('wallStat').innerHTML=
+      '<span class="ws">已记录 <i>'+done+'</i> / '+TOTAL+' 天</span>'+
+      '<span class="ws" style="border-color:#f59e0b">A 真题 <i>'+c.A+'</i></span>'+
+      '<span class="ws" style="border-color:#2563eb">B 常规 <i>'+c.B+'</i></span>'+
+      '<span class="ws" style="border-color:#94a3b8">C 保底 <i>'+c.C+'</i></span>'+
+      '<span class="ws" style="border-color:#059669">休 <i>'+c.R+'</i></span>'+
+      '<span class="ws" style="border-color:#dc2626">时间已用 <i>'+Math.round(past/TOTAL*100)+'%</i></span>';
+  }
+
+  /* ---- 周检查点：JS 生成 15 周表单，输入即存 ---- */
+  function curWeek(){ return Math.min(Math.max(Math.floor(dd(PLAN.startDate,TODAY)/7),0),WEEKS-1); }
+  function buildWeeks(){
+    var wrap=document.getElementById('weekWrap');
+    if(!wrap || wrap.childNodes.length) return;
+    var cw=curWeek();
+    for(var w=0;w<WEEKS;w++){
+      var s=new Date(pd(PLAN.startDate).getTime()+w*7*86400000);
+      var e=new Date(Math.min(s.getTime()+6*86400000, pd(PLAN.examDate).getTime()));
+      var rec=week[w]||{}, rows='', isCur=(w===cw);
+      PLAN.weekFields.forEach(function(f){
+        rows+='<div class="fld'+(f[0]==='adj'?' wide':'')+'"><label>'+f[1]+'</label>'+
+              '<input data-w="'+w+'" data-f="'+f[0]+'" value="'+(rec[f[0]]||'')+'"></div>';
+      });
+      var box=document.createElement('div');
+      box.className='week'+(isCur?' cur':' closed');
+      box.innerHTML='<div class="wk-head"><span class="wno">第 '+(w+1)+' 周</span>'+
+        '<span class="wdate">'+short(ymd(s))+' ~ '+short(ymd(e))+'</span>'+
+        (isCur?'<span class="wno" style="background:#dc2626">本周</span>':'')+
+        '<span class="wk-saved">已保存</span><span class="wfold">▼</span></div>'+
+        '<div class="wk-body"><div class="wk-grid">'+rows+'</div></div>';
+      wrap.appendChild(box);
+    }
+    Array.prototype.forEach.call(wrap.querySelectorAll('.wk-head'),function(h){
+      h.addEventListener('click',function(){ h.parentNode.classList.toggle('closed'); });
+    });
+    Array.prototype.forEach.call(wrap.querySelectorAll('input'),function(inp){
+      inp.addEventListener('input',function(){
+        var w=this.getAttribute('data-w'), f=this.getAttribute('data-f');
+        if(!week[w]) week[w]={};
+        week[w][f]=this.value;
+        save(WEEK_KEY,week);
+        var tag=this.closest('.week').querySelector('.wk-saved');
+        if(tag){ tag.classList.add('show'); clearTimeout(tag._t); tag._t=setTimeout(function(){ tag.classList.remove('show'); },900); }
+      });
+    });
+  }
+
+  /* ---- 图表：完成度环入场动画 + 打卡战绩 + 点击放大 ---- */
+  function animRings(){
+    Array.prototype.forEach.call(document.querySelectorAll('.ring-fill'),function(c){
+      var off=c.getAttribute('data-off'); if(!off) return;
+      c.style.strokeDashoffset='251.33';
+      setTimeout(function(){ c.style.strokeDashoffset=off; },90);
+    });
+  }
+  function paintStreak(){
+    var el=document.getElementById('streakStat'); if(!el) return;
+    var base=pd(TODAY).getTime(), n=0, wk=0, wtot=0, g;
+    for(g=0;g<=TOTAL+2;g++){
+      var k=ymd(new Date(base-g*86400000));
+      if(k<PLAN.startDate) break;
+      if(wall[k]) n++; else if(g>0) break;   /* 今天还没打不算断链 */
+    }
+    for(g=0;g<7;g++){
+      var k2=ymd(new Date(base-g*86400000));
+      if(k2<PLAN.startDate) break;
+      wtot++; if(wall[k2]) wk++;
+    }
+    var rec=0; Object.keys(wall).forEach(function(k3){ if(wall[k3]) rec++; });
+    el.innerHTML=
+      '<span class="ws" style="border-color:#0f766e">连续记录 <i>'+n+'</i> 天</span>'+
+      '<span class="ws">本周 <i>'+wk+'</i> / '+wtot+' 天已记</span>'+
+      '<span class="ws">累计记录 <i>'+rec+'</i> 天</span>'+
+      '<span class="ws" style="border-color:#94a3b8">去打卡墙填上今天 →</span>';
+  }
+  function buildCharts(){ animRings(); paintStreak(); }
+
+  var lb=document.getElementById('lb'), lbBox=document.getElementById('lbBox'), lbCap=document.getElementById('lbCap');
+  function lbClose(){ lb.classList.remove('on'); lbBox.innerHTML=''; }
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(lb.classList.contains('on') && (t===lb || t===lbBox || t===lbCap)){ lbClose(); return; }
+    if(!t.closest) return;
+    if(t.closest('.lb')) return;
+    var fig=t.closest('.fig'); if(!fig) return;
+    var svg=fig.querySelector('svg'); if(!svg) return;
+    lbBox.innerHTML=''; lbBox.appendChild(svg.cloneNode(true));
+    var cp=fig.querySelector('figcaption');
+    lbCap.textContent=cp?cp.textContent:'';
+    lb.classList.add('on');
+  });
+  document.getElementById('lbX').addEventListener('click',lbClose);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lbClose(); });
+
+  /* ---- 胶囊导航 ---- */
+  var chips=document.getElementById('chips');
+  CH.forEach(function(c){
+    var a=document.createElement('a');
+    a.className='chip'; a.href='#'+c[0]; a.textContent=c[1]; a.style.background=c[2];
+    chips.appendChild(a);
+  });
+
+  /* ---- 章节折叠 ---- */
+  Array.prototype.forEach.call(document.querySelectorAll('.ch-head'),function(h){
+    h.addEventListener('click',function(){ h.parentNode.classList.toggle('folded'); });
+  });
+  var btnFold=document.getElementById('btnFold'), allFolded=false;
+  btnFold.addEventListener('click',function(){
+    allFolded=!allFolded;
+    Array.prototype.forEach.call(document.querySelectorAll('section.card:not(.cover)'),function(s){
+      s.classList.toggle('folded',allFolded);
+    });
+    btnFold.textContent=allFolded?'📖 全部展开':'🗂 全部折叠';
+    btnFold.classList.toggle('on',allFolded);
+  });
+
+  /* ---- 今日速查模式 ---- */
+  var btnGear=document.getElementById('btnGear');
+  btnGear.addEventListener('click',function(){
+    var on=document.body.classList.toggle('gear-mode');
+    btnGear.classList.toggle('on',on);
+    btnGear.textContent=on?'↩ 退出手册':'🎯 今日速查';
+    if(on){
+      document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+      allFolded=false; btnFold.textContent='🗂 全部折叠'; btnFold.classList.remove('on');
+      var qc=document.getElementById('c10');
+      if(qc) qc.scrollIntoView({behavior:'smooth',block:'start'});
+    } else { window.scrollTo({top:0,behavior:'smooth'}); }
+  });
+
+  /* ---- 打印 ---- */
+  document.getElementById('btnPrint').addEventListener('click',function(){
+    document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+    document.querySelectorAll('section.week').forEach(function(w){ w.classList.remove('closed'); });
+    setTimeout(function(){ window.print(); },140);
+  });
+
+  /* ---- 搜索：命中高亮 + 未命中章节折叠（indexOf 实现，不用正则） ---- */
+  var q=document.getElementById('q'), noRes=document.getElementById('noResult');
+  var bodies=Array.prototype.slice.call(document.querySelectorAll('section.card .ch-body'));
+  var orig=bodies.map(function(b){ return b.innerHTML; });
+  var timer=null;
+  q.addEventListener('input',function(){ clearTimeout(timer); timer=setTimeout(run,220); });
+  function hi(text,kw){
+    var out='',low=text.toLowerCase(),k=kw.toLowerCase(),p=0,i;
+    while((i=low.indexOf(k,p))>-1){
+      out+=text.slice(p,i)+'<mark class="hl">'+text.slice(i,i+k.length)+'</mark>';
+      p=i+k.length;
+    }
+    return out+text.slice(p);
+  }
+  function walk(node,kw){
+    if(node.nodeType===3){
+      var v=node.nodeValue;
+      if(v && v.toLowerCase().indexOf(kw.toLowerCase())>-1){
+        var span=document.createElement('span');
+        span.innerHTML=hi(v,kw);
+        node.parentNode.replaceChild(span,node);
+      }
+    } else if(node.nodeType===1 && node.tagName!=='MARK' && node.tagName!=='SCRIPT' && node.tagName.toUpperCase()!=='SVG'){
+      Array.prototype.slice.call(node.childNodes).forEach(function(c){ walk(c,kw); });
+    }
+  }
+  function run(){
+    var kw=q.value.trim();
+    bodies.forEach(function(b,i){ b.innerHTML=orig[i]; });
+    buildWall(); buildWeeks(); stat(); paintPhase(); setBars(false); buildCharts();
+    if(!kw){
+      document.querySelectorAll('section.card').forEach(function(s){ s.classList.remove('folded'); });
+      noRes.style.display='none';
+      return;
+    }
+    var hit=false;
+    bodies.forEach(function(b){
+      var sec=b.parentNode;
+      if(b.textContent.toLowerCase().indexOf(kw.toLowerCase())>-1){
+        hit=true; sec.classList.remove('folded'); walk(b,kw);
+        Array.prototype.forEach.call(b.querySelectorAll('details'),function(d){ d.open=true; });
+      } else { sec.classList.add('folded'); }
+    });
+    noRes.style.display=hit?'none':'block';
+    var first=document.querySelector('mark.hl');
+    if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  /* ---- 进度条入场动画 ---- */
+  function setBars(animate){
+    Array.prototype.forEach.call(document.querySelectorAll('.bar-fill'),function(f,i){
+      var w=f.getAttribute('data-w')+'%';
+      if(!animate){ f.style.width=w; return; }
+      setTimeout(function(){ f.style.width=w; },i*110);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var bs=document.querySelector('.bars');
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ setBars(true); io.disconnect(); } });
+    },{threshold:.25});
+    if(bs) io.observe(bs);
+    setTimeout(function(){ setBars(false); },1600);
+  } else { setBars(true); }
+  window.addEventListener('beforeprint',function(){ setBars(false); });
+
+  /* ---- 滚动高亮当前胶囊 ---- */
+  var secs=CH.map(function(c){ return document.getElementById(c[0]); }).filter(Boolean);
+  var chipEls=Array.prototype.slice.call(chips.children);
+  function onScroll(){
+    var y=window.scrollY+130, cur=-1;
+    secs.forEach(function(s,i){ if(s.offsetTop<=y) cur=i; });
+    chipEls.forEach(function(c,i){
+      c.style.opacity=(i===cur)?'1':'.72';
+      c.style.transform=(i===cur)?'scale(1.06)':'none';
+    });
+    if(cur>=0 && chipEls[cur]){
+      var c=chipEls[cur];
+      if(c.offsetLeft<chips.scrollLeft || c.offsetLeft+c.offsetWidth>chips.scrollLeft+chips.clientWidth){
+        chips.scrollLeft=c.offsetLeft-chips.clientWidth/2+c.offsetWidth/2;
+      }
+    }
+  }
+  var st=null;
+  window.addEventListener('scroll',function(){ if(st) return; st=requestAnimationFrame(function(){ st=null; onScroll(); }); },{passive:true});
+
+  /* ---- 启动 ---- */
+  paintPhase(); paintGears(); buildWall(); stat(); buildWeeks(); buildCharts(); onScroll();
+})();
+</script>
+</body>
+</html>

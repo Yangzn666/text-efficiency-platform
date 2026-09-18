@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>同步今日进度 · 2026-09-01</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; margin: 0;
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f2438 100%);
+    }
+    .container {
+      background: white; padding: 40px; border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3); max-width: 620px; text-align: center;
+    }
+    h1 { color: #1e3a5f; margin-bottom: 20px; }
+    .status { padding: 20px; margin: 20px 0; border-radius: 10px; font-size: 16px; line-height: 1.6; }
+    .loading { background: #e3f2fd; color: #1976d2; }
+    .success { background: #e8f5e9; color: #388e3c; }
+    .error { background: #ffebee; color: #d32f2f; }
+    .details { text-align: left; font-size: 14px; line-height: 1.9; background: #f8fafc; border-radius: 10px; padding: 16px 24px; }
+    button {
+      background: #1e3a5f; color: white; border: none; padding: 15px 40px;
+      border-radius: 10px; font-size: 18px; cursor: pointer; margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 同步今日进度（2026-09-01）</h1>
+    <div id="status" class="status loading">⏳ 准备同步：计组错题一刷完成</div>
+    <div id="buttons" style="display:none;">
+      <button onclick="injectProgress()">立即同步</button>
+      <button onclick="window.close()" style="background:#9e9e9e;">关闭</button>
+    </div>
+    <div class="details">
+      <b>📊 即将同步的内容：</b><br>
+      ✅ 408计算机 进度指针 48 → 49（计组错题一刷 = 王道强化1个单元）<br>
+      ✅ 里程碑点亮：「计组错题一刷完成」93 题一轮过完，背诵手册建成
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'today-status-v2';
+    const TARGET_UNITS = 49;
+    const MILESTONE_ID = 'm-co-reinforce-start';
+    const NEW_MILESTONE = {
+      title: '计组错题一刷完成',
+      date: '2026-09-01',
+      done: true,
+      note: '王道小程序93道计组错题一轮过完，背诵手册建成，待二刷验收'
+    };
+
+    function injectProgress() {
+      const statusDiv = document.getElementById('status');
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) throw new Error('未找到今日状态数据，请先打开考研平台首页一次');
+        const data = JSON.parse(raw);
+
+        // 1. 推进 408 进度指针
+        let msg = [];
+        const cs = (data.plans || []).find(p => p.key === 'cs408');
+        if (cs) {
+          const old = cs.completedUnits;
+          cs.completedUnits = Math.max(cs.completedUnits || 0, TARGET_UNITS);
+          msg.push(`408进度：${old} → ${cs.completedUnits}`);
+        }
+
+        // 2. 点亮里程碑（已有则覆盖，没有则追加）
+        data.milestones = Array.isArray(data.milestones) ? data.milestones : [];
+        const m = data.milestones.find(x => x.id === MILESTONE_ID);
+        if (m) {
+          Object.assign(m, NEW_MILESTONE);
+        } else {
+          data.milestones.push({ id: MILESTONE_ID, subject: 'cs408', ...NEW_MILESTONE });
+        }
+        msg.push('里程碑「计组错题一刷完成」已点亮');
+
+        data._updatedAt = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        statusDiv.className = 'status success';
+        statusDiv.innerHTML = '✅ 同步成功！<br>' + msg.join('<br>') + '<br>🔄 请刷新考研平台页面（Ctrl+Shift+R）';
+        setTimeout(() => window.close(), 4000);
+      } catch (e) {
+        statusDiv.className = 'status error';
+        statusDiv.innerHTML = '❌ 同步失败：' + e.message;
+      }
+    }
+
+    window.onload = function () {
+      document.getElementById('buttons').style.display = 'block';
+      setTimeout(injectProgress, 500);
+    };
+  </script>
+</body>
+</html>

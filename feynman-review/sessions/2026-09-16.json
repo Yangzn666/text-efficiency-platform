@@ -1,0 +1,212 @@
+{
+  "date": "2026-09-16",
+  "sessions": [
+    {
+      "subject": "os",
+      "chapter": "os-01",
+      "chapterName": "操作系统概述",
+      "date": "2026-09-16",
+      "questions": 6,
+      "results": [
+        {
+          "item": "os-01-05 CPU运行模式/特权指令",
+          "verdict": "△→Q3✓"
+        },
+        {
+          "item": "os-01-01 系统调用vs普通函数",
+          "verdict": "✗(经CPU没抓点,已讲陷入切态)"
+        },
+        {
+          "item": "os-01-02 中断与异常OS视角",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-01-04 OS四大管理功能",
+          "verdict": "✗(重复错,升S1)"
+        },
+        {
+          "item": "os-01-04 并发最基本特征",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-01-04 批/分时/实追求",
+          "verdict": "△(混淆)"
+        },
+        {
+          "item": "os-01-04 并发vs并行",
+          "verdict": "✗(仍模糊,升S2)"
+        },
+        {
+          "item": "os-01-04 多道程序目的",
+          "verdict": "△(方向对不精确)"
+        }
+      ],
+      "spacedSwept": [
+        "C-28✓",
+        "C-29partial",
+        "C-30bad",
+        "C-31bad",
+        "C-32partial",
+        "C-33bad",
+        "C-34partial"
+      ],
+      "pointerAdvancedTo": "os-02"
+    },
+    {
+      "subject": "os",
+      "chapter": "os-02",
+      "chapterName": "进程管理(上·同步互斥信号量)",
+      "date": "2026-09-16",
+      "questions": 6,
+      "results": [
+        {
+          "item": "os-02-03 进程vs线程/线程轻量点",
+          "verdict": "✗(遗忘)"
+        },
+        {
+          "item": "os-02-08 运行→阻塞成因",
+          "verdict": "✗(混淆,时间片→就绪才是对的)"
+        },
+        {
+          "item": "os-02-08 阻塞→就绪(不能直接运行)",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-02-01 临界区定义+四原则",
+          "verdict": "✗(遗忘/答偏)"
+        },
+        {
+          "item": "os-02-01 互斥vs同步定义",
+          "verdict": "△(互斥对/同步错)"
+        },
+        {
+          "item": "os-02-02 信号量S含义/P-V/初值",
+          "verdict": "✗(初值-1理解偏差)"
+        }
+      ],
+      "gapsCreated": [
+        "C-048",
+        "C-049",
+        "C-050",
+        "C-051",
+        "C-052"
+      ],
+      "note": "os-02未完成:死锁/CPU调度概念/调度算法/IPC/进程通信仍待诊断,指针保留os-02"
+    },
+    {
+      "subject": "os",
+      "chapter": "os-02",
+      "chapterName": "进程管理(下·死锁与调度概念)",
+      "date": "2026-09-16",
+      "questions": 2,
+      "results": [
+        {
+          "item": "os-02-05 死锁定义/四条件",
+          "verdict": "△(条件不全,成因混进条件)"
+        },
+        {
+          "item": "os-02-05 死锁vs饥饿",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-02-04 三级调度/低级必存",
+          "verdict": "✗(遗忘)"
+        }
+      ],
+      "gapsCreated": [
+        "C-053",
+        "C-054"
+      ],
+      "note": "os-02仍未完成(调度算法/IPC/进程通信/经典同步未测),用户状态转疲,今日收"
+    },
+    {
+      "subject": "os",
+      "chapter": "os-02",
+      "chapterName": "进程管理(调度算法+IPC)",
+      "date": "2026-09-16",
+      "questions": 3,
+      "results": [
+        {
+          "item": "os-02-06 SJF饥饿毛病",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-02-06 高响应比公式",
+          "verdict": "✗(忘)"
+        },
+        {
+          "item": "os-02-06 RR时间片太大退化",
+          "verdict": "✗(误答SJF,应FCFS)"
+        },
+        {
+          "item": "os-02-06 多级反馈队列",
+          "verdict": "✗(名称忘)"
+        },
+        {
+          "item": "os-02-07 IPC方式/共享内存最快",
+          "verdict": "✗(全忘,已讲)"
+        }
+      ],
+      "gapsCreated": [
+        "C-055",
+        "C-056",
+        "C-057"
+      ],
+      "note": "os-02高频+中频全部扫完,大面积薄弱;经典同步(生产者消费者)低频,延后至信号量C-052补稳后练习;指针推os-03"
+    },
+    {
+      "subject": "os",
+      "chapter": "os-03",
+      "chapterName": "内存管理",
+      "date": "2026-09-16",
+      "questions": 6,
+      "results": [
+        {
+          "item": "os-03-01 页式地址转换/页表/TLB",
+          "verdict": "△(TLB对,页表名漏)"
+        },
+        {
+          "item": "os-03-01 页表项有效位",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-03-01/06 内外碎片与可见性",
+          "verdict": "✗(Q2不清+Q5答内部,重复混淆)"
+        },
+        {
+          "item": "os-03-02 置换算法/LRU/FIFO/OPT/Belady",
+          "verdict": "△/✗"
+        },
+        {
+          "item": "os-03-03 虚存三特征",
+          "verdict": "✗(忘)"
+        },
+        {
+          "item": "os-03-03 缺页处理",
+          "verdict": "✓(方向对)"
+        },
+        {
+          "item": "os-03-06 三种分配算法",
+          "verdict": "✓"
+        },
+        {
+          "item": "os-03-04/05 位示图+重定位",
+          "verdict": "✗(全忘)"
+        }
+      ],
+      "gapsCreated": [
+        "C-058",
+        "C-059",
+        "C-060",
+        "C-061",
+        "C-062",
+        "C-063"
+      ],
+      "note": "os-03扫完高频+中频;命门=内外碎片反复混淆(C-059标S1);段式/内存映射/段页式低冷门未单独测;指针推os-04"
+    }
+  ],
+  "stats": {
+    "totalQuestions": 23,
+    "totalGaps": 16
+  }
+}

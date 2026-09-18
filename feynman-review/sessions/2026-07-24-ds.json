@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-24",
+  "subject": "ds",
+  "chapter": "ds-01",
+  "chapterName": "数据结构·绪论",
+  "phase1": {
+    "totalQuestions": 8,
+    "correct": 2,
+    "partial": 3,
+    "wrong": 3
+  },
+  "gaps_created": [
+    "C-018",
+    "C-019",
+    "C-020",
+    "C-021",
+    "C-022"
+  ],
+  "spaced_reviewed": 0,
+  "notes": "核心断裂：逻辑结构vs存储结构混淆，算法五特性遗忘，顺序链式优缺点空间维度说反"
+}
