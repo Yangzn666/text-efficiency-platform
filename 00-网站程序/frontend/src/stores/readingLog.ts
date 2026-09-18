@@ -48,7 +48,12 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2009-3': 4,
   '2009-4': 1,
   '2010-1': 2,
-  '2010-2': 0
+  '2010-2': 0,
+  '2010-3': 1,
+  '2011-1': 3,
+  '2011-2': 3,
+  '2011-3': 3,
+  '2011-4': 3
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -121,7 +126,28 @@ const SEEDED_NOTES: Record<string, string> = {
     'Q3（词义）选D正C：about-face=军队“向后转”=180度大转弯=态度改变；3段逻辑=法院1998批准商业方法专利→如今要限制=about-face；D“尊严”无中生有。口诀：about(转)+face(脸)=转过脸=态度大转弯。' +
     'Q4（细节）选A正B：用户自述“法律元素出现多次选A”，但A“不受法律挑战”与原文（满是挑战）相反=反向干扰；B“常无必要授予”=5段“太多显而易见的发明被授予专利”。高频词≠答案，看意思方向对不对。' +
     'Q5（主旨）选C正A：C“一个法律案件”以偏概全（Bilski案仅论据）；A“ looming threat”=全文讲专利面临限制。又是“出现多次就选”。' +
-    '全篇病灶：Q1时间词、Q2/Q3熟词僻义（big deal/about-face）、Q4/Q5“高频词=答案”反向或以偏概全。跨篇铁律：选项高频词/论据多是例子不是答案，论点与正确答案常是抽象同义改写。'
+    '全篇病灶：Q1时间词、Q2/Q3熟词僻义（big deal/about-face）、Q4/Q5“高频词=答案”反向或以偏概全。跨篇铁律：选项高频词/论据多是例子不是答案，论点与正确答案常是抽象同义改写。',
+  '2010-3':
+    '1/5《社会流行风潮》(Gladwell《引爆点》/influentials话题)。主旨:社会流行潮不是靠少数“有影响力的人”推动,而是靠“一大批容易被影响的人”(末段critical mass of easily influenced people)。' +
+    'Q1(例证目的)选C正B:开头引《引爆点》的作用=引出要讨论的话题(influentials在思想传播中的作用);C用intuitively偷换成“人们的直觉反应”。例证/引用作用题问“它服务哪个话题”。' +
+    'Q2(推理)选B正D:定位句plausible-sounding BUT largely untested(听着有理但未经检验)→D需确凿证据;B“has helped explain”过于肯定,原文seems to explain是存疑语气。语气词but/seems/untested就是答案。' +
+    'Q3(推理)选C正A:研究者观察=influentials并不与很多人互动→影响力靠社交连锁传递(A influence goes with social interactions);C“更多渠道”无中生有过度推理。' +
+    'Q5(细节)选A正C:末段critical mass of easily influenced people→C readiness to be influenced(乐于被影响);A eagerness to be accepted(渴望被接受)无中生有,原文无be accepted。' +
+    '用户自我诊断到位:“不能完全看懂文章,要靠方法+选项求同存异”。本篇核心欠缺=四步思考路径未走:定位句→识别语气词→同义替换匹配→排除无中生有/过度推理。',
+  '2011-1':
+    '3/5。Q1(态度观点)选B正C:acclaim误当“宣布”、received误当“被收回”,实则 received acclaim=广受好评;acclaim=ac(加强)+claim(喊)→大家一起喊好→称赞。' +
+    'Q4(推理判断)选A正B:inferior方向记反,inferior=更差的(“劣”字辈,in-向下),superior=更好的;记“inferior劣、superior优”,褒贬方向永不反。' +
+    '本篇病灶=词汇,逻辑与定位无碍。',
+  '2011-2':
+    '3/5。Q2(细节)选C正D:senior误当“年老”(此处=级别高的,senior management高管),board=董事会不认识(board meeting董事会会议),被第二段末句带去选C。' +
+    'Q5(推理)选A正C:一句俗语没背过,误判成陷阱而排除正确项;熟词僻义/俗语是考研重灾区,平时按“字面讲不通就想僻义”处理。' +
+    '铁律:senior一词多义先想“资深/级别高”,board先想“董事会”。',
+  '2011-3':
+    '3/5。Q1(细节)选C正D:passionate不认识=充满激情的、热爱的(passion激情+ate)。' +
+    'Q5(主旨大意)选B正A:用户自己悟出“B的面太小、A的面更大更像主旨”——这正是颉斌斌「范围定律」(两选项相近时选范围更大的),方法论意识觉醒的证据,继续强化。',
+  '2011-4':
+    '3/5。Q1(细节)选D正C:D选项理解有误(误当“延迟享受”,实为“持续的汇报”),自述做太快;细节题回读定位句再选,别凭第一印象。' +
+    'Q2(推理)选C正D:主旨理解偏差(误读成“名人育儿被过度宣传、令人压力大”),DC间犹豫很久选错;推理题答案=原文近义改写,先锁主旨方向再排除带情绪的过度引申。'
 }
 
 function keyOf(year: number, text: number) {
