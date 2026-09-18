@@ -420,7 +420,7 @@ onMounted(() => {
     font-size: 0.85rem;
   }
   .content-deck {
-    padding: 16px;
+    padding: 10px 6px;
     border-radius: 12px;
   }
 }

@@ -191,6 +191,9 @@
                 </div>
               </div>
 
+              <!-- 全文脉络：第一题之前的串读骨架 -->
+              <PassageSkeleton :paragraphs="getArticleParagraphs(year, textNum)" :translations="getParagraphTranslations(year, textNum)" />
+
               <!-- 题目列表 -->
               <div class="questions-list">
                 <div v-for="question in getQuestionsByYearAndText(year, textNum)" :key="question.number" class="question-card">
@@ -206,8 +209,6 @@
 
                   <!-- 方法论视角条 -->
                   <MethodLens :question="question" />
-                  <!-- 思考路径：遇到这类题怎么一步步想 -->
-                  <ThinkingPath :question="question" />
 
                   <div class="question-stem">{{ question.stem }}</div>
 
@@ -341,8 +342,6 @@
 
                 <!-- 方法论视角条 -->
                 <MethodLens :question="question" />
-                <!-- 思考路径：遇到这类题怎么一步步想 -->
-                <ThinkingPath :question="question" />
 
                 <div class="cloze-analysis" v-if="question.analysis">
                   <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'c'))">
@@ -390,8 +389,6 @@
             </div>
             <!-- 方法论视角条 -->
             <MethodLens :question="question" />
-            <!-- 思考路径：遇到这类题怎么一步步想 -->
-            <ThinkingPath :question="question" />
             <div class="question-stem">{{ question.stem }}</div>
             <div v-if="question.options && question.options.length > 0" class="options-list">
               <div v-for="option in question.options" :key="option.label" class="option-item"
@@ -432,8 +429,8 @@ import { ref, computed, onMounted } from 'vue'
 import { Document, Upload, CircleCheck, CircleClose, ArrowRight } from '@element-plus/icons-vue'
 // 方法论视角条：把《糖三角》三师方法论（题型要诀/定位/干扰套路/同义改写）叠加到每道真题
 import MethodLens from './MethodLens.vue'
-// 思考路径卡：颉斌斌「三步走+复盘四件事」按题型定制的解题思路（两站共用）
-import ThinkingPath from './ThinkingPath.vue'
+// 全文脉络卡：每篇第一题前给串读骨架（各段功能+首句大意），两站共用
+import PassageSkeleton from './PassageSkeleton.vue'
 // 精读四步法 SOP：靶向翻译 + 选项尸检（精读面板方法指引）
 import { INTENSIVE_SOP } from '@/utils/thinkingPath'
 // 错因深度分析面板：套路命中分布 + 答案位置偏好审计（个人版专属）
@@ -1507,12 +1504,17 @@ onMounted(async () => {
 
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
-  .reading-practice { padding: 16px 12px 40px; }
+  /* 移动端收窄各层 padding：正文/解析不再被挤成细条（电脑端不受影响） */
+  .reading-practice { padding: 6px 0 32px; }
+  .year-content { padding: 12px 8px; }
+  .question-card { padding: 14px 12px; }
+  .cloze-question-item { padding: 14px 12px; }
+  .analysis-section, .tips-section { padding: 10px; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .filter-section { flex-direction: column; align-items: stretch; }
   .filter-section .el-select { width: 100%; }
   .cloze-options { grid-template-columns: 1fr; }
-  .article-section { padding: 20px 16px; }
+  .article-section { padding: 14px 10px; }
   .article-body { font-size: 1.05em; }
   .vocab-grid { grid-template-columns: 1fr; }
   .practice-title { font-size: 1.5em; }
@@ -1522,7 +1524,7 @@ onMounted(async () => {
   .vocab-coverage-bar { padding: 10px 12px; }
   .vc-level-btn { padding: 4px 12px; font-size: 0.8em; }
   .article-body { overflow-wrap: break-word; word-break: break-word; }
-  .intensive-reading-panel { padding: 16px 14px; }
+  .intensive-reading-panel { padding: 12px 8px; }
   .vocab-grid { grid-template-columns: 1fr; }
 }
 /* ===== 长难句拆解 ===== */
