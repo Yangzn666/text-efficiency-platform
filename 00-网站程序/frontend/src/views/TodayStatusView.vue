@@ -1256,7 +1256,9 @@ onUnmounted(() => {
   }
   .tasks-card,
   .chain-card,
-  .subjects-card {
+  .subjects-card,
+  .feynman-card,
+  .milestone-card {
     grid-column: auto;
   }
 }
