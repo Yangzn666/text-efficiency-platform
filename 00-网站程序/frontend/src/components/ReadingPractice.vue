@@ -194,8 +194,8 @@
                 </div>
               </div>
 
-              <!-- 全文脉络：第一题之前的串读骨架 -->
-              <PassageSkeleton :paragraphs="getArticleParagraphs(year, textNum)" :translations="getParagraphTranslations(year, textNum)" />
+              <!-- 全文脉络：第一题之前的串读骨架（有手写骨架则展示本篇作者行文逻辑，否则启发式兜底） -->
+              <PassageSkeleton :paragraphs="getArticleParagraphs(year, textNum)" :translations="getParagraphTranslations(year, textNum)" :authored="getIntensiveSkeleton(year, textNum)" />
 
               <!-- 题目列表 -->
               <div class="questions-list">
@@ -276,7 +276,10 @@
       <div v-for="year in clozeYears" :key="year" class="cloze-year-group">
         <div class="year-header" :class="{ expanded: expandedClozeYears.includes(year) }" @click="toggleClozeYear(year)">
           <el-icon class="expand-icon" :class="{ rotated: expandedClozeYears.includes(year) }"><ArrowRight /></el-icon>
-          <span class="year-text">{{ year }}年 · 完形填空</span>
+          <span class="year-text">
+            <span class="year-main">{{ year }}年 · 完形填空</span>
+            <span class="year-subtitle">{{ clozeSubtitle(year) }}</span>
+          </span>
           <span class="year-badge">{{ getClozeQuestionsByYear(year).length }}题</span>
           <el-button type="warning" size="small" @click.stop="toggleClozeTranslations(year)">
             {{ isClozeTranslationVisible(year) ? '隐藏翻译' : '显示翻译' }}
@@ -659,6 +662,31 @@ const toggleClozeYear = (year: number) => {
   const i = expandedClozeYears.value.indexOf(year)
   i > -1 ? expandedClozeYears.value.splice(i, 1) : expandedClozeYears.value.push(year)
 }
+// 各年份完形填空文章主题小标题（方便区分每篇）
+const CLOZE_SUBTITLES: Record<number, string> = {
+  2005: '人类的嗅觉为何被低估',
+  2006: '美国无家可归者问题',
+  2007: '拉美殖民地独立后的前景',
+  2008: '科克伦与种族智商假说',
+  2009: '果蝇实验与动物智力',
+  2010: '霍桑效应：工厂照明实验',
+  2011: '笑与身体健康（面部反馈）',
+  2012: '最高法院大法官的伦理',
+  2013: '决策中被忽略的背景信息',
+  2014: '中年记忆力与心智衰退',
+  2015: '朋友之间的基因联系',
+  2016: '柬埔寨的择偶习俗',
+  2017: '拥抱对健康的好处',
+  2018: '信任的风险与必要',
+  2019: '手机导航带来的依赖',
+  2020: '英国周日烤肉的传统',
+  2021: '流体智力的年龄曲线',
+  2022: '植物有没有意识',
+  2023: '丝绸之路上的商队客栈',
+  2024: '自动门与无障碍通行',
+  2025: '海底古城帕夫洛佩特里',
+}
+const clozeSubtitle = (year: number) => CLOZE_SUBTITLES[year] || '经典真题'
 const toggleQuestionExpand = (idx: number) => {
   const i = expandedQuestions.value.indexOf(idx)
   i > -1 ? expandedQuestions.value.splice(i, 1) : expandedQuestions.value.push(idx)
@@ -704,6 +732,8 @@ const getVocabulary = (year: number, textNum: number) => intensiveReadingData.va
 const getKeySentences = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.keySentences || []
 const getArticleStructure = (year: number, textNum: number): any[] => intensiveReadingData.value[`${year}-${textNum}`]?.structure || []
 const getParagraphTranslations = (year: number, textNum: number): string[] => intensiveReadingData.value[`${year}-${textNum}`]?.paragraphTranslations || []
+// 本篇手写「全文脉络」骨架（作者行文逻辑）；无则返回 null，PassageSkeleton 自动回落启发式
+const getIntensiveSkeleton = (year: number, textNum: number): any => intensiveReadingData.value[`${year}-${textNum}`]?.skeleton || null
 // 文章大意小标题：优先用 intensive-reading 的精炼标题 title，无标题才回退首段译文截断
 const gistCache = new Map<string, string>()
 const getTextGist = (year: number, textNum: number) => {
@@ -936,7 +966,9 @@ onMounted(async () => {
 .year-header:hover { opacity: 0.92; }
 .year-header .expand-icon { transition: transform 0.3s; font-size: 1.15em; }
 .year-header .expand-icon.rotated { transform: rotate(90deg); }
-.year-text { font-size: 1.15em; font-weight: 600; flex: 1; }
+.year-text { font-size: 1.15em; font-weight: 600; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.year-main { white-space: nowrap; }
+.year-subtitle { font-size: 0.62em; font-weight: 400; opacity: 0.82; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .year-badge {
   background: rgba(255,255,255,0.2);
   padding: 3px 12px;
@@ -1567,6 +1599,15 @@ onMounted(async () => {
   .year-content { padding: 12px 8px; }
   .question-card { padding: 14px 12px; }
   .cloze-question-item { padding: 14px 12px; }
+  /* 题干(及插件译文)与下方选项/解析同宽：题号+按钮占首行，题干整行换到第二行 */
+  .question-header { flex-wrap: wrap; }
+  .question-header .el-button { order: 2; margin-left: auto; }
+  .question-stem-text { flex: 1 1 100%; order: 3; }
+  /* 年份标题不再折行("完形填/空")：主标题占第一行、主题小标题占第二行，翻译按钮放不下时换到右对齐行 */
+  .year-header { flex-wrap: wrap; gap: 8px 10px; }
+  .year-header .year-main { white-space: nowrap; }
+  .year-header .year-subtitle { font-size: 0.68em; }
+  .year-header .el-button { margin-left: auto; }
   .analysis-section, .tips-section { padding: 10px; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
   .filter-section { flex-direction: column; align-items: stretch; }

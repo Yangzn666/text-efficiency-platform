@@ -2,9 +2,27 @@
 import { computed } from 'vue'
 
 // 全文脉络卡：放在每篇第一题之前，用考研「串读法」先搭论证骨架。
-// 只输出"每段在论证中干什么 + 段间逻辑关系 + 一条论证主线"，不重复原文与译文
-// （原文/译文正文里已有，重复无意义）。只读段落文本做角色判定，不碰作答数据，两站共用。
-const props = defineProps<{ paragraphs: string[]; translations?: string[] }>()
+// 两种模式：
+//  1) 手写模式（首选）：intensive-reading.json 里给该篇 authored.skeleton 时，
+//     逐段展示「这段实际讲了什么 + 与上段真实逻辑 + 论证主线 + 一句主旨」——即作者行文逻辑。
+//  2) 启发式兜底：没有手写数据时，退回按话语标记自动判定段落功能的通用骨架。
+// 不重复原文与译文（正文里已有），不碰作答数据，两站共用。
+interface AuthoredPara {
+  type?: string      // 对应 ROLES 的键，用于取标签与配色
+  link?: string      // 与上段的真实逻辑（覆盖 ROLES 默认）
+  text: string       // 本段实际内容 / 在论证中干什么
+  tip?: string       // 该段的解题动作（可选）
+}
+interface AuthoredSkeleton {
+  line?: string
+  idea?: string
+  paras?: AuthoredPara[]
+}
+const props = defineProps<{
+  paragraphs: string[]
+  translations?: string[]
+  authored?: AuthoredSkeleton | null
+}>()
 
 const strip = (html: string) =>
   String(html || '').replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/\s+/g, ' ').trim()
@@ -77,31 +95,70 @@ const skeleton = computed(() => {
 
 /** 顶部一条论证主线：把各段角色串成流向 */
 const flowLine = computed(() => skeleton.value.map(s => s.role.short).join(' → '))
+
+// ===== 手写模式 =====
+const useAuthored = computed(() => !!(props.authored && Array.isArray(props.authored.paras) && props.authored.paras!.length))
+const authoredRows = computed(() => {
+  const paras = props.authored?.paras || []
+  return paras.map((x, i) => ({
+    p: i + 1,
+    role: ROLES[x.type || 'develop'] || ROLES.develop,
+    link: x.link || ROLES[x.type || 'develop']?.link || '',
+    text: x.text,
+    tip: x.tip || ''
+  }))
+})
 </script>
 
 <template>
-  <div v-if="skeleton.length" class="passage-skeleton">
+  <div v-if="useAuthored || skeleton.length" class="passage-skeleton">
     <div class="ps-head">
       <span class="ps-badge">🧭 全文脉络</span>
-      <span class="ps-sub">论证骨架 · 每段在干什么、段间怎么连，先搭骨架再解题</span>
+      <span class="ps-sub">{{ useAuthored ? '本篇作者行文逻辑 · 逐段说了什么、怎么推进、落点在哪儿' : '论证骨架 · 每段在干什么、段间怎么连，先搭骨架再解题' }}</span>
     </div>
-    <div class="ps-flow">论证主线：{{ flowLine }}</div>
-    <div class="ps-list">
-      <div v-for="s in skeleton" :key="s.p" class="ps-row">
-        <span class="ps-p">P{{ s.p }}</span>
-        <div class="ps-body">
-          <div class="ps-tags">
-            <span
-              class="ps-role"
-              :style="{ color: s.role.color, borderColor: s.role.color, background: s.role.color + '14' }"
-            >{{ s.role.name }}</span>
-            <span class="ps-link">{{ s.role.link }}</span>
+
+    <!-- ===== 手写模式：针对本篇的真实骨架 ===== -->
+    <template v-if="useAuthored">
+      <div v-if="authored && authored.line" class="ps-flow">论证主线：{{ authored.line }}</div>
+      <div class="ps-list">
+        <div v-for="s in authoredRows" :key="s.p" class="ps-row">
+          <span class="ps-p">P{{ s.p }}</span>
+          <div class="ps-body">
+            <div class="ps-tags">
+              <span
+                class="ps-role"
+                :style="{ color: s.role.color, borderColor: s.role.color, background: s.role.color + '14' }"
+              >{{ s.role.name }}</span>
+              <span class="ps-link">{{ s.link }}</span>
+            </div>
+            <div class="ps-func">{{ s.text }}</div>
+            <div v-if="s.tip" class="ps-tip">🎯 {{ s.tip }}</div>
           </div>
-          <div class="ps-func">{{ s.role.func }}</div>
         </div>
       </div>
-    </div>
-    <div class="ps-note">串读口诀：首段立话题、转折见态度、例子服务论点、末段收主旨——主旨题的正确项常是这条骨架的同义改写。</div>
+      <div v-if="authored && authored.idea" class="ps-note"><strong>一句主旨：</strong>{{ authored.idea }}</div>
+    </template>
+
+    <!-- ===== 启发式兜底：通用骨架 ===== -->
+    <template v-else>
+      <div class="ps-flow">论证主线：{{ flowLine }}</div>
+      <div class="ps-list">
+        <div v-for="s in skeleton" :key="s.p" class="ps-row">
+          <span class="ps-p">P{{ s.p }}</span>
+          <div class="ps-body">
+            <div class="ps-tags">
+              <span
+                class="ps-role"
+                :style="{ color: s.role.color, borderColor: s.role.color, background: s.role.color + '14' }"
+              >{{ s.role.name }}</span>
+              <span class="ps-link">{{ s.role.link }}</span>
+            </div>
+            <div class="ps-func">{{ s.role.func }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-note">串读口诀：首段立话题、转折见态度、例子服务论点、末段收主旨——主旨题的正确项常是这条骨架的同义改写。</div>
+    </template>
   </div>
 </template>
 
@@ -140,6 +197,7 @@ const flowLine = computed(() => skeleton.value.map(s => s.role.short).join(' →
   padding: 5px 10px;
   margin-bottom: 10px;
   letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 .ps-list {
   display: flex;
@@ -185,20 +243,33 @@ const flowLine = computed(() => skeleton.value.map(s => s.role.short).join(' →
   color: #9a8a5c;
 }
 .ps-func {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #4a4535;
+}
+.ps-tip {
+  margin-top: 4px;
+  font-size: 0.76rem;
   line-height: 1.6;
-  color: #5c5340;
+  color: #a06a00;
+  background: #fff8ec;
+  border-radius: 6px;
+  padding: 4px 8px;
 }
 .ps-note {
   margin-top: 10px;
   padding-top: 8px;
   border-top: 1px dashed #e0d5b0;
-  font-size: 0.78rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  line-height: 1.7;
   color: #7a5b00;
+}
+.ps-note strong {
+  color: #6b4e00;
 }
 @media (max-width: 768px) {
   .passage-skeleton { padding: 10px 10px; }
   .ps-sub { display: none; }
+  .ps-func { font-size: 0.86rem; }
 }
 </style>

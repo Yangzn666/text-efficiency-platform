@@ -8,6 +8,7 @@ const ReadingPractice = defineAsyncComponent(() => import('@/components/ReadingP
 const VocabularySystem = defineAsyncComponent(() => import('@/components/VocabularyLearning.vue'))
 const GrammarLearningCenter = defineAsyncComponent(() => import('@/components/GrammarLearningCenter.vue'))
 const TranslationView = defineAsyncComponent(() => import('@/views/TranslationView.vue'))
+const ClozeMethodView = defineAsyncComponent(() => import('@/views/ClozeMethodView.vue'))
 const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 const EnglishReadingLog = defineAsyncComponent(() => import('@/components/EnglishReadingLog.vue'))
 
@@ -34,6 +35,7 @@ const tabItems = [
   { name: 'vocabulary', label: '词汇系统', icon: '🧠' },
   { name: 'writing', label: '写作训练', icon: '✍️' },
   { name: 'translation', label: '翻译', icon: '🔄' },
+  { name: 'cloze', label: '完型方法', icon: '🧩' },
   { name: 'grammarCenter', label: '语法中心', icon: '📐' }
 ]
 
@@ -107,6 +109,7 @@ onMounted(() => {
       <div v-show="activeTab === 'vocabulary'"><VocabularySystem /></div>
       <div v-show="activeTab === 'writing'"><WritingLearning /></div>
       <div v-show="activeTab === 'translation'"><TranslationView :embedded="true" /></div>
+      <div v-show="activeTab === 'cloze'"><ClozeMethodView /></div>
       <div v-show="activeTab === 'grammarCenter'"><GrammarLearningCenter /></div>
     </div>
   </div>

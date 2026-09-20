@@ -156,6 +156,16 @@ const blocks: GrammarBlock[] = [
           'Were it not for their help, we could hardly succeed.（省略if的倒装虚拟）',
           'It is high time that we took action.（that从句用过去式）'
         ]
+      },
+      {
+        name: 'lest 引导的虚拟语气（以免、免得、生怕）',
+        key: 'lest = for fear that，后面从句必须用 (should) + 动词原形，should 常省略、动词永远用原形（lest he forget 而非 forgets/forgot）；表"以免…"的目的，多见于正式语体与警告语，如碑铭名句 Lest we forget。完形/写作常拿它当"看着高级、实则语境不合"的干扰项',
+        examples: [
+          'He spoke in a whisper lest he (should) wake the baby.（压低声音，以免吵醒宝宝）',
+          'Take care lest you (should) fall on the ice.（留神，别在冰上滑倒）',
+          'She wrote the number down lest she (should) forget.（记下号码，以免忘记）',
+          '2012 完形 #2：The court cannot maintain its legitimacy ... ___ justices behave like politicians.（若填 lest 变成"…以免大法官像政客"，目的关系颠倒讲不通；应选 when，"当大法官 behave 像政客时"逻辑才顺）'
+        ]
       }
     ]
   },

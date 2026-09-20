@@ -32,24 +32,27 @@ const modules = [
   {
     icon: '📐',
     title: '数学一知识体系',
-    desc: '高等数学 · 线性代数 · 概率统计，章节化知识点梳理 + 配图 + 题型识别决策树',
-    tag: '高数 / 线代 / 概率',
+    desc: '对齐《每日公式背诵清单》：高数 10 章 · 线代 4 章 · 概率 5 章，知识点难度分级（★ 必背 / 拓展）、空间曲面配图与题型识别决策树，并标注我的重灾区与二刷易错点',
+    tag: '高数 · 线代 · 概率',
+    meta: ['20 章节', '★ 难度分级', '重灾区标记', '决策树'],
     route: '/math/detail',
     color: '#16345c'
   },
   {
     icon: '📇',
     title: '数学速查卡片',
-    desc: '公式与定理速查，翻牌自测，考前快速过一遍核心结论',
-    tag: '公式 / 定理',
+    desc: '公式与定理翻牌自测，核心结论对齐背诵清单并按难度分星，考前快速过筛；标记掌握后进度自动存本地',
+    tag: '公式 · 定理 · 自测',
+    meta: ['23 章 · 115 卡', '难度分星', '翻牌自测', '掌握进度'],
     route: '/math/quickcards',
     color: '#0e7490'
   },
   {
     icon: '🧭',
     title: '数学专题指南',
-    desc: '高频题型方法专题 + 真题弱点诊断：曲面积分、参数估计、级数、矩阵方程等的核心方法与易错点',
-    tag: '题型 / 方法',
+    desc: '高频题型方法专题 + 我的真题弱点诊断：曲面积分、参数估计、级数、矩阵方程等的核心方法、解题路由与二刷栽易错点',
+    tag: '题型 · 方法 · 弱点',
+    meta: ['11 专题 · 74 法', '解题路由', '弱点诊断', '易错点'],
     route: '/math/guide',
     color: '#1d4ed8'
   },
@@ -135,10 +138,13 @@ function go(route: string) {
         :style="{ '--accent': m.color }"
         @click="go(m.route)"
       >
-        <div class="module-icon">{{ m.icon }}</div>
+        <div class="module-icon"><span class="mi-emoji">{{ m.icon }}</span></div>
         <div class="module-body">
           <h3>{{ m.title }}</h3>
           <p>{{ m.desc }}</p>
+          <div v-if="m.meta" class="module-metas">
+            <span v-for="(mt, i) in m.meta" :key="i" class="meta-chip">{{ mt }}</span>
+          </div>
           <span class="module-tag">{{ m.tag }}</span>
         </div>
         <div class="module-arrow">→</div>
@@ -269,6 +275,8 @@ function go(route: string) {
   gap: 18px;
 }
 .module-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: flex-start;
   gap: 16px;
@@ -280,15 +288,50 @@ function go(route: string) {
   transition: all 0.25s ease;
   box-shadow: 0 2px 12px rgba(13, 33, 55, 0.05);
 }
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 30%, #fff));
+}
+.module-card::after {
+  content: '';
+  position: absolute;
+  top: -46px;
+  right: -46px;
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  opacity: 0.7;
+}
+.module-card:hover::after {
+  opacity: 1;
+}
 .module-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 24px rgba(13, 33, 55, 0.12);
   border-color: var(--accent);
 }
 .module-icon {
-  font-size: 1.9rem;
-  line-height: 1;
   flex: none;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 18%, #fff), color-mix(in srgb, var(--accent) 6%, #fff));
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, #fff);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.mi-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
 }
 .module-body {
   flex: 1;
@@ -305,6 +348,24 @@ function go(route: string) {
   font-size: 0.88rem;
   color: var(--muted);
   line-height: 1.6;
+}
+.module-metas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+}
+.meta-chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: #f1f5fb;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .module-tag {
   display: inline-block;
