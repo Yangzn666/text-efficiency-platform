@@ -50,6 +50,7 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2010-1': 2,
   '2010-2': 0,
   '2010-3': 1,
+  '2010-4': 1,
   '2011-1': 3,
   '2011-2': 3,
   '2011-3': 3,
@@ -138,6 +139,13 @@ const SEEDED_NOTES: Record<string, string> = {
     'Q3(推理)选C正A:研究者观察=influentials并不与很多人互动→影响力靠社交连锁传递(A influence goes with social interactions);C“更多渠道”无中生有过度推理。' +
     'Q5(细节)选A正C:末段critical mass of easily influenced people→C readiness to be influenced(乐于被影响);A eagerness to be accepted(渴望被接受)无中生有,原文无be accepted。' +
     '用户自我诊断到位:“不能完全看懂文章,要靠方法+选项求同存异”。本篇核心欠缺=四步思考路径未走:定位句→识别语气词→同义替换匹配→排除无中生有/过度推理。',
+  '2010-4':
+    '1/5《会计准则与银行博弈》(FASB/IASB 公允价值),2010=英一史上最难年,本篇金融术语密集属词汇+背景双墙。正确 ADCBD,你 DACDB,仅 Q3(推理)对。' +
+    'Q1(细节)选D正A:D“re-evaluate”无中生有;A=被迫遵循不利的资产评估规则(首段末句 value...at the price a third party would pay)。' +
+    'Q2(篇章结构)选A正D:A“管理作用削弱”与原文 enhance the use of judgment by management 反向;D“独立性削弱”=第二段 independence...being compromised。' +
+    'Q4(细节)选D正B:on the wrong planet=账户 vastly overvalued assets→B“夸大资产真实价值”;D“否认人账损失”方向相反。' +
+    'Q5(态度)选B正D:作者对准则制定者是同情/支持(银行与制定者对立、作者挺制定者),非怀疑。' +
+    '此篇与 T1-T3 共同构成 2010 谷底(全年阅读 4/20),属难度离群非能力回落。',
   '2011-1':
     '3/5。Q1(态度观点)选B正C:acclaim误当“宣布”、received误当“被收回”,实则 received acclaim=广受好评;acclaim=ac(加强)+claim(喊)→大家一起喊好→称赞。' +
     'Q4(推理判断)选A正B:inferior方向记反,inferior=更差的(“劣”字辈,in-向下),superior=更好的;记“inferior劣、superior优”,褒贬方向永不反。' +
