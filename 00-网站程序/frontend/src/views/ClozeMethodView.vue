@@ -92,6 +92,18 @@ const reviewWords = [
       { word: 'by all means / at all costs / in a word / as a result', cn: '四个高频连接短语打包：① by all means 口语“当然可以、尽管！”(表许可) 或加强语气“务必、一定”（不是字面“用所有方法”）② at all costs (=at any cost) 不惜一切代价（表决心）③ in a word 总之（用于总结）④ as a result 因此、结果（唯一表因果递进）', eg: '—May I use your phone? —By all means! / 原文：…seen as separate from politics and, as a result, convincing as law（因此才能被当作真正的法律）', from: '#20（正确D as a result 因→果；你选A by all means 是“许可/务必”，不合因果链）' },
       { word: 'be bound by', cn: '熟词僻义：bind(绑) → 过去分词 bound → be bound by + 规则/法律/协议 = 受…约束、被…绑定；反义 be free from。别把 bound 只当形容词“绑好的/注定的(be bound to do=一定会做)”。同族：binding(有约束力的)、unbound(不受约束的)', eg: 'Part of the problem is that the justices are not bound by an ethics code（问题部分在于大法官并不受道德准则约束）', from: '#5（正确C bound；你选D founded 完全没联系，因不认得 bind→bound 变化）' }
     ]
+  },
+  {
+    year: '2013',
+    tone: `行为心理·决策偏见（Simonsohn：人做决定时是"情境盲"，法官/招生官被当天手上的连续样本带偏）`,
+    items: [
+      { word: `on the whole`, cn: `整体来说、总的来说（=generally / overall），用于对全局做一个概括性评价。别和 as a whole（作为整体）混。`, eg: `People are, on the whole, poor at considering background information when making individual decisions.（整体来说，人们做个人决策时都不擅长考虑背景信息。）`, from: `首句固定表达（非空格），全文基调句` },
+      { word: `external`, cn: `外部的、外面的（=outside/outward），反义 internal（内部的）。钩子：exter-外部→同族 exterior/extra。external factors＝外部因素。`, eg: `…a strength that grants the ability to make judgments which are unbiased by external factors.（看似优点：让人做出不受外部因素干扰的判断。）`, from: `#2（正确答案D external；干扰项A minor/B objective/C crucial）` },
+      { word: `minor`, cn: `次要的、轻微的、不重要的（=lesser/secondary）；作名词还指"未成年人"。钩子：min-小（同 minimum/minority）→小的→次要的。`, eg: `#2 干扰项：minor factors＝次要因素——但上下文讲的是"不受外界(external)影响"，不是"不受次要影响"，故排除。`, from: `#2 选项A（用户标注：次要）` },
+      { word: `big picture`, cn: `整体情况、全局、大局。固定搭配 see / consider / look at the big picture＝着眼全局、从大处看；反义 the details（细枝末节）。`, eg: `…an inability to consider the big picture was leading decision-makers to be biased…（不考虑全局，反而让决策者带有偏见。）`, from: `#3（正确答案 picture，构成 the big picture）` },
+      { word: `turn to`, cn: `转向（某人/某物）寻求帮助、求助于、借助。=go to sb. for help。另有"翻到(书页)、转到(话题)"义。钩子：转身面向某人→向他求援。`, eg: `To test this idea, he turned to the university-admissions process.（为验证这个想法，他转向求助于大学招生流程这个案例。）`, from: `第二段固定表达（非空格）` },
+      { word: `fond`, cn: `be fond of＝喜欢、喜爱（=like/love，语气更温情）。a judge fond of appearing too soft on crime＝一个乐于显得对犯罪心慈手软的法官。`, eg: `…a judge fond of appearing too soft on crime might be more likely to send someone to prison…`, from: `#5（正确答案 fond of）` }
+    ]
   }
 ]
 </script>

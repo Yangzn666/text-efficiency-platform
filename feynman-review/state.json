@@ -9,7 +9,7 @@
     "ds": "ds-04",
     "co": "co-07",
     "os": "os-04",
-    "cn": "cn-03"
+    "cn": "cn-04"
   },
   "chapters": {
     "math": [
@@ -304,9 +304,10 @@
       "topic": "IEEE754结构1S+8E+23M",
       "severity": "S2",
       "interval": 1,
-      "nextReview": "2026-09-16",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "遗忘"
+      "errorType": "遗忘",
+      "lastNote": "09-20 阶码误记7位(应8)/尾数误称移码;纠正后默写1-8-23✓补偏移127;明日验"
     },
     {
       "id": "C-009",
@@ -314,9 +315,10 @@
       "topic": "补码加法最高位进位丢弃(非溢出判断)",
       "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-16",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "混淆"
+      "errorType": "混淆",
+      "lastNote": "09-20 双高位溢出口诀忘,正溢出答对;教Cs⊕Cp+同号变号;明日验"
     },
     {
       "id": "C-010",
@@ -363,10 +365,11 @@
       "chapter": "co-03",
       "topic": "Tag=地址高位,确认Cache行存的是哪个主存块",
       "severity": "S2",
-      "interval": 1,
-      "nextReview": "2026-09-16",
-      "correctStreak": 0,
-      "errorType": "方法未知"
+      "interval": 2,
+      "nextReview": "2026-09-22",
+      "correctStreak": 1,
+      "errorType": "方法未知",
+      "lastNote": "09-20 ✓ Tag=标识本行存的是主存哪块(命中比对)"
     },
     {
       "id": "C-015",
@@ -384,9 +387,10 @@
       "topic": "写直达≠写回,两种不同写策略",
       "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-16",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "混淆"
+      "errorType": "混淆",
+      "lastNote": "09-20 写直达/写回说反!(重点病根)纠正后默写\"替换才更新主存=写回\"✓;明日验"
     },
     {
       "id": "C-017",
@@ -679,20 +683,22 @@
       "chapter": "co-07",
       "topic": "四种I/O控制方式排序及数据是否经CPU遗忘",
       "severity": "S2",
-      "interval": 3,
-      "nextReview": "2026-09-18",
+      "interval": 1,
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "遗忘"
+      "errorType": "遗忘",
+      "lastNote": "09-20 忘IO四级排序;教后默写经/不经CPU对(DMA缩写曾滑PWA);明日再验"
     },
     {
       "id": "C-046",
       "chapter": "co-07",
       "topic": "中断现场漏PSW+响应时机与优先级混淆",
       "severity": "S2",
-      "interval": 3,
-      "nextReview": "2026-09-18",
+      "interval": 1,
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "混淆"
+      "errorType": "混淆",
+      "lastNote": "09-20 现场=PC+PSW(初混通用寄存器/开中断),纠正后默写回;隐指令关中断+取向量对;PSW缩写钉牢;明日验"
     },
     {
       "id": "C-047",
@@ -870,12 +876,12 @@
       "id": "C-076",
       "chapter": "cn-01",
       "topic": "TCP/IP四层合并(上三层+下两组都合并)",
-      "severity": "S2",
+      "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
       "errorType": "理解偏差",
-      "lastNote": "09-18复测△ 会话层并入应用对, 物理层应并数据链路成网络接口层说反"
+      "lastNote": "09-20 ✗→修复默写✓:四层=网络接口/网际/运输/应用,最底非物理层(物理+链路并成网络接口层);明日验"
     },
     {
       "id": "C-077",
@@ -883,10 +889,10 @@
       "topic": "数据单位精确: 报文/段/分组/帧/比特",
       "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
       "errorType": "混淆",
-      "lastNote": "09-18复测△ 数据单位仍漏'段', 报文/帧混"
+      "lastNote": "09-20 ✗→默写✓ 口诀数段包帧比,段=传输层/帧=链路层;明日验"
     },
     {
       "id": "C-078",
@@ -903,44 +909,45 @@
       "id": "C-079",
       "chapter": "cn-01",
       "topic": "时延带宽积BDP=带宽×传播时延,单位bit,含义=链路装多少比特",
-      "severity": "S2",
+      "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
       "errorType": "遗忘",
-      "lastNote": "09-18复测✗ BDP单位又答bps(应bit), 且没算数值(10Mbps*50ms=500000bit)"
+      "lastNote": "09-20 单位第三次错bps(应bit),数值0.5M对,修复后复述✓;重点盯"
     },
     {
       "id": "C-080",
       "chapter": "cn-01",
       "topic": "网络三硬件(端系统+通信链路+分组交换设备),通信子网+资源子网",
-      "severity": "S2",
+      "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
       "errorType": "混淆",
-      "lastNote": "09-18复测✗ 三硬件/通信子网资源子网答'传输/通信'术语全错"
+      "lastNote": "09-20 ✗→默写✓ 三硬件=端系统/通信链路/分组交换设备;通信子网(搬)vs资源子网(用);明日验"
     },
     {
       "id": "C-081",
       "chapter": "cn-01",
       "topic": "PAN/LAN/MAN/WAN四范围+三交换(电路/报文/分组)特征与顺序",
       "severity": "S2",
-      "interval": 1,
-      "nextReview": "2026-09-19",
-      "correctStreak": 0,
+      "interval": 2,
+      "nextReview": "2026-09-22",
+      "correctStreak": 1,
       "errorType": "遗忘",
-      "lastNote": "09-18复测✗ 三交换答'管道/虚电路', 电路/报文/分组没记牢"
+      "lastNote": "09-20 ✓ 电路独占/报文整块存储转发/分组拆发再组装"
     },
     {
       "id": "C-082",
       "chapter": "cn-02",
       "topic": "信道三分类及例子归属(单工/半双工/全双工)",
       "severity": "S1",
-      "interval": 1,
-      "nextReview": "2026-09-19",
-      "correctStreak": 0,
-      "errorType": "遗忘"
+      "interval": 2,
+      "nextReview": "2026-09-22",
+      "correctStreak": 1,
+      "errorType": "遗忘",
+      "lastNote": "09-20 ✓ 单工广播/半双工对讲机/全双工电话"
     },
     {
       "id": "C-083",
@@ -948,9 +955,10 @@
       "topic": "奈奎斯特(无噪声)vs香农(有噪声)极限公式分工",
       "severity": "S2",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "遗忘"
+      "errorType": "遗忘",
+      "lastNote": "09-20 带宽翻倍→容量翻倍(W在log外,线性)记反成不翻倍,已纠正;奈氏无噪声/香农有噪声答对;明日再验"
     },
     {
       "id": "C-084",
@@ -958,19 +966,21 @@
       "topic": "CSMA/CD四步流程+烧在网卡+无线改CA的原因",
       "severity": "S1",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "遗忘"
+      "errorType": "遗忘",
+      "lastNote": "09-20复测:口诀先错(用'忙时等待'替了'冲突停发'),修复后默写✓;明日再验"
     },
     {
       "id": "C-085",
       "chapter": "cn-03",
       "topic": "交换机自学习记录源MAC(学习看源/转发看目的)+端口冲突域",
       "severity": "S2",
-      "interval": 1,
-      "nextReview": "2026-09-19",
-      "correctStreak": 0,
-      "errorType": "混淆"
+      "interval": 2,
+      "nextReview": "2026-09-22",
+      "correctStreak": 1,
+      "errorType": "混淆",
+      "lastNote": "09-20 ✓ 源学习/目的转发/不隔离广播域 全对"
     },
     {
       "id": "C-086",
@@ -978,15 +988,82 @@
       "topic": "以太网最小帧长64字节与争用期2τ的关系",
       "severity": "S2",
       "interval": 1,
-      "nextReview": "2026-09-19",
+      "nextReview": "2026-09-21",
       "correctStreak": 0,
-      "errorType": "遗忘"
+      "errorType": "遗忘",
+      "lastNote": "09-20 △ 公式(帧长/速率=2τ)对,目的说成'退避'应为'检测冲突'"
+    },
+    {
+      "id": "C-087",
+      "chapter": "cn-03",
+      "topic": "GBN/SR窗口公式混淆(SR应2^(n-1)误答2^n-1)",
+      "severity": "S1",
+      "interval": 1,
+      "nextReview": "2026-09-21",
+      "correctStreak": 0,
+      "errorType": "混淆",
+      "lastNote": "09-20 △ 重传范围对(GBN整段/SR单帧),但SR窗口答成2^n-1(应2^(n-1)),与GBN发窗串了"
+    },
+    {
+      "id": "C-088",
+      "chapter": "cn-03",
+      "topic": "差错控制CRC只检错+出错处理(丢弃不发确认→超时重传)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-23",
+      "correctStreak": 0,
+      "errorType": "方法未知",
+      "lastNote": "09-20 △ 检错对,不知道出错怎么处理"
+    },
+    {
+      "id": "C-089",
+      "chapter": "cn-03",
+      "topic": "停等发送窗口=1 vs GBN>1(接收窗都=1)",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-23",
+      "correctStreak": 0,
+      "errorType": "理解偏差",
+      "lastNote": "09-20 误答固定vs不固定→纠正后默写✓"
+    },
+    {
+      "id": "C-090",
+      "chapter": "cn-03",
+      "topic": "组帧四方法+数长度/找边界/填0/违规映射",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-23",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-20 忘→教后默写✓四方法名字"
+    },
+    {
+      "id": "C-091",
+      "chapter": "cn-03",
+      "topic": "VLAN隔离广播域+802.1Q标签",
+      "severity": "S2",
+      "interval": 3,
+      "nextReview": "2026-09-23",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-20 忘→教后默写✓广播域/802.1Q"
+    },
+    {
+      "id": "C-092",
+      "chapter": "cn-03",
+      "topic": "冷门链路层眼熟(STDM/轮询令牌/PPP-LCP-NCP)",
+      "severity": "S3",
+      "interval": 7,
+      "nextReview": "2026-09-27",
+      "correctStreak": 0,
+      "errorType": "遗忘",
+      "lastNote": "09-20 STDM首答反;PPP完全没印象已讲;冷门眼熟级"
     }
   ],
   "stats": {
-    "totalSessions": 16,
-    "totalQuestions": 171,
-    "totalGaps": 86,
+    "totalSessions": 19,
+    "totalQuestions": 198,
+    "totalGaps": 92,
     "mastered": 0
   }
 }

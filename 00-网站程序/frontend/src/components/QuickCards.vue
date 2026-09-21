@@ -47,6 +47,17 @@ function texify(text: string): string {
   return html.replace(/\n/g, '<br>')
 }
 
+// ---------- 考频 / 标签 辅助 ----------
+function starText(s?: number): string {
+  return s === 3 ? '★★★' : s === 2 ? '★★' : ''
+}
+const TAG_CLASS: Record<string, string> = {
+  '公式': 'tag-formula', '概念': 'tag-concept', '方法': 'tag-method', '易错': 'tag-trap',
+}
+function tagClass(t?: string): string {
+  return TAG_CLASS[t || ''] || 'tag-formula'
+}
+
 // ---------- 持久化 ----------
 function loadMastered() {
   try {
@@ -109,11 +120,27 @@ const subjectMastered = computed(() =>
   chapters.value.reduce((s, ch) => s + ch.cards.filter(c => mastered.value.has(c.id)).length, 0)
 )
 
+// 环形进度：半径 15，周长 ≈ 94.25
+const RING_C = 94.25
+const ringDash = computed(() =>
+  subjectTotal.value
+    ? ((subjectMastered.value / subjectTotal.value) * RING_C).toFixed(1)
+    : '0'
+)
+const subjectPct = computed(() =>
+  subjectTotal.value ? Math.round((subjectMastered.value / subjectTotal.value) * 100) : 0
+)
+// 本章高频星数（★★★ / ★★）
+function chapterStarCount(index: number, n: number) {
+  const ch = chapters.value[index]
+  return ch ? ch.cards.filter(c => c.star === n).length : 0
+}
+
 onMounted(loadMastered)
 </script>
 
 <template>
-  <div class="quick-cards">
+  <div class="quick-cards" :class="'subj-' + subject">
     <!-- 科目切换 -->
     <div class="subject-switch">
       <button
@@ -138,15 +165,32 @@ onMounted(loadMastered)
         @click="selectChapter(index)"
       >
         <span class="chapter-short">{{ ch.title.replace(/^第\d+章\s*/, '') }}</span>
-        <span class="chapter-progress">{{ chapterMasteredCount(index) }}/{{ ch.cards.length }}</span>
+        <span class="chapter-progress">
+          <i class="dot dot-done"></i>{{ chapterMasteredCount(index) }}/{{ ch.cards.length }}
+          <i v-if="chapterStarCount(index, 3)" class="dot dot-star">★{{ chapterStarCount(index, 3) }}</i>
+        </span>
       </button>
     </div>
 
     <!-- 当前章节标题 + 本科总进度 -->
     <div class="chapter-head">
-      <div class="chapter-title">{{ currentChapter.title }}</div>
+      <div class="chapter-title-wrap">
+        <span class="chapter-kicker">当前章节</span>
+        <div class="chapter-title">{{ currentChapter.title }}</div>
+      </div>
       <div class="subject-progress">
-        {{ subjectMastered }}/{{ subjectTotal }} 已掌握
+        <svg class="ring" viewBox="0 0 36 36" aria-hidden="true">
+          <circle class="ring-bg" cx="18" cy="18" r="15" />
+          <circle
+            class="ring-fg"
+            cx="18" cy="18" r="15"
+            :stroke-dasharray="ringDash + ' ' + RING_C"
+          />
+        </svg>
+        <div class="sp-text">
+          <span class="sp-num">{{ subjectMastered }}<em>/{{ subjectTotal }}</em></span>
+          <span class="sp-label">已掌握 · {{ subjectPct }}%</span>
+        </div>
       </div>
     </div>
 
@@ -156,19 +200,28 @@ onMounted(loadMastered)
         v-for="card in currentChapter.cards"
         :key="card.id"
         class="flip-card"
-        :class="{ flipped: isFlipped(card.id), mastered: isMastered(card.id) }"
+        :class="{ flipped: isFlipped(card.id), mastered: isMastered(card.id), 'has-star': !!card.star }"
         @click="flip(card.id)"
       >
         <div class="flip-inner">
           <!-- 正面：自测问题 -->
           <div class="flip-face flip-front">
-            <div class="face-tag">❓ 自测</div>
+            <div class="face-top">
+              <span class="face-tag">❓ 自测</span>
+              <span class="face-badges">
+                <span v-if="card.tag" class="tag-pill" :class="tagClass(card.tag)">{{ card.tag }}</span>
+                <span v-if="card.star" class="star-badge" :class="'star-' + card.star">{{ starText(card.star) }}</span>
+              </span>
+            </div>
             <div class="face-content front-content" v-html="texify(card.front)"></div>
             <div class="face-hint">点击翻面看答案</div>
           </div>
           <!-- 背面：核心公式/定理 -->
           <div class="flip-face flip-back">
-            <div class="face-tag back-tag">📌 核心结论</div>
+            <div class="face-top">
+              <span class="face-tag back-tag">📌 核心结论</span>
+              <span v-if="card.star" class="star-badge" :class="'star-' + card.star">{{ starText(card.star) }}</span>
+            </div>
             <div class="face-content back-content" v-html="texify(card.back)"></div>
             <button
               class="master-btn"
@@ -183,115 +236,169 @@ onMounted(loadMastered)
     </div>
 
     <div class="cards-tip">
-      💡 先遮住背面自测，翻面核对后点击「标记掌握」。已掌握的卡片会标绿，进度自动保存。
+      💡 先遮住背面自测，翻面核对后点击「标记掌握」。带 <span class="inline-star">★★★ / ★★</span>
+      的是背诵清单里的必背默写 / 高频点，优先攻克；已掌握的卡片会转绿，进度自动保存在本机。
     </div>
   </div>
 </template>
 
 <style scoped>
 .quick-cards {
+  /* 作战室配色 token */
+  --ink: #14233a;
+  --body: #2c3e50;
+  --navy: #16345c;
+  --navy-deep: #0d2137;
+  --navy-light: #1e4576;
+  --gold: #d4a012;
+  --gold-light: #ffc53d;
+  --gold-soft: rgba(212, 160, 18, 0.12);
+  --line: #dbe4ef;
+  --bg-soft: #f4f7fb;
+  --green: #2f9e5f;
+  /* 每科一个强调色 */
+  --accent: #16345c;
+  --accent-2: #1e4576;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  font-family: 'FZCuHei', '方正粗黑_GBK', 'Microsoft YaHei', sans-serif;
+  color: var(--body);
 }
+.quick-cards.subj-higher { --accent: #16345c; --accent-2: #2b6cb0; }
+.quick-cards.subj-linear { --accent: #5b3a8e; --accent-2: #8250c8; }
+.quick-cards.subj-gailv  { --accent: #0f6b63; --accent-2: #17a08f; }
 
 /* ---------- 科目切换 ---------- */
 .subject-switch {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 .subject-btn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  border: 2px solid #ebeef5;
-  border-radius: 12px;
+  gap: 10px;
+  padding: 15px 12px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
   background: #fff;
-  color: #303133;
+  color: var(--body);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.22s ease;
+  font-family: inherit;
+}
+.subject-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 52, 92, 0.08);
 }
 .subject-btn.active {
-  border-color: #ffc53d;
-  background: #fff8e6;
+  border-color: transparent;
+  background: linear-gradient(150deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow: 0 10px 26px rgba(22, 52, 92, 0.22);
 }
-.subject-icon {
-  font-size: 1.2em;
-}
+.subject-icon { font-size: 1.5em; line-height: 1; }
 .subject-name {
-  font-size: 1em;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #16345c;
+  color: var(--navy);
+  letter-spacing: 0.04em;
 }
+.subject-btn.active .subject-name { color: #fff; }
 
 /* ---------- 章节选择 ---------- */
 .chapter-scroll {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 .chapter-chip {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 8px 14px;
-  border: 1px solid #dcdfe6;
-  border-radius: 10px;
+  gap: 4px;
+  padding: 11px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
   background: #fff;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
+.chapter-chip:hover { border-color: var(--accent); }
 .chapter-chip.active {
-  border-color: #ffc53d;
-  background: #fff8e6;
+  border-color: var(--accent);
+  background: linear-gradient(180deg, rgba(22, 52, 92, 0.04), rgba(22, 52, 92, 0.09));
+  box-shadow: inset 0 -3px 0 var(--accent);
 }
 .chapter-short {
-  font-size: 0.85em;
-  font-weight: 600;
-  color: #303133;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
   white-space: nowrap;
 }
 .chapter-progress {
-  font-size: 0.72em;
-  color: #67c23a;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--green);
+  font-weight: 700;
 }
+.dot { font-style: normal; }
+.dot-star { color: var(--gold); margin-left: 4px; }
 
-/* ---------- 章节标题 ---------- */
+/* ---------- 章节标题 + 进度环 ---------- */
 .chapter-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
+  padding: 4px 2px;
+}
+.chapter-kicker {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 .chapter-title {
-  font-size: 1.15em;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: #16345c;
+  color: var(--navy);
+  letter-spacing: 0.02em;
 }
 .subject-progress {
-  font-size: 0.82em;
-  color: #67c23a;
-  font-weight: 700;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
+.ring { width: 52px; height: 52px; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 3.5; stroke-linecap: round; }
+.ring-bg { stroke: var(--line); }
+.ring-fg { stroke: var(--gold); transition: stroke-dasharray 0.5s ease; }
+.sp-text { display: flex; flex-direction: column; line-height: 1.15; }
+.sp-num { font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+.sp-num em { font-size: 0.95rem; font-style: normal; color: #8494a7; font-weight: 600; }
+.sp-label { font-size: 0.82rem; color: #6b7c92; font-weight: 600; }
 
 /* ---------- 翻转卡片 ---------- */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 18px;
 }
 
 .flip-card {
-  perspective: 1200px;
-  height: 260px;
+  perspective: 1400px;
+  height: 300px;
   cursor: pointer;
 }
 .flip-inner {
@@ -299,82 +406,115 @@ onMounted(loadMastered)
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.5s;
+  transition: transform 0.55s cubic-bezier(0.4, 0.1, 0.2, 1);
 }
-.flip-card.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
 
 .flip-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 14px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 18px 18px 16px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(22, 52, 92, 0.08);
   overflow: hidden;
 }
 .flip-front {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f8fc 100%);
-  border: 2px solid #dbe7f5;
+  background: linear-gradient(155deg, #ffffff 0%, #eef4fb 100%);
+  border: 2px solid #d7e4f4;
+  border-top: 4px solid var(--accent);
 }
 .flip-back {
-  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  background: linear-gradient(155deg, #fffdf5 0%, #fff2cf 100%);
   border: 2px solid #ffe082;
+  border-top: 4px solid var(--gold);
   transform: rotateY(180deg);
 }
 .flip-card.mastered .flip-front {
-  border-color: #95d475;
-  background: linear-gradient(135deg, #ffffff 0%, #f0f9eb 100%);
+  border-top-color: var(--green);
+  background: linear-gradient(155deg, #ffffff 0%, #eef8ec 100%);
+  border-color: #b7e3a5;
 }
 .flip-card.mastered .flip-back {
-  border-color: #95d475;
-  background: linear-gradient(135deg, #f0f9eb 0%, #e1f3d8 100%);
+  border-top-color: var(--green);
+  background: linear-gradient(155deg, #f4fbf1 0%, #e3f4da 100%);
+  border-color: #b7e3a5;
 }
 
-.face-tag {
-  font-size: 0.75em;
-  font-weight: 700;
-  color: #16345c;
-  margin-bottom: 8px;
+.face-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
   flex-shrink: 0;
 }
-.back-tag {
-  color: #e6a23c;
+.face-badges { display: flex; align-items: center; gap: 8px; }
+.face-tag {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.03em;
 }
+.back-tag { color: #b7791f; }
+
+/* 考频星徽 */
+.star-badge {
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #8a6d0b;
+  background: linear-gradient(135deg, #fff2c2, #ffdf80);
+  border: 1px solid #f0c93f;
+  border-radius: 999px;
+  padding: 2px 9px;
+  line-height: 1.5;
+  box-shadow: 0 2px 6px var(--gold-soft);
+}
+.star-badge.star-3 { color: #7a4d00; background: linear-gradient(135deg, #ffe08a, #ffc53d); }
+.star-badge.star-2 { color: #6b5a1a; background: linear-gradient(135deg, #fff3cf, #ffe08a); }
+
+/* 内容类型标签 */
+.tag-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 10px;
+  line-height: 1.6;
+  border: 1px solid transparent;
+}
+.tag-formula { color: #0f3f74; background: #e1edfb; border-color: #bcd6f2; }
+.tag-concept { color: #1f6b3a; background: #e2f6e8; border-color: #b7e3a5; }
+.tag-method  { color: #5b3a8e; background: #ece4f8; border-color: #d3c0ee; }
+.tag-trap    { color: #9c2b2b; background: #fde6e6; border-color: #f4bcbc; }
+
 .face-content {
   flex: 1;
   overflow-y: auto;
-  color: #303133;
-  line-height: 1.7;
+  color: var(--ink);
+  line-height: 1.75;
 }
 .front-content {
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 1.28rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
 }
-.back-content {
-  font-size: 0.88em;
-}
-/* KaTeX 块级公式在卡片内居中、可横向滚动 */
+.back-content { font-size: 1.15rem; }
 .back-content :deep(.katex-display) {
-  margin: 0.4em 0;
+  margin: 0.45em 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
-.back-content :deep(.katex) {
-  font-size: 1.02em;
-}
-.front-content :deep(.katex) {
-  font-size: 1.05em;
-}
+.back-content :deep(.katex) { font-size: 1.16em; }
+.front-content :deep(.katex) { font-size: 1.15em; }
+
 .face-hint {
-  font-size: 0.72em;
-  color: #303133;
+  font-size: 0.8rem;
+  color: var(--navy);
   opacity: 0.5;
   text-align: center;
   margin-top: 8px;
@@ -382,49 +522,46 @@ onMounted(loadMastered)
 }
 
 .master-btn {
-  margin-top: 10px;
-  padding: 7px;
-  border: 1px solid #e6a23c;
-  border-radius: 8px;
+  margin-top: 12px;
+  padding: 9px;
+  border: 1.5px solid var(--gold);
+  border-radius: 10px;
   background: #fff;
-  color: #e6a23c;
-  font-size: 0.82em;
-  font-weight: 600;
+  color: #b7791f;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   flex-shrink: 0;
+  font-family: inherit;
 }
+.master-btn:hover { background: #fff7e6; }
 .master-btn.on {
-  background: #67c23a;
-  border-color: #67c23a;
+  background: var(--green);
+  border-color: var(--green);
   color: #fff;
 }
 
 .cards-tip {
-  background: #fff8e6;
+  background: linear-gradient(135deg, #fffdf5 0%, #fff4d6 100%);
   border: 1px solid #ffd66b;
-  border-radius: 10px;
-  padding: 10px 14px;
-  color: #303133;
-  font-size: 0.85em;
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--body);
+  font-size: 1.02rem;
+  line-height: 1.7;
 }
+.inline-star { color: var(--gold); font-weight: 800; }
 
 @media (max-width: 600px) {
-  .cards-grid {
-    grid-template-columns: 1fr;
-  }
-  .flip-card {
-    height: 280px;
-  }
-  .subject-btn {
-    padding: 10px 4px;
-    gap: 5px;
-  }
-  .subject-name {
-    font-size: 0.88em;
-  }
-  .chapter-chip {
-    padding: 7px 11px;
-  }
+  .cards-grid { grid-template-columns: 1fr; }
+  .flip-card { height: 320px; }
+  .subject-btn { padding: 12px 6px; gap: 6px; }
+  .subject-name { font-size: 1.05rem; }
+  .subject-icon { font-size: 1.25em; }
+  .chapter-title { font-size: 1.25rem; }
+  .front-content { font-size: 1.2rem; }
+  .back-content { font-size: 1.1rem; }
 }
 </style>

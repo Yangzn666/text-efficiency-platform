@@ -117,34 +117,59 @@
   }
   /* ---------- 手机背诵适配 ---------- */
   @media (max-width:640px){
-    body{font-size:15px;line-height:1.85;background:#f3f1ec;}
-    .page-wrap{max-width:none;padding:12px 8px;}
-    section.card{padding:22px 15px;border-radius:12px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
-    .cover{padding:36px 10px;}
-    .cover h1{font-size:28px;letter-spacing:3px;}
-    .cover .sub{font-size:14px;letter-spacing:2px;}
-    .cover .meta{padding:12px 16px;font-size:13.5px;line-height:1.9;}
-    .cover .rule{font-size:13.5px;}
+    body{font-size:17px;line-height:1.9;background:#f3f1ec;}
+    .page-wrap{max-width:none;padding:10px 6px 76px;}
+    section.card{padding:20px 14px;border-radius:14px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+    .cover{padding:34px 12px;}
+    .cover h1{font-size:27px;letter-spacing:2px;}
+    .cover .sub{font-size:14.5px;letter-spacing:2px;}
+    .cover .meta{padding:12px 14px;font-size:14px;line-height:1.95;}
+    .cover .rule{font-size:14px;}
     .ch-head{flex-wrap:wrap;gap:10px;}
-    .ch-head h2{font-size:19px;}
+    .ch-head h2{font-size:20px;}
     .ch-head .tag{margin-left:0;}
     .ch-num{width:38px;height:38px;font-size:20px;}
-    h3{font-size:16.5px;margin:16px 0 8px;}
-    table{font-size:13.5px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}
-    th{font-size:13px;padding:7px 8px;}
-    td{padding:6px 8px;}
-    .hook,.warn{font-size:14.5px;padding:10px 13px;margin:12px 0;}
-    .chain{font-size:14.5px;padding:10px 13px;}
-    .formula{font-size:13.5px;overflow-x:auto;}
-    ul,ol{padding-left:20px;}
-    li{margin:8px 0;}
+    h3{font-size:17.5px;margin:18px 0 8px;line-height:1.5;}
+    /* 表格：整表可横滑，但首列吸附，行标签始终可见 */
+    table{font-size:14.5px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;}
+    table th,table td{white-space:normal;}
+    table td:first-child,table th:first-child{position:sticky;left:0;background:#f8fafc;z-index:1;box-shadow:1px 0 0 #e2e8f0;}
+    th{font-size:14px;padding:8px 9px;}
+    td{padding:7px 9px;}
+    .hook,.warn{font-size:15.5px;padding:11px 13px;margin:13px 0;}
+    .chain{font-size:15.5px;padding:11px 13px;}
+    .formula{font-size:14.5px;overflow-x:auto;}
+    ul,ol{padding-left:22px;}
+    li{margin:9px 0;}
+    p{margin:8px 0;}
     .check td{font-size:17px;}
     .check .box{letter-spacing:4px;}
-    footer{font-size:11.5px;padding:16px 12px 40px;}
+    footer{font-size:12.5px;padding:16px 12px 40px;}
   }
 
   /* 绿色注记（生成器扩展） */
   p.note{margin-top:12px;font-size:15px;background:#ecfdf5;border-left:4px solid #059669;padding:8px 12px;border-radius:4px;}
+
+  /* ---------- 章节折叠（点章头 ▾） ---------- */
+  .ch-head{cursor:pointer;position:relative;padding-right:24px;}
+  .ch-head::after{content:"▾";position:absolute;right:4px;top:12px;font-size:17px;color:#94a3b8;transition:transform .2s;}
+  section.card.folded .ch-head::after{transform:rotate(-90deg);}
+  section.card.folded > *:not(.ch-head){display:none;}
+
+  /* ---------- 速记模式：只留标题/记忆钩/易错/流程/公式/表格 ---------- */
+  body.quick .stem,body.quick p,body.quick .note,body.quick ul,body.quick ol{display:none;}
+  body.quick section.card{padding-bottom:12px;}
+  #quickBtn{position:fixed;right:14px;bottom:16px;z-index:9999;border:none;border-radius:22px;
+    padding:10px 16px;font-size:15px;font-weight:700;color:#fff;background:#b45309;
+    box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;font-family:inherit;}
+  #quickBtn.on{background:#059669;}
+
+  /* 打印 / 手机版 PDF：强制全览、隐藏按钮，保证导出内容完整 */
+  @media print{
+    #quickBtn{display:none!important;}
+    section.card.folded > *:not(.ch-head){display:block!important;}
+    body.quick .stem,body.quick p,body.quick .note,body.quick ul,body.quick ol{display:block!important;}
+  }
 </style>
 </head>
 <body>
@@ -891,6 +916,26 @@ if (location.hash.indexOf('mobile') > -1) {
     + '}';
   document.head.appendChild(s);
 }
+
+// 速记模式开关 + 点章头折叠
+(function(){
+  var btn = document.createElement('button');
+  btn.id = 'quickBtn';
+  btn.textContent = '⚡ 速记';
+  btn.addEventListener('click', function(){
+    var on = document.body.classList.toggle('quick');
+    btn.classList.toggle('on', on);
+    btn.textContent = on ? '📖 全览' : '⚡ 速记';
+  });
+  document.body.appendChild(btn);
+
+  var heads = document.querySelectorAll('section.card > .ch-head');
+  for (var i = 0; i < heads.length; i++) {
+    (function(h){
+      h.addEventListener('click', function(){ h.parentNode.classList.toggle('folded'); });
+    })(heads[i]);
+  }
+})();
 </script>
 </body>
 </html>

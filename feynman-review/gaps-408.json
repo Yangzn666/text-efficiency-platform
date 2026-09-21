@@ -1,5 +1,5 @@
 {
-  "nextId": 87,
+  "nextId": 93,
   "gaps": [
     {
       "id": "C-001",
@@ -859,6 +859,66 @@
       "detail": "首诊遗忘. 正解: 帧发送时间须>=争用期(碰撞窗口=2τ往返), 否则帧先发完冲突信号才回来->漏检. 64=6目的+6源+2类型+46数据+4FCS, 数据不足46填充. 争用期也限最大跨度. 回忆已答对",
       "errorType": "遗忘",
       "severity": "S2",
+      "status": "active"
+    },
+    {
+      "id": "C-087",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "GBN与SR窗口公式混淆",
+      "detail": "09-20: 重传范围答对(GBN出错帧及之后全重发/SR只重传错帧),但SR接收窗口误答2^n-1,正解SR收发窗口<=2^(n-1);2^n-1是GBN的发送窗口上界。混淆点:两者窗口公式串位。记忆:GBN发窗2^n-1,SR窗口砍一半2^(n-1)。",
+      "errorType": "混淆",
+      "severity": "S1",
+      "status": "active"
+    },
+    {
+      "id": "C-088",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "CRC检错后的差错处理",
+      "detail": "09-20: CRC只检错不纠错(答对),但不知道接收端检出错怎么办。正解:丢弃该帧+不发确认->发送端超时->ARQ重传(靠重传纠错)。",
+      "errorType": "方法未知",
+      "severity": "S2",
+      "status": "active"
+    },
+    {
+      "id": "C-089",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "停等vs GBN发送窗口",
+      "detail": "误答\"窗口固定vs不固定\";正确=停等发送窗口=1,GBN发送窗口>1(1~2^n-1),两者接收窗口都=1,停等是GBN特例",
+      "errorType": "理解偏差",
+      "severity": "S2",
+      "status": "active"
+    },
+    {
+      "id": "C-090",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "组帧四方法",
+      "detail": "全忘;字节计数法(数长度)/字符计数法(找边界标志F+字符填充)/零比特填充法(逢5个1插0)/违规编码法(用不合法电平定界)",
+      "errorType": "遗忘",
+      "severity": "S2",
+      "status": "active"
+    },
+    {
+      "id": "C-091",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "VLAN",
+      "detail": "忘;VLAN隔离广播域+安全,靠802.1Q标签(VLAN ID 4096个);与交换机自学习不同层面(自学习=转发机制,VLAN=端口分组隔离)",
+      "errorType": "遗忘",
+      "severity": "S2",
+      "status": "active"
+    },
+    {
+      "id": "C-092",
+      "chapter": "cn-03",
+      "date": "2026-09-20",
+      "topic": "冷门链路层眼熟(信道划分/轮询令牌/PPP)",
+      "detail": "突发小流量用统计时分STDM(动态分时隙)非频分;轮询/令牌=受控接入防重载冲突+公平;PPP补HDLC(支持异步+多协议),LCP管链路(建/配/测/释放),NCP配网络层(如分配IP),先LCP后NCP;冷门了解即可",
+      "errorType": "遗忘",
+      "severity": "S3",
       "status": "active"
     }
   ]

@@ -1051,11 +1051,11 @@
               "title": "IEEE754 浮点表示",
               "freq": "高频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 41,
               "yrs": 15
@@ -1065,11 +1065,11 @@
               "title": "整数加减运算",
               "freq": "中频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 54,
               "yrs": 9
@@ -1141,11 +1141,11 @@
               "title": "Cache 映射方式",
               "freq": "高频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 0,
-                "lastProbed": null
+                "lastProbed": "2026-09-20"
               },
               "score": 142,
               "yrs": 17
@@ -1183,11 +1183,11 @@
               "title": "Cache 写策略",
               "freq": "中频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 45,
               "yrs": 6
@@ -1448,8 +1448,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 1,
-                "wrong": 0,
-                "lastProbed": "2026-09-15"
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 38,
               "yrs": 10
@@ -1462,8 +1462,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 1,
-                "lastProbed": "2026-09-15"
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 20,
               "yrs": 10
@@ -2152,8 +2152,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 24,
               "yrs": 11
@@ -2166,8 +2166,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 2,
-                "lastProbed": "2026-09-18"
+                "wrong": 3,
+                "lastProbed": "2026-09-20"
               },
               "score": 10,
               "yrs": 5
@@ -2180,8 +2180,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 2,
-                "lastProbed": "2026-09-18"
+                "wrong": 3,
+                "lastProbed": "2026-09-20"
               },
               "score": 2,
               "yrs": 1
@@ -2213,9 +2213,9 @@
               "tags": [],
               "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "lastProbed": "2026-09-20"
               },
               "score": 18,
               "yrs": 9
@@ -2228,8 +2228,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 14,
               "yrs": 7
@@ -2281,11 +2281,11 @@
               "title": "电路/报文/分组交换",
               "freq": "冷门",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 0,
-                "lastProbed": null
+                "lastProbed": "2026-09-20"
               },
               "score": 0,
               "yrs": 0
@@ -2304,8 +2304,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 42,
               "yrs": 14
@@ -2315,11 +2315,11 @@
               "title": "无线局域网",
               "freq": "中频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 0,
-                "lastProbed": null
+                "lastProbed": "2026-09-20"
               },
               "score": 21,
               "yrs": 7
@@ -2329,11 +2329,11 @@
               "title": "后退 N 帧（GBN）",
               "freq": "中频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 0,
-                "lastProbed": null
+                "lastProbed": "2026-09-20"
               },
               "score": 17,
               "yrs": 5
@@ -2345,9 +2345,9 @@
               "tags": [],
               "mastery": "learning",
               "stats": {
-                "correct": 0,
+                "correct": 1,
                 "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "lastProbed": "2026-09-20"
               },
               "score": 14,
               "yrs": 7
@@ -2360,8 +2360,8 @@
               "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 1,
-                "lastProbed": "2026-09-18"
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 14,
               "yrs": 6
@@ -2385,11 +2385,11 @@
               "title": "选择重传（SR）",
               "freq": "中频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 10,
               "yrs": 5
@@ -2399,11 +2399,11 @@
               "title": "停止-等待协议",
               "freq": "低频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 6,
               "yrs": 3
@@ -2413,11 +2413,11 @@
               "title": "差错控制（链路层）",
               "freq": "低频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 2,
+                "lastProbed": "2026-09-20"
               },
               "score": 4,
               "yrs": 2
@@ -2427,11 +2427,11 @@
               "title": "VLAN",
               "freq": "低频",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 4,
               "yrs": 2
@@ -2441,11 +2441,11 @@
               "title": "数据链路层功能与组帧",
               "freq": "冷门",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 2,
               "yrs": 1
@@ -2455,11 +2455,11 @@
               "title": "信道划分 MAC",
               "freq": "冷门",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 2,
               "yrs": 1
@@ -2469,11 +2469,11 @@
               "title": "轮询访问 / 令牌",
               "freq": "冷门",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 0,
               "yrs": 0
@@ -2483,11 +2483,11 @@
               "title": "广域网与 PPP",
               "freq": "冷门",
               "tags": [],
-              "mastery": "untested",
+              "mastery": "learning",
               "stats": {
                 "correct": 0,
-                "wrong": 0,
-                "lastProbed": null
+                "wrong": 1,
+                "lastProbed": "2026-09-20"
               },
               "score": 0,
               "yrs": 0

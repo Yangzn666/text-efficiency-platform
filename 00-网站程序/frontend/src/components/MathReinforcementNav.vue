@@ -3,6 +3,7 @@
     <el-menu
       :default-active="activeMenu"
       mode="horizontal"
+      :ellipsis="false"
       router
       class="reinforcement-menu"
     >
@@ -56,6 +57,7 @@ const activeMenu = computed(() => {
 
 <style scoped>
 .math-reinforcement-nav {
+  min-width: 0;
   margin-bottom: 24px;
   background: linear-gradient(150deg, #0d2137 0%, #16345c 100%);
   border-radius: 10px;
@@ -67,6 +69,7 @@ const activeMenu = computed(() => {
 .reinforcement-menu {
   border: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   background: transparent;
 }

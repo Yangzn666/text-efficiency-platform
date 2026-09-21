@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 12
+const PLAN_VERSION = 13
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 6
+const MILESTONE_VERSION = 8
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -193,10 +193,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // totalUnits 147 -> 142，completedUnits 125 -> 129，指针落点 n=130 = 真题套卷剩余第 1 套。
         // 2026-09-16 更新二：限时刷完 2017 年真题（n=130 就是这一套），completedUnits 129 -> 130，
         // 指针落点 n=131 = 剩余第 2 套 = 2018 年。顺手给「剩余第 n 套」补上年份，避免只报序号。
+        // 2026-09-21 更新：限时刷完 2018 年数一并完成错题复盘（13 题已导入错题本），
+        // completedUnits 130 -> 131，指针落点 n=132 = 剩余第 3 套 = 2019 年。
         totalUnits: 142,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 130,
+        completedUnits: 131,
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
@@ -235,6 +237,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 见 feynman-review/sessions/2026-09-16.json）。但 n=52 这一整单元要求 os-01~05 全过，
         // 单指针不能中途记分，故 completedUnits 保持 51，完成度写进 n<=52 的标签里。
         // 63 条 gap 已同步到 data/feynman/cs408.json（public 与 dist 一致）。
+        // 2026-09-21 费曼进度对账（截至 sessions/2026-09-20.json）：co-01~07 全部过完；
+        // OS 过 os-01~03、指针 os-04（文件管理）；计网启动并过 cn-01~03（概述/物理层/数据链路层）、
+        // 指针 cn-04（网络层）。累计 gap 63 -> 92（新增 C-064~C-092：内外碎片、IPC、信道分类、
+        // CSMA-CD、交换机自学习、GBN-SR 窗口公式等），累计 19 session / 198 问。
+        // n=52 要求 os-01~05 全过、n=53 要求 cn 全过，均未达成，故 completedUnits 保持 51。
         totalUnits: 78,
         dailyQuota: 1,
         estMinutes: 150,
@@ -247,8 +254,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           if (n <= 41) return `强化轮 数据结构（除大题外全部完成）`
           if (n <= 50) return `王道大题强化 第${n - 41}章（费曼讲解→大题）`
           if (n <= 51) return `强化轮 计算机组成原理（09-15 费曼一轮过完 co-01~07·13 个新 gap 待验收）`
-          if (n <= 52) return `强化轮 操作系统（费曼已过 os-01~03·16 个新 gap 待验收·指针 os-04 文件管理）`
-          if (n <= 53) return `强化轮 计算机网络`
+          if (n <= 52) return `强化轮 操作系统（费曼已过 os-01~03·指针 os-04 文件管理·进行中）`
+          if (n <= 53) return `强化轮 计算机网络（费曼已过 cn-01~03·指针 cn-04 网络层·进行中）`
           if (n <= 70) return `王道大题强化 第${n - 53}章（费曼讲解→大题）`
           if (n <= 78) return `王道26模拟卷 第${n - 70}套`
           return `408冲刺回顾`
@@ -280,10 +287,16 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // completedUnits 35 -> 37（把 T3/T4 也前移为已完成单元），已完成的 2010 年分支放宽到 n <= 37；
         // n<=101 的「第 n-17 篇」公式无需改（n=38 自然对应第 21 篇，剩余 84-20=64 篇）。
         // 指针落点 n=38 = 阅读第 21 篇（2011 年 T1）。
+        // 2026-09-21 更新：昨晚刷完 2011、2012 两年全部传统阅读（共 8 篇，n=38~45），
+        // 阅读累计 20 -> 28 篇；两年完型（2011=n102、2012=n103）也已完成，但单指针无法
+        // 表达中途空洞，故完型完成情况记在里程碑 m-eng-2011-2012 里。
+        // completedUnits 37 -> 45，指针落点 n=46 = 阅读第 29 篇（2013 年 T1）。
+        // 2012 Text4 作答（CDCBA·3/5）已写入 index.json；Q3 excessively 生词、Q4 例证题只看
+        // 例子段没回第5段观点句两处错因，写进 by-year/2012.json 的 errorAnalysis。
         totalUnits: 156,
         dailyQuota: 1,
         estMinutes: 75,
-        completedUnits: 37,
+        completedUnits: 45,
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -318,10 +331,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // completedUnits 3 -> 5（09-15 看完马原第 5 讲）；1000 题对应章节尚未动，故资料墙里 1000 题仍记 0。
         // 2026-09-16 更新二：看完马原第 6 讲「对立统一」（矛盾规律），completedUnits 5 -> 6。
         // 该讲对应的肖1000章节仍未动，一刷欠账随讲数累积（现欠 6 讲的选择量）。
+        // 2026-09-21 更新：马原第 7、8 讲已看完，completedUnits 6 -> 8（串讲进度 8/58）；
+        // 对应肖1000章节仍未动，一刷欠账累积到 8 讲。
         totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 6,
+        completedUnits: 8,
         startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
@@ -360,6 +375,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-eng-2010-tail', title: '英语·2010 年四篇阅读收官', date: '2026-09-16', subject: 'english', done: true, note: '09-16 刷完后两篇 T3/T4，2010 年（英一史上最难年）四篇全部过完，阅读累计 20 篇。completedUnits 35→37，指针落点 n=38 = 阅读第 21 篇（2011 T1），剩余 64 篇' },
       { id: 'm-os-feynman-os123', title: '408·操作系统费曼一轮（os-01~03）', date: '2026-09-16', subject: 'cs408', done: true, note: 'OS 前三章费曼过完：5 个 session、23 问，新建 16 个 gap（C-048~C-063），gaps-408.json 累计 63 条并已同步到网站 data/feynman/cs408.json；state.json 指针推到 os-04 文件管理。命门＝内外碎片反复混淆（C-059 标 S1）、IPC 整块全忘、RR 退化误答成 SJF；C-052/C-059 为 S1，09-17 就到期。os-04/05 未动，故 n=52 这一单元仍不算完成' },
       { id: 'm-politics-mayuan-06', title: '政治·马原第6讲（对立统一）', date: '2026-09-16', subject: 'politics', done: true, note: '串讲进度 6/58，completedUnits 5→6。该讲对应的肖1000章节仍未动，一刷欠账累积到 6 讲；马原剩 15 讲是 10-20 硬截止线的主要压力源' },
+      { id: 'm-math-2018', title: '数学·2018年真题限时刷完并复盘', date: '2026-09-21', subject: 'math', done: true, note: '限时刷完 2018 年数一并完成错题订正复盘，13 道错题已导入错题本。completedUnits 130→131，指针落点 n=132 = 剩余第 3 套 = 2019 年，真题剩 9 套' },
+      { id: 'm-eng-2011-2012', title: '英语·2011+2012 阅读与完型收官', date: '2026-09-21', subject: 'english', done: true, note: '刷完 2011、2012 两年全部传统阅读（共 8 篇）及两年完型，阅读累计 20→28 篇。completedUnits 37→45，指针 n=46 = 阅读第 29 篇（2013 T1）。其中 2012 Text4 得 3/5：Q3 栽在不认识 excessively、Q4 例证题只看例子段没回第5段观点句（错因已写入 by-year/2012.json）' },
+      { id: 'm-eng-2013-cloze', title: '英语·2013 完型看解析复盘（算过不重做）', date: '2026-09-21', subject: 'english', done: true, note: '2013 英一完型（Simonsohn「情境盲」决策偏见·法官/招生被当日连续样本带偏）偏难，未限时作答，直接看解析复盘，按约定算过、不重做。6 个生词已写入「完形复盘生词本」2013 分组：on the whole 总体而言 / external 外部的（#2答案）/ minor 次要的（#2干扰项）/ big picture 全局（#3）/ turn to 求助于 / fond（be fond of 喜欢，#5）。completedUnits 指针不动——完型完成情况按惯例记里程碑，不占线性单元指针' },
+      { id: 'm-politics-07-08', title: '政治·马原第7、8讲', date: '2026-09-21', subject: 'politics', done: true, note: '串讲进度 8/58，completedUnits 6→8；对应肖1000章节仍未动，一刷欠账累积到 8 讲' },
+      { id: 'm-cs408-feynman-0920', title: '408·费曼推进（OS前三章+计网启动）', date: '2026-09-20', subject: 'cs408', done: true, note: '费曼一轮：co-01~07 全过；OS 过 os-01~03、指针 os-04（文件管理）；计网启动并过 cn-01~03（概述/物理层/数据链路层）、指针 cn-04（网络层）。累计 gap 63→92（C-064~C-092：内外碎片、IPC、信道分类、CSMA-CD、交换机自学习、GBN-SR 窗口公式等），累计 19 session / 198 问。OS/计网整单元尚未全过，completedUnits 保持 51' },
       { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期。英语是当前最大缺口：剩136单元/96天=每天1.42篇，必须每天拿到2个任务槽位才做得完' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },

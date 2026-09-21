@@ -11,6 +11,10 @@ export interface QuickCard {
   front: string
   /** 背面：核心公式/定理/结论 */
   back: string
+  /** 考频徽章：3=★★★必背默写 · 2=★★高频（与背诵清单标注一致，不填则不显示） */
+  star?: 2 | 3
+  /** 内容类型标签：公式 / 概念 / 方法 / 易错 */
+  tag?: string
 }
 
 export interface QuickChapter {
@@ -32,7 +36,9 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-01-3', front: '洛必达法则适用条件？', back: '仅适用于 $\\frac{0}{0}$ 或 $\\frac{\\infty}{\\infty}$ 型未定式：\n$$\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f\'(x)}{g\'(x)}$$\n（右端极限存在或为 $\\infty$）。使用前先化简，可配合等价无穷小替换。' },
       { id: 'gaoshu-01-4', front: '常用泰勒展开（x→0）？', back: '$e^x=1+x+\\dfrac{x^2}{2!}+\\dfrac{x^3}{3!}+o(x^3)$\n$\\ln(1+x)=x-\\dfrac{x^2}{2}+\\dfrac{x^3}{3}+o(x^3)$\n$\\sin x=x-\\dfrac{x^3}{3!}+o(x^3)$\n$\\cos x=1-\\dfrac{x^2}{2!}+o(x^2)$\n$\\dfrac{1}{1-x}=1+x+x^2+o(x^2)$' },
       { id: 'gaoshu-01-5', front: '极限的夹逼准则与单调有界准则？', back: '夹逼：若 $g(x)\\le f(x)\\le h(x)$ 且 $\\lim g=\\lim h=A$，则 $\\lim f=A$。\n单调有界：单调递增有上界（或递减有下界）的数列必收敛。常用于递推数列求极限。' },
-      { id: 'gaoshu-01-6', front: '间断点如何分类？', back: '第一类：左右极限都存在。\n  可去间断点：$\\lim_{x\\to x_0}f$ 存在但 $\\ne f(x_0)$（或未定义）\n  跳跃间断点：左右极限不相等\n第二类：左右极限至少一个不存在（如 $\\infty$、振荡）。' }
+      { id: 'gaoshu-01-6', front: '间断点如何分类？', back: '第一类：左右极限都存在。\n  可去间断点：$\\lim_{x\\to x_0}f$ 存在但 $\\ne f(x_0)$（或未定义）\n  跳跃间断点：左右极限不相等\n第二类：左右极限至少一个不存在（如 $\\infty$、振荡）。' },
+      { id: 'gaoshu-01-7', star: 2, tag: '公式', front: '和差化积四式？', back: '$\\sin A+\\sin B=2\\sin\\frac{A+B}{2}\\cos\\frac{A-B}{2}$\n$\\sin A-\\sin B=2\\cos\\frac{A+B}{2}\\sin\\frac{A-B}{2}$\n$\\cos A+\\cos B=2\\cos\\frac{A+B}{2}\\cos\\frac{A-B}{2}$\n$\\cos A-\\cos B=-2\\sin\\frac{A+B}{2}\\sin\\frac{A-B}{2}$\n记忆钩：「正弦和差正余搭配，余弦和差同类相乘，余弦相减前面负号」。' },
+      { id: 'gaoshu-01-8', star: 2, tag: '方法', front: '增长天梯（判极限 / 敛散）？', back: '$x\\to+\\infty$：$e^x\\gg x^k(k>0)\\gg\\ln x$，低档除以高档极限为 $0$。\n补全 $n$ 版：$\\ln^\\alpha n\\ll n^\\beta\\ll a^n\\ll n!\\ll n^n$（阶乘压指数，$n^n$ 压顶）。\n镜像 $t\\to0^+$：$t^\\alpha|\\ln t|\\to0$（幂打赢对数）。\n用法：$\\infty/\\infty$ 打架高一档赢，免洛必达。' }
     ]
   },
   {
@@ -56,7 +62,11 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-03-3', front: '旋转体体积公式？', back: '绕 $x$ 轴（圆盘法）：$V=\\pi\\int_a^b f^2(x)\\,dx$\n绕 $y$ 轴（柱壳法）：$V=2\\pi\\int_a^b x\\,f(x)\\,dx$' },
       { id: 'gaoshu-03-4', front: '变上限积分求导？', back: '$$\\frac{d}{dx}\\int_a^{\\varphi(x)}f(t)\\,dt=f(\\varphi(x))\\cdot\\varphi\'(x)$$\n更一般：$\\dfrac{d}{dx}\\int_{\\alpha(x)}^{\\beta(x)}f(t)dt=f(\\beta)\\beta\'-f(\\alpha)\\alpha\'$。' },
       { id: 'gaoshu-03-5', front: '定积分的常用性质？', back: '区间可加性、保号性、估值定理、积分中值定理：\n$\\int_a^b f=g(\\xi)(b-a)$ 不成立——正确的是 $\\int_a^b f(x)dx=f(\\xi)(b-a)$（$f$ 连续）。\n奇函数在对称区间积分为 $0$，偶函数为 $2$ 倍半区间。' },
-      { id: 'gaoshu-03-6', front: '反常积分收敛怎么判断？', back: '$\\int_a^{+\\infty}\\dfrac{dx}{x^p}$：$p>1$ 收敛，$p\\le 1$ 发散。\n$\\int_a^b\\dfrac{dx}{(x-a)^p}$（瑕点 $a$）：$p<1$ 收敛，$p\\ge 1$ 发散。\n用比较审敛法与极限形式判定一般情形。' }
+      { id: 'gaoshu-03-6', front: '反常积分收敛怎么判断？', back: '$\\int_a^{+\\infty}\\dfrac{dx}{x^p}$：$p>1$ 收敛，$p\\le 1$ 发散。\n$\\int_a^b\\dfrac{dx}{(x-a)^p}$（瑕点 $a$）：$p<1$ 收敛，$p\\ge 1$ 发散。\n用比较审敛法与极限形式判定一般情形。' },
+      { id: 'gaoshu-03-7', star: 3, tag: '公式', front: '六个基本三角积分？', back: '$\\int\\tan x\\,dx=-\\ln|\\cos x|+C$\n$\\int\\cot x\\,dx=\\ln|\\sin x|+C$\n$\\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C$\n$\\int\\csc x\\,dx=\\ln|\\csc x-\\cot x|+C$\n$\\int\\sec^2x\\,dx=\\tan x+C$，$\\int\\csc^2x\\,dx=-\\cot x+C$\n⚠ 铁律：不定积分永远 $+C$，漏 $C$ 直接扣分。' },
+      { id: 'gaoshu-03-8', star: 3, tag: '公式', front: 'Wallis 点火公式 + 三角三式？', back: '$$\\int_0^{\\pi/2}\\sin^nx\\,dx=\\int_0^{\\pi/2}\\cos^nx\\,dx=\\frac{(n-1)!!}{n!!}\\cdot\\begin{cases}\\frac{\\pi}{2},&n\\ \\text{偶}\\\\[2pt]1,&n\\ \\text{奇}\\end{cases}$$\n三角三式：$\\int_0^\\pi xf(\\sin x)dx=\\frac{\\pi}{2}\\int_0^\\pi f(\\sin x)dx$；$\\int_0^{\\pi/2}f(\\sin x)dx=\\int_0^{\\pi/2}f(\\cos x)dx$。\n记忆钩：「双阶乘往下跳，偶补 $\\pi/2$ 奇补 $1$」。' },
+      { id: 'gaoshu-03-9', star: 2, tag: '方法', front: '高斯积分 + 向正态密度借积分？', back: '$$\\int_{-\\infty}^{+\\infty}e^{-au^2}\\,du=\\sqrt{\\frac{\\pi}{a}}\\quad(\\text{平移不变})$$\n半轴 $\\int_0^{+\\infty}e^{-x^2}dx=\\frac{\\sqrt{\\pi}}{2}$；$\\int_{-\\infty}^{+\\infty}e^{-x^2/2}dx=\\sqrt{2\\pi}$。\n口诀：「对谁积分对谁配，另一个当常数陪；见 $e$ 的负平方先想正态密度」。' },
+      { id: 'gaoshu-03-10', star: 3, tag: '公式', front: '旋转体 / 侧面积 / 弧长公式？', back: '绕 $x$ 轴体积 $V=\\pi\\int_a^b y^2dx$；绕 $y$ 轴柱壳 $V=2\\pi\\int_a^b xy\\,dx$\n侧面积 $S=2\\pi\\int_a^b y\\sqrt{1+y\'^2}\\,dx$；弧长 $s=\\int_a^b\\sqrt{1+y\'^2}\\,dx$\n参数弧长 $L=\\int_\\alpha^\\beta\\sqrt{(x\')^2+(y\')^2}\\,dt$。\n记忆钩：「体积平方、侧面积带根、柱壳多乘 $x$」。' }
     ]
   },
   {
@@ -68,7 +78,9 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-04-3', front: '二阶常系数齐次方程解法？', back: '$y\'\'+py\'+qy=0$ → 特征方程 $r^2+pr+q=0$。\n$\\Delta>0$：两单实根 → $C_1e^{r_1x}+C_2e^{r_2x}$\n$\\Delta=0$：重根 → $(C_1+C_2x)e^{rx}$\n$\\Delta<0$：共轭复根 $\\alpha\\pm\\beta i$ → $e^{\\alpha x}(C_1\\cos\\beta x+C_2\\sin\\beta x)$' },
       { id: 'gaoshu-04-4', front: '非齐次方程通解结构？', back: '$$y=Y+y^*$$\n$Y$ 为对应齐次方程通解，$y^*$ 为一个特解。' },
       { id: 'gaoshu-04-5', front: 'f(x)=Pₙ(x)e^{λx} 型特解怎么设？', back: '设 $y^*=x^k Q_n(x)e^{\\lambda x}$。\n$k$ 为 $\\lambda$ 作为特征根的重数：不是根取 $0$，单根取 $1$，重根取 $2$。$Q_n$ 与 $P_n$ 同次。' },
-      { id: 'gaoshu-04-6', front: '可降阶的两类方程？', back: '$y\'\'=f(x,y\')$：令 $p=y\'$ 化为一阶方程。\n$y\'\'=f(y,y\')$：令 $p=y\'$，则 $y\'\'=p\\dfrac{dp}{dy}$。' }
+      { id: 'gaoshu-04-6', front: '可降阶的两类方程？', back: '$y\'\'=f(x,y\')$：令 $p=y\'$ 化为一阶方程。\n$y\'\'=f(y,y\')$：令 $p=y\'$，则 $y\'\'=p\\dfrac{dp}{dy}$。' },
+      { id: 'gaoshu-04-7', star: 2, tag: '方法', front: '欧拉方程怎么解？', back: '形如 $a_nx^ny^{(n)}+\\cdots+a_1xy\'+a_0y=f(x)$：每阶导数前的系数恰是 $x$ 的同次幂。\n令 $x=e^t$（即 $t=\\ln x$），记 $D=\\dfrac{d}{dt}$：$xy\'=Dy$，$x^2y\'\'=D(D-1)y=D^2y-Dy$。\n原式化为关于 $t$ 的常系数线性方程，解出后再把 $t=\\ln x$ 代回。' },
+      { id: 'gaoshu-04-8', star: 2, tag: '方法', front: 'f(x)=e^{λx}[Pₙcosωx+Pₘsinωx] 型特解怎么设？', back: '设 $y^*=x^ke^{\\lambda x}\\left[Q_l^{(1)}(x)\\cos\\omega x+Q_l^{(2)}(x)\\sin\\omega x\\right]$，$l=\\max(m,n)$。\n$\\lambda+i\\omega$ 不是特征根取 $k=0$；是特征根取 $k=1$。\n记忆钩：「正弦余弦一起设，看 $\\lambda+i\\omega$ 撞不撞特征方程，撞了就乘一个 $x$」。' }
     ]
   },
   {
@@ -80,7 +92,8 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-05-3', front: '二元函数极值的必要条件？', back: '在驻点处 $\\dfrac{\\partial z}{\\partial x}=0$ 且 $\\dfrac{\\partial z}{\\partial y}=0$。\n极值点一定是驻点，驻点不一定是极值点。' },
       { id: 'gaoshu-05-4', front: '二元函数极值的充分条件？', back: '设 $A=f_{xx}\'\',B=f_{xy}\'\',C=f_{yy}\'\'$：\n$AC-B^2>0$ 且 $A<0$ → 极大\n$AC-B^2>0$ 且 $A>0$ → 极小\n$AC-B^2<0$ → 无极值（鞍点）' },
       { id: 'gaoshu-05-5', front: '条件极值用什么方法？', back: '拉格朗日乘数法：求 $F(x,y,\\lambda)=f+\\lambda\\varphi$ 的驻点，\n$$\\begin{cases}f_x+\\lambda\\varphi_x=0\\\\f_y+\\lambda\\varphi_y=0\\\\\\varphi(x,y)=0\\end{cases}$$\n实际问题中最值往往就是唯一驻点。' },
-      { id: 'gaoshu-05-6', front: '方向导数与梯度？', back: '方向导数 $\\dfrac{\\partial f}{\\partial l}=f_x\\cos\\alpha+f_y\\cos\\beta$。\n梯度 $\\nabla f=(f_x,f_y)$，指向方向导数最大（增长最快）的方向，模为最大方向导数。' }
+      { id: 'gaoshu-05-6', front: '方向导数与梯度？', back: '方向导数 $\\dfrac{\\partial f}{\\partial l}=f_x\\cos\\alpha+f_y\\cos\\beta$。\n梯度 $\\nabla f=(f_x,f_y)$，指向方向导数最大（增长最快）的方向，模为最大方向导数。' },
+      { id: 'gaoshu-05-7', star: 3, tag: '概念', front: '可微 / 偏导存在 / 连续 谁推谁？', back: '一元可微⇔可导，多元完全不同，别照搬。\n强→弱：偏导连续 ⇒ 可微 ⇒（偏导存在）且（函数连续）。\n反向全不成立：只"偏导存在"既推不出可微也推不出连续；"可微"也推不出偏导连续。\n可微定义：$\\Delta z=f_x\\Delta x+f_y\\Delta y+o(\\rho)$，$\\rho=\\sqrt{\\Delta x^2+\\Delta y^2}$。' }
     ]
   },
   {
@@ -124,7 +137,8 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-09-2', front: '格林公式？', back: '$$\\oint_L Pdx+Qdy=\\iint_D\\left(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y}\\right)dxdy$$\n$L$ 为区域 $D$ 的正向（逆时针）边界曲线。' },
       { id: 'gaoshu-09-3', front: '曲线积分与路径无关的条件？', back: '在单连通区域内：\n$\\dfrac{\\partial Q}{\\partial x}=\\dfrac{\\partial P}{\\partial y}\\Leftrightarrow$ 曲线积分与路径无关 $\\Leftrightarrow$ 存在 $u$ 使 $du=Pdx+Qdy$。' },
       { id: 'gaoshu-09-4', front: '高斯公式（散度定理）？', back: '$$\\oiint_\\Sigma Pdydz+Qdzdx+Rdxdy=\\iiint_\\Omega\\left(\\frac{\\partial P}{\\partial x}+\\frac{\\partial Q}{\\partial y}+\\frac{\\partial R}{\\partial z}\\right)dv$$\n$\\Sigma$ 为闭曲面外侧。' },
-      { id: 'gaoshu-09-5', front: '斯托克斯公式？', back: '$\\oint_L Pdx+Qdy+Rdz=\\iint_\\Sigma\\left(\\dfrac{\\partial R}{\\partial y}-\\dfrac{\\partial Q}{\\partial z}\\right)dydz+\\left(\\dfrac{\\partial P}{\\partial z}-\\dfrac{\\partial R}{\\partial x}\\right)dzdx+\\left(\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}\\right)dxdy$\n空间闭曲线与以它为边界的曲面之间的转化。' }
+      { id: 'gaoshu-09-5', front: '斯托克斯公式？', back: '$\\oint_L Pdx+Qdy+Rdz=\\iint_\\Sigma\\left(\\dfrac{\\partial R}{\\partial y}-\\dfrac{\\partial Q}{\\partial z}\\right)dydz+\\left(\\dfrac{\\partial P}{\\partial z}-\\dfrac{\\partial R}{\\partial x}\\right)dzdx+\\left(\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}\\right)dxdy$\n空间闭曲线与以它为边界的曲面之间的转化。' },
+      { id: 'gaoshu-09-6', star: 2, tag: '方法', front: '第一类曲线/曲面积分怎么算 + 轮换对称？', back: '第一类曲线 $\\int_L f\\,ds$：$ds=\\sqrt{1+y\'^2}\\,dx$（直角）、$ds=\\sqrt{x\'^2+y\'^2}\\,dt$（参数）。对弧长、与方向无关。\n第一类曲面 $\\iint_\\Sigma f\\,dS$：$dS=\\sqrt{1+z_x^2+z_y^2}\\,dxdy$。\n轮换对称（球面最常考）：$\\iint_\\Sigma x^2dS=\\iint_\\Sigma y^2dS=\\iint_\\Sigma z^2dS=\\dfrac{1}{3}\\iint_\\Sigma(x^2+y^2+z^2)dS$。\n2018 数一 $\\oint xy\\,ds=-\\dfrac{\\pi}{3}$ 即靠对称性化简。' }
     ]
   }
 ]
@@ -150,7 +164,12 @@ const linearChapters: QuickChapter[] = [
       { id: 'xiandai-02-2', front: '逆矩阵的性质？', back: '$(AB)^{-1}=B^{-1}A^{-1}$（穿脱原则）\n$(A^T)^{-1}=(A^{-1})^T$\n$(kA)^{-1}=\\dfrac{1}{k}A^{-1}$，$(A^{-1})^{-1}=A$' },
       { id: 'xiandai-02-3', front: '矩阵的秩的性质？', back: '$r(A)$ = 最高阶非零子式的阶数。\n$r(AB)\\le\\min(r(A),r(B))$\n$r(A+B)\\le r(A)+r(B)$\n$A$ 可逆时 $r(AB)=r(B)$。' },
       { id: 'xiandai-02-4', front: '初等变换与秩的关系？', back: '初等行（列）变换不改变矩阵的秩。\n$A\\sim B$（等价）$\\Leftrightarrow r(A)=r(B)$。\n求秩：化为行阶梯形，数非零行。' },
-      { id: 'xiandai-02-5', front: '伴随矩阵 A* 的性质？', back: '$AA^*=A^*A=|A|E$\n$|A^*|=|A|^{n-1}$\n$(A^*)^{-1}=(A^{-1})^*=\\dfrac{A}{|A|}$\n$r(A^*)$：$r(A)=n$ 时为 $n$；$r(A)=n-1$ 时为 $1$；否则为 $0$。' }
+      { id: 'xiandai-02-5', front: '伴随矩阵 A* 的性质？', back: '$AA^*=A^*A=|A|E$\n$|A^*|=|A|^{n-1}$\n$(A^*)^{-1}=(A^{-1})^*=\\dfrac{A}{|A|}$\n$r(A^*)$：$r(A)=n$ 时为 $n$；$r(A)=n-1$ 时为 $1$；否则为 $0$。' },
+      { id: 'xiandai-02-6', star: 2, tag: '易错', front: '秩的常用不等式 + AB=O 怎么用？', back: 'Sylvester：$r(AB)\\ge r(A)+r(B)-n$。\n$AB=O\\Rightarrow r(A)+r(B)\\le n$（$B$ 的各列都是 $Ax=0$ 的解，故 $r(B)\\le n-r(A)$）。\n$r(A^*)$：$r(A)=n$ 取 $n$，$r(A)=n-1$ 取 $1$，$r(A)\\le n-2$ 取 $0$。\n易错：$AB=O$ 且 $A\\ne O$ 推不出 $B=O$；但若 $A$ 可逆则必 $B=O$，故 $AB=O$、$B\\ne O$ 时 $A$ 必不可逆（$|A|=0$）。' },
+      { id: 'xiandai-02-7', star: 3, tag: '方法', front: '求 Aⁿ（矩阵高次幂）有哪几招？', back: '① 可对角化：$A=P\\Lambda P^{-1}\\Rightarrow A^n=P\\Lambda^nP^{-1}$。\n② 秩一：$A=\\alpha\\beta^T$ 时 $A^n=(\\beta^T\\alpha)^{n-1}A=(\\mathrm{tr}A)^{n-1}A$。\n③ 二项式：$A=kE+B$ 且 $B$ 幂零（$B^m=O$），$A^n=\\sum_{i=0}^{m-1}\\binom{n}{i}k^{n-i}B^i$。\n④ 找规律：算 $A^2,A^3$ 猜通式，再数学归纳证明。' },
+      { id: 'xiandai-02-8', star: 2, tag: '概念', front: '秩一矩阵 A=αβᵀ 有哪些结论？', back: '$r(A)=1$（$\\alpha,\\beta$ 均非零）。\n特征值：$\\lambda_1=\\beta^T\\alpha=\\mathrm{tr}(A)$，其余 $n-1$ 个全为 $0$。\n幂：$A^k=(\\beta^T\\alpha)^{k-1}A$。\n可对角化 $\\Leftrightarrow\\beta^T\\alpha\\ne 0$，此时 $A\\sim\\mathrm{diag}(\\mathrm{tr}A,0,\\cdots,0)$。' },
+      { id: 'xiandai-02-9', star: 3, tag: '方法', front: 'AB=C 拆三个视角 + 分块秩', back: '按列看：$C$ 的第 $j$ 列 $=A\\cdot(B$ 的第 $j$ 列$)$，故 $C$ 的列可由 $A$ 的列线性表出，$r(C)\\le\\min(r(A),r(B))$。\n按行看：$C$ 的第 $i$ 行 $=(A$ 的第 $i$ 行$)\\cdot B$，$C$ 的行可由 $B$ 的行表出。\n分块：$r(A,AB)=r(A)$（$AB$ 的列已被 $A$ 的列覆盖，2018 数一考过）；$r\\left(\\begin{smallmatrix}A\\\\B\\end{smallmatrix}\\right)\\ge\\max(r(A),r(B))$。' },
+      { id: 'xiandai-02-10', star: 2, tag: '方法', front: '乘初等矩阵 = 做变换，AP=B 怎么想？', back: '左乘初等矩阵 $\\to$ 对被乘矩阵做相应初等行变换；右乘 $\\to$ 做初等列变换（口诀「左行右列」）。\n$AP=B$：把 $P$、$B$ 按列拆，$A\\cdot(P$ 第 $j$ 列$)=B$ 第 $j$ 列 $\\to$ 逐列解 $Ax=b_j$。\n$PA=B$（$A$ 可逆）$\\Rightarrow P=BA^{-1}$；$AP=B$（$A$ 可逆）$\\Rightarrow P=A^{-1}B$。' }
     ]
   },
   {
@@ -172,7 +191,9 @@ const linearChapters: QuickChapter[] = [
       { id: 'xiandai-04-2', front: 'Ax=0 通解结构？', back: '$$x=k_1\\xi_1+\\cdots+k_{n-r}\\xi_{n-r}$$\n$\\xi_i$ 为基础解系，含 $n-r(A)$ 个线性无关解。' },
       { id: 'xiandai-04-3', front: '非齐次方程组 Ax=b 有解条件？', back: '有解 $\\Leftrightarrow r(A)=r(A|b)$。\n$r(A)=n$ → 唯一解；$r(A)<n$ → 无穷多解。\n$r(A)<r(A|b)$ → 无解。' },
       { id: 'xiandai-04-4', front: 'Ax=b 通解结构？', back: '$$x=\\eta^*+k_1\\xi_1+\\cdots+k_{n-r}\\xi_{n-r}$$\n$\\eta^*$ 为一个特解，后项为 $Ax=0$ 的通解。' },
-      { id: 'xiandai-04-5', front: '非齐次解的性质？', back: '$\\eta_1,\\eta_2$ 都是 $Ax=b$ 的解，则 $\\eta_1-\\eta_2$ 是 $Ax=0$ 的解。\n$k\\eta_1+(1-k)\\eta_2$ 仍是 $Ax=b$ 的解（系数和为 $1$）。' }
+      { id: 'xiandai-04-5', front: '非齐次解的性质？', back: '$\\eta_1,\\eta_2$ 都是 $Ax=b$ 的解，则 $\\eta_1-\\eta_2$ 是 $Ax=0$ 的解。\n$k\\eta_1+(1-k)\\eta_2$ 仍是 $Ax=b$ 的解（系数和为 $1$）。' },
+      { id: 'xiandai-04-6', star: 3, tag: '概念', front: '两方程组同解怎么判？有何用？', back: '$Ax=0$ 与 $Bx=0$ 同解 $\\Leftrightarrow$ 两解空间相同 $\\Leftrightarrow r(A)=r(B)=r\\left(\\begin{smallmatrix}A\\\\B\\end{smallmatrix}\\right)$（并成一个大方程组后秩不变）。\n$\\Leftrightarrow A,\\ B$ 的行向量组等价。\n常用结论：$A^TAx=0$ 与 $Ax=0$ 同解 $\\Rightarrow r(A^TA)=r(A)$。' },
+      { id: 'xiandai-04-7', star: 2, tag: '概念', front: 'A 的四个基本子空间？', back: '列空间 $\\mathcal C(A)\\subseteq\\mathbb R^m$，维数 $r$；行空间 $\\mathcal C(A^T)\\subseteq\\mathbb R^n$，维数 $r$。\n零空间 $N(A)$（$Ax=0$ 全体）维数 $n-r$；左零空间 $N(A^T)$ 维数 $m-r$。\n正交：行空间 $\\perp$ 零空间（在 $\\mathbb R^n$），列空间 $\\perp$ 左零空间（在 $\\mathbb R^m$）；维数互补 $r+(n-r)=n$。' }
     ]
   },
   {
@@ -184,7 +205,10 @@ const linearChapters: QuickChapter[] = [
       { id: 'xiandai-05-3', front: '特征值的重要性质？', back: '$\\sum\\lambda_i=\\mathrm{tr}(A)$（主对角线元素之和）\n$\\prod\\lambda_i=|A|$\n$A$ 可逆 $\\Rightarrow\\lambda\\ne 0$，且 $A^{-1}$ 特征值为 $1/\\lambda$，$A^k$ 特征值为 $\\lambda^k$。' },
       { id: 'xiandai-05-4', front: '矩阵可对角化的条件？', back: '$A$ 有 $n$ 个线性无关特征向量 $\\Leftrightarrow A\\sim\\Lambda$。\n充分条件：$n$ 个互异特征值；或 $A$ 为实对称矩阵。\n重特征值需验证几何重数 = 代数重数。' },
       { id: 'xiandai-05-5', front: '实对称矩阵的性质？', back: '特征值全为实数。\n不同特征值的特征向量正交。\n必可正交对角化：$Q^{-1}AQ=Q^TAQ=\\Lambda$（$Q$ 为正交矩阵）。' },
-      { id: 'xiandai-05-6', front: '相似矩阵的性质？', back: '$A\\sim B$（存在可逆 $P$ 使 $P^{-1}AP=B$）则：\n特征值相同、行列式相同、秩相同、迹相同、特征多项式相同。' }
+      { id: 'xiandai-05-6', front: '相似矩阵的性质？', back: '$A\\sim B$（存在可逆 $P$ 使 $P^{-1}AP=B$）则：\n特征值相同、行列式相同、秩相同、迹相同、特征多项式相同。' },
+      { id: 'xiandai-05-7', star: 3, tag: '方法', front: '实对称矩阵的谱分解怎么写？', back: '$A=Q\\Lambda Q^T=\\lambda_1\\gamma_1\\gamma_1^T+\\lambda_2\\gamma_2\\gamma_2^T+\\cdots+\\lambda_n\\gamma_n\\gamma_n^T$（$\\gamma_i$ 为单位正交特征向量）。\n用途：已知特征值与部分特征向量反求 $A$；$A^n=\\sum\\lambda_i^n\\gamma_i\\gamma_i^T$。\n每个 $\\gamma_i\\gamma_i^T$ 是秩一投影（满足 $P^2=P$、$P^T=P$）。' },
+      { id: 'xiandai-05-8', star: 2, tag: '易错', front: 'A、B 的特征值能相加吗？', back: '一般不能！$\\lambda$ 是 $A$ 的特征值、$\\mu$ 是 $B$ 的特征值，推不出 $\\lambda+\\mu$ 是 $A+B$ 的特征值（除非 $A,B$ 有公共特征向量）。\n正确：$A^{-1}\\to1/\\lambda$，$A^k\\to\\lambda^k$，$A^*\\to|A|/\\lambda$，$f(A)\\to f(\\lambda)$，且特征向量都不变。\n$AB$ 与 $BA$ 有相同特征值（同阶时含重数）。' },
+      { id: 'xiandai-05-9', star: 2, tag: '方法', front: '判两矩阵相似要查哪些必要条件？', back: '必要清单（有一项不同即不相似）：特征值/特征多项式 $\\to\\mathrm{tr}$ 相同 $\\to|A|$ 相同 $\\to r$ 相同 $\\to$ 对每个 $\\lambda$，$r(\\lambda E-A)$ 也相同。\n充分：二者都可对角化且相似于同一 $\\Lambda$；或都是实对称。\n反例：$\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 与 $E$ 特征值都是 $1,1$ 但不相似（$r(A-E)=1\\ne0=r(E-E)$）。' }
     ]
   },
   {
@@ -195,7 +219,8 @@ const linearChapters: QuickChapter[] = [
       { id: 'xiandai-06-2', front: '如何化二次型为标准形？', back: '正交变换 $x=Qy$：$f=\\lambda_1y_1^2+\\cdots+\\lambda_ny_n^2$。\n$\\lambda_i$ 为 $A$ 的特征值，$Q$ 由正交单位化特征向量构成。也可用配方法（合同变换）。' },
       { id: 'xiandai-06-3', front: '正定的充要条件？', back: '特征值全 $>0$\n$\\Leftrightarrow$ 各阶顺序主子式全 $>0$\n$\\Leftrightarrow$ 正惯性指数 $=n$ $\\Leftrightarrow$ $A$ 合同于 $E$。' },
       { id: 'xiandai-06-4', front: '惯性定理？', back: '经可逆线性变换化成的标准形中，正平方项个数（正惯性指数 $p$）与负平方项个数（负惯性指数 $q$）是唯一确定的。$p+q=r(A)$。' },
-      { id: 'xiandai-06-5', front: '合同与相似的区别？', back: '合同：$C^TAC=B$（$C$ 可逆），保持正负惯性指数，实对称矩阵必合同于对角阵。\n相似：$P^{-1}AP=B$，保持特征值。正交变换下二者同时成立。' }
+      { id: 'xiandai-06-5', front: '合同与相似的区别？', back: '合同：$C^TAC=B$（$C$ 可逆），保持正负惯性指数，实对称矩阵必合同于对角阵。\n相似：$P^{-1}AP=B$，保持特征值。正交变换下二者同时成立。' },
+      { id: 'xiandai-06-6', star: 3, tag: '概念', front: '等价 / 相似 / 合同 / 正交相似 谁推谁？', back: '等价：$PAQ=B$（$P,Q$ 可逆）$\\Leftrightarrow r$ 相同——最弱。\n相似：$P^{-1}AP=B$，保特征值、迹、行列式、秩。\n合同（限实对称）：$C^TAC=B$，保正负惯性指数（正定性），未必特征值相同。\n正交相似：$Q^TAQ=Q^{-1}AQ$（$Q$ 正交）——对实对称同时是相似又是合同，最强。\n实对称下：正交相似 $\\Rightarrow$ 既相似又合同；相似与合同互不推出。' }
     ]
   }
 ]
@@ -221,7 +246,9 @@ const gailvChapters: QuickChapter[] = [
       { id: 'gailv-02-2', front: '概率密度与分布函数的关系？', back: '$$F(x)=\\int_{-\\infty}^x f(t)\\,dt,\\quad f(x)=F\'(x)$$\n$f(x)\\ge 0$，$\\int_{-\\infty}^{+\\infty}f(x)dx=1$。\n$P(a<X<b)=\\int_a^b f(x)dx$（单点概率为 $0$）。' },
       { id: 'gailv-02-3', front: '常见离散分布？', back: '0-1分布：$P(X=k)=p^k(1-p)^{1-k}$\n二项分布 $B(n,p)$：$P(X=k)=C_n^kp^k(1-p)^{n-k}$\n泊松分布 $P(\\lambda)$：$P(X=k)=\\dfrac{\\lambda^k e^{-\\lambda}}{k!}$\n几何分布：$P(X=k)=(1-p)^{k-1}p$' },
       { id: 'gailv-02-4', front: '常见连续分布？', back: '均匀分布 $U(a,b)$：$f=\\dfrac{1}{b-a}$（$a<x<b$）\n指数分布 $E(\\lambda)$：$f=\\lambda e^{-\\lambda x}$（$x>0$），无记忆性\n正态分布 $N(\\mu,\\sigma^2)$：$f=\\dfrac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$' },
-      { id: 'gailv-02-5', front: '标准正态分布怎么查表？', back: '$X\\sim N(\\mu,\\sigma^2)$，则 $\\dfrac{X-\\mu}{\\sigma}\\sim N(0,1)$。\n$P(X\\le x)=\\Phi\\left(\\dfrac{x-\\mu}{\\sigma}\\right)$，$\\Phi(-x)=1-\\Phi(x)$。' }
+      { id: 'gailv-02-5', front: '标准正态分布怎么查表？', back: '$X\\sim N(\\mu,\\sigma^2)$，则 $\\dfrac{X-\\mu}{\\sigma}\\sim N(0,1)$。\n$P(X\\le x)=\\Phi\\left(\\dfrac{x-\\mu}{\\sigma}\\right)$，$\\Phi(-x)=1-\\Phi(x)$。' },
+      { id: 'gailv-02-6', star: 2, tag: '公式', front: '正态分布的可加性怎么用？', back: '$X\\sim N(\\mu_1,\\sigma_1^2)$、$Y\\sim N(\\mu_2,\\sigma_2^2)$ 且相互独立，则 $aX+bY\\sim N(a\\mu_1+b\\mu_2,\\ a^2\\sigma_1^2+b^2\\sigma_2^2)$。\n特例 $\\bar X\\sim N(\\mu,\\ \\sigma^2/n)$。\n⚠ 独立是前提：不独立时方差含交叉项 $2ab\\,\\mathrm{Cov}(X,Y)$ 不能丢；两正态不独立时其和也未必正态。' },
+      { id: 'gailv-02-7', star: 2, tag: '方法', front: '指数分布的无记忆性与"最小值仍指数"？', back: '无记忆性：$P(X>s+t\\mid X>s)=P(X>t)$，等价 $P(X>x)=e^{-\\lambda x}$（$x>0$）——唯一无记忆的连续分布。\n独立指数 $X_i\\sim E(\\lambda_i)$ 的最小值 $\\min_i X_i\\sim E\\!\\left(\\sum_i\\lambda_i\\right)$（并联系统"最先坏的那个"仍指数、速率相加）。\n$\\max$ 用分布函数 $F_{\\max}(z)=\\prod F_i(z)$。' }
     ]
   },
   {
@@ -260,7 +287,8 @@ const gailvChapters: QuickChapter[] = [
     cards: [
       { id: 'gailv-06-1', front: '样本均值与样本方差？', back: '$\\bar X=\\dfrac{1}{n}\\sum X_i$\n$$S^2=\\frac{1}{n-1}\\sum(X_i-\\bar X)^2$$\n注意分母是 $n-1$（无偏性），且 $E(S^2)=\\sigma^2$。' },
       { id: 'gailv-06-2', front: '三大抽样分布？', back: '$\\chi^2$ 分布：$\\sum_{i=1}^n Z_i^2$（$Z_i$ 独立标准正态），$E=n$，$D=2n$。\n$t$ 分布：$\\dfrac{Z}{\\sqrt{\\chi^2/n}}$，关于 $0$ 对称。\n$F$ 分布：$\\dfrac{\\chi^2_m/m}{\\chi^2_n/n}$，$F_{1-\\alpha}(m,n)=\\dfrac{1}{F_\\alpha(n,m)}$。' },
-      { id: 'gailv-06-3', front: '正态总体的抽样分布？', back: '设 $X\\sim N(\\mu,\\sigma^2)$，则：\n$\\dfrac{\\bar X-\\mu}{\\sigma/\\sqrt n}\\sim N(0,1)$\n$\\dfrac{(n-1)S^2}{\\sigma^2}\\sim\\chi^2(n-1)$\n$\\dfrac{\\bar X-\\mu}{S/\\sqrt n}\\sim t(n-1)$\n$\\bar X$ 与 $S^2$ 独立。' }
+      { id: 'gailv-06-3', front: '正态总体的抽样分布？', back: '设 $X\\sim N(\\mu,\\sigma^2)$，则：\n$\\dfrac{\\bar X-\\mu}{\\sigma/\\sqrt n}\\sim N(0,1)$\n$\\dfrac{(n-1)S^2}{\\sigma^2}\\sim\\chi^2(n-1)$\n$\\dfrac{\\bar X-\\mu}{S/\\sqrt n}\\sim t(n-1)$\n$\\bar X$ 与 $S^2$ 独立。' },
+      { id: 'gailv-06-4', star: 3, tag: '易错', front: '把式子认成 χ²/t/F 的构造诀窍？', back: '记单体：$\\chi^2(n)=\\sum_{i=1}^{n}Z_i^2$（$n$ 个独立标准正态平方和）；$t=\\dfrac{Z}{\\sqrt{\\chi^2(n)/n}}$；$F=\\dfrac{\\chi^2_m/m}{\\chi^2_n/n}$（分子分母各自除自由度）。\n判 $\\chi^2$：找"标准正态的平方和"，且分母用已知的 $\\sigma$（如 $\\sum\\left(\\frac{X_i-\\mu}{\\sigma}\\right)^2$）。\n判 $t$：分子是 1 个 $N(0,1)$、分母是与之独立的 $\\chi^2$ 开方除自由度；$\\bar X$ 配未知的 $S$ 就是 $t$。\n判 $F$：两独立 $\\chi^2$ 各除自由度相除，常用于两正态总体方差比 $\\frac{S_1^2/\\sigma_1^2}{S_2^2/\\sigma_2^2}$。' }
     ]
   },
   {

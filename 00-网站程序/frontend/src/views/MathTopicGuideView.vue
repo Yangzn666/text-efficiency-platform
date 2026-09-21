@@ -28,6 +28,7 @@ const categories = [
 const categoryMap: Record<string, string> = {
   'gaoshu-18': 'gaoshu',
   'implicit-diff': 'gaoshu',
+  'sum-limit-strategy': 'gaoshu',
   'linear-systems': 'linear-algebra',
   'quadratic-form': 'linear-algebra',
   'probability-ch3': 'probability',
@@ -43,6 +44,10 @@ const filteredGuides = computed(() => {
   if (!activeCategory.value) return guides
   return guides.filter(g => categoryMap[g.id] === activeCategory.value)
 })
+
+function catClass(id: string) {
+  return 'cat-' + (categoryMap[id] || 'gaoshu')
+}
 
 function toggleCard(id: string) {
   if (expandedCards.value.has(id)) {
@@ -129,7 +134,7 @@ function texify(text: string): string {
         </div>
       </div>
 
-      <section v-for="g in filteredGuides" :key="g.id" class="guide-card">
+      <section v-for="g in filteredGuides" :key="g.id" class="guide-card" :class="catClass(g.id)">
         <div class="card-head" @click="toggleCard(g.id)">
           <h2 v-html="texify(g.head)"></h2>
           <span class="head-note">{{ g.note }}</span>
@@ -141,6 +146,22 @@ function texify(text: string): string {
         <div class="guide-intro-box">
           <p class="guide-intro" v-html="texify(g.intro)"></p>
         </div>
+
+        <!-- 折叠状态：把每条要点的标题做成预览胶囊，不用展开也能看到有货 -->
+        <div v-if="!isExpanded(g.id)" class="guide-preview">
+          <div class="preview-chips">
+            <span
+              v-for="(item, ii) in g.items"
+              :key="ii"
+              class="preview-chip"
+              v-html="item.icon + '&nbsp;' + texify(item.title)"
+            ></span>
+          </div>
+          <button class="preview-toggle" @click="toggleCard(g.id)">
+            展开 {{ g.items.length }} 项详细要点 ▾
+          </button>
+        </div>
+
         <Transition name="expand">
           <div v-show="isExpanded(g.id)" class="guide-list">
             <div v-for="(item, gi) in g.items" :key="gi" class="guide-item">
@@ -175,6 +196,7 @@ function texify(text: string): string {
   --bg-soft: #f4f7fb;
   --paper: #faf8f4;
   --cream: #f5f0e6;
+  --cat: #16345c;
 
   max-width: 1520px;
   margin: 0 auto;
@@ -187,6 +209,17 @@ function texify(text: string): string {
   font-weight: 400;
   color: var(--body);
 }
+
+/* 分类配色（驱动卡片顶栏 + 编号徽标） */
+.cat-gaoshu { --cat: #16345c; }
+.cat-linear-algebra { --cat: #5b3a8e; }
+.cat-probability { --cat: #0f6b63; }
+.cat-series { --cat: #b25e09; }
+.cat-ode { --cat: #a03a6b; }
+.cat-power-series { --cat: #3b4fa0; }
+.cat-rotation { --cat: #2f7d3a; }
+.cat-proof { --cat: #9c2b2b; }
+.cat-estimation { --cat: #7a5a2a; }
 
 /* ── Header ─────────────────────────────── */
 .page-header {
@@ -335,6 +368,7 @@ function texify(text: string): string {
 .guide-card {
   position: relative;
   border: 1px solid var(--line);
+  border-top: 4px solid var(--cat);
   border-radius: 16px;
   background: #fff;
   padding: 28px 28px 24px;
@@ -346,18 +380,18 @@ function texify(text: string): string {
 .guide-card::before {
   content: counter(guide-num, decimal-leading-zero);
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 24px;
   font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--gold);
-  background: #fff;
+  color: #fff;
+  background: var(--cat);
   padding: 3px 12px;
   border-radius: 999px;
-  border: 1.5px solid var(--gold);
+  border: 1.5px solid var(--cat);
   letter-spacing: 0.08em;
-  box-shadow: 0 2px 8px var(--gold-glow);
+  box-shadow: 0 2px 8px rgba(22, 52, 92, 0.18);
 }
 
 .guide-card:hover {
@@ -403,7 +437,7 @@ function texify(text: string): string {
   bottom: 3px;
   width: 5px;
   border-radius: 3px;
-  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-light) 100%);
+  background: linear-gradient(180deg, var(--cat) 0%, var(--gold) 140%);
 }
 
 .head-note {
@@ -469,7 +503,7 @@ function texify(text: string): string {
   border-left: 4px solid var(--gold);
   border-radius: 0 12px 12px 0;
   padding: 16px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   position: relative;
 }
 
@@ -493,16 +527,65 @@ function texify(text: string): string {
   color: var(--navy);
 }
 
+/* ── Collapsed Preview ──────────────────── */
+.guide-preview {
+  padding: 2px 4px 6px;
+}
+
+.preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.preview-chip {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cat);
+  border-radius: 999px;
+  padding: 6px 15px;
+  line-height: 1.5;
+}
+
+.preview-chip :deep(.katex) {
+  font-size: 1.02em;
+}
+
+.preview-toggle {
+  margin-top: 14px;
+  background: linear-gradient(150deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(22, 52, 92, 0.2);
+}
+
+.preview-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(22, 52, 92, 0.28);
+}
+
 /* ── Guide List ─────────────────────────── */
 .guide-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-top: 16px;
 }
 
 .guide-item {
   border: 1px solid var(--line);
-  border-left: 4px solid var(--navy);
+  border-left: 4px solid var(--cat);
   border-radius: 12px;
   background: #fff;
   padding: 20px 22px;
@@ -627,5 +710,6 @@ function texify(text: string): string {
   .card-head h2 { font-size: 1.2rem; }
   .gi-head strong { font-size: 1.05rem; }
   .gi-tag { font-size: 0.72rem; padding: 2px 10px; }
+  .preview-chip { font-size: 0.95rem; padding: 5px 12px; }
 }
 </style>

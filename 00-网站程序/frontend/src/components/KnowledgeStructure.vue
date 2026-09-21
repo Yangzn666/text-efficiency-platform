@@ -1270,35 +1270,57 @@ onMounted(async () => {
 
 @media (max-width: 768px) {
   .knowledge-structure {
-    padding: 12px;
-    border-radius: 12px;
+    padding: 10px 8px;
+    border-radius: 10px;
   }
-  
+
   .subject-title {
     font-size: 1.6em;
   }
-  
+
   .controls-section {
     padding: 10px 12px;
+    gap: 10px;
   }
-  
+
   .search-bar {
     width: 100%;
   }
-  
+
+  .category-filters {
+    width: 100%;
+  }
+
+  .category-filters :deep(.el-button) {
+    flex: 1 1 auto;
+    margin-left: 0;
+  }
+
+  /* 取消知识点列表的内层滚动条，随页面整体滚动，避免小屏出现“框中框” */
+  .points-sidebar {
+    width: 100%;
+    max-height: none;
+    overflow-y: visible;
+    padding: 10px;
+  }
+
+  .point-detail {
+    padding-left: 0;
+  }
+
   .detail-header h2 {
     font-size: 1.4em;
   }
-  
+
   .detail-content {
-    padding: 14px 16px;
+    padding: 12px 12px;
   }
-  
+
   .detail-actions {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .detail-actions .el-button {
     width: 100%;
   }
