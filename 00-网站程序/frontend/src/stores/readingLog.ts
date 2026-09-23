@@ -62,7 +62,7 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2013-1': 5,
   '2013-2': 4,
   '2013-3': 2,
-  '2013-4': 2
+  '2013-4': 3
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -180,18 +180,17 @@ const SEEDED_NOTES: Record<string, string> = {
     '4/5。仅 Q2(指代/词义)选C正D:get cracking 误当“立刻摧毁”,实为固定习语“赶快动手干”(crack 核心意象=啪一下→开始/解开);一词读反直接带偏对 the industry 指代的判断→误选 C“数字信息分析师”,正解 D。' +
     '熟词僻义典型坑(同 settle/domestic/hawked);口诀“熟词讲不通→八成在用僻义”。其余 4 题全对,延续 T1 满分的好手感。',
   '2013-3':
-    '2/5。四错:Q1、Q2、Q4、Q5。' +
-    'Q1(你未提,盲点):选B正A。' +
-    'Q2(推理)选C正D:自述“无中生有乱想”——颉斌斌铁律复发,推理题答案=原文同义改写,想两步以上的选项先死。' +
+    '2/5。三错:Q2、Q4、Q5（Q1、Q3 你已答对）。' +
+    'Q2(推理)选C正A:自述“无中生有乱想”——颉斌斌铁律复发,推理题答案=原文某句的同义改写,要想两步以上的选项先判死刑。' +
     'Q4(细节)选D正C:draw on/curb 不认识→句意理解偏。【draw on】=借助、利用;核心意象 draw=拉/拽→把经验资源“拉过来用”→利用。例: draw on experience 借鉴经验;别死记“画画”。【curb】=压制、控制;本义“马衔铁”→给马猛地一拉→压制; curb inflation 遏制通胀;联想 curb 马路牙子→把越界行为挡回去。' +
-    'Q5(主旨)选A正C:没注意末段 but 转折，but 之后直接点题。颉:转折=作者真正立场,主旨题首选 but 后那句的同义改写。',
+    'Q5(主旨)选A正C:没注意末段 but 转折,but 之后直接点题。颉斌斌:转折=作者真正立场,主旨题首选 but 后那句的同义改写。',
   '2013-4':
-    '2/5。三错:Q1、Q3、Q5（你提了Q1、Q5；Q3你未提）。' +
-    'Q1(主旨)选D正C:自述“只看第一段就下判断”——主旨题大忌!主旨需全文综合,首段只供“话题”,不供“观点”。另 D contradict 不认识加剧弯曲。【contradict】=反驳、与…矛盾;contra-(反) + dict-(说)→对着说→矛盾。同族: predict 预言(pre-先+dict 说)、dictionary、dictate 口述;核心 dict=说,一句话串记:“ contradict 就是反着说”。' +
-    'Q3(你未提):选B正D。' +
-    'Q5(细节)选A正B:reject 看成了 inject,一字之差意思完全相反。【-ject 家族】ject=投/扔,前缀定方向:reject 拒收(re-回→扔回→拒绝);inject 注射(in-进→扔进去);project 项目(pro-前→扔在前面);eject 弹出(ex-出);subject 主题(sub-下→扔于其下→受支配)。口诀“看见 -ject 先看前缀”,视觉记:re 像“摆回”,in 像“按入”。',
+    '3/5。两错:Q1、Q5。' +
+    'Q1(细节)选D正A:自述“只看首段就下判断”——主旨/细节题大忌,必须回原文定位。另 D contradict 不认识加剧弯曲。【contradict】=反驳、与…矛盾;contra-(反) + dict-(说)→对着说→矛盾。同族: predict 预言、dictionary、dictate 口述;核心 dict=说,一句串记“contradict=反着说”。正解 A overstepped=侵入权限,同义替换原文 intrude on the federal privileged powers。' +
+    'Q5(推理)选A正D:末段“Every Justice rightly rejected this remarkable claim”你错读成 inject,方向完全相反。【-ject 家族】ject=投/扔,前缀定方向:reject 扔回→拒绝;inject 扔进→注射;project 扔前→项目;eject 扔出→弹出;subject 扔下→臣服。口诀“看见 -ject 先看前缀”,视觉钩 re=摇头摆回、in=点头按入。' +
+    '【数据修正说明】本篇站内旧选项顺序与官方版(华慧等)、与你纸质真题不一致,导致上次将 correctAnswer 误记为 CCDAB。本次已将 index.json 选项重排为官方顺序、correctAnswer 更新为 ACBAD,与你当时你报的答案串完全一致;作战室 T4 成绩同步修正为 3/5。',
   '2013 下半诊断':
-    'T1 5/5 → T2 4/5 → T3 2/5 → T4 2/5,全年 13/20=65%。病灶高度集中在三类,都不是“读不懂”:①词汇(尤其动词类僻义与同族词):draw on、curb、contradict、reject/inject;②“只看开头”与“漏看转折”:T4Q1 只看首段、T3Q5 漏末段 but;③无中生有乱推:T3Q2。' +
+    'T1 5/5 → T2 4/5 → T3 2/5 → T4 3/5,全年 14/20=70%。病灶高度集中在三类,都不是“读不懂”:①词汇(尤其动词类僻义与同族词):draw on、curb、contradict、reject/inject;②“只看开头”与“漏看转折”:T4Q1 只看首段、T3Q5 漏末段 but;③无中生有乱推:T3Q2。' +
     '下一步两件事:①专开一个“-ject/-dict/-fer 同族词表”,一个词根拉一串;②主旨题强制约定:未阅完全文不开口选,先标出“but/however/yet”所在句。'
 }
 
