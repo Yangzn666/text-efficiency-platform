@@ -62,7 +62,8 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2013-1': 5,
   '2013-2': 4,
   '2013-3': 2,
-  '2013-4': 3
+  '2013-4': 3,
+  '2014-1': 4
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -191,7 +192,11 @@ const SEEDED_NOTES: Record<string, string> = {
     '【数据修正说明】本篇站内旧选项顺序与官方版(华慧等)、与你纸质真题不一致,导致上次将 correctAnswer 误记为 CCDAB。本次已将 index.json 选项重排为官方顺序、correctAnswer 更新为 ACBAD,与你当时你报的答案串完全一致;作战室 T4 成绩同步修正为 3/5。',
   '2013 下半诊断':
     'T1 5/5 → T2 4/5 → T3 2/5 → T4 3/5,全年 14/20=70%。病灶高度集中在三类,都不是“读不懂”:①词汇(尤其动词类僻义与同族词):draw on、curb、contradict、reject/inject;②“只看开头”与“漏看转折”:T4Q1 只看首段、T3Q5 漏末段 but;③无中生有乱推:T3Q2。' +
-    '下一步两件事:①专开一个“-ject/-dict/-fer 同族词表”,一个词根拉一串;②主旨题强制约定:未阅完全文不开口选,先标出“but/however/yet”所在句。'
+    '下一步两件事:①专开一个"-ject/-dict/-fer 同族词表",一个词根拉一串;②主旨题强制约定:未阅完全文不开口选,先标出"but/however/yet"所在句。',
+  '2014-1':
+    '4/5《奥斯本求职津贴改革》(George Osborne jobseeker\'s allowance)。仅 Q5(态度)选D正A:把作者反讽引用的 Osborne 观点("reduce the risk of unemployment")当成了作者本人立场。末段"in Osborneland"通篇反讽——作者加引号的话90%是他反对的。【态度题铁律】看末段先找引号和讽刺语气,区分"作者说"和"作者引用别人说";若选项内容=文章中被批评对象的立场,必非作者观点。' +
+    'Q1(细节)选C正C✓:encourage jobseekers\' active engagement=首段 in order to 目的句同义替换。Q2(词义)选A正A✓:to sign on=register for an allowance;not looking to sign on↔looking for work 反义对举。Q3(细节)选D正D✓:A passion to ensure fairness for taxpayers=2段“help people stay off benefits”的动机改写。Q4(推理)选B正B✓:uneasy=3段失业者“被羞辱却不得不忍”的不安感,enraged/insulted/guilty 均过度。' +
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 CADBA。'
 }
 
 function keyOf(year: number, text: number) {
