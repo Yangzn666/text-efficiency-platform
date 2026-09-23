@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
 const activeTab = ref('small')
@@ -281,6 +281,71 @@ const submit = () => {
 }
 
 const fmtTime = (sec: number) => `${Math.max(0, Math.round(sec / 60))}分钟`
+
+// ══════════════ 页签5：真题作文 ══════════════
+interface EssayItem {
+  key: string
+  year: number
+  part: string
+  points?: number
+  wordReq?: string
+  title: string | null
+  image: string | null
+  directions: string
+  hasModel: boolean
+}
+
+const essays = ref<EssayItem[]>([])
+const essaysLoading = ref(false)
+const essayPartFilter = ref<'all' | 'A' | 'B'>('all')
+const expandedYears = ref<Set<number>>(new Set())
+const currentPrompt = ref<EssayItem | null>(null)
+
+const essayYears = computed(() => {
+  const map = new Map<number, EssayItem[]>()
+  essays.value
+    .filter(e => essayPartFilter.value === 'all' || e.part === essayPartFilter.value)
+    .forEach(e => {
+      if (!map.has(e.year)) map.set(e.year, [])
+      map.get(e.year)!.push(e)
+    })
+  return [...map.entries()]
+    .sort((a, b) => b[0] - a[0])
+    .map(([year, items]) => ({ year, items }))
+})
+
+const loadEssays = async () => {
+  essaysLoading.value = true
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}data/english/essays.json`)
+    const data = await res.json()
+    essays.value = data.essays || []
+    if (essayYears.value.length) expandedYears.value = new Set([essayYears.value[0].year])
+  } catch {
+    ElMessage.error('真题作文库加载失败')
+  } finally {
+    essaysLoading.value = false
+  }
+}
+onMounted(loadEssays)
+
+const toggleYear = (y: number) => {
+  const s = new Set(expandedYears.value)
+  s.has(y) ? s.delete(y) : s.add(y)
+  expandedYears.value = s
+}
+
+const goWrite = (e: EssayItem) => {
+  currentPrompt.value = e
+  writeType.value = e.part === 'A' ? 'small' : 'big'
+  const t = writeTypes.find(x => x.id === writeType.value)!
+  totalSeconds.value = t.minutes * 60
+  remainSeconds.value = t.minutes * 60
+  stopTimer()
+  checked.value = checklist.map(() => false)
+  activeTab.value = 'drill'
+  ElMessage.success('题目已带入演练室，开始计时写作吧！')
+}
 </script>
 
 <template>
@@ -400,6 +465,16 @@ const fmtTime = (sec: number) => `${Math.max(0, Math.round(sec / 60))}分钟`
           </div>
         </div>
 
+        <div v-if="currentPrompt" class="drill-prompt">
+          <div class="dp-hd">
+            <span class="dp-tag">{{ currentPrompt.year }} 年 · Part {{ currentPrompt.part }} {{ currentPrompt.part === 'A' ? '小作文' : '大作文' }}</span>
+            <span class="dp-meta">{{ currentPrompt.points }} 分 · 约 {{ currentPrompt.wordReq }} 词</span>
+            <button class="dp-clear" @click="currentPrompt = null">移除题目</button>
+          </div>
+          <h4 v-if="currentPrompt.title" class="dp-title">{{ currentPrompt.title }}</h4>
+          <p class="dp-dir">{{ currentPrompt.directions }}</p>
+        </div>
+
         <div class="answer-sheet">
           <div class="sheet-head">
             <span>ANSWER SHEET · {{ currentWriteType.name }}答题纸</span>
@@ -432,6 +507,39 @@ const fmtTime = (sec: number) => `${Math.max(0, Math.round(sec / 60))}分钟`
             <span :class="{ over: r.overtime }">{{ fmtTime(r.timeUsed) }}{{ r.overtime ? '（超时）' : '' }}</span>
             <span>{{ r.checks }}/6</span>
           </div>
+        </div>
+      </el-tab-pane>
+
+      <!-- ══ 真题作文 ══ -->
+      <el-tab-pane label="📝 真题作文" name="exams">
+        <div class="ex-filter">
+          <button class="ex-fbtn" :class="{ active: essayPartFilter === 'all' }" @click="essayPartFilter = 'all'">全部</button>
+          <button class="ex-fbtn" :class="{ active: essayPartFilter === 'A' }" @click="essayPartFilter = 'A'">Part A 小作文</button>
+          <button class="ex-fbtn" :class="{ active: essayPartFilter === 'B' }" @click="essayPartFilter = 'B'">Part B 大作文</button>
+          <span class="ex-count">共 {{ essays.length }} 题 · {{ essayYears.length }} 个年份</span>
+        </div>
+
+        <div v-if="essaysLoading" class="ex-loading">真题库加载中…</div>
+        <div v-else class="ex-list">
+          <section v-for="g in essayYears" :key="g.year" class="ex-year">
+            <header class="ex-year-hd" @click="toggleYear(g.year)">
+              <span class="ex-caret">{{ expandedYears.has(g.year) ? '▼' : '▶' }}</span>
+              <strong>{{ g.year }} 年</strong>
+              <em>{{ g.items.length }} 题</em>
+            </header>
+            <div v-show="expandedYears.has(g.year)" class="ex-items">
+              <article v-for="e in g.items" :key="e.key" class="ex-item">
+                <div class="ex-item-hd">
+                  <span class="ex-part" :class="e.part.toLowerCase()">{{ e.part === 'A' ? '小作文' : '大作文' }}</span>
+                  <span class="ex-meta">{{ e.points }} 分 · 约 {{ e.wordReq }} 词</span>
+                  <button class="ex-go" @click="goWrite(e)">✍️ 限时开写</button>
+                </div>
+                <h4 v-if="e.title" class="ex-title">{{ e.title }}</h4>
+                <p class="ex-dir">{{ e.directions }}</p>
+                <span v-if="e.hasModel" class="ex-model">参考范文（写作后可见）</span>
+              </article>
+            </div>
+          </section>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -940,10 +1048,161 @@ const fmtTime = (sec: number) => `${Math.max(0, Math.round(sec / 60))}分钟`
 }
 .history-row .over { color: #c0392b; }
 
+/* ══ 演练室题目提示条 ══ */
+.drill-prompt {
+  background: linear-gradient(135deg, #fff8ec, #fffdf5);
+  border: 1px solid rgba(255, 197, 61, 0.5);
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 14px;
+}
+.dp-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.dp-tag {
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+.dp-meta { font-size: 0.78rem; color: #a06a00; }
+.dp-clear {
+  margin-left: auto;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #5b6b7f;
+  font-size: 0.74rem;
+  padding: 3px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.dp-clear:hover { border-color: #f56c6c; color: #c0392b; }
+.dp-title { margin: 10px 0 4px; font-size: 0.95rem; color: var(--ink); }
+.dp-dir {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--body);
+  white-space: pre-wrap;
+  font-family: 'Georgia', serif;
+}
+
+/* ══ 真题作文 ══ */
+.ex-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.ex-fbtn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ex-fbtn:hover { border-color: var(--gold); }
+.ex-fbtn.active {
+  background: linear-gradient(135deg, var(--gold), #f0a820);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+  font-weight: 700;
+}
+.ex-count { margin-left: auto; font-size: 0.78rem; color: #5b6b7f; }
+.ex-loading { text-align: center; color: #5b6b7f; padding: 40px 0; font-size: 0.9rem; }
+.ex-list { display: flex; flex-direction: column; gap: 10px; }
+.ex-year {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.ex-year-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  background: var(--bg-soft);
+  user-select: none;
+}
+.ex-year-hd:hover { background: #eef4fb; }
+.ex-caret { color: var(--gold); font-size: 0.8rem; width: 14px; }
+.ex-year-hd strong { color: var(--ink); font-size: 0.98rem; }
+.ex-year-hd em { font-style: normal; font-size: 0.74rem; color: #5b6b7f; margin-left: 4px; }
+.ex-items { padding: 6px 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+.ex-item {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--navy);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.ex-item-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.ex-part {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.ex-part.a { background: #eafaf0; color: #1e7a45; }
+.ex-part.b { background: #fdeeee; color: #c0392b; }
+.ex-meta { font-size: 0.76rem; color: #5b6b7f; }
+.ex-go {
+  margin-left: auto;
+  background: linear-gradient(135deg, #f0a820, #d98c0f);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(240, 168, 32, 0.3);
+  transition: all 0.2s;
+}
+.ex-go:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(240, 168, 32, 0.42); }
+.ex-title { margin: 4px 0; font-size: 0.9rem; color: var(--ink); }
+.ex-dir {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--body);
+  white-space: pre-wrap;
+  font-family: 'Georgia', serif;
+}
+.ex-model {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.68rem;
+  color: #a06a00;
+  background: #fff8ec;
+  border: 1px dashed rgba(212, 160, 18, 0.5);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
 @media (max-width: 760px) {
   .letter-layout { grid-template-columns: 1fr; }
   .letter-nav { flex-direction: row; flex-wrap: wrap; }
   .letter-nav-item { flex: 1 1 40%; }
   .drill-top { flex-direction: column; align-items: stretch; }
+  .ex-count { margin-left: 0; width: 100%; }
+  .dp-clear { margin-left: 0; }
 }
 </style>

@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "source": "extracted from WritingLearning.vue",
+  "extractedAt": "2026-09-23",
+  "smallLetters": [
+    {
+      "id": "suggestion",
+      "name": "建议信",
+      "icon": "💡",
+      "scene": "给朋友/机构提出建议",
+      "skeleton": [
+        "Dear ...,",
+        "① 说明写信目的：针对……提出建议",
+        "② 具体建议 2-3 条（First / Besides / Last）",
+        "③ 感谢并期待采纳",
+        "Yours sincerely,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to offer some practical suggestions regarding ...",
+        "Learning that you are troubled by ..., I would like to propose the following advice."
+      ],
+      "body": [
+        "First and foremost, it is advisable for you to ...",
+        "In addition, ... would be of great help to you.",
+        "Last but not least, you are supposed to ..."
+      ],
+      "closers": [
+        "I sincerely hope my suggestions will be taken into consideration.",
+        "I am looking forward to your favorable reply at your earliest convenience."
+      ],
+      "tips": [
+        "语气委婉：多用 it is advisable that / would be better 等缓和表达",
+        "建议不少于两条，每条带简要理由"
+      ]
+    },
+    {
+      "id": "apology",
+      "name": "道歉信",
+      "icon": "🙏",
+      "scene": "失约/失误/无法履约",
+      "skeleton": [
+        "Dear ...,",
+        "① 开门见山致歉并说明缘由",
+        "② 解释原因 + 补救措施",
+        "③ 再次道歉恳请谅解",
+        "Yours sincerely,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to express my sincere apology for ...",
+        "Please accept my heartfelt apology for failing to ..."
+      ],
+      "body": [
+        "The reason is that ..., which was beyond my control.",
+        "To make up for it, I would like to ... at your convenience."
+      ],
+      "closers": [
+        "Once again, I am sorry for any inconvenience caused.",
+        "I hope you can accept my apology and understand my situation."
+      ],
+      "tips": [
+        "道歉要诚恳，原因要合理，务必给出补救方案",
+        "切忌推卸责任，结尾再次致歉加深印象"
+      ]
+    },
+    {
+      "id": "invitation",
+      "name": "邀请信",
+      "icon": "✉️",
+      "scene": "邀请参加活动/发言",
+      "skeleton": [
+        "Dear ...,",
+        "① 说明活动并发出邀请",
+        "② 活动时间地点 + 具体内容",
+        "③ 期待参与并请回复确认",
+        "Yours sincerely,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to invite you to attend ...",
+        "On behalf of the Students' Union, I cordially invite you to ..."
+      ],
+      "body": [
+        "The activity will be held in the lecture hall at 7 p.m. next Friday.",
+        "It would be a great honor if you could give us a speech on ..."
+      ],
+      "closers": [
+        "I am looking forward to your participation.",
+        "Please confirm your attendance at your earliest convenience."
+      ],
+      "tips": [
+        "时间、地点、主题三要素缺一不可",
+        "对长辈/专家用词恭敬：cordially / a great honor"
+      ]
+    },
+    {
+      "id": "complaint",
+      "name": "投诉信",
+      "icon": "⚠️",
+      "scene": "对商品/服务表达不满",
+      "skeleton": [
+        "Dear Sir or Madam,",
+        "① 表明身份与投诉事由",
+        "② 具体问题 2 条 + 影响",
+        "③ 提出诉求（退换/整改）",
+        "Yours faithfully,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to express my dissatisfaction with ...",
+        "I regret to inform you that I am not satisfied with the service I received."
+      ],
+      "body": [
+        "To begin with, ...; moreover, ...",
+        "I strongly request that immediate measures be taken to solve this problem."
+      ],
+      "closers": [
+        "I trust you will handle this matter promptly and properly.",
+        "I am awaiting your reply and a reasonable solution."
+      ],
+      "tips": [
+        "陈述事实为主，避免情绪化表达",
+        "诉求要具体：refund / replacement / improvement"
+      ]
+    },
+    {
+      "id": "application",
+      "name": "申请信",
+      "icon": "📋",
+      "scene": "申请职位/志愿者",
+      "skeleton": [
+        "Dear Sir or Madam,",
+        "① 说明申请职位及信息来源",
+        "② 自身优势 2-3 条（能力+经历）",
+        "③ 表达渴望并附简历",
+        "Yours faithfully,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to apply for the position of ...",
+        "Having learned that you are recruiting volunteers for ..., I am eager to apply."
+      ],
+      "body": [
+        "I am confident that I am qualified for the post for the following reasons.",
+        "With a good command of English and rich experience in ..., I can ..."
+      ],
+      "closers": [
+        "I would appreciate it if you could grant me the opportunity.",
+        "Enclosed is my résumé for your reference."
+      ],
+      "tips": [
+        "优势要与岗位要求对应，忌空泛自夸",
+        "结尾惯用 enclosed is my résumé（附简历）"
+      ]
+    },
+    {
+      "id": "thanks",
+      "name": "感谢信",
+      "icon": "💐",
+      "scene": "感谢帮助/款待/指导",
+      "skeleton": [
+        "Dear ...,",
+        "① 开门见山表达感谢",
+        "② 回顾对方帮助的具体细节与影响",
+        "③ 再次致谢并表达回报意愿",
+        "Yours sincerely,",
+        "Li Ming"
+      ],
+      "openers": [
+        "I am writing to convey my heartfelt gratitude to you for ...",
+        "Words fail me when I wish to express my sincere thanks to you."
+      ],
+      "body": [
+        "Without your generous help, I could not have ...",
+        "Your kindness and patience have deeply impressed me and benefited me a lot."
+      ],
+      "closers": [
+        "Once again, thank you from the bottom of my heart.",
+        "I do hope that I will have the opportunity to repay your kindness."
+      ],
+      "tips": [
+        "必须有具体细节，避免通篇客套话",
+        "虚拟语气 Without your help, I could not have... 是加分句型"
+      ]
+    },
+    {
+      "id": "notice",
+      "name": "通知",
+      "icon": "📢",
+      "scene": "学生会/社团发布活动通知",
+      "skeleton": [
+        "NOTICE（标题居中）",
+        "① 活动目的 + 主办方",
+        "② 时间地点 + 内容安排",
+        "③ 参与方式与要求",
+        "发布单位（右对齐）",
+        "日期（右对齐）"
+      ],
+      "openers": [
+        "In order to enrich campus life, the Students' Union will hold ...",
+        "A lecture on ... will be held in the lecture hall on June 10."
+      ],
+      "body": [
+        "The details are arranged as follows: ...",
+        "All students are welcome to attend and please arrive ten minutes earlier."
+      ],
+      "closers": [
+        "Those who want to participate please sign up at the office before Friday.",
+        "The Students' Union"
+      ],
+      "tips": [
+        "通知无称呼落款，格式：标题居中 + 落款单位日期右对齐",
+        "用第三人称、被动语态为主，时态以将来时为主"
+      ]
+    }
+  ],
+  "bigParagraphs": [
+    {
+      "name": "第一段 · 描图句库",
+      "color": "gold",
+      "role": "2-3 句客观描述图片内容 + 引出寓意，忌过度解读",
+      "sentences": [
+        "As is vividly depicted in the cartoon, ...",
+        "What is presented in the picture is quite thought-provoking.",
+        "Simple as the picture is, the symbolic meaning behind it is as deep as the ocean.",
+        "The drawing shows that ..., which immediately arrests our attention.",
+        "The caption beneath the picture reads, \"...\""
+      ]
+    },
+    {
+      "name": "第二段 · 寓意阐释句库",
+      "color": "red",
+      "role": "点明寓意 + 原因分析/举例论证，4-5 句为正文核心",
+      "sentences": [
+        "The cartoon conveys a clear message that ...",
+        "The primary purpose of the drawing is to remind us of the importance of ...",
+        "Why does ... play such an indispensable role? The reasons can be listed as follows.",
+        "To begin with, ...; furthermore, ...",
+        "Take ... as a convincing example.",
+        "Were it not for ..., we could hardly achieve success."
+      ]
+    },
+    {
+      "name": "第三段 · 建议升华句库",
+      "color": "navy",
+      "role": "结论 + 建议措施 + 展望升华，3-4 句收尾有力",
+      "sentences": [
+        "From what has been discussed above, we may safely draw the conclusion that ...",
+        "It is high time that we took effective measures to ...",
+        "On the one hand, the authorities should ...; on the other hand, we individuals ought to ...",
+        "Only in this way can we embrace a brighter future.",
+        "I firmly believe that with joint efforts, the problem will be solved in the near future."
+      ]
+    }
+  ],
+  "modelEssay": {
+    "theme": "坚持（Persistence）· 图画作文范例",
+    "paragraphs": [
+      {
+        "label": "描图段",
+        "text": "As is clearly shown in the picture, a young man is climbing a steep mountain, sweating all over but refusing to give up. The caption beneath reads, \"Persistence leads to success.\"",
+        "note": "2 句完成：客观描述 + 引文字说明"
+      },
+      {
+        "label": "阐释段",
+        "text": "The picture intends to tell us the significance of persistence. To begin with, only by persisting can we overcome the inevitable obstacles on the road to success. Furthermore, persistence distinguishes the successful from the mediocre. Take Thomas Edison as a convincing example: had he given up after thousands of failed experiments, the light bulb would never have been invented.",
+        "note": "观点句 + 两层理由 + 例证（倒装虚拟句加分）"
+      },
+      {
+        "label": "升华段",
+        "text": "From what has been discussed above, we may safely draw the conclusion that persistence is the key to realizing our dreams. It is high time that we bore this quality in mind and put it into practice. Only by persisting in what we pursue can we reach the summit of our life.",
+        "note": "结论 + 建议 + Only 倒装收尾"
+      }
+    ]
+  },
+  "themeWords": [
+    {
+      "theme": "坚持",
+      "icon": "🧗",
+      "words": "perseverance / persistence；persist in；stick to one's dream；never give up in the face of difficulties"
+    },
+    {
+      "theme": "合作",
+      "icon": "🤝",
+      "words": "cooperation / teamwork；cooperate with；make concerted efforts；unity is strength"
+    },
+    {
+      "theme": "文化",
+      "icon": "🏮",
+      "words": "traditional culture；cultural heritage；cultural confidence；inherit and carry forward"
+    },
+    {
+      "theme": "环保",
+      "icon": "🌱",
+      "words": "environmental protection；eco-friendly；sustainable development；live in harmony with nature"
+    },
+    {
+      "theme": "科技",
+      "icon": "🤖",
+      "words": "artificial intelligence；technological innovation；a double-edged sword；keep pace with the times"
+    },
+    {
+      "theme": "诚信",
+      "icon": "🤲",
+      "words": "honesty / integrity；keep one's promise；trustworthiness；a man of his word"
+    },
+    {
+      "theme": "乐观",
+      "icon": "☀️",
+      "words": "optimism；positive attitude；face challenges with courage；turn pressure into motivation"
+    },
+    {
+      "theme": "创新",
+      "icon": "🚀",
+      "words": "innovation；originality；blaze new trails；think outside the box"
+    }
+  ],
+  "wordUpgrades": [
+    {
+      "low": "think",
+      "high": "hold the view that / maintain that"
+    },
+    {
+      "low": "important",
+      "high": "of vital significance / indispensable"
+    },
+    {
+      "low": "more and more",
+      "high": "an increasing number of"
+    },
+    {
+      "low": "very",
+      "high": "exceedingly / remarkably"
+    },
+    {
+      "low": "good",
+      "high": "beneficial / rewarding"
+    },
+    {
+      "low": "bad",
+      "high": "detrimental / adverse"
+    },
+    {
+      "low": "want",
+      "high": "be eager to / desire"
+    },
+    {
+      "low": "like",
+      "high": "be fond of / be keen on"
+    },
+    {
+      "low": "show",
+      "high": "demonstrate / illustrate"
+    },
+    {
+      "low": "many",
+      "high": "a host of / a multitude of"
+    },
+    {
+      "low": "should",
+      "high": "be supposed to / it is imperative that"
+    },
+    {
+      "low": "get",
+      "high": "acquire / obtain"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Where there is a will, there is a way.",
+      "topic": "坚持 / 意志"
+    },
+    {
+      "text": "Success is one percent inspiration and ninety-nine percent perspiration.",
+      "topic": "勤奋 / 努力"
+    },
+    {
+      "text": "A journey of a thousand miles begins with a single step.",
+      "topic": "实践 / 积累"
+    },
+    {
+      "text": "No pains, no gains.",
+      "topic": "付出 / 收获"
+    },
+    {
+      "text": "Knowledge is power.",
+      "topic": "知识 / 学习"
+    },
+    {
+      "text": "Unity is strength.",
+      "topic": "合作 / 团结"
+    },
+    {
+      "text": "Every coin has two sides.",
+      "topic": "辩证 / 科技双刃剑"
+    },
+    {
+      "text": "Practice makes perfect.",
+      "topic": "练习 / 熟能生巧"
+    }
+  ],
+  "checklist": [
+    "格式正确（称呼/落款/标题无遗漏）",
+    "三段结构完整，段落分工清晰",
+    "无主谓一致、时态等低级语法错误",
+    "使用至少 2 个复杂句（定语从句/倒装/虚拟）",
+    "套用模板句自然，无生硬堆砌",
+    "卷面整洁，词数符合要求"
+  ],
+  "writeTypes": [
+    {
+      "id": "small",
+      "name": "小作文",
+      "target": "约100词",
+      "minutes": 20
+    },
+    {
+      "id": "big",
+      "name": "大作文",
+      "target": "160-200词",
+      "minutes": 35
+    }
+  ]
+}

@@ -1,7 +1,665 @@
 {
   "source": "mathbrick.cn（研砖）",
-  "fetchedAt": "2026-08-23",
+  "fetchedAt": "2026-09-23",
   "years": [
+    {
+      "year": 2001,
+      "sentences": [
+        {
+          "id": "en1-2001-text5-s1",
+          "no": 1,
+          "en": "When I decided to quit my full time employment it never occurred to me that I might become a part of a new international trend.",
+          "zh": "当我决定辞去全职工作时，我从未想到自己可能会成为一种新的国际潮流的一部分。",
+          "trunk": {
+            "主语": "it (形式主语，指代 that 从句)",
+            "谓语": "never occurred to",
+            "宾语或表语": "me",
+            "主干翻译": "我从未想到过。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(时间)",
+              "原文": "When I decided to quit my full time employment",
+              "修饰对象": "occurred",
+              "中文翻译": "当我决定辞去全职工作时",
+              "说明": "When 引导时间状语从句，修饰主句谓语 occurred。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "to quit my full time employment",
+              "修饰对象": "decided",
+              "中文翻译": "辞去我的全职工作",
+              "说明": "动词不定式作 decided 的宾语。"
+            },
+            {
+              "成分类型": "主语从句",
+              "原文": "that I might become a part of a new international trend",
+              "修饰对象": "it",
+              "中文翻译": "我可能会成为一种新的国际潮流的一部分",
+              "说明": "that 引导真正的主语从句，由形式主语 it 代替，置于句末。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s2",
+          "no": 2,
+          "en": "A lateral move that hurt my pride and blocked my professional progress prompted me to abandon my relatively high profile career although, in the manner of a disgraced government minister, I covered my exit by claiming \"I wanted to spend more time with my family\".",
+          "zh": "一次伤害了我的自尊心、阻碍了我职业发展的平级调动，促使我放弃了相对高调的职业，尽管我像一位声名扫地的政府部长那样，通过声称\"我想多花些时间陪伴家人\"来掩饰自己的离职。",
+          "trunk": {
+            "主语": "A lateral move",
+            "谓语": "prompted",
+            "宾语或表语": "me",
+            "主干翻译": "一次平级调动促使了我。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "that hurt my pride and blocked my professional progress",
+              "修饰对象": "move",
+              "中文翻译": "它伤害了我的自尊心，并阻碍了我的职业发展",
+              "说明": "that 引导定语从句，修饰先行词 move。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "blocked my professional progress",
+              "修饰对象": "hurt",
+              "中文翻译": "阻碍了我的职业发展",
+              "说明": "与 hurt my pride 并列，由 and 连接，共用从句主语 that。"
+            },
+            {
+              "成分类型": "非谓语作宾语补足语",
+              "原文": "to abandon my relatively high profile career",
+              "修饰对象": "prompted",
+              "中文翻译": "放弃我那相对高调的职业",
+              "说明": "不定式作 prompted me 的宾语补足语。"
+            },
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "although, in the manner of a disgraced government minister, I covered my exit by claiming \"I wanted to spend more time with my family\"",
+              "修饰对象": "prompted",
+              "中文翻译": "尽管我像一位声名扫地的政府部长那样，通过声称\"我想多花些时间陪伴家人\"来掩饰自己的离职",
+              "说明": "although 引导让步状语从句；in the manner of... 为插入语作方式状语。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "I wanted to spend more time with my family",
+              "修饰对象": "claiming",
+              "中文翻译": "我想多花些时间陪伴家人",
+              "说明": "claiming 后省略 that 的宾语从句。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "to spend more time with my family",
+              "修饰对象": "wanted",
+              "中文翻译": "多花些时间陪伴家人",
+              "说明": "不定式作 wanted 的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s3",
+          "no": 3,
+          "en": "Curiously, some two-and-a-half years and two novels later, my experiment in what the Americans term \"downshifting\"has turned my tired excuse into an absolute reality.",
+          "zh": "奇怪的是，大约两年半、两部小说之后，我在美国人称之为\"放慢生活节奏\"方面的尝试，已经把我那陈腐的借口变成了不折不扣的现实。",
+          "trunk": {
+            "主语": "my experiment",
+            "谓语": "has turned",
+            "宾语或表语": "my tired excuse into an absolute reality",
+            "主干翻译": "我的尝试已经把我那陈腐的借口变成了不折不扣的现实。"
+          },
+          "components": [
+            {
+              "成分类型": "并列结构",
+              "原文": "some two-and-a-half years and two novels later",
+              "修饰对象": "has turned",
+              "中文翻译": "大约两年半、两部小说之后",
+              "说明": "two-and-a-half years 与 two novels 由 and 并列，整体作时间状语。"
+            },
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "in what the Americans term \"downshifting\"",
+              "修饰对象": "experiment",
+              "中文翻译": "在美国人称之为\"放慢生活节奏\"方面的",
+              "说明": "in what... 介词短语作定语修饰 experiment，what 引导宾语从句作 in 的宾语。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "Curiously",
+              "修饰对象": "—",
+              "中文翻译": "奇怪的是",
+              "说明": "副词作句首插入语，表达说话人态度。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s4",
+          "no": 4,
+          "en": "I have been transformed from a passionate advocate of the philosophy of \"having it all\", preached by Linda Kelsey for the past seven years in the pages of She magazine, into a woman who is happy to settle for a bit of everything.",
+          "zh": "我已经从\"拥有一切\"这一理念的狂热拥护者——这一理念是琳达·凯尔西在过去七年里在《她》杂志上所宣扬的——转变成了一个乐于对每样事物都浅尝辄止、知足常乐的女人。",
+          "trunk": {
+            "主语": "I",
+            "谓语": "have been transformed",
+            "宾语或表语": "from a passionate advocate ... into a woman",
+            "主干翻译": "我已经从一个狂热的拥护者转变成了一个女人。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "of the philosophy of \"having it all\"",
+              "修饰对象": "advocate",
+              "中文翻译": "\"拥有一切\"这一理念的",
+              "说明": "of 介词短语作定语，修饰 advocate。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "all",
+              "修饰对象": "it",
+              "中文翻译": "一切",
+              "说明": "all 与 it 同位，强调\"全部\"。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "preached by Linda Kelsey for the past seven years in the pages of She magazine",
+              "修饰对象": "philosophy",
+              "中文翻译": "在过去七年里被琳达·凯尔西在《她》杂志上所宣扬的",
+              "说明": "过去分词短语作后置定语，修饰 philosophy。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who is happy to settle for a bit of everything",
+              "修饰对象": "woman",
+              "中文翻译": "她乐于对每样事物都浅尝辄止、知足常乐",
+              "说明": "who 引导定语从句，修饰先行词 woman。"
+            },
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "to settle for a bit of everything",
+              "修饰对象": "happy",
+              "中文翻译": "满足于每样都拥有一点",
+              "说明": "不定式作形容词 happy 的状语，表说明。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s5",
+          "no": 5,
+          "en": "I have discovered, as perhaps Kelsey will after her much-publicized resignation from the editorship of She after a build-up of stress, that abandoning the doctrine of \"juggling your life\", and making the alternative move into \"downshifting\" brings with it far greater rewards than financial success and social status.",
+          "zh": "我已经发现——也许凯尔西在因压力累积而备受关注地辞去《她》杂志主编一职后也会发现——放弃\"忙于应付生活\"的信条，转而选择\"放慢生活节奏\"，所带来的回报远远大于经济上的成功和社会地位。",
+          "trunk": {
+            "主语": "I",
+            "谓语": "have discovered",
+            "宾语或表语": "that 宾语从句",
+            "主干翻译": "我已经发现……"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(比较)",
+              "原文": "as perhaps Kelsey will after her much-publicized resignation from the editorship of She after a build-up of stress",
+              "修饰对象": "discovered",
+              "中文翻译": "正如凯尔西在因压力累积而备受关注地辞去《她》杂志主编一职后或许也会发现的那样",
+              "说明": "as 引导比较状语从句，will 后省略 discover；表\"正如……一样\"。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "that abandoning the doctrine of \"juggling your life\", and making the alternative move into \"downshifting\" brings with it far greater rewards than financial success and social status",
+              "修饰对象": "discovered",
+              "中文翻译": "放弃\"忙于应付生活\"的信条，转而做出\"放慢生活节奏\"的选择，所带来的回报远远大于经济上的成功和社会地位",
+              "说明": "that 引导宾语从句作 discovered 的宾语；从句主语为两个动名词短语并列。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "making the alternative move into \"downshifting\"",
+              "修饰对象": "brings",
+              "中文翻译": "转而做出\"放慢生活节奏\"的选择",
+              "说明": "与 abandoning the doctrine... 由 and 并列，共同充当宾语从句的主语。"
+            },
+            {
+              "成分类型": "状语从句(比较)",
+              "原文": "than financial success and social status",
+              "修饰对象": "rewards",
+              "中文翻译": "比经济上的成功和社会地位",
+              "说明": "than 引导比较状语，与 far greater 构成比较结构。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s6",
+          "no": 6,
+          "en": "Nothing could persuade me to return to the kind of life Kelsey used to advocate and I once enjoyed: 12-hour working days, pressured deadlines, the fearful strain of office politics and the limitations of being a parent on \"quality time\".",
+          "zh": "没有什么能说服我回到凯尔西曾经鼓吹、我也曾经享受过的那种生活：每天工作12小时、压力重重的截止期限、办公室政治带来的可怕紧张，以及作为家长在\"优质时间\"上的种种限制。",
+          "trunk": {
+            "主语": "Nothing",
+            "谓语": "could persuade",
+            "宾语或表语": "me",
+            "主干翻译": "没有什么能说服我。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作宾语补足语",
+              "原文": "to return to the kind of life Kelsey used to advocate and I once enjoyed: 12-hour working days, pressured deadlines, the fearful strain of office politics and the limitations of being a parent on \"quality time\"",
+              "修饰对象": "persuade",
+              "中文翻译": "回到凯尔西曾经鼓吹、我也曾经享受过的那种生活",
+              "说明": "不定式短语作 persuade me 的宾语补足语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "Kelsey used to advocate and I once enjoyed",
+              "修饰对象": "kind",
+              "中文翻译": "凯尔西曾经鼓吹、我也曾经享受过的",
+              "说明": "省略关系代词 that 的定语从句，修饰 the kind of life。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "to advocate",
+              "修饰对象": "used",
+              "中文翻译": "鼓吹",
+              "说明": "used to + 不定式，表过去习惯。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "I once enjoyed",
+              "修饰对象": "advocate",
+              "中文翻译": "我也曾经享受过",
+              "说明": "与 Kelsey used to advocate 由 and 并列，同为定语从句。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "12-hour working days, pressured deadlines, the fearful strain of office politics and the limitations of being a parent on \"quality time\"",
+              "修饰对象": "kind",
+              "中文翻译": "每天工作12小时、压力重重的截止期限、办公室政治带来的可怕紧张，以及作为家长在\"优质时间\"上的种种限制",
+              "说明": "冒号后的并列名词短语作 the kind of life 的同位语，具体说明那种生活。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "pressured deadlines, the fearful strain of office politics and the limitations of being a parent on \"quality time\"",
+              "修饰对象": "days",
+              "中文翻译": "压力重重的截止期限、办公室政治带来的可怕紧张以及作为家长在\"优质时间\"上的限制",
+              "说明": "与 12-hour working days 并列，构成同位语内部的并列项。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s7",
+          "no": 7,
+          "en": "In America, the move away from juggling to a simpler, less materialistic lifestyle is a well-established trend.",
+          "zh": "在美国，从忙于应付生活转向更简单、不那么物质化的生活方式的这种转变，已是一种确立已久的趋势。",
+          "trunk": {
+            "主语": "the move",
+            "谓语": "is",
+            "宾语或表语": "a well-established trend",
+            "主干翻译": "这种转变是一种确立已久的趋势。"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "In America",
+              "修饰对象": "is",
+              "中文翻译": "在美国",
+              "说明": "介词短语作地点状语。"
+            },
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "away from juggling to a simpler, less materialistic lifestyle",
+              "修饰对象": "move",
+              "中文翻译": "从忙于应付生活转向更简单、不那么物质化的生活方式的",
+              "说明": "介词短语作后置定语，修饰主语 move。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s8",
+          "no": 8,
+          "en": "Downshifting—also known in America as \"voluntary simplicity\"—has, ironically, even bred a new area of what might be termed anti-consumerism.",
+          "zh": "颇具讽刺意味的是，放慢生活节奏——在美国也被称为\"自愿简朴\"——甚至催生了一个或许可被称为反消费主义的新领域。",
+          "trunk": {
+            "主语": "Downshifting",
+            "谓语": "has bred",
+            "宾语或表语": "a new area",
+            "主干翻译": "放慢生活节奏甚至催生了一个新领域。"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "also known in America as \"voluntary simplicity\"",
+              "修饰对象": "Downshifting",
+              "中文翻译": "在美国也被称为\"自愿简朴\"",
+              "说明": "过去分词短语作后置定语，修饰主语 Downshifting，破折号插入。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "ironically",
+              "修饰对象": "—",
+              "中文翻译": "颇具讽刺意味的是",
+              "说明": "副词作插入语，表说话人态度。"
+            },
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "of what might be termed anti-consumerism",
+              "修饰对象": "area",
+              "中文翻译": "或许可被称为反消费主义的",
+              "说明": "of 介词短语作定语修饰 area，what 引导宾语从句作 of 的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s9",
+          "no": 9,
+          "en": "There are a number of best-selling downshifting self-help books for people who want to simplify their lives; there are newsletter's, such as The Tightwad Gazette, that give hundreds of thousands of Americans useful tips on anything from recycling their cling-film to making their own soap; there are even support groups for those who want to achieve the mid- '90s equivalent of dropping out.",
+          "zh": "有许多畅销的、面向想简化生活之人的放慢节奏类自助书籍；有一些时事通讯，如《吝啬鬼公报》，它们就从回收保鲜膜到自制肥皂等各种事情向数十万美国人提供实用建议；甚至还有面向那些想实现90年代中期版\"退出主流\"之人的互助小组。",
+          "trunk": {
+            "主语": "There (a number of books / newsletters / support groups)",
+            "谓语": "are",
+            "宾语或表语": "books; newsletters; support groups",
+            "主干翻译": "有一些书；有一些时事通讯；甚至还有一些互助小组。"
+          },
+          "components": [
+            {
+              "成分类型": "并列结构",
+              "原文": "There are a number of best-selling downshifting self-help books for people who want to simplify their lives",
+              "修饰对象": "—",
+              "中文翻译": "有许多畅销的、面向想简化生活之人的放慢节奏类自助书籍",
+              "说明": "三个 there be 分句以分号并列，此为第一个分句。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who want to simplify their lives",
+              "修饰对象": "people",
+              "中文翻译": "他们想简化自己的生活",
+              "说明": "who 引导定语从句，修饰 people。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "to simplify their lives",
+              "修饰对象": "want",
+              "中文翻译": "简化他们的生活",
+              "说明": "不定式作 want 的宾语。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "there are newsletter's, such as The Tightwad Gazette, that give hundreds of thousands of Americans useful tips on anything from recycling their cling-film to making their own soap",
+              "修饰对象": "—",
+              "中文翻译": "有一些时事通讯，如《吝啬鬼公报》，它们就从回收保鲜膜到自制肥皂等各种事情向数十万美国人提供实用建议",
+              "说明": "第二个并列分句。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "such as The Tightwad Gazette",
+              "修饰对象": "newsletter",
+              "中文翻译": "比如《吝啬鬼公报》",
+              "说明": "such as 引导举例，作插入语补充说明 newsletters。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "that give hundreds of thousands of Americans useful tips on anything from recycling their cling-film to making their own soap",
+              "修饰对象": "newsletter",
+              "中文翻译": "它们就从回收保鲜膜到自制肥皂等各种事情向数十万美国人提供实用建议",
+              "说明": "that 引导定语从句，修饰 newsletters。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "there are even support groups for those who want to achieve the mid- '90s equivalent of dropping out",
+              "修饰对象": "—",
+              "中文翻译": "甚至还有面向那些想实现90年代中期版\"退出主流\"之人的互助小组",
+              "说明": "第三个并列分句。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "who want to achieve the mid- '90s equivalent of dropping out",
+              "修饰对象": "those",
+              "中文翻译": "他们想实现90年代中期版的\"退出主流\"",
+              "说明": "who 引导定语从句，修饰 those。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "to achieve the mid- '90s equivalent of dropping out",
+              "修饰对象": "want",
+              "中文翻译": "实现90年代中期版的\"退出主流\"",
+              "说明": "不定式作 want 的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s10",
+          "no": 10,
+          "en": "While in America the trend started as a reaction to the economic decline—after the mass redundancies caused by downsizing in the late '80s—and is still linked to the politics of thrift, in Britain, at least among the middle-class downshifters of my acquaintance, we have different reasons for seeking to simplify our lives.",
+          "zh": "虽然在美国，这一趋势始于对经济衰退的反应——出现在80年代末因精简机构而导致大规模裁员之后——且至今仍与节俭政治相关联，但在英国，至少在我所认识的中产阶级放慢节奏者中，我们想要简化生活的理由却与此不同。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "have",
+            "宾语或表语": "different reasons",
+            "主干翻译": "我们有着不同的理由。"
+          },
+          "components": [
+            {
+              "成分类型": "状语从句(让步)",
+              "原文": "While in America the trend started as a reaction to the economic decline—after the mass redundancies caused by downsizing in the late '80s—and is still linked to the politics of thrift",
+              "修饰对象": "have",
+              "中文翻译": "虽然在美国这一趋势始于对经济衰退的反应——出现在80年代末因精简机构而导致大规模裁员之后——且至今仍与节俭政治相关联",
+              "说明": "While 引导让步状语从句，与主句构成对比。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "caused by downsizing in the late '80s",
+              "修饰对象": "redundancies",
+              "中文翻译": "由80年代末的精简机构所导致的",
+              "说明": "过去分词短语作后置定语，修饰 redundancies。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "is still linked to the politics of thrift",
+              "修饰对象": "started",
+              "中文翻译": "至今仍与节俭政治相关联",
+              "说明": "与 started as... 由 and 并列，共用从句主语 the trend。"
+            },
+            {
+              "成分类型": "插入语",
+              "原文": "at least among the middle-class downshifters of my acquaintance",
+              "修饰对象": "have",
+              "中文翻译": "至少在我所认识的中产阶级放慢节奏者中",
+              "说明": "介词短语作范围状语，插入在主句中。"
+            },
+            {
+              "成分类型": "非谓语作定语",
+              "原文": "for seeking to simplify our lives",
+              "修饰对象": "reasons",
+              "中文翻译": "想要简化生活的",
+              "说明": "for + 动名词短语作定语，修饰 reasons；其中 to simplify 为 seeking 的宾语。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2001-text5-s11",
+          "no": 11,
+          "en": "For the women of my generation who were urged to keep juggling through the '80s, downshifting in the mid-'90s is not so much a search for the mythical good life—growing your own organic vegetables, and risking turning into one—as a personal recognition of your limitations.",
+          "zh": "对于我这一代在整个80年代被敦促着不停连轴转的女性而言，90年代中期放慢生活节奏，与其说是去追寻那种神话般的美好生活——自己种有机蔬菜，甚至冒着把自己也变成一棵“蔬菜”的风险——不如说是对自身能力局限的一种个人化认识。",
+          "trunk": {
+            "主语": "downshifting in the mid-'90s",
+            "谓语": "is not so much ... as ...",
+            "宾语或表语": "a search for the mythical good life ... a personal recognition of your limitations",
+            "主干翻译": "在90年代中期放慢生活节奏，与其说是寻求那种神话般的美好生活，不如说是对自身局限的一种个人化的认识。"
+          },
+          "components": [
+            {
+              "成分类型": "定语从句",
+              "原文": "who were urged to keep juggling through the '80s",
+              "修饰对象": "women",
+              "中文翻译": "她们在整个80年代被敦促着不停地连轴转、应付种种事务",
+              "说明": "who引导定语从句，修饰先行词women，作主语。"
+            },
+            {
+              "成分类型": "非谓语作宾语补足语",
+              "原文": "to keep juggling through the '80s",
+              "修饰对象": "urged",
+              "中文翻译": "不停地连轴转、忙碌应付（直到整个80年代）",
+              "说明": "动词不定式作urge的宾语补足语（urge sb to do）。"
+            },
+            {
+              "成分类型": "非谓语作宾语补足语",
+              "原文": "juggling",
+              "修饰对象": "keep",
+              "中文翻译": "不停地忙于应付多项事务",
+              "说明": "现在分词作keep的宾语补足语（keep doing）。"
+            },
+            {
+              "成分类型": "同位语",
+              "原文": "growing your own organic vegetables, and risking turning into one",
+              "修饰对象": "life",
+              "中文翻译": "自己种植有机蔬菜，甚至冒着自己也变成有机蔬菜（般田园之人）的风险",
+              "说明": "破折号引出对the mythical good life的同位说明。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "risking turning into one",
+              "修饰对象": "growing",
+              "中文翻译": "冒着变成那样一种（人/物）的风险",
+              "说明": "由and连接的并列动名词短语，与growing并列。"
+            },
+            {
+              "成分类型": "非谓语作宾语",
+              "原文": "turning into one",
+              "修饰对象": "risking",
+              "中文翻译": "变成那样一种东西",
+              "说明": "动名词短语作risk的宾语。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2002,
+      "sentences": [
+        {
+          "id": "en1-2002-text5-s1",
+          "no": 1,
+          "en": "One difficulty is that almost all of what is called behavioral science continues to trace behavior to states of mind, feelings, traits of character, human nature, and so on. Physics and biology once followed similar practices and advanced only when they discarded them. （",
+          "zh": "难题之一在于所谓的行为科学几乎全都依然从心态、情感、性格特征、人性等方面去寻找行为的根源。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2002-text5-s2",
+          "no": 2,
+          "en": "The behavioral sciences have been slow to change partly because the explanatory items often seem to be directly observed and partly because other kinds of explanations have been hard to find. The environment is obviously important, but its role has remained obscure. It does not push or pull, it selects, and this function is difficult to discover and analyze.（",
+          "zh": "行为科学之所以发展缓慢，部分原因是用来解释行为的依据似乎往往是直接观察到的，部分原因是其他的解释方式一直难以找到。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2002-text5-s3",
+          "no": 3,
+          "en": "The role of natural selection in evolution was formulated only a little more than a hundred years ago, and the selective role of the environment in shaping and maintaining the behavior of the individual is only beginning to be recognized and studied. As the interaction between organism and environment has come to be understood, however, effects once assigned to states of mind, feelings, and traits are beginning to be traced to accessible conditions, and a technology of behavior may therefore become available. It will not solve our problems, however, until it replaces traditional prescientific views, and these are strongly entrenched. Freedom and dignity illustrate the difficulty. （",
+          "zh": "自然选择在进化中的作用仅在一百多年前才得以阐明，而环境在塑造和保持个体行为时的选择作用则刚刚开始被认识和研究。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2002-text5-s4",
+          "no": 4,
+          "en": "They are the possessions of the autonomous（self-governing）man of traditional theory, and they are essential to practices in which a person is held responsible for his conduct and given credit for his achievements. A scientific analysis shifts both the responsibility and the achievement to the environment. It also raises questions concerning “values”. Who will use a technology and to what ends? （",
+          "zh": "它们是传统理论定义的自主人拥有的，是要求一个人对自己的行为负责并因其业绩而给予肯定的必不可少的前提。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2002-text5-s5",
+          "no": 5,
+          "en": "Until these issues are resolved, a technology of behavior will continue to be rejected, and with it possibly the only way to solve our problems.",
+          "zh": "（如果）这些问题得不到解决，研究行为的技术手段就会继续受到排斥，解决问题的惟一方式可能也随之继续受到排斥。",
+          "trunk": null,
+          "components": []
+        }
+      ]
+    },
+    {
+      "year": 2003,
+      "sentences": [
+        {
+          "id": "en1-2003-text5-s1",
+          "no": 1,
+          "en": "Furthermore, humans have the ability to modify the environment in which they live, thus subjecting all other life forms to their own peculiar ideas and fancies. Therefore, it is important to study humans in all their richness and diversity in a calm and systematic manner, with the hope that the knowledge resulting from such studies can lead humans to a more harmonious way of living with themselves and with all other life forms on this planet Earth. “Anthropology” derives from the Greek words anthropos “human” and logos “the study of.” By its very name, anthropology encompasses the study of all humankind.",
+          "zh": "而且，人类还有能力改变自己的生存环境，从而让所有其他生命形态服从人类自己独特的想法和想象。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2003-text5-s2",
+          "no": 2,
+          "en": "Social science is that branch of intellectual enquiry which seeks to study humans and their endeavors in the same reasoned, orderly, systematic, and dispassioned manner that natural scientists use for the study of natural phenomena.",
+          "zh": "社会科学是知识探索的一个分支，它力图像自然科学家研究自然现象那样，用理性的、有序的、系统的和冷静的方式去研究人类及其行为。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2003-text5-s3",
+          "no": 3,
+          "en": "The emphasis on data gathered first-hand, combined with a cross-cultural perspective brought to the analysis of cultures past and present, makes this study a unique and distinctly important social science.",
+          "zh": "强调收集第一手资料，加上在分析过去和现在文化形态时采用跨文化视角，使得这一研究成为一门独特并且非常重要的社会科学。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2003-text5-s4",
+          "no": 4,
+          "en": "Tylor defined culture as “…that complex whole which includes belief, art, morals, law, custom, and any other capabilities and habits acquired by man as a member of society.” This insight, so profound in its simplicity, opened up an entirely new way of perceiving and understanding human life. Implicit within Tylor’s definition is the concept that culture is learned, shared, and patterned behavior.",
+          "zh": "泰勒把文化定义为“…一个复合整体，它包括人作为社会成员获得的信仰，艺术、道德、法律，风俗以及其他能力和习惯。”",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2003-text5-s5",
+          "no": 5,
+          "en": "Thus, the anthropological concept of “culture,” like the concept of “set” in mathematics, is an abstract concept which makes possible immense amounts of concrete research and understanding.",
+          "zh": "因此，人类学中的“文化”概念就像数学中“集”的概念一样，是一个抽象概念。它使大量的具体研究和认识成为可能。",
+          "trunk": null,
+          "components": []
+        }
+      ]
+    },
+    {
+      "year": 2004,
+      "sentences": [
+        {
+          "id": "en1-2004-text5-s1",
+          "no": 1,
+          "en": "The Greeks assumed that the structure of language had some connection with the process of thought, which took root in Europe long before people realized how diverse languages could be.",
+          "zh": "希腊人认为语言的结构和思维过程有某种联系，这种观点早在人们意识到语言的千差万别之前就已经在欧洲扎下了根。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2004-text5-s2",
+          "no": 2,
+          "en": "We are obliged to them because some of these languages have since vanished, as the peoples who spoke them died out or became assimilated and lost their native languages. Other linguists in the earlier part of this century, however, who were less eager to deal with bizarre data from “exotic” language, were not always so grateful. (",
+          "zh": "我们得感谢他们，因为在此之后，随着说这些语言的人消亡或者被同化而失去母语，这些语言中有一些就此消失了。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2004-text5-s3",
+          "no": 3,
+          "en": "The newly described languages were often so strikingly different from the well studied languages of Europe and Southeast Asia that some scholars even accused Boas and Sapir of fabricating their data. Native American languages are indeed different, so much so in fact that Navajo could be used by the US military as a code during World War II to send secret messages.",
+          "zh": "新近被描绘的语言与过去已经得到充分研究的欧洲及东南亚语言之间的区别如此显著，以至于一些学者甚至指责博厄斯和萨皮尔捏造数据。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2004-text5-s4",
+          "no": 4,
+          "en": "Being interested in the relationship of language and thought, Whorf developed the idea that the structure of language determines the structure of habitual thought in a society. He reasoned that because it is easier to formulate certain concepts and not others in a given language, the speakers of that language think along one track and not along another. (",
+          "zh": "沃尔夫对语言和思维的关系很感兴趣，结果他得出这样的观点：语言的结构决定一个社会习惯思维的结构。",
+          "trunk": null,
+          "components": []
+        },
+        {
+          "id": "en1-2004-text5-s5",
+          "no": 5,
+          "en": "Whorf came to believe in a sort of linguistic determinism which, in its strongest form, states that language imprisons the mind, and that the grammatical patterns in a language can produce far-reaching consequences for the culture of a society. Later, this idea became to be known as the Sapir-Whorf hypothesis, but this term is somewhat inappropriate. Although both Sapir and Whorf emphasized the diversity of languages, Sapir himself never explicitly supported the notion of linguistic determinism.",
+          "zh": "沃尔夫逐渐相信某种语言决定论，该理论最极端的形式声称，语言限制思想，并且，语言的语法结构可对一个社会的文化产生深远的影响。",
+          "trunk": null,
+          "components": []
+        }
+      ]
+    },
     {
       "year": 2005,
       "title": "",
@@ -4537,6 +5195,222 @@
           ]
         }
       ]
+    },
+    {
+      "year": 2026,
+      "sentences": [
+        {
+          "id": "en1-2026-text5-s1",
+          "no": 1,
+          "en": "Tracing the history of the term, we can see how the definition of scientific literacy has shifted over time, muddying the waters when it comes to determining the goals of science education.",
+          "zh": "追溯这一术语的历史，我们可以看到“科学素养”的定义随着时间推移不断变化，这也使得确定科学教育的目标变得棘手。",
+          "trunk": {
+            "主语": "we",
+            "谓语": "can see",
+            "宾语或表语": "how the definition of scientific literacy has shifted over time",
+            "主干翻译": "我们可以看到……"
+          },
+          "components": [
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "Tracing the history of the term",
+              "修饰对象": "can see",
+              "中文翻译": "追溯这一术语的历史",
+              "说明": "现在分词短语作方式/时间状语，逻辑主语是主句主语 we。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "how the definition of scientific literacy has shifted over time",
+              "修饰对象": "see",
+              "中文翻译": "“科学素养”的定义随着时间推移不断变化",
+              "说明": "how 引导宾语从句作 see 的宾语。"
+            },
+            {
+              "成分类型": "非谓语作状语",
+              "原文": "muddying the waters when it comes to determining the goals of science education",
+              "修饰对象": "has shifted",
+              "中文翻译": "这也使得确定科学教育的目标变得棘手",
+              "说明": "现在分词短语作结果状语，承接前面的「定义不断变化」；muddy the waters 是习语，意为「把事情搅浑、使复杂化」。"
+            },
+            {
+              "成分类型": "时间状语从句",
+              "原文": "when it comes to determining the goals of science education",
+              "修饰对象": "muddying",
+              "中文翻译": "当涉及确定科学教育的目标时",
+              "说明": "when it comes to 为固定搭配，to 是介词，后接动名词。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2026-text5-s2",
+          "no": 2,
+          "en": "A return to that version of scientific literacy, which focused more on teaching what science is and how it works and less on memorizing scientific facts, seems like something society today desperately needs.",
+          "zh": "回归那种早期版本的科学素养观——更侧重于教授“科学是什么”以及“科学如何运作”，而非死记硬背科学事实——似乎是当今社会迫切需要的。",
+          "trunk": {
+            "主语": "A return to that version of scientific literacy",
+            "谓语": "seems like",
+            "宾语或表语": "something society today desperately needs",
+            "主干翻译": "回归那种科学素养观，似乎正是当今社会迫切需要的"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "to that version of scientific literacy",
+              "修饰对象": "A return",
+              "中文翻译": "对那种科学素养观的",
+              "说明": "of/to 短语后置修饰抽象名词 return。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "which focused more on teaching what science is and how it works and less on memorizing scientific facts",
+              "修饰对象": "that version of scientific literacy",
+              "中文翻译": "更侧重于教授“科学是什么”以及“科学如何运作”，而非死记硬背科学事实",
+              "说明": "which 引导非限制性定语从句，与主语隔开较远，翻译时宜用破折号插入。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and less on memorizing scientific facts",
+              "修饰对象": "focused",
+              "中文翻译": "更侧重于……而非……",
+              "说明": "focus more on A and less on B 的并列比较结构。"
+            },
+            {
+              "成分类型": "宾语从句",
+              "原文": "what science is and how it works",
+              "修饰对象": "teaching",
+              "中文翻译": "“科学是什么”以及“科学如何运作”",
+              "说明": "两个并列的宾语从句作 teaching 的宾语。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "society today desperately needs",
+              "修饰对象": "something",
+              "中文翻译": "当今社会迫切需要的",
+              "说明": "省略关系代词的定语从句修饰 something。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2026-text5-s3",
+          "no": 3,
+          "en": "Educators advanced the idea of having students complete detailed laboratory exercises in high schools in the belief that such work was beneficial primarily as a way to enhance logical reasoning and observational skills.",
+          "zh": "教育工作者曾提倡让学生在高中完成详尽的实验练习，因为他们相信，这类活动主要益于培养逻辑推理能力和观察能力。",
+          "trunk": {
+            "主语": "Educators",
+            "谓语": "advanced",
+            "宾语或表语": "the idea",
+            "主干翻译": "教育工作者曾提倡这样一种想法……"
+          },
+          "components": [
+            {
+              "成分类型": "同位语",
+              "原文": "of having students complete detailed laboratory exercises in high schools",
+              "修饰对象": "the idea",
+              "中文翻译": "让学生在高中完成详尽的实验练习",
+              "说明": "of + 动名词复合结构作 idea 的同位语，说明这一想法的内容；have sb. do sth. 意为「让某人做某事」。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "in the belief that such work was beneficial",
+              "修饰对象": "advanced",
+              "中文翻译": "因为他们相信这类活动是有益的",
+              "说明": "in the belief that… 意为「相信……」，可译成原因。"
+            },
+            {
+              "成分类型": "同位语从句",
+              "原文": "that such work was beneficial primarily as a way to enhance logical reasoning and observational skills",
+              "修饰对象": "the belief",
+              "中文翻译": "这类活动主要益于培养逻辑推理能力和观察能力",
+              "说明": "that 引导同位语从句，说明 belief 的具体内容。"
+            },
+            {
+              "成分类型": "目的状语(不定式)",
+              "原文": "to enhance logical reasoning and observational skills",
+              "修饰对象": "a way",
+              "中文翻译": "用来培养逻辑推理能力和观察能力",
+              "说明": "不定式作 way 的后置定语兼目的。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2026-text5-s4",
+          "no": 4,
+          "en": "It wasn’t until the phrase “scientific literacy” came along in the 1940s that science had the formidable slogan it needed to command public attention and make improving science education an important national goal.",
+          "zh": "直到20世纪40年代“科学素养”（scientific literacy）这一短语出现，科学才拥有了一个强有力的口号，足以吸引公众关注，并使提升科学教育成为一项重要的国家目标。",
+          "trunk": {
+            "主语": "science",
+            "谓语": "had",
+            "宾语或表语": "the formidable slogan",
+            "主干翻译": "科学才拥有了那个强有力的口号"
+          },
+          "components": [
+            {
+              "成分类型": "特殊结构",
+              "原文": "It wasn’t until the phrase “scientific literacy” came along in the 1940s that",
+              "修饰对象": "—",
+              "中文翻译": "直到……科学才拥有了强有力的口号",
+              "说明": "It is not until A that B 的强调句型，强调时间状语；译成「直到……才……」。"
+            },
+            {
+              "成分类型": "时间状语从句",
+              "原文": "until the phrase “scientific literacy” came along in the 1940s",
+              "修饰对象": "—",
+              "中文翻译": "直到20世纪40年代“科学素养”这一短语出现",
+              "说明": "被强调的部分是 until 引导的时间状语从句；come along 意为「出现、问世」。"
+            },
+            {
+              "成分类型": "定语从句",
+              "原文": "it needed to command public attention and make improving science education an important national goal",
+              "修饰对象": "the formidable slogan",
+              "中文翻译": "足以吸引公众关注并使提升科学教育成为一项重要国家目标的",
+              "说明": "省略关系代词的定语从句修饰 slogan；it 指代 science。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "and make improving science education an important national goal",
+              "修饰对象": "command",
+              "中文翻译": "并使提升科学教育成为一项重要的国家目标",
+              "说明": "and 连接 command 与 make 两个并列不定式；make + 宾语 + 宾补，宾语是动名词短语 improving…。"
+            }
+          ]
+        },
+        {
+          "id": "en1-2026-text5-s5",
+          "no": 5,
+          "en": "The intense focus on scientific literacy in the United States originally grew out of the critical role of science and technology during World War II, as well as the perceived deficiencies of American soldiers.",
+          "zh": "美国对科学素养的强烈关注，最初源于第二次世界大战期间科学技术所发挥的关键作用，以及当时人们所感知到的美国士兵在科学素养方面的不足。",
+          "trunk": {
+            "主语": "The intense focus on scientific literacy",
+            "谓语": "grew out of",
+            "宾语或表语": "the critical role of science and technology",
+            "主干翻译": "对科学素养的强烈关注源于科技所起的关键作用"
+          },
+          "components": [
+            {
+              "成分类型": "介词短语作定语",
+              "原文": "on scientific literacy in the United States",
+              "修饰对象": "The intense focus",
+              "中文翻译": "美国对科学素养的",
+              "说明": "两个介词短语层层后置修饰 focus。"
+            },
+            {
+              "成分类型": "介词短语作状语",
+              "原文": "during World War II",
+              "修饰对象": "the critical role",
+              "中文翻译": "第二次世界大战期间",
+              "说明": "时间状语，限定 role 发挥作用的时期。"
+            },
+            {
+              "成分类型": "并列结构",
+              "原文": "as well as the perceived deficiencies of American soldiers",
+              "修饰对象": "the critical role",
+              "中文翻译": "以及当时人们所感知到的美国士兵（在科学素养方面）的不足",
+              "说明": "as well as 连接 grew out of 的两个并列宾语；perceived 是过去分词作定语，意为「被认为的、人们所感知到的」，不是「察觉」。"
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "sourceNote": "2001-2004 & 2026 由 yanbrick.com 补抓；2005-2025 保留原人工整理"
 }
