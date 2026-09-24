@@ -64,7 +64,8 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2013-3': 2,
   '2013-4': 3,
   '2014-1': 4,
-  '2014-2': 3
+  '2014-2': 3,
+  '2014-3': 3
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -202,7 +203,12 @@ const SEEDED_NOTES: Record<string, string> = {
     '3/5《美国法律行业改革困境》。两错:Q2、Q4。' +
     'Q2(细节)选C正B:纠结B(本科高学费)和C(律师学会准入),觉得C超出“教育”范围——分析对了,但正解是B“Pursuing a bachelor\'s degree in another major”=“在别的专业读本科”才是“加到法律教育成本”的元凶(法学院只收已有本科学位的人,多3-4年非法律本科=成本大头)。【记忆钩】“adds to the costs of LEGAL education”——“法律教育的成本”不是“学费贵”,而是“读法律之前必须先读一个别的本科学位”这个制度性多余成本。' +
     'Q4(细节)选A正D:自述“没看到中间的 not 转折,看到前半段 non-lawyers 以为“不是所有律师”,实际是“非律师人员”。【non-lawyers】=非律师人员(=outsiders),不是“不是所有律师”。前缀 non-=“非、不”+名词=“该名词以外的人/物”。同族:non-professional 非专业人士/non-smoker 不吸烟者。铁律:non+名词=“不是该名词的人”,不是“不是所有该名词”。正确选项 D bans outsiders\' involvement = 禁止非律师人员(=outsiders)入股。' +
-    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 DBCDC。'
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 DBCDC。',
+  '2014-3':
+    '3/5《新科学奖项 vs 诺贝尔》(Fundamental Physics Prize)。两错:Q1、Q3。' +
+    'Q1(细节)选A正C:“做快了看错了”——纯失误,非能力问题。正解 C a handsome reward for researchers=“对研究者的丰厚奖励”。' +
+    'Q3(细节)选C正A:自述“demonstrate以为是证明,其实是展示,直接导致理解错”。正解 A the joint effort of modern researchers=现代研究者的共同努力(粦子玻色子发现=CERN全球协作的典型案例)。【demonstrate两张脸】核心意象=“用手势展示出来”→①展示、表明(demonstration=展示,非“证明”)→②证明、论证(数学语境)。本文语境=“研究发现的展示/演示”≠“证明了某个结论”。铁律:考研阅读中 demonstrate 80%用“展示、表明”义,不是“严格证明”。' +
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 CBADB。'
 }
 
 function keyOf(year: number, text: number) {
