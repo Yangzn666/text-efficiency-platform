@@ -66,7 +66,9 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2014-1': 4,
   '2014-2': 3,
   '2014-3': 3,
-  '2014-4': 5
+  '2014-4': 5,
+  '2015-1': 1,
+  '2015-2': 4
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -209,7 +211,18 @@ const SEEDED_NOTES: Record<string, string> = {
     '3/5《新科学奖项 vs 诺贝尔》(Fundamental Physics Prize)。两错:Q1、Q3。' +
     'Q1(细节)选A正C:“做快了看错了”——纯失误,非能力问题。正解 C a handsome reward for researchers=“对研究者的丰厚奖励”。' +
     'Q3(细节)选C正A:自述“demonstrate以为是证明,其实是展示,直接导致理解错”。正解 A the joint effort of modern researchers=现代研究者的共同努力(粦子玻色子发现=CERN全球协作的典型案例)。【demonstrate两张脸】核心意象=“用手势展示出来”→①展示、表明(demonstration=展示,非“证明”)→②证明、论证(数学语境)。本文语境=“研究发现的展示/演示”≠“证明了某个结论”。铁律:考研阅读中 demonstrate 80%用“展示、表明”义,不是“严格证明”。' +
-    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 CBADB。'
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 CBADB。',
+  '2015-1':
+    '1/5《欧洲君主制存废之辨》(King Juan Carlos / Monarchy)。疲劳状态下做,主旨完全没读懂。仅Q1(D)对。' +
+    'Q2(细节)选B正A:掉入“无中生有”陷阱。' +
+    'Q3(细节)选A正B:定位句找到了但读错了。' +
+    'Q4(态度)选C正D:瞎猜。' +
+    'Q5(主旨)选D正C:没读懂主旨。' +
+    '本篇病灶=疲劳导致主旨脱轨,非能力问题。建议状态好时带“欧洲君主制为什么还存在+查尔斯让王室面临什么威胁”这个锚重读。',
+  '2015-2':
+    '4/5《手机搜查与第四修正案》(Riley v. California /手机隐私)。仅Q1错。' +
+    'Q1(细节)选A正B:A“search for suspects mobile phones without a warrant”是无中生有(原文讨论的是“检查手机内容”而非“搜查手机本身”)。B“check suspects phone contents without being authorized”=未经授权的检查手机内容,才是最高法院要裁定是否合法的事。' +
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 BCADB。'
 }
 
 function keyOf(year: number, text: number) {
