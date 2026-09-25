@@ -69,7 +69,8 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2014-4': 5,
   '2015-1': 1,
   '2015-2': 4,
-  '2015-3': 3
+  '2015-3': 3,
+  '2015-4': 3
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -223,7 +224,17 @@ const SEEDED_NOTES: Record<string, string> = {
   '2015-2':
     '4/5《手机搜查与第四修正案》(Riley v. California /手机隐私)。仅Q1错。' +
     'Q1(细节)选A正B:A“search for suspects mobile phones without a warrant”是无中生有(原文讨论的是“检查手机内容”而非“搜查手机本身”)。B“check suspects phone contents without being authorized”=未经授权的检查手机内容,才是最高法院要裁定是否合法的事。' +
-    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 BCADB。'
+    '【数据修正说明】本篇站内旧选项顺序与官方/纸质卷不一致,已将 index.json 选项重排为官方顺序、correctAnswer 更新为 BCADB。',
+  '2015-3':
+    '3/5《Science杂志统计审查》(SBoRE)。两错:Q2、Q5。' +
+    'Q2(词义)选B正C:“flagged up”=marked(标记),不是revised(修改)。做快了想当然。' +
+    'Q5(主旨)选D正A:screen误当“屏幕”,实为动词“筛查”。【screen核心意象】=过筛子→筛查、审查。铁律:考研中screen 90%是动词“审查/筛查”。' +
+    '【数据修正说明】本篇Q2选项B/C对调,已将index.json重排为官方顺序、correctAnswer更新为BCDCA。',
+  '2015-4':
+    '3/5《新闻集团电话窃听案》(News International / phone hacking)。两错:Q1、Q3。' +
+    'Q1(细节)选C正A:Elisabeth(英国女王)对“current sorting mechanism”的后果感到不安。' +
+    'Q3(细节)选D正C:Rebekah Brooks的辩护“was hardly convincing”(几乎没有说服力),不是“part of a conspiracy”。' +
+    '【数据修正说明】本篇Q2选项B/D对调、Q5选项B/C对调,已将index.json重排为官方顺序、correctAnswer更新为ADCAB。'
 }
 
 function keyOf(year: number, text: number) {
