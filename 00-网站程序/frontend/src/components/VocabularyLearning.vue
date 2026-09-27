@@ -2070,11 +2070,49 @@ function saveNote() {
   noteDialogVisible.value = false
 }
 
-// 加载笔记
+// 加载笔记（含真题混淆词/生词种子：只注入一次，删除后不复活）
+const SEED_NOTE_IDS_KEY = 'english-vocabulary-notes-seeded'
+const vocabSeedNotes = [
+  { id: 9001, type: 'phrase', content: 'turn out 结果是、原来是 —— 2014完型Q6不认识的词组。记忆：out=显现出来 → 事情“显露出结果”。例：It turned out that he was right. 结果他是对的。', tags: ['真题完型', '2014'] },
+  { id: 9002, type: 'phrase', content: 'excel in 在…方面出色 —— 2014完型Q10不认识。记忆：Excel表格的excel=超过 → excel in=在某方面超越他人→出色。例：She excels in mathematics.', tags: ['真题完型', '2014'] },
+  { id: 9003, type: 'word', content: 'sharpness 敏锐度（不是锋利度！）—— 2014完型Q14。形容人思维时 sharp=敏锐：a sharp mind 敏锐的头脑；sharp eyes 毒辣的眼力。', tags: ['熟词僻义', '2014完型'] },
+  { id: 9004, type: 'phrase', content: 'feedback on sth 对…的反馈 —— 2014完型Q17固定搭配，用 on 不用 to/with。例：Students receive feedback on their essays.', tags: ['真题完型', '2014'] },
+  { id: 9005, type: 'phrase', content: 'build on 建立在…之上（以…为基础继续发展）—— 2014完型Q19。例：build on previous research 在已有研究基础上推进。', tags: ['真题完型', '2014'] },
+  { id: 9006, type: 'confusable', content: 'non-lawyers = 非律师人员（≠不是所有律师！）—— 2014T2Q4错因。铁律：non+名词=“该名词以外的人/物”。同族：non-smoker不吸烟者 / non-professional非专业人士。', tags: ['前缀陷阱', '2014阅读'] },
+  { id: 9007, type: 'word', content: 'demonstrate 两张脸：①展示、表明（考研80%是这个意思！）②证明（数学语境）—— 2014T3Q3错因。核心意象=用手势展示出来。', tags: ['熟词僻义', '2014阅读'] },
+  { id: 9008, type: 'phrase', content: 'conducted on subjects 在受试者上进行 —— 2015完型Q3错选by。铁律：on=靶子（研究在谁身上做），by=枪手（谁来做研究）。', tags: ['真题完型', '2015'] },
+  { id: 9009, type: 'confusable', content: 'sample 样本 ≠ simple 简单 —— 2015完型Q5看混。视觉钩：sample 藏 am → “I AM in the sample 我在样本里”；simple 藏 i → “就 i 一件事→简单”。科研分组用 sample 不用 example。', tags: ['形近词', '2015完型'] },
+  { id: 9010, type: 'phrase', content: 'there is more to it 事情没那么简单 —— 2015完型Q11错选about。记忆：to 指向盒子内部（打开还有更多），不是 about（关于）。同类：There is more to him than you think.', tags: ['真题完型', '2015'] },
+  { id: 9011, type: 'word', content: 'contributory 促成的 —— 2015完型Q17。a major contributory factor 主要促成因素。串记：contribute to 促成 → contributory。', tags: ['真题完型', '2015'] },
+  { id: 9012, type: 'word', content: 'see 第三张脸：see that... = 确保（=make sure）—— 2015完型Q20错选prove。例：Care was taken to see that... 注意确保…。口语版：see to it that。', tags: ['熟词僻义', '2015完型'] },
+  { id: 9013, type: 'phrase', content: 'flag up 标记、引起注意（=mark，不是 revise 修改！）—— 2015T3Q2。记忆：地图上插小红旗 flag=标记。被 flagged up 的论文只是被“标红”，还没改。', tags: ['真题阅读', '2015'] },
+  { id: 9014, type: 'word', content: 'screen 动词=筛查、审查（不是屏幕！）—— 2015T3Q5错因。核心意象=过筛子：屏幕(过滤光)/纱窗(过滤虫)/筛查(过滤错误)。铁律：考研中 screen 90%是动词“审查”：screen job applicants 审查求职者。', tags: ['熟词僻义', '2015阅读'] },
+  { id: 9015, type: 'word', content: 'unsettling 令人不安的 —— 2015T4Q1不认识。串记：settle安定→settling令人安定的→un-settling令人不安的。核心意象：尘埃落不下去=心里悬着。', tags: ['真题阅读', '2015'] },
+  { id: 9016, type: 'confusable', content: 'integrity 正直、诚信 ≠ integrate整合/integer整数 —— 2015T4Q1看成“综合”。核心意象：integer=不可分割的整体 → integrity=人格不可分裂=表里如一=正直。道德语境=正直，技术语境=完整性。', tags: ['形近词', '2015阅读'] },
+  { id: 9017, type: 'word', content: 'defence 辩护（法律语境）/防御 —— 2015T4Q3不认识。核心意象：fence篱笆→立篱笆挡指控=辩护。同族：defend辩护/defendant被告/the defence辩方/prosecution控方。', tags: ['熟词僻义', '2015阅读'] },
+  { id: 9018, type: 'word', content: 'hardly 几乎不（不是“硬”！）—— 2015T4Q3。hardly convincing 几乎没有说服力。同类否定副词：scarcely/barely 几乎不。', tags: ['真题阅读', '2015'] },
+  { id: 9019, type: 'word', content: 'warrant 搜查令、授权令 —— 2015T2Q1。without a warrant 无证搜查。区分：warranty (商品)保修证。', tags: ['真题阅读', '2015'] },
+  { id: 9020, type: 'phrase', content: 'in theory 理论上（暗含现实未必如此）—— 2016完型Q4不认识。记忆钩：theory理论=画饼，反义 in practice=吃饼（实际上）。看到 in theory 就要预判下文有 but 转折到现实。', tags: ['逻辑信号', '2016完型'] },
+  { id: 9021, type: 'confusable', content: 'Formerly/Used to… but… = 今昔对比 —— 2016完型Q7错因。铁律：前句讲“过去怎样”，but 不是转折而是“对比”引出“现在相反”。例：Formerly arranged by parents, but now people choose freely.', tags: ['逻辑关系', '2016完型'] },
+  { id: 9022, type: 'sentence', content: 'until + can = 直到…能…为止 —— 2016完型Q13纠结。记忆钩：until 标终点，can 是“条件具备的那一刻”，不是“动作已完成”。例：Wait here until you can walk again. 一直等到你能走。', tags: ['until', '2016完型'] },
+  { id: 9023, type: 'phrase', content: 'pass around 传递（=pass from person to person）—— 2016完型Q10。记忆钩：around=转圈，东西在人群中转着传。例：pass around the certificate 传递证书。', tags: ['动词搭配', '2016完型'] },
+  { id: 9024, type: 'phrase', content: 'view sb/sth with + 态度词 = 以…眼光看待 —— 2016完型Q15。记忆钩：view=看，with=带着某种眼神。with suspicion 怀疑地看 / with approval 赞许地看。', tags: ['动词搭配', '2016完型'] },
+  { id: 9025, type: 'word', content: 'obtain ≠ 泛泛“得到” —— 2016完型Q14。考研语境=达成、办到、获得（目标/许可/资格），偏正式书面。记忆钩：obtain≈gain/achieve，比 get 正式。', tags: ['词义精度', '2016完型'] },
+  { id: 9026, type: 'phrase', content: 'show up = 出现、显露（≈appear），不是“展示” —— 2016完型Q19。记忆钩：show(现)+up(冒出来)=冒出来→露面。例：Problems began to show up 问题开始显现。', tags: ['动词搭配', '2016完型'] },
+  { id: 9027, type: 'confusable', content: 'whatever vs however —— 2016完型Q16错因。铁律：看空格后跟什么判词性：whatever=限定词/代词（修饰名词或作主宾，=任何…的东西）；however=副词（修饰形容词/副词，=no matter how）。', tags: ['词性', '2016完型'] },
+  { id: 9028, type: 'word', content: 'union 在婚姻语境 = 联姻、结合（=marriage）—— 2016完型Q11。记忆钩：union=合为一体，夫妻结合即婚姻。别只记“联盟/工会”。', tags: ['熟词僻义', '2016完型'] },
+  { id: 9029, type: 'confusable', content: 'while 三张脸：①对比(=whereas)②尽管(=although)③当…时候 —— 2016完型Q20。铁律：考研完型高频考①②（尤其句首 while=尽管），别只记③。记忆钩：while=两件事并排站→对比/让步。', tags: ['逻辑关系', '2016完型'] }
+]
+
 onMounted(() => {
   const saved = localStorage.getItem('english-vocabulary-notes')
-  if (saved) {
-    notes.value = JSON.parse(saved)
+  notes.value = saved ? JSON.parse(saved) : []
+  const applied: number[] = JSON.parse(localStorage.getItem(SEED_NOTE_IDS_KEY) || '[]')
+  const missing = vocabSeedNotes.filter(s => !applied.includes(s.id))
+  if (missing.length > 0) {
+    notes.value.unshift(...missing.map(s => ({ ...s, date: new Date().toLocaleDateString('zh-CN') })))
+    localStorage.setItem('english-vocabulary-notes', JSON.stringify(notes.value))
+    localStorage.setItem(SEED_NOTE_IDS_KEY, JSON.stringify([...applied, ...missing.map(s => s.id)]))
   }
 })
 </script>
