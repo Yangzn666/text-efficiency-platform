@@ -18,7 +18,8 @@ const PRIVATE = [
   'init-math-chapters.html',
   'english-resources',
   'data/english/intensive-reading-analysis.json',
-  'data/english/translation-exams.json'
+  'data/english/translation-exams.json',
+  'data/english/translation-progress.json'
 ]
 
 let removed = 0

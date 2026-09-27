@@ -14,9 +14,16 @@ interface Sentence { id: string; no: number; en: string; zh: string; trunk: Trun
 interface YearData { year: number; title: string; sentences: Sentence[] }
 type Level = 'mastered' | 'fuzzy' | 'weak'
 interface EvalRecord { level: Level; myTranslation: string; at: string }
+// 磁盘/镜像同形记录：public/data/english/translation-progress.json 的 records 值结构
+interface DiskRec { level: Level; date: string; attempts: number }
 
+const BASE = import.meta.env.BASE_URL || '/'
 const EVAL_KEY = 'translation-exam-eval-v1'
 const MISTAKE_KEY = 'translation-mistakes-v1'
+// 跨设备同步镜像：与磁盘 records 完全同形（level/date/attempts），evaluate() 时顺手写入。
+// 同步流程（由助手手动执行）：读 localStorage[SYNC_KEY] → records = {...磁盘.records, ...镜像}
+// → 更新 updatedAt → 写回 translation-progress.json → build → push。merge 规则纯字典覆盖，可预测。
+const SYNC_KEY = 'translation-progress-sync-v1'
 const LIMIT_MINUTES = 25
 
 // ══════════ 数据加载 ══════════
@@ -33,10 +40,32 @@ const loadEval = () => {
 }
 const saveEval = () => localStorage.setItem(EVAL_KEY, JSON.stringify(evalStore.value))
 
+// 磁盘基线（跨设备真相源）+ 本机同步镜像；显示优先级：本机 EVAL > 本机镜像 > 磁盘
+const diskRecords = ref<Record<string, DiskRec>>({})
+const syncRecords = ref<Record<string, DiskRec>>({})
+const diskUpdatedAt = ref('')
+const loadSync = () => {
+  try {
+    const raw = localStorage.getItem(SYNC_KEY)
+    if (raw) syncRecords.value = JSON.parse(raw) || {}
+  } catch { syncRecords.value = {} }
+}
+const saveSync = () => {
+  try { localStorage.setItem(SYNC_KEY, JSON.stringify(syncRecords.value)) } catch { /* 存储失败不阻塞流程 */ }
+}
+const todayStr = () => {
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+const levelOf = (id: string): Level | '' =>
+  evalStore.value[id]?.level || syncRecords.value[id]?.level || diskRecords.value[id]?.level || ''
+const recOf = (id: string): DiskRec | undefined => syncRecords.value[id] || diskRecords.value[id]
+
 onMounted(async () => {
   loadEval()
+  loadSync()
   try {
-    const res = await fetch('/data/english/translation-exams.json')
+    const res = await fetch(`${BASE}data/english/translation-exams.json`)
     const data = await res.json()
     yearList.value = (data.years as YearData[]).sort((a, b) => b.year - a.year)
     loaded.value = true
@@ -44,10 +73,18 @@ onMounted(async () => {
   } catch {
     ElMessage.error('真题数据加载失败，请刷新重试')
   }
+  // 磁盘基线可选加载：失败/不存在时静默退化为纯本机模式，不阻塞做题流程
+  try {
+    const pr = await fetch(`${BASE}data/english/translation-progress.json?t=${Date.now()}`)
+    if (pr.ok) {
+      const pf = await pr.json()
+      if (pf && pf.records) diskRecords.value = pf.records
+      if (pf && pf.updatedAt) diskUpdatedAt.value = pf.updatedAt
+    }
+  } catch { /* 离线或无基线文件 */ }
 })
 
 const currentYear = computed(() => yearList.value.find(y => y.year === activeYear.value) || null)
-const yearProgress = (yd: YearData) => yd.sentences.filter(s => evalStore.value[s.id]).length
 
 // ══════════ 限时模式 ══════════
 const limitEnabled = ref(false)
@@ -112,7 +149,6 @@ const setMyTranslation = (id: string, text: string) => {
   evalStore.value[id] = rec
   saveEval()
 }
-const getLevel = (id: string): Level | '' => evalStore.value[id]?.level || ''
 
 const addMistake = (year: number, s: Sentence, myTranslation: string, level: Level) => {
   try {
@@ -150,6 +186,14 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
     at: new Date().toLocaleString('zh-CN', { hour12: false })
   }
   saveEval()
+  // 写同步镜像（与磁盘 records 同形）：attempts 以磁盘基线为种子，档位变化才 +1
+  const prev = syncRecords.value[s.id] || diskRecords.value[s.id]
+  syncRecords.value[s.id] = {
+    level,
+    date: todayStr(),
+    attempts: (prev?.attempts || 0) + (prev && prev.level === level ? 0 : 1)
+  }
+  saveSync()
   if (level === 'weak') {
     addMistake(year, s, myTranslation, level)
     ElMessage.warning('已标记未掌握，自动收入翻译错题本')
@@ -161,6 +205,46 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
     ElMessage.success('已标记掌握 ✓')
   }
 }
+
+// ══════════ 进度面板：全局统计 + 年份格子 + 状态筛选 ══════════
+const stats = computed(() => {
+  let mastered = 0, fuzzy = 0, weak = 0
+  for (const yd of yearList.value) {
+    for (const s of yd.sentences) {
+      const lv = levelOf(s.id)
+      if (lv === 'mastered') mastered++
+      else if (lv === 'fuzzy') fuzzy++
+      else if (lv === 'weak') weak++
+    }
+  }
+  const total = yearList.value.reduce((n, yd) => n + yd.sentences.length, 0)
+  const doneN = mastered + fuzzy + weak
+  return {
+    total, doneN, mastered, fuzzy, weak,
+    undone: total - doneN,
+    review: fuzzy + weak,
+    pct: total ? Math.round((doneN / total) * 100) : 0
+  }
+})
+const yearGrid = computed(() => yearList.value.map(yd => {
+  const cells = yd.sentences.map(s => levelOf(s.id))
+  return { year: yd.year, cells, doneN: cells.filter(Boolean).length }
+}))
+
+type StateFilter = 'all' | 'todo' | 'review'
+const stateFilter = ref<StateFilter>('all')
+const visibleSentences = computed<Sentence[]>(() => {
+  const yd = currentYear.value
+  if (!yd) return []
+  if (stateFilter.value === 'todo') return yd.sentences.filter(s => !levelOf(s.id))
+  if (stateFilter.value === 'review') return yd.sentences.filter(s => { const lv = levelOf(s.id); return lv === 'fuzzy' || lv === 'weak' })
+  return yd.sentences
+})
+const headerSub = computed(() =>
+  loaded.value
+    ? `2001–2026 全 ${stats.value.total} 句 · 参考译文与结构拆解 · 数据源：研砖`
+    : '2001–2026 · 参考译文与结构拆解 · 数据源：研砖'
+)
 </script>
 
 <template>
@@ -171,29 +255,55 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
         返回翻译主页
       </el-button>
       <h2>📝 英一翻译真题实战</h2>
-      <p>2005-2025 · 每年5句 · 参考译文与结构拆解 · 数据源：研砖</p>
+      <p>{{ headerSub }}</p>
     </div>
 
     <div v-if="!loaded" class="te-loading">真题数据加载中…</div>
 
     <template v-else>
-      <!-- 年份选择 -->
-      <div class="te-year-bar">
-        <button
-          v-for="yd in yearList"
-          :key="yd.year"
-          class="te-year"
-          :class="{ active: yd.year === activeYear }"
-          @click="switchYear(yd.year)"
-        >
-          {{ yd.year }}
-          <em>{{ yearProgress(yd) }}/5</em>
-        </button>
+      <!-- 进度面板 -->
+      <div class="tp-panel">
+        <div class="tp-top">
+          <div class="tp-num"><b>{{ stats.doneN }}</b> / {{ stats.total }} 句已刷</div>
+          <div class="tp-bar"><span :style="{ width: stats.pct + '%' }"></span></div>
+          <div class="tp-tiers">
+            <span class="tier ok">✅ {{ stats.mastered }}</span>
+            <span class="tier mid">🌗 {{ stats.fuzzy }}</span>
+            <span class="tier bad">❌ {{ stats.weak }}</span>
+            <span class="tier none">⬜ 未刷 {{ stats.undone }}</span>
+            <span class="tp-pct">{{ stats.pct }}%</span>
+          </div>
+        </div>
+
+        <div class="tp-filters">
+          <button class="tp-chip" :class="{ on: stateFilter === 'all' }" @click="stateFilter = 'all'">全部</button>
+          <button class="tp-chip" :class="{ on: stateFilter === 'todo' }" @click="stateFilter = 'todo'">未刷</button>
+          <button class="tp-chip" :class="{ on: stateFilter === 'review' }" @click="stateFilter = 'review'">待复习 {{ stats.review }}</button>
+        </div>
+
+        <div class="tp-grid">
+          <button
+            v-for="g in yearGrid"
+            :key="g.year"
+            class="tp-cell"
+            :class="{ active: g.year === activeYear }"
+            :title="`${g.year} 年 ${g.doneN}/${g.cells.length}`"
+            @click="switchYear(g.year)"
+          >
+            <span class="tp-ycap">{{ g.year }}<em>{{ g.doneN }}/{{ g.cells.length }}</em></span>
+            <span class="tp-dots"><i v-for="(lv, i) in g.cells" :key="i" :class="lv || 'none'"></i></span>
+          </button>
+        </div>
+
+        <p class="tp-sync-note">
+          <template v-if="diskUpdatedAt">🌐 跨设备基线更新于 {{ diskUpdatedAt }} · 本机标记优先显示 · 对助手说「同步翻译进度」可把本机记录合并到所有设备</template>
+          <template v-else>💻 当前仅本机记录 · 对助手说「同步翻译进度」即可跨设备保留</template>
+        </p>
       </div>
 
       <!-- 工具条 -->
       <div class="te-toolbar" v-if="currentYear">
-        <span class="te-toolbar-title">{{ currentYear.year }} 年 Part C 翻译（英译汉 · 共5句 · 满分10分）</span>
+        <span class="te-toolbar-title">{{ currentYear.year }} 年 Part C 翻译（英译汉 · 共{{ currentYear.sentences.length }}句 · 满分10分）</span>
         <div class="te-limit" :class="{ overtime: limitEnabled && isOvertime }">
           <label class="te-limit-switch">
             <input type="checkbox" :checked="limitEnabled" @change="toggleLimit">
@@ -207,19 +317,24 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
         </div>
       </div>
 
-      <!-- 句子卡片 -->
-      <div v-if="currentYear" class="te-list">
+      <!-- 句子卡片（随面板筛选器过滤） -->
+      <div v-if="currentYear && !visibleSentences.length" class="tp-empty">
+        {{ stateFilter === 'todo' ? '这一年已经全部刷完 🎉' : '这一年没有需要复习的句子，状态不错！' }}
+        <button class="te-toggle" @click="stateFilter = 'all'">看全部</button>
+      </div>
+      <div v-else-if="currentYear" class="te-list">
         <section
-          v-for="s in currentYear.sentences"
+          v-for="s in visibleSentences"
           :key="s.id"
           class="te-card"
-          :class="{ done: getLevel(s.id) === 'mastered', fuzzy: getLevel(s.id) === 'fuzzy', weak: getLevel(s.id) === 'weak' }"
+          :class="{ done: levelOf(s.id) === 'mastered', fuzzy: levelOf(s.id) === 'fuzzy', weak: levelOf(s.id) === 'weak' }"
         >
           <div class="te-card-head">
             <span class="te-no">{{ s.no }}</span>
             <span class="te-state">
-              {{ getLevel(s.id) === 'mastered' ? '✅ 已掌握' : getLevel(s.id) === 'fuzzy' ? '🌗 模糊' : getLevel(s.id) === 'weak' ? '❌ 未掌握' : '⬜ 待作答' }}
+              {{ levelOf(s.id) === 'mastered' ? '✅ 已掌握' : levelOf(s.id) === 'fuzzy' ? '🌗 模糊' : levelOf(s.id) === 'weak' ? '❌ 未掌握' : '⬜ 待作答' }}
             </span>
+            <span v-if="recOf(s.id) && recOf(s.id)!.attempts > 1" class="te-attempts">第 {{ recOf(s.id)!.attempts }} 次 · {{ recOf(s.id)!.date }}</span>
           </div>
           <p class="te-en">{{ s.en }}</p>
           <textarea
@@ -263,9 +378,9 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
 
             <div class="te-eval">
               <span>自评本句：</span>
-              <button class="eval-btn good" :class="{ picked: getLevel(s.id) === 'mastered' }" @click="evaluate(currentYear!.year, s, 'mastered')">✅ 掌握</button>
-              <button class="eval-btn mid" :class="{ picked: getLevel(s.id) === 'fuzzy' }" @click="evaluate(currentYear!.year, s, 'fuzzy')">🌗 模糊</button>
-              <button class="eval-btn bad" :class="{ picked: getLevel(s.id) === 'weak' }" @click="evaluate(currentYear!.year, s, 'weak')">❌ 未掌握</button>
+              <button class="eval-btn good" :class="{ picked: levelOf(s.id) === 'mastered' }" @click="evaluate(currentYear!.year, s, 'mastered')">✅ 掌握</button>
+              <button class="eval-btn mid" :class="{ picked: levelOf(s.id) === 'fuzzy' }" @click="evaluate(currentYear!.year, s, 'fuzzy')">🌗 模糊</button>
+              <button class="eval-btn bad" :class="{ picked: levelOf(s.id) === 'weak' }" @click="evaluate(currentYear!.year, s, 'weak')">❌ 未掌握</button>
             </div>
           </div>
         </section>
@@ -296,39 +411,93 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
 }
 .page-header p { font-size: 0.92em; color: #5b6b7f; margin: 0; }
 
-/* 年份条 */
-.te-year-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 20px;
+/* 进度面板 */
+.tp-panel {
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
 }
-.te-year {
+.tp-top { text-align: left; }
+.tp-num { font-size: 0.95rem; color: #5b6b7f; }
+.tp-num b { color: #f0a820; font-size: 1.3rem; font-family: 'JetBrains Mono', monospace; }
+.tp-bar { height: 8px; background: #eef2f7; border-radius: 6px; overflow: hidden; margin: 6px 0 8px; }
+.tp-bar span { display: block; height: 100%; background: linear-gradient(90deg, #ffc53d, #f0a820); border-radius: 6px; transition: width 0.4s; }
+.tp-tiers { display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.82rem; color: #5b6b7f; align-items: center; }
+.tier.ok { color: #2fae62; font-weight: 700; }
+.tier.mid { color: #f5a623; font-weight: 700; }
+.tier.bad { color: #f56c6c; font-weight: 700; }
+.tier.none { color: #90a0b4; }
+.tp-pct { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: var(--navy); }
+
+.tp-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.tp-chip {
   border: 1px solid var(--line);
   background: #fff;
-  color: var(--navy);
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  padding: 7px 13px;
-  border-radius: 9px;
+  color: #5b6b7f;
+  border-radius: 16px;
+  padding: 4px 14px;
+  font-size: 0.82rem;
   cursor: pointer;
   transition: all 0.2s;
 }
-.te-year em {
-  font-style: normal;
-  font-size: 0.68rem;
-  color: #8492a6;
-  margin-left: 5px;
+.tp-chip:hover { border-color: var(--gold); }
+.tp-chip.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.tp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
 }
-.te-year:hover { border-color: var(--gold); transform: translateY(-2px); }
-.te-year.active {
-  background: linear-gradient(135deg, var(--navy-deep), var(--navy));
-  color: var(--gold);
-  border-color: var(--navy);
+.tp-cell {
+  display: block;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 7px 9px 8px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.te-year.active em { color: #a8bdd4; }
+.tp-cell:hover { border-color: var(--gold); transform: translateY(-1px); }
+.tp-cell.active { border-color: var(--navy); box-shadow: 0 0 0 1px var(--navy) inset; background: #f7faff; }
+.tp-ycap {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 800;
+  font-size: 0.78rem;
+  color: var(--navy);
+  font-family: 'JetBrains Mono', monospace;
+}
+.tp-ycap em { font-style: normal; font-size: 0.64rem; color: #8492a6; font-weight: 600; }
+.tp-dots { display: flex; gap: 3px; margin-top: 6px; }
+.tp-dots i { flex: 1; height: 7px; min-width: 4px; border-radius: 3px; background: #e9eef5; }
+.tp-dots i.mastered { background: #2fae62; }
+.tp-dots i.fuzzy { background: #f5a623; }
+.tp-dots i.weak { background: #f56c6c; }
+
+.tp-sync-note { margin: 10px 0 0; font-size: 0.72rem; color: #8492a6; line-height: 1.6; }
+
+.tp-empty {
+  background: #fff;
+  border: 1.5px dashed var(--line);
+  border-radius: 14px;
+  padding: 36px 16px;
+  text-align: center;
+  color: #5b6b7f;
+  font-size: 0.92rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 卡片次数角标 */
+.te-attempts { margin-left: auto; font-size: 0.72rem; color: #90a0b4; font-family: 'JetBrains Mono', monospace; }
 
 /* 工具条 */
 .te-toolbar {
@@ -571,5 +740,9 @@ const evaluate = (year: number, s: Sentence, level: Level) => {
 @media (max-width: 640px) {
   .te-toolbar { flex-direction: column; align-items: stretch; }
   .te-card { padding: 14px 16px; }
+  .tp-panel { padding: 12px 12px; }
+  .tp-grid { grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 6px; }
+  .tp-cell { padding: 6px 7px 7px; }
+  .te-card-head { flex-wrap: wrap; }
 }
 </style>

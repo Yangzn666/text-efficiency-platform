@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "updatedAt": "",
+  "note": "英一翻译真题逐句自评进度（跨设备真相源）。records 以 translation-exams.json 的句子 id（en1-{年份}-text5-s{序号}）为键；level ∈ mastered|fuzzy|weak；date 为最近一次自评日 YYYY-MM-DD；attempts 累计自评次数。此文件为磁盘基线；网站端 localStorage 叠加显示：translation-exam-eval-v1(本机作答,显示优先) + translation-progress-sync-v1(与 records 同形的同步镜像)。同步流程：助手读回镜像 → records = {...本文件.records, ...镜像} → 更新 updatedAt → 重建部署，使记录跨设备持久。",
+  "records": {}
+}

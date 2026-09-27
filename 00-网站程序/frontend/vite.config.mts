@@ -57,7 +57,8 @@ export default defineConfig(({ mode }) => {
         '**/init-math-chapters.html',
         '**/english-resources/**',
         '**/data/english/intensive-reading-analysis.json',
-        '**/data/english/translation-exams.json'
+        '**/data/english/translation-exams.json',
+        '**/data/english/translation-progress.json'
       ]
     : []
 
