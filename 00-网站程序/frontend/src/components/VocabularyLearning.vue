@@ -2105,7 +2105,12 @@ const vocabSeedNotes = [
   { id: 9030, type: 'word', content: 'retain 保留、保有 —— 2016完型Q16因不认识它读不懂句。词根串记(tain=握)：obtain获得(伸手握到手)/retain保留(继续握着)/contain包含(一起握住)/maintain维持(用手握着)。原句逻辑：婚前各自的→retain保留，婚后共同的→divide平分。', tags: ['词根串记', '2016完型'] },
   { id: 9031, type: 'confusable', content: 'endorse 支持、背书 ≠ endure 忍受 —— 2016T2Q28定位句看混。拆词根：endorse的dorse=拉丁dorsum背(同族dorsal背鳍)→支票背面签字→背书/支持；endure的dure=durus硬(同族durable耐用/duration持续)→心变硬扛→忍受。视觉钩：dorse藏or(支持A or反对A二选一)；dure藏u(你得u扛住)。', tags: ['形近词', '2016阅读'] },
   { id: 9032, type: 'confusable', content: 'overshadow 使失色、遮蔽 ≠ destroy 毁掉 —— 2016T2Q27错选D。铁律：语义强度差一档。overshadow=东西还在只是风头被盖过(轻)；destroy=物理性毁掉消失(重)。原文"every year concrete consumes more of it"讲乡村被水泥吞噬减少→数量在消失→destroyed。做题动作：选项看着像时,回原文比"强度对不对"。', tags: ['近义偷换', '2016阅读'] },
-  { id: 9033, type: 'phrase', content: 'under pressure = 被压力压着(顺从) ≠ against pressure = 顶住压力(对抗) —— 2016T2Q29错选D把方向读反了。铁律：under+名词 考研里几乎都是"被…着"：under control被控制/under construction在施工中/under discussion在讨论中。看到"Under X, 主语 do Y"就译成"在X之下,主语做Y",主语是被动接受方。', tags: ['介词方向', '2016阅读'] }
+  { id: 9033, type: 'phrase', content: 'under pressure = 被压力压着(顺从) ≠ against pressure = 顶住压力(对抗) —— 2016T2Q29错选D把方向读反了。铁律：under+名词 考研里几乎都是"被…着"：under control被控制/under construction在施工中/under discussion在讨论中。看到"Under X, 主语 do Y"就译成"在X之下,主语做Y",主语是被动接受方。', tags: ['介词方向', '2016阅读'] },
+  { id: 9034, type: 'word', content: 'build into 内置于、生来就有 —— 2016翻译句1错译"被我们塑造"。铁律：build INTO us=装进我们体内=天生具备；build BY us=我们建造，方向相反。例：Courage is built into us. 勇气与生俱来。', tags: ['介词方向', '2016翻译'] },
+  { id: 9035, type: 'word', content: 'restore 恢复、还原 ≠ store 储存 —— 2016翻译句2丢了re-看成store。re-(重新)+store(放)→重新放回去→恢复。同族：restore health恢复健康/restoration修复。记忆钩：东西丢了"再(re)"放回来=恢复。', tags: ['前缀', '2016翻译'] },
+  { id: 9036, type: 'word', content: 'view 第四张脸=视线、视野 —— 2016翻译句2把"hidden from view"译成"躲在观点之后"。考研高频四义：①观点②看待(view sb with+态度)③景色④视线。铁律：out of/in view=在视野外/内；from view=从视野消失=看不见。', tags: ['熟词僻义', '2016翻译'] },
+  { id: 9037, type: 'word', content: 'available 可获得的、随时可得到的 —— 2016翻译句5译成"容易得到"偏了。available=能拿到/在的(≠容易easy)。"mental health is always available"=心理健康无时不在、随时可得。', tags: ['词义精度', '2016翻译'] },
+  { id: 9038, type: 'word', content: 'ordinary 普通的、寻常的 —— 2016翻译句4整个漏译(错成"事实上")。ordinary来自order(秩序→按常规→平常)。反义extraordinary=extra(超出)+ordinary(平常)→超出平常→非凡的。记住这对反义就锁死了。', tags: ['词根串记', '2016翻译'] }
 ]
 
 onMounted(() => {
