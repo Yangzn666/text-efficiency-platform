@@ -2101,7 +2101,8 @@ const vocabSeedNotes = [
   { id: 9026, type: 'phrase', content: 'show up = 出现、显露（≈appear），不是“展示” —— 2016完型Q19。记忆钩：show(现)+up(冒出来)=冒出来→露面。例：Problems began to show up 问题开始显现。', tags: ['动词搭配', '2016完型'] },
   { id: 9027, type: 'confusable', content: 'whatever vs however —— 2016完型Q16错因。铁律：看空格后跟什么判词性：whatever=限定词/代词（修饰名词或作主宾，=任何…的东西）；however=副词（修饰形容词/副词，=no matter how）。', tags: ['词性', '2016完型'] },
   { id: 9028, type: 'word', content: 'union 在婚姻语境 = 联姻、结合（=marriage）—— 2016完型Q11。记忆钩：union=合为一体，夫妻结合即婚姻。别只记“联盟/工会”。', tags: ['熟词僻义', '2016完型'] },
-  { id: 9029, type: 'confusable', content: 'while 三张脸：①对比(=whereas)②尽管(=although)③当…时候 —— 2016完型Q20。铁律：考研完型高频考①②（尤其句首 while=尽管），别只记③。记忆钩：while=两件事并排站→对比/让步。', tags: ['逻辑关系', '2016完型'] }
+  { id: 9029, type: 'confusable', content: 'while 三张脸：①对比(=whereas)②尽管(=although)③当…时候 —— 2016完型Q20。铁律：考研完型高频考①②（尤其句首 while=尽管），别只记③。记忆钩：while=两件事并排站→对比/让步。', tags: ['逻辑关系', '2016完型'] },
+  { id: 9030, type: 'word', content: 'retain 保留、保有 —— 2016完型Q16因不认识它读不懂句。词根串记(tain=握)：obtain获得(伸手握到手)/retain保留(继续握着)/contain包含(一起握住)/maintain维持(用手握着)。原句逻辑：婚前各自的→retain保留，婚后共同的→divide平分。', tags: ['词根串记', '2016完型'] }
 ]
 
 onMounted(() => {
