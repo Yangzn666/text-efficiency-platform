@@ -37,6 +37,33 @@ const scoringRules = [
   '建议时间 25 分钟：5 分钟读文章语境 + 每句 3-4 分钟',
   '答题纸书写工整，修改用单线划掉，禁止涂黑团'
 ]
+
+// 单元拆解评分法
+const unitRules = [
+  '满分 10 分 = 5 句 × 每句 2 分',
+  '分段给分：每句按意群切成 2–4 个给分单元，每单元约 0.5 分（关键主句单元可占 1 分）',
+  '每单元只看三件事：核心词义对不对 / 结构关系对不对 / 有没有漏译',
+  '扣分：关键实词译错、从句结构颠倒、漏译整个意群 → 扣该单元分',
+  '不扣分：中文风格差异、非关键虚词、"译得糙但意思对"（达而不雅不扣）',
+  '整句空白或全错 → 0 分；允许意译，只要信息准确',
+  '一句话本质：阅卷是拿标准答案一个单元一个单元"对答案"，"整句读着顺"不加分，"每个意群踩中"才给分。'
+]
+
+const unitStrategies = [
+  { no: '01', name: '先保主句单元', desc: '每句最重的 1 分几乎都在主句，主句错一个词比修饰错三个还贵。', example: '译完先检查："主干落实了吗？"' },
+  { no: '02', name: '意群不能空', desc: '分段给分 = 译出大概就有分，留白 = 0。宁可译得糙，不可漏意群。', example: '每个意群都要有对应中文，绝不空着' },
+  { no: '03', name: '踩点靠逐词落实', desc: '阅卷用关键词卡你：前缀 re-/into vs by、熟词僻义都要对上。', example: '每个实词问："准确意思落实了吗？"别放过"看着眼熟"' }
+]
+
+const unitExample = {
+  sentence: "We don't have to learn how to be mentally healthy; it is built into us in the same way that our bodies know how to heal a cut or mend a broken bone.",
+  units: [
+    { tag: '单元A', score: '0.5', text: '不必学习如何保持心理健康' },
+    { tag: '单元B', score: '1.0 · 主句', text: 'it is built into us = 它是我们生来就有的', note: 'built into = 内置/天生有，不是 built by "被我们塑造"' },
+    { tag: '单元C', score: '0.5', text: '如同身体知道愈合伤口、修复断骨' }
+  ],
+  tip: '主句 B 方向译反会连带压 C 的逻辑分。'
+}
 </script>
 
 <template>
@@ -104,6 +131,41 @@ const scoringRules = [
     <ul class="tt-rules">
       <li v-for="(r, i) in scoringRules" :key="i">{{ r }}</li>
     </ul>
+
+    <!-- 单元拆解评分法 -->
+    <h3 class="tt-h3">🧩 单元拆解评分法（考研翻译怎么给分）</h3>
+    <div class="tt-unit-card">
+      <h4 class="tt-unit-sub">一、官方规则</h4>
+      <ul class="tt-rules">
+        <li v-for="(r, i) in unitRules" :key="i">{{ r }}</li>
+      </ul>
+
+      <h4 class="tt-unit-sub">二、三条提分策略</h4>
+      <div class="tt-steps">
+        <div v-for="s in unitStrategies" :key="s.no" class="tt-step">
+          <span class="step-no">{{ s.no }}</span>
+          <strong>{{ s.name }}</strong>
+          <p>{{ s.desc }}</p>
+          <code>{{ s.example }}</code>
+        </div>
+      </div>
+
+      <h4 class="tt-unit-sub">三、实战示例（2016 真题句 1 · 怎么切单元）</h4>
+      <div class="tt-unit-example">
+        <code class="unit-sentence">{{ unitExample.sentence }}</code>
+        <div class="unit-list">
+          <div v-for="u in unitExample.units" :key="u.tag" class="unit-row">
+            <span class="unit-tag">{{ u.tag }}</span>
+            <span class="unit-score">{{ u.score }}</span>
+            <div class="unit-body">
+              <span class="unit-text">{{ u.text }}</span>
+              <span v-if="u.note" class="unit-note">⚠ {{ u.note }}</span>
+            </div>
+          </div>
+        </div>
+        <p class="unit-tip">💡 提示：{{ unitExample.tip }}</p>
+      </div>
+    </div>
 
     <div class="tt-cta">
       技巧千万条，实战第一条 —— 切换到「真题实战」页签，用 2005-2025 真题逐句练起来！
@@ -282,6 +344,82 @@ const scoringRules = [
   left: 12px;
   color: var(--gold);
   font-weight: 800;
+}
+
+/* 单元拆解评分法 */
+.tt-unit-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 6px 16px 16px;
+}
+.tt-unit-sub {
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin: 16px 0 10px;
+}
+.unit-sentence {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--navy);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  color: var(--navy);
+  line-height: 1.75;
+  word-break: break-word;
+}
+.unit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.unit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.unit-tag {
+  flex: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.unit-score {
+  flex: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: #fff8ec;
+  border: 1px solid rgba(255, 197, 61, 0.45);
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.unit-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.unit-text { font-size: 0.82rem; color: var(--body); line-height: 1.6; word-break: break-word; }
+.unit-note { font-size: 0.76rem; color: #b0521a; line-height: 1.6; word-break: break-word; }
+.unit-tip {
+  margin: 12px 0 0;
+  font-size: 0.8rem;
+  color: var(--navy);
+  background: #fff8ec;
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.6;
+  word-break: break-word;
 }
 
 .tt-cta {
