@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 15
+const PLAN_VERSION = 17
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 10
+const MILESTONE_VERSION = 12
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -133,8 +133,10 @@ const POLITICS_COURSE_RAW_MIN = POLITICS_COURSE.reduce((s, m) => s + m.rawMin, 0
 export const POLITICS_COURSE_HOURS_2X = Math.round(POLITICS_COURSE_RAW_MIN / 2 / 60 * 10) / 10
 /** 串讲课原始时长（小时，≈44.5 h） */
 export const POLITICS_COURSE_RAW_HOURS = Math.round(POLITICS_COURSE_RAW_MIN / 60 * 10) / 10
-/** 政治总单元 = 串讲 58 讲（含同步一刷） + 1000 题二刷 20 章 + 肖八 8 套 + 肖四 4 套 */
-const POLITICS_TOTAL_UNITS = POLITICS_COURSE_LESSONS + 20 + 8 + 4
+/** 政治总单元 = 串讲 58 讲（含同步一刷） + 肖八 8 套 + 肖四 4 套 */
+// 09-28 口径修订：肖1000 二刷主体是重做错题，工作量远小于一刷却曾占 20 个单元，
+// 导致政治进度百分比系统性虚低。二刷不再占单元指针，折叠为冲刺期错题回捞动作（记里程碑追踪）。
+const POLITICS_TOTAL_UNITS = POLITICS_COURSE_LESSONS + 8 + 4
 
 /** 把政治串讲的单元序号翻译成「模块 + 课号 + 短标签 + 2 倍速净时长」 */
 const politicsCourseUnit = (n: number) => {
@@ -198,7 +200,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: 142,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 132,
+        completedUnits: 133, // 09-28 2020 年真题限时完成并复盘，指针 n=134 = 2021 年·剩余第 5 套；本周转入专项突破
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
@@ -296,7 +298,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: 156,
         dailyQuota: 1,
         estMinutes: 75,
-        completedUnits: 53, // 09-24 刷完 2013+2014 共 8 篇阅读（阅读满 36 篇，指针 n=54=2015 T1）
+        completedUnits: 61, // 09-28 刷完 2015+2016 共 8 篇阅读（阅读满 44 篇，指针 n=62=2017 T1）；15/16/17 完型与 16/17 翻译记里程碑不占指针
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -336,7 +338,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 10, // 09-24 串讲看到马原第 10 讲（前 8 讲肖1000 一刷已补，欠第 9、10 讲）
+        completedUnits: 13, // 09-28 串讲看到马原第 13 讲（肖1000 一刷欠账累积至第 9~13 讲）；09-28 口径修订 totalUnits 90→70，政治实际完成度 13/70=18.6%
         startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
@@ -347,9 +349,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
             const pad = String(u.idx).padStart(2, '0')
             return `串讲·${u.code} ${pad}/${u.total} ${u.tag}（2倍速约${u.perMin}min）+ ${u.isTest ? '测试卷错题回炉' : '肖1000对应章节'}`
           }
-          if (n <= POLITICS_COURSE_LESSONS + 20) return `肖1000 第${n - POLITICS_COURSE_LESSONS}章（二刷错题）`
-          if (n <= POLITICS_COURSE_LESSONS + 28) return `肖八 第${n - POLITICS_COURSE_LESSONS - 20}套（选择题+订正）`
-          if (n <= POLITICS_COURSE_LESSONS + 32) return `肖四 第${n - POLITICS_COURSE_LESSONS - 28}套（选择+背大题）`
+          if (n <= POLITICS_COURSE_LESSONS + 8) return `肖八 第${n - POLITICS_COURSE_LESSONS}套（选择题+订正）`
+          if (n <= POLITICS_COURSE_LESSONS + 12) return `肖四 第${n - POLITICS_COURSE_LESSONS - 8}套（选择+背大题）`
           return `政治冲刺回顾`
         }
       }
@@ -369,7 +370,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-math-2017', title: '数学·2017年真题限时刷完', date: '2026-09-16', subject: 'math', done: true, note: '09-16 限时 3h 刷完 2017 年数一（剩余第 1 套），第 3/6/8/10/15/16/17/18/22/23 题共 10 道错题进入录入流程。completedUnits 129→130，指针落点 n=131 = 2018 年，真题剩 9 套' },
       { id: 'm-politics-mayuan', title: '政治·串讲启动', date: '2026-09-09', subject: 'politics', done: true, note: '计划07-15启动，实际09-09启动，落后56天；90单元压缩进97天，日均0.93单元。肖1000刷题尚未开始' },
       { id: 'm-politics-course-audit', title: '政治·课程结构对账', date: '2026-09-16', subject: 'politics', done: true, note: '按网盘目录逐课核对：串讲五模块共58讲（马原21/思修8/史纲9/毛中特7/新思想13），体积59.4GB≈原始44.5h，2倍速净看课22.3h。进度模型 totalUnits 62→90、completedUnits 3→5（马原前5讲已看完，09-15 到第5讲）' },
-      { id: 'm-politics-round1', title: '政治·串讲58讲+1000题一刷收尾', date: '2026-10-20', subject: 'politics', done: false, note: '剩52讲要在34天内过完=每天1.5讲（2倍速约1.4h/天）。这是政治真正的硬截止线：拖到10月下旬就没有时间做二刷和肖八，12月只能靠死背肖四' },
+      { id: 'm-politics-round1', title: '政治·串讲58讲+1000题一刷收尾', date: '2026-10-20', subject: 'politics', done: false, note: '剩45讲要在22天内过完=每天2讲（2倍速约1.8h/天）。这是政治真正的硬截止线：拖过10-20就没有时间做肖八肖四。09-28口径修订：肖1000二刷不再占单元指针，折叠为冲刺期错题回捞' },
       { id: 'm-cs408-co-stuck', title: '408·计组强化（卡点已破）', date: '2026-09-16', subject: 'cs408', done: true, note: '09-15 计组费曼复习一轮全部过完：co-01~co-07 共 31 问，新建 13 个 gap（C-035~C-047），state.json 指针推进到 co-07。卡了两个月的计组终于推过去了。重复错 C-001（存储程序混合存放）/ C-005（执行时间是乘不是除）与 co-02 补码/IEEE754 整片薄弱是下一轮验收重点' },
       { id: 'm-eng-2010', title: '英语·2010 最难年 T1/T2 收尾', date: '2026-09-16', subject: 'english', done: true, note: 'T1 2/5、T2 0/5，阅读累计 18 篇 41/90 = 45.6%。本轮确诊跨篇系统恶习＝「选项/词在文中出现频次高就选它」（T1Q5 critics、T2Q4 legal、T2Q5 法律案件三题同栽）；铁律：高频词与论据多是例子不是答案，论点与正确答案常是抽象同义改写。熟词僻义族再添 big deal / about-face / patent' },
       { id: 'm-eng-2010-tail', title: '英语·2010 年四篇阅读收官', date: '2026-09-16', subject: 'english', done: true, note: '09-16 刷完后两篇 T3/T4，2010 年（英一史上最难年）四篇全部过完，阅读累计 20 篇。completedUnits 35→37，指针落点 n=38 = 阅读第 21 篇（2011 T1），剩余 64 篇' },
@@ -384,7 +385,10 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-politics-09-10', title: '政治·马原第9、10讲 + 前8讲肖1000一刷补账', date: '2026-09-24', subject: 'politics', done: true, note: '串讲进度 8→10/58，completedUnits 8→10。前 8 讲对应的肖1000选择题已补做完（一刷欠账从 8 讲降到第 9、10 讲＝2 讲）；马原剩 11 讲是 10-20 硬截止线主要压力源' },
       { id: 'm-eng-2013-2014', title: '英语·2013+2014 阅读与完型收官', date: '2026-09-24', subject: 'english', done: true, note: '刷完 2013、2014 两年全部传统阅读（共 8 篇），阅读累计 28→36 篇；两年完型（2013 复盘算过、2014 完成）按惯例记里程碑不占指针。completedUnits 45→53，指针落点 n=54 = 阅读第 37 篇（2015 T1），剩余 48 篇' },
       { id: 'm-cs408-feynman-0923', title: '408·费曼 gap 回捞推进（指针不变）', date: '2026-09-23', subject: 'cs408', done: true, note: '费曼 review 累计 19→21 session / 254 问，多条 co/ds/os/cn 旧 gap 当场钉回（C-045/C-046/C-079/C-081/C-083 等首答✓）。指针仍在 os-04、cn-04、ds-04，无新增整章节完成，故 completedUnits 保持 51、totalGaps 仍 92（mastered 待验收归零）' },
-      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期。英语是当前最大缺口：剩136单元/96天=每天1.42篇，必须每天拿到2个任务槽位才做得完' },
+      { id: 'm-math-2020', title: '数学·2020年真题限时刷完并复盘', date: '2026-09-28', subject: 'math', done: true, note: '真题三连收官（18/19/20）；本周重点转入弱点章节专项突破。completedUnits 132→133，指针落点 n=134 = 剩余第 5 套 = 2021 年，真题剩 6 套' },
+      { id: 'm-eng-2015-2016', title: '英语·2015+2016 阅读与完型收官', date: '2026-09-28', subject: 'english', done: true, note: '刷完 2015、2016 两年全部传统阅读（共 8 篇），阅读累计 36→44 篇；两年完型（2015 14/20、2016 11/20）按惯例记里程碑不占指针。completedUnits 53→61，指针落点 n=62 = 阅读第 45 篇（2017 T1），剩余 40 篇' },
+      { id: 'm-politics-11-13', title: '政治·马原第11~13讲', date: '2026-09-28', subject: 'politics', done: true, note: '串讲进度 10→13/58，completedUnits 10→13；肖1000 一刷欠账累积至第 9~13 讲，需本周集中补掉；距 10-20 硬截止剩 45 讲 ≈ 2 讲/天' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩95单元/距目标日12-15共77天=每天1.23篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
       { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' },
