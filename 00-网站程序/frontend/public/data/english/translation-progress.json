@@ -42,6 +42,46 @@
       "score": 0.5,
       "myTranslation": "就像你将会认识到的，心理健康经常是很容易得到的，并且你会信任它会让我们在那一刻缓下来，给我们更快乐的生活。",
       "comment": "主干看错：主语是两个 knowing 动名词短语“懂得心理健康无时不在＋懂得信赖它”，被拆成并列小句，knowing（懂得）全丢；available 译“容易得到”——available=可获得/无时不在，不含“容易”；live life happily（快乐地生活）译成“给我们更快乐的生活”偏。"
+    },
+    "en1-2017-text5-s1": {
+      "level": "mastered",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1.5,
+      "myTranslation": "但是，即使英语口语者的人数在扩张至更多，仍有迹象表明这一主导全球的语言也许会在可预见的未来消逝。",
+      "comment": "But+even as（但是/即使当）、predominance=统治地位都译准，全句通顺。仅 fade=逐渐衰落/褪色 译成“消逝”语义过重（fade away 才是消失），方向对。"
+    },
+    "en1-2017-text5-s2": {
+      "level": "weak",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "他的分析应该是一些认为英语的全球地位太稳固了以致于英国幼儿园的年轻一代不那么需要增加语言能力的自满之人该想法的原因。",
+      "comment": "两处核心错：①end=终止（end any self-contentedness=让自满终结），译成“应该是…的原因”，方向完全反了；②the United Kingdom=英国，译成“英国幼儿园”（kindergarten 才是幼儿园）。so...that 结构和 additional language capabilities 译对了。"
+    },
+    "en1-2017-text5-s3": {
+      "level": "mastered",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1.5,
+      "myTranslation": "很多的国家正在引入英语到小学课程之中，然而英国的儿童和学生却不再出现让他们获得更好的鼓励去实现对其它语言的流利性。",
+      "comment": "主干和 fluency=流利度都译对。微偏：do not appear 译“不再出现”多加了“再”的时态义（原文无“曾经”义）；greater→更好 可接受；“实现对…的流利性”略生硬但达意。"
+    },
+    "en1-2017-text5-s4": {
+      "level": "weak",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "改变由David Graddol提出：当前所有对英国语言提供者的清晰且主要的挑战是教其它国家的人们和扩张教育生意部门。",
+      "comment": "主谓配错：present challenges to X=给X带来挑战（to 是挑战的接收方），被译成“挑战是去教人、扩张部门”（to 误当表语）；identified=指出的（不是 proposed 提出）；broader=更广泛的漏译。正确骨架：Graddol 指出的这些变化，给英国英语教学机构和更广泛的教育产业带来明显而重大的挑战。"
+    },
+    "en1-2017-text5-s5": {
+      "level": "fuzzy",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1,
+      "myTranslation": "这些研究为那些寻求学习提升和使用英语的组织奠定了基础，也为打算去面对可能十分不同运行环境的可能性奠定了基础。",
+      "comment": "两个 a basis 的并列处理成“奠定了…也奠定了…”很好。错点：①It=它（指上文他的分析/著作），译成“这些研究”指代偏；②promote the learning and use of English=推广英语的学习和使用，译成“组织寻求学习提升英语”，promote 方向反了（组织是推动者不是学习者）；③planning to meet=筹划应对，planning 漏。"
     }
   },
   "mistakes": [
@@ -92,6 +132,42 @@
       "addedAt": "2026-09-28",
       "score": 0.5,
       "comment": "主干看错：主语是两个 knowing 动名词短语“懂得心理健康无时不在＋懂得信赖它”，被拆成并列小句，knowing（懂得）全丢；available 译“容易得到”——available=可获得/无时不在，不含“容易”；live life happily（快乐地生活）译成“给我们更快乐的生活”偏。"
+    },
+    {
+      "id": "en1-2017-text5-s2",
+      "year": 2017,
+      "no": 2,
+      "en": "His analysis should therefore end any self-contentedness among those who may believe that the global position of English is so stable that the young generations of the United Kingdom do not need additional language capabilities",
+      "zh": "因此,他的分析会让一些人再也无法自满,这些人或许认为英语的全球地位十分稳固,从而英国的年轻人无需额外的语言能力。",
+      "myTranslation": "他的分析应该是一些认为英语的全球地位太稳固了以致于英国幼儿园的年轻一代不那么需要增加语言能力的自满之人该想法的原因。",
+      "level": "weak",
+      "addedAt": "2026-09-28",
+      "score": 0.5,
+      "comment": "两处核心错：①end=终止（end any self-contentedness=让自满终结），译成“应该是…的原因”，方向完全反了；②the United Kingdom=英国，译成“英国幼儿园”（kindergarten 才是幼儿园）。so...that 结构和 additional language capabilities 译对了。"
+    },
+    {
+      "id": "en1-2017-text5-s4",
+      "year": 2017,
+      "no": 4,
+      "en": "The changes identified by David Graddol all present clear and major challenges to the UK's providers of English language teaching to people of other countries and to broader education business sectors.",
+      "zh": "大卫·格拉多尔所指出的这些变化,都对向其他国家的人提供英语教学的英国机构以及更广泛的教育产业部门,带来了明显而重大的挑战。",
+      "myTranslation": "改变由David Graddol提出：当前所有对英国语言提供者的清晰且主要的挑战是教其它国家的人们和扩张教育生意部门。",
+      "level": "weak",
+      "addedAt": "2026-09-28",
+      "score": 0.5,
+      "comment": "主谓配错：present challenges to X=给X带来挑战（to 是挑战的接收方），被译成“挑战是去教人、扩张部门”（to 误当表语）；identified=指出的（不是 proposed 提出）；broader=更广泛的漏译。正确骨架：Graddol 指出的这些变化，给英国英语教学机构和更广泛的教育产业带来明显而重大的挑战。"
+    },
+    {
+      "id": "en1-2017-text5-s5",
+      "year": 2017,
+      "no": 5,
+      "en": "It gives a basis for all organisations which seek to promote the learning and use of English, a basis for planning to meet the possibilities of what could be a very different operating environment",
+      "zh": "它给所有致力于推广英语学习和使用的机构提供了一个依据,一个用来筹划应对可能会大不相同的运营环境的依据。",
+      "myTranslation": "这些研究为那些寻求学习提升和使用英语的组织奠定了基础，也为打算去面对可能十分不同运行环境的可能性奠定了基础。",
+      "level": "fuzzy",
+      "addedAt": "2026-09-28",
+      "score": 1,
+      "comment": "两个 a basis 的并列处理成“奠定了…也奠定了…”很好。错点：①It=它（指上文他的分析/著作），译成“这些研究”指代偏；②promote the learning and use of English=推广英语的学习和使用，译成“组织寻求学习提升英语”，promote 方向反了（组织是推动者不是学习者）；③planning to meet=筹划应对，planning 漏。"
     }
   ]
 }

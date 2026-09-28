@@ -2110,7 +2110,12 @@ const vocabSeedNotes = [
   { id: 9035, type: 'word', content: 'restore 恢复、还原 ≠ store 储存 —— 2016翻译句2丢了re-看成store。re-(重新)+store(放)→重新放回去→恢复。同族：restore health恢复健康/restoration修复。记忆钩：东西丢了"再(re)"放回来=恢复。', tags: ['前缀', '2016翻译'] },
   { id: 9036, type: 'word', content: 'view 第四张脸=视线、视野 —— 2016翻译句2把"hidden from view"译成"躲在观点之后"。考研高频四义：①观点②看待(view sb with+态度)③景色④视线。铁律：out of/in view=在视野外/内；from view=从视野消失=看不见。', tags: ['熟词僻义', '2016翻译'] },
   { id: 9037, type: 'word', content: 'available 可获得的、随时可得到的 —— 2016翻译句5译成"容易得到"偏了。available=能拿到/在的(≠容易easy)。"mental health is always available"=心理健康无时不在、随时可得。', tags: ['词义精度', '2016翻译'] },
-  { id: 9038, type: 'word', content: 'ordinary 普通的、寻常的 —— 2016翻译句4整个漏译(错成"事实上")。ordinary来自order(秩序→按常规→平常)。反义extraordinary=extra(超出)+ordinary(平常)→超出平常→非凡的。记住这对反义就锁死了。', tags: ['词根串记', '2016翻译'] }
+  { id: 9038, type: 'word', content: 'ordinary 普通的、寻常的 —— 2016翻译句4整个漏译(错成"事实上")。ordinary来自order(秩序→按常规→平常)。反义extraordinary=extra(超出)+ordinary(平常)→超出平常→非凡的。记住这对反义就锁死了。', tags: ['词根串记', '2016翻译'] },
+  { id: 9039, type: 'word', content: 'end 动词=终止、结束(某事物) —— 2017翻译句2把end any self-contentedness译反成"成为…的原因"。end the war终止战争/end the debate结束辩论。记忆钩：end作名词是"尽头"，作动词="把…送到尽头"=终止。方向永远指向宾语消失。', tags: ['熟词僻义', '2017翻译'] },
+  { id: 9040, type: 'confusable', content: 'United Kingdom 英国 ≠ kindergarten 幼儿园 —— 2017翻译句2把the United Kingdom译成"英国幼儿园"。视觉钩：Kingdom里有King(国王→王国)，kindergarten里有garden(花园→孩子的花园=幼儿园)。看到King想国王，看到garden想花。', tags: ['形近词', '2017翻译'] },
+  { id: 9041, type: 'phrase', content: 'present challenges to X 给X带来挑战 —— 2017翻译句4把to误当表语(译成"挑战是去做…")。铁律：present A to B=把A递到B面前，to后面是接收方不是内容。同族：present a gift to sb/present evidence to the court。', tags: ['介词方向', '2017翻译'] },
+  { id: 9042, type: 'word', content: 'promote 促进、推广(主语是推动者) —— 2017翻译句5把promote the learning and use of English译成"组织自己学习提升英语"，方向反了。pro(向前)+mote(动)=往前推。promote the learning=推动学习这件事，不是主语自己学。', tags: ['词根串记', '2017翻译'] },
+  { id: 9043, type: 'word', content: 'fade 逐渐衰落、褪色(≠突然消失) —— 2017翻译句1译成"消逝"语义过重。核心意象=颜色慢慢褪掉/声音慢慢变小。fade away才是消失，单用fade=渐弱。例：His influence faded. 他的影响力渐渐衰落。', tags: ['词义精度', '2017翻译'] }
 ]
 
 onMounted(() => {
