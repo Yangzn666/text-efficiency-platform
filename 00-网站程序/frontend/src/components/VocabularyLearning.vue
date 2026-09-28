@@ -2115,7 +2115,9 @@ const vocabSeedNotes = [
   { id: 9040, type: 'confusable', content: 'United Kingdom 英国 ≠ kindergarten 幼儿园 —— 2017翻译句2把the United Kingdom译成"英国幼儿园"。视觉钩：Kingdom里有King(国王→王国)，kindergarten里有garden(花园→孩子的花园=幼儿园)。看到King想国王，看到garden想花。', tags: ['形近词', '2017翻译'] },
   { id: 9041, type: 'phrase', content: 'present challenges to X 给X带来挑战 —— 2017翻译句4把to误当表语(译成"挑战是去做…")。铁律：present A to B=把A递到B面前，to后面是接收方不是内容。同族：present a gift to sb/present evidence to the court。', tags: ['介词方向', '2017翻译'] },
   { id: 9042, type: 'word', content: 'promote 促进、推广(主语是推动者) —— 2017翻译句5把promote the learning and use of English译成"组织自己学习提升英语"，方向反了。pro(向前)+mote(动)=往前推。promote the learning=推动学习这件事，不是主语自己学。', tags: ['词根串记', '2017翻译'] },
-  { id: 9043, type: 'word', content: 'fade 逐渐衰落、褪色(≠突然消失) —— 2017翻译句1译成"消逝"语义过重。核心意象=颜色慢慢褪掉/声音慢慢变小。fade away才是消失，单用fade=渐弱。例：His influence faded. 他的影响力渐渐衰落。', tags: ['词义精度', '2017翻译'] }
+  { id: 9043, type: 'word', content: 'fade 逐渐衰落、褪色(≠突然消失) —— 2017翻译句1译成"消逝"语义过重。核心意象=颜色慢慢褪掉/声音慢慢变小。fade away才是消失，单用fade=渐弱。例：His influence faded. 他的影响力渐渐衰落。', tags: ['词义精度', '2017翻译'] },
+  { id: 9044, type: 'confusable', content: 'explain 数据/效应作主语=解释、说明(比例) —— 2017完型Q10错选restored。铁律：effect/data + 百分比 → explain（减压效应"解释了"20%的差异）；restore 的宾语必须是"丢过的具体东西"(health/service)，比例不能被"修复"。联动坑：2016翻译句2刚把restore认成store，这次又过度信任restore——同一个词两次绊人，锁死：restore=失而复得，explain=数据说话。', tags: ['动词搭配', '2017完型'] },
+  { id: 9045, type: 'phrase', content: 'attribute A to B 把A归因于B —— 2017完型Q17错选return。原文：experts attribute the benefits of hugging to the release of oxytocin 专家把拥抱的益处归因于催产素释放。词根钩：at(朝向)+tribu(给)=把功劳/原因"给到"某处。≠ return A to B(把A物归原主，宾语是具体物)。归因用attribute，归还用return。', tags: ['词根串记', '2017完型'] }
 ]
 
 onMounted(() => {
