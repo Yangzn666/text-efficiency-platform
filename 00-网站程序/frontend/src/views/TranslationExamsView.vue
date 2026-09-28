@@ -15,7 +15,7 @@ interface YearData { year: number; title: string; sentences: Sentence[] }
 type Level = 'mastered' | 'fuzzy' | 'weak'
 interface EvalRecord { level: Level; myTranslation: string; at: string }
 // 磁盘/镜像同形记录：public/data/english/translation-progress.json 的 records 值结构
-interface DiskRec { level: Level; date: string; attempts: number }
+interface DiskRec { level: Level; date: string; attempts: number; myTranslation?: string; score?: number; comment?: string }
 
 const BASE = import.meta.env.BASE_URL || '/'
 const EVAL_KEY = 'translation-exam-eval-v1'
@@ -142,7 +142,7 @@ const toggleExpand = (id: string) => {
   i > -1 ? expanded.value.splice(i, 1) : expanded.value.push(id)
 }
 
-const getMyTranslation = (id: string) => evalStore.value[id]?.myTranslation || ''
+const getMyTranslation = (id: string) => evalStore.value[id]?.myTranslation || diskRecords.value[id]?.myTranslation || ''
 const setMyTranslation = (id: string, text: string) => {
   const rec = evalStore.value[id] || { level: '' as Level, myTranslation: '', at: '' }
   rec.myTranslation = text

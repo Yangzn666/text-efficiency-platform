@@ -1,6 +1,97 @@
 {
   "version": 1,
-  "updatedAt": "",
+  "updatedAt": "2026-09-28",
   "note": "英一翻译真题逐句自评进度（跨设备真相源）。records 以 translation-exams.json 的句子 id（en1-{年份}-text5-s{序号}）为键；level ∈ mastered|fuzzy|weak；date 为最近一次自评日 YYYY-MM-DD；attempts 累计自评次数。此文件为磁盘基线；网站端 localStorage 叠加显示：translation-exam-eval-v1(本机作答,显示优先) + translation-progress-sync-v1(与 records 同形的同步镜像)。同步流程：助手读回镜像 → records = {...本文件.records, ...镜像} → 更新 updatedAt → 重建部署，使记录跨设备持久。",
-  "records": {}
+  "records": {
+    "en1-2016-text5-s1": {
+      "level": "fuzzy",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1,
+      "myTranslation": "我们不必去学会如何让自己心理健康，像我们的身体知道如何治愈伤口和修补一块破碎的骨头一样，心理健康被我们以一种相同的方式塑造。",
+      "comment": "built into 方向译反：“被我们塑造”→应为“我们与生俱来/内置于我们体内”。build INTO us=装进我们体内（天生具备），不是我们建造。方式状语从句（如同身体会愈合伤口）译得准确。"
+    },
+    "en1-2016-text5-s2": {
+      "level": "weak",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "我们的心理健康并不会真的到处乱跑；像太阳在云后面那样，心理健康普遍躲在观点之后，不过它完全可以立刻被储存起来。",
+      "comment": "两处核心错译：①hidden from view=从视线中隐藏（暂时看不见），不是“躲在观点之后”——view 此处=视线/视野；②restored 丢了 re- 看成 store 译成“储存”，restore=恢复重现。另 temporarily（暂时）误作“普遍”。太阳躲云后的比喻译对了。"
+    },
+    "en1-2016-text5-s3": {
+      "level": "mastered",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1.5,
+      "myTranslation": "当别人正在经历困难，心理健康让我们对别人报以同情心，在他们遇到伤痛的时候心怀善意，并且无论他们是谁都怀着无差别的关爱。",
+      "comment": "三个 with 排比（sympathy/kindness/unconditional love）全部译出，语序自然，本句最好。仅 unconditional love 译“无差别的关爱”微偏：love→care 弱化，无差别≈无条件可接受。"
+    },
+    "en1-2016-text5-s4": {
+      "level": "fuzzy",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 1,
+      "myTranslation": "尽管心理健康是我们生活的灵丹妙药，事实上，在你遇到困难抉择的时候，你总能看到它就在那儿，引导你渡过难关。",
+      "comment": "perfectly ordinary（再寻常不过）整个漏译，本句核心采分点；as=因为（正因为它一直在引导你，所以它寻常），被处理成“事实上”，因果变转折。cure-all=灵丹妙药、direct you through=引导渡过，这两处准确。"
+    },
+    "en1-2016-text5-s5": {
+      "level": "weak",
+      "date": "2026-09-28",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "就像你将会认识到的，心理健康经常是很容易得到的，并且你会信任它会让我们在那一刻缓下来，给我们更快乐的生活。",
+      "comment": "主干看错：主语是两个 knowing 动名词短语“懂得心理健康无时不在＋懂得信赖它”，被拆成并列小句，knowing（懂得）全丢；available 译“容易得到”——available=可获得/无时不在，不含“容易”；live life happily（快乐地生活）译成“给我们更快乐的生活”偏。"
+    }
+  },
+  "mistakes": [
+    {
+      "id": "en1-2016-text5-s1",
+      "year": 2016,
+      "no": 1,
+      "en": "We don't have to learn how to be mentally healthy; it is built into us in the same way that our bodies know how to heal a cut or mend a broken bone.",
+      "zh": "我们不必学习如何保持心理健康；它是我们生来就有的，正如同我们的身体知道如何治愈伤口或修复断骨一样。",
+      "myTranslation": "我们不必去学会如何让自己心理健康，像我们的身体知道如何治愈伤口和修补一块破碎的骨头一样，心理健康被我们以一种相同的方式塑造。",
+      "level": "fuzzy",
+      "addedAt": "2026-09-28",
+      "score": 1,
+      "comment": "built into 方向译反：“被我们塑造”→应为“我们与生俱来/内置于我们体内”。build INTO us=装进我们体内（天生具备），不是我们建造。方式状语从句（如同身体会愈合伤口）译得准确。"
+    },
+    {
+      "id": "en1-2016-text5-s2",
+      "year": 2016,
+      "no": 2,
+      "en": "Our mental health doesn't really go anywhere; like the sun behind a cloud, it can be temporarily hidden from view, but it is fully capable of being restored in an instant.",
+      "zh": "心理健康并没有真的离开；宛如云朵后面的太阳，它虽然可能暂离我们的视线，但完全能在转瞬之间重现。",
+      "myTranslation": "我们的心理健康并不会真的到处乱跑；像太阳在云后面那样，心理健康普遍躲在观点之后，不过它完全可以立刻被储存起来。",
+      "level": "weak",
+      "addedAt": "2026-09-28",
+      "score": 0.5,
+      "comment": "两处核心错译：①hidden from view=从视线中隐藏（暂时看不见），不是“躲在观点之后”——view 此处=视线/视野；②restored 丢了 re- 看成 store 译成“储存”，restore=恢复重现。另 temporarily（暂时）误作“普遍”。太阳躲云后的比喻译对了。"
+    },
+    {
+      "id": "en1-2016-text5-s4",
+      "year": 2016,
+      "no": 4,
+      "en": "Although mental health is the cure-all for living our lives, it is perfectly ordinary as you will see that it has been there to direct you through all your difficult decisions.",
+      "zh": "尽管心理健康是我们生活的万能灵药，但它又再寻常不过，因为你会发现，它一直在那里引领你完成所有艰难的抉择。",
+      "myTranslation": "尽管心理健康是我们生活的灵丹妙药，事实上，在你遇到困难抉择的时候，你总能看到它就在那儿，引导你渡过难关。",
+      "level": "fuzzy",
+      "addedAt": "2026-09-28",
+      "score": 1,
+      "comment": "perfectly ordinary（再寻常不过）整个漏译，本句核心采分点；as=因为（正因为它一直在引导你，所以它寻常），被处理成“事实上”，因果变转折。cure-all=灵丹妙药、direct you through=引导渡过，这两处准确。"
+    },
+    {
+      "id": "en1-2016-text5-s5",
+      "year": 2016,
+      "no": 5,
+      "en": "As you will come to see, knowing that mental health is always available and knowing to trust it allow us to slow down to the moment and live life happily.",
+      "zh": "你终会明白，懂得心理健康无时不在并懂得信赖它，这能让我们慢下来活在每一刻，快乐地生活着。",
+      "myTranslation": "就像你将会认识到的，心理健康经常是很容易得到的，并且你会信任它会让我们在那一刻缓下来，给我们更快乐的生活。",
+      "level": "weak",
+      "addedAt": "2026-09-28",
+      "score": 0.5,
+      "comment": "主干看错：主语是两个 knowing 动名词短语“懂得心理健康无时不在＋懂得信赖它”，被拆成并列小句，knowing（懂得）全丢；available 译“容易得到”——available=可获得/无时不在，不含“容易”；live life happily（快乐地生活）译成“给我们更快乐的生活”偏。"
+    }
+  ]
 }

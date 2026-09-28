@@ -7,6 +7,10 @@ const router = useRouter()
 const goBack = () => router.push({ path: '/english', query: { tab: 'translation' } })
 
 const MISTAKE_KEY = 'translation-mistakes-v1'
+// 磁盘错题真相源：translation-progress.json 的 mistakes 数组（助手批改落盘，跨设备可见）；
+// 本机删除/升级记在本地 MISTAKE_KEY，销账墓碑记 REMOVED_KEY 防止磁盘条目复活。
+const REMOVED_KEY = 'translation-mistakes-removed-v1'
+const BASE = import.meta.env.BASE_URL || '/'
 
 interface Mistake {
   id: string
@@ -17,16 +21,28 @@ interface Mistake {
   myTranslation: string
   level: 'fuzzy' | 'weak'
   addedAt: string
+  score?: number
+  comment?: string
 }
 
 const mistakes = ref<Mistake[]>([])
 const filterLevel = ref<'all' | 'fuzzy' | 'weak'>('all')
 const revealed = ref<string[]>([])
 
-const load = () => {
+const load = async () => {
   try {
     const raw = localStorage.getItem(MISTAKE_KEY)
-    mistakes.value = raw ? JSON.parse(raw) : []
+    const local: Mistake[] = raw ? JSON.parse(raw) : []
+    let disk: Mistake[] = []
+    try {
+      const res = await fetch(`${BASE}data/english/translation-progress.json?t=${Date.now()}`)
+      if (res.ok) disk = (await res.json()).mistakes || []
+    } catch { /* 离线时仅用本机数据 */ }
+    const removed: string[] = JSON.parse(localStorage.getItem(REMOVED_KEY) || '[]')
+    const map = new Map<string, Mistake>()
+    disk.forEach(m => map.set(m.id, m))
+    local.forEach(m => map.set(m.id, m)) // 本机覆盖磁盘（本地可能已升级/修改）
+    mistakes.value = [...map.values()].filter(m => !removed.includes(m.id))
   } catch { mistakes.value = [] }
 }
 onMounted(load)
@@ -46,6 +62,14 @@ const save = () => localStorage.setItem(MISTAKE_KEY, JSON.stringify(mistakes.val
 const remove = (id: string) => {
   mistakes.value = mistakes.value.filter(m => m.id !== id)
   save()
+  // 磁盘墓碑：销账后磁盘同名条目不再复活
+  try {
+    const removed: string[] = JSON.parse(localStorage.getItem(REMOVED_KEY) || '[]')
+    if (!removed.includes(id)) {
+      removed.push(id)
+      localStorage.setItem(REMOVED_KEY, JSON.stringify(removed))
+    }
+  } catch { /* ignore */ }
 }
 
 const upgrade = (id: string) => {
@@ -109,6 +133,11 @@ const toggleReveal = (id: string) => {
         <div v-if="m.myTranslation" class="tm-mine">
           <span class="tm-label">我的译文</span>
           <p>{{ m.myTranslation }}</p>
+        </div>
+
+        <div v-if="m.comment" class="tm-comment">
+          <span class="tm-label">批改点评{{ m.score != null ? ` · 得分 ${m.score}/2` : '' }}</span>
+          <p>{{ m.comment }}</p>
         </div>
 
         <button class="tm-toggle" @click="toggleReveal(m.id)">
@@ -243,6 +272,17 @@ const toggleReveal = (id: string) => {
   background: #fff8ec;
 }
 .tm-mine { margin-bottom: 12px; }
+.tm-comment { margin-bottom: 12px; }
+.tm-comment p {
+  margin: 0 0 10px;
+  font-size: 0.86rem;
+  line-height: 1.8;
+  color: var(--body);
+  background: var(--bg-soft);
+  border-left: 3px solid var(--gold);
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+}
 .tm-mine p, .tm-answer p {
   margin: 0 0 10px;
   font-size: 0.9rem;
