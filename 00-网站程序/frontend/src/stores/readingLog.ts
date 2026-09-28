@@ -238,7 +238,16 @@ const SEEDED_NOTES: Record<string, string> = {
     '3/5《新闻集团电话窃听案》(News International / phone hacking)。两错:Q1、Q3。' +
     'Q1(细节)选C正A:Elisabeth(英国女王)对“current sorting mechanism”的后果感到不安。' +
     'Q3(细节)选D正C:Rebekah Brooks的辩护“was hardly convincing”(几乎没有说服力),不是“part of a conspiracy”。' +
-    '【数据修正说明】本篇Q2选项B/D对调、Q5选项B/C对调,已将index.json重排为官方顺序、correctAnswer更新为ADCAB。'
+    '【数据修正说明】本篇Q2选项B/D对调、Q5选项B/C对调,已将index.json重排为官方顺序、correctAnswer更新为ADCAB。',
+  '2016-1':
+    '3/5《法国立法禁超瘦模特+丹麦章程》。两错:Q4、Q5。' +
+    'Q4(细节)选D正C:句间关系读反——以为“charter 直接把 CFW 的设计者和代理商都拒绝了、CFW 是被丹麦新政策打击的组织”。实际 CFW(哥本哈根时装周)是章程的执行方:章程要求考虑模特健康因素,CFW 拒绝的是违反章程的设计者(showing little concern for health factors=C)。【句读铁律】先找“谁是执行者、谁是被约束者”,制定规则的组织不是被打压对象。' +
+    'Q5(主旨)选C正A:考试心理陷阱——觉得“前四题都没选C”,为平衡分布压过第一直觉A(做时感觉A很对)。答案分布没有规律,第一直觉>平衡直觉。察觉自己在补分布时,停手回原文。',
+  '2016-2':
+    '2/5《英国乡村与 National Trust》。三错:Q2、Q3、Q4。' +
+    'Q2(细节)选D正A:题干主语没读全——问的是 the achievements of the National Trust(成就)现在怎样,不是“这个组织怎么样了”。D overshadowed=被掩盖(成就还在),A gradually destroyed=被开发蚕食渐毁,才贴原文。【题干铁律】先圈题干主语名词再看选项。' +
+    'Q3(推理)选A正C:错因待二刷补录。' +
+    'Q4(细节)选D正B:把选项里的 his 当成作者态度——题干是 The author holds that George Osborne\'s preference…,选项的 his=Osborne(他的偏好显示出他对乡村特质的漠视),作者 holds 的只是这个判断。【指代铁律】题干已给“X\'s preference/claim”时,选项 his=X;态度题问的是作者对 X 的评价。另:文中 endorse 看成 endure(见种子9056)。'
 }
 
 function keyOf(year: number, text: number) {
