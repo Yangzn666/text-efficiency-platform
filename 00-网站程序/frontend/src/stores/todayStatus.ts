@@ -90,7 +90,7 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 17
+const PLAN_VERSION = 18
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
 const MILESTONE_VERSION = 12
 
@@ -298,7 +298,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: 156,
         dailyQuota: 1,
         estMinutes: 75,
-        completedUnits: 61, // 09-28 刷完 2015+2016 共 8 篇阅读（阅读满 44 篇，指针 n=62=2017 T1）；15/16/17 完型与 16/17 翻译记里程碑不占指针
+        // 2026-09-29 口径修订：用户反馈「做了半天进度没动」——完型/翻译原记里程碑不占指针，
+        // 完成时进度条不动，挫伤反馈。改为计入线性进度：已完成的完型 2011-2017 七篇与
+        // 翻译 2016/2017 两篇按「已完成排在前」惯例插入 n=38~46，completedUnits 61 -> 70，
+        // 指针落点 n=71 = 阅读第 45 篇（2017 T1），下一任务未变。此后完型/翻译完成即动指针。
+        completedUnits: 70, // 09-29 口径修订：完型 2011-2017 七篇 + 翻译 2016/2017 两篇计入线性进度（61+9=70），指针 n=71 = 2017 T1
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -309,10 +313,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
           if (n <= 29) return `完型 ${[2005, 2006, 2008][n - 27]}年（已完成，累计29/60）`
           if (n <= 33) return `真题阅读精读 2009年第${n - 29}篇（已完成）`
           if (n <= 37) return `真题阅读精读 2010年第${n - 33}篇（已完成·英一最难年四篇全过，T1 2/5、T2 0/5）`
-          if (n <= 101) return `真题阅读精读 第${n - 17}篇（生词+长难句+逻辑信号词）`
-          if (n <= 116) return `完型 ${2011 + (n - 102)}年（逻辑衔接题为主，非词义题）`
-          if (n <= 130) return `新题型 第${n - 116}篇`
-          if (n <= 140) return `翻译 第${n - 130}篇（采分点拆解）`
+          if (n <= 44) return `完型 ${2010 + (n - 37)}年（已完成，计入线性进度）`
+          if (n <= 46) return `翻译 ${2016 + (n - 45)}年（已完成，计入线性进度）`
+          if (n <= 110) return `真题阅读精读 第${n - 26}篇（生词+长难句+逻辑信号词）`
+          if (n <= 118) return `完型 ${2018 + (n - 111)}年（逻辑衔接题为主，非词义题）`
+          if (n <= 132) return `新题型 第${n - 118}篇`
+          if (n <= 140) return `翻译 ${2018 + (n - 133)}年（采分点拆解）`
           if (n <= 150) return `作文 第${n - 140}个模块`
           if (n <= 156) return `套卷模考 第${n - 150}套（原 11 套已主动砍到 6 套）`
           return `英语冲刺回顾`
@@ -388,7 +394,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-math-2020', title: '数学·2020年真题限时刷完并复盘', date: '2026-09-28', subject: 'math', done: true, note: '真题三连收官（18/19/20）；本周重点转入弱点章节专项突破。completedUnits 132→133，指针落点 n=134 = 剩余第 5 套 = 2021 年，真题剩 6 套' },
       { id: 'm-eng-2015-2016', title: '英语·2015+2016 阅读与完型收官', date: '2026-09-28', subject: 'english', done: true, note: '刷完 2015、2016 两年全部传统阅读（共 8 篇），阅读累计 36→44 篇；两年完型（2015 14/20、2016 11/20）按惯例记里程碑不占指针。completedUnits 53→61，指针落点 n=62 = 阅读第 45 篇（2017 T1），剩余 40 篇' },
       { id: 'm-politics-11-13', title: '政治·马原第11~13讲', date: '2026-09-28', subject: 'politics', done: true, note: '串讲进度 10→13/58，completedUnits 10→13；肖1000 一刷欠账累积至第 9~13 讲，需本周集中补掉；距 10-20 硬截止剩 45 讲 ≈ 2 讲/天' },
-      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩95单元/距目标日12-15共77天=每天1.23篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩86单元/距目标日12-15共77天=每天1.12篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
       { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' },
