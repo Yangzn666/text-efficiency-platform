@@ -76,7 +76,7 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2016-3': 4,
   '2016-4': 4,
   '2017-1': 3,
-  '2017-2': 2,
+  '2017-2': 3,
   '2017-3': 5,
   '2017-4': 3
 }
@@ -258,9 +258,9 @@ const SEEDED_NOTES: Record<string, string> = {
     'Q25(主旨)选D正A:没抓住作者对 PreCheck 新措施是“泼冷水”的态度。标题 A Getting Stuck in Security Lines(卡在安检队伍里)才点出全文“排队久+改革没解决问题”的主线,D Underused PreCheck Lanes 只是局部细节。' +
     '词汇:screen 在文中=安检筛查(screening)不是“屏幕”,不认识它干扰了理解(见种子9059)。',
   '2017-2':
-    '2/5《夏威夷莫纳克亚山建 TMT 望远镜引争议》。三错:Q26、Q27、Q28(你复盘只报了 Q26/Q28,漏了 Q27)。' +
+    '3/5《夏威夷莫纳克亚山建 TMT 望远镜引争议》。两错:Q26、Q28。' +
     'Q26(推理)选D正A:in her time 时间错位——女王赞扬的是古代(ancient)观星者,D“她统治时期的观星者”时间错。正解 A(天文学在古代夏威夷社会的重要性)。' +
-    'Q27(细节)选C正A:你漏记的一题——Mauna Kea 被视为理想台址是因为地理特征(高海拔/干燥/大气稀薄→清晰图像),religious implications(宗教意义)是当地人反对建台的理由、不是选址理想的原因。【铁律】“理想的原因”vs“反对的原因”别混。' +
+    'Q27(细节)选C——正解 geographical features(你选对了):莫纳克亚山因高海拔/干燥/大气稀薄→清晰图像这些地理特征成为理想台址;religious implications是当地人反对建台的理由、非选址原因。【数据修正】此题站内选项曾与纸序 A/C 对调(站内A=地理、纸序C=地理),已重排为纸序、正解标 C。' +
     'Q28(细节)选B正D:不认识 humiliating(屈辱的),D“想起屈辱的历史”才是当地人反对的文化根源(见种子9057)。',
   '2017-3':
     '5/5《GDP 不等于幸福·英国 Well-being 报告》全对!难年里第一篇阅读满分,长难句和主旨题(Q35 选对 C High GDP But Inadequate Well-being)都稳。保持这个手感。',
