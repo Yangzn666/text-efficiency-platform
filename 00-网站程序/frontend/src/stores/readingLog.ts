@@ -74,7 +74,11 @@ const SEEDED_CORRECT: Record<string, number> = {
   '2016-1': 3,
   '2016-2': 2,
   '2016-3': 4,
-  '2016-4': 4
+  '2016-4': 4,
+  '2017-1': 3,
+  '2017-2': 2,
+  '2017-3': 5,
+  '2017-4': 3
 }
 
 /** 已知作答结果的篇目生词/长难句笔记（仅在用户未填写时注入） */
@@ -247,7 +251,24 @@ const SEEDED_NOTES: Record<string, string> = {
     '2/5《英国乡村与 National Trust》。三错:Q2、Q3、Q4。' +
     'Q2(细节)选D正A:题干主语没读全——问的是 the achievements of the National Trust(成就)现在怎样,不是“这个组织怎么样了”。D overshadowed=被掩盖(成就还在),A gradually destroyed=被开发蚕食渐毁,才贴原文。【题干铁律】先圈题干主语名词再看选项。' +
     'Q3(推理)选A正C:错因待二刷补录。' +
-    'Q4(细节)选D正B:把选项里的 his 当成作者态度——题干是 The author holds that George Osborne\'s preference…,选项的 his=Osborne(他的偏好显示出他对乡村特质的漠视),作者 holds 的只是这个判断。【指代铁律】题干已给“X\'s preference/claim”时,选项 his=X;态度题问的是作者对 X 的评价。另:文中 endorse 看成 endure(见种子9056)。'
+    'Q4(细节)选D正B:把选项里的 his 当成作者态度——题干是 The author holds that George Osborne\'s preference…,选项的 his=Osborne(他的偏好显示出他对乡村特质的漠视),作者 holds 的只是这个判断。【指代铁律】题干已给“X\'s preference/claim”时,选项 his=X;态度题问的是作者对 X 的评价。另:文中 endorse 看成 endure(见种子9056)。',
+  '2017-1':
+    '3/5《机场安检排队久+PreCheck 改革》。两错:Q22、Q25。' +
+    'Q22(细节)选A正C:无中生有——看到第三段“有人偷偷带上武器”就脑补“加强安检=对背包更多限制(A)”。实际原文排队变长的原因是旅客数量增加(C)。【铁律】选项的因果若原文没直说、靠你自己“合理推断”补出来的,多半是干扰项。' +
+    'Q25(主旨)选D正A:没抓住作者对 PreCheck 新措施是“泼冷水”的态度。标题 A Getting Stuck in Security Lines(卡在安检队伍里)才点出全文“排队久+改革没解决问题”的主线,D Underused PreCheck Lanes 只是局部细节。' +
+    '词汇:screen 在文中=安检筛查(screening)不是“屏幕”,不认识它干扰了理解(见种子9059)。',
+  '2017-2':
+    '2/5《夏威夷莫纳克亚山建 TMT 望远镜引争议》。三错:Q26、Q27、Q28(你复盘只报了 Q26/Q28,漏了 Q27)。' +
+    'Q26(推理)选D正A:in her time 时间错位——女王赞扬的是古代(ancient)观星者,D“她统治时期的观星者”时间错。正解 A(天文学在古代夏威夷社会的重要性)。' +
+    'Q27(细节)选C正A:你漏记的一题——Mauna Kea 被视为理想台址是因为地理特征(高海拔/干燥/大气稀薄→清晰图像),religious implications(宗教意义)是当地人反对建台的理由、不是选址理想的原因。【铁律】“理想的原因”vs“反对的原因”别混。' +
+    'Q28(细节)选B正D:不认识 humiliating(屈辱的),D“想起屈辱的历史”才是当地人反对的文化根源(见种子9057)。',
+  '2017-3':
+    '5/5《GDP 不等于幸福·英国 Well-being 报告》全对!难年里第一篇阅读满分,长难句和主旨题(Q35 选对 C High GDP But Inadequate Well-being)都稳。保持这个手感。',
+  '2017-4':
+    '3/5《最高法院 McDonnell 受贿案判决》。两错:Q36、Q37。' +
+    'Q36(推理)选A正C:划线句体现法院对 McDonnell 行为的态度是 contemptuous(轻蔑不屑),不是“定罪没妥协(A)”。' +
+    'Q37(细节)选B正A:双词坑——concrete 当成“固定的/混凝土”(实际=具体的)、return 当成“回礼”(实际=回报,与 benefit 呼应)。正解 concrete returns for gift-givers(给送礼者的具体回报)才是腐败认定标准,sizable gains(金额大小)是干扰(见种子9058)。' +
+    '分布提醒:本篇正解 C 出现 3 次(Q36/38/39),你注意到了“答案3次一个选项”——再次印证 2016-1 Q5 的坑:答案分布没有规律,别为凑分布改第一直觉。'
 }
 
 function keyOf(year: number, text: number) {

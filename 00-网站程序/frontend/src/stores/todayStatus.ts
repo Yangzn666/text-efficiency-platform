@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 18
+const PLAN_VERSION = 19
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 12
+const MILESTONE_VERSION = 13
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -302,7 +302,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 完成时进度条不动，挫伤反馈。改为计入线性进度：已完成的完型 2011-2017 七篇与
         // 翻译 2016/2017 两篇按「已完成排在前」惯例插入 n=38~46，completedUnits 61 -> 70，
         // 指针落点 n=71 = 阅读第 45 篇（2017 T1），下一任务未变。此后完型/翻译完成即动指针。
-        completedUnits: 70, // 09-29 口径修订：完型 2011-2017 七篇 + 翻译 2016/2017 两篇计入线性进度（61+9=70），指针 n=71 = 2017 T1
+        completedUnits: 74, // 10-07 做完 2017 阅读四篇（T1 3/5、T2 2/5、T3 5/5、T4 3/5=13/20），70→74，指针 n=75 = 2018 T1
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -393,8 +393,9 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-cs408-feynman-0923', title: '408·费曼 gap 回捞推进（指针不变）', date: '2026-09-23', subject: 'cs408', done: true, note: '费曼 review 累计 19→21 session / 254 问，多条 co/ds/os/cn 旧 gap 当场钉回（C-045/C-046/C-079/C-081/C-083 等首答✓）。指针仍在 os-04、cn-04、ds-04，无新增整章节完成，故 completedUnits 保持 51、totalGaps 仍 92（mastered 待验收归零）' },
       { id: 'm-math-2020', title: '数学·2020年真题限时刷完并复盘', date: '2026-09-28', subject: 'math', done: true, note: '真题三连收官（18/19/20）；本周重点转入弱点章节专项突破。completedUnits 132→133，指针落点 n=134 = 剩余第 5 套 = 2021 年，真题剩 6 套' },
       { id: 'm-eng-2015-2016', title: '英语·2015+2016 阅读与完型收官', date: '2026-09-28', subject: 'english', done: true, note: '刷完 2015、2016 两年全部传统阅读（共 8 篇），阅读累计 36→44 篇；两年完型（2015 14/20、2016 11/20）按惯例记里程碑不占指针。completedUnits 53→61，指针落点 n=62 = 阅读第 45 篇（2017 T1），剩余 40 篇' },
+      { id: 'm-eng-2017', title: '英语·2017全套收官', date: '2026-10-07', subject: 'english', done: true, note: '2017 完型 18/20 历史最佳 + 阅读 13/20（T3 满分 5/5、T1/T4 各 3/5、T2 2/5）+ 翻译首战，全套封档；阅读指针推进 n=75=2018 T1。T2 Q27 为复盘漏记题（正解 A 地理特征）' },
       { id: 'm-politics-11-13', title: '政治·马原第11~13讲', date: '2026-09-28', subject: 'politics', done: true, note: '串讲进度 10→13/58，completedUnits 10→13；肖1000 一刷欠账累积至第 9~13 讲，需本周集中补掉；距 10-20 硬截止剩 45 讲 ≈ 2 讲/天' },
-      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩86单元/距目标日12-15共77天=每天1.12篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩82单元/距目标日12-15共69天=每天1.19篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
       { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' },
