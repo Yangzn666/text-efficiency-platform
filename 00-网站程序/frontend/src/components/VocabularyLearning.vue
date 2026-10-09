@@ -2133,7 +2133,10 @@ const vocabSeedNotes = [
   { id: 9058, type: 'confusable', content: 'concrete 具体的 ≠ 混凝土/固定的；return 回报 ≠ 回礼 —— 2017阅读T4 Q37双词坑。原句：an official act is corruptive only if it involves concrete returns for gift-givers(只有给送礼者具体回报才算腐败)。你把 concrete 当“固定”、return 当“回礼”，误选 sizable gains。钩：concrete 反义 abstract，抽象↔具体；return=回报/收益(同 return on investment)，与 benefit 呼应。', tags: ['熟词僻义', '2017阅读'] },
   { id: 9059, type: 'word', content: 'screen / screening 安检筛查（不是“屏幕”） —— 2017阅读T1机场安检文，不认识 screen 干扰理解。钩：screen 名“屏幕”→动“筛过、过安检”；security screening=安全检查；人体“过一遍筛子”=screening。搭配：undergo screening 接受筛查。', tags: ['熟词僻义', '2017阅读'] },
   { id: 9060, type: 'phrase', content: 'a host of 许多的、大量的(=a lot of) —— 2017完型Q3固定搭配，你猜对但没把握。原句：hugs can bring a host of health benefits 拥抱能带来大量健康好处。钩：host 本义主人→一大群宾客→a host of=一大群/许多，修饰可数名词。近义串：a host of = plenty of = a mass of。', tags: ['固定搭配', '2017完型'] },
-  { id: 9061, type: 'phrase', content: 'attribute A to B 把A归因于B —— 2017完型Q17不认识attribute。原句：experts attribute the benefits to the release of oxytocin 专家把好处归因于催产素释放。钩：trib=给(同 contribute/distribute)，at(朝向)+tribute(给)→把结果“给”到原因头上=归因。语序锁死：attribute 结果 to 原因。名同根：attribute 名词=属性。', tags: ['固定搭配', '2017完型'] }
+  { id: 9061, type: 'phrase', content: 'attribute A to B 把A归因于B —— 2017完型Q17不认识attribute。原句：experts attribute the benefits to the release of oxytocin 专家把好处归因于催产素释放。钩：trib=给(同 contribute/distribute)，at(朝向)+tribute(给)→把结果“给”到原因头上=归因。语序锁死：attribute 结果 to 原因。名同根：attribute 名词=属性。', tags: ['固定搭配', '2017完型'] },
+  { id: 9062, type: 'word', content: 'price 熟词僻义=代价、牺牲（不是“价格”） —— 2018完型Q3与 debt 犹豫选错。钩：at any price 不惜代价；the price of… 的代价=为某事承受的不良后果（pay a price=付出代价）。区分：debt 侧重“欠债/负债”（金钱或恩情），price 侧重“为得到某物付出的代价”。搭配：at the price of 以…为代价。', tags: ['熟词僻义', '2018完型'] },
+  { id: 9063, type: 'word', content: 'delight 欣喜、高兴——【褒义词】不是贬义 —— 2018完型Q12你把 delight 当贬义看错了。钩：de-（加强）+light（光）→心里“亮起来”=高兴。与 take delight in 以…为乐同根；反义 dread（恐惧）。别被“以貌取人”带偏：以 -ight 结尾多为中性/褒义（light/might）。', tags: ['情绪词', '2018完型'] },
+  { id: 9064, type: 'word', content: 'cautious 谨慎的、审慎的——【中性态度词】不等于贬义/否定 —— 2018阅读T3 Q40 态度题你把它当贬义词排除，丢了分。钩：caut=小心（同 caution 警告/谨慎），“谨慎”=不盲目乐观也不否定，是有保留的中性。态度词三档记忆：褒义（supportive/optimistic）/中性（cautious/skeptical/qualified）/贬义（critical/doubtful/scornful）。', tags: ['熟词僻义', '态度词', '2018阅读'] }
 ]
 
 onMounted(() => {

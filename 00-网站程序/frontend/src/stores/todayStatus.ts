@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 19
+const PLAN_VERSION = 20
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 13
+const MILESTONE_VERSION = 14
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -302,7 +302,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 完成时进度条不动，挫伤反馈。改为计入线性进度：已完成的完型 2011-2017 七篇与
         // 翻译 2016/2017 两篇按「已完成排在前」惯例插入 n=38~46，completedUnits 61 -> 70，
         // 指针落点 n=71 = 阅读第 45 篇（2017 T1），下一任务未变。此后完型/翻译完成即动指针。
-        completedUnits: 74, // 10-07 做完 2017 阅读四篇（T1 3/5、T2 3/5、T3 5/5、T4 3/5=14/20），70→74，指针 n=75 = 2018 T1
+        completedUnits: 79, // 10-09 做完 2018 全套（完型 16/20 + 阅读四篇 19/20：T1/T2/T4 各 5/5、T3 4/5），74→79，指针 n=80 = 2019 T1
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -394,8 +394,9 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-math-2020', title: '数学·2020年真题限时刷完并复盘', date: '2026-09-28', subject: 'math', done: true, note: '真题三连收官（18/19/20）；本周重点转入弱点章节专项突破。completedUnits 132→133，指针落点 n=134 = 剩余第 5 套 = 2021 年，真题剩 6 套' },
       { id: 'm-eng-2015-2016', title: '英语·2015+2016 阅读与完型收官', date: '2026-09-28', subject: 'english', done: true, note: '刷完 2015、2016 两年全部传统阅读（共 8 篇），阅读累计 36→44 篇；两年完型（2015 14/20、2016 11/20）按惯例记里程碑不占指针。completedUnits 53→61，指针落点 n=62 = 阅读第 45 篇（2017 T1），剩余 40 篇' },
       { id: 'm-eng-2017', title: '英语·2017全套收官', date: '2026-10-07', subject: 'english', done: true, note: '2017 完型 18/20 历史最佳 + 阅读 14/20（T3 满分 5/5、T1/T2/T4 各 3/5）+ 翻译首战，全套封档；阅读指针推进 n=75=2018 T1。T2 Q27 因站内选项与纸序 A/C 对调曾误判、已修正为选对' },
+      { id: 'm-eng-2018', title: '英语·2018全套收官（阅读 19/20）', date: '2026-10-09', subject: 'english', done: true, note: '2018 完型 16/20 + 阅读 19/20（T1/T2/T4 各 5/5、T3 4/5）——第一次 T1T2 连下满分，六年阅读曲线从 2010 的 4/20 跨到 19/20；唯一失分是态度词 cautious 被当贬义排除（纯词汇）。完型错 Q3 price熟词僻义、Q4 Then、Q12 delight当贬义、Q14 做快了。指针 n=80=2019 T1' },
       { id: 'm-politics-11-13', title: '政治·马原第11~13讲', date: '2026-09-28', subject: 'politics', done: true, note: '串讲进度 10→13/58，completedUnits 10→13；肖1000 一刷欠账累积至第 9~13 讲，需本周集中补掉；距 10-20 硬截止剩 45 讲 ≈ 2 讲/天' },
-      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口在收窄：剩82单元/距目标日12-15共69天=每天1.19篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
+      { id: 'm-eng-writing', title: '英语·作文翻译启动', date: '2026-09-01', subject: 'english', done: false, note: '已逾期但缺口持续收窄：剩77单元/距目标日12-15共67天=每天1.15篇，仍需每天拿到2个任务槽位。可选减压阀：按数学惯例把2024/2025两套留给模考，释放8个阅读单元' },
       { id: 'm-cs408-co-done', title: '408·计组强化收尾', date: '2026-09-30', subject: 'cs408', done: false, note: '计组强化过完后依次推进操作系统、计算机网络强化' },
       { id: 'm-xiao8', title: '肖八上市·刷选择题', date: '2026-11-01', subject: 'politics', done: false, note: '肖八选择题+大题框架，时政起步' },
       { id: 'm-xiao4', title: '肖四上市·背大题', date: '2026-12-01', subject: 'politics', done: false, note: '肖四大题背诵+时政收尾' },
