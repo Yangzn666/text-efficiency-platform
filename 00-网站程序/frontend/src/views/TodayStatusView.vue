@@ -57,6 +57,30 @@
       </div>
     </section>
 
+    <!-- 战术作战室入口横幅（读取 todayStatus 单一数据源） -->
+    <section class="wr-entry" @click="$router.push('/warroom')" role="button" tabindex="0" @keydown.enter="$router.push('/warroom')">
+      <div class="wr-entry-left">
+        <div class="wr-entry-badge">🎯 冲刺指挥台</div>
+        <div class="wr-entry-title">最后 {{ store.daysToExam }} 天 · 战术作战室</div>
+        <div class="wr-entry-sub">四科态势环 · 分数账 · 战力曲线 · 战训打卡（数据实时读自今日状态）</div>
+      </div>
+      <div class="wr-entry-mid">
+        <div class="wr-readout">
+          <div class="wr-big">{{ store.overallPrep.actual }}<span>%</span></div>
+          <div class="wr-lbl">综合战力<br>应达 {{ store.overallPrep.expected }}%</div>
+        </div>
+        <div class="wr-mini">
+          <div class="wr-mrow" v-for="pw in store.progressWarnings" :key="pw.key">
+            <span class="wr-mdot" :style="{ background: pw.color }"></span>
+            <span class="wr-mname">{{ pw.name }}</span>
+            <span class="wr-mtrack"><i :style="{ width: pw.actual + '%', background: pw.color }"></i><b :style="{ left: pw.expected + '%' }"></b></span>
+            <span class="wr-mval">{{ pw.actual }}%<em>/{{ pw.expected }}%</em></span>
+          </div>
+        </div>
+      </div>
+      <div class="wr-entry-go">进入 →</div>
+    </section>
+
     <!-- ①.5 战果墙（只增不减 · 与倒计时对照的第二根轴） -->
     <section class="card wall-card">
       <div class="wall-head">
@@ -384,6 +408,79 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* ===== 战术作战室入口横幅 ===== */
+.wr-entry {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: 4px 0 22px;
+  padding: 18px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #e9eef5;
+  background:
+    radial-gradient(600px 200px at 100% 0%, rgba(255, 207, 92, .10), transparent 60%),
+    linear-gradient(120deg, #0d2137 0%, #16345c 60%, #1e4576 100%);
+  border: 1px solid rgba(120, 150, 190, .28);
+  box-shadow: 0 6px 26px rgba(13, 33, 55, .28);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  outline: none;
+}
+.wr-entry:hover, .wr-entry:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 207, 92, .55);
+  box-shadow: 0 12px 34px rgba(13, 33, 55, .4);
+}
+.wr-entry-left { flex: 1 1 auto; min-width: 0 }
+.wr-entry-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: #ffcf5c;
+  background: rgba(255, 207, 92, .14);
+  border: 1px solid rgba(255, 207, 92, .35);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.wr-entry-title { font-size: 20px; font-weight: 800; letter-spacing: .5px }
+.wr-entry-sub { font-size: 12.5px; color: #9fb0c4; margin-top: 4px }
+.wr-entry-mid {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 0 0 auto;
+}
+.wr-readout { text-align: center }
+.wr-big { font-size: 40px; font-weight: 800; line-height: 1; color: #ffcf5c; text-shadow: 0 0 18px rgba(255, 207, 92, .35) }
+.wr-big span { font-size: 18px; margin-left: 2px }
+.wr-lbl { font-size: 11px; color: #9fb0c4; margin-top: 6px; line-height: 1.5 }
+.wr-mini { display: flex; flex-direction: column; gap: 7px; min-width: 260px }
+.wr-mrow { display: flex; align-items: center; gap: 8px; font-size: 12px }
+.wr-mdot { width: 8px; height: 8px; border-radius: 50%; flex: none }
+.wr-mname { width: 52px; flex: none; color: #cdd8e6 }
+.wr-mtrack { position: relative; flex: 1; height: 7px; border-radius: 4px; background: rgba(255, 255, 255, .1); overflow: hidden }
+.wr-mtrack i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; transition: width .5s ease }
+.wr-mtrack b { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #ffcf5c }
+.wr-mval { width: 66px; text-align: right; font-variant-numeric: tabular-nums; color: #e9eef5; font-weight: 600 }
+.wr-mval em { font-style: normal; color: #7f92a8; font-weight: 400 }
+.wr-entry-go {
+  flex: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #06121f;
+  background: #ffcf5c;
+  padding: 9px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .wr-entry { flex-wrap: wrap; gap: 16px }
+  .wr-entry-mid { width: 100%; justify-content: space-between }
+  .wr-mini { min-width: 0; flex: 1 }
+  .wr-entry-go { margin-left: auto }
+}
 /* ============================================================
    设计体系（本页锁定）
    主题：备考作战室 / 计分牌，深蓝 + 金色，整页浅色系

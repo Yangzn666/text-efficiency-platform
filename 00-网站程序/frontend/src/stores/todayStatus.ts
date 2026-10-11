@@ -90,7 +90,7 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 20
+const PLAN_VERSION = 21
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
 const MILESTONE_VERSION = 14
 
@@ -133,13 +133,54 @@ const POLITICS_COURSE_RAW_MIN = POLITICS_COURSE.reduce((s, m) => s + m.rawMin, 0
 export const POLITICS_COURSE_HOURS_2X = Math.round(POLITICS_COURSE_RAW_MIN / 2 / 60 * 10) / 10
 /** 串讲课原始时长（小时，≈44.5 h） */
 export const POLITICS_COURSE_RAW_HOURS = Math.round(POLITICS_COURSE_RAW_MIN / 60 * 10) / 10
-/** 政治总单元 = 串讲 58 讲（含同步一刷） + 肖八 8 套 + 肖四 4 套 */
-// 09-28 口径修订：肖1000 二刷主体是重做错题，工作量远小于一刷却曾占 20 个单元，
-// 导致政治进度百分比系统性虚低。二刷不再占单元指针，折叠为冲刺期错题回捞动作（记里程碑追踪）。
-const POLITICS_TOTAL_UNITS = POLITICS_COURSE_LESSONS + 8 + 4
+/**
+ * 政治总单元：2026-10-11 进度模型重建（用户口径修正）。
+ * 政治是「后置发力」科目——10 月刻意少投，主力在肖八(11 月)/肖四(12 月)。
+ * 旧模型两个系统性偏差：① 分母把 58 讲串讲全算成必刷（与"网课只看马原、其余用思维导图带过"冲突）；
+ * ② 应达用线性 startDate→targetDate，把本就后置的政治当成前置科目冤枉（永远显示一大片欠账）。
+ * 新模型：100 单元按"真实工作量"加权（不是课数），配合后置应达锚点曲线。
+ * 单元分配：
+ *   n1-8   马原系统课（8，已全部看完）
+ *   n9-48  肖1000 一刷（40 单元，按题数折算约 30 题/单元；马原 396 题≈13 单元）
+ *   n49-53 肖1000 二刷（5 单元，仅回捞错题）
+ *   n54-68 肖八（15 单元，8 套选择+订正）
+ *   n69-90 肖四（22 单元，4 套选择+大题背诵，冲刺主力）
+ *   n91-93 时政（3 单元）
+ *   n94-100 冲刺背诵（7 单元）
+ */
+const POLITICS_TOTAL_UNITS = 100
+/** 政治后置应达锚点：日期(YYYY-MM-DD) → 应达完成度 % */
+const POLITICS_PACE_ANCHORS: [string, number][] = [
+  ['2026-09-09', 0], ['2026-10-20', 25], ['2026-11-15', 55],
+  ['2026-12-05', 78], ['2026-12-19', 100]
+]
+/** 按锚点线性插值，算出给定日期政治"应达"完成度百分比（前置科目仍用线性，政治单独走此曲线） */
+const politicsPacePct = (dateStr: string): number => {
+  const A = POLITICS_PACE_ANCHORS.map(([d, v]) => [Date.parse(d + 'T00:00:00'), v] as [number, number])
+  const t = Date.parse(dateStr + 'T00:00:00')
+  if (Number.isNaN(t) || t <= A[0][0]) return A[0][1]
+  if (t >= A[A.length - 1][0]) return A[A.length - 1][1]
+  for (let i = 0; i < A.length - 1; i++) {
+    const [d0, v0] = A[i]
+    const [d1, v1] = A[i + 1]
+    if (t >= d0 && t <= d1) return v0 + (v1 - v0) * ((t - d0) / (d1 - d0))
+  }
+  return A[A.length - 1][1]
+}
 
-/** 把政治串讲的单元序号翻译成「模块 + 课号 + 短标签 + 2 倍速净时长」 */
-const politicsCourseUnit = (n: number) => {
+/**
+ * 某科目在给定日期的"应达"完成度百分比（单一真相源，供 progressWarnings / overallPrep 复用）。
+ * 政治走后置锚点曲线 politicsPacePct（10 月少投、11-12 月主力），其余科目走线性 startDate→targetDate。
+ */
+const expectedPct = (plan: { key: string, startDate: string, targetDate: string }, today: string): number => {
+  if (plan.key === 'politics') return politicsPacePct(today)
+  const span = Math.max(1, daysBetween(plan.startDate, plan.targetDate))
+  const elapsed = Math.max(0, Math.min(span, daysBetween(plan.startDate, today)))
+  return (elapsed / span) * 100
+}
+
+/** 把政治串讲的单元序号翻译成「模块 + 课号 + 短标签 + 2 倍速净时长」（供政治资料墙/组件复用） */
+export const politicsCourseUnit = (n: number) => {
   let i = n - 1
   for (const m of POLITICS_COURSE) {
     if (i < m.lessons) {
@@ -197,10 +238,12 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 指针落点 n=131 = 剩余第 2 套 = 2018 年。顺手给「剩余第 n 套」补上年份，避免只报序号。
         // 2026-09-21 更新：限时刷完 2018 年数一并完成错题复盘（13 题已导入错题本），
         // completedUnits 130 -> 131，指针落点 n=132 = 剩余第 3 套 = 2019 年。
+        // 2026-10-11 更新：限时刷完 2021 年数一并完成错题复盘，
+        // completedUnits 133 -> 134，指针落点 n=135 = 剩余第 6 套 = 2022 年。
         totalUnits: 142,
         dailyQuota: 1,
         estMinutes: 100,
-        completedUnits: 133, // 09-28 2020 年真题限时完成并复盘，指针 n=134 = 2021 年·剩余第 5 套；本周转入专项突破
+        completedUnits: 134, // 10-11 2021 年真题限时完成并复盘，指针 n=135 = 2022 年·剩余第 6 套；本周转入专项突破
         startDate: '2026-05-01',
         targetDate: '2026-12-12',
         active: true,
@@ -329,35 +372,30 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         name: '政治',
         color: '#F56C6C',
         icon: '🚩',
-        // 2026-09-10 进度对账：串讲 09-09 才听第1讲、09-10 第2讲，completedUnits 0 -> 2。
-        // startDate 由计划值 07-15 改为真实启动日 09-09：应达刻度线才有可执行意义
-        //（否则永远显示追不上的 -34%，失去指导价值）；落后 56 天这一事实记在里程碑里。
-        // 2026-09-14 更新：前三课已结束，completedUnits 2 -> 3。
-        // 2026-09-16 结构重建：原「30 讲」是拍脑袋的占位数，真实课程为五模块 58 讲（见 POLITICS_COURSE）。
-        // 单元序号 1-58 = 串讲各讲（绑定同讲对应的 1000 题一刷），59-78 = 1000 题二刷，79-86 肖八，87-90 肖四。
-        // estMinutes 50 = 视频 2 倍速平均 23 min + 对应选择题 27 min；净看课全程仅 22.3 h，瓶颈在题不在课。
-        // completedUnits 3 -> 5（09-15 看完马原第 5 讲）；1000 题对应章节尚未动，故资料墙里 1000 题仍记 0。
-        // 2026-09-16 更新二：看完马原第 6 讲「对立统一」（矛盾规律），completedUnits 5 -> 6。
-        // 该讲对应的肖1000章节仍未动，一刷欠账随讲数累积（现欠 6 讲的选择量）。
-        // 2026-09-21 更新：马原第 7、8 讲已看完，completedUnits 6 -> 8（串讲进度 8/58）；
-        // 对应肖1000章节仍未动，一刷欠账累积到 8 讲。
+        // 2026-10-11 进度模型重建（用户口径修正）：分母改为 100 单元工作量加权制，
+        // 见文件头 POLITICS_TOTAL_UNITS 说明。旧 completedUnits=13 是把串讲讲数当进度的过时口径，
+        // 且用户实际已看完马原全部网课（旧值未反映）。新拆解：8(马原系统课，已全部看完)
+        // + 13(肖1000 一刷·马原部分，396 题占全部 1188 题约 33%，折算 40 单元中的约 13 单元)
+        // = 21，即政治实际完成度 21/100 = 21%。应达不再走线性，改由 politicsPacePct 后置曲线单独计算。
         totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 13, // 09-28 串讲看到马原第 13 讲（肖1000 一刷欠账累积至第 9~13 讲）；09-28 口径修订 totalUnits 90→70，政治实际完成度 13/70=18.6%
+        completedUnits: 21, // 10-11：马原系统课 8 看完 + 肖1000 一刷马原部分约 13 单元 = 21/100 = 21%
         startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
         unitLabel: (n) => {
-          if (n <= POLITICS_COURSE_LESSONS) {
-            const u = politicsCourseUnit(n)
-            if (!u) return `串讲 第${n}讲`
-            const pad = String(u.idx).padStart(2, '0')
-            return `串讲·${u.code} ${pad}/${u.total} ${u.tag}（2倍速约${u.perMin}min）+ ${u.isTest ? '测试卷错题回炉' : '肖1000对应章节'}`
+          if (n <= 8) return `马原系统课 第${n}/8 讲（唯一需要看网课的模块）`
+          if (n <= 48) {
+            const q0 = (n - 9) * 30 + 1
+            const q1 = Math.min(40 * 30, (n - 8) * 30)
+            return `肖1000 一刷 · 第${q0}~${q1}题（约 30 题/单元，按模块推进）`
           }
-          if (n <= POLITICS_COURSE_LESSONS + 8) return `肖八 第${n - POLITICS_COURSE_LESSONS}套（选择题+订正）`
-          if (n <= POLITICS_COURSE_LESSONS + 12) return `肖四 第${n - POLITICS_COURSE_LESSONS - 8}套（选择+背大题）`
-          return `政治冲刺回顾`
+          if (n <= 53) return `肖1000 二刷 第${n - 48}/5 批（只回捞错题）`
+          if (n <= 68) return `肖八 第${Math.floor((n - 54) * 8 / 15) + 1}/8 套（选择题 + 订正，约 10-20 月起）`
+          if (n <= 90) return `肖四 第${Math.floor((n - 69) * 4 / 22) + 1}/4 套（选择 + 大题背诵，12 月冲刺主力）`
+          if (n <= 93) return `时政专题 第${n - 90}/3 讲`
+          return `冲刺背诵 第${n - 93}/7 块（分析题语料 + 押题回炉）`
         }
       }
     ]
@@ -551,8 +589,14 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       const base = Math.min(plan.dailyQuota, remaining)
       countOf[plan.key] = base
       totalMinutes += base * plan.estMinutes
-      const elapsed = Math.max(0, daysBetween(plan.startDate, today) + 1)
-      const expected = Math.min(plan.totalUnits, elapsed * plan.dailyQuota)
+      // 政治按后置应达曲线折算欠账，其余科目沿用线性 elapsed×dailyQuota
+      let expected: number
+      if (plan.key === 'politics') {
+        expected = Math.min(plan.totalUnits, Math.round((expectedPct(plan, today) / 100) * plan.totalUnits))
+      } else {
+        const elapsed = Math.max(0, daysBetween(plan.startDate, today) + 1)
+        expected = Math.min(plan.totalUnits, elapsed * plan.dailyQuota)
+      }
       backlogOf[plan.key] = Math.max(0, expected - plan.completedUnits)
     })
 
@@ -742,10 +786,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     const today = todayStr()
     return plans.value.map(plan => {
       const actual = Math.round((plan.completedUnits / plan.totalUnits) * 100)
-      // 应达进度：按「开始日期 → 目标完成日期」的时间比例（每科自己的节奏）
-      const totalSpan = Math.max(1, daysBetween(plan.startDate, plan.targetDate))
-      const elapsed = Math.max(0, daysBetween(plan.startDate, today))
-      const expected = Math.min(100, Math.round((elapsed / totalSpan) * 100))
+      // 应达进度：政治走后置锚点曲线，其余科目按「开始日期 → 目标完成日期」线性比例（每科自己的节奏）
+      const expected = Math.max(0, Math.min(100, Math.round(expectedPct(plan, today))))
 
       let status: ProgressWarn['status'] = 'ok'
       if (!plan.active) {
@@ -790,9 +832,8 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
     for (const p of plans.value) {
       const w = (SCORE_WEIGHTS[p.key] || 100) / totalWeight
       actual += (p.completedUnits / p.totalUnits) * w
-      const span = Math.max(1, daysBetween(p.startDate, p.targetDate))
-      const elapsed = Math.max(0, Math.min(span, daysBetween(p.startDate, today)))
-      expected += (elapsed / span) * w
+      // 应达：政治走后置锚点曲线，其余科目线性；expectedPct 返回百分比，除以 100 与 actual 同量纲
+      expected += (expectedPct(p, today) / 100) * w
     }
     return { actual: Math.round(actual * 100), expected: Math.round(expected * 100) }
   })

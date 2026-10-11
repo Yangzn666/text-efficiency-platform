@@ -26,6 +26,7 @@ const UniversitiesView = () => import('@/views/UniversitiesView.vue')
 const TranslationView = () => import('@/views/TranslationView.vue')
 const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 const SrsView = () => import('@/views/SrsView.vue')
+const WarRoomView = () => import('@/views/WarRoomView.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -190,6 +191,13 @@ const routes: RouteRecordRaw[] = [
     name: 'srs',
     component: SrsView,
     meta: { requiresAuth: true, title: '记忆卡' }
+  },
+  // 最后阶段战术作战室（四科态势·分数账·战力曲线，读 todayStatus 单一真相源 + 本地游戏化交互层）
+  {
+    path: '/warroom',
+    name: 'warroom',
+    component: WarRoomView,
+    meta: { requiresAuth: true, title: '战术作战室' }
   }
 ]
 

@@ -80,6 +80,7 @@ const mobileMenuOpen = ref(false)
 
 const personalRoutes = [
   { path: '/', name: '今日状态' },
+  { path: '/warroom', name: '🎯 战术作战室' },
   { path: '/math', name: '数学一' },
   { path: '/english', name: '英语一' },
   { path: '/politics', name: '政治' },
