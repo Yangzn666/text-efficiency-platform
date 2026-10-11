@@ -2136,7 +2136,17 @@ const vocabSeedNotes = [
   { id: 9061, type: 'phrase', content: 'attribute A to B 把A归因于B —— 2017完型Q17不认识attribute。原句：experts attribute the benefits to the release of oxytocin 专家把好处归因于催产素释放。钩：trib=给(同 contribute/distribute)，at(朝向)+tribute(给)→把结果“给”到原因头上=归因。语序锁死：attribute 结果 to 原因。名同根：attribute 名词=属性。', tags: ['固定搭配', '2017完型'] },
   { id: 9062, type: 'word', content: 'price 熟词僻义=代价、牺牲（不是“价格”） —— 2018完型Q3与 debt 犹豫选错。钩：at any price 不惜代价；the price of… 的代价=为某事承受的不良后果（pay a price=付出代价）。区分：debt 侧重“欠债/负债”（金钱或恩情），price 侧重“为得到某物付出的代价”。搭配：at the price of 以…为代价。', tags: ['熟词僻义', '2018完型'] },
   { id: 9063, type: 'word', content: 'delight 欣喜、高兴——【褒义词】不是贬义 —— 2018完型Q12你把 delight 当贬义看错了。钩：de-（加强）+light（光）→心里“亮起来”=高兴。与 take delight in 以…为乐同根；反义 dread（恐惧）。别被“以貌取人”带偏：以 -ight 结尾多为中性/褒义（light/might）。', tags: ['情绪词', '2018完型'] },
-  { id: 9064, type: 'word', content: 'cautious 谨慎的、审慎的——【中性态度词】不等于贬义/否定 —— 2018阅读T3 Q40 态度题你把它当贬义词排除，丢了分。钩：caut=小心（同 caution 警告/谨慎），“谨慎”=不盲目乐观也不否定，是有保留的中性。态度词三档记忆：褒义（supportive/optimistic）/中性（cautious/skeptical/qualified）/贬义（critical/doubtful/scornful）。', tags: ['熟词僻义', '态度词', '2018阅读'] }
+  { id: 9064, type: 'word', content: 'cautious 谨慎的、审慎的——【中性态度词】不等于贬义/否定 —— 2018阅读T3 Q40 态度题你把它当贬义词排除，丢了分。钩：caut=小心（同 caution 警告/谨慎），“谨慎”=不盲目乐观也不否定，是有保留的中性。态度词三档记忆：褒义（supportive/optimistic）/中性（cautious/skeptical/qualified）/贬义（critical/doubtful/scornful）。', tags: ['熟词僻义', '态度词', '2018阅读'] },
+  { id: 9065, type: 'word', content: 'company 熟词僻义=剧团、演出队（不是“公司”） —— 2018翻译句3 the professional companies 专业剧团。钩：show business=演艺界；a theatre company 剧团。文艺/戏剧语境 company 几乎都指“剧团”，不是商业公司。', tags: ['熟词僻义', '2018翻译'] },
+  { id: 9066, type: 'word', content: 'livelihood 生计、谋生手段（≠人生意义） —— 2018翻译句3 a means of livelihood 谋生手段，你译成“人生意义”。钩：live(活)+lihood(状态)=活下去的凭借=生计。别拆成 life+意义。', tags: ['熟词僻义', '2018翻译'] },
+  { id: 9067, type: 'word', content: 'play 熟词僻义=戏剧作品、剧本（不是“表演”） —— 2018翻译句5 hosts of plays have been lost 大量剧作失传，你译“表演”。钩：write/stage a play 写/演一部戏；performance 才是“表演”。plays 复数多指“剧本/剧作”。', tags: ['熟词僻义', '2018翻译'] },
+  { id: 9068, type: 'phrase', content: 'of note = 著名的、有名望的（note≠笔记/注意） —— 2018翻译句5 no author of note 没有哪位名家，你把 note 当“注意到”曲解全句。钩：of note=worthy of note=值得一提→有名。同类 a person of note 名流、a town of note 名城。', tags: ['熟词僻义', '固定搭配', '2018翻译'] },
+  { id: 9069, type: 'word', content: 'incentive 激励、促动力（≈stimulus，不是“不经意”） —— 2018翻译句1 under the incentive of classical tragedy 在古典悲剧的激励下，你译“不经意间”。钩：incentive 名词=激励因素；别与 innocent(无辜)、in a moment(顷刻)串味。', tags: ['熟词僻义', '2018翻译'] },
+  { id: 9070, type: 'phrase', content: 'grammar school = 文法学校（英国古典预备名校，≠语言学校） —— 2018翻译句2，你译成“语言学校”。钩：grammar 此处指拉丁“文法”，文法学校教古典文学；语言学校=language school。专有背景词勿按字面拆。', tags: ['背景词', '2018翻译'] },
+  { id: 9071, type: 'word', content: 'spot 熟词僻义=发现、认出、看出（不只是“地点”） —— 2019完型Q14 你选了 separate。钩：a spot=一个点→目光在人群中“点”到某物=发现。搭配：spot a mistake 发现错误 / I spotted him in the crowd 我在人群中认出了他。完型里 spot 常与 avoid/bridge/separate 同列考“辨认”义。', tags: ['熟词僻义', '2019完型'] },
+  { id: 9072, type: 'word', content: 'literally 确实地、毫不夸张地（≠formally正式/gradually逐渐/relatively相对） —— 2019完型Q4 你选 gradually。钩：letter(字母/字面)→literally=照字面说→“确实、简直”。同族 literal 字面的。副词辨析题先判“时间/程度/方式/事实”哪一轴。', tags: ['副词辨析', '2019完型'] },
+  { id: 9073, type: 'confusable', content: 'Few（几乎没有，否定） vs a few（有一些，肯定） vs Most/All（大多数/全部） —— 2019完型Q1 你选 Most，正解 Few。铁律：完型数量词考的是“作者态度方向”——上下文负面/稀缺→Few，正面/普遍→Most。先判褒贬再选量词。', tags: ['逻辑方向', '2019完型'] },
+  { id: 9074, type: 'confusable', content: 'off（离开、脱离、结束） vs onto（到…之上） —— 2019完型Q6 你选 onto，正解 off。钩：off=从表面离开（take off 起飞/脱下、write off 注销、drift off 飘走）；onto=移动到某物上面（方向相反）。介词题看“动作终点在物体上还是离开物体”。', tags: ['介词方向', '2019完型'] }
 ]
 
 onMounted(() => {
