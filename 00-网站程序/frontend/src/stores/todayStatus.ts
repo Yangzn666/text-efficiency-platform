@@ -90,7 +90,7 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 21
+const PLAN_VERSION = 22
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
 const MILESTONE_VERSION = 14
 
@@ -345,7 +345,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 完成时进度条不动，挫伤反馈。改为计入线性进度：已完成的完型 2011-2017 七篇与
         // 翻译 2016/2017 两篇按「已完成排在前」惯例插入 n=38~46，completedUnits 61 -> 70，
         // 指针落点 n=71 = 阅读第 45 篇（2017 T1），下一任务未变。此后完型/翻译完成即动指针。
-        completedUnits: 79, // 10-09 做完 2018 全套（完型 16/20 + 阅读四篇 19/20：T1/T2/T4 各 5/5、T3 4/5），74→79，指针 n=80 = 2019 T1
+        completedUnits: 80, // 10-12 做完 2019 T1 阅读（5/5 全对），79→80，指针 n=81 = 2019 T2（10-11 的 2019 完型 16/20 不占主线指针，属 n≤118 完型段）
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
