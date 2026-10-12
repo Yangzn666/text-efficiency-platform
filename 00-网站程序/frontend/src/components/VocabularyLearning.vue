@@ -2146,7 +2146,10 @@ const vocabSeedNotes = [
   { id: 9071, type: 'word', content: 'spot 熟词僻义=发现、认出、看出（不只是“地点”） —— 2019完型Q14 你选了 separate。钩：a spot=一个点→目光在人群中“点”到某物=发现。搭配：spot a mistake 发现错误 / I spotted him in the crowd 我在人群中认出了他。完型里 spot 常与 avoid/bridge/separate 同列考“辨认”义。', tags: ['熟词僻义', '2019完型'] },
   { id: 9072, type: 'word', content: 'literally 确实地、毫不夸张地（≠formally正式/gradually逐渐/relatively相对） —— 2019完型Q4 你选 gradually。钩：letter(字母/字面)→literally=照字面说→“确实、简直”。同族 literal 字面的。副词辨析题先判“时间/程度/方式/事实”哪一轴。', tags: ['副词辨析', '2019完型'] },
   { id: 9073, type: 'confusable', content: 'Few（几乎没有，否定） vs a few（有一些，肯定） vs Most/All（大多数/全部） —— 2019完型Q1 你选 Most，正解 Few。铁律：完型数量词考的是“作者态度方向”——上下文负面/稀缺→Few，正面/普遍→Most。先判褒贬再选量词。', tags: ['逻辑方向', '2019完型'] },
-  { id: 9074, type: 'confusable', content: 'off（离开、脱离、结束） vs onto（到…之上） —— 2019完型Q6 你选 onto，正解 off。钩：off=从表面离开（take off 起飞/脱下、write off 注销、drift off 飘走）；onto=移动到某物上面（方向相反）。介词题看“动作终点在物体上还是离开物体”。', tags: ['介词方向', '2019完型'] }
+  { id: 9074, type: 'confusable', content: 'off（离开、脱离、结束） vs onto（到…之上） —— 2019完型Q6 你选 onto，正解 off。钩：off=从表面离开（take off 起飞/脱下、write off 注销、drift off 飘走）；onto=移动到某物上面（方向相反）。介词题看“动作终点在物体上还是离开物体”。', tags: ['介词方向', '2019完型'] },
+  { id: 9075, type: 'confusable', content: 'identical 完全相同的、一模一样的（≠识别！） —— 2019T2Q29 你把 identical 当成“识别/identify”而排除了正解。钩：identical 前缀 ident- = same（同一），identical twins=同卵双胞胎（一模一样）；“识别”是 identify / identification，别和 identical 串。看到 identical 只想“完全相同”。', tags: ['形近词', '2019阅读'] },
+  { id: 9076, type: 'word', content: 'be aligned (with) 与…一致、与…对齐、结盟 —— 2019T2Q29 正解=to be identical with each other（相互一致）。钩：align=把…排成一线→引申“使一致、吻合”；aligned with = 与…保持一致（价值观/利益对齐）。别被“保持平衡(counterbalance)”“互补(complement)”带偏，aligned 的核心就是“一致、同向”。', tags: ['熟词僻义', '2019阅读'] },
+  { id: 9077, type: 'word', content: 'account 熟词僻义=叙述、描述、报道（≠账户/数据） —— 2019T4Q40 你把 a factual account 当成“给出真实数据”，因文中无数据而误排除正解。钩：account=对一件事的“讲述”→a news account 新闻报道 / give a factual account 客观陈述事实经过。factual=基于事实的、就事论事的，≠堆数字；一篇没数据的客观叙述照样是 factual account。', tags: ['熟词僻义', '2019阅读'] }
 ]
 
 onMounted(() => {
