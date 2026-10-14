@@ -10,10 +10,10 @@ const wr = useWarroomStore()
 const C = { math: '#3ddc84', c408: '#4aa8ff', eng: '#ff9f45', pol: '#ff5f6d', gold: '#ffcf5c', gray: '#5f7189' }
 interface SubMeta { wk: 'math' | 'c408' | 'eng' | 'pol', tk: 'math' | 'cs408' | 'english' | 'politics', name: string, tgt: string, note: string }
 const SUBMETA: SubMeta[] = [
-  { wk: 'math', tk: 'math', name: '数学一', tgt: '130+', note: '真题已刷多套并复盘，剩近年数套。弱点：曲线/曲面积分、参数估计（会而不对）。' },
-  { wk: 'c408', tk: 'cs408', name: '408', tgt: '110–120', note: '基础四科一轮收官；OS/计网强化未完（10-15 红线）；真题大题起步。' },
-  { wk: 'eng', tk: 'english', name: '英语一', tgt: '70+', note: '阅读累计已过；作文模板逾期未启动（最大缺口）；单词停新词。' },
-  { wk: 'pol', tk: 'politics', name: '政治', tgt: '65–70', note: '马原网课已看完 + 肖1000 一刷进行中；后置科目，12 月肖四发力。' }
+  { wk: 'math', tk: 'math', name: '数学一', tgt: '130+', note: '真题多套已刷并复盘，剩近年数套；已进模拟卷（26李林6+4做了2套）。弱点：会而不对 + 曲线曲面积分/参数估计。' },
+  { wk: 'c408', tk: 'cs408', name: '408', tgt: '110–120', note: '计组存储器大题已基本刷通；OS 真题大题带刷中（PV/调度，累计 17/126）；OS/计网强化未完（10-15 红线）。' },
+  { wk: 'eng', tk: 'english', name: '英语一', tgt: '70+', note: '2019 全套收官、精读推进到 2020；作文（0 基础）逾期未启动＝最大缺口；单词停新词。' },
+  { wk: 'pol', tk: 'politics', name: '政治', tgt: '65–70', note: '马原网课 + 肖1000 马原部分一刷完成；后置科目，其余模块用思维导图带过，11 月肖八、12 月肖四发力。' }
 ]
 const VC: Record<string, string> = { math: C.math, c408: C.c408, eng: C.eng, pol: C.pol }
 
@@ -511,13 +511,13 @@ const quote = computed(() => QUOTES[qi.value])
               <div class="act"><div class="rk">1</div><div class="body"><b>「会而不对」回炉（最快的一块）</b><p>翻你错题本：几乎每道都做对了最难的核心一步，却死在最后一步——∫sec 原函数记串、½z² 漏系数、高斯"上侧≠外侧"没翻号、路径无关判据凭感觉。这不是不会，是兑现率漏风。抽成 A4 默写表，每天盖住写一遍。</p><span class="src">依据：曲线曲面积分弱点 09-29 · 概率统计弱点 10-08</span></div><div class="gain">+5~10</div></div>
               <div class="act"><div class="rk">2</div><div class="body"><b>曲线/曲面积分专题（唯一真内容缺口）</b><p>数一压轴原型：旋转曲面方程、空间曲线投影、薄片求质量、平方反比场挖洞。唯一"多刷同类真有用"的块，各 3–4 天按四问集中砸：高斯·斯托克斯、投影法 dS。</p><span class="src">依据：149/424 实测 · 129 以真题定强化</span></div><div class="gain">+6~12</div></div>
               <div class="act"><div class="rk">3</div><div class="body"><b>便宜分支：参数估计端点型 + 幂级数求和</b><p>端点型 MLE（θ 只在取值边界那种）补"两类判断"就捡回；幂级数求和固定步骤（先积后导/先导后积 + 拆分子）。都是套路化模板提分。</p><span class="src">依据：10-08 端点型 MLE 第2次踩坑</span></div><div class="gain">+4~8</div></div>
-              <div class="act"><div class="rk">4</div><div class="body"><b>模拟卷纪律（32套别海刷）</b><p>26李林6+4 / 25超越5+5 / 25张宇8+4。全刷≈96h，只会再红一次。当体检不当吃饭：挑 10–12 套限时，优先顶弱章，每套喂进错题回炉。</p><span class="src">依据：清华150 宁缺毋滥 · 129 杂而不精</span></div><div class="gain">稳 75–80</div></div>
+              <div class="act"><div class="rk">4</div><div class="body"><b>模拟卷纪律（32套别海刷）</b><p>手上：26李林6+4（已做6套卷前2套）/ 25超越5+5 / 26张宇8+4。难度 李林&lt;超越&lt;张宇。全刷≈96h 只会再红一次——当体检不当吃饭：<b>李林</b>最接近真题，做主力保持手感+限时；<b>超越</b>计算量大，选做 2-3 套专治你的"会而不对"；<b>张宇</b>最难偏技巧，选做 1-2 套抗压即可，别恋战。每套喂进错题回炉。</p><span class="src">依据：清华150 宁缺毋滥 · 129 杂而不精 · 难度序 李林→超越→张宇</span></div><div class="gain">稳 75–80</div></div>
             </div>
             <div class="side">
               <div class="blk"><div class="h">核心瓶颈</div><div class="c">不是不会，是<b>"会而不对 + 认不出题型"</b>。130 主要靠稳定兑现，不靠刷新题。</div></div>
               <div class="blk"><div class="h">每日投入</div><div class="c">10 月 <b>3h</b>（1h 专题 + 1h 限时 + 1h 回炉）→ 11/12 月 <b>3.5–4h</b>。</div></div>
               <div class="blk"><div class="h">穿插节奏</div><div class="c"><span class="pill">11月起每7–10天1套全真</span><span class="pill">两次全真间插1套精品模拟</span><span class="pill">最后1周停新题</span></div></div>
-              <div class="blk"><div class="h">放弃清单</div><div class="c"><span class="pill no">32套全刷</span><span class="pill no">题海 120 套</span><span class="pill no">26 超越</span><span class="pill no">25 张宇8</span></div></div>
+              <div class="blk"><div class="h">放弃清单</div><div class="c"><span class="pill no">32套全刷</span><span class="pill no">题海 120 套</span><span class="pill no">张宇8+4 大部分</span><span class="pill no">超越5+5 除计算专项外</span></div></div>
             </div>
           </div>
         </div>
