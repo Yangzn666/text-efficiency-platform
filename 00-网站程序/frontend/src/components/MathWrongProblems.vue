@@ -3319,6 +3319,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_fmax_varlimit_deriv',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'var_limit_integral',
+    sectionName: '含参极限定f·变限积分可导性',
+    title: '【26李林6套卷卷二】含参极限定 f=max{1,lnx} 在 e 折角 ⇒ F 可导但二阶不可导（选C）',
+    content: "设 $f(x)=\\lim\\limits_{n\\to\\infty}\\dfrac{\\ln(e^n+x^n)}{n}\\ (x>0)$，$F(x)=\\int_{1}^{x}f(t)\\,dt$，则 $F$ 在 $[1,+\\infty)$ 上（　）。A 不连续　B 连续但不可导　C 可导但二阶不可导　D 二阶可导",
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: "正解：C。\n\n**第一步 榨出 f**：$\\lim\\limits_{n\\to\\infty}\\frac{\\ln(e^n+x^n)}{n}$ 提最大底。$0<x\\le e$ 提 $e^n$ → $f=1$；$x>e$ 提 $x^n$ → $f=\\ln x$。合起来 $f(x)=\\max\\{1,\\ln x\\}$，在 $x=e$ 连续但有个折角。\n\n**第二步 一阶**：$f$ 连续 ⇒ 变限积分 $F'(x)=f(x)$ 必存在 ⇒ $F$ 处处可导（排 A、B）。\n\n**第三步 二阶判据（本洞）**：$F''$ 存在 $\\iff F'=f$ 可导。而 $f$ 在 $x=e$ 左导数 $=0$、右导数 $=1/e$，不等 ⇒ $f'(e)$ 不存在 ⇒ $F''(e)$ 不存在 ⇒ 选 C，排除 D。\n\n**错因**：把「$F$ 二阶可导」的判据错当成「$f$ 连续」。$f$ 连续只保证 $F'$ 存在，不保证 $F'$ 还能再导；要摸二阶必须再单独问「$f$ 自己可导吗」。\n\n**同类提醒**：凡「分段/含 max/含绝对值」的函数问高阶可导，拼接点一律回导数定义算左右导数看是否相等；「变限积分 $F$ 的 $k$ 阶可导」永远比「被积函数 $f$ 的可导性」低一阶——$f$ 连续 → $F$ 一阶可导，$f$ 可导 → $F$ 二阶可导。",
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
