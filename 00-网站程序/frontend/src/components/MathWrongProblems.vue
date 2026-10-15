@@ -3351,6 +3351,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_series_condconv_p',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'series',
+    sectionName: '数项级数敛散性·条件收敛判据',
+    title: '【26李林6套卷卷二】对数p级数发散+交错级数条件收敛 定p范围（选B·条件收敛方向判反成C）',
+    content: "设级数 $\\sum\\limits_{n=2}^{\\infty}\\dfrac{1}{n(\\ln n)^{p}}$ 发散，且 $\\sum\\limits_{n=1}^{\\infty}(-1)^{n-1}\\left(\\dfrac{1}{n^{p}}-\\arctan\\dfrac{1}{n^{p}}\\right)$ 条件收敛，其中 $p>0$，则 $p$ 的取值范围为（　）。A $0<p<1$　B $0<p\\le\\frac{1}{3}$　C $\\frac{1}{3}\\le p<1$　D $\\frac{1}{3}<p\\le1$",
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: "正解：B（0<p≤1/3）。用户错选C——把'条件收敛'方向判反。\n\n**两个级数各锁一个p范围，最后取交集。**\n\n**级数①（对数p级数）定上界**：$\\sum\\frac{1}{n(\\ln n)^p}$ 用积分判别法，令 $u=\\ln x$，$\\int_2^\\infty\\frac{dx}{x(\\ln x)^p}=\\int_{\\ln2}^\\infty u^{-p}du$（无穷区间型）收敛$\\iff p>1$。题设'发散'$\\Rightarrow p\\le1$。\n\n**级数②通项先现真身**：$a_n=\\frac{1}{n^p}-\\arctan\\frac{1}{n^p}$，令 $t=\\frac{1}{n^p}\\to0$，$\\arctan t=t-\\frac{t^3}{3}+o(t^3)$，故 $a_n\\sim\\frac{t^3}{3}=\\frac{1}{3n^{3p}}$（一次项抵消，露出三阶，指数翻成3p）。\n\n**条件收敛=两件事**：①本身收敛——$a_n\\downarrow0$（$p>0$）莱布尼茨，对所有$p>0$成立；②绝对值发散——$\\sum a_n\\sim\\sum\\frac{1}{n^{3p}}$ 收敛$\\iff3p>1\\iff p>\\frac13$，要'不绝对'须 $p\\le\\frac13$（$p=\\frac13$ 时$\\sum\\frac1n$发散仍不绝对，取等号）。\n\n**交集**：$p\\le1\\cap 0<p\\le\\frac13=0<p\\le\\frac13$ → 选B。\n\n**错因**：直觉成'p越大越收敛'，给②写成 $p\\ge\\frac13$（那是绝对收敛），被①夹成 $\\frac13\\le p<1$=C。滑在'条件收敛'三字里'不绝对'这半句没兑现。\n\n**同类提醒**：交错级数问'条件收敛'必拆两判据（本身收敛+绝对值发散），方向常卡在后者；$\\frac1n-\\arctan\\frac1n$、$\\frac1n-\\ln(1+\\frac1n)$、$\\tan x-x$ 这类相减抵消型通项，一律泰勒展开找首个非零阶定其等价无穷小的阶。",
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
