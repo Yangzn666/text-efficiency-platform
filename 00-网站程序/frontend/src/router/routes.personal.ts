@@ -14,6 +14,7 @@ const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
 const OSLearningView = () => import('@/views/OSLearning.vue')
 const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
+const MethodLibraryView = () => import('@/views/MethodLibraryView.vue')
 const MathView = () => import('@/views/MathView.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
@@ -107,6 +108,15 @@ const routes: RouteRecordRaw[] = [
     meta: {
       requiresAuth: true,
       title: '全科错题本'
+    }
+  },
+  {
+    path: '/methods',
+    name: 'method-library',
+    component: MethodLibraryView,
+    meta: {
+      requiresAuth: true,
+      title: '方法库'
     }
   },
   {
