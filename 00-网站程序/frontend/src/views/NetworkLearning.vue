@@ -2,12 +2,18 @@
   <div class="network-learning-page">
     <!-- 顶部面包屑和进度 -->
     <div class="page-header">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>
-          <router-link to="/cs408">408计算机</router-link>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>计算机网络</el-breadcrumb-item>
-      </el-breadcrumb>
+      <div class="header-top">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item>
+            <router-link to="/cs408">408计算机</router-link>
+          </el-breadcrumb-item>
+          <el-breadcrumb-item>计算机网络</el-breadcrumb-item>
+        </el-breadcrumb>
+        <router-link to="/cs408/network-map" class="map-entry-link">
+          <el-icon><Share /></el-icon>
+          知识体系地图（独立页）→
+        </router-link>
+      </div>
       
       <div class="progress-info">
         <el-progress 
@@ -89,7 +95,7 @@ import KnowledgeCard from '@/components/KnowledgeCard.vue'
 import NetworkWrongProblems from '@/components/NetworkWrongProblems.vue'
 import MarkdownIt from 'markdown-it'
 import { ElMessage } from 'element-plus'
-import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
+import { DArrowLeft, DArrowRight, Share } from '@element-plus/icons-vue'
 
 const networkStore = useNetworkStore()
 
@@ -198,9 +204,32 @@ onMounted(() => {
     border-bottom: 1px solid #e4e7ed;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     
-    .el-breadcrumb {
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 12px;
-      font-size: 14px;
+
+      .el-breadcrumb {
+        font-size: 14px;
+      }
+
+      .map-entry-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: $primary-color;
+        text-decoration: none;
+        cursor: pointer;
+        transition: opacity 0.15s;
+
+        &:hover {
+          opacity: 0.75;
+          text-decoration: underline;
+        }
+      }
     }
     
     .progress-info {

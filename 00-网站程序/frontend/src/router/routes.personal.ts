@@ -11,6 +11,7 @@ const CS408View = () => import('@/views/CS408View.vue')
 const CSLearningView = () => import('@/views/CSLearning.vue')
 const DSLearningView = () => import('@/views/DSLearning.vue')
 const NetworkLearningView = () => import('@/views/NetworkLearning.vue')
+const NetworkKnowledgeMapView = () => import('@/views/NetworkKnowledgeMapView.vue')
 const OSLearningView = () => import('@/views/OSLearning.vue')
 const FeynmanLearning = () => import('@/components/FeynmanLearning.vue')
 const WrongProblemsView = () => import('@/views/WrongProblemsView.vue')
@@ -79,6 +80,16 @@ const routes: RouteRecordRaw[] = [
     meta: {
       requiresAuth: true,
       title: '计算机网络',
+      subject: '计算机网络'
+    }
+  },
+  {
+    path: '/cs408/network-map',
+    name: 'cs-network-map',
+    component: NetworkKnowledgeMapView,
+    meta: {
+      requiresAuth: true,
+      title: '计算机网络 · 知识体系地图',
       subject: '计算机网络'
     }
   },
