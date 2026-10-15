@@ -13,5 +13,20 @@
     "learnedDate": "2026-10-15",
     "mastery": "初学",
     "nextReview": "2026-10-20"
+  },
+  {
+    "id": "M002",
+    "subject": "gaoshu",
+    "subjectName": "高等数学",
+    "name": "把瑕点「搬回 0」（等价无穷小只认趋于 0 的那个量）",
+    "trigger": "用等价无穷小判极限 / 反常积分敛散性时，趋于瑕点的变量不是 0（如 $x\\to\\frac{\\pi}{2}$、$x\\to a\\neq 0$），「感觉用不了等价无穷小」卡住。",
+    "steps": "先问「谁趋于 0」。真正的小量是「到瑕点的距离」。① 直接法：把（瑕点 − x）当小量代换，如 $\\cos x=\\sin(\\frac{\\pi}{2}-x)\\sim(\\frac{\\pi}{2}-x)$（$x\\to\\frac{\\pi}{2}^-$）；② 换元法（最稳）：令 $t=\\text{瑕点}-x$ 把瑕点搬回 0，再对 $t$ 用 $\\sin t\\sim t$ 等常规等价。",
+    "formula": "$x\\to a$ 时小量是 $(x-a)$。\n反常积分判敛：有限瑕点 $\\int_0^{\\cdot} t^{-\\alpha}dt$ 收敛 $\\iff \\alpha<1$；无穷区间 $\\int^{\\infty} t^{-\\alpha}dt$ 收敛 $\\iff \\alpha>1$。",
+    "applies": "三角函数反常积分敛散性（瑕点在端点非 0）、$x\\to a$ 型极限的等价代换、含 $\\sin/\\cos$ 且在 $\\frac{\\pi}{2}$ 附近趋于 0 的估计。",
+    "pitfall": "❌ 在 $x\\to\\frac{\\pi}{2}$ 处硬套 $\\sin x\\sim x$（$x$ 根本不趋于 0，无意义）。❌ 只找到一个瑕点就下结论——$\\int_0^{\\pi/2}\\frac{dx}{\\sin^p x\\cos^q x}$ 有 0 和 $\\frac{\\pi}{2}$ 两个瑕点，必须分段各判再取交集（$p<1$ 且 $q<1$）。❌ 把「有限瑕点看 $\\alpha<1$」和「无穷区间看 $\\alpha>1$」两套判据记反。",
+    "source": "26李林6套卷卷二 · 第2题（$\\int_0^{\\pi/2}\\frac{dx}{\\sin^p x\\cos^q x}$ 收敛 ⟺ $p<1,q<1$，选 B；用户特殊值蒙对，第二段方法补学）。",
+    "learnedDate": "2026-10-15",
+    "mastery": "初学",
+    "nextReview": "2026-10-20"
   }
 ]
