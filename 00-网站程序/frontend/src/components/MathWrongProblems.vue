@@ -3367,6 +3367,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_quadratic_form_posdef_ablock',
+    chapterId: 'ch_xiandai',
+    chapterName: '线性代数',
+    sectionId: 'quadratic_form',
+    sectionName: '二次型正定性·分块行列式',
+    title: '【26李林6套卷卷二】A正定是f正定的充要条件(选C·误只用对角项判f正定选A)',
+    content: "已知 $A=\\begin{pmatrix}1-a & a\\\\ a & a\\end{pmatrix}$，$X=(x_1,x_2)^{\\mathrm T}$，二次型 $f(x_1,x_2)=\\begin{vmatrix} A & X\\\\ -X^{\\mathrm T} & 0\\end{vmatrix}$，则「$A$ 正定」是「$f(x_1,x_2)$ 正定」的（　）。A 充分不必要条件　B 必要不充分条件　C 充分必要条件　D 既不充分也不必要条件",
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: "正解 C：$A$ 正定 $\\iff$ $f$ 正定，两者范围都是 $0<a<\\tfrac12$，完全相等，互为充要。\n\n**第一步·分块行列式展开 $f$**（$A$ 可逆时）：$\\begin{vmatrix}A&X\\\\-X^{\\mathrm T}&0\\end{vmatrix}=\\det(A)\\cdot\\left(X^{\\mathrm T}A^{-1}X\\right)$。由 $\\det A=(1-a)a-a^2=a(1-2a)$，且 $\\det(A)\\cdot A^{-1}=\\operatorname{adj}(A)=\\begin{pmatrix}a&-a\\\\-a&1-a\\end{pmatrix}$（二阶伴随：主对调、副变号），展开得 $f=a x_1^2-2a\\,x_1x_2+(1-a)x_2^2$。\n\n**第二步·建对称矩阵（命门）**：平方项系数进对角线，交叉项系数 $-2a$ 必须除以 2 放到两个非对角元：$B=\\begin{pmatrix}a&-a\\\\-a&1-a\\end{pmatrix}$。\n\n**第三步·$f$ 正定的范围**：顺序主子式 $a>0$ 且 $\\det B=a(1-a)-a^2=a(1-2a)>0\\iff 0<a<\\tfrac12$。\n\n**第四步·$A$ 正定的范围**：$A$ 本身对称，$1-a>0$ 且 $\\det A=a(1-2a)>0\\iff 0<a<\\tfrac12$。两范围完全相同 $\\Rightarrow$ 充要，选 C。\n\n**错因**：判 $f$ 正定时只用了对角元 $a$ 与 $1-a$（漏交叉项、没÷2 建对称矩阵），得到错误范围 $f$ 正定 $\\iff 0<a<1$；见 $A$ 正定的 $0<a<\\tfrac12$ 是其真子集，误判\"充分不必要\"选 A。\n\n**同类提醒**：①二次型判正定必用完整对称矩阵（交叉项系数÷2进非对角元）算顺序主子式全 $>0$，不能只看平方项系数；②分块行列式标准件：$A$ 可逆时 $\\begin{vmatrix}A&X\\\\-X^{\\mathrm T}&0\\end{vmatrix}=\\det(A)\\cdot X^{\\mathrm T}A^{-1}X$；③含参判充要＝两条件各译成参数范围集合再比包含。现场验错：代 $a=0.8$，$\\det B=0.8\\times0.2-0.64=-0.48<0$，$f$ 不正定，错范围当场穿帮。",
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
