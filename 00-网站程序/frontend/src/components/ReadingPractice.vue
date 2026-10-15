@@ -263,6 +263,9 @@
                     </div>
                     <div class="tips-content" v-show="isAnalysisOpen(question, 'tip-t')" v-html="question.tips"></div>
                   </div>
+
+                  <!-- 逐题四步复盘卡（个人版）：亲手拆一遍自己的思维，沉淀成踩坑趋势 -->
+                  <QuestionReview :question="question" />
                 </div>
               </div>
             </div>
@@ -376,45 +379,55 @@
       </div>
     </div>
 
-    <!-- ==================== 新题型 ==================== -->
-    <div v-if="activeSection === 'New Question Types'" class="type-groups">
-      <div v-for="type in questionTypes" :key="type" class="type-group">
-        <div class="group-header" @click="toggleGroup(type)">
-          <div class="group-title">
-            <el-icon class="expand-icon" :class="{ expanded: expandedGroups.includes(type) }"><ArrowRight /></el-icon>
-            <el-tag size="large" :type="getQuestionTypeColor(type)">{{ type }}</el-tag>
-            <span class="group-count">{{ getQuestionsByType(type).length }} 题</span>
-          </div>
+    <!-- ==================== 新题型（按年份折叠 · 仿完型/阅读：原文 + 题卡） ==================== -->
+    <div v-if="activeSection === 'New Question Types'" class="newtype-section">
+      <div v-for="year in newTypeYears" :key="year" class="newtype-year-group">
+        <div class="year-header" :class="{ expanded: expandedNewTypeYears.includes(year) }" @click="toggleNewTypeYear(year)">
+          <el-icon class="expand-icon" :class="{ rotated: expandedNewTypeYears.includes(year) }"><ArrowRight /></el-icon>
+          <span class="year-text">
+            <span class="year-main">{{ year }}年 · 新题型</span>
+            <span class="year-subtitle">{{ newTypeSubtitle(year) }}</span>
+          </span>
+          <el-tag size="small" :type="newTypeScore(year).correct === newTypeScore(year).total ? 'success' : 'warning'">{{ newTypeScore(year).correct }}/{{ newTypeScore(year).total }}</el-tag>
+          <span class="year-badge">{{ getNewTypeQuestionsByYear(year).length }}题</span>
         </div>
-        <div v-show="expandedGroups.includes(type)" class="questions-list">
-          <div v-for="(question, idx) in getQuestionsByType(type)" :key="idx" class="question-card">
-            <div class="question-meta">
-              <el-tag size="small">{{ question.year }}年</el-tag>
-              <el-tag v-if="question.section" size="small" type="info">{{ question.section }}</el-tag>
-              <el-tag v-if="question.number" size="small" type="warning">第{{ question.number }}题</el-tag>
-            </div>
-            <!-- 方法论视角条 -->
-            <MethodLens :question="question" />
-            <div class="question-stem">{{ question.stem }}</div>
-            <div v-if="question.options && question.options.length > 0" class="options-list">
-              <div v-for="option in question.options" :key="option.label" class="option-item"
-                :class="{ 'correct': option.label === question.correctAnswer, 'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer }">
-                <span class="option-label">{{ option.label }}.</span>
-                <span class="option-text">{{ option.text }}</span>
+
+        <div v-show="expandedNewTypeYears.includes(year)" class="year-content">
+          <!-- 真题原文 -->
+          <div class="article-section" v-if="getNewTypeArticle(year)">
+            <div class="article-toolbar"><span class="article-label">Article · 真题原文</span></div>
+            <div class="article-body newtype-body" v-html="getNewTypeArticle(year)"></div>
+          </div>
+
+          <!-- 题目 -->
+          <div class="questions-list">
+            <div v-for="question in getNewTypeQuestionsByYear(year)" :key="question.number" class="question-card">
+              <div class="question-meta">
+                <el-tag size="small" type="warning">第{{ question.number }}题</el-tag>
+                <el-tag v-if="question.type" size="small" type="info">{{ question.type }}</el-tag>
+                <el-tag v-if="question.userAnswer" :type="question.userAnswer === question.correctAnswer ? 'success' : 'danger'" size="small">{{ question.userAnswer === question.correctAnswer ? '正确' : '错误' }}</el-tag>
               </div>
-            </div>
-            <div class="answer-section">
-              <div class="answer-row">
-                <span class="answer-label">正确答案</span>
-                <span class="answer-value correct-text">{{ question.correctAnswer }}</span>
+              <div class="question-stem">{{ question.stem }}</div>
+              <div v-if="question.options && question.options.length > 0" class="options-list">
+                <div v-for="option in question.options" :key="option.label" class="option-item"
+                  :class="{ 'correct': option.label === question.correctAnswer, 'user-wrong': question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer }">
+                  <span class="option-label">{{ option.label }}.</span>
+                  <span class="option-text" v-html="option.text"></span>
+                  <el-icon v-if="option.label === question.correctAnswer" class="correct-icon"><CircleCheck /></el-icon>
+                  <el-icon v-if="question.userAnswer && question.userAnswer === option.label && option.label !== question.correctAnswer" class="wrong-icon"><CircleClose /></el-icon>
+                </div>
               </div>
-            </div>
-            <div class="analysis-section" v-if="question.analysis">
-              <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'n'))">
-                答案解析
-                <span class="analysis-toggle">{{ isAnalysisOpen(question, 'n') ? '收起 ▴' : '展开 ▾' }}</span>
+              <div class="answer-section">
+                <div class="answer-row"><span class="answer-label">正确答案</span><span class="answer-value correct-text">{{ question.correctAnswer }}</span></div>
+                <div class="answer-row" v-if="question.userAnswer"><span class="answer-label">你的答案</span><span class="answer-value" :class="question.userAnswer === question.correctAnswer ? 'correct-text' : 'wrong-text'">{{ question.userAnswer }}</span></div>
               </div>
-              <div class="analysis-content" v-show="isAnalysisOpen(question, 'n')" v-html="question.analysis"></div>
+              <div class="analysis-section" v-if="question.analysis">
+                <div class="analysis-title" @click="toggleAnalysis(analysisKey(question, 'nt'))">
+                  答案解析
+                  <span class="analysis-toggle">{{ isAnalysisOpen(question, 'nt') ? '收起 ▴' : '展开 ▾' }}</span>
+                </div>
+                <div class="analysis-content" v-show="isAnalysisOpen(question, 'nt')" v-html="question.analysis"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -442,6 +455,8 @@ import PassageSkeleton from './PassageSkeleton.vue'
 import { INTENSIVE_SOP } from '@/utils/thinkingPath'
 // 错因深度分析面板：套路命中分布 + 答案位置偏好审计（个人版专属）
 import TrapStats from './TrapStats.vue'
+// 逐题四步复盘卡：逼用户亲手写下"为什么选它/定位漏词/同义改写/踩哪类坑"（个人版专属）
+import QuestionReview from './QuestionReview.vue'
 
 // 数据状态
 const selectedYear = ref('all')
@@ -645,6 +660,36 @@ const getGroupStats = (type: string) => {
 const getQuestionTypeColor = (type: string) => {
   const m: Record<string, any> = { '细节题': 'primary', '主旨题': 'success', '推理题': 'warning', '词义题': 'danger', '态度题': 'info' }
   return m[type] || ''
+}
+
+// ===== 新题型（按年份折叠，仿完型/阅读） =====
+const expandedNewTypeYears = ref<number[]>([])
+const newTypeQuestions = computed(() =>
+  filteredQuestions.value.filter(q => q.section === 'New Question Types')
+)
+const newTypeYears = computed(() =>
+  Array.from(new Set(newTypeQuestions.value.map(q => q.year))).sort((a, b) => b - a)
+)
+const getNewTypeQuestionsByYear = (year: number) =>
+  newTypeQuestions.value.filter(q => q.year === year).sort((a, b) => a.number - b.number)
+const getNewTypeArticle = (year: number) => {
+  const qs = getNewTypeQuestionsByYear(year)
+  const withArticle = qs.find(q => q.article)
+  return withArticle ? withArticle.article : ''
+}
+const newTypeScore = (year: number) => {
+  const qs = getNewTypeQuestionsByYear(year)
+  return { total: qs.length, correct: qs.filter(q => q.userAnswer && q.userAnswer === q.correctAnswer).length }
+}
+const NEWTYPE_SUBTITLES: Record<number, string> = {
+  2016: '小标题匹配 · 职场形象升级',
+  2017: '段落排序 · Dickens 生平',
+  2019: '段落排序 · 如何赢得争论'
+}
+const newTypeSubtitle = (year: number) => NEWTYPE_SUBTITLES[year] || '新题型'
+const toggleNewTypeYear = (year: number) => {
+  const i = expandedNewTypeYears.value.indexOf(year)
+  i > -1 ? expandedNewTypeYears.value.splice(i, 1) : expandedNewTypeYears.value.push(year)
 }
 
 // ===== 展开/折叠 =====
@@ -1458,6 +1503,37 @@ onMounted(async () => {
 }
 .cloze-body :deep(.cloze-blank:hover .cb-num) {
   transform: translateY(-2px) scale(1.08);
+}
+
+/* 新题型真题原文：Directions 提示条 + 已固定段标记 + 段落字母加粗 */
+.newtype-body {
+  font-size: 1.08em;
+  line-height: 1.95;
+}
+.newtype-body :deep(p) {
+  margin: 0 0 1.1em;
+}
+.newtype-body :deep(.nt-dir) {
+  padding: 10px 14px;
+  margin-bottom: 1.3em;
+  font-size: 0.92em;
+  color: #5a6b7c;
+  background: #eef3f8;
+  border-left: 4px solid #4a90c2;
+  border-radius: 6px;
+}
+.newtype-body :deep(.nt-fixed) {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: #2f8b52;
+  background: rgba(47, 139, 82, 0.12);
+  border-radius: 999px;
+}
+.newtype-body :deep(b) {
+  color: #1f4a38;
 }
 
 /* 空位点击后目标题目高亮闪烁 */
