@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-28",
+  "updatedAt": "2026-10-15",
   "note": "英一翻译真题逐句自评进度（跨设备真相源）。records 以 translation-exams.json 的句子 id（en1-{年份}-text5-s{序号}）为键；level ∈ mastered|fuzzy|weak；date 为最近一次自评日 YYYY-MM-DD；attempts 累计自评次数。此文件为磁盘基线；网站端 localStorage 叠加显示：translation-exam-eval-v1(本机作答,显示优先) + translation-progress-sync-v1(与 records 同形的同步镜像)。同步流程：助手读回镜像 → records = {...本文件.records, ...镜像} → 更新 updatedAt → 重建部署，使记录跨设备持久。",
   "records": {
     "en1-2016-text5-s1": {
@@ -82,6 +82,46 @@
       "score": 1,
       "myTranslation": "这些研究为那些寻求学习提升和使用英语的组织奠定了基础，也为打算去面对可能十分不同运行环境的可能性奠定了基础。",
       "comment": "两个 a basis 的并列处理成“奠定了…也奠定了…”很好。错点：①It=它（指上文他的分析/著作），译成“这些研究”指代偏；②promote the learning and use of English=推广英语的学习和使用，译成“组织寻求学习提升英语”，promote 方向反了（组织是推动者不是学习者）；③planning to meet=筹划应对，planning 漏。"
+    },
+    "en1-2018-text5-s1": {
+      "level": "fuzzy",
+      "date": "2026-10-10",
+      "attempts": 1,
+      "score": 1,
+      "myTranslation": "在他问世之后，欧洲见证了宗教戏剧的淘汰以及新的经典悲剧和戏剧形式在不经意间产生。",
+      "comment": "incentive 误译★★=激励/促动力(≈stimulus)，你译\"不经意间\"完全反了(与 innocent/in a moment 串)。passing=消亡非\"淘汰\"。结构塌：classical tragedy and comedy 是激励来源，你与 new forms 并成\"新经典悲剧\"，丢了\"见证 A 消亡 + B 诞生\"主干。"
+    },
+    "en1-2018-text5-s2": {
+      "level": "fuzzy",
+      "date": "2026-10-10",
+      "attempts": 1,
+      "score": 1,
+      "myTranslation": "没有男孩会因为想去语言学校而忽略了戏剧是一种带给希腊和罗马荣耀甚至让英国人自豪的一种文学形式。",
+      "comment": "grammar school≠语言学校，是英国\"文法学校\"(教拉丁文与古典文学的预备名校)。双重否定 no boy could be ignorant that=都知道，你加了原文没有的\"想去\"弱化。might yet bring honor=或将也为英国带来荣耀(将来)，你译成已然。"
+    },
+    "en1-2018-text5-s3": {
+      "level": "weak",
+      "date": "2026-10-10",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "职业公司通过他们悠久的剧场得到了繁荣，并且大学里怀着文学野心的人们正快速加入到这些剧场中以提供各自人生意义。",
+      "comment": "company=剧团★★(熟词僻义，a theatre company)非\"公司\"；livelihood=生计★★非\"人生意义\"(a means of livelihood=谋生手段)。permanent=固定/常设非\"悠久\"。turn to=转向，\"加入\"接近。"
+    },
+    "en1-2018-text5-s4": {
+      "level": "weak",
+      "date": "2026-10-10",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "一个本土的文学戏剧已经被创造了，它与公共娱乐场所的建立相联系，并且至少有一些生意已经因此开始了。",
+      "comment": "traditions=传统★★非\"生意\"(看成 trade?)。playhouse=剧场，\"公共娱乐场所\"太宽丢了戏剧语境。独立主格 its alliance…established=它的联盟被建立，你主客颠倒并成\"与…的建立相联系\"。"
+    },
+    "en1-2018-text5-s5": {
+      "level": "weak",
+      "date": "2026-10-10",
+      "attempts": 1,
+      "score": 0.5,
+      "myTranslation": "如果想要意识到戏剧活动是多么的伟大，我们必须记住更多：大量的表演已经失传了，并且很可能没有作者会注意到他们的完整作品还是否存活着。",
+      "comment": "plays=剧作★(performance 才是\"表演\")非\"表演\"。no author of note=没有哪位知名作家★★，of note=有名望，你把 note 当动词\"注意到\"整个曲解。hosts of=大量✓答对了(清单 a host of 迁移)。双重否定 no…whose… 再栽。"
     }
   },
   "mistakes": [
