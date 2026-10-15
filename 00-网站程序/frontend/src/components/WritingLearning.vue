@@ -327,7 +327,78 @@ const loadEssays = async () => {
     essaysLoading.value = false
   }
 }
-onMounted(loadEssays)
+
+// ══════════════ 页签6：我的作文本 ══════════════
+interface EssayBreakdown {
+  dim: string
+  score: number
+  max: number
+  comment: string
+}
+interface EssayError {
+  wrong: string
+  right: string
+  type: string
+}
+interface EssayRecord {
+  id: string
+  year: number
+  part: string
+  type: string
+  points: number
+  wordReq: string
+  date: string
+  prompt: string
+  score: number
+  breakdown: EssayBreakdown[]
+  original: string
+  errors: EssayError[]
+  highlights: string[]
+  reference: string
+  note: string
+}
+interface EssayHistoryData {
+  updatedAt: string
+  note: string
+  records: EssayRecord[]
+}
+
+const myEssays = ref<EssayRecord[]>([])
+const essayHistoryLoading = ref(false)
+const essayHistoryNote = ref('')
+
+const loadEssayHistory = async () => {
+  essayHistoryLoading.value = true
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}data/english/essay-history.json`)
+    const data = (await res.json()) as EssayHistoryData
+    myEssays.value = data.records || []
+    essayHistoryNote.value = data.note || ''
+  } catch {
+    ElMessage.error('我的作文本加载失败')
+  } finally {
+    essayHistoryLoading.value = false
+  }
+}
+
+// 分数徽章配色：<6 偏红，6-7 金色，≥8 绿色
+const scoreBadgeClass = (score: number): string => {
+  if (score < 6) return 'low'
+  if (score < 8) return 'mid'
+  return 'high'
+}
+
+// 分项得分进度条百分比
+const breakdownPct = (score: number, max: number): string => {
+  if (max <= 0) return '0%'
+  const p = Math.max(0, Math.min(100, (score / max) * 100))
+  return `${p.toFixed(0)}%`
+}
+
+onMounted(() => {
+  loadEssays()
+  loadEssayHistory()
+})
 
 const toggleYear = (y: number) => {
   const s = new Set(expandedYears.value)
@@ -540,6 +611,89 @@ const goWrite = (e: EssayItem) => {
               </article>
             </div>
           </section>
+        </div>
+      </el-tab-pane>
+
+      <!-- ══ 我的作文本 ══ -->
+      <el-tab-pane label="📒 我的作文本" name="my-essays">
+        <div v-if="essayHistoryLoading" class="eh-loading">作文本加载中…</div>
+        <div v-else-if="myEssays.length === 0" class="eh-empty">
+          <p>📒 还没有已批改的作文</p>
+          <span>在「实战演练室」完成限时写作、交卷保存后，AI 批改记录会汇总到这里，随时回看。</span>
+        </div>
+        <div v-else class="eh-list">
+          <p v-if="essayHistoryNote" class="eh-note">{{ essayHistoryNote }}</p>
+
+          <article v-for="r in myEssays" :key="r.id" class="eh-card">
+            <!-- 头部：年份/卷型 + 分数徽章 -->
+            <header class="eh-card-hd">
+              <div class="eh-card-title">
+                <strong>{{ r.year }} 年 Part {{ r.part }} · {{ r.type }}</strong>
+                <em>{{ r.date }} · {{ r.wordReq }} · {{ r.points }} 分制</em>
+              </div>
+              <div class="eh-score" :class="scoreBadgeClass(r.score)">
+                <span class="eh-score-num">{{ r.score }}</span>
+                <span class="eh-score-sep">/</span>
+                <span class="eh-score-max">{{ r.points }}</span>
+              </div>
+            </header>
+
+            <!-- 题目 -->
+            <div class="eh-prompt">
+              <span class="eh-sec-label">题目</span>
+              <p>{{ r.prompt }}</p>
+            </div>
+
+            <!-- 分项得分 -->
+            <section v-if="r.breakdown.length" class="eh-section">
+              <h4 class="eh-h4">分项得分</h4>
+              <div class="eh-bd">
+                <div v-for="(b, i) in r.breakdown" :key="i" class="eh-bd-row">
+                  <div class="eh-bd-top">
+                    <span class="eh-bd-dim">{{ b.dim }}</span>
+                    <span class="eh-bd-score">{{ b.score }}<em> / {{ b.max }}</em></span>
+                  </div>
+                  <div class="eh-bd-bar"><i :style="{ width: breakdownPct(b.score, b.max) }"></i></div>
+                  <p class="eh-bd-cmt">{{ b.comment }}</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- 我的原文 -->
+            <section class="eh-section">
+              <h4 class="eh-h4">我的原文</h4>
+              <p class="eh-original">{{ r.original }}</p>
+            </section>
+
+            <!-- 逐条批改 -->
+            <section v-if="r.errors.length" class="eh-section">
+              <h4 class="eh-h4">逐条批改</h4>
+              <ul class="eh-err">
+                <li v-for="(e, i) in r.errors" :key="i">
+                  <span class="eh-err-wrong">{{ e.wrong }}</span>
+                  <span class="eh-err-arrow">→</span>
+                  <span class="eh-err-right">{{ e.right }}</span>
+                  <span class="eh-err-type">{{ e.type }}</span>
+                </li>
+              </ul>
+            </section>
+
+            <!-- 亮点 -->
+            <section v-if="r.highlights.length" class="eh-section">
+              <h4 class="eh-h4">亮点</h4>
+              <ul class="eh-hl">
+                <li v-for="(h, i) in r.highlights" :key="i">{{ h }}</li>
+              </ul>
+            </section>
+
+            <!-- AI 参考范文 -->
+            <section v-if="r.reference" class="eh-section">
+              <h4 class="eh-h4">AI 参考范文</h4>
+              <p class="eh-ref">{{ r.reference }}</p>
+            </section>
+
+            <footer class="eh-foot">AI 批改，非官方评分/范文</footer>
+          </article>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -1195,6 +1349,167 @@ const goWrite = (e: EssayItem) => {
   border: 1px dashed rgba(212, 160, 18, 0.5);
   border-radius: 6px;
   padding: 2px 8px;
+}
+
+/* ══ 我的作文本 ══ */
+.eh-loading,
+.eh-empty { text-align: center; color: #5b6b7f; padding: 44px 0; }
+.eh-empty p { margin: 0 0 8px; font-size: 1.05rem; color: var(--ink); font-weight: 700; }
+.eh-empty span { font-size: 0.85rem; line-height: 1.7; }
+.eh-list { display: flex; flex-direction: column; gap: 18px; }
+.eh-note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #a06a00;
+  background: #fff8ec;
+  border: 1px dashed rgba(212, 160, 18, 0.5);
+  border-radius: 10px;
+  padding: 9px 14px;
+}
+.eh-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 16px rgba(13, 33, 55, 0.05);
+}
+.eh-card-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--gold);
+}
+.eh-card-title strong { display: block; font-size: 1.05rem; color: var(--ink); }
+.eh-card-title em { font-style: normal; font-size: 0.76rem; color: #5b6b7f; }
+.eh-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  line-height: 1;
+}
+.eh-score-num { font-size: 1.5rem; }
+.eh-score-sep { font-size: 0.95rem; opacity: 0.6; }
+.eh-score-max { font-size: 1rem; opacity: 0.85; }
+.eh-score.low { background: #fdeeee; color: #c0392b; border: 1px solid #f3b6b6; }
+.eh-score.mid { background: #fff8ec; color: #a06a00; border: 1px solid rgba(212, 160, 18, 0.55); }
+.eh-score.high { background: #eafaf0; color: #1e7a45; border: 1px solid #a9e0bd; }
+
+.eh-prompt { background: var(--bg-soft); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
+.eh-sec-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.eh-prompt p { margin: 0; font-size: 0.84rem; line-height: 1.7; color: var(--body); font-family: 'Georgia', serif; }
+
+.eh-section { margin-bottom: 16px; }
+.eh-section:last-of-type { margin-bottom: 6px; }
+.eh-h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 9px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.eh-h4::before {
+  content: '';
+  width: 4px;
+  height: 14px;
+  border-radius: 2px;
+  background: linear-gradient(var(--gold), #f0a820);
+}
+
+.eh-bd { display: flex; flex-direction: column; gap: 10px; }
+.eh-bd-row { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.eh-bd-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.eh-bd-dim { font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.eh-bd-score { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 700; color: #a06a00; }
+.eh-bd-score em { font-style: normal; font-weight: 400; color: #8fa0b3; }
+.eh-bd-bar { height: 6px; margin: 7px 0; border-radius: 3px; background: #e6edf5; overflow: hidden; }
+.eh-bd-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold), #f0a820); }
+.eh-bd-cmt { margin: 0; font-size: 0.78rem; line-height: 1.65; color: #5b6b7f; }
+
+.eh-original,
+.eh-ref {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+.eh-original {
+  background: #fffdf5;
+  border: 1px dashed var(--gold);
+  border-left: 4px solid var(--gold);
+  color: #4a3d1a;
+  font-family: 'JetBrains Mono', monospace;
+}
+.eh-ref {
+  background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+  border: 1px solid var(--navy);
+  color: #eaf1f8;
+  font-family: 'Georgia', serif;
+}
+
+.eh-err { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.eh-err li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 14px;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+.eh-err-wrong { color: #c0392b; text-decoration: line-through; font-family: 'Georgia', serif; }
+.eh-err-arrow { color: var(--gold); font-weight: 800; }
+.eh-err-right { flex: 1; min-width: 120px; color: #1e7a45; font-weight: 600; font-family: 'Georgia', serif; }
+.eh-err-type {
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  color: var(--navy);
+  background: #eef4fb;
+  border: 1px solid #d5e3f2;
+  border-radius: 999px;
+  padding: 1px 9px;
+}
+
+.eh-hl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.eh-hl li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: var(--body);
+  font-family: 'Georgia', serif;
+}
+.eh-hl li::before { content: '★'; position: absolute; left: 0; color: var(--gold); font-size: 0.8rem; }
+
+.eh-foot {
+  text-align: center;
+  font-size: 0.72rem;
+  color: #8fa0b3;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
 }
 
 @media (max-width: 760px) {

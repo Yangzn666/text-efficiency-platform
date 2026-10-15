@@ -1,0 +1,41 @@
+{
+  "updatedAt": "2026-10-15",
+  "note": "以下为 AI 批改与 AI 参考范文（非官方评分/范文），仅供复习。",
+  "records": [
+    {
+      "id": "en-2018-wA",
+      "year": 2018,
+      "part": "A",
+      "type": "小作文 · 邀请信",
+      "points": 10,
+      "wordReq": "约100词",
+      "date": "2026-10-15",
+      "prompt": "Write an email to all international experts on campus, inviting them to attend the graduation ceremony. In your email you should include the time, place and other relevant information about the ceremony. About 100 words. Do not use your own name; sign as \"Li Ming\".",
+      "score": 6,
+      "breakdown": [
+        { "dim": "格式与结构", "score": 2.5, "max": 3, "comment": "称呼/正文分段/落款齐全，结构清晰。小瑕：Dear experts 后应加逗号且 Experts 建议大写；Yours sincerely 后应加逗号。" },
+        { "dim": "语言（语法·拼写·用词）", "score": 2, "max": 4, "comment": "拼写错误偏多（openning→opening、arctivities→activities、honer→honor、inviation→invitation、in cludes→includes）；冠词漏用（the ceremony / the opening ceremony / the dinner party）；一个定语从句结构断裂（auditorium that it aims to…）。亮点：is to be held、it will be a great honor for us to have you here 等正式句式用得自然。" },
+        { "dim": "内容与切题", "score": 1.5, "max": 3, "comment": "邀请目的明确、地点(操场/礼堂)和活动都写了；但题目明确要求的时间(time)完全没写，属漏要点，是最大扣分点。" }
+      ],
+      "original": "Dear experts\nI am Li ming, a student of our university and I am writing this email to invite you to attend our graduation ceremony.\nAs for ceremony, it mainly in cludes an openning ceremony, some interactive arctivities and a dinner party. Openning ceremony is to be held by our university on the playground. Interactive arctivities and dinner party are to be held in the auditorium that it aims to strengthen connections among students and teachers.\nYou are highly respected at our university, so it will be a great honer for us to have you here.\nI sincerely hope that you can accept my inviation.\nYours sincerely\nLi Ming",
+      "errors": [
+        { "wrong": "openning", "right": "opening", "type": "拼写" },
+        { "wrong": "arctivities", "right": "activities", "type": "拼写" },
+        { "wrong": "in cludes", "right": "includes", "type": "拼写/空格" },
+        { "wrong": "honer", "right": "honor / honour", "type": "拼写" },
+        { "wrong": "inviation", "right": "invitation", "type": "拼写" },
+        { "wrong": "Li ming", "right": "Li Ming", "type": "大小写(人名)" },
+        { "wrong": "As for ceremony / Openning ceremony / dinner party", "right": "As for the ceremony / The opening ceremony / the dinner party", "type": "冠词漏用" },
+        { "wrong": "in the auditorium that it aims to strengthen…", "right": "in the auditorium, which aims to strengthen… （或另起一句 These activities aim to…）", "type": "定语从句结构断裂" },
+        { "wrong": "（缺时间）", "right": "补上 ceremony 的具体时间，如 from 9:00 to 11:00 a.m. on June 20", "type": "漏要点" }
+      ],
+      "highlights": [
+        "I am writing this email to invite you to attend… 开头目的句标准。",
+        "is to be held 表将来+被动，正式得体。",
+        "it will be a great honor for us to have you here 高分客套句。",
+        "I sincerely hope that you can accept my invitation 结尾呼应邀请。"
+      ],
+      "reference": "Dear Experts,\n\nI am Li Ming, a student of our university, and I am writing to sincerely invite you to attend our graduation ceremony.\n\nThe ceremony will be held on the playground from 9:00 to 11:00 a.m. on June 20. It mainly includes an opening ceremony, some interactive activities, and a dinner party in the auditorium, all of which aim to strengthen the connections between students and teachers. As you are highly respected at our university, it will be a great honor for us to have you here.\n\nI sincerely hope that you can accept my invitation, and I am looking forward to your reply.\n\nYours sincerely,\nLi Ming"
+    }
+  ]
+}
