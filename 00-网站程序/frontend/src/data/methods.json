@@ -28,5 +28,20 @@
     "learnedDate": "2026-10-15",
     "mastery": "初学",
     "nextReview": "2026-10-20"
+  },
+  {
+    "id": "M004",
+    "subject": "xiandai",
+    "subjectName": "线性代数",
+    "name": "分块行列式定二次型 + 对称矩阵交叉项÷2 判正定",
+    "trigger": "① 二次型以分块行列式 $\\begin{vmatrix}A&X\\\\-X^{\\mathrm T}&0\\end{vmatrix}$ 形式给出（右下角块为 $0$）；② 把 $f$ 展开后带交叉项，要判正定/惯性指数/定参数范围，必须还原成 $X^{\\mathrm T}BX$ 时。",
+    "steps": "① $A$ 可逆时用 Schur 补一步展开：$\\begin{vmatrix}A&X\\\\-X^{\\mathrm T}&0\\end{vmatrix}=\\det(A)\\cdot(X^{\\mathrm T}A^{-1}X)=X^{\\mathrm T}\\operatorname{adj}(A)X$；② 建对称矩阵：平方项系数进对角线，交叉项系数÷2 进非对角元；③ 正定 ⟺ 完整矩阵的顺序主子式全 $>0$；④ 问充要时把两个条件各译成参数范围集合再比包含（相等即充要）。",
+    "formula": "$$\\det\\begin{pmatrix}A&X\\\\-X^{\\mathrm T}&0\\end{pmatrix}=\\det(A)\\,X^{\\mathrm T}A^{-1}X\\quad(A\\ \\text{可逆})$$\n二阶伴随口诀「主对调、副变号」：$\\operatorname{adj}\\begin{pmatrix}p&q\\\\r&s\\end{pmatrix}=\\begin{pmatrix}s&-q\\\\-r&p\\end{pmatrix}$。",
+    "applies": "行列式给定的二次型判正定、含参正定求范围、正定充要条件判断、惯性定理/标准形反推矩阵。",
+    "pitfall": "本人反例（26李林卷二第7题）：把 $f$ 展开成 $a x_1^2-2a\\,x_1x_2+(1-a)x_2^2$ 后，只拿对角元 $a$、$1-a$ 判正定 → 错范围 $0<a<1$，把充要（C）误判成「充分不必要」（A）。正确建阵 $B=\\begin{pmatrix}a&-a\\\\-a&1-a\\end{pmatrix}$ 后 $\\det B=a(1-2a)>0$，$f$ 正定 $\\iff 0<a<\\tfrac12$，与 $A$ 正定同集合。$A$ 不可逆时公式不能直接用；验错口诀：交叉项不建阵，正定必判错，现场代边界外特值（如 $a=0.8$）算 $\\det B$ 秒穿帮。",
+    "source": "26李林6套卷卷二 · 第7题（$A=\\begin{pmatrix}1-a&a\\\\a&a\\end{pmatrix}$，$f$ 由分块行列式给出，「$A$ 正定」是「$f$ 正定」的充要条件，选 C；用户误选 A）。",
+    "learnedDate": "2026-10-15",
+    "mastery": "初学",
+    "nextReview": "2026-10-20"
   }
 ]
