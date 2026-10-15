@@ -3335,6 +3335,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_improper_sinqcos_pq',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'improper_integral',
+    sectionName: '反常积分敛散性·瑕点找全',
+    title: '【26李林6套卷卷二】∫₀^(π/2) dx/(sinᵖx·cos^q x) 收敛 ⟺ p<1且q<1（选B·特殊值蒙对，第二段方法未掌握）',
+    content: "设 $p>0,\\ q>0$，反常积分 $I=\\int_{0}^{\\pi/2}\\dfrac{dx}{\\sin^{p}x\\,\\cos^{q}x}$ 收敛的充要条件是（　）。A $p<1$且$q\\ge1$　B $p<1$且$q<1$　C $p\\ge1$且$q<1$　D $p\\ge1$且$q\\ge1$",
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: "正解：B。（用户：特殊值+蒙对的，第二段不会处理，仍计入库）\n\n**关键：先找全瑕点。** 积分区间 $[0,\\pi/2]$，$\\sin^{p}x$ 在 $x\\to0^+$ 趋于 0、$\\cos^{q}x$ 在 $x\\to(\\pi/2)^-$ 趋于 0，两端都是瑕点 ⇒ 必须拆成两段，各管一个条件，缺一不可。\n\n**第一段 $x\\to0^+$**：$\\cos x\\to1$ 无害，$\\sin x\\sim x$，被积式 $\\sim\\dfrac{1}{x^{p}}$。有限瑕点型 $\\int_0^\\cdot x^{-p}dx$ 收敛 $\\iff p<1$。\n\n**第二段 $x\\to(\\pi/2)^-$（本洞）**：$\\sin x\\to1$ 无害，趋于 0 的量不是 $x$ 而是「到瑕点的距离」$\\left(\\frac{\\pi}{2}-x\\right)$。$\\cos x=\\sin\\!\\left(\\frac{\\pi}{2}-x\\right)\\sim\\left(\\frac{\\pi}{2}-x\\right)$，被积式 $\\sim\\dfrac{1}{(\\pi/2-x)^{q}}$，收敛 $\\iff q<1$。（或换元 $t=\\pi/2-x$ 把瑕点搬回 0 再看。）\n\n**合起来** $p<1$ 且 $q<1$ ⇒ 选 B。\n\n**错因**：① 只盯 $x\\to0$ 一个瑕点，差点漏掉 $x\\to\\pi/2$；② 第二段「感觉用不了等价无穷小」——因为等价无穷小只认趋于 0 的那个量，$x\\to\\pi/2$ 时 $x$ 不趋于 0，真正的小量是 $(\\pi/2-x)$，没转过来就卡住。靠特殊值蒙对掩盖了方法漏洞。\n\n**同类提醒**：判反常积分敛散性，第一步永远是「找全所有瑕点（含端点使分母为 0 处）」，分段各判再取交集。等价无穷小代换时先问「谁趋于 0」——瑕点不在 0，就把「到瑕点的距离」当小量，或换元把它搬回 0。$\\int_0^\\cdot t^{-\\alpha}dt$（有限瑕点）看 $\\alpha<1$，$\\int^\\infty t^{-\\alpha}dt$（无穷区间）看 $\\alpha>1$，两套判据别记反。",
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
