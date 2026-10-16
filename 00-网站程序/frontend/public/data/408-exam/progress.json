@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-14T04:06:49.579Z",
+  "updatedAt": "2026-10-16",
   "note": "408 真题大题作答记录。records 以 questions.json 的 slug 为键；result ∈ correct|partial|wrong；date 为最近一次作答日 YYYY-MM-DD；attempts 累计作答次数。此文件为持久真相源；网站端 localStorage(exam408-big-v2) 的标记会叠加显示，助手会话再读回 localStorage 合并写本文件并重建，使记录跨设备持久。",
   "records": {
     "co-2010-44": {
@@ -92,6 +92,73 @@
       "attempts": 1,
       "result": "wrong",
       "date": "2026-10-14"
+    },
+    "os-2017-46": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-14"
+    },
+    "os-2020-45": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-14",
+      "note": "前驱同步题:模板用错(套了empty/full+mutex)+初值方向反(应全0),已发方法论卡讲解"
+    },
+    "os-2019-43": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-14",
+      "note": "哲学家就餐PV题:未独立作答,用方法论卡讲透两种解法后跳过"
+    },
+    "cn-2009-47": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-15"
+    },
+    "cn-2011-47": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-15"
+    },
+    "cn-2013-47": {
+      "attempts": 2,
+      "result": "partial",
+      "date": "2026-10-15"
+    },
+    "co-2015-43": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-15"
+    },
+    "os-2021-45": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-16"
+    },
+    "os-2022-46": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-16"
+    },
+    "os-2023-45": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-16"
+    },
+    "os-2009-46": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-16"
+    },
+    "os-2010-46": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-16"
+    },
+    "os-2012-45": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-16"
     }
   }
 }
