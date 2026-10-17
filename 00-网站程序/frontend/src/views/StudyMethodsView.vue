@@ -70,7 +70,7 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
           <h1 class="hero-title">学习方法<span class="gold">作战手册</span></h1>
           <div class="hero-phase">
             <span class="phase-pulse"></span>
-            当前阶段 · 强化期（7-9月）
+            当前阶段 · 冲刺期（10-12月 · 距初试最后60天）
           </div>
         </div>
         <div class="hero-stats">
