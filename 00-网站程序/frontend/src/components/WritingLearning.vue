@@ -538,7 +538,11 @@ const goWrite = (e: EssayItem) => {
       <el-tab-pane label="🎯 八哥模板" name="bage">
         <div v-if="bage" class="bage-wrap">
           <div class="bage-toolbar">
-            <div class="bage-note">📖 {{ bage.note }}</div>
+            <div class="bage-mast-text">
+              <div class="bage-mast-kicker">BAGE SMILE · 写作模板库</div>
+              <h2 class="bage-mast-title">八哥作文模板</h2>
+              <p class="bage-mast-sub">{{ bage.note }}</p>
+            </div>
             <button class="bage-recite-btn" :class="{ on: bageRecite }" @click="toggleRecite">
               {{ bageRecite ? '✍️ 退出背诵' : '🧠 背诵模式' }}
             </button>
@@ -1710,103 +1714,203 @@ const goWrite = (e: EssayItem) => {
   .ex-count { margin-left: 0; width: 100%; }
   .dp-clear { margin-left: 0; }
 }
-.bage-wrap { padding: 4px 2px 24px; }
-.bage-note {
-  font-size: 0.8rem; color: var(--body); background: rgba(212,175,55,0.10);
-  border-left: 3px solid var(--gold); border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; line-height: 1.6;
+/* ══ 八哥模板 · editorial 重设计（个人版专用）══ */
+.bage-wrap { max-width: 940px; margin: 0 auto; padding: 6px 2px 40px; }
+
+/* ── masthead ── */
+.bage-toolbar {
+  position: relative; display: flex; align-items: center; gap: 14px;
+  padding: 18px 20px; margin-bottom: 12px; border-radius: 16px; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, #235182);
+  box-shadow: 0 12px 28px -14px rgba(13,33,55,.6);
 }
-.bage-h { font-size: 1.05rem; margin: 22px 0 10px; color: var(--navy); }
-.bage-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.bage-chip {
-  border: 1px solid var(--line); background: #fff; color: var(--body);
-  padding: 6px 12px; border-radius: 999px; font-size: 0.82rem; cursor: pointer; transition: all .15s;
+.bage-toolbar::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(rgba(255,197,61,.16) 1px, transparent 1.5px);
+  background-size: 15px 15px;
 }
-.bage-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-.bage-intro { font-size: 0.82rem; color: #6b7a8d; line-height: 1.7; margin: 0 0 12px; }
-.bage-para { margin-bottom: 16px; }
-.bage-para-title {
-  font-size: 0.95rem; color: #fff; background: linear-gradient(90deg, var(--navy), #3a5a7a);
-  padding: 7px 12px; border-radius: 8px; margin: 0 0 10px;
+.bage-mast-text { position: relative; z-index: 1; flex: 1; min-width: 0; }
+.bage-mast-kicker {
+  font-size: .7rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 5px;
 }
-.bage-group { margin: 0 0 12px; }
-.bage-group-name {
-  font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 6px;
-  padding-left: 8px; border-left: 3px solid var(--gold);
-}
-.bage-item {
-  background: #fbfaf6; border: 1px solid var(--line); border-radius: 8px;
-  padding: 10px 12px; margin-bottom: 8px;
-}
-.bage-label { font-size: 0.76rem; color: #8a94a3; margin-bottom: 4px; }
-.bage-en {
-  font-family: 'Georgia', serif; font-size: 0.92rem; line-height: 1.65; color: var(--navy);
-  word-break: break-word;
-}
-.bage-cn { font-size: 0.82rem; line-height: 1.6; color: #5c6b7a; margin-top: 4px; }
-.bage-note2 { font-size: 0.76rem; line-height: 1.55; color: #9a7b2f; margin-top: 5px; }
-.bage-slot {
-  background: rgba(20,40,70,0.04); border: 1px dashed var(--line); border-radius: 8px;
-  padding: 0; margin: 6px 0 10px; overflow: hidden;
-}
-.bage-slot > summary {
-  list-style: none; cursor: pointer; font-size: 0.8rem; font-weight: 700; color: var(--navy);
-  padding: 9px 12px; display: flex; align-items: center; gap: 6px; user-select: none;
-}
-.bage-slot > summary::-webkit-details-marker { display: none; }
-.bage-slot > summary::before { content: '▸'; color: var(--gold); font-size: 0.75rem; transition: transform .15s; }
-.bage-slot[open] > summary::before { transform: rotate(90deg); }
-.bage-slot > summary::after { content: '词库/槽位'; margin-left: auto; font-size: 0.68rem; font-weight: 400; color: #9aa6b4; }
-.bage-slot > div { padding: 0 12px 10px; }
-.bage-slot-line { font-size: 0.8rem; line-height: 1.7; color: #4a5766; padding-left: 10px; position: relative; }
-.bage-slot-line::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
-.bage-trigger {
-  font-size: 0.8rem; color: #6b7a8d; background: rgba(58,90,122,0.08);
-  border-radius: 6px; padding: 7px 10px; margin-bottom: 10px; line-height: 1.6;
-}
-.bage-loading { text-align: center; color: #8fa0b3; padding: 40px 0; font-size: 0.9rem; }
-.bage-toolbar { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-.bage-toolbar .bage-note { flex: 1; margin-bottom: 0; }
+.bage-mast-title { font-size: 1.55rem; font-weight: 900; letter-spacing: .01em; color: #fff; margin: 0 0 5px; line-height: 1.15; }
+.bage-mast-sub { font-size: .82rem; line-height: 1.55; color: #c6d6ec; margin: 0; }
 .bage-recite-btn {
-  flex: none; border: 1px solid var(--navy); background: #fff; color: var(--navy);
-  padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+  position: relative; z-index: 1; flex: none; white-space: nowrap;
+  border: 1.5px solid var(--gold); background: rgba(255,197,61,.10); color: var(--gold);
+  padding: 10px 16px; border-radius: 11px; font-size: .82rem; font-weight: 800; letter-spacing: .02em;
+  cursor: pointer; transition: all .18s;
 }
-.bage-recite-btn.on { background: var(--navy); color: #fff; }
-.bage-recite-tip { font-size: 0.76rem; color: #6b7a8d; background: rgba(58,90,122,0.08); border-radius: 6px; padding: 6px 10px; margin-bottom: 10px; }
-.bage-anchors { display: flex; gap: 8px; margin-bottom: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.bage-recite-btn:hover { background: rgba(255,197,61,.2); transform: translateY(-1px); }
+.bage-recite-btn.on { background: var(--gold); color: var(--navy-deep); box-shadow: 0 6px 16px -5px rgba(255,197,61,.75); }
+.bage-recite-tip {
+  font-size: .8rem; color: #8a5a12; background: #fff7e0; border: 1px dashed var(--gold);
+  border-radius: 9px; padding: 8px 12px; margin-bottom: 14px;
+}
+
+/* ── 锚点导航（吸顶）── */
+.bage-anchors {
+  position: sticky; top: 0; z-index: 20; display: flex; gap: 8px;
+  margin: 0 0 22px; padding: 9px 2px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  background: rgba(245,248,252,.94); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line); scrollbar-width: none;
+}
 .bage-anchors::-webkit-scrollbar { display: none; }
 .bage-anchors button {
-  flex: none; border: 1px solid var(--line); background: #f6f7f9; color: var(--body);
-  padding: 7px 12px; border-radius: 999px; font-size: 0.8rem; cursor: pointer;
+  flex: none; border: 1px solid var(--line); background: #fff; color: var(--body);
+  padding: 9px 16px; border-radius: 999px; font-size: .84rem; font-weight: 700; cursor: pointer; transition: all .16s;
 }
+.bage-anchors button:hover { border-color: var(--navy); color: var(--navy); transform: translateY(-1px); }
 .bage-anchors button:active { background: var(--navy); color: #fff; }
-.bage-sec { scroll-margin-top: 12px; margin-bottom: 8px; }
-.bage-acts { display: flex; gap: 8px; margin-top: 7px; }
+
+/* ── 区块 & 大标题 ── */
+.bage-sec { scroll-margin-top: 62px; margin-bottom: 32px; }
+.bage-h {
+  position: relative; display: flex; align-items: center; gap: 10px;
+  font-size: 1.34rem; font-weight: 900; letter-spacing: .01em; color: var(--navy-deep);
+  margin: 0 0 18px; padding-bottom: 12px;
+}
+.bage-h::after {
+  content: ''; position: absolute; left: 0; bottom: 0; width: 48px; height: 4px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--gold), #f0a820);
+}
+
+/* ── 分段选择 chips（segmented）── */
+.bage-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 20px; }
+.bage-chip {
+  position: relative; border: 1.5px solid var(--line); background: #fff; color: #4a5766;
+  padding: 9px 16px; border-radius: 12px; font-size: .86rem; font-weight: 700; cursor: pointer; transition: all .16s;
+}
+.bage-chip:hover { border-color: #b9c7d6; transform: translateY(-1px); }
+.bage-chip.active {
+  background: var(--navy); color: #fff; border-color: var(--navy);
+  box-shadow: 0 8px 18px -9px rgba(22,52,92,.7);
+}
+.bage-chip.active::after {
+  content: ''; position: absolute; left: 16px; right: 16px; bottom: 4px; height: 2px; border-radius: 2px; background: var(--gold);
+}
+.bage-intro {
+  font-size: .87rem; line-height: 1.75; color: #5c6b7a; margin: 0 0 20px;
+  padding: 12px 16px; background: #fff; border-left: 3px solid var(--navy); border-radius: 0 11px 11px 0;
+  box-shadow: 0 3px 10px -6px rgba(20,40,70,.18);
+}
+
+/* ── 段落 banner（第一段 / 第二段…）── */
+.bage-para { margin-bottom: 24px; }
+.bage-para-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.03rem; font-weight: 800; color: #fff; margin: 0 0 14px; padding: 12px 16px 12px 14px;
+  background: linear-gradient(120deg, var(--navy), #2b5488); border-left: 5px solid var(--gold); border-radius: 12px;
+  box-shadow: 0 7px 18px -12px rgba(13,33,55,.75);
+}
+.bage-group { margin: 0 0 16px; }
+.bage-group-name {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .82rem; font-weight: 800; letter-spacing: .03em; color: #9a7b2f;
+  margin-bottom: 11px; padding: 4px 12px; background: #fff7e0; border-radius: 6px;
+}
+.bage-group-name::before {
+  content: ''; width: 8px; height: 8px; border-radius: 2px; background: var(--gold); box-shadow: 0 0 0 3px rgba(255,197,61,.25);
+}
+
+/* ── 模板句卡片：英文为视觉主角 ── */
+.bage-item {
+  position: relative; background: #fff; border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px 14px 20px; margin-bottom: 12px;
+  box-shadow: 0 3px 12px -8px rgba(20,40,70,.28); transition: box-shadow .18s, transform .18s;
+}
+.bage-item::before {
+  content: ''; position: absolute; left: 0; top: 11px; bottom: 11px; width: 4px; border-radius: 4px;
+  background: linear-gradient(180deg, var(--gold), #f0a820);
+}
+.bage-item:hover { box-shadow: 0 11px 26px -14px rgba(20,40,70,.42); transform: translateY(-1px); }
+.bage-label {
+  display: inline-block; font-size: .72rem; font-weight: 700; color: #5c6b7a;
+  background: #eef2f7; border-radius: 5px; padding: 2px 9px; margin-bottom: 9px;
+}
+.bage-en {
+  font-family: 'Georgia', 'Times New Roman', serif; font-weight: 600;
+  font-size: 1.12rem; line-height: 1.6; color: var(--navy-deep); letter-spacing: .005em; word-break: break-word;
+}
+.bage-cn { font-size: .9rem; line-height: 1.65; color: #5c6b7a; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e6ebf1; }
+.bage-note2 { font-size: .8rem; line-height: 1.55; color: #8a5a12; background: #fff7e6; border-radius: 7px; padding: 7px 11px; margin-top: 9px; }
+
+/* ── 槽位 / 词库手风琴 ── */
+.bage-slot {
+  background: linear-gradient(180deg, #f7fafe, #eef4fb); border: 1px solid #dbe6f2; border-radius: 11px;
+  padding: 0; margin: 4px 0 14px; overflow: hidden;
+}
+.bage-slot > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; user-select: none;
+  font-size: .84rem; font-weight: 800; color: var(--navy); padding: 11px 14px;
+}
+.bage-slot > summary::-webkit-details-marker { display: none; }
+.bage-slot > summary::before { content: '🧩'; font-size: .9rem; }
+.bage-slot > summary::after {
+  content: '词库 · 槽位'; margin-left: auto; font-size: .68rem; font-weight: 700; color: #7f95ad;
+  background: #fff; border: 1px solid #dbe6f2; border-radius: 999px; padding: 2px 9px;
+}
+.bage-slot[open] > summary { background: #e7f0fa; }
+.bage-slot > div { padding: 2px 14px 14px; }
+.bage-slot-line {
+  font-size: .88rem; line-height: 1.7; color: #37485a; padding: 6px 0 6px 16px; position: relative;
+  border-bottom: 1px dashed #dbe6f2;
+}
+.bage-slot-line:last-child { border-bottom: none; }
+.bage-slot-line::before { content: '›'; position: absolute; left: 2px; color: var(--gold); font-weight: 900; }
+
+/* ── 题干信号 ── */
+.bage-trigger {
+  font-size: .84rem; line-height: 1.6; font-weight: 500; color: #46586b; margin-bottom: 14px;
+  padding: 11px 14px; border: 1px solid var(--line); border-left: 4px solid var(--navy); border-radius: 0 9px 9px 0;
+  background: repeating-linear-gradient(45deg, #f4f8fc, #f4f8fc 9px, #eaf1f9 9px, #eaf1f9 18px);
+}
+.bage-loading { text-align: center; color: #8fa0b3; padding: 48px 0; font-size: .9rem; }
+
+/* ── 复制 / 返回 / 操作 ── */
+.bage-acts { display: flex; gap: 8px; margin-top: 11px; }
 .bage-copy {
   border: 1px solid var(--line); background: #fff; color: #5c6b7a;
-  padding: 4px 10px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;
+  padding: 5px 12px; border-radius: 7px; font-size: .76rem; font-weight: 600; cursor: pointer; transition: all .15s;
 }
-.bage-copy:active { background: rgba(212,175,55,0.15); }
-.bage-item.recite { cursor: pointer; border-style: dashed; }
-.bage-item.recite:active { background: #f4f1e6; }
-.bage-item.recite.open { border-style: solid; border-color: var(--gold); }
-.bage-tap-hint { font-size: 0.72rem; color: #9aa6b4; margin-top: 6px; }
-.bage-jump { background: rgba(212,175,55,0.10); border-radius: 10px; padding: 10px 12px; margin-top: 14px; }
-.bage-jump-label { font-size: 0.8rem; font-weight: 700; color: #9a7b2f; display: block; margin-bottom: 8px; }
-.bage-jump-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.bage-chip.small { padding: 5px 10px; font-size: 0.76rem; background: #fff; }
-.bage-back { margin-bottom: 8px; }
-.bage-back button { border: none; background: none; color: #3a5a7a; font-size: 0.8rem; cursor: pointer; padding: 4px 0; }
+.bage-copy:hover { border-color: var(--gold); color: #9a7b2f; background: #fffdf6; }
+.bage-copy:active { background: rgba(255,197,61,.16); }
+.bage-back { margin-bottom: 12px; }
+.bage-back button {
+  border: 1px solid var(--line); background: #fff; color: var(--navy); font-size: .82rem; font-weight: 700;
+  cursor: pointer; padding: 7px 14px; border-radius: 999px; transition: all .16s;
+}
+.bage-back button:hover { border-color: var(--navy); background: #eef4fb; }
+
+/* ── 背诵翻卡 ── */
+.bage-item.recite { cursor: pointer; border-style: dashed; border-color: #cbd8e6; background: #fbfdff; }
+.bage-item.recite::before { opacity: .3; }
+.bage-item.recite:hover { box-shadow: 0 9px 22px -13px rgba(20,40,70,.4); }
+.bage-item.recite.open { border-style: solid; border-color: var(--gold); background: #fffdf5; }
+.bage-item.recite.open::before { opacity: 1; }
+.bage-tap-hint { font-size: .76rem; color: #9aa6b4; margin-top: 9px; }
+
+/* ── 小作文 → 插件 直达条 ── */
+.bage-jump { background: linear-gradient(135deg, #fff7e0, #fdeec2); border: 1px solid #f0dca0; border-radius: 14px; padding: 14px 16px; margin-top: 18px; }
+.bage-jump-label { font-size: .86rem; font-weight: 800; color: #9a7b2f; display: block; margin-bottom: 11px; }
+.bage-jump-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.bage-chip.small { padding: 7px 13px; font-size: .8rem; background: #fff; border-color: #f0dca0; color: #8a5a12; }
+.bage-chip.small:hover { border-color: #e0b64a; background: #fffdf6; }
 .bage-plugin.flash { animation: bageFlash 1.3s ease; }
 @keyframes bageFlash {
-  0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.55); }
-  60% { box-shadow: 0 0 0 6px rgba(212,175,55,0.25); }
-  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+  0% { box-shadow: 0 0 0 0 rgba(255,197,61,.6); }
+  60% { box-shadow: 0 0 0 7px rgba(255,197,61,.28); }
+  100% { box-shadow: 0 0 0 0 rgba(255,197,61,0); }
 }
 @media (max-width: 640px) {
-  .bage-en { font-size: 0.98rem; }
-  .bage-cn, .bage-slot-line { font-size: 0.86rem; }
-  .bage-toolbar { flex-direction: column; align-items: stretch; }
-  .bage-recite-btn { align-self: flex-end; }
+  .bage-wrap { max-width: 100%; padding: 4px 2px 32px; }
+  .bage-toolbar { flex-direction: column; align-items: stretch; gap: 11px; padding: 15px; }
+  .bage-mast-title { font-size: 1.32rem; }
+  .bage-recite-btn { align-self: stretch; }
+  .bage-en { font-size: 1.02rem; }
+  .bage-cn, .bage-slot-line { font-size: .9rem; }
+  .bage-h { font-size: 1.16rem; }
   .bage-chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none; }
   .bage-chips::-webkit-scrollbar { display: none; }
   .bage-chip { flex: none; }
