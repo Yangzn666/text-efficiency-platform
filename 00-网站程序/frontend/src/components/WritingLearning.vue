@@ -400,6 +400,9 @@ const bage = ref<any>(null)
 const bageActiveBig = ref('chart-cause')
 const bageActiveSmall = ref('letter')
 const bageActivePlugin = ref('p01-explain')
+const bageRecite = ref(false)
+const bageRevealed = ref<Set<string>>(new Set())
+const bageFlashPlugin = ref('')
 
 const loadBage = async () => {
   try {
@@ -408,6 +411,34 @@ const loadBage = async () => {
   } catch {
     ElMessage.error('八哥模板加载失败')
   }
+}
+
+const toggleRecite = () => {
+  bageRecite.value = !bageRecite.value
+  bageRevealed.value = new Set()
+}
+const isRevealed = (k: string) => bageRevealed.value.has(k)
+const reveal = (k: string) => {
+  const s = new Set(bageRevealed.value)
+  s.has(k) ? s.delete(k) : s.add(k)
+  bageRevealed.value = s
+}
+const copyEn = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    ElMessage.success('已复制该句')
+  } catch {
+    ElMessage.error('复制失败，请长按选择')
+  }
+}
+const scrollSec = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+const jumpToPlugin = (pid: string) => {
+  bageActivePlugin.value = pid
+  scrollSec('bage-sec-plugin')
+  bageFlashPlugin.value = pid
+  setTimeout(() => { bageFlashPlugin.value = '' }, 1300)
 }
 
 onMounted(() => {
@@ -506,83 +537,142 @@ const goWrite = (e: EssayItem) => {
       <!-- ══ 八哥模板（个人版专用）══ -->
       <el-tab-pane label="🎯 八哥模板" name="bage">
         <div v-if="bage" class="bage-wrap">
-          <div class="bage-note">📖 {{ bage.note }}</div>
+          <div class="bage-toolbar">
+            <div class="bage-note">📖 {{ bage.note }}</div>
+            <button class="bage-recite-btn" :class="{ on: bageRecite }" @click="toggleRecite">
+              {{ bageRecite ? '✍️ 退出背诵' : '🧠 背诵模式' }}
+            </button>
+          </div>
+          <div v-if="bageRecite" class="bage-recite-tip">背诵模式：只看中文回忆英文，点卡片翻出答案核对。</div>
+
+          <!-- 区块锚点导航 -->
+          <div class="bage-anchors">
+            <button @click="scrollSec('bage-sec-big')">🖼️ 大作文</button>
+            <button @click="scrollSec('bage-sec-small')">✉️ 小作文</button>
+            <button @click="scrollSec('bage-sec-plugin')">🔌 九大插件</button>
+          </div>
 
           <!-- 大作文 -->
-          <h3 class="bage-h">🖼️ 大作文模板</h3>
-          <div class="bage-chips">
-            <button
-              v-for="t in bage.big" :key="t.id"
-              class="bage-chip" :class="{ active: t.id === bageActiveBig }"
-              @click="bageActiveBig = t.id"
-            >{{ t.name }}</button>
-          </div>
-          <div v-for="t in bage.big.filter(x => x.id === bageActiveBig)" :key="t.id" class="bage-big">
-            <p class="bage-intro">{{ t.intro }}</p>
-            <section v-for="(p, pi) in t.paragraphs" :key="pi" class="bage-para">
-              <h4 class="bage-para-title">{{ p.title }}</h4>
-              <div v-for="(g, gi) in p.groups" :key="gi" class="bage-group">
-                <div class="bage-group-name">{{ g.name }}</div>
-                <div v-for="(it, ii) in g.items" :key="ii" class="bage-item">
-                  <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-                  <div class="bage-en">{{ it.en }}</div>
-                  <div class="bage-cn">{{ it.cn }}</div>
-                  <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+          <section id="bage-sec-big" class="bage-sec">
+            <h3 class="bage-h">🖼️ 大作文模板</h3>
+            <div class="bage-chips">
+              <button
+                v-for="t in bage.big" :key="t.id"
+                class="bage-chip" :class="{ active: t.id === bageActiveBig }"
+                @click="bageActiveBig = t.id"
+              >{{ t.name }}</button>
+            </div>
+            <div v-for="t in bage.big.filter(x => x.id === bageActiveBig)" :key="t.id" class="bage-big">
+              <p class="bage-intro">{{ t.intro }}</p>
+              <section v-for="(p, pi) in t.paragraphs" :key="pi" class="bage-para">
+                <h4 class="bage-para-title">{{ p.title }}</h4>
+                <div v-for="(g, gi) in p.groups" :key="gi" class="bage-group">
+                  <div class="bage-group-name">{{ g.name }}</div>
+                  <div
+                    v-for="(it, ii) in g.items" :key="ii" class="bage-item"
+                    :class="{ recite: bageRecite, open: isRevealed('b' + pi + '-' + gi + '-' + ii) }"
+                    @click="bageRecite && reveal('b' + pi + '-' + gi + '-' + ii)"
+                  >
+                    <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+                    <div class="bage-en" v-show="!bageRecite || isRevealed('b' + pi + '-' + gi + '-' + ii)">{{ it.en }}</div>
+                    <div class="bage-cn">{{ it.cn }}</div>
+                    <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+                    <div v-if="!bageRecite" class="bage-acts">
+                      <button class="bage-copy" @click.stop="copyEn(it.en)">📋 复制</button>
+                    </div>
+                    <div v-else class="bage-tap-hint">{{ isRevealed('b' + pi + '-' + gi + '-' + ii) ? '▲ 收起' : '👆 点我看英文' }}</div>
+                  </div>
+                  <details v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
+                    <summary>{{ sl.name }}</summary>
+                    <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+                  </details>
                 </div>
-                <div v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
-                  <div class="bage-slot-name">{{ sl.name }}</div>
-                  <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
-                </div>
-              </div>
-            </section>
-          </div>
+              </section>
+            </div>
+          </section>
 
           <!-- 小作文四类 -->
-          <h3 class="bage-h">✉️ 小作文 · 四类格式</h3>
-          <div class="bage-chips">
-            <button
-              v-for="t in bage.small.types" :key="t.id"
-              class="bage-chip" :class="{ active: t.id === bageActiveSmall }"
-              @click="bageActiveSmall = t.id"
-            >{{ t.name }}</button>
-          </div>
-          <div v-for="t in bage.small.types.filter(x => x.id === bageActiveSmall)" :key="t.id" class="bage-small">
-            <div v-for="(g, gi) in t.groups" :key="gi" class="bage-group">
-              <div class="bage-group-name">{{ g.name }}</div>
-              <div v-for="(it, ii) in g.items" :key="ii" class="bage-item">
-                <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-                <div class="bage-en">{{ it.en }}</div>
-                <div class="bage-cn">{{ it.cn }}</div>
-              </div>
-              <div v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
-                <div class="bage-slot-name">{{ sl.name }}</div>
-                <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+          <section id="bage-sec-small" class="bage-sec">
+            <h3 class="bage-h">✉️ 小作文 · 四类格式</h3>
+            <div class="bage-chips">
+              <button
+                v-for="t in bage.small.types" :key="t.id"
+                class="bage-chip" :class="{ active: t.id === bageActiveSmall }"
+                @click="bageActiveSmall = t.id"
+              >{{ t.name }}</button>
+            </div>
+            <div v-for="t in bage.small.types.filter(x => x.id === bageActiveSmall)" :key="t.id" class="bage-small">
+              <div v-for="(g, gi) in t.groups" :key="gi" class="bage-group">
+                <div class="bage-group-name">{{ g.name }}</div>
+                <div
+                  v-for="(it, ii) in g.items" :key="ii" class="bage-item"
+                  :class="{ recite: bageRecite, open: isRevealed('s' + gi + '-' + ii) }"
+                  @click="bageRecite && reveal('s' + gi + '-' + ii)"
+                >
+                  <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+                  <div class="bage-en" v-show="!bageRecite || isRevealed('s' + gi + '-' + ii)">{{ it.en }}</div>
+                  <div class="bage-cn">{{ it.cn }}</div>
+                  <div v-if="!bageRecite" class="bage-acts">
+                    <button class="bage-copy" @click.stop="copyEn(it.en)">📋 复制</button>
+                  </div>
+                  <div v-else class="bage-tap-hint">{{ isRevealed('s' + gi + '-' + ii) ? '▲ 收起' : '👆 点我看英文' }}</div>
+                </div>
+                <details v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
+                  <summary>{{ sl.name }}</summary>
+                  <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+                </details>
               </div>
             </div>
-          </div>
+            <!-- 插件直达：小作文正文从这里跳到九大插件 -->
+            <div class="bage-jump">
+              <span class="bage-jump-label">正文用哪个插件？点直达 →</span>
+              <div class="bage-jump-chips">
+                <button
+                  v-for="p in bage.small.plugins" :key="p.id"
+                  class="bage-chip small" @click="jumpToPlugin(p.id)"
+                >{{ p.name }}</button>
+              </div>
+            </div>
+          </section>
 
           <!-- 九大正文插件 -->
-          <h3 class="bage-h">🔌 九大正文插件（小作文通用正文）</h3>
-          <div class="bage-chips">
-            <button
-              v-for="p in bage.small.plugins" :key="p.id"
-              class="bage-chip" :class="{ active: p.id === bageActivePlugin }"
-              @click="bageActivePlugin = p.id"
-            >{{ p.name }}</button>
-          </div>
-          <div v-for="p in bage.small.plugins.filter(x => x.id === bageActivePlugin)" :key="p.id" class="bage-plugin">
-            <div class="bage-trigger">题干信号：{{ p.trigger }}</div>
-            <div v-for="(it, ii) in p.items" :key="ii" class="bage-item">
-              <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-              <div class="bage-en">{{ it.en }}</div>
-              <div class="bage-cn">{{ it.cn }}</div>
-              <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+          <section id="bage-sec-plugin" class="bage-sec">
+            <h3 class="bage-h">🔌 九大正文插件（小作文通用正文）</h3>
+            <div class="bage-back">
+              <button @click="scrollSec('bage-sec-small')">← 返回小作文题型</button>
             </div>
-            <div v-for="(sl, si) in (p.slots || [])" :key="'s' + si" class="bage-slot">
-              <div class="bage-slot-name">{{ sl.name }}</div>
-              <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+            <div class="bage-chips">
+              <button
+                v-for="p in bage.small.plugins" :key="p.id"
+                class="bage-chip" :class="{ active: p.id === bageActivePlugin }"
+                @click="bageActivePlugin = p.id"
+              >{{ p.name }}</button>
             </div>
-          </div>
+            <div
+              v-for="p in bage.small.plugins.filter(x => x.id === bageActivePlugin)" :key="p.id"
+              class="bage-plugin" :class="{ flash: bageFlashPlugin === p.id }"
+            >
+              <div class="bage-trigger">题干信号：{{ p.trigger }}</div>
+              <div
+                v-for="(it, ii) in p.items" :key="ii" class="bage-item"
+                :class="{ recite: bageRecite, open: isRevealed('p' + ii) }"
+                @click="bageRecite && reveal('p' + ii)"
+              >
+                <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+                <div class="bage-en" v-show="!bageRecite || isRevealed('p' + ii)">{{ it.en }}</div>
+                <div class="bage-cn">{{ it.cn }}</div>
+                <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+                <div v-if="!bageRecite" class="bage-acts">
+                  <button class="bage-copy" @click.stop="copyEn(it.en)">📋 复制</button>
+                </div>
+                <div v-else class="bage-tap-hint">{{ isRevealed('p' + ii) ? '▲ 收起' : '👆 点我看英文' }}</div>
+              </div>
+              <details v-for="(sl, si) in (p.slots || [])" :key="'s' + si" class="bage-slot">
+                <summary>{{ sl.name }}</summary>
+                <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+              </details>
+            </div>
+          </section>
         </div>
         <div v-else class="bage-loading">模板加载中…</div>
       </el-tab-pane>
@@ -1656,9 +1746,17 @@ const goWrite = (e: EssayItem) => {
 .bage-note2 { font-size: 0.76rem; line-height: 1.55; color: #9a7b2f; margin-top: 5px; }
 .bage-slot {
   background: rgba(20,40,70,0.04); border: 1px dashed var(--line); border-radius: 8px;
-  padding: 9px 12px; margin: 6px 0 10px;
+  padding: 0; margin: 6px 0 10px; overflow: hidden;
 }
-.bage-slot-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.bage-slot > summary {
+  list-style: none; cursor: pointer; font-size: 0.8rem; font-weight: 700; color: var(--navy);
+  padding: 9px 12px; display: flex; align-items: center; gap: 6px; user-select: none;
+}
+.bage-slot > summary::-webkit-details-marker { display: none; }
+.bage-slot > summary::before { content: '▸'; color: var(--gold); font-size: 0.75rem; transition: transform .15s; }
+.bage-slot[open] > summary::before { transform: rotate(90deg); }
+.bage-slot > summary::after { content: '词库/槽位'; margin-left: auto; font-size: 0.68rem; font-weight: 400; color: #9aa6b4; }
+.bage-slot > div { padding: 0 12px 10px; }
 .bage-slot-line { font-size: 0.8rem; line-height: 1.7; color: #4a5766; padding-left: 10px; position: relative; }
 .bage-slot-line::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
 .bage-trigger {
@@ -1666,8 +1764,56 @@ const goWrite = (e: EssayItem) => {
   border-radius: 6px; padding: 7px 10px; margin-bottom: 10px; line-height: 1.6;
 }
 .bage-loading { text-align: center; color: #8fa0b3; padding: 40px 0; font-size: 0.9rem; }
+.bage-toolbar { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.bage-toolbar .bage-note { flex: 1; margin-bottom: 0; }
+.bage-recite-btn {
+  flex: none; border: 1px solid var(--navy); background: #fff; color: var(--navy);
+  padding: 8px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+}
+.bage-recite-btn.on { background: var(--navy); color: #fff; }
+.bage-recite-tip { font-size: 0.76rem; color: #6b7a8d; background: rgba(58,90,122,0.08); border-radius: 6px; padding: 6px 10px; margin-bottom: 10px; }
+.bage-anchors { display: flex; gap: 8px; margin-bottom: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.bage-anchors::-webkit-scrollbar { display: none; }
+.bage-anchors button {
+  flex: none; border: 1px solid var(--line); background: #f6f7f9; color: var(--body);
+  padding: 7px 12px; border-radius: 999px; font-size: 0.8rem; cursor: pointer;
+}
+.bage-anchors button:active { background: var(--navy); color: #fff; }
+.bage-sec { scroll-margin-top: 12px; margin-bottom: 8px; }
+.bage-acts { display: flex; gap: 8px; margin-top: 7px; }
+.bage-copy {
+  border: 1px solid var(--line); background: #fff; color: #5c6b7a;
+  padding: 4px 10px; border-radius: 6px; font-size: 0.72rem; cursor: pointer;
+}
+.bage-copy:active { background: rgba(212,175,55,0.15); }
+.bage-item.recite { cursor: pointer; border-style: dashed; }
+.bage-item.recite:active { background: #f4f1e6; }
+.bage-item.recite.open { border-style: solid; border-color: var(--gold); }
+.bage-tap-hint { font-size: 0.72rem; color: #9aa6b4; margin-top: 6px; }
+.bage-jump { background: rgba(212,175,55,0.10); border-radius: 10px; padding: 10px 12px; margin-top: 14px; }
+.bage-jump-label { font-size: 0.8rem; font-weight: 700; color: #9a7b2f; display: block; margin-bottom: 8px; }
+.bage-jump-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.bage-chip.small { padding: 5px 10px; font-size: 0.76rem; background: #fff; }
+.bage-back { margin-bottom: 8px; }
+.bage-back button { border: none; background: none; color: #3a5a7a; font-size: 0.8rem; cursor: pointer; padding: 4px 0; }
+.bage-plugin.flash { animation: bageFlash 1.3s ease; }
+@keyframes bageFlash {
+  0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.55); }
+  60% { box-shadow: 0 0 0 6px rgba(212,175,55,0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
 @media (max-width: 640px) {
   .bage-en { font-size: 0.98rem; }
   .bage-cn, .bage-slot-line { font-size: 0.86rem; }
+  .bage-toolbar { flex-direction: column; align-items: stretch; }
+  .bage-recite-btn { align-self: flex-end; }
+  .bage-chips { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none; }
+  .bage-chips::-webkit-scrollbar { display: none; }
+  .bage-chip { flex: none; }
+  /* 顶部写作子页签：窄屏横向可滑 + 更大触控目标 */
+  .wl-tabs :deep(.el-tabs__nav-wrap) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .wl-tabs :deep(.el-tabs__nav) { float: none; }
+  .wl-tabs :deep(.el-tabs__nav-scroll) { overflow: visible; }
+  .wl-tabs :deep(.el-tabs__item) { padding: 0 14px; font-size: 0.86rem; height: 44px; line-height: 44px; }
 }
 </style>
