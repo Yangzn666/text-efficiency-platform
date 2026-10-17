@@ -1,0 +1,553 @@
+{
+  "version": 1,
+  "source": "八哥smile老师 小程序 · 05作文模版",
+  "scope": "个人版专用，勿部署到共享版",
+  "note": "核心句 + 中文 + 槽位；已跳过单词讲解 / 发音 / 谐音 / 套真题示范。【】内为填空槽位，斜杠为可选替换。",
+  "extractedAt": "2026-10-17",
+  "big": [
+    {
+      "id": "chart-cause",
+      "name": "模版1 · 图表原因分析",
+      "intro": "英一图表作文三段式：描述图表 → 原因分析 → 评论。静态图看比例、动态图看起止变化、图表+漫画两者结合。",
+      "paragraphs": [
+        {
+          "title": "第一段 · 描述图表",
+          "groups": [
+            {
+              "name": "A 静态图表（3 句）",
+              "items": [
+                { "label": "01 引出图表主题", "en": "The chart(s)/table present(s) data concerning 【主题T = 中心词 + 修饰词】.", "cn": "该图表／表格展示了有关【主题】的数据。" },
+                { "label": "02 描述第一组数据", "en": "As can be seen, A1 ranks first at 【比例】%, followed by A2 at 【比例】%, A3 at 【比例】% and A4 at 【比例】%.", "cn": "可以看出，A1 以【比例】%位居第一，其次是 A2 的【比例】%、A3 的【比例】%和 A4 的【比例】%。" },
+                { "label": "03 描述第二组数据", "en": "Meanwhile / by contrast, the figure for B1 is the highest/lowest at 【比例】%, with B2 and B3 following at 【比例】% and 【比例】% respectively.", "cn": "与此同时／相比之下，B1 的数据最高／最低，为【比例】%；B2 和 B3 分别以【比例】%和【比例】%紧随其后。" }
+              ]
+            },
+            {
+              "name": "B 动态图表（3 句）",
+              "items": [
+                { "label": "01 引出图表主题（同 A）", "en": "The chart(s)/table present(s) data concerning 【主题T = 中心词 + 修饰词】.", "cn": "该图表／表格展示了有关【主题】的数据。" },
+                { "label": "02 描述数据的起止变化", "en": "As can be seen, the number/percentage of A1 rose/fell from X in 【年份】 to Y in 【年份】.", "cn": "可以看出，A1 的数量／比例从【年份】的 X 上升／下降到【年份】的 Y。" },
+                { "label": "03 描述多组数据变化", "en": "Meanwhile, the figure(s) for A2 and A3 increased/decreased from X1 and X2 to Y1 and Y2 respectively during the same period.", "cn": "与此同时，同期 A2 和 A3 的数据分别由 X1 和 X2 上升／下降至 Y1 和 Y2。" }
+              ]
+            },
+            {
+              "name": "C 图表 + 漫画（3 句）",
+              "items": [
+                { "label": "01 描述漫画", "en": "The picture shows that 【对象】 is doing 【动作】 and saying/thinking \"【文字】\".", "cn": "漫画显示，【对象】正在【动作】，并说／想：\"【文字】\"。" },
+                { "label": "02 描述图表 · 动态", "en": "The chart shows that the number/percentage of A rose/fell from X in 【年份1】 to Y in 【年份2】.", "cn": "图表显示，A 的数量／比例从【年份1】的 X 上升／下降到【年份2】的 Y。" },
+                { "label": "02 描述图表 · 静态", "en": "The chart shows that A1 ranks first at 【比例】%, followed by A2 at 【比例】%, A3 at 【比例】% and A4 at 【比例】%.", "cn": "图表显示，A1 以【比例】%位居第一，其次是 A2 的【比例】%、A3 的【比例】%和 A4 的【比例】%。" },
+                { "label": "03 连接图像与数据", "en": "This visual-numerical combination makes the message about 【主题】 more convincing.", "cn": "这种图像与数据相结合的方式，使关于【主题】的信息更有说服力。" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "第二段 · 原因分析",
+          "groups": [
+            {
+              "name": "01 原因总论（按图选择）",
+              "items": [
+                { "label": "有时间变化 → trend", "en": "Several forces have probably driven this trend.", "cn": "有多种力量可能共同推动了这一趋势。" },
+                { "label": "无时间变化 → pattern（图表内容\"有什么\"）", "en": "Several factors may account for this pattern.", "cn": "有多种因素可以解释这一数据格局。" },
+                { "label": "无时间变化 → findings（图表作用\"正向看法\"）", "en": "Several factors may account for these findings.", "cn": "有多种因素可以解释这些调查结果。" }
+              ]
+            },
+            {
+              "name": "02 原因1 · 从中获益",
+              "items": [
+                { "label": "主句（适用话题：几乎所有话题）", "en": "First and foremost, 【数据特征】 can be partly explained by the tangible benefits, including A, B and C.", "cn": "首先，【数据特征】在一定程度上可以用切实的益处来解释，包括 A、B 和 C。" }
+              ],
+              "slots": [
+                {
+                  "name": "【数据特征】三档选法",
+                  "lines": [
+                    "动态图｜解释增长：① this pattern（数据格局）/ ② the increase（增长）/ ③ the increase in X（X 的增长）",
+                    "静态图｜解释单个高比例：① this pattern / ② the high proportion（较高比例）/ ③ the high proportion of people who choose to do X（选择做 X 的人所占的较高比例）",
+                    "静态图｜概括正面看法：① this pattern / ② respondents' generally positive views（受访者总体积极的看法）/ ③ respondents' generally positive views of X（受访者对 X 总体积极的看法）"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "03 原因2 · 三变体",
+              "items": [
+                { "label": "政府政策 · 2A 政策投入（制度端）", "en": "At the institutional level, supportive policies and sustained public investment have created favorable conditions for the expansion / development of X.", "cn": "在制度层面，支持性政策和持续的公共投入为 X 的扩展／发展创造了有利条件。", "note": "适用：公共建设／医疗健康／养老／交通／环境／数字化／教育／文化／乡村振兴" },
+                { "label": "政府政策 · 2B 宣传教育与可靠信息（制度端）", "en": "At the institutional level, sustained public education and wider access to reliable information have improved people's understanding of X and encouraged corresponding changes in behavior.", "cn": "在制度层面，持续的公众教育以及更便捷地获取可靠信息，提高了人们对 X 的认识，并推动了相应的行为改变。", "note": "适用：健康素养／环保意识／网络安全／隐私保护／科学素养／公共文明／安全教育" },
+                { "label": "科技行业（技术进步与行业发展 · 供给端）", "en": "On the supply side, technological advances have fueled growth and innovation in the X industry / sector, making its products and services more efficient, reliable and affordable.", "cn": "在供给端，技术进步推动了 X 行业／领域的增长与创新，使其产品和服务更加高效、可靠且价格更可负担。", "note": "适用：家电／人工智能／养老机器人／数字服务／医疗科技／新能源车／绿色能源／教育科技／旅游文化" },
+                { "label": "观念转变（现代观念转变）", "en": "Equally important, changing attitudes and priorities regarding 【话题】 have led 【people/consumers/students = 主体】 to place greater emphasis on X.", "cn": "同样重要的是，围绕话题的态度和关注重点发生变化，使【主体】越来越重视 X。", "note": "适用：消费／健康／教育／就业／儿童／休闲" }
+              ]
+            },
+            {
+              "name": "04 原因3 · 六变体",
+              "items": [
+                { "label": "① 收入提升 · 主句", "en": "Beyond these immediate benefits, rising household incomes have enabled more people …", "cn": "除了这些直接益处之外，家庭收入的提升使更多人……", "note": "适用：产品／消费品、服务／资源、活动／体验" },
+                { "label": "① 收入提升 · 接续（产品／消费品）", "en": "… to afford X that once seemed optional or beyond their reach.", "cn": "……有能力购买那些曾经看似可有可无或难以负担的 X。" },
+                { "label": "① 收入提升 · 接续（服务／资源）", "en": "… to gain access to higher-quality X.", "cn": "……获得更高质量的 X。" },
+                { "label": "① 收入提升 · 接续（活动／体验）", "en": "… to devote more time and resources to X.", "cn": "……投入更多时间和资源用于 X。" },
+                { "label": "② 现实需求（社会背景）", "en": "At a deeper level, 【social change】 has/have generated a growing need for X.", "cn": "在更深层次上，【社会变化】催生了对 X 日益增长的需求。" },
+                { "label": "③ 发展模式（转变）", "en": "More broadly, this pattern reflects a shift from a model of development measured mainly by economic output to one evaluated increasingly in terms of X.", "cn": "更广泛地说，这一数据格局反映出发展评价标准正在从主要看经济产出，转向越来越重视 X。", "note": "适用：国家／社会／行业／城乡／基础设施／科技／公共服务；提示：经济产出 → 更高发展目标" },
+                { "label": "④ 负面原因（担忧、障碍与限制条件）", "en": "Nevertheless, unresolved concerns about A, B and C may discourage people from embracing X and thereby limit its wider adoption.", "cn": "不过，围绕 A、B 和 C 尚未解决的担忧，可能会降低人们接受 X 的意愿，从而限制其进一步普及。" },
+                { "label": "⑤ 群体特征（和人生阶段）", "en": "At the individual level, personal characteristics and life stage often shape people's needs, priorities and choices.", "cn": "在个人层面，个人特征和人生阶段往往影响人们的需求、优先事项和选择。", "note": "适用：不同年龄／年级／职业阶段／老人／儿童" },
+                { "label": "⑥ 现实门槛（与选择条件）", "en": "From a practical perspective, cost, accessibility, available time and convenience often influence people's final choices.", "cn": "从现实角度来看，成本、可获得性、可支配时间和便利性往往影响人们最终的选择。", "note": "适用：活动方式／服务选择／产品使用／交通方式／消费行为／休闲活动／养老服务／在线学习／健身方式" }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "第三段 · 评论段落（两句模版）",
+          "groups": [
+            {
+              "name": "两句核心模版",
+              "items": [
+                {
+                  "label": "句1 · 图表告诉我们什么",
+                  "en": "Overall, the pattern shown in the chart offers useful insight into 【T】.",
+                  "cn": "总体而言，图表所呈现的数据格局有助于我们理解 T。",
+                  "note": "pattern 可换 trend（有时间变化）/ findings（看法／评价／调查结果）"
+                },
+                {
+                  "label": "句2 · 未来怎么办 + 为了什么",
+                  "en": "Going forward, greater efforts should be made to 【do A】, so that 【G】.",
+                  "cn": "未来，应进一步努力 do A，从而 G。"
+                }
+              ],
+              "slots": [
+                {
+                  "name": "【T】槽位选法",
+                  "lines": [
+                    "T1 价值：the value of X for Y（X 对 Y 的价值）",
+                    "T2 态度／关注重点：sb's attitudes and priorities regarding X（某人对 X 的态度和关注重点）",
+                    "T3 增长：the rapid / steady growth in X（X 的快速／稳定增长）"
+                  ]
+                },
+                {
+                  "name": "【do A】槽位选法",
+                  "lines": [
+                    "A1 给更多（人）：provide more opportunities for sb to V（为某人提供更多做某事的机会）；V 可替换 engage in X（参与）/ gain or acquire X（获得）/ experience X（体验）/ use or access X（使用／获得）",
+                    "A2 做更好（非人）：improve X（提升 X）；宾语可替换 quality / efficiency / accessibility / reliability / affordability / safety / user-friendliness / education / guidance / infrastructure / support / regulation",
+                    "记忆：缺机会、缺资源 → \"给更多\"；已有事物或条件不够好 → \"做更好\""
+                  ]
+                },
+                {
+                  "name": "【G】槽位选法",
+                  "lines": [
+                    "G1 益处／价值：the relevant benefits can be more fully realized, sustained and widely shared.（相关益处得到更充分实现、持续并广泛共享。）/ …while possible risks are better addressed.（同时潜在风险也能得到更好应对。）",
+                    "G2 人的发展：their all-round / long-term development can be better supported.（学生／儿童→all-round；毕业／就业／职业→long-term）",
+                    "G3 满足需求：their diverse needs can be better met.（主体可替换 people / students / older people / children / consumers / employees）"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cartoon-meaning",
+      "name": "模版2 · 漫画意义分析",
+      "intro": "英一漫画作文三段式：描述漫画（对象动作语言 + 图注）→ 意义分析（主题句／获益句／研究句／升华或例证）→ 评论（总结意义／落实行动／实现目标）。",
+      "paragraphs": [
+        {
+          "title": "第一段 · 描述漫画（三句模版）",
+          "groups": [
+            {
+              "name": "三句",
+              "items": [
+                { "label": "01 对象1 的动作与语言/心理", "en": "As is vividly depicted, 【介词短语(位置)】, 【对象1】 is doing 【动作1】 and saying/thinking \"【文字1】\".", "cn": "如图生动地描绘的那样，在【位置】，【对象1】正在【动作1】，并说／想：\"【文字1】\"。" },
+                { "label": "02 对象2 的动作与语言/心理", "en": "Meanwhile, 【对象2】 is doing 【动作2】 and replying/thinking \"【文字2】\".", "cn": "与此同时，【对象2】正在【动作2】，并回答／想：\"【文字2】\"。" },
+                { "label": "03 描述图注", "en": "The caption reads, \"【图注】\".", "cn": "图注写道：\"【图注】\"。" }
+              ],
+              "slots": [
+                {
+                  "name": "【介词短语】= 介词 + 参照物",
+                  "lines": [
+                    "介词：in front of / behind / on / in / around / on the left·right side of / under / beside·next to / at / by",
+                    "参照物：sofa / chair / soccer field / track / crossroads / table·dining table / desk / picture·cartoon / notice board / bookshelf / laptop·computer / steps / river / bridge / boat"
+                  ]
+                },
+                {
+                  "name": "【对象】= 情绪／性格 + 身份",
+                  "lines": [
+                    "情绪：confused / upset / cheerful / anxious / tired / relaxed / hesitant",
+                    "性格：courageous / weak / creative / inflexible / optimistic / pessimistic / diligent·hard-working / lazy / persevering / open-minded",
+                    "身份：athlete / graduate / hairdresser / goalkeeper / student / parent·father·mother / child / lawyer·journalist / traveler·tourist / hiker·climber / reader / dragon-boat racer / spectator"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "第二段 · 意义分析",
+          "groups": [
+            {
+              "name": "① 主题句",
+              "items": [
+                { "label": "主题句", "en": "Beyond its surface meaning, the cartoon draws attention to the broader significance of 【T】.", "cn": "从表层图像进一步来看，这幅漫画把我们的注意力引向了【T】更深层、更广泛的意义。", "note": "【T】按话题从 9 类主题词库中选：个人品质／文化类／父母子女类／主旋律／诚信文明／正面现象／环境低碳／身心健康／中性话题" }
+              ],
+              "slots": [
+                {
+                  "name": "主题词示例（个人品质类，其余 8 类为同类词库，可现场替换）",
+                  "lines": [
+                    "perseverance（坚持不懈）/ optimism（乐观）/ self-discipline（自律）/ taking action（付诸行动）/ making informed choices（作出理性选择）/ embracing challenges（迎接挑战）/ lifelong learning（终身学习）/ independent thinking（独立思考）"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "② 获益句",
+              "items": [
+                { "label": "获益句", "en": "More specifically, the value of 【T】 lies in the wide-ranging benefits it can bring, including 【doing A】, 【doing B】 and 【doing C】.", "cn": "更具体地说，T 的价值体现在它能够带来的一系列广泛益处上，包括 doing A、doing B 和 doing C。", "note": "主题词 T 与 A/B/C 按话题直接替换" }
+              ]
+            },
+            {
+              "name": "③ 研究句（三版本）",
+              "items": [
+                { "label": "个人成长类", "en": "A growing body of research 【on + R】 suggests that individuals who 【定语从句】 tend to achieve better outcomes in terms of self-management, adaptability and long-term personal growth.", "cn": "越来越多的研究表明，【……】的个人往往在自我管理、适应能力和长期个人成长方面取得更好的结果。", "note": "适用：个人品质｜个人选择｜学习成长｜中性科技｜文化吸收｜因材施教" },
+                { "label": "社会关系与公共文明类", "en": "A growing body of research 【on + R】 suggests that societies that 【定语从句】 tend to achieve better outcomes in terms of social trust, social cohesion and collective well-being.", "cn": "越来越多的研究表明，【……】的社会往往在社会信任、社会凝聚力和集体福祉方面取得更好的结果。", "note": "适用：父母子女｜家庭教育｜诚信文明｜社会公德｜正面现象｜文化传承" },
+                { "label": "国家发展与环境类", "en": "A growing body of research 【on + R】 suggests that countries that 【定语从句】 tend to achieve better outcomes in terms of development quality, public well-being and long-term sustainability.", "cn": "越来越多的研究表明，【……】的国家往往在发展质量、公共福祉和长期可持续性方面取得更好的结果。", "note": "适用：主旋律｜国家发展｜环境低碳｜资源节约" }
+              ],
+              "slots": [
+                {
+                  "name": "【定语从句】按话题填充示例",
+                  "lines": [
+                    "个人品质／选择：who place greater emphasis on perseverance / optimism / self-discipline / taking action / making thoughtful choices.",
+                    "中性科技：who use AI / smartphones / social media in a responsible way.",
+                    "文化吸收：who remain open to different cultures and are willing to learn from them / who are willing to draw wisdom from traditional culture.",
+                    "学习成长：who are willing to learn beyond their own field.",
+                    "因材施教：who receive education tailored to their individual aptitudes.",
+                    "父母子女：that place greater emphasis on family responsibility and care for older family members.",
+                    "家庭教育：that attach greater importance to positive family education and parental role modeling.",
+                    "诚信文明／社会公德：that place greater emphasis on honesty / civilized conduct / public morality.",
+                    "正面现象：that place greater emphasis on public responsibility / mutual assistance / selfless devotion.",
+                    "文化传承：that place greater emphasis on preserving and promoting traditional culture.",
+                    "主旋律／国家发展：that place greater emphasis on rural revitalization / infrastructure development / technological self-reliance / high-quality development.",
+                    "环境低碳／资源节约：that prioritize environmental protection / low-carbon development / resource conservation / ecological protection."
+                  ]
+                },
+                {
+                  "name": "outcomes 高分替换词",
+                  "lines": [
+                    "个人成长：independent judgment（独立判断）/ decision-making（决策能力）/ critical thinking（批判性思维）/ overall development（全面发展）",
+                    "社会关系：mutual trust（相互信任）/ social cooperation（社会合作）/ interpersonal harmony（人际和谐）/ public well-being（公共福祉）"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "④ 升华句 / 例证句",
+              "items": [
+                { "label": "基础版升华句（固定句）", "en": "More importantly, these effects are not immediate but accumulative over time, continually shaping the future.", "cn": "更重要的是，这些影响并非立竿见影，而是随着时间累积，持续塑造未来。" },
+                { "label": "高阶版例证句 · 句式骨架", "en": "Furthermore, 【人物】 offers a telling illustration: by 【品质/做法短语】, 【人物】 【did A, B and C】.", "cn": "此外，【人物】提供了一个有力的例证：通过【品质/做法】，【人物】做出了 A、B、C。", "note": "示例（个人品质·抗挫 · Steve Jobs）：Furthermore, Steve Jobs offers a telling illustration: by remaining optimistic in the face of adversity, he spent years packaging the magic of computing into elegantly designed and easy-to-use products, helped redefine the cellphone industry, and changed the way people interact with technology." }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "第三段 · 意义分析评论段（三句模版）",
+          "groups": [
+            {
+              "name": "三句",
+              "items": [
+                { "label": "① 总结意义", "en": "Taken together, the discussion above highlights both the importance of 【T】 and the need for sustained practical commitment.", "cn": "综合来看，上述讨论既突出了【T】的重要性，也强调了持续付诸实际行动的必要性。" },
+                { "label": "② 落实行动", "en": "The key is to translate this recognition into practice through 【P】.", "cn": "关键在于通过【P】把这种认识转化为实际行动。" },
+                { "label": "③ 实现目标", "en": "In this way, the benefits associated with 【T】 can be more fully realized over time and contribute to 【G】.", "cn": "通过这种方式，与【T】相关的益处才能够随着实践的推移得到更充分的实现，并促进【G】。" }
+              ],
+              "slots": [
+                {
+                  "name": "【T】/【P】/【G】选择池（按话题分类填充）",
+                  "lines": [
+                    "类别：02 万能三句 / 03 个人品质 / 04 社会国家 / 05 中性技术 / 06 父母子女 等",
+                    "个人品质类 T 示例：optimism in the face of adversity（面对逆境时的乐观）/ making informed choices at major turning points（在重大转折点做出明智选择）/ turning knowledge and ideas into action（把知识和想法付诸行动）/ perseverance in the face of setbacks（面对挫折时坚持不懈）/ self-discipline and timely action（自律并及时行动）"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "small": {
+    "intro": "小作文四类共用一套「九大正文插件」作正文；格式与首尾句按类型套用。",
+    "types": [
+      {
+        "id": "letter",
+        "name": "01 书信",
+        "groups": [
+          {
+            "name": "01 称呼",
+            "items": [
+              { "en": "Dear Sir or Madam / XX（写给谁）,", "cn": "尊敬的先生／女士／【收信人】," }
+            ]
+          },
+          {
+            "name": "02 第一段（生人介绍 / 熟人客套 + 写信 / 回信 + 目的）",
+            "items": [
+              { "label": "生人 · 自我介绍", "en": "I am Li Ming, a student of our university, and ...", "cn": "我是李明，本校一名学生，……" },
+              { "label": "熟人 · 客套", "en": "I am very glad / sorry that ...（题干信息）, and ...", "cn": "得知……（题干信息）我非常高兴／遗憾，并且……" },
+              { "label": "写信", "en": "I am writing this letter / this email to ...", "cn": "我写这封信／邮件是为了……" },
+              { "label": "回信", "en": "Thanks for your email. I would be happy to share some details / suggestions with you.", "cn": "感谢你的邮件，我很乐意与你分享一些细节／建议。" }
+            ],
+            "slots": [
+              { "name": "目的（槽位，按题干选一）", "lines": ["感谢 / 道歉 / 祝贺 / 欢迎 / 建议 / 推荐 / 邀请 / 申请 / 询问 / 请求 / 告知 / 投诉"] }
+            ]
+          },
+          {
+            "name": "03 第二段 · 正文",
+            "items": [],
+            "slots": [
+              { "name": "从「九大正文插件」按信的功能选一（详见下方插件区）", "lines": ["01 说明 / 02 建议 / 03 理由 / 04 回应 / 05 询问 / 06 招募 / 07 安排 / 08 协助 / 09 投诉"] }
+            ]
+          },
+          {
+            "name": "04 第三段（希望接受 + 期待回复）",
+            "items": [
+              { "label": "希望接受", "en": "I sincerely hope that you can accept my X.", "cn": "我真诚地希望你能接受／采纳我的 X。" },
+              { "label": "期待回复", "en": "I'm looking forward to hearing from you.", "cn": "我期待收到你的回信。" }
+            ]
+          },
+          {
+            "name": "05 落款",
+            "items": [
+              { "en": "Yours sincerely, / Li Ming (or Zhang Wei)", "cn": "您忠实的，／李明（或张伟）" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "notice",
+        "name": "02 告示",
+        "groups": [
+          {
+            "name": "格式",
+            "items": [],
+            "slots": [
+              { "name": "告示格式", "lines": [
+                "标题：首字母大写、居中 — Notice",
+                "日期：标题下一行右侧 — 例 May 1st, 2026",
+                "第一段·通知目的；第二段·正文（常用「说明」「招募」）；第三段·联系方式/欢迎参加",
+                "落款：右下角；题干有机构名直接用，无则写 The Student Union"
+              ] }
+            ]
+          },
+          {
+            "name": "第一段 · 通知目的（二选一）",
+            "items": [
+              { "en": "This notice is written to + 【题干任务】.", "cn": "本通知旨在……" },
+              { "en": "The purpose of this notice is to + 【题干任务】.", "cn": "本通知的目的是……" }
+            ]
+          },
+          {
+            "name": "第三段 · 联系方式 / 欢迎参加（二选一）",
+            "items": [
+              { "label": "活动 / 招募型", "en": "Those who are interested may call 12345678 for further information. We look forward to your participation.", "cn": "感兴趣的人可以拨打 12345678 了解更多信息，我们期待您的参与。" },
+              { "label": "纯信息说明型", "en": "I hope the information above will be helpful to you. If you have any further questions, please feel free to contact us.", "cn": "希望以上信息对您有所帮助。如果您还有其他问题，请随时联系我们。" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "minutes",
+        "name": "03 纪要",
+        "groups": [
+          {
+            "name": "格式（记忆密码：斯大林劈腿 = SDLPT）",
+            "items": [
+              { "en": "Subject: 【主题】 / Date: May 1st, 2026 / Location: 【地点】 / Present: 【出席者】", "cn": "主题／日期／地点／出席者（题干有用则写）" },
+              { "label": "正文引导句", "en": "The minutes are as follows:", "cn": "纪要如下：" }
+            ],
+            "slots": [
+              { "name": "SDLPT", "lines": ["S = Subject 主题", "D = Date 日期", "L = Location 地点", "P = Present 出席者", "T = The minutes are as follows 纪要如下"] },
+              { "name": "正文要点", "lines": ["要点 1 / 2 / 3 —— 从「九大正文插件」中选（说明／招募等）"] }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memo",
+        "name": "04 备忘录 / 报告（Memo / Report）",
+        "groups": [
+          {
+            "name": "格式（记忆密码：掏粪大师 = TFDS）",
+            "items": [
+              { "en": "To: 【题干对象】 / From: 【写作者】 / Date: May 1st, 2026 / Subject: 【题干主题】", "cn": "致／自／日期／主题" }
+            ],
+            "slots": [
+              { "name": "TFDS", "lines": ["T = To 致", "F = From 自", "D = Date 日期", "S = Subject 主题"] }
+            ]
+          },
+          {
+            "name": "正文三段",
+            "items": [
+              { "label": "第一段·目的（套用通知目的句，notice→memo）", "en": "This memo is written to + 【题干任务】.", "cn": "本备忘录旨在……" },
+              { "label": "第三段·收尾（套用告示第三段）", "en": "I hope the information above will be helpful to you. If you have any further questions, please feel free to contact us.", "cn": "希望以上信息对您有所帮助。如有其他问题，请随时联系我们。" }
+            ],
+            "slots": [
+              { "name": "第二段·正文", "lines": ["从「九大正文插件」按题干选择（说明／建议／理由／回应／询问／招募／安排／协助／投诉）"] }
+            ]
+          }
+        ]
+      }
+    ],
+    "plugins": [
+      {
+        "id": "p01-explain",
+        "name": "01 说明",
+        "trigger": "describe / inform / introduce X（说明情况、介绍活动／项目、告知安排）",
+        "items": [
+          { "label": "第一句 · 引出说明对象", "en": "I am writing to tell you something about X.", "cn": "我写这封信是为了向你介绍 X 的相关情况。" },
+          { "label": "第二句 · 时间地点", "en": "X is to be held by our university at 地点 at 7 a.m./p.m. on May 1st.", "cn": "X 将由我们学校于 5 月 1 日上午／下午 7 点在【地点】举行。" },
+          { "label": "第二句 · 正在进行", "en": "X is currently being held at 地点.", "cn": "X 目前正在【地点】举行。" },
+          { "label": "第三句 · 活动／项目目的", "en": "It aims to do A, do B and do C.", "cn": "它旨在做 A、做 B 并做 C。" },
+          { "label": "第四句 · 被邀请人的重要性（长辈）", "en": "You are highly respected at our university, so it will be a great honor for us to have you here.", "cn": "您在我们大学备受尊敬，因此，您的到来将是我们的莫大荣幸。" },
+          { "label": "第四句 · 被邀请人的重要性（平辈）", "en": "We would be delighted to have you join us for this event, as your presence will make it even more enjoyable.", "cn": "我们非常乐意邀请您参加本次活动，因为您的到来会让活动更加愉快。" }
+        ]
+      },
+      {
+        "id": "p02-suggest",
+        "name": "02 建议",
+        "trigger": "make some suggestions / give advice / give some tips / how to prepare for X / what should I do / Can you give me some advice?",
+        "items": [
+          { "label": "主句 1", "en": "Here are some useful suggestions about X.", "cn": "下面是一些关于 X 的实用建议。" },
+          { "label": "主句 2", "en": "First and foremost, it is necessary for you to 动词 + 名词1.", "cn": "首先，你有必要做\"动词 + 名词1\"。" },
+          { "label": "主句 3", "en": "In addition, you are supposed to 动词 + 名词2.", "cn": "此外，你应该做\"动词 + 名词2\"。" },
+          { "label": "主句 4", "en": "Last but not least, 名词3 should be 动词-ed.", "cn": "最后但同样重要的是，\"名词3\"应该被……" }
+        ],
+        "slots": [
+          { "name": "四大从句（接在主干句后）", "lines": [
+            "主干句, which would be beneficial to you/students.（这将对你／学生有益。）",
+            "主干句, which would bring convenience to you/students.（这将给你／学生带来便利。）",
+            "主干句 so that you/students can do A, do B and do C.（这样你／学生就可以做 A、B、C。）",
+            "主干句 because + 原因.（……因为……）"
+          ] }
+        ]
+      },
+      {
+        "id": "p03-reason",
+        "name": "03 理由",
+        "trigger": "recommend / give reasons / state reasons / why / which one should he go to（问为什么推荐、为什么选择、为什么合适）",
+        "items": [
+          { "label": "事物优点 1", "en": "The reasons for recommending X to you are as follows.", "cn": "我向你推荐 X 的理由如下。" },
+          { "label": "事物优点 2", "en": "First and foremost, X can bring you numerous benefits, such as A, B and C.", "cn": "首先，X 能带来很多益处，例如 A、B 和 C。" },
+          { "label": "事物优点 3", "en": "In addition, X is widely recognized and enjoys a good reputation.", "cn": "此外，X 受到广泛认可并享有良好声誉。" },
+          { "label": "事物优点 4", "en": "Last but not least, it is so X that it never fails to attract me and leave a deep impression on me.", "cn": "最后，它如此 X，总能吸引我并给我留下深刻印象。" },
+          { "label": "人物优点 1", "en": "I believe I fully meet your requirements. / I believe he/she fully meets your requirements.", "cn": "我相信我完全符合你们的要求。／我相信他或她完全符合你们的要求。" },
+          { "label": "人物优点 2", "en": "Over the past X years, I have maintained an average score of 90 and consistently performed as a straight-A student.", "cn": "在过去 X 年中，我一直保持 90 分的平均成绩，并始终是一名优等学生。" },
+          { "label": "人物优点 3", "en": "I am confident, optimistic and creative; more importantly, I have strong communication skills.", "cn": "我自信、乐观且富有创造力；更重要的是，我有很强的沟通能力。" },
+          { "label": "人物优点 4", "en": "I have worked as X and gained substantial experience in this field.", "cn": "我曾担任 X，在这一领域积累了丰富的经验。" }
+        ],
+        "slots": [
+          { "name": "人称变化注", "lines": ["申请／求职用 I；推荐他人时把 I／my 改为 he／she、his／her 并调整动词；告示中的志愿者可用 they／their。"] }
+        ]
+      },
+      {
+        "id": "p04-response",
+        "name": "04 回应",
+        "trigger": "how you feel about X / share your feelings / express your thanks / thank sb. / congratulate sb. / apologize（对已发生之事作回应：感受、感谢、祝贺或道歉）",
+        "items": [
+          { "label": "普适感受", "en": "I found X both A and B, and it has left a lasting impression on me.", "cn": "X 既 A 又 B，给我留下了深刻的印象。" },
+          { "label": "感谢 1", "en": "Had it not been for your assistance, I might not have been able to do X.", "cn": "若不是你的帮助，我原本可能无法完成 X。" },
+          { "label": "感谢 2", "en": "With your help, however, I was able to solve many problems.", "cn": "在你的帮助下，我得以解决许多问题。" },
+          { "label": "感谢 3", "en": "Although many people talk about being selfless and helping others, few actually practice what they preach.", "cn": "虽然很多人谈论无私和帮助他人，但真正践行自己所宣扬内容的人却很少。" },
+          { "label": "感谢 4", "en": "Your actions, however, have shown that you are a true exception.", "cn": "然而，你的行动表明，你确实是一个例外。" },
+          { "label": "祝贺 1", "en": "Your intelligence and diligence made this achievement.", "cn": "你的聪明和勤奋使你赢得了这一成就。" },
+          { "label": "祝贺 2", "en": "I can well imagine how proud your parents must be of you and how eagerly they look forward to seeing your continued success.", "cn": "我完全可以想象你的父母一定多么为你自豪，也多么期待看到你继续取得成功。" },
+          { "label": "道歉 1", "en": "I sincerely apologize for X.", "cn": "我为 X 真诚地向你道歉。" },
+          { "label": "道歉 2", "en": "I made this mistake because I was so careless that I failed to do Y.", "cn": "我犯了这个错误，因为我太粗心，以至于没能做 Y。" },
+          { "label": "道歉 3", "en": "I take full responsibility, and I assure you that this will not happen again.", "cn": "我承担全部责任，并向你保证这种情况不会再次发生。" },
+          { "label": "道歉 4", "en": "To make up for it, I will + 解决办法.", "cn": "为了弥补这一过失，我将采取相应的解决办法。" },
+          { "label": "道歉 · 万能句", "en": "To make up for my fault, I will satisfy any reasonable request you make.", "cn": "为了弥补我的过错，我会满足任何你提出的合理的要求。" }
+        ],
+        "slots": [
+          { "name": "灵活替换", "lines": ["若不是\"粗心\"，道歉第 2 句可改为 I made this mistake because + 原因."] }
+        ]
+      },
+      {
+        "id": "p05-inquire",
+        "name": "05 询问",
+        "trigger": "ask for his opinion / what do you think about X / learn more about X / ask for information about X / inquire about X（征求意见、进一步了解或具体询问信息）",
+        "items": [
+          { "label": "统一三句话 · 1", "en": "First and foremost, I would like to know...", "cn": "首先，我想知道……", "note": "问意见 what you think about X ／ 问事物 more about X, especially A and B" },
+          { "label": "统一三句话 · 2", "en": "In addition, could you tell me... what X is / when X will begin / where X will be held / why X is important / how I can take part in it?", "cn": "此外，你能告诉我 X 是什么／何时开始／在哪里举行／为什么重要／我如何参加吗？" },
+          { "label": "统一三句话 · 3", "en": "Another aspect I am concerned about is X.", "cn": "我关心的另一个方面是 X。" }
+        ],
+        "slots": [
+          { "name": "语序注", "lines": ["what / when / where / why / how 后必须使用陈述语序。"] }
+        ]
+      },
+      {
+        "id": "p06-recruit",
+        "name": "06 招募",
+        "trigger": "recruit volunteers / call for volunteers / volunteers are needed；关键词 duties / requirements / qualifications / applicants",
+        "items": [
+          { "label": "主句 1", "en": "The main duties include A and B.", "cn": "主要职责包括 A 和 B。" },
+          { "label": "主句 2", "en": "Applicants should be C and D.", "cn": "申请者应该具备 C 和 D 这些特点／条件。" }
+        ],
+        "slots": [
+          { "name": "职责素材（填 A、B）", "lines": [
+            "调查/项目：collect and organize information（收集整理信息）/ conduct interviews（开展访谈）",
+            "接待：welcome the guests（迎来宾客）/ guide the participants（引导参与者）",
+            "活动：prepare the materials（准备材料）/ help with the activities（协助开展活动）",
+            "会议：help with registration（协助登记）/ check the equipment（检查设备）",
+            "宣传：make some posters（制作一些海报）/ share the event information（分享活动信息）"
+          ] },
+          { "name": "要求素材（填 C、D）", "lines": ["responsible（有责任心）/ patient（有耐心）/ good at communication（善于沟通）/ good at teamwork（善于团队合作）/ fluent in English（英语流利）"] }
+        ]
+      },
+      {
+        "id": "p07-arrange",
+        "name": "07 安排",
+        "trigger": "plan / put forward your plan / arrangements / plan a debate / schedule / organize X / procedure（问计划是什么、怎么安排、第一步第二步做什么）",
+        "items": [
+          { "label": "主句", "en": "My plan is as follows. First, we can A. Then, we can B. Finally, we can C.", "cn": "我的计划如下。首先，我们可以 A；然后，我们可以 B；最后，我们可以 C。" }
+        ],
+        "slots": [
+          { "name": "四大从句（接在主干句后，任选）", "lines": [
+            "主干句, which would be beneficial to you/students.（这将对你／学生有益。）",
+            "主干句, which would bring convenience to you/students.（这将给你／学生带来便利。）",
+            "主干句 so that you/students can do A, do B and do C.（这样你／学生就可以做 A、B、C。）",
+            "主干句, because + 原因.（……因为……）"
+          ] },
+          { "name": "素材包（填 A、B、C）", "lines": [
+            "万能：decide on the time and place（确定时间和地点）/ prepare the necessary materials（准备必要的材料）/ talk with the people involved（与相关人员沟通）/ confirm the schedule（确认日程）/ check the equipment（检查设备）",
+            "演讲/报告/展示：choose the main content（确定主要内容）/ prepare the slides and materials（准备幻灯片和材料）/ practice the presentation（排练展示）",
+            "比赛/辩论：choose a suitable topic（选择合适的话题）/ invite the participants（邀请参与者）/ make the final preparations（做好最后的准备）"
+          ] }
+        ]
+      },
+      {
+        "id": "p08-assist",
+        "name": "08 协助",
+        "trigger": "I'd like to help / Please let me know what I can do / How can I help? / help with X / assist with X / take charge of X（问对方要帮你、你请求帮忙或告诉对方能做什么）",
+        "items": [
+          { "label": "主句", "en": "It would be great if you could help us A and B.", "cn": "如果你能帮我们做 A 和 B，那就太好了。" }
+        ],
+        "slots": [
+          { "name": "素材包（填 A、B，与 07 安排 共用）", "lines": [
+            "万能：decide on the time and place / prepare the necessary materials / talk with the people involved / confirm the schedule / check the equipment",
+            "演讲/报告/展示：choose the main content / prepare the slides and materials / practice the presentation",
+            "比赛/辩论：choose a suitable topic / invite the participants / make the final preparations",
+            "调查：collect information（收集信息）/ organize the results（整理结果）",
+            "接待：welcome the guests（迎接来宾）/ guide the participants（引导参与者）",
+            "宣传/现场：make some posters（制作海报）/ hand out the materials（分发材料）"
+          ] }
+        ]
+      },
+      {
+        "id": "p09-complain",
+        "name": "09 投诉",
+        "trigger": "make a complaint / something wrong with X / not satisfied with X / demand a prompt solution / after-sales service / compensate for my loss（产品·服务有问题 + 不满意 + 要求解决）",
+        "items": [
+          { "label": "模板句 1", "en": "The reasons for my dissatisfaction are as follows.", "cn": "我不满意的原因如下。" },
+          { "label": "模板句 2", "en": "First, X worked properly at first, but soon developed several obvious problems.", "cn": "起初使用正常，但很快出现了明显问题。" },
+          { "label": "模板句 3", "en": "Moreover, I was disappointed with the after-sales service, as my request was not handled promptly.", "cn": "此外，我对售后服务感到失望，因为我的诉求没有得到及时处理。" },
+          { "label": "模板句 4", "en": "I therefore request that you provide a prompt and appropriate solution, such as repairing or replacing X.", "cn": "因此，我要求你方尽快提供妥善的解决办法，例如维修或更换 X。" },
+          { "label": "模板句 5", "en": "I would also appreciate reasonable compensation for any resulting loss.", "cn": "对于由此造成的损失，如能给予合理赔偿，我将不胜感激。" }
+        ],
+        "slots": [
+          { "name": "用法", "lines": ["根据题干按需选择 3-5 句。"] }
+        ]
+      }
+    ]
+  }
+}

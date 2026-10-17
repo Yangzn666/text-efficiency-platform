@@ -395,9 +395,25 @@ const breakdownPct = (score: number, max: number): string => {
   return `${p.toFixed(0)}%`
 }
 
+// ══════════════ 页签：八哥模板（个人版专用）══════════════
+const bage = ref<any>(null)
+const bageActiveBig = ref('chart-cause')
+const bageActiveSmall = ref('letter')
+const bageActivePlugin = ref('p01-explain')
+
+const loadBage = async () => {
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}data/english/bage-writing-templates.json`)
+    bage.value = await res.json()
+  } catch {
+    ElMessage.error('八哥模板加载失败')
+  }
+}
+
 onMounted(() => {
   loadEssays()
   loadEssayHistory()
+  loadBage()
 })
 
 const toggleYear = (y: number) => {
@@ -485,6 +501,90 @@ const goWrite = (e: EssayItem) => {
             <p>{{ p.text }}</p>
           </div>
         </section>
+      </el-tab-pane>
+
+      <!-- ══ 八哥模板（个人版专用）══ -->
+      <el-tab-pane label="🎯 八哥模板" name="bage">
+        <div v-if="bage" class="bage-wrap">
+          <div class="bage-note">📖 {{ bage.note }}</div>
+
+          <!-- 大作文 -->
+          <h3 class="bage-h">🖼️ 大作文模板</h3>
+          <div class="bage-chips">
+            <button
+              v-for="t in bage.big" :key="t.id"
+              class="bage-chip" :class="{ active: t.id === bageActiveBig }"
+              @click="bageActiveBig = t.id"
+            >{{ t.name }}</button>
+          </div>
+          <div v-for="t in bage.big.filter(x => x.id === bageActiveBig)" :key="t.id" class="bage-big">
+            <p class="bage-intro">{{ t.intro }}</p>
+            <section v-for="(p, pi) in t.paragraphs" :key="pi" class="bage-para">
+              <h4 class="bage-para-title">{{ p.title }}</h4>
+              <div v-for="(g, gi) in p.groups" :key="gi" class="bage-group">
+                <div class="bage-group-name">{{ g.name }}</div>
+                <div v-for="(it, ii) in g.items" :key="ii" class="bage-item">
+                  <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+                  <div class="bage-en">{{ it.en }}</div>
+                  <div class="bage-cn">{{ it.cn }}</div>
+                  <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+                </div>
+                <div v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
+                  <div class="bage-slot-name">{{ sl.name }}</div>
+                  <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- 小作文四类 -->
+          <h3 class="bage-h">✉️ 小作文 · 四类格式</h3>
+          <div class="bage-chips">
+            <button
+              v-for="t in bage.small.types" :key="t.id"
+              class="bage-chip" :class="{ active: t.id === bageActiveSmall }"
+              @click="bageActiveSmall = t.id"
+            >{{ t.name }}</button>
+          </div>
+          <div v-for="t in bage.small.types.filter(x => x.id === bageActiveSmall)" :key="t.id" class="bage-small">
+            <div v-for="(g, gi) in t.groups" :key="gi" class="bage-group">
+              <div class="bage-group-name">{{ g.name }}</div>
+              <div v-for="(it, ii) in g.items" :key="ii" class="bage-item">
+                <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+                <div class="bage-en">{{ it.en }}</div>
+                <div class="bage-cn">{{ it.cn }}</div>
+              </div>
+              <div v-for="(sl, si) in (g.slots || [])" :key="'s' + si" class="bage-slot">
+                <div class="bage-slot-name">{{ sl.name }}</div>
+                <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 九大正文插件 -->
+          <h3 class="bage-h">🔌 九大正文插件（小作文通用正文）</h3>
+          <div class="bage-chips">
+            <button
+              v-for="p in bage.small.plugins" :key="p.id"
+              class="bage-chip" :class="{ active: p.id === bageActivePlugin }"
+              @click="bageActivePlugin = p.id"
+            >{{ p.name }}</button>
+          </div>
+          <div v-for="p in bage.small.plugins.filter(x => x.id === bageActivePlugin)" :key="p.id" class="bage-plugin">
+            <div class="bage-trigger">题干信号：{{ p.trigger }}</div>
+            <div v-for="(it, ii) in p.items" :key="ii" class="bage-item">
+              <div v-if="it.label" class="bage-label">{{ it.label }}</div>
+              <div class="bage-en">{{ it.en }}</div>
+              <div class="bage-cn">{{ it.cn }}</div>
+              <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
+            </div>
+            <div v-for="(sl, si) in (p.slots || [])" :key="'s' + si" class="bage-slot">
+              <div class="bage-slot-name">{{ sl.name }}</div>
+              <div v-for="(ln, li) in sl.lines" :key="li" class="bage-slot-line">{{ ln }}</div>
+            </div>
+          </div>
+        </div>
+        <div v-else class="bage-loading">模板加载中…</div>
       </el-tab-pane>
 
       <!-- ══ 语料升级库 ══ -->
@@ -1519,5 +1619,55 @@ const goWrite = (e: EssayItem) => {
   .drill-top { flex-direction: column; align-items: stretch; }
   .ex-count { margin-left: 0; width: 100%; }
   .dp-clear { margin-left: 0; }
+}
+.bage-wrap { padding: 4px 2px 24px; }
+.bage-note {
+  font-size: 0.8rem; color: var(--body); background: rgba(212,175,55,0.10);
+  border-left: 3px solid var(--gold); border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; line-height: 1.6;
+}
+.bage-h { font-size: 1.05rem; margin: 22px 0 10px; color: var(--navy); }
+.bage-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.bage-chip {
+  border: 1px solid var(--line); background: #fff; color: var(--body);
+  padding: 6px 12px; border-radius: 999px; font-size: 0.82rem; cursor: pointer; transition: all .15s;
+}
+.bage-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.bage-intro { font-size: 0.82rem; color: #6b7a8d; line-height: 1.7; margin: 0 0 12px; }
+.bage-para { margin-bottom: 16px; }
+.bage-para-title {
+  font-size: 0.95rem; color: #fff; background: linear-gradient(90deg, var(--navy), #3a5a7a);
+  padding: 7px 12px; border-radius: 8px; margin: 0 0 10px;
+}
+.bage-group { margin: 0 0 12px; }
+.bage-group-name {
+  font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 6px;
+  padding-left: 8px; border-left: 3px solid var(--gold);
+}
+.bage-item {
+  background: #fbfaf6; border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 12px; margin-bottom: 8px;
+}
+.bage-label { font-size: 0.76rem; color: #8a94a3; margin-bottom: 4px; }
+.bage-en {
+  font-family: 'Georgia', serif; font-size: 0.92rem; line-height: 1.65; color: var(--navy);
+  word-break: break-word;
+}
+.bage-cn { font-size: 0.82rem; line-height: 1.6; color: #5c6b7a; margin-top: 4px; }
+.bage-note2 { font-size: 0.76rem; line-height: 1.55; color: #9a7b2f; margin-top: 5px; }
+.bage-slot {
+  background: rgba(20,40,70,0.04); border: 1px dashed var(--line); border-radius: 8px;
+  padding: 9px 12px; margin: 6px 0 10px;
+}
+.bage-slot-name { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.bage-slot-line { font-size: 0.8rem; line-height: 1.7; color: #4a5766; padding-left: 10px; position: relative; }
+.bage-slot-line::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.bage-trigger {
+  font-size: 0.8rem; color: #6b7a8d; background: rgba(58,90,122,0.08);
+  border-radius: 6px; padding: 7px 10px; margin-bottom: 10px; line-height: 1.6;
+}
+.bage-loading { text-align: center; color: #8fa0b3; padding: 40px 0; font-size: 0.9rem; }
+@media (max-width: 640px) {
+  .bage-en { font-size: 0.98rem; }
+  .bage-cn, .bage-slot-line { font-size: 0.86rem; }
 }
 </style>
