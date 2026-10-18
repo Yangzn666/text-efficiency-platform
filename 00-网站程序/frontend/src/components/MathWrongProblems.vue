@@ -3784,6 +3784,38 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'chaoyue1-9-chebyshev',
+    chapterId: 'ch_gailv',
+    chapterName: '概率',
+    sectionId: 'chebyshev',
+    sectionName: '切比雪夫不等式·马尔可夫现推',
+    title: '切比雪夫不等式·马尔可夫设平方现推+D(X+Y)含2Cov(超越2025一套9)',
+    content: "设 $X$ 的概率密度为 $f(x)$，$D(X)=\\sigma^2$；$Y$ 的概率密度为 $f(-y)$；$X$ 与 $Y$ 的相关系数为 $\\dfrac{1}{2}$；记 $Z=X+Y$。用切比雪夫不等式求 $P\\{|Z|\\ge 3\\sigma\\}$ 的上界。我的卡点：又忘了切比雪夫不等式公式。",
+    mistakeType: '公式不清',
+    importance: 4,
+    correction: "正解=A($\\frac{1}{3}$)。错因=反复记不住切比雪夫公式。同类提醒：切比雪夫不用背——对马尔可夫 $W\\ge0$ 设 $W=(X-EX)^2$、$a=\\varepsilon^2$ 即现推 $P\\{|X-EX|\\ge\\varepsilon\\}\\le\\dfrac{D(X)}{\\varepsilon^2}$（这就是'设函数的方法'，是切比雪夫的本体）；本题先由 $Y$ 与 $-X$ 同分布得 $E(Y)=-E(X)$、$E(Z)=0$ 才能套 $|Z-0|=|Z|$；$\\mathrm{Cov}(X,Y)=\\rho\\sigma^2=\\frac{\\sigma^2}{2}$，$D(Z)=D(X)+D(Y)+2\\mathrm{Cov}=\\sigma^2+\\sigma^2+\\sigma^2=3\\sigma^2$，别漏中间 $2\\mathrm{Cov}$（漏了得 $2\\sigma^2\\to\\frac{2}{9}$ 掉坑）；$P\\{|Z|\\ge3\\sigma\\}\\le\\dfrac{3\\sigma^2}{9\\sigma^2}=\\dfrac{1}{3}$。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'chaoyue1-10-ci-test',
+    chapterId: 'ch_gailv',
+    chapterName: '概率',
+    sectionId: 'stat_inference',
+    sectionName: '置信区间与假设检验对偶',
+    title: '置信区间与假设检验对偶·误差块h翻译(超越2025一套10)',
+    content: "设 $X\\sim N(\\mu,\\sigma^2)$，$\\sigma^2$ 已知，$\\bar{X}$ 为样本均值。在置信水平 $1-2\\alpha$ 下 $\\mu$ 的置信区间长度为 $2$；则在显著性水平 $\\alpha$ 下检验 $H_0:\\mu\\ge1$ vs $H_1:\\mu<1$，拒绝 $H_0$ 则 $\\bar{X}$ 的范围？我的卡点：冷门考点，记不住这类题到底什么意思。",
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: "正解=C($\\bar{X}\\in(-\\infty,0)$)。错因=冷门考点记不住含义。同类提醒：区间估计与假设检验是同一枚硬币两面；抓误差块 $h=z_\\alpha\\cdot\\dfrac{\\sigma}{\\sqrt{n}}$（$=$ 区间半长 $=$ 拒绝域边界到 $\\mu_0$ 的距离）做翻译；置信水平 $1-2\\alpha$ 用 $z_\\alpha$、$1-\\alpha$ 才用 $z_{\\alpha/2}$；$\\sigma^2$ 已知用 $Z$、未知用 $t$；拒绝域方向跟 $H_1$。双侧区间长 $=2z_\\alpha\\dfrac{\\sigma}{\\sqrt{n}}=2\\Rightarrow h=1$；左边检验拒绝域 $\\bar{X}<\\mu_0-h=1-1=0$。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
