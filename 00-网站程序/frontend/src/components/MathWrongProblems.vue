@@ -3720,6 +3720,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'chaoyue1-3-series',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '级数敛散性·一定正确型',
+    title: '级数·已知∑ln(1+u_n+u_n²)收敛判一定正确(超越2025一套3)',
+    content: "已知级数 $\\sum_{n=1}^{\\infty}\\ln(1+u_n+u_n^2)$ 收敛，则下列级数一定正确的是：\nA. $\\sum_{n=1}^{\\infty}(-1)^n u_n$ 收敛\nB. $\\sum_{n=1}^{\\infty}u_n^2$ 收敛\nC. $\\sum_{n=1}^{\\infty}u_n$ 发散\nD. $\\sum_{n=1}^{\\infty}\\dfrac{u_n}{n^2}$ 绝对收敛",
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: "正解=D。命门：$\\sum\\ln(1+u_n+u_n^2)$ 收敛 ⇒ 通项 $\\to0$ ⇒ $\\ln(1+u_n+u_n^2)\\to0$ ⇒ $u_n+u_n^2\\to0$ ⇒ $u_n(1+u_n)\\to0$ ⇒ $u_n\\to0$ 或 $u_n\\to-1$（不能默认 $\\to0$！这是最大陷阱）。无论哪种 $u_n$ 都收敛，故 $u_n$ 有界：$\\exists M>0,\\ |u_n|\\le M$。D：$\\left|\\dfrac{u_n}{n^2}\\right|\\le\\dfrac{M}{n^2}$，而 $\\sum\\dfrac{M}{n^2}$ 收敛（$p=2>1$），比较判别法 ⇒ $\\sum\\dfrac{u_n}{n^2}$ 绝对收敛。\n反例逐个打掉 A/B/C：A 取 $u_n=\\dfrac{(-1)^n}{n^{0.6}}$（$u_n\\to0$ 前提成立）⇒ $\\sum(-1)^nu_n=\\sum\\dfrac{1}{n^{0.6}}$ 发散；B 取 $u_n=-1+\\dfrac{1}{n^2}$（$u_n\\to-1$ 前提成立）⇒ $u_n^2\\to1$ 通项不趋0 发散；C 取 $u_n=\\dfrac{1}{n^2}$ ⇒ $\\sum u_n$ 收敛并不发散。\n错因=没想到特殊值/反例排除法且默认 $u_n\\to0$（漏 $u_n\\to-1$ 分支）。\n同类提醒：一定正确型先取通项极限的两个分支当反例排除，再对剩余项用最弱恒成立条件（有界）证。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
