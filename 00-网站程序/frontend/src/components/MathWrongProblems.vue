@@ -3736,6 +3736,54 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'chaoyue1-4-integral',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'integral_compare',
+    sectionName: '定积分比大小·换元统一区间',
+    title: '定积分比大小·区间不同先换元统一(超越2025一套4)',
+    content: "设 $M=\\int_0^1 e^{x}\\,dx$，$N=\\int_0^{\\pi/2} e^{\\sin x}\\,dx$，$P=\\int_0^{\\pi/4} e^{\\tan x}\\,dx$，比较 $M,\\,N,\\,P$ 的大小。我的卡点：只想到 $\\sin x<x<\\tan x$ 那招，短时间内没做出来——没识别本题三个上限 $1,\\frac{\\pi}{2},\\frac{\\pi}{4}$ 各不相同。",
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: "正解=A（$P<M<N$）。命门：三个上限不同，别硬算，各自换元把区间统一成 $[0,1]$、让被积都冒出 $e^t$，再比『换元因子』与 1 的大小：$M=\\int_0^1 e^t\\cdot 1\\,dt$（基准，因子恒 $=1$）；$P$ 令 $t=\\tan x$，$dx=\\frac{dt}{1+t^2}$，$x:0\\to\\frac{\\pi}{4}$ 对应 $t:0\\to1$，$P=\\int_0^1 e^t\\cdot\\frac{1}{1+t^2}\\,dt$，因子 $\\frac{1}{1+t^2}<1$（$t\\in(0,1]$）$\\Rightarrow P<M$；$N$ 令 $t=\\sin x$，$dx=\\frac{dt}{\\sqrt{1-t^2}}$，$x:0\\to\\frac{\\pi}{2}$ 对应 $t:0\\to1$，$N=\\int_0^1 e^t\\cdot\\frac{1}{\\sqrt{1-t^2}}\\,dt$，因子 $\\frac{1}{\\sqrt{1-t^2}}>1$（$t\\in(0,1)$）$\\Rightarrow N>M$。∴ $P<M<N$。\n错因=只会 $\\sin x<x<\\tan x$ 同区间那招，没识别本题区间不同。\n同类提醒:比较积分先看区间是否相同，不同则换元对齐区间再比雅可比因子。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'chaoyue1-7-relation',
+    chapterId: 'ch_xiandai',
+    chapterName: '线代',
+    sectionId: 'quadratic_form',
+    sectionName: '等价·相似·合同概念辨析',
+    title: '等价/相似/合同关系辨析·实对称相似必合同(超越2025一套7)',
+    content: "设 $P$ 为 3 阶可逆矩阵且 $P^{\\mathrm T}=P^{*}$（$P^{*}$ 为伴随矩阵），$A$ 为 3 阶实对称矩阵，二次型 $x^{\\mathrm T}Ax$ 经 $x=Py$ 化为 $y^{\\mathrm T}By$（则 $B=P^{\\mathrm T}AP$），则 $B$ 与 $A$：A. 等价、相似、且合同　B. 等价、相似，未必合同　C. 等价、合同，未必相似　D. 合同、相似，未必等价。我的卡点：合同和等价的定义都有些模糊，概念绕来绕去。",
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: "正解=A（等价、相似、且合同）。三定义：等价 $B=PAQ$（充要 $=$ 同秩，最松）；相似 $B=P^{-1}AP$（同秩同特征值同迹同行列式）；合同 $B=P^{\\mathrm T}AP$（同秩；实对称时同正负惯性指数）。三箭头：相似⟹等价、合同⟹等价、相似 $\\leftrightarrow$ 合同一般互不推，但 $A$ 实对称时 相似⟹合同（相似→同特征值→正负特征值个数相同→正负惯性指数相同→Sylvester 惯性定理→合同）。用实对称排除：B『相似未必合同』错（实对称相似必合同）；D『未必等价』自相矛盾（合同/相似本身必等价）。剩 A/C 只差『相似成不成立』：由 $P^{*}=|P|P^{-1}$、$P^{\\mathrm T}=P^{*}$，取行列式 $|P^{\\mathrm T}|=|P|=|P^{*}|=|P|^2\\Rightarrow |P|(|P|-1)=0$，$P$ 可逆 $\\Rightarrow |P|=1\\Rightarrow P^{\\mathrm T}=P^{-1}$（$P$ 正交）$\\Rightarrow B=P^{\\mathrm T}AP=P^{-1}AP$ 相似成立。\n错因=合同/等价/相似定义模糊、不会用实对称『相似必合同』排除 B、『合同必等价』排除 D。\n同类提醒:实对称矩阵相似⟹合同；$P^{\\mathrm T}=P^{*}\\Rightarrow|P|=1\\Rightarrow P$ 正交⟹合同式即相似式。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  },
+  {
+    id: 'chaoyue1-8-cond',
+    chapterId: 'ch_gailv',
+    chapterName: '概率',
+    sectionId: 'cond_prob',
+    sectionName: '条件概率·已知事件放分母',
+    title: '条件概率·已知事件放分母(超越2025一套8)',
+    content: "甲、乙二人打乒乓球，每局甲胜的概率为 $\\frac{2}{3}$，采用三局两胜制。已知最终甲获胜，求比赛共进行了三局的概率。我的卡点：把条件概率两个事件位置放反，算成 $P(\\text{甲赢}\\mid\\text{三局})$，怎么算都是 $\\frac{2}{3}$。",
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: "正解=A（$\\frac{2}{5}$）。要求 $P(\\text{三局}\\mid\\text{甲赢})=\\dfrac{P(\\text{三局且甲赢})}{P(\\text{甲赢})}$。分母 $P(\\text{甲赢})=$ 两局就赢 $(\\frac{2}{3})^2=\\frac{4}{9}$ $+$ 三局才赢 $\\mathrm{C}_2^1\\cdot\\frac{2}{3}\\cdot\\frac{1}{3}\\cdot\\frac{2}{3}=\\frac{8}{27}$ $=\\frac{12}{27}+\\frac{8}{27}=\\frac{20}{27}$；分子 $P(\\text{三局且甲赢})=\\frac{8}{27}$；$\\Rightarrow\\dfrac{8/27}{20/27}=\\dfrac{8}{20}=\\dfrac{2}{5}$。\n错因=把条件概率方向放反，算成 $P(\\text{甲赢}\\mid\\text{三局})$ 而非 $P(\\text{三局}\\mid\\text{甲赢})$，分母误用 $P(\\text{打三局})=\\frac{4}{9}$（分子分母都含 $\\frac{4}{9}$ 一约就只剩 $\\frac{2}{3}=$ 第三局单局甲赢概率，等于『已知甲获胜』这个条件根本没用上）。\n同类提醒:'若/已知A则B的概率' $=P(B\\mid A)$，A（已知那个）放分母 $=P(\\text{甲获胜})=\\frac{20}{27}$。",
+    createdAt: '2026-10-18',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
