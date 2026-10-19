@@ -3816,6 +3816,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'chaoyue1-12-differential',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'total_differential',
+    sectionName: '多元微分·全微分反求原函数',
+    title: '全微分反求原函数·偏积分三步+二重积分先x后y(超越2025一套12)',
+    content: "设 $(axy+e^{y^2})dx+(2x^2+bxye^{y^2})dy$ 是某函数 $u(x,y)$ 的全微分，且 $u(0,0)=0$；$D$ 是由 $y=x^2$、$y=1$ 所围区域位于第一象限的部分，求 $\\iint_D u(x,y)\\,d\\sigma$。我的卡点：$a,b$ 都算对了，但不知道 $u$ 怎么算出来；$d\\sigma$ 不知道指什么，是 $dx\\,dy$ 的意思吗？",
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: "正解：三步。(1)全微分定参数：$P=axy+e^{y^2},\\ Q=2x^2+bxye^{y^2}$，由 $\\dfrac{\\partial P}{\\partial y}=\\dfrac{\\partial Q}{\\partial x}$ 得 $ax+2ye^{y^2}=4x+bye^{y^2}$，对应项相等 $\\Rightarrow a=4,\\ b=2$。(2)偏积分反求 $u$（口诀：对 $x$ 积补 $\\varphi(y)$→对 $y$ 求导定 $\\varphi$→初值定常数）：由 $u_x=P=4xy+e^{y^2}$ 对 $x$ 积分（把 $y$ 当常数）得 $u=2x^2y+xe^{y^2}+\\varphi(y)$；再对 $y$ 求偏导 $u_y=2x^2+2xye^{y^2}+\\varphi'(y)$ 令其等于 $Q$ $\\Rightarrow\\varphi'(y)=0\\Rightarrow\\varphi=C$，代 $u(0,0)=0$ 得 $C=0$。故 $u(x,y)=2x^2y+xe^{y^2}$（选积方向：$e^{y^2}$ 对 $y$ 积不动，故从 $u_x$ 对 $x$ 积）。(3)二重积分先 $x$ 后 $y$：$D$ 第一象限 $0\\le y\\le1,\\ 0\\le x\\le\\sqrt y$，$I=\\int_0^1\\!\\!\\int_0^{\\sqrt y}(2x^2y+xe^{y^2})dx\\,dy=\\int_0^1(\\tfrac{2}{3}y^{5/2}+\\tfrac{y}{2}e^{y^2})dy=\\tfrac{4}{21}+\\tfrac{e-1}{4}=\\dfrac{21e-5}{84}\\approx0.62$。\n错因：$a,b$（混偏导相等）会，但『已知 $du=Pdx+Qdy$ 反求原函数 $u$』的偏积分三步没建立；$d\\sigma$ 含义不清（$d\\sigma$ 是面积元素，直角坐标 $d\\sigma=dx\\,dy=dA$，极坐标 $d\\sigma=r\\,dr\\,d\\theta$）。\n同类提醒：被积函数出现 $e^{y^2},\\sin y^2,\\cos y^2,\\tfrac{1}{1+y^2}$ 这类『对 $y$ 积不出』的因子→条件反射换『先对 $x$ 积分』；反求完 $u$ 后把 $du$ 重新求全微分应还原回 $Pdx+Qdy$、代 $(0,0)$ 验 $u=0$。",
+    createdAt: '2026-10-19',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
