@@ -1,34 +1,5981 @@
 <script setup lang="ts">
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
+import { ref, computed, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
+import { Plus, DocumentChecked, Upload, Picture, CopyDocument, MagicStick, ArrowDown } from '@element-plus/icons-vue'
+
+interface WrongProblem {
+  id: string
+  chapterId: string
+  chapterName: string
+  sectionId: string
+  sectionName: string
+  title: string
+  content: string
+  mistakeType: string
+  importance: number
+  correction: string
+  createdAt: string
+  reviewCount: number
+  lastReviewAt: string
+  mastered: boolean
+}
+
+const wp = useWrongProblemsStore(); const problems = wp.bind('politics', [
+  {
+    "id": "my_0_s_2",
+    "chapterId": "my_ch0",
+    "chapterName": "马原·导论",
+    "sectionId": "my_ch0_s",
+    "sectionName": "导论·单选",
+    "title": "马原·导论 单选 第2题",
+    "content": "马克思、恩格斯并不是先知先觉的圣人，他们从小面对的也是一个充满矛盾的现实世界，在家庭、学校和社会的影响下，也曾接受过那个时代的唯心主义和资产阶级民主主义思想。但是资本主义制度的弊端和劳动群众渴求解放的呼声，促使他们立志进行社会变革，并走上求索科学真理的道路。1844年2月，马克思、恩格斯发表在《德法年鉴》上的论文表明，他们①完成了从唯心主义向唯物主义的转变②完成了从革命民主主义向共产主义的转变③实现了历史观上的伟大变革④为创立马克思主义奠定了思想前提\nA.①②\nB.③④\nC.①③④\nD.①②④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.822Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_0_s_5",
+    "chapterId": "my_ch0",
+    "chapterName": "马原·导论",
+    "sectionId": "my_ch0_s",
+    "sectionName": "导论·单选",
+    "title": "马原·导论 单选 第5题",
+    "content": "1844年8月底，马克思、恩格斯在巴黎会面。这次会面使他们发现彼此的基本观点完全一致，于是开始了在科学理论研究和革命活动中的长期合作。马克思、恩格斯第一次合作的著作是\nA.《神圣家族》\nB.《德意志意识形态》\nC.《哲学的贫困》\nD.《共产党宣言》",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_0_s_7",
+    "chapterId": "my_ch0",
+    "chapterName": "马原·导论",
+    "sectionId": "my_ch0_s",
+    "sectionName": "导论·单选",
+    "title": "马原·导论 单选 第7题",
+    "content": "马克思主义具有鲜明的科学性、人民性、实践性、发展性，这些特征体现了马克思主义的本质和使命，也展现出马克思主义的理论形象。马克思主义的基本特征，如果用一句话来概括就是\nA.人民性与实践性的统一\nB.科学性与实践性的统一\nC.科学性与革命性的统一\nD.实践性与发展性的统一",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_0_m_1",
+    "chapterId": "my_ch0",
+    "chapterName": "马原·导论",
+    "sectionId": "my_ch0_m",
+    "sectionName": "导论·多选",
+    "title": "马原·导论 多选 第1题",
+    "content": "习近平深刻指出：“中国共产党为什么能，中国特色社会主义为什么好，归根到底是马克思主义行，是中国化时代化的马克思主义行。”马克思主义的当代价值在于，它是\nA.观察当代世界变化的认识工具\nB.指引当代中国发展的行动指南\nC.引领人类社会进步的科学真理\nD.指导革命、建设、改革的现成方案",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_1",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第1题",
+    "content": "辩证唯物主义是中国共产党人的世界观和方法论。辩证唯物主义最基本、最核心的观点是\nA.对立统一规律\nB.世界的物质统一性原理\nC.资本主义必然灭亡，社会主义必然胜利\nD.人民群众创造历史",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_4",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第4题",
+    "content": "物质和意识的对立只有在非常有限的范围内才具有绝对的意义，超出这个范围便是相对的了。这个范围是指\nA.物质和意识何者为第一性\nB.物质和意识是否具有同一性\nC.物质和意识何者更重要\nD.物质和意识何者与社会生活的关系更密切",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_10",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第10题",
+    "content": "人类的出现，特别是人类改造世界的实践活动，极大地改变了世界的面貌，使世界发生了二重分化，即从自然界中分化出人类社会，从客观世界中分化出主观世界。人类社会与自然界的不同主要在于\nA.在自然界中一切都是自发产生的，而在人类社会中一切都打着人的意识的印记\nB.自然界受自然规律支配，而人类社会的发展方向是由每一个参与历史的人决定的\nC.在自然界中有“人化自然”，而在人类社会中则没有自然物和自然力的运用\nD.自然界属于客观世界，而人类社会属于主观世界",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_16",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第16题",
+    "content": "民间有一种迷信说法叫作“喜鹊叫喜，乌鸦叫丧”。这句话的错误在于否定了联系的\nA.普遍性\nB.多样性\nC.客观性\nD.条件性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_18",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第18题",
+    "content": "异地借牧，指牧民秋冬季将牛羊从山区草场迁至周边农区，租田放牧，利用农作物采收后留下的秸秆接羔育肥。时间一般从当年10月至次年3月。“借牧”看上去颇为周折，其实是一笔多赢的买卖。牧民为冬季的牛羊找到了稳定的饲料供应地；农户挣了笔租地款，还节省了秸秆处理费；草原上的植被也获得休养生息的机会，生态效益显著。草畜矛盾，秸秆处置，放到一时一地，可能都是不太容易解决的问题，但通过“借牧”这一经营模式的创新，实现种养结合，两方面的问题都迎刃而解。“借牧”模式实现了牧民、农户、生态“多赢”这一成功实践说明\nA.事物发展的根本动力在于外部矛盾的相互转化\nB.任何事物之间都可以通过某一中介或一系列中介发生联系\nC.科学的治理理念是正确发挥人的主观能动性的根本途径\nD.自然界的因果关系是通过人的有目的的活动而实现出来的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_31",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第31题",
+    "content": "“概念的辩证法本身就变成只是现实世界的辩证运动的自觉的反映，从而黑格尔的辩证法就被倒转过来了。”这段话表明，主观辩证法与客观辩证法的关系是\nA.反映与被反映的关系\nB.唯心主义与唯物主义的关系\nC.抽象与具体的关系\nD.唯心辩证法与唯物辩证法的关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_s_35",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "马原·第一章 单选 第35题",
+    "content": "学习和掌握唯物辩证法的科学思维方法，要求我们在实践中不断增强辩证思维能力。提高辩证思维能力，要自觉运用对立统一规律，掌握运用好辩证的逻辑思维方法。在这些思维方法中，人类思维从个别到一般，又由一般到个别的最常见的推理形式是\nA.分析与综合\nB.归纳与演绎\nC.抽象与具体\nD.逻辑与历史",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_1",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第1题",
+    "content": "下列命题中，属于主观唯心主义观点的有\nA.心外无物\nB.存在就是被感知\nC.物是绝对观念的外化\nD.万物皆备于我",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_3",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第3题",
+    "content": "形而上学唯物主义物质观的缺陷在于\nA.把某种特殊的物质形态误认为物质的一般\nB.割裂了自然界与人类社会的物质统一性\nC.否认意识由物质决定\nD.不了解人类对物质的认识是一个永无止境的发展过程",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_5",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第5题",
+    "content": "马克思主义物质观认为，客观实在性是物质的唯一特性，既肯定了哲学物质范畴同自然科学物质结构理论的联系、又把它们区别开来，体现了唯物论和辩证法的统一，克服了形而上学唯物主义的缺陷。马克思主义物质观所体现的唯物辩证法是指\nA.从个性中看到共性\nB.从相对中找到绝对\nC.从暂时中发现永恒\nD.从局部中看到整体",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_7",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第7题",
+    "content": "物质和意识的对立只是在非常有限的范围内才有绝对的意义，超出这个范围，其对立便是相对的。这是因为\nA.意识根源于物质\nB.意识是物质的反映\nC.意识是物质的固有属性和存在形式\nD.意识可以转化为物质",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_8",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第8题",
+    "content": "鲁迅说过：“描神画鬼，毫无对证，本可以专靠神思，所谓‘天马行空’地挥写了。然而他们写出来的却是三只眼、长颈子，也就是在正常的人体身上增加了眼睛一只，拉长了颈子二三尺而已。”这段话说明，人们头脑中的鬼神观念\nA.是头脑中主观自生的\nB.是人脑对客观世界的歪曲反映\nC.是人脑对鬼神的虚幻反映\nD.可以从人世间找到它的原型",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_10",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第10题",
+    "content": "在早期网络社交中，人们只能依靠文字传递信息，而表情包的出现让人们在网络交流时得以更加直观、快捷地表达此时此刻的情感和态度。当一个表情包被数量足够多的用户、差异性足够大的群体共同使用时，这个表情包往往折射出一定时期内人们的共同关注和相似体验，因此表情包的变化历史一定程度上折射出了人们现实生活的发展变迁。还有些时候，同一个表情包对不同群体、不同人来说，含义可能并不相同。例如“微笑”的表情，在一些人眼中表示内心的愉悦，在另一些人看来则是礼貌性的社交回应。发送者和接收者身处不同的社会地位或文化语境，在对表情包的“编码一解码”转义过程中就有可能产生不同的理解。以上材料说明\nA.人的意识活动具有能动性和创造性\nB.人们的意识随着社会生活的变化而变化\nC.同一内容可以通过多种形式来体现\nD.事物的性质取决于人们观察的角度",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_22",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第22题",
+    "content": "唯物辩证法就其本质来说是批判的、革命的，因为它\nA.认为凡是现存的都是应当灭亡的\nB.对每一种既成的形式都从其暂时性方面去理解和对待\nC.认为事物变化发展只有间断性，没有连续性\nD.在对现存事物的肯定理解中包含对现存事物的否定理解",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_26",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第26题",
+    "content": "近年来，我国不断放宽外资市场准入限制，有人担心外资的大量涌入会对一些国产品牌实力较弱的行业带来冲击，但也有人认为高水平的外资进入中国会产生“鲇鱼效应”，倒逼国产品牌加速提升竞争力。以新能源汽车行业为例，在特斯拉落户上海并国产化之后，国内的新能源汽车品牌迅速成长，也推出了较高竞争力的产品并占据了一定的市场份额。从长期来看，这种良性竞争有利于我国新能源汽车行业的健康发展。以上材料给我们的启示有\nA.斗争性是事物存在和发展的前提\nB.矛盾双方可以相互吸取有利于自身的因素而获得发展\nC.矛盾双方既对立又统一，由此推动事物发展\nD.矛盾一方的发展以另一方的发展为条件",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_28",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第28题",
+    "content": "据媒体报道，日前某事业单位的公开招聘中，笔试、面试均为第一的硕士却被拒录，理由令人哭笑不得：报考者所学的“比较文学与世界文学”属于“中国语言文学类”，但不是招聘要求的“中国语言文学”，差一个字都不行。此前在另一事业单位的招聘中也出现过“世界史不是历史学”的笑话。从哲学上讲，这种“白马非马”式招聘的错误在于割裂了\nA.一般与个别的关系\nB.共性与个性的关系\nC.整体与部分的关系\nD.普遍与特殊的关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_31",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第31题",
+    "content": "恩格斯说，任何一门科学的真正完善在于数学工具的广泛应用。这说明\nA.只有精确地认识量，才能更深刻地把握质\nB.认识事物的量是认识的深化和精确化\nC.量和事物的存在是直接同一的\nD.考察量是认识质的前提，区分质是认识量的深化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_33",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第33题",
+    "content": "增强忧患意识、坚持底线思维，是我们党的优良传统和宝贵经验。在党的七大上，毛泽东同志提出全党要“准备吃亏”，强调“要在最坏的可能性上建立我们的政策”。改革开放后，邓小平同志强调：“我们要把工作的基点放在出现较大的风险上，准备好对策。”党的十八大以来，习近平总书记反复强调坚持底线思维，告诫全党要“坚持底线思维，增强忧患意识，有效防范和化解前进道路上的各种风险”。坚持底线思维蕴含的哲学原理是\nA.要坚持“两点论”，不能只看到有利的一面、忽视不利的一面\nB.要充分发挥主观能动性，将事物的发展永远控制在量变的范围内\nC.要以积极的态度研判风险、防患于未然，变挑战为机遇，追求最佳结果\nD.要认清事物发生质变的临界点，自觉把握事物量变引起质变的“度”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_36",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第36题",
+    "content": "以下属于否定之否定规律的有\nA.团结—批评—团结\nB.实践—认识—再实践\nC.古代朴素辩证法—形而上学—唯物辩证法\nD.奴隶社会—封建社会—资本主义社会",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_45",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第45题",
+    "content": "作为全国首个减量发展的超大城市，北京坚持内外发力，以疏为进、以减提质，打开了发展新局面。减量发展，腾抛出的是高质量发展新空间。做减法不易，一旦做好，往往事半功倍。这就必须看长远、算大账。此前35万平方米的北京动物园服装批发市场，年税收约6000万元，转型为国家级金融科技示范区后的第二年，1万平方米能创造税收1.2亿元。再从整体上看北京，科技、商务、信息等高精尖产业新设经营主体占比由2013年的40.7%升至2023年的66.1%。无论做减法还是做加法，京畿大地上的协同发展如同“结构重塑”，着眼的是大局、是整体。以上事例说明\nA.减与加并非简单对立，而是辩证统一的\nB.没有同一性就没有斗争性，同一性在事物发展过程中始终处于主要方面\nC.坚持系统观念，要把握好全局与局部、当前与长远的关系\nD.同一内容只能通过一种形式来体现，内容发生了变化则形式也要发生相应的变化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_46",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第46题",
+    "content": "进一步全面深化改革是一项复杂的系统工程。抓好改革落实，既要在全面上下功夫，善于“弹钢琴”，使各项改革相互配合、协同高效；也要抓重点、抓关键，善于“牵牛鼻子”，以重点突破带动改革整体推进。有的时候要抓大放小、以大兼小，有的时候又要以小带大、小中见大。有的时候要统筹兼顾、综合平衡，有的时候又要突出重点、带动全局。上述材料体现的哲学思想有\nA.坚持系统思维和全局观念\nB.坚持事物发展是直线式前进和螺旋式上升相统一的观点\nC.坚持“两点论”与“重点论”相统一\nD.坚持在对立中把握统一、在统一中把握对立",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_1_m_47",
+    "chapterId": "my_ch1",
+    "chapterName": "马原·第一章",
+    "sectionId": "my_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "马原·第一章 多选 第47题",
+    "content": "在全国科技大会、国家科学技术奖励大会、两院院士大会上，习近平指出：“要保持战略定力，坚持有所为有所不为，突出国家战略需求，在若干重要领域实施科技战略部署，凝练实施一批新的重大科技项目，形成竞争优势，赢得战略主动。”习近平的重要论述，深刻揭示了“有所为”与“有所不为”的辩证统一关系，为我们在新征程上推动高质量发展提供了重要方法论指导。坚持“有所为”与“有所不为”给我们的启示是\nA.要善于运用矛盾分析方法，抓住主要矛盾和矛盾的主要方面\nB.要坚持一切从实际出发，实事求是确定发展思路\nC.要充分发挥主观能动性，推动不可能向可能转化\nD.必须重视事物发展的必然规律和发展趋势，同时也要充分估计到各种偶然因素的影响",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_s_7",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "马原·第二章 单选 第7题",
+    "content": "恩格斯在谈到欧洲文艺复兴时期自然科学的迅速发展时指出：“资产阶级为了发展工业生产，需要科学来查明自然物体的物理特性，弄清自然力的作用方式。”这段话说明\nA.实践是认识发展的动力\nB.认识对实践具有相对独立性\nC.实践是检验认识是否具有真理性的标准\nD.认识对实践具有决定作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_s_8",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "马原·第二章 单选 第8题",
+    "content": "天空繁星密布，而首先成为天文学研究对象的总是与人们确定季节关系密切的星体；地球上的生物品种难以计数，而人们首先研究的还是与农业和畜牧业有关的为数不多的植物和动物。这说明\nA.实践是认识的起点，认识是实践的归宿\nB.实践的需要推动认识的产生和发展\nC.实践锻炼和提高了主体的认识能力\nD.科学研究具有相对独立性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_s_22",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "马原·第二章 单选 第22题",
+    "content": "习近平在主持召开高标准高质量推进雄安新区建设座谈会上指出：“雄安新区建设不是一天两天的事，不能当下都吃干榨尽，要留白、留有余地，为远期规划预留项目、地块。要适度超前，但不能过于超前，防止建成项目‘晒太阳’造成浪费。有的要大手实施，有的要待机而动，有的要与时俱进，既不能急于求成，也不能无所作为。”这段话说明\nA.事物的根本性质随时随地都在变化，要坚持底线思维\nB.人在一定条件下的认识总是有限度的，要不断深化\nC.事物的变化发展是没有规律的，要全面地考虑各种情况\nD.认识总是超前于直接的实践，要提高战略思维能力",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_s_23",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "马原·第二章 单选 第23题",
+    "content": "对于真理，不能说“它对谁来说是真理”；对于价值，则必须说“它对谁来说有价值”。这是因为\nA.真理是抽象的，而价值是具体的\nB.真理是一种客观实在，而价值是一种认识性的判断\nC.真理是一元的，而价值是多元的\nD.真理是永恒不变的，而价值是不断发展的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_1",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第1题",
+    "content": "人的意识是一种精神力量，要使它得到实现，必须通过实践活动。一种活动能否被称为实践活动，关键看它是否\nA.超出了纯粹的意识活动\nB.以客观世界作为客体\nC.改变了除实践主体的意识状态之外的其他存在物的状态\nD.具有目的性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_2",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第2题",
+    "content": "“元宇宙”作为全球科技领域关注的焦点，正在为产业带来深刻变革，昭示着数字化未来的无限可能性。元宇宙到底是什么，目前尚无统一定义。有人认为，元宇宙是平行于现实世界的、始终存在的虚拟世界；有人认为，元宇宙是现实世界和虚拟世界的无缝融合；还有人认为，元宇宙是对现实世界的一种超越。无论大家在理解上有何不同，从哲学上看，元宇宙\nA.是对虚幻世界的摹写与反映\nB.依然是人的实践活动的产物\nC.归根到底是现实世界的一种延伸和拓展\nD.不是一个完全不同于现实世界的“第三世界”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_3",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第3题",
+    "content": "在戈壁、盐碱地上发展农业，在大海上耕海牧渔，在寒冷的冬季种植反季节蔬菜……设施农业在一定程度上可以让农业突破对自然条件的依赖。解决吃饭问题，不能光盯着有限的耕地。“向设施农业要食物”逐步成为现实：日光温室、植物工厂和集约化畜禽养殖持续发展，陆基和深远海养殖渔场建设不断推进，农业生产空间领域正在拓宽。“向设施农业要食物”逐步成为现实表明\nA.人类智慧和能力的发展决定着对物质资源开发的深度和广度\nB.实践的发展过程是一个范围不断扩大、程度不断加深、效果不断提升的过程\nC.实践的需要推动人类的科学发现和技术发明\nD.自然地理环境不再是人类社会生存和发展的必要条件",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_4",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第4题",
+    "content": "对于无法直接观察到的物质存在形态，如“暗物质”“反物质”等，人们可以通过实验设备观察可见物质受到的影响来推断其存在，进而在一定程度上对其加以认识。这说明\nA.未知世界是由已知世界派生而来的\nB.物质这一客观实在是可以被认识的对象\nC.实践的主体和客体必须依靠中介系统来相互作用\nD.本质可以直接为人的感官所感知",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_5",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第5题",
+    "content": "防灾减灾事关人民群众生命财产安全的一项重要工作。由于农业灌溉等原因，甘肃黑方台地区频繁发生滑坡灾害。为此，长安大学灾害监测预警研究团队在这一地区的地质灾害隐患点布设了北斗高精度监测设备。该设备能实时捕捉到毫米级的滑坡位移变化，同时得益于北斗三号全球卫星导航系统的组网成功，该监测精度也进一步提高，通过对高精度的滑坡位移监测序列进行分析，可以得到滑坡的运动状态，进而分析出滑坡所处的变形阶段，从而发出准确预警。利用北斗系统监测滑坡位移变化从而发出滑坡灾害预警，这一事例说明\nA.人们已经完全掌握了自然界的运行规律\nB.实践不仅产生了认识的需要，而且为认识的发展提供了手段\nC.物质运动总是在一定的时间和空间中进行的\nD.事物的变化和发展是一个过程",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_6",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第6题",
+    "content": "自然界中只有山川、河流、湖泊等自然物质，并没有火车、飞机、轮船、桥梁、水库等符合人需要的现成形式。这些形式的出现，表明了人的认识活动的能动性。辩证唯物主义认识论认为，认识是主体在实践基础上对客体的能动反映。这种能动反映的基本特点是\nA.摹写性\nB.创造性\nC.重复性\nD.规律性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_9",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第9题",
+    "content": "在认识的本质问题上，各种哲学派别有着不同的观点。其中，旧唯物主义认识论的缺陷在于\nA.没有坚持从物到感觉和思想的认识路线\nB.不了解实践对认识的决定作用\nC.看不到主观和客观之间的矛盾及其相互作用\nD.没有把认识看作一个不断发展的过程",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_10",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第10题",
+    "content": "马克思主义哲学在批判继承前人认识论成果的基础上，把实践观点引入认识论，把辩证法应用于反映论，创立了能动的革命的反映论。马克思主义认识论揭示的认识的辩证过程是\nA.从直接经验到间接经验的转化\nB.从感性认识到理性认识，再从理性认识到实践\nC.实践、认识、再实践、再认识的循环往复和无限发展\nD.从抽象到具体再到抽象",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_13",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第13题",
+    "content": "面对浩瀚空天，我们的先人认为那里除了点点星光，可能空无一物，因此称之为“太空”。后来，人们通过观测工具和实验数据逐渐认识到太空其实并不空，而是充满了等离子体、宇宙射线、电磁场等物质，存在各种复杂的物理现象。随着1957年世界上第一颗人造卫星发射成功，人类开始进入并利用太空，太空与人类生产生活的关系越发紧密。人类对太空的认识和利用说明\nA.人的认识过程是一个在实践基础上不断深化发展的过程\nB.事物的本质随着人们认识的变化而改变\nC.一切客观存在的事物都是人们现实的实践客体\nD.实践的主体、客体和中介是不断变化发展的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_14",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第14题",
+    "content": "为学之实，固在践履。在学习贯彻习近平新时代中国特色社会主义思想主题教育工作会议上，习近平总书记对主题教育各项工作作出全面部署，对开展主题教育的总要求作出深刻阐释，其中一个方面就是“重实践”。从哲学的角度来看，强调“重实践”是因为\nA.从认识到实践的第二次飞跃比实践到认识的第一次飞跃更重要\nB.理论的威力只有付诸实践才能发挥出来\nC.学习的成果要靠实践成效来检验\nD.一个人的多数知识还是来自直接经验",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_15",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第15题",
+    "content": "在我国黄海离岸120多海里的青岛国家深远海绿色养殖试验区，全球第一座全潜式深海渔业养殖装备“深蓝1号”近期成功收获我国首批深远海大西洋鲑，这是全球首次低纬度养殖大西洋鲑获得丰收，探索出一种可复制的深远海养殖新模式，推动海洋渔业由“近海”走向“深蓝”，有利于满足我国居民对海产品“量”的需求和“质”的追求。以上事例说明\nA.自然规律起作用的条件是可以通过实践改变的\nB.任何成功的实践都是真理尺度和价值尺度的统一\nC.人类主体总是受着目的性和能动性的驱使，要求外部客观世界满足自身的需要\nD.进行中间实验是实现由认识向实践飞跃所需要的中介环节",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_16",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第16题",
+    "content": "自古以来，哲学家们都把真理看作认识所追求的目标，但在对真理的理解上却存在着重大的分歧和尖锐的对立。以下对于真理的描述属于唯心主义观点的有\nA.真理是人的意识与客观事物相符合\nB.真理是观念和主体感觉的符合\nC.真理是思维同它的先验形式的一致\nD.真理是观念和行为对人有用的效果",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_18",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第18题",
+    "content": "诺贝尔经济学奖获得者斯蒂格利茨曾戏言说：“一个经济学家只有在他的理论被证明是错误的时候，才会获得这个奖。”对于真理，以下说法正确的有\nA.多数人认同的不一定是真理\nB.真理是由相对到绝对再到相对的永无止境的过程\nC.真理在任何条件下都可以转化成谬误\nD.真理是发展的，具有历史性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_19",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第19题",
+    "content": "毛泽东曾经形象地把真理的绝对性与相对性的关系比喻为“长河”与“河段”“水滴”的关系。他说：“马克思主义者承认，在绝对的总的宇宙发展过程中，各个具体过程的发展都是相对的，因而在绝对真理的长河中，人们对于在各个一定发展阶段上的具体过程的认识只具有相对的真理性。无数相对的真理之总和，就是绝对的真理。”以下说法正确的有\nA.任何真理性的认识都是由真理的相对性向绝对性转化过程中的一个环节\nB.真理的绝对性与相对性根源于认识世界的能力的无限性与有限性、绝对性与相对性的矛盾\nC.真理的绝对性通过真理的相对性表现出来\nD.绝对真理和相对真理是对同一真理的不同表述方式",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_21",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第21题",
+    "content": "习近平强调：“要在全社会积极营造鼓励大胆创新、勇于创新、包容创新的良好氛围，既要重视成功，更要宽容失败。”许多重大科技创新，都是在经历一次次失败后最终取得成功。如果整个社会只愿为成功喝彩，对失败难以接受，就会压制科技工作者创新的勇气和热情。“既要重视成功，更要宽容失败”是因为\nA.总结失败的教训，是获得真理、消除谬误的重要途径和方法\nB.在批判谬误中发展真理，是谬误向真理转化的一种形式\nC.真理和谬误、成功与失败没有原则界限\nD.正确的东西总是在同错误的东西作斗争的过程中发展起来的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_23",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第23题",
+    "content": "由中国科学院国家天文台等单位科研人员组成的中国脉冲星测时阵列研究团队，利用“中国天眼”FAST，探测到了纳赫兹引力波存在的关键性证据，这表明我国纳赫兹引力波研究与国际同步达到领先水平。产生纳赫兹引力波是超大质量黑洞合并的独有预言。这个期待已久的预言，终于被中国脉冲星测时阵列研究团队通过“中国天眼”获得了观测证据。关于纳赫兹引力波的预言得到证实说明\nA.实践对真理的检验是人类社会历史的实践对真理的检验\nB.实践的水平、广度、深度和发展过程，都受着客观条件的制约和客观规律的支配\nC.正是依靠观测工具等中介系统，实践的主体和客体才能够相互作用\nD.认识的反复性和无限性决定了客观事物的复杂性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_25",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第25题",
+    "content": "近年来，不少消费者养成了购物下单前先在网络上看“第三方测评”的消费习惯。然而，不少“第三方测评”账号本身就经不起测评，不同博主对于同一款商品可能有不同的评价甚至是截然相反的结论，同一博主在不同时期测评同类型相关产品时也可能会得出不一样的结论。还有一些“第三方测评”账号发布的信息并非原创，可信度和科学性有待商榷。因此，消费者要综合比较信息的真实性，理性看待商品测评类营销信息。需要理性看待“第三方测评”的结果，是因为\nA.主体的需要、特点以及情感、兴趣和爱好等直接影响评价结果\nB.判断外在客体有无价值，必须明确“是对谁的价值”和“以谁的需要为尺度”\nC.价值评价有科学与非科学之别，但评价结果没有正确与错误之分\nD.评价作为一种价值判断活动，是一种主观随意的认识活动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_26",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第26题",
+    "content": "“谷子”是英文单词goods(商品)的谐音，泛指由漫画、动画、游戏等领域版权作品衍生出来的周边产品，例如徽章、角色立牌、色纸、小挂件等。相关数据显示，2023年中国“谷子经济”市场规模1201亿元，2024年迅速飙升至1689亿元，预计2029年整体市场规模有望达3089亿元。“谷子经济”火爆的背后蕴藏着青年消费者对优秀动漫、动画等文化作品的认同，折射出从“实用”到“情绪价值”的消费需求转变。年轻人情绪消费的崛起并非偶然，其本质是物质需求饱和后，精神需求升级的结果。年轻人愿意为“情绪”买单，有收入水平提高的原因，也是放松精神、休闲娱乐的现实需要。虽然有人无法理解年轻人对“谷子”的喜爱，但也不得不承认，“情绪价值”也是一种价值。从“实用”到“情绪价值”的消费需求转变说明\nA.价值是一种客观存在，独立于人们对它的认识和评价\nB.客体能否满足主体需要，是由人的主观愿望决定的\nC.人们在处理价值关系时，应对客体的价值作全面的考察和理性的选择\nD.价值直接与主体相联系，始终以主体为中心",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_28",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第28题",
+    "content": "智能跟车、自动超车、代客泊车……如今，能提升驾驶效率和舒适度的辅助驾驶系统，成了很多汽车尤其是新能源汽车的标配。这既是科技创新的重要成果，也为汽车产业开辟了新增长点。然而，辅助驾驶技术也带来了事故责任认定、数据隐私泄露等风险和问题。因此，各国在推进该技术应用时都制定了严格的监管法规。人类审慎发展辅助驾驶技术的原因在于\nA.人的实践活动要遵循真理尺度与价值尺度的统一\nB.新事物依然保留了旧事物中无法适应新条件的因素\nC.技术应用的社会效果完全取决于研发者的主观意愿\nD.科学技术有时表现为异己的、敌对的力量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_29",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第29题",
+    "content": "在多地景区，游客们惊喜发现，登山竟然也能“开外挂”——登山智能辅助产品成了新晋的爬山“神器”。泰山、黄山等知名景区纷纷投入使用外骨骼“机器腿”、智能登山杖、智能助行机器人等登山智能辅助产品，用科技力量帮助游客轻松登山。近年来，越来越多的新技术、新产品应用到体育运动、文旅休闲等领域，成为广大体育爱好者和行动不便人士的“新宠”。人们发明“机器腿”等辅助产品说明\nA.世界不会自动满足人的需求，人也不会满足于世界的现存形式\nB.主观和客观的矛盾是人类认识世界和改造世界的根本动力\nC.科学技术的发展是为了将人类从自然规律的制约下解放出来\nD.实践的需要推动人类的科学发现和技术发明",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_30",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第30题",
+    "content": "曾经有人问，为什么要花大代价发展航天事业?一个绝佳的回答是，航天看似在引领我们远离地球，实际上却将地球变得更加美好，不仅仅因为前沿技术的发展能够反哺生活，还因为我们对地球、对生命、对自身的理解在不断深化。广袤的宇宙不会让勇敢的探索者失望，答案或许就在下一次发射、下一串信号中。以上材料说明\nA.探索活动就是不断发现和解决矛盾的过程\nB.探索的每一次突破都是对无限发展着的物质世界的接近\nC.对于探索活动的评价既要立足现实，也要着眼长远\nD.探索未知世界的科学实验是人类最基本的实践活动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_31",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第31题",
+    "content": "恩格斯说：“自由不在于幻想中摆脱自然规律而独立，而在于认识这些规律，从而能够有计划地使自然规律为一定的目的服务……自由就在于根据对自然界的必然性的认识来支配我们自己和外部自然。”这说明\nA.自由是对必然的认识和对客观世界的改造\nB.不具备认识条件和实践条件就得不到自由\nC.自由是必然的根据和限度\nD.人们只有在认识必然的基础上才有自由的活动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_2_m_32",
+    "chapterId": "my_ch2",
+    "chapterName": "马原·第二章",
+    "sectionId": "my_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "马原·第二章 多选 第32题",
+    "content": "列宁在《唯物主义和经验批判主义》中指出，“当我们不知道自然规律的时候，自然规律是在我们的认识之外独立地存在着并起着作用，使我们成为‘盲目的必然性’的奴隶。一经我们认识了这种不依赖于我们的意志和我们的意识而起着作用的(如马克思千百次反复说过的那样)规律，我们就成为自然界的主人。”以下说法正确的有\nA.认识必然和争取自由是一个历史性的过程\nB.人类可以打破对自然界的依赖关系而获得绝对的自由\nC.人对一定问题的判断越是自由，这个判断的内容所具有的必然性就越大\nD.只有充分发挥主观能动性，才能实现超越社会发展阶段的自由",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_1",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第1题",
+    "content": "马克思主义哲学创立后，开始出现了\nA.唯物论与唯心论的对立\nB.可知论与不可知论的对立\nC.辩证法与形而上学的对立\nD.唯物史观与唯心史观的对立",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_3",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第3题",
+    "content": "人类自古逐水而居，人类文明伴水而生。但江河水来变幻不定，水多生洪灾，水少成旱灾。早期，人们在河流特定位置，零星修建水库，除水害、兴水利，但其功能单一。随着人们对水资源价值认识的不断深入，水库建设逐步从单一功能开发发展为多目标综合开发，实现“一水多用、一库多效”。比如，三峡水库具备防洪、发电、航运、供水等综合功能，同时与长江干支流水库群联合调度，实现效益倍增。人类对水资源价值的认识从单一走向综合，推动水库功能从“除害兴利”发展为“一库多效”,这一历程表明\nA.实践具有社会历史性，其内容和水平受到特定社会条件的制约\nB.自然地理环境是社会存在和发展的基础及决定力量\nC.价值评价属于知识性认识，其结果的正确与否取决于人对客体属性和规律的认识\nD.随着历史的发展，客体的潜在价值就会自动转变为现实的价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_4",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第4题",
+    "content": "在原始社会，人们只有朴素的公有观念，不知“私有”为何物。随着以生产资料私有制为基础的生产方式的出现和原始社会的瓦解，私有观念以及与此相联系的思想意识才得以产生。这说明\nA.社会意识变化和发展的根源总是深藏于经济事实当中\nB.社会意识的发展变化总是落后于社会存在\nC.社会意识对社会发展总是起着积极的促进作用\nD.社会意识总是消极被动地受制于社会存在",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_14",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第14题",
+    "content": "人类通过实践活动在不断改造世界过程中推动社会发展和进步。社会的发展和进步集中表现为\nA.社会形态的更替\nB.社会生产力的发展\nC.人类自身得到改造和发展\nD.人类对社会规律的认识和改造",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_15",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第15题",
+    "content": "人的发展是一个社会历史过程，既包括人类整体的发展，也包括人类个体的发展。人的发展指人的体力、智力、个性和交往能力等的发展，其中最根本的是\nA.人的本质力量的对象化、现实化\nB.人类智慧和认知能力的发展\nC.人的自由程度的提高\nD.人的文明程度的提高",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_17",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第17题",
+    "content": "社会形态更替的必然性，主要是指社会形态依次更替的过程和规律是客观的，其发展的基本趋势是确定不移的。社会形态更替归根结底是社会基本矛盾运动的结果。其中具有最终决定意义的是\nA.人民的意志和选择\nB.生产资料所有权的归属\nC.生产力的发展\nD.对本民族特点的把握程度",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_s_24",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "马原·第三章 单选 第24题",
+    "content": "“中华民族伟大复兴势不可挡!”习近平总书记在天安门城楼上的庄严宣示，是历史昭示的真理，是团结奋进的强音。今天，在全面推进中国式现代化的新征程上，我们比历史上任何时期都更接近、更有信心和能力实现中华民族伟大复兴的目标，同时必须准备付出更为艰巨、更为艰苦的努力。推进中华民族伟大复兴历史进程，要求我们增强历史主动、发扬实干精神，这是因为\nA.每一个人都是历史的创造者\nB.人能够按照自己的需要去认识规律和改造规律\nC.历史规律只有通过人的有目的、有意识的活动才能实现\nD.人们在自己选定的条件下创造历史",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_1",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第1题",
+    "content": "仓廪实，天下安。保障粮食安全是一个永恒的课题，手中有粮、心中不慌在任何时候都是真理。端稳端牢“中国饭碗”,必须把“藏粮于地、藏粮于技”真正落实到位。耕地是粮食生产的命根子，是中华民族永续发展的根基。要落实最严格的耕地保护制度，确保18亿亩耕地实至名归。解决吃饭问题，根本出路在科技。种源安全关系到国家安全，必须下决心把我国种业搞上去，实现种业科技自立自强、种源自主可控。强调“藏粮于地、藏粮于技”是因为\nA.科学技术是生产力中最活跃的因素，决定着对物质资源开发的深度和广度\nB.自然地理环境是人类社会生存和发展永恒的、必要的条件\nC.正确发挥人的主观能动性，依赖于一定的物质条件和物质手段\nD.离开一定的自然条件，人们就不可能进行生活和生产",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_4",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第4题",
+    "content": "华北是典型的缺水地区，地下水长期超采，一度成为世界最大的漏斗区。2014年12月，南水北调中线一期工程正式通水，一路实现向河南、河北、北京、天津供水。通水以来，华北地下水水位大幅回升。水利部数据显示，华北地下水超采治理区浅层地下水和深层地下水较“十三五”末分别回升3.76米和7.65米。通过持续生态补水，华北平原上的滹沱河、大清河、白洋淀等一大批河湖重现生机，华北地区多断流的泉眼复涌。华北平原水资源之变，折射新时代生态之变、人们生活之变。通过南水北调工程解决华北地区水资源的问题，这说明\nA.人类的实践活动能够改变自然事物的形态和面貌，使之成为人化的自然\nB.人在自然面前不是被动的、无能为力的\nC.摆脱必然性的制约，是获得自由的前提\nD.人与自然的和谐是在不断解决矛盾的过程中实现的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_5",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第5题",
+    "content": "老龄化是全球性人口发展大趋势，也是今后较长一段时期我国的基本国情。党的十八大以来，根据我国人口发展变化趋势，党中央、国务院先后作出单独两孩、全面两孩等重大决策部署，2021年又进一步优化生育政策，实施一对夫妻可以生育三个子女政策及配套支持措施。长期看，这将有利于改善人口年龄结构，扩大新增劳动力供给，增加社会整体活力，降低老龄化峰值水平。从唯物史观的角度分析，国家如此重视人口问题是因为\nA.人口因素是重要的社会物质生活条件\nB.人口因素是社会存在和发展的基础及决定力量\nC.人口的数量、质量和结构等因素对生产发展和社会进步起加速或延缓的作用\nD.人口因素要受社会生产状况和社会制度的制约",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_7",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第7题",
+    "content": "创作生产出无愧于这个伟大时代的优秀作品，把最好的精神食粮奉献给人民，是广大文化文艺工作者的光荣使命。伴随中国社会发展向前，在深入挖掘现实、彰显时代精神的同时，更要勇于突破，锐意创新。习近平曾多次引用古文诗句指明文艺创作的方向，例如“文章合为时而著,歌诗合为事而作”“诗文随世运，无日不趋新”“文变染乎世情，兴废系乎时序”等。这些诗句蕴含的哲理有\nA.社会存在是社会意识内容的客观来源\nB.社会意识是具体的、历史的\nC.随着社会存在的发展，社会意识也相应地或迟或早地发生变化和发展\nD.社会意识始终对社会发展起着积极的促进作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_8",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第8题",
+    "content": "近年来，“元宇宙”成为热门话题，越来越频繁地出现在人们的视野里。元宇宙概念的走红，背后有着相应的技术支撑和社会生活因素。一方面，经过多年的发展，虚拟现实、人工智能、区块链、5G通讯、可穿戴设备等底层技术的应用日渐成熟；另一方面，因为疫情等原因，线上办公、线上课程逐渐普及，人们在虚拟空间的停留时间更长，线上生活所占的比例不断升高。在一些具体的场景中，人们捕捉到元宇宙可能给生活带来的改变。从在游戏中参加虚拟演唱会，到在虚拟空间以虚拟形象参加会议，且会上可以用语音和动作进行实时交互。这些已经成为现实的案例，一定程度上打破了虚拟与现实的界限。“元宇宙”的出现和发展说明\nA.社会意识不再依赖于社会存在\nB.科学技术日益成为生产发展的决定性因素\nC.虚拟实践为人的生存与发展提供了多样的自由空间\nD.人们之间的社会交往是人类最基本的实践活动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_9",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第9题",
+    "content": "社会意识既依赖于社会存在，又有其相对独立性。社会意识的相对独立性表现在\nA.社会经济发展水平较高的国家或地区，其社会意识的发展水平未必都更高\nB.社会意识对社会存在具有能动的反作用\nC.“经济上落后的国家在哲学上仍然能够演奏第一提琴”\nD.社会意识内部各种形式之间存在相互影响且各自具有历史继承性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_10",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第10题",
+    "content": "马克思说：“手推磨产生的是封建主的社会，蒸汽磨产生的是工业资本家的社会。”这句话说明\nA.历史上的各种生产关系都是适应一定的生产力发展需要而产生的\nB.生产力状况是生产关系形成的客观前提和物质基础\nC.生产力和生产关系共同组成生产的社会形式\nD.社会形态更替归根结底是科技进步的结果",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_14",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第14题",
+    "content": "恩格斯说，国家“照例是最强大的、在经济上占统治地位的阶级的国家，这个阶级借助于国家而在政治上也成为占统治地位的阶级，因而获得了镇压和剥削被压迫阶级的新手段”。国家是\nA.一个历史范畴\nB.阶级矛盾不可调和的产物\nC.社会存在的核心\nD.一个阶级统治另一个阶级的工具",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_15",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第15题",
+    "content": "“法与时转则治，治与世宜则有功。”经济社会在不断发展，生活方式在不断变化，社会关系在不断调整，调节社会关系的民法也需要与时俱进。2020年5月28日，十三届全国人大三次会议通过《中华人民共和国民法典》。这是一部顺应时代发展要求的民法典，对已经不适应现实情况的规定进行修改完善，对经济社会生活中出现的新情况、新问题作出有针对性的新规定。从哲学上讲，民法典的制定体现的原理是\nA.经济基础的变革必然引起上层建筑的变革\nB.上层建筑一定要适合经济基础状况\nC.建立在一定经济基础之上的政治法律制度的先进性是衡量社会进步的根本尺度\nD.上层建筑只要为自己的经济基础服务，就是推动社会发展的进步力量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_16",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第16题",
+    "content": "习近平主席在中国—中亚峰会上的主旨讲话中提到：“2100多年前，中国汉代使者张骞自长安出发，出使西域，打开了中国同中亚友好交往的大门。千百年来，中国同中亚各族人民一道推动了丝绸之路的兴起和繁荣，为世界文明交流交融、丰富发展作出了历史性贡献。”交往是唯物史观的重要范畴，是人类实践活动的重要组成部分。交往对社会生活的重要影响，在于促进\nA.生产力的发展\nB.社会关系的进步\nC.文化的发展与传播\nD.人的全面发展",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_17",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第17题",
+    "content": "今天，人类交往比以往任何时候都更加深入和广泛，国家之间的相互联系和依存比以往任何时候都更加频繁和紧密。马克思的世界历史理论为我们观察、分析当今世界发展特别是全球化问题提供了科学的理论指导。下列选项内容正确的有\nA.生产方式的发展变革是世界历史形成和发展的基础\nB.普遍交往是世界历史的基本特征\nC.世界历史的形成与发展为共产主义的实现提供了条件和路径\nD.没有矛盾的和谐世界是世界历史发展的最终方向",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_18",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第18题",
+    "content": "人的发展程度构成了社会进步的重要标志。唯物史观从社会进步和人的发展的内在联系出发，把人的发展从低级到高级依次概括为\nA.人的依赖关系占统治地位的阶段\nB.以物的依赖关系为基础的人的独立性的阶段\nC.自由个性的阶段\nD.民主个性的阶段",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_20",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第20题",
+    "content": "“国之称富者，在乎丰民。”共同富裕是社会主义的本质要求，也是中国共产党人的不懈追求。习近平指出：“共同富裕是一个长远目标，需要一个过程，不可能一蹴而就，对其长期性、艰巨性、复杂性要有充分估计，办好这件事，等不得，也急不得。”从马克思主义哲学的角度来说，共同富裕“不可能一蹴而就”是因为\nA.任何事物的发展都有一个从量变到质变的过程\nB.经济社会发展有其自身的客观规律\nC.生产关系的变革和社会制度的更替会随着生产力的发展自发的实现和完成\nD.人在社会规律面前是无能为力的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_22",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第22题",
+    "content": "发生在18世纪70年代以蒸汽机的发明为主要标志的科技革命，推动西欧国家相继完成了第一次产业革命，使资本主义生产迅速过渡到机器大工业，为资本主义生产方式的确立奠定了物质基础。发生在19世纪末20世纪初以电力的广泛运用为标志的科技革命，使电力取代蒸汽机成为新的动力，社会生产力又一次得到迅猛发展。20世纪中期以后出现的以原子能的利用、电子计算机和空间技术的发展，特别是以信息技术、新材料、新能源、生物工程、海洋工程等高科技的出现为主要标志的科技革命，使人类进入了互联网、智能化、数字化的时代，推动了由工业经济形态向信息社会或知识经济形态的过渡。当今时代，数字技术作为世界科技革命和产业变革的先导力量，日益融入经济社会发展各领域全过程。这说明科技革命\nA.集中体现了科学技术在历史发展中的杠杆作用\nB.会引起生产方式、生活方式和思维方式的深刻变化\nC.最终必然导致生产关系的变革\nD.已成为推动社会历史进步的根本动力",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_23",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第23题",
+    "content": "习近平在参加十四届全国人大三次会议江苏代表团审议时强调：“要深化城乡精神文明建设，优化文化产品和服务供给，以文化赋能经济社会发展。”在中国式现代化新征程上担负起新的文化使命，需要大力推动文化与经济交融互动，增强经济社会发展的“文化力量”,蹚出富有人文氤氲的发展“新路”。从马克思主义哲学的角度来看，“以文化赋能经济社会发展”是因为\nA.文化作为一种特殊的精神力量能直接转化为物质成果\nB.先进文化能够为社会发展指明变革方向，促进生产力发展和社会进步\nC.文化能够激发创新精神和创造活力，推动包括科技在内的各个社会领域的创新\nD.精神文化条件对于人民群众创造历史的活动有着首要的、决定性的影响",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.824Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_24",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第24题",
+    "content": "关于人的本质，马克思说，“在其现实性上，它是一切社会关系的总和”。其内涵有\nA.人的本质是单个人所固有的抽象物\nB.人的本质属性是社会属性\nC.人的本质是自由\nD.人的本质是变化发展的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BD\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_26",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第26题",
+    "content": "2025年《政府工作报告》提出，推动更多资金资源“投资于人”、服务于民生，支持扩大就业、促进居民增收减负、加强消费激励，形成经济发展和民生改善的良性循环。“投资于人”是相对于“投资于物”而言的，表明财政资源的导向要与人的需求直接挂钩，这既是满足人民对美好生活的需要，更是提高财政资金使用效率的必然要求。人的需求是随着经济发展阶段而变化的。随着经济发展水平提高，居民消费需求从生存型消费转向发展型消费；相应地，资金资源要从过去的“铁公基”等领域，越来越多地转到医疗、教育、养老、住房保障等与民生相关的发展型消费领域。“投资于人”这一政策导向的深刻现实与理论依据在于\nA.人民群众是历史的创造者，“投资于人”是坚持以人民为中心的生动体现\nB.劳动者是生产力中最活跃的因素，“投资于人”就是投资于未来生产力\nC.人的物质欲望是社会发展的根本动力，必须将满足个体欲望作为资源配置的最高准则\nD.人口因素是社会存在和发展的基础及决定力量，“投资于人”能决定整个社会历史的变化发展",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_3_m_28",
+    "chapterId": "my_ch3",
+    "chapterName": "马原·第三章",
+    "sectionId": "my_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "马原·第三章 多选 第28题",
+    "content": "习近平指出：“历史充分证明，江山就是人民，人民就是江山，人心向背关系党的生死存亡。”这生动体现了我们党对唯物史观的科学认识、对共产党执政规律的深刻把握。如何认识人民群众在历史中的作用，是社会历史观的重大问题。唯物史观认为\nA.人民群众的总体意愿和行动代表了历史发展的方向\nB.人民群众的社会实践最终决定历史发展的结局\nC.杰出人物特别是无产阶级的领袖人物可以改变历史发展的基本方向\nD.每一个人无论作用大小都是历史的创造者",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_1",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第1题",
+    "content": "商品具有使用价值和价值两个因素或两种属性，是使用价值和价值的矛盾统一体。决定商品交换的比例的，不是商品的使用价值，而是价值，这是因为\nA.使用价值无法用来衡量\nB.价值在质上是相同的\nC.使用价值和价值二者不可兼得\nD.价值是交换价值的物质承担者",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_3",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第3题",
+    "content": "马克思说：“一个物可以是使用价值而不是价值。在这个物并不是由于劳动而对人有用的情况下就是这样。”这说明\nA.价值和使用价值互为前提\nB.使用价值与价值不可兼得\nC.劳动产品一定是商品\nD.商品一定是劳动产品",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_5",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第5题",
+    "content": "马克思说：“就使用价值说，有意义的只是商品中包含的劳动的质；就价值量说，有意义的只是商品中包含的劳动的量，不过这种劳动已经转化为没有质的区别的人类劳动。”这里所说的“没有质的区别的人类劳动”是指\nA.抽象劳动\nB.具体劳动\nC.脑力劳动\nD.体力劳动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_6",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第6题",
+    "content": "马克思指出：“在同一时间内，劳动就一种属性来说必然创造价值，就另一种属性来说，必然保存或转移价值。”这一段话说的是\nA.体力劳动和脑力劳动及其作用\nB.具体劳动和抽象劳动及其作用\nC.私人劳动和抽象劳动及其作用\nD.个别劳动和社会必要劳动及其作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_10",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第10题",
+    "content": "在商品交换过程中，生产商品使用价值的具体劳动是不能直接进行量的比较的，只有将具体劳动还原为抽象劳动，也就是从具体劳动中抽象出无差别的一般人类劳动，才能进行量的比较。具体劳动能否还原为抽象劳动，在根本上取决于\nA.必要劳动和剩余劳动能否实现统一\nB.简单劳动和复杂劳动能否实现统一\nC.私人劳动和社会劳动能否实现统一\nD.体力劳动和脑力劳动能否实现统一",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_13",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第13题",
+    "content": "“既然商品的价值由生产商品所耗费的劳动量来决定，那么一个人越懒，越不熟练，他的商品就越有价值，因为他制造商品需要花费的时间越多。”这个说法的错误在于混淆了\nA.具体劳动时间和抽象劳动时间\nB.简单劳动时间和复杂劳动时间\nC.必要劳动时间和剩余劳动时间\nD.个别劳动时间和社会必要劳动时间",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_14",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第14题",
+    "content": "生产商品所需要的社会必要劳动时间随着劳动生产率的变化而变化。劳动生产率是指\nA.劳动者的劳动强度\nB.劳动者生产使用价值的效率\nC.劳动者生产剩余价值的效率\nD.劳动在整个生产中所占的比例",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_16",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第16题",
+    "content": "马克思在《资本论》中指出：“不管生产力发生了什么变化，同一劳动在同样的时间内提供的价值量总是相同的。但它在同样的时间内提供的使用价值量会是不同的：生产力提高时就多些，生产力降低时就少些。”这表明，提高劳动生产率会使单位时间内生产的商品数量和个别商品的价值量发生变化，即\nA.商品数量增加，个别商品的价值量增大\nB.商品数量增加，单位时间内生产的总价值量增大\nC.商品数量增加，个别商品的价值量不变\nD.商品数量增加，个别商品的价值量减少",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_17",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第17题",
+    "content": "俗话说：“一分钱一分货”,但是在实际的商品交换过程中，既有“一分钱二分货”的现象，也有“一分钱半分货”的现象。这说明\nA.价格并不反映价值\nB.价格的变化都是价值变化的表现\nC.价格围绕商品的价值自发波动\nD.供求关系变动决定商品的价值量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_18",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第18题",
+    "content": "近年来，数字货币的概念越来越火热，引起了人们对货币本质的新一轮讨论。有专家指出，随着经济的发展和技术的进步，货币在发展过程中被不同的价值符号所代表，从金属货币、纸币、电子货币到数字货币不断转变。每种不同的货币形式代表了人们不同的信任形式。马克思主义认为，货币是\nA.能够带来剩余价值的价值\nB.资本的唯一物质形态\nC.商品特有的社会属性\nD.固定充当一般等价物的商品",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_19",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第19题",
+    "content": "充当贮藏手段的货币\nA.必须是现实的货币\nB.可以是观念上的货币\nC.必须是足值的金属货币\nD.必须是现实的货币，但不一定是足值的货币",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_21",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第21题",
+    "content": "商品的使用价值和价值的矛盾、生产商品的具体劳动和抽象劳动的矛盾，根源于\nA.生产社会化和生产资料资本主义私人占有之间的矛盾\nB.商品和货币的矛盾\nC.简单劳动和复杂劳动的矛盾\nD.私人劳动和社会劳动的矛盾",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_22",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第22题",
+    "content": "在以私有制为基础的商品经济中，商品生产者的劳动具有两重性：既是具有社会性质的社会劳动，又是具有私人性质的私人劳动。商品生产者的劳动的社会性质是由\nA.生产者的阶级地位决定的\nB.社会分工决定的\nC.生产资料所有制决定的\nD.国家法律制度规定的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_24",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第24题",
+    "content": "在资本主义条件下，劳动是否是生产性的，取决于\nA.劳动是生产物质产品还是提供服务\nB.劳动能否为资本家带来剩余价值\nC.具体劳动能否还原为抽象劳动\nD.劳动力是否为社会生产发展所绝对需要",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_25",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第25题",
+    "content": "商品经济是以交换为目的而进行生产的经济形式，它是一定社会历史条件的产物。以私有制为基础的商品经济的基本矛盾是\nA.生产社会化和生产资料资本主义私人占有之间的矛盾\nB.私人劳动和社会劳动的矛盾\nC.无产阶级和资产阶级的矛盾\nD.商品使用价值和价值之间的矛盾",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_27",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第27题",
+    "content": "在资本总公式“G—W—G'”中，W代表商品，G代表的不是一般意义上的货币，而是作为资本的货币，G'代表的是价值增殖后的货币。从形式上看，资本总公式与商品交换的原则是矛盾的。价值规律要求商品交换遵循等价交换原则，交换领域不能创造新价值，但资本总公式却表明，资本在流通中创造了新价值。理解这一矛盾的关键在于\nA.价值规律\nB.等价交换原则\nC.劳动力成为商品\nD.利润转化为平均利润",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_29",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第29题",
+    "content": "资本主义的生产过程具有二重性，其中，作为资本主义生产过程的主要方面的是\nA.价值增殖过程\nB.补偿劳动力的价值形成过程\nC.资本家监督下的劳动过程\nD.创造出满足人们某种需要的使用价值的过程",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_31",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第31题",
+    "content": "货币所有者只有购买到劳动力这种特殊商品，货币才能转化为资本，这是因为\nA.劳动力商品具有使用价值和价值\nB.实际生产过程中所耗费的生产资料和消费资料必须得到实物的替换\nC.劳动力商品是资本的本质\nD.劳动力商品在消费过程中能够创造出比自身价值更大的价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_32",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第32题",
+    "content": "与其他商品相比，劳动力商品价值的决定的一个重要特点是\nA.由生产它所需要的社会必要劳动时间决定\nB.可以还原为劳动者维持自己及其家属生存所必需的生产资料的价值\nC.由劳动力市场的供求关系决定\nD.劳动力价值的构成包含历史和道德的因素",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_33",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第33题",
+    "content": "在不同的国家或在同一国家的不同历史时期，劳动力价值的最低界限是有区别的。一旦劳动力价值降低到这个最低界限以下，劳动力就只能在萎缩的状态下维持。劳动力价值的最低界限是由\nA.资本家主观的剥削意愿决定的\nB.劳动者的最低强度决定的\nC.资本循环中能够维持生产的不变资本的价值决定的\nD.生活上不可缺少的生活资料的价值决定的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_34",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第34题",
+    "content": "在不同的剥削制度下，劳动者与生产资料的结合方式不同。在资本主义制度下，资本家与工人的关系是\nA.掌握先进技术和生产资料的资本家对工人的完全占有\nB.工人在丧失土地和生产资料之后不得不对资本家的人身依附\nC.基于劳动者人身自由基础上的“平等”关系\nD.基于资产阶级“社会契约论”基础上的私人占有关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_40",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第40题",
+    "content": "马克思说：“纺纱机是纺棉花的机器。只有在一定的关系下，它才成为资本。脱离了这种关系，它也就不是资本了，就像黄金本身并不是货币，砂糖并不是砂糖的价格一样。”纺纱机之所以能够从纺棉花的机器变成为资本，是因为\nA.纺纱机与劳动力结合能够生产出社会需要的商品\nB.纺纱机可以产生剩余价值\nC.资本家购买到劳动力这种特殊商品\nD.资本可以通过各种物品表现出来",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_42",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第42题",
+    "content": "某资本家经营的企业通过改进技术、提高劳动生产率，使其生产商品花费的劳动时间比社会必要劳动时间少10%,由此形成商品个别价值低于社会价值的那部分是\nA.超额剩余价值\nB.绝对剩余价值\nC.相对剩余价值\nD.剩余价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_43",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第43题",
+    "content": "马克思在谈到资本主义生产方式时指出：“生产剩余价值或赚钱，是这个生产方式的绝对规律。”生产剩余价值有两种基本方法：绝对剩余价值生产和相对剩余价值生产。资本家普遍获得相对剩余价值是\nA.各个资本家普遍延长雇佣工人工作日的结果\nB.各个资本家普遍提高雇佣工人劳动强度的结果\nC.各个资本家追求超额剩余价值的结果\nD.个别企业提高劳动生产率的结果",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_47",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第47题",
+    "content": "资本的价值构成是指\nA.固定资本与流动资本这两部分资本价值之间的比例\nB.货币资本与生产资本之间的比例\nC.劳动力和劳动对象之间的比例\nD.不变资本和可变资本这两部分资本价值之间的比例",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_48",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第48题",
+    "content": "在其他条件不变的情况下，以下选项中会提高资本有机构成的是\nA.生产所用的原材料价格上涨\nB.自动化程度提高导致的裁员\nC.劳动者接受教育和训练所支出的费用增加\nD.为追求更多利润而增加工人的劳动时间",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_49",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第49题",
+    "content": "产业资本划分为货币资本、生产资本、商品资本的依据是资本各个部分\nA.在价值增殖过程中的作用不同\nB.价值周转的方式不同\nC.存在的物质形态不同\nD.在循环中执行的职能不同",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_51",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第51题",
+    "content": "在英国，从14世纪末到18世纪中叶这段时期，政府曾经颁布过各种劳工法令，强迫工人延长工作日。在18世纪后期至19世纪上半叶，资本家依然强迫工人每日劳动12、14、16个小时，有的时候甚至达到18个小时以上。通过这种方式资本家获得的是\nA.超额剩余价值\nB.相对剩余价值\nC.绝对剩余价值\nD.垄断剩余价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_52",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第52题",
+    "content": "某资本家经营的企业原工作时间为每天8小时，其中必要劳动时间为4小时，剩余劳动时间也为4小时。如果分别采用绝对剩余价值生产方法和相对剩余价值生产方法，使剩余劳动时间各延长2小时，则它们的剩余价值率分别应为\nA.150%；200%\nB.200%；300%\nC.150%；300%\nD.125%；200%",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_55",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第55题",
+    "content": "在生产技术水平不断提高的条件下，随着资本积累的增长，必然伴随着资本的积聚和集中，使个别资本的规模日益增大。资本集中是指个别资本通过结合而形成较大的资本。资本集中最强有力的杠杆是\nA.竞争和信用\nB.投资和借贷\nC.资本原始积累\nD.生产自动化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_57",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第57题",
+    "content": "资本家瓜分到剩余价值后，如果将其完全用于个人消费，则生产就在原有规模的基础上重复进行，这叫资本主义简单再生产。资本主义简单再生产，就其实质而言，是\nA.劳动过程和价值形成过程的统一\nB.劳动过程和价值增殖过程的统一\nC.物质资料再生产与资本主义生产关系再生产的统一\nD.再生产物质资料价值与转移劳动力价值的统一",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_58",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第58题",
+    "content": "社会生产是连续不断地进行的，这种连续不断重复的生产就是再生产。社会再生产的核心问题是\nA.两大部类在总量上的比例问题\nB.社会总产品的价值补偿和实物补偿问题\nC.工资与剩余价值的分配问题\nD.劳动过程和价值增殖过程的统一问题",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_60",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第60题",
+    "content": "利润平均化规律，反映了在瓜分剩余价值上，资本家之间虽然存在竞争和矛盾，但在加强对工人阶级的剥削以榨取更大量的剩余价值这一点上，资本家之间有着共同的阶级利益。平均利润的出现是\nA.同一部门内不同企业之间竞争的结果\nB.不同部门之间竞争的结果\nC.国际上同类企业之间竞争的结果\nD.不同行业之间工人联合斗争的结果",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_61",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第61题",
+    "content": "随着资本主义大工业的出现和发展，价值规律的实现形式也发生了变化，商品不再以价值而是以生产价格为基础进行交换。作为商品价值的转化形式，生产价格是\nA.生产成本与平均利润之和\nB.生产中实际耗费的不变资本和可变资本之和\nC.商品价值与劳动力成本之和\nD.所用资本与所费资本之和",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_62",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第62题",
+    "content": "在资本主义社会里，资本家雇佣工人进行劳动并支付相应的工资。资本主义工资的本质是\nA.工人全部劳动的报酬\nB.劳动力的价值或价格\nC.资本家预付的不变资本的一部分\nD.工人所创造的剩余价值的一部分",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_63",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第63题",
+    "content": "资本主义制度下的工资之所以掩盖了资本主义剥削关系，是因为\nA.工资表现为“劳动的价格”\nB.工资表现为劳动力的价值\nC.工资模糊了个别劳动时间和社会必要劳动时间的界限\nD.工资的价值只计算了转移到新产品中去的那一部分",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_64",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第64题",
+    "content": "资本主义经济危机爆发的根本原因是资本主义的基本矛盾。经济危机的抽象的一般的可能性首先是由\nA.社会的绝对的消费能力引起的\nB.货币作为流通手段和支付手段引起的\nC.商品价格和价值之间量的不一致引起的\nD.社会总产品两大部类比例失衡引起的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_66",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第66题",
+    "content": "当前，百年变局加速演进，世界进入新的动荡变革期。近年来，国际金融市场动荡不安，世界经济复苏疲弱乏力。有分析指出，经济衰退与扩张交替出现，过去50年里每8年就发生一轮全球经济衰退，而每一次经济危机都会造成社会财富的巨大浪费。资本主义经济危机的本质特征是\nA.虚拟经济脱离实体经济\nB.社会生产结构严重失调\nC.周期性爆发\nD.生产相对过剩",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_67",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第67题",
+    "content": "经济危机实际上是资本主义条件下以强制的方式解决社会再生产的实现问题的途径。资本主义经济危机具有周期性，这是由\nA.社会资本再生产的周期性决定的\nB.资本主义基本矛盾运动的阶段性决定的\nC.工人运动进入低潮和重新高涨的周期运动决定的\nD.货币资本、生产资本、商品资本三种职能形式在时间上的继起性决定的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_s_68",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "马原·第四章 单选 第68题",
+    "content": "资本主义国家的对内职能，主要是\nA.社会管理职能\nB.政治统治的职能\nC.管理通信、交通、水利等事业的职能\nD.管理文教、卫生保健、社会福利等事业的职能",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_1",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第1题",
+    "content": "马克思指出：“资本主义生产方式占统治地位的社会的财富，表现为‘庞大的商品堆积’,单个的商品表现为这种财富的元素形式。”商品是\nA.用来交换的、能满足人们某种需要的劳动产品\nB.使用价值和价值的矛盾统一体\nC.价值和交换价值的矛盾统一体\nD.伴随人类社会始终的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_8",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第8题",
+    "content": "商品的价值形式是不断发展演变的。从历史上看，商品价值形式的发展经历了四个阶段，即简单的或偶然的价值形式、总和的或扩大的价值形式、一般价值形式、货币形式。由此可见\nA.货币是在长期交换过程中形成的固定充当一般等价物的商品\nB.货币是商品经济内在矛盾发展的产物\nC.货币的本质体现一种社会关系\nD.货币的出现标志着简单商品生产发展到资本主义商品生产的新阶段",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_2",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第2题",
+    "content": "使用价值不同的商品之所以能按一定比例相交换，就是因为它们都具有价值。商品的价值在质上是相同的，因而它们可以相互比较。商品的价值是劳动创造的，其实质是凝结在商品中的无差别的一般人类劳动。由此可见\nA.商品交换实际上是商品生产者之间相互交换劳动的关系\nB.商品的价值在本质上体现了生产者之间一定的社会关系\nC.使用价值寓于价值之中并通过价值表现出来\nD.劳动是一切社会财富的唯一源泉",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_3",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第3题",
+    "content": "以下正确反映商品使用价值、交换价值、价值之间关系的有\nA.使用价值是交换价值的物质承担者\nB.价值是交换价值的基础\nC.使用价值是商品的价值实体\nD.交换价值是价值的表现形式",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_5",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第5题",
+    "content": "生产商品所需要的社会必要劳动时间随着劳动生产率的变化而变化。劳动生产率的高低可以用\nA.单位劳动时间内生产的商品数量来测量\nB.单位劳动时间内劳动者所耗费的劳动量来测量\nC.单位劳动时间内生产的价值总量来测量\nD.单位商品中所耗费的劳动时间来测量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_6",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第6题",
+    "content": "劳动生产率指的是劳动者生产使用价值的效率。影响劳动生产率的主要因素有\nA.劳动者的平均劳动熟练程度\nB.科学技术的发展水平及其在生产中的应用程度\nC.生产过程的社会结合\nD.生产资料的规模和效能以及自然条件",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_9",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第9题",
+    "content": "对于价值规律的表现形式，马克思有这样一段描述：“价格和价值量之间的量的不一致的可能性，或者价格偏离价值量的可能性，已经包含在价格形式本身中。但这并不是这种形式的缺点，相反地，却使这种形式成为这样一种生产方式的适当形式，在这种生产方式下，规则只能作为没有规则性的盲目起作用的平均数规律来为自己开辟道路。”这说明，从较长时间来看\nA.价格高于价值的部分和价格低于价值的部分能够相抵\nB.垄断高价高于生产价格的部分和垄断低价低于生产价格的部分能够相抵\nC.商品的平均价格和价值是相一致的\nD.商品价格的波动会逐渐减小直到完全消失",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_10",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第10题",
+    "content": "在市场上，不同的商品有不同的价格，同一种商品的价格也经常变动。实际上，在令人眼花缭乱的价格运动背后有一个规律在起着支配的作用，这就是价值规律。价值规律\nA.既支配商品生产，又支配商品流通\nB.是资本主义社会特有的经济规律\nC.起作用的形式在一定条件下可以发生变化\nD.是在市场配置资源的过程中体现它的客观要求和作用的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_11",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第11题",
+    "content": "价值规律是商品经济的基本经济规律，它贯穿于商品经济的全部过程。价值规律的作用表现在\nA.自发地调节生产资料和劳动力在社会各生产部门之间的分配比例\nB.自发地调节雇佣工人与资本家之间的利益再分配\nC.自发地刺激社会生产力的发展\nD.自发地调节社会收入的分配",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_13",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第13题",
+    "content": "在以私有制为基础的商品经济中，商品生产者的劳动具有两重性：既是具有社会性质的社会劳动，又是具有私人性质的私人劳动。私人劳动和社会劳动的矛盾\nA.构成私有制基础上商品经济的基本矛盾\nB.决定着商品经济的本质及发展过程\nC.是商品经济其他一切矛盾的基础\nD.决定着商品生产者的命运",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_14",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第14题",
+    "content": "通过对商品关系的深刻分析，马克思阐明了商品的二因素和生产商品的劳动的二重性及其相互关系、价值的质和量的规定性及其变化规律、价值形式的发展和货币的起源、商品经济的基本矛盾和基本规律及其作用，形成了科学的劳动价值论。马克思劳动价值论的重大意义在于\nA.首次提出了劳动创造价值的观点\nB.揭示了私有制条件下商品经济的基本矛盾\nC.为剩余价值论的创立奠定了基础\nD.揭示了商品经济的一般规律，对理解社会主义市场经济具有指导意义",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_15",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第15题",
+    "content": "马克思指出：“资本主义社会的经济结构是从封建社会的经济结构中产生的。后者的解体使前者的要素得到解放。”随着社会生产力的提高特别是封建社会后期商品经济的迅速发展，封建生产关系越来越成为生产力发展的障碍。资本主义萌芽于14世纪末15世纪初地中海沿岸的一些城市。资本主义产生的途径有\nA.从小商品经济中分化出来\nB.从商人和高利贷者转化而来\nC.用暴力手段剥夺农民的土地\nD.用暴力手段掠夺货币财富",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_16",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第16题",
+    "content": "劳动力是特殊的商品。除了其自身独有的特点以外，劳动力商品与其他商品的共同点有\nA.它们都具有使用价值和价值\nB.它们的价值都是由工人在劳动过程中再生产出来的\nC.它们都具有价值增殖的功能\nD.它们都属于历史范畴",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_17",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第17题",
+    "content": "劳动力是一种特殊的商品。以下关于劳动力商品说法正确的有\nA.劳动力商品的市场价格与供求关系无关\nB.劳动力自身的价值在消费过程中能够转移到新产品中去\nC.劳动力商品的使用价值是价值的源泉\nD.劳动力价值的构成包含历史和道德的因素",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：CD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_19",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第19题",
+    "content": "在资本主义条件下，资本变成了一种非常神秘的东西，似乎劳动的一切社会生产力并非劳动本身所有，而为资本所有，资本本身就具有一种能使价值增殖的魔力，这就是资本拜物教。马克思通过对劳动力商品的特点和资本总公式的矛盾的分析，阐明了资本的实质，揭露了资本拜物教产生的秘密。以下对资本认识正确的有\nA.资本是能够带来剩余价值的价值\nB.资本是剩余价值产生的源泉\nC.根据资本在剩余价值生产中所起的不同作用划分为不变资本和可变资本\nD.在资本主义社会，资本总是通过各种物品表现出来",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_20",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第20题",
+    "content": "由于资本主义劳动过程的要素都为资本家所占有，这就决定了资本主义劳动过程有其自身的特点。这些特点包括\nA.劳动者获得的工资远远小于劳动力的价值\nB.工人在资本家的监督下劳动，他们的劳动隶属于资本家\nC.劳动的成果或者产品全部归资本家所有\nD.雇佣工人与资本家形成人身依附的关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_21",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第21题",
+    "content": "在资本主义生产过程中，工人的劳动作为具体劳动的作用是\nA.创造商品的使用价值\nB.转移劳动力自身的价值\nC.新创造劳动力自身的价值\nD.转移生产资料的价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_22",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第22题",
+    "content": "在资本主义条件下，资本家剥削剩余价值具有隐蔽性。马克思分析揭示了剩余价值的真正来源，阐明了资本的实质。以下选项中属于价值源泉的有\nA.劳动力商品的使用价值\nB.雇佣工人的劳动\nC.全部预付资本中的流动资本部分\nD.生产资料的价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_23",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第23题",
+    "content": "根据资本在剩余价值生产中所起的不同作用，可以将资本划分为不变资本与可变资本。以下说法正确的有\nA.可变资本的价值是由工人的劳动再生产出来的\nB.不变资本就是固定资本\nC.这种划分为确定资本家对雇佣劳动者的剥削程度提供了科学依据\nD.剩余价值全部是由可变资本创造的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_25",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第25题",
+    "content": "在资本主义发展的初期，资本家主要依靠绝对剩余价值生产来提高剥削程度。绝对剩余价值生产采取的方法有\nA.延长工作日的长度\nB.提高工人的劳动强度\nC.缩短必要劳动时间\nD.降低劳动力的价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_26",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第26题",
+    "content": "在资本主义商品生产条件下，每个资本家总是力图不断改进技术，改善经营管理，提高劳动生产率。率先提高劳动生产率的企业\nA.其个别劳动时间少于社会必要劳动时间\nB.生产商品的个别价值低于社会价值\nC.可以获得超额剩余价值\nD.在商品交换时不受价值规律制约",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_28",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第28题",
+    "content": "第二次世界大战以后，资本主义生产中的自动化程度加强。自动化生产线的广泛使用，使直接从事生产操作的工人大大减少，甚至出现了少数所谓的“无人工厂”。这意味着，在生产自动化条件下\nA.剩余价值生产所使用的生产工具更加先进\nB.技术和科学成为独立的剩余价值源泉\nC.资本的有机构成进一步降低\nD.劳动的复杂程度和强度日益提高",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_29",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第29题",
+    "content": "马克思关于资本积累的学说是剩余价值理论的重要组成部分。资本积累是\nA.资本主义扩大再生产的源泉\nB.资本主义经济危机爆发的根本原因\nC.社会财富占有两极分化的重要原因\nD.资本主义社会失业现象产生的根源",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_30",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第30题",
+    "content": "把剩余价值转化为资本，或者说，剩余价值的资本化，就是资本积累。马克思关于资本积累的学说是剩余价值理论的重要组成部分，它\nA.揭露了资本主义制度下贫富两极分化的原因\nB.揭示了资本主义失业现象的本质\nC.揭露和批判了商品拜物教观念\nD.深刻地阐明了资本主义制度必然走向灭亡的历史命运",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_31",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第31题",
+    "content": "资本积累的源泉是剩余价值，资本积累规模的大小取决于\nA.资本家对工人的剥削程度\nB.劳动生产率的高低\nC.所用资本和所费资本之间的差额\nD.资本家预付资本的大小",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_32",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第32题",
+    "content": "资本主义生产的唯一动机和直接目的就是追求剩余价值。为了达到这一目的，资本家便尽可能改进技术，提高劳动生产率，加快资本积累，通过资本积聚和资本集中扩大生产规模。在生产技术水平不断提高的条件下，资本积累不断增长，必然伴随着资本的积聚和集中，使个别资本的规模日益增大。这一过程的结果是\nA.每个劳动力所推动的生产资料的数量大幅度增加\nB.可变资本在资本总额中所占的比重日益下降\nC.不可避免地造成大批工人失业，形成相对过剩人口\nD.资产阶级政府不得不通过各种干预措施来彻底消灭失业",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_33",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第33题",
+    "content": "关于资本有机构成，以下说法正确的有\nA.由生产的技术水平所决定的生产资料和劳动力之间的比例叫作资本的有机构成\nB.在资本主义生产过程中资本有机构成的提高是一般趋势\nC.资本有机构成的提高不可避免地形成相对过剩人口\nD.资本有机构成是反映资本家对工人剥削程度的根本标准",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_34",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第34题",
+    "content": "产业资本循环不断进行的基本前提条件是\nA.三种职能形式在时间上继起\nB.三种职能形式在空间上并存\nC.商品资本循环顺利进行\nD.生产资本循环顺利进行",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_35",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第35题",
+    "content": "资本是在运动中增殖的，必须不断地、周而复始地循环，才能不断地带来剩余价值。这种周而复始、不断反复着的资本循环，就叫作资本的周转。影响资本周转快慢的因素有许多，关键的因素有\nA.资本周转的时间\nB.所用资本和所费资本之间的差额\nC.生产资本的固定资本和流动资本的构成\nD.资本家预付资本的大小",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_36",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第36题",
+    "content": "社会再生产的顺利进行，要求\nA.生产中所耗费的资本在价值上得到补偿\nB.实际生产过程中所耗费的生产资料和消费资料得到实物的替换\nC.两大部类内部各个产业部门之间保持一定的比例关系\nD.两大部类之间保持一定的比例关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_40",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第40题",
+    "content": "资本主义生产的目的是获得利润。不同生产部门的资本家之间为了得到尽可能多的利润必然展开激烈的竞争从而导致利润平均化。平均利润形成后\nA.商品价值就转化为生产价格\nB.价值规律的实现形式发生了变化\nC.生产价格不再随着商品价值的变化而变动\nD.每一个部门获得的利润都等于该部门生产的剩余价值",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_41",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第41题",
+    "content": "马克思通过分析剩余价值的生产、积累、流通以及分配过程，揭示了剩余价值的运动规律及其作用，创立了剩余价值理论。剩余价值理论\nA.深刻揭露了资本主义生产关系的剥削本质\nB.阐明了资产阶级与无产阶级之间阶级斗争的经济根源\nC.指出了无产阶级革命的历史必然性\nD.是“理解政治经济学的枢纽”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_4_m_43",
+    "chapterId": "my_ch4",
+    "chapterName": "马原·第四章",
+    "sectionId": "my_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "马原·第四章 多选 第43题",
+    "content": "资本主义国家法律制度的核心是宪法，资本主义宪法所依据的基本原则有\nA.私有制原则\nB.主权在民原则\nC.分权制衡原则\nD.人权原则",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：CD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_1",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第1题",
+    "content": "列宁根据他所处时代的实践曾指出，资本主义发展到垄断资本主义，进而发展到帝国主义，便具有其基本特征。这些基本特征中，在经济生活中起决定作用的是\nA.金融寡头\nB.资本家国际垄断同盟\nC.资本输出\nD.垄断组织",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_2",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第2题",
+    "content": "在资本主义的自由竞争中，在剩余价值规律、竞争规律和资本积累规律的作用下，必然引起生产集中和资本集中，生产集中和资本集中发展到一定阶段必然引起垄断，这是资本主义发展的客观规律。资本集中是指\nA.国家政权和私人垄断资本融合在一起的过程\nB.大资本吞并小资本，或由许多小资本合并而成大资本的过程\nC.工业垄断资本和银行垄断资本融合在一起的过程\nD.个别资本通过剩余价值的资本化来增大资本的总量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_5",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第5题",
+    "content": "金融寡头是指操纵国民经济命脉，并在实际上控制国家政权的少数垄断资本家或垄断资本家集团。金融寡头在经济领域中的统治主要是通过“参与制”实现的。所谓“参与制”是指金融寡头\nA.通过把自己的代理人送进政府或议会来为其垄断统治服务\nB.通过建立政策咨询机构等方式参与政府的政策制定\nC.通过掌握一定数量的股票来层层控制企业\nD.私人与国家共同投资开办合营企业",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_6",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第6题",
+    "content": "垄断资本的实质在于获取垄断利润，垄断利润是垄断资本家凭借其在社会生产和流通中的垄断地位而获得的超过平均利润的高额利润。垄断利润的形成，关键在于\nA.垄断组织能够把包罗万象的社会生产全部包下来\nB.垄断消除了产生竞争的经济条件\nC.垄断条件下的竞争采取的完全是非经济的手段\nD.垄断组织在经济生活中起了决定性作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_10",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第10题",
+    "content": "第二次世界大战后，由于多种社会因素的影响，资本主义发生了一系列变化。在劳资关系方面，劳动对资本的隶属从资本主义发展初期的形式上的隶属逐渐成为实质上的隶属。之所以发生这种变化，是因为\nA.资本家与雇佣工人的关系从“自由平等”变为人身依附\nB.终身雇佣和职工持股等方式使得劳动者成为资本家的代理人\nC.劳动者个人的技能不再对生产过程和结果具有决定意义\nD.雇佣劳动者的剩余劳动不再是剩余价值的唯一源泉",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_s_11",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "马原·第五章 单选 第11题",
+    "content": "进入21世纪以来，随着经济全球化的深入发展，新一轮科技革命和产业变革进入空前密集活跃期、社会化大生产在世界范围内更大规模、更广范围、更深层次展开，世界格局深度调整，资本主义呈现出一些新变化、新特征。当代资本主义最突出、最鲜明、最主要的特征是\nA.社会阶级层级结构呈现复杂性、多样化\nB.科技创新加速资本主义生产方式变化\nC.国际金融资本的垄断\nD.发达资本主义国家在世界范围内推行霸权主义和强权政治",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_1",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第1题",
+    "content": "关于生产集中和资本集中及其后果，以下认识正确的有\nA.生产集中和资本集中是资本家追求剩余价值的结果\nB.生产集中和资本集中发展到一定阶段必然引起垄断\nC.生产集中和资本集中是最简单的、初级的垄断组织形式\nD.自由竞争引起生产集中和资本集中",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_2",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第2题",
+    "content": "垄断并不能消除竞争，反而使竞争变得更加复杂和剧烈。垄断条件下的竞争包括\nA.垄断组织内部的竞争\nB.垄断组织之间的竞争\nC.垄断组织同非垄断组织之间的竞争\nD.垄断资本家集团之间的竞争",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_3",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第3题",
+    "content": "垄断条件下的竞争同自由竞争相比，具有的新特点包括\nA.目的是获得更多利润或超额利润，不断扩大资本的积累\nB.除了采取各种形式的经济手段外，还采取非经济的手段\nC.不仅在国内市场上进行竞争，国际市场上的竞争也越来越激烈\nD.不仅经济领域的竞争多种多样，而且还扩大到经济领域以外",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_4",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第4题",
+    "content": "自由竞争引起生产集中和资本集中，生产集中和资本集中发展到一定阶段必然引起垄断，这是资本主义发展的客观规律。但是，垄断并不能消除竞争，反而使竞争变得更加复杂和剧烈。这是因为\nA.垄断没有消除产生竞争的经济条件\nB.垄断必须通过竞争来维持\nC.垄断并不是作为自由竞争的对立面产生的\nD.任何垄断组织都不可能把包罗万象的社会生产全部包下来",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_5",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第5题",
+    "content": "金融资本是由工业垄断资本和银行垄断资本融合在一起而形成的一种垄断资本。金融资本形成的主要途径包括\nA.金融联系\nB.资本参与\nC.行政干预\nD.人事参与",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_8",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第8题",
+    "content": "垄断利润主要是通过垄断组织制定的垄断价格来实现的。但是，垄断价格的产生没有否定价值规律，这是因为，从全社会看\nA.整个社会商品的价值仍然是由生产它们的社会必要劳动时间决定的\nB.垄断低价低于原材料生产价格的部分仍然等于垄断高价高于出售商品生产价格的部分\nC.垄断价格既不能增加也不能减少整个社会所生产的价值总量\nD.商品的价格总额仍然等于商品的价值总额",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_10",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第10题",
+    "content": "国家垄断资本主义的主要形式有\nA.国家所有并直接经营企业\nB.国家与私人共有、合营企业\nC.国家通过多种形式参与私人垄断资本的再生产过程\nD.宏观调节和微观规制",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_11",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第11题",
+    "content": "国家垄断资本主义是国家政权和私人垄断资本融合在一起的垄断资本主义。第二次世界大战后，在所有发达资本主义国家，国家垄断资本主义无论在广度上还是深度上都有了更迅速、更普遍的发展。国家通过多种形式参与私人垄断资本的再生产过程是国家垄断资本主义的主要形式之一，其方式主要包括\nA.国家运用财政政策、货币政策等经济手段，对社会总供给和总需求进行调节\nB.国家向私人垄断企业大量订货，为私人垄断企业提供有保证的国家市场\nC.国家通过各种形式的津贴和补助，直接、间接地资助私人垄断企业\nD.国家通过社会福利开支扩大消费需求，为私人垄断企业创造市场条件",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_13",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第13题",
+    "content": "垄断资本在国内建立了垄断统治后，必然要把其统治势力扩展到国外，建立国际垄断统治。垄断资本向世界范围扩展的基本形式有\nA.技术资本输出\nB.借贷资本输出\nC.生产资本输出\nD.商品资本输出",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_15",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第15题",
+    "content": "各资本主义国家的垄断组织，通过订立协议建立起国际垄断资本的联盟，即国际垄断同盟，以便在世界范围形成垄断，并在经济上瓜分世界。以下说法正确的有\nA.国际垄断同盟在经济上瓜分世界是通过垄断组织间的协议实现的\nB.早期的国际垄断同盟主要是跨国公司\nC.当代国际垄断同盟的形式以国际卡特尔和国家垄断资本主义的国际联盟为主\nD.国家垄断资本主义的国际联盟是由一些资本主义国家的政府出面缔结协定所组成的国际经济集团",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_16",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第16题",
+    "content": "导致经济全球化迅猛发展的因素主要有\nA.科学技术的进步和生产力的发展\nB.跨国公司的发展\nC.各国经济体制的变革和国际经济组织的发展\nD.发展中国家的斗争",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_17",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第17题",
+    "content": "经济全球化是指在生产不断发展、科技加速进步、社会分工和国际分工不断深化、生产的社会化和国际化程度不断提高的情况下，世界各国、各地区的经济活动越来越超出一国和地区的范围而相互联系、相互依存的过程。以下说法正确的有\nA.经济全球化可以带来巨大的分工利益，推动世界生产力的发展\nB.不仅发达国家从中受益，一些发展中国家在参与经济全球化进程中也得到了快速发展\nC.在经济全球化进程中，资金、技术等生产要素可以在国际社会流动和优化配置\nD.国际金融危机是经济全球化发展的必然产物",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_20",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第20题",
+    "content": "第二次世界大战后，资本主义生产资料所有制发生了新的变化，法人资本所有制崛起并成为居主导地位的资本所有制形式。法人资本所有制\nA.主要存在于当代资本主义经济生活中居支配地位的巨型公司中\nB.主要特点是资本占有主体多元化，公司资本的所有权与控制权不再统一\nC.在性质上是一种基于资本雇佣劳动的垄断资本集体所有制\nD.体现了资本剥削雇佣劳动的关系",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_22",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第22题",
+    "content": "第二次世界大战后，资本主义国家为尽快恢复国民经济，在继续发挥市场机制主导性作用的同时，开始对经济进行全面干预。但是，从20世纪70年代起，随着资本主义经济陷入滞胀和新自由主义思潮的泛滥，西方国家普遍走上强化市场调节、弱化政府干预的道路，即\nA.通过国有企业私有化来提升经济竞争力\nB.通过福利制度改革，减少政府的财政负担\nC.通过政治制度多元化，扩大公民权利\nD.通过放松对经济和金融的管制，释放经济活力",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_24",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第24题",
+    "content": "第二次世界大战后，由于多种社会因素的影响，资本主义发生了一系列变化。其中在政治制度上的变化有\nA.政治制度出现多元化的趋势，公民权利有所扩大\nB.通过建立政策咨询机构等方式允许民众直接参与政策的制定和执行\nC.普遍加强了法治建设，以便协调社会各阶级、阶层的利益\nD.改良主义政党在政治舞台上的影响日益扩大",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_25",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第25题",
+    "content": "第二次世界大战后资本主义出现的变化原因是多方面的，主要有\nA.科学技术革命和生产力的发展，是资本主义发生变化的根本推动力量\nB.工人阶级争取自身权利和利益的斗争，是推动资本主义发生变化的重要力量\nC.社会主义制度初步显示的优越性对资本主义产生了重要影响\nD.主张改良主义的政党对资本主义制度的改革触动了资本主义基本经济制度",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_26",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第26题",
+    "content": "第二次世界大战后，资本主义的变化是客观事实，正视这些变化，深刻分析这些变化的实质，对于我们正确认识资本主义的本质，把握资本主义发展的趋势，具有重要的意义。从第二次世界大战后资本主义发展的实际情况来看\nA.资本主义生产关系的根本性质没有改变\nB.资本追逐剩余价值的本性没有改变\nC.获取剩余价值的方式和方法没有改变\nD.导致财富占有两极分化的制度基础没有改变",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_28",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第28题",
+    "content": "进入21世纪以来，资本主义呈现出一些新变化、新特征。科技创新加速资本主义生产方式变化，这表现在\nA.产业结构的调整\nB.生产组织和劳动形式的变化\nC.社会阶级层级结构呈现复杂性、多样化\nD.新经济形态的出现",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_29",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第29题",
+    "content": "进入21世纪以来，资本主义呈现出一些新变化、新特征。国际金融垄断资本主义影响日益显现，国际金融资本的垄断成为当代资本主义最突出、最鲜明、最主要的特征，这表现在\nA.金融垄断寡头化\nB.金融垄断国际化\nC.经济虚拟化\nD.产业空心化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_30",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第30题",
+    "content": "当前，百年变局加速演进，国际格局和国际体系深刻调整，全球治理体系深刻变革，国际力量对比正在发生近代以来最具革命性的变化，世界进入新的动荡变革期。资本主义社会问题加速积聚，资本主义国家内部的矛盾和冲突日益明显，表现为\nA.经济发展失调\nB.政治体制失灵\nC.社会融合机制失效\nD.生态领域失控",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_31",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第31题",
+    "content": "2008年国际金融危机以来，西方主要资本主义国家采取各种措施应对危机，虽暂时避免了金融秩序崩溃，但对推动经济复苏效果有限，经济发展仍然面临一系列问题，具体表现为\nA.福利风险增加\nB.债务负担沉重\nC.社会流动性退化\nD.虚拟经济与实体经济发展失衡",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_32",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第32题",
+    "content": "长期以来，西方国家标榜民主并不遗余力地向外输出民主，但近年来移植西式民主的国家陷入动荡，西方国家本身也出现了某些治理危机，暴露出西式民主的弊端和局限，具体表现在\nA.西式选举往往难以选贤\nB.政党利益可能凌驾于国家利益之上\nC.“民主陷阱”会阻碍国家治理\nD.传统精英政治走向衰落",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_5_m_33",
+    "chapterId": "my_ch5",
+    "chapterName": "马原·第五章",
+    "sectionId": "my_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "马原·第五章 多选 第33题",
+    "content": "资本积累的本质，就是资本家不断地利用无偿占有的工人创造的剩余价值来扩大自己的资本规模，进一步扩大和加强对工人的剥削和统治。资本的不断积累\nA.必然提高生产的社会化程度\nB.在客观上势必导致生产集中和资本集中\nC.为否定资本主义制度自身准备了物质条件\nD.必然不断增强资本家个人在管理中的地位和作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_s_2",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "马原·第六章 单选 第2题",
+    "content": "从莫尔1516年发表《乌托邦》到现在，社会主义已经有500多年的历史了。社会主义发展史上的第一次历史性飞跃是指\nA.19世纪中叶，社会主义从空想到科学\nB.20世纪初，社会主义从理论发展到建立社会主义制度的实践\nC.社会主义从一国实践发展到多国实践\nD.20世纪70年代末开始的社会主义改革",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_s_3",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "马原·第六章 单选 第3题",
+    "content": "空想社会主义的发展经历了三个阶段，其中成为科学社会主义的直接思想来源的是\nA.16—17世纪的早期空想社会主义\nB.18世纪的空想平均共产主义\nC.19世纪初期批判的空想社会主义\nD.20世纪的空想社会主义",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_s_6",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "马原·第六章 单选 第6题",
+    "content": "1921年3月，俄共（布）召开十大，毅然决定从战时共产主义政策过渡到新经济政策。新经济政策的主要特征是\nA.开展农业合作化\nB.发展商品经济\nC.优先发展重工业\nD.多种经济成分并存",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_2",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第2题",
+    "content": "19世纪初期以圣西门、傅立叶、欧文为代表的批判的空想社会主义者，他们\nA.在理论上致力于对社会制度的分析\nB.对资本主义旧制度的辛辣批判，包含着许多切中要害的见解\nC.对社会主义新制度的描绘，闪烁着诸多天才的火花\nD.阐明了资本主义制度下雇佣奴隶制的本质，为启发工人觉悟提供了极为宝贵的材料",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_6",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第6题",
+    "content": "从1918年夏到1921年春，列宁领导的苏维埃政权实行了战时共产主义政策。这一政策的主要特征是\nA.实行余粮收集制\nB.实行粮食税制\nC.取消商品货币关系\nD.实行租让制",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AC\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_7",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第7题",
+    "content": "1921年3月，俄共（布）召开十大，毅然决定从战时共产主义政策过渡到实行新经济政策。俄共（布）十大决定实行新经济政策，是因为\nA.国家从战争转入和平经济建设时期，战时共产主义政策无法调动生产者尤其是农民的积极性\nB.国民经济已濒临崩溃，国内发生严重的经济和政治危机\nC.如不改变政策，执政党将会失去广大群众，丢掉阶级基础\nD.需要为实行农业集体化摸索经验",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_8",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第8题",
+    "content": "1921年3月，俄共（布）召开十大，毅然决定从战时共产主义政策过渡到实行新经济政策。这一决定，表明列宁的社会主义建设思想发生了重大转变，对俄国这样一个小农占优势的社会主义国家如何走向社会主义又有了新的认识，标志着列宁正在探索一条符合俄国国情的建设社会主义的道路。新经济政策的主要内容有\nA.取消粮食税制以调动农民的积极性\nB.允许私人自由贸易，恢复商品货币关系\nC.允许私人小工业企业发展\nD.采取一些国家资本主义的形式来发展生产",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_9",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第9题",
+    "content": "1921年3月，俄共（布）召开十大，毅然决定从战时共产主义政策过渡到实行以发展商品经济为主要特征的新经济政策。新经济政策的实施\nA.完成了农业合作化，在广大农村建立起了社会主义的制度基础\nB.扭转了国家的严重危机，改善了工人、农民和其他劳动者的物质文化生活\nC.活跃了苏维埃的城乡经济，发展了生产，大大加强了苏维埃的社会主义经济基础\nD.标志着苏联模式开始形成",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_10",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第10题",
+    "content": "在俄国社会主义革命取得胜利的初期，特别是实行新经济政策期间，列宁对苏维埃俄国如何建设社会主义进行了深刻的理论思考，提出了许多精辟的论述，主要包括\nA.把建设社会主义作为一个长期探索、不断实践的过程\nB.把大力发展生产力、提高劳动生产率放在首要地位\nC.在多种经济成分并存的条件下，利用商品、货币和市场发展经济\nD.利用资本主义建设社会主义",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_6_m_12",
+    "chapterId": "my_ch6",
+    "chapterName": "马原·第六章",
+    "sectionId": "my_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "马原·第六章 多选 第12题",
+    "content": "列宁晚年虽然病魔缠身，但仍然没有停止对社会主义事业的思考。他在口授的《日记摘录》《论合作社》《论我国革命》《我们怎样改组工农检查院》《宁肯少些，但要好些》等被人们称为“政治遗嘱”的文章和书信中，对十月革命以来所走过的道路进行了深入的思考，提出了建设社会主义的新构想。这些思想主要包括\nA.用合作社的形式将农民引向社会主义道路\nB.发展大工业，实现工业化和电气化\nC.学习和利用资本主义的一切东西\nD.进行文化革命，大力发展文化教育事业",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_7_m_2",
+    "chapterId": "my_ch7",
+    "chapterName": "马原·第七章",
+    "sectionId": "my_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "马原·第七章 多选 第2题",
+    "content": "马克思、恩格斯关于未来社会的预测，是在科学地批判和剖析资本主义社会的过程中作出的。马克思、恩格斯对资本主义批判的高明之处在于\nA.不是只看到资本主义社会的弊端，而是进一步揭示出弊端的根源和资本主义发展中自我否定的力量\nB.发现资本主义的矛盾运动中孕育着的新社会因素，并以此对未来社会特点作出预见\nC.既从资本主义社会中寻找灵感，更从社会主义社会的建设与发展中寻找启示\nD.先指出未来社会的一般特征，再对各种细节作具体描绘",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "my_7_m_3",
+    "chapterId": "my_ch7",
+    "chapterName": "马原·第七章",
+    "sectionId": "my_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "马原·第七章 多选 第3题",
+    "content": "实现人的自由而全面的发展，是马克思主义追求的根本价值目标，也是共产主义社会的根本特征。共产主义社会中人的自由而全面的发展指的是\nA.全体社会成员的发展，即每一个人的发展\nB.社会不存在矛盾，人与人之间形成事实上的平等\nC.社会发展与个人发展实现了真正的统一\nD.社会发展不再以牺牲某些个人的发展为代价",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_3",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第3题",
+    "content": "中国近代社会的两对主要矛盾是互相交织的，而帝国主义和中华民族的矛盾是最主要的矛盾。但是，在某个阶段、某个时期，阶级矛盾也会上升为主要矛盾，民族矛盾退居次要地位。以下根源于阶级矛盾上升为主要矛盾的事件是\nA.义和团运动\nB.甲午战争\nC.鸦片战争\nD.辛亥革命",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_5",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第5题",
+    "content": "中国沦为半殖民地半封建社会的过程中，最早出现的一个新的社会阶级是\nA.官僚买办资产阶级\nB.民族资产阶级\nC.工人阶级\nD.资产阶级",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_9",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第9题",
+    "content": "帝国主义列强掀起瓜分中国的狂潮是在\nA.中日甲午战争爆发后\nB.第一次鸦片战争爆发后\nC.八国联军侵华战争爆发后\nD.第二次鸦片战争爆发后",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_10",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第10题",
+    "content": "资本-帝国主义侵略、压迫中国人民的过程，同时也是中国人民反抗它们的侵略、压迫的过程。中国近代史上中国人民第一次大规模的反侵略武装斗争是\nA.三元里人民的抗英斗争\nB.太平天国的抗击洋枪队斗争\nC.台湾高山族人民的抗日斗争\nD.义和团的抗击八国联军斗争",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_11",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第11题",
+    "content": "从1840年至1919年的80年间，中国人民对外来侵略进行了英勇顽强的反抗。但历次的反侵略战争、都是以中国失败、中国政府被迫签订丧权辱国的条约而告结束的。近代中国反侵略战争屡遭失败的最重要的原因是\nA.社会制度腐败\nB.军事战略错误\nC.经济技术落后\nD.思想观念保守",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_s_12",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_s",
+    "sectionName": "第一章·单选",
+    "title": "史纲·第一章 单选 第12题",
+    "content": "帝国主义的侵略给中华民族带来了巨大的灾难。但是，列强发动的侵华战争以及中国反侵略战争的失败，从反面教育了中国人民，极大地促进了中国人的思考、探索和奋起。以下属于中日甲午战争爆发后提出的口号的是\nA.“师夷长技以制夷”\nB.“睁眼看世界”\nC.“振兴中华”\nD.“自强”“求富”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_1",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第1题",
+    "content": "鸦片战争是中国近代史的起点。鸦片战争之所以成为中国近代史的起点，是因为鸦片战争之后，随着外国资本主义的入侵\nA.中国的封建社会逐步成为半殖民地半封建社会\nB.中国人民逐渐开始了反帝反封建的资产阶级民主革命\nC.中国人民对帝国主义的认识进到理性的阶段\nD.中国工人阶级开始以独立的姿态登上历史舞台",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_2",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第2题",
+    "content": "近代以来中华民族面临的两大历史任务，就是争取民族独立、人民解放和实现国家富强、人民幸福。关于两大历史任务，以下说法正确的是\nA.两大历史任务的内容与实现方式都不一样\nB.前一个任务为后一个任务创造必要的前提\nC.后一个任务是前一个任务的最终目的和必然要求\nD.两大历史任务分别由辛亥革命和新民主主义革命实现",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_3",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第3题",
+    "content": "资本-帝国主义列强对中国的侵略，首先和主要的是进行军事侵略。此外，还对中国实行政治控制、经济掠夺和文化渗透。为了统治中国，资本-帝国主义列强在政治上采取的主要方式有\nA.控制中国的内政、外交\nB.镇压中国人民的反抗\nC.控制中国的通商口岸\nD.扶植、收买代理人",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_4",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第4题",
+    "content": "电影《南京照相馆》导演、编剧奥中在《人民日报》发表题为《让历史真相不被掩盖和遗忘》的文章，他提到：侵华日军在中国发起的不仅是一场热战，更是一场舆论战、文化战。电影中，孙中山先生题字的牌匾被肆意涂抹，井上大佐的办公室摆满抢夺来的古玩字画……。这些都揭示了列强文化侵略的意图。鸦片战争以后，资本-帝国主义列强在对华实行军事侵略、政治控制、经济掠夺的同时，还对中国进行文化渗透。其进行文化渗透的目的是\nA.宣扬殖民主义奴化思想\nB.麻醉中国人民的精神\nC.摧毁中国人的民族自尊心和自信心\nD.镇压中国人民的反抗",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_6",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第6题",
+    "content": "受到鸦片战争失败的强烈刺激，中国官吏和知识分子中少数爱国的有识之士，开始注意了解国际形势，研究外国史地，总结失败教训，寻找救国的道路和御敌的方法。郑观应在所著《盛世危言》中提出了一系列具有重要的思想启蒙意义的主张，主要有\nA.大力发展民族工商业\nB.同西方国家进行“商战”\nC.设立议院\nD.实行共和制度",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_7",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第7题",
+    "content": "19世纪70年代以后，王韬、薛福成、马建忠、郑观应等人不仅主张学习西方的科学技术，同时也要求吸纳西方的政治、经济学说。他们的共同特点是具有\nA.比较强烈的反对外国侵略的爱国思想\nB.追求中国独立富强的爱国思想\nC.追求实行民主共和制度的思想\nD.一定程度反对封建专制的民主思想",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_8",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第8题",
+    "content": "130多年前爆发的中日甲午战争是中国近代史上的一个重要时间节点。甲午战争中国战败的影响有\nA.中国开始陷入“边疆危机”\nB.中国人开始有了普遍的民族意识的觉醒\nC.帝国主义列强对中国的争夺和瓜分达到高潮\nD.标志着以“自强”“求富”为目标的洋务运动的失败",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_1_m_9",
+    "chapterId": "sg_ch1",
+    "chapterName": "史纲·第一章",
+    "sectionId": "sg_ch1_m",
+    "sectionName": "第一章·多选",
+    "title": "史纲·第一章 多选 第9题",
+    "content": "鸦片战争以后，中国还只是少数人有朦胧的民族觉醒意识。中日甲午战争以后，中国人才开始有了普遍的民族意识的觉醒。甲午战争促成中国人民的民族意识开始普遍觉醒的主要原因在于\nA.甲午战败和《马关条约》的签订给中国造成了深重的民族灾难\nB.中国的惨败彻底打破了中国传统的夷夏观念\nC.甲午战争以后，先进的中国人开始睁眼看世界了\nD.传统的“天朝上国”的优越感已经荡然无存",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_3",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第3题",
+    "content": "洋务派继承了魏源“师夷长技以制夷”的思想，提出“自强”“求富”的主张，通过所掌握的国家权力集中力量优先发展\nA.官办企业\nB.民用企业\nC.军事工业\nD.邮政铁路",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_5",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第5题",
+    "content": "洋务运动期间，洋务派兴办的民用企业中，采取官督商办方式的企业基本上是\nA.买办官僚性质的\nB.封建主义性质的\nC.半封建半殖民地性质的\nD.资本主义性质的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_6",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第6题",
+    "content": "中国近代教育开始于\nA.洋务运动时期\nB.戊戌维新运动时期\nC.辛亥革命时期\nD.新文化运动时期",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_8",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第8题",
+    "content": "近代中国资产阶级思想与封建主义思想的第一次正面交锋是\nA.“师夷长技以制夷”主张的提出\nB.洋务派与顽固派的论战\nC.维新派与守旧派的论战\nD.新文化运动倡导者对以孔子为代表的“往圣先贤”的猛烈抨击",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_9",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第9题",
+    "content": "在维新派与守旧派之间的激烈论战中，守旧派认为“民权之说，无一益而有百害”“民权之说一倡，愚民必喜，乱民必作，纪纲不行，大乱四起。”维新派则运用西方资产阶级政治学说，对封建君主专制制度作了批判。谭嗣同指出：“君末也；民本也。”严复甚至认为，国家是“民之公产”，王侯将相不过是“通国之公仆隶”，而专制帝王则是“窃国者耳”。这说明维新派主张\nA.只有“兴民权改民主”才是中国的唯一出路\nB.推翻帝制，实行共和\nC.进行社会革命\nD.兴民权、设议院，实行君主立宪",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_s_10",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_s",
+    "sectionName": "第二章·单选",
+    "title": "史纲·第二章 单选 第10题",
+    "content": "甲午战争后，维新运动迅速兴起。针对洋务派提出的“中体西用”的方针，维新派指出，体与用是不可分的。中学有中学的“体”与“用”，西学有西学的“体”与“用”，把中学之“体”与西学之“用”凑在一起，就如同让“牛体”产生“马用”一样荒谬。维新派与洋务派分歧的实质是\nA.要不要进行社会革命\nB.要不要以革命手段推翻清王朝\nC.要不要在中国兴办近代企业\nD.要不要学习西方的政治制度与思想文化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_m_3",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "史纲·第二章 多选 第3题",
+    "content": "19世纪60—90年代，洋务派举办的洋务事业归纳起来主要有\nA.兴办近代企业\nB.建立新式海陆军\nC.创办新式学堂，派遣留学生\nD.颁布商法商律，奖励工商",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_m_4",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "史纲·第二章 多选 第4题",
+    "content": "洋务运动失败的原因主要是\nA.洋务运动具有封建性\nB.洋务运动对列强具有依赖性\nC.洋务企业的管理具有腐朽性\nD.洋务运动的指导思想具有激进性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_m_5",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "史纲·第二章 多选 第5题",
+    "content": "洋务运动是在19世纪60年代初第二次鸦片战争结束后，在清政府镇压太平天国起义与捻军起义的过程中兴起的。洋务运动历时30多年，虽然因北洋海军在甲午战争一役全军覆没而告失败，但是，洋务运动仍然有它的历史作用，表现在\nA.开办了一批新式学堂，派出了最早的官派留学生，这是中国近代教育的开始\nB.裁撤绿营；建立新军，巩固了国防和边防\nC.传统的“重本抑末”等观念受到冲击，社会风气和价值观念开始变化\nD.客观上对中国的早期工业和民族资本主义的发展起了某些促进作用",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_m_6",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "史纲·第二章 多选 第6题",
+    "content": "下列关于戊戌维新运动中维新派与守旧派论战的表述正确的有\nA.论战的实质是资产阶级思想与封建主义思想在中国的第一次正面交锋\nB.论战主要围绕要不要变法，要不要兴民权、设议院，实行君主立宪，要不要废八股、改科举和兴西学等问题展开\nC.论战所涉及的领域十分广泛，进一步开阔了新型知识分子的眼界，解放了人们长期受到束缚的思想\nD.通过论战，划清了革命与改良的界限，维新变法政治运动的帷幕随之拉开",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_2_m_9",
+    "chapterId": "sg_ch2",
+    "chapterName": "史纲·第二章",
+    "sectionId": "sg_ch2_m",
+    "sectionName": "第二章·多选",
+    "title": "史纲·第二章 多选 第9题",
+    "content": "19世纪90年代，维新派与守旧派开展了一场实质上是资产阶级思想与封建主义思想在中国的第一次正面交锋的论战。这场论战围绕的主要问题是\nA.要不要变法\nB.要不要实行民主共和\nC.要不要废八股、改科举和兴西学\nD.要不要实行君主立宪",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_s_3",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "史纲·第三章 单选 第3题",
+    "content": "孙中山主张要以革命手段推翻清朝政府，建立中华民族“独立的国家”。孙中山强调，不仅要扫除“现在的恶劣政治”，还要扫除“恶劣政治的根本”。这里所说的扫除“恶劣政治的根本”是指\nA.民生革命\nB.社会革命\nC.政治革命\nD.民族革命",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_s_8",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "史纲·第三章 单选 第8题",
+    "content": "中国资产阶级革命派与改良派的根本不同之处在于，资产阶级革命派①在踏上革命道路之时就高举起民主革命的旗帜②始终重视广泛动员人民群众的力量③最先制定了明确的反帝反封建的革命纲领④选择了以武装起义推翻清王朝统治的斗争方式\nA.①②\nB.②③\nC.③④\nD.①④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_s_10",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "史纲·第三章 单选 第10题",
+    "content": "毛泽东说过，“民国元年的《中华民国临时约法》，在那个时期是一个比较好的东西；当然，是不完全的、有缺点的”。这里之所以说《中华民国临时约法》“在那个时期是一个比较好的东西”，是因为它\nA.以根本大法的形式否定了封建土地所有制\nB.带有革命性、民主性\nC.是中国近代历史上第一个比较系统的发展资本主义的方案\nD.明确拒绝承认清政府与列强所订的一切不平等条约",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_s_11",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "史纲·第三章 单选 第11题",
+    "content": "“无量头颅无量血，可怜购得假共和”，这是辛亥革命亲历者的血泪之作。辛亥革命“只把一个皇帝赶跑”，中国仍旧在帝国主义和封建主义的压迫之下，反帝反封建的革命任务并没有完成。辛亥革命之所以失败，从根本上说，是因为\nA.中国民族资产阶级的软弱性和妥协性\nB.没有提出彻底的反帝反封建的革命纲领\nC.没有坚强的革命政党作为团结一切革命力量的强有力的核心\nD.在帝国主义时代，在半殖民地半封建的中国，资本主义的建国方案行不通",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_s_13",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_s",
+    "sectionName": "第三章·单选",
+    "title": "史纲·第三章 单选 第13题",
+    "content": "袁世凯窃取辛亥革命的果实之后，建立了代表大地主和买办资产阶级利益的北洋军阀反动政权。袁世凯当权时，北洋政府统治下的中国在形式上是统一的。在1916年袁世凯称帝败亡之后，中国陷入了军阀割据的局面。这种局面的形成有其深刻的原因，主要是①中国主要是地方性的农业经济而没有形成统一的资本主义市场②帝国主义国家在中国采取划分势力范围的分裂剥削政策③尊孔复古思潮与民主共和思想反复拉锯造成了文化上的混乱④民族矛盾超过阶级矛盾成为当时中国社会的主要矛盾\nA.①②\nB.①③\nC.②④\nD.③④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_3",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第3题",
+    "content": "1905年至1907年间革命派与改良派论战的意义是\nA.划清了革命与改良的界限\nB.传播了民主革命思想\nC.促进了革命形势的发展\nD.改变了以往只有觉悟的革命者而缺少觉醒的人民大众的斗争状况",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_7",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第7题",
+    "content": "习近平总书记在纪念辛亥革命110周年大会上的讲话中指出，孙中山先生和辛亥革命先驱为中华民族建立的历史功绩彪炳千秋，在辛亥革命中英勇奋斗和壮烈牺牲的志士们名垂青史，辛亥革命永远是中华民族伟大复兴征程上一座巍然屹立的里程碑。辛亥革命\nA.传播了民主共和的理念，打开了中国进步潮流的闸门\nB.撼动了反动统治秩序的根基，在中华大地上建立起亚洲第一个共和制国家\nC.推动了中国社会变革，点亮了实现中华民族伟大复兴的灯塔\nD.极大促进了中华民族的思想解放",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_8",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第8题",
+    "content": "辛亥革命与戊戌变法的共同点有\nA.都是自上而下的救亡运动\nB.都主张在中国发展资本主义\nC.都主张改革君主专制制度\nD.都未提出彻底的反帝反封建的纲领",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_9",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第9题",
+    "content": "辛亥革命之所以失败，从主观方面来说，在于它的领导者资产阶级革命派本身存在着许多弱点和错误，主要是\nA.没有提出彻底的反帝反封建的革命纲领\nB.不能充分发动和依靠人民群众\nC.不能建立坚强的革命政党\nD.资本主义的建国方案行不通",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_10",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第10题",
+    "content": "毛泽东在谈到辛亥革命时指出，辛亥革命有它胜利的地方，也有它失败的地方。辛亥革命胜利的地方主要是指\nA.沉重打击了中外反动势力，为中国人民斗争的发展开辟了道路\nB.结束了封建君主专制制度，建立了中国历史上第一个资产阶级共和政府\nC.推动了中国人民的思想解放和中国的社会变革\nD.不仅在一定程度上打击了帝国主义的侵略势力，而且推动了亚洲各国民族解放运动的高涨",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_3_m_11",
+    "chapterId": "sg_ch3",
+    "chapterName": "史纲·第三章",
+    "sectionId": "sg_ch3_m",
+    "sectionName": "第三章·多选",
+    "title": "史纲·第三章 多选 第11题",
+    "content": "孙中山先生是伟大的民族英雄、伟大的爱国主义者、中国民主革命的伟大先驱，一生以革命为己任，立志救国救民，为中华民族作出了彪炳史册的贡献。孙中山先生的丰功伟绩表现在\nA.领导了辛亥革命，结束了统治中国几千年的君主专制制度\nB.把旧三民主义发展为新三民主义，实行联俄、联共、扶助农工三大政策\nC.发动了以推翻北洋军阀统治为目标的北伐战争\nD.坚决反对军阀分裂割据，坚定维护民主共和制度和国家完整统一",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_s_11",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "史纲·第四章 单选 第11题",
+    "content": "近代以后中国人民的反帝反封建斗争之所以屡遭挫折和失败，最重要的原因就是\nA.没能够充分地发动群众\nB.中国人民的民族意识没有普遍觉醒\nC.没有先进的坚强的政党作为凝聚力量的领导核心\nD.没有把阶级矛盾当作中国社会最主要的矛盾",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_s_12",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "史纲·第四章 单选 第12题",
+    "content": "中共一大确定党的名称为“中国共产党”。大会通过了中国共产党第一个纲领，明确“革命军队必须与无产阶级一起推翻资本家阶级的政权”“承认无产阶级专政，直到阶级斗争结束”“消灭资本家私有制”,以及联合第三国际。大会在讨论实际工作计划时，决定首先\nA.集中精力研究和宣传马克思主义\nB.集中精力组织农民\nC.集中精力组织工人\nD.集中精力介绍俄国“十月革命”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_s_14",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "史纲·第四章 单选 第14题",
+    "content": "在新民主主义革命时期，中国共产党与国民党实行过两次合作，第一次是建立国民革命联合战线，第二次是建立抗日民族统一战线。以下选项中正确反映第一次国共合作的是\nA.广泛的民族性和复杂的阶级矛盾\nB.国共双方有政权有军队的合作\nC.合作双方采取党外合作的组织形式\nD.合作双方具有共同的政治基础",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_s_15",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "史纲·第四章 单选 第15题",
+    "content": "1924年1月，中国国民党第一次全国代表大会由孙中山主持在广州举行。大会审议通过的《中国国民党第一次全国代表大会宣言》，对三民主义作出新的解释，即“新三民主义”。新三民主义的“新”体现在①在民族主义中突出了反对帝国主义的内容②在民权主义中强调民主权利应“为一般平民所共有”③在民主主义中强调只有“兴民权改民主”才是中国的唯一出路④把民生主义概括为“平均地权”和“节制资本”两大原则\nA.①②③\nB.②③④\nC.①②④\nD.①③④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_s_18",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_s",
+    "sectionName": "第四章·单选",
+    "title": "史纲·第四章 单选 第18题",
+    "content": "新民主主义革命时期，中国工人团团结动员广大工人群众以大无畏革命精神，奋勇投身反对帝国主义、封建主义、官僚资本主义的革命洪流，前赴后继、浴血奋战，为实现民族独立和人民解放、建立新中国作出了重要贡献。中国工人运动史上持续时间最长的一次政治大罢工是\nA.香港海员罢工\nB.京汉铁路工人罢工\nC.安源路矿工人罢工\nD.省港大罢工",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_1",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第1题",
+    "content": "新文化运动是从1915年9月陈独秀在上海创办《青年杂志》(后改名《新青年》)开始的。新文化运动是生动活泼的、前进的、革命的，具有重要的意义。新文化运动\nA.通过批判孔学，动摇了封建正统思想的统治地位\nB.在社会上掀起思想解放潮流，冲决了禁锢人们思想的闸门\nC.是资产阶级新文化开始打破封建文化独占文化阵地局面的起点\nD.提倡民主、反对专制，提倡科学、反对迷信盲从，是切中时弊的",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_2",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第2题",
+    "content": "五四以前的新文化运动主要是资产阶级民主主义的新文化反对封建主义的旧文化的斗争，五四以后的新文化运动则发展到了一个新阶段，马克思主义开始逐步在思想文化领域中发挥指导作用。这主要是指中国先进分子在接受马克思主义之后\nA.没有抛弃而是继承了五四运动的民主和科学的精神并赋予它们新的含义\nB.克服了以往启蒙者的弱点，有力推动了反封建的启蒙运动\nC.以唯物史观为武器从反对封建思想入手，进而提出必须反对产生封建思想的社会制度\nD.依靠进步报刊的传播，把改造国民性置于优先地位",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_8",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第8题",
+    "content": "毛泽东同志当年曾指出，“五四运动时中国无产阶级开始有了觉悟，五四运动发生在一九一九年，一九二一年便产生了中国共产党”;“我们研究党史，只从一九二一年起还不能完全说明问题……从五四运动说起可能更好”。习近平深刻指出，认识和把握五四运动“要坚持大历史观”。这些重要论述，深刻揭示了五四运动与中国共产党成立的历史关联。五四运动\nA.促进了马克思主义在中国的传播\nB.促进了马克思主义同中国工人运动的结合\nC.为中国共产党的成立作了思想上、干部上的准备\nD.为新的革命力量、革命文化、革命斗争登上历史舞台创造了条件",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_9",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第9题",
+    "content": "1920年，陈望道翻译的首个中文全译本《共产党宣言》在中国面世，立即受到工人阶级和先进知识分子的热烈欢迎，初版印了千余本很快销售一空。毛泽东后来回忆起他青年时代信仰马克思主义的经过时，曾谈及他在这个时期读过陈望道翻译的《共产党宣言》。1920年之所以会在中国出版首个中文全译本《共产党宣言》，并很快销售一空，是因为\nA.当时的中国社会需要马克思主义\nB.马克思主义提供了中国革命的具体方案\nC.十月革命推动中国的先进分子从资产阶级民主主义转向社会主义\nD.五四运动以后社会主义思潮在中国蓬勃兴起，马克思主义开始在知识界广泛传播",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_11",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第11题",
+    "content": "1920年8月，中国共产党的最早组织在上海成立。之后，在北京、武汉、长沙、济南、广州，都成立了共产党早期组织。在日本、法国成立了由留学生和华侨中先进分子组成的共产党早期组织。早期党的地方组织的形成，为中国共产党的创建准备了组织基础。中国共产党的早期组织之所以首先在上海诞生，是因为\nA.上海是中国工人阶级最密集的中心城市\nB.身居上海的陈独秀在中国大地上率先举起了马克思主义旗帜\nC.在上海成立了中国最早学习和研究马克思主义的团体——马克思学说研究会\nD.上海的工人阶级最早以独立的政治力量登上历史舞台",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_14",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第14题",
+    "content": "中共二大开创了中共创建史上的多个“第一”,其中包括\nA.第一次提出党的反帝反封建的民主革命纲领\nB.第一次提出党的统一战线思想\nC.第一次公开发表《中国共产党宣言》\nD.制定了第一部《中国共产党章程》",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_15",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第15题",
+    "content": "1922年7月，中共二大制定的民主革命纲领是\nA.打倒军阀\nB.统一中国为真正民主共和国\nC.推翻国际帝国主义的压迫\nD.建立劳农专政的政治，铲除私有财产制度",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_16",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第16题",
+    "content": "1922年8月，中共中央一些领导人在杭州开会，讨论国共合作问题。1923年1月，共产国际执委会作出《关于中国共产党与国民党的关系问题的决议》，对国共合作起了推动作用。1923年6月在广州举行的中国共产党第三次全国代表大会\nA.正确估计了孙中山的革命立场和国民党进行改革的可能性\nB.强调组成“民主主义的联合战线”,明确提出了统一战线政策\nC.决定共产党员以个人身份加入国民党，以实现国共合作\nD.明确规定共产党员加入国民党时，党必须在政治上、思想上、组织上保持自己的独立性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_17",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第17题",
+    "content": "为了加强对日益高涨的革命运动的领导，1925年1月，中国共产党第四次全国代表大会在上海举行。中共四大的重大历史功绩在于\nA.提出了中国无产阶级在民主革命中的领导权问题\nB.提出了工农联盟问题\nC.对中国民主革命的内容作了更加完整的规定\nD.具体回答了如何正确处理同资产阶级争夺领导权过程中遇到的复杂问题",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_19",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第19题",
+    "content": "1924年至1927年中国反帝反封建的革命，之所以被称作大革命，是因为与以往任何一次革命包括辛亥革命和五四运动相比，有很大的不同，主要是\nA.群众的动员程度更为广泛\nB.斗争的规模更加宏伟\nC.革命的社会内涵更为深刻\nD.革命的背景更加复杂",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_20",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第20题",
+    "content": "大革命是在国共合作的条件下进行的，没有国共合作，不会在短时间内掀起这样一场革命。在这场革命中，中国共产党起着独特的、不可代替的作用。没有中国共产党，不会有这场大革命。中国共产党在大革命中的独特的、不可代替的作用表现在\nA.中国共产党是大革命的政治口号——反对帝国主义、反对军阀——的提出者\nB.中国共产党是国共合作的倡导者和统一战线的领导者\nC.中国共产党是人民群众的主要发动者和组织者\nD.中国共产党帮助和推动了国民革命军的建立",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_21",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第21题",
+    "content": "大革命失败的原因是\nA.反革命力量强大，蒋介石集团、汪精卫集团先后叛变革命\nB.党当时处于幼年时期，不善于将马列主义基本原理同中国革命具体实际结合起来\nC.党的中央领导机关在大革命的后期犯了以陈独秀为代表的右倾机会主义的错误\nD.共产国际对中国革命作出了一些错误的指导",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_4_m_22",
+    "chapterId": "sg_ch4",
+    "chapterName": "史纲·第四章",
+    "sectionId": "sg_ch4_m",
+    "sectionName": "第四章·多选",
+    "title": "史纲·第四章 多选 第22题",
+    "content": "1927年4月12日，蒋介石在上海发动反共政变。同年7月15日，汪精卫在武汉召开“分共”会议，并在其辖区内对共产党员和革命群众实行搜捕和屠杀，国共合作全面破裂，大革命最终失败。大革命虽然失败了，但它的历史意义仍然是不可磨灭的。正是在这个时期，中国共产党人进行了轰轰烈烈的革命工作，领导了全国反帝反封建的伟大斗争，在中国革命史上写下了光荣的一页，同时\nA.开始探索马克思主义中国化的途径\nB.初步提出了新民主主义革命的基本思想\nC.开始建立人民民主统一战线\nD.开始懂得进行土地革命和掌握革命武装的重要性",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_s_3",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "史纲·第五章 单选 第3题",
+    "content": "土地革命战争时期，党从残酷的现实中认识到，没有革命的武装就无法战胜武装的反革命，就无法夺取中国革命胜利，就无法改变中国人民和中华民族的命运，必须以武装的革命反对武装的反革命。党领导举行了南昌起义、秋收起义、广州起义和其他许多地区起义。其中，秋收起义不同于南昌起义的特点有①以攻占敌人控制比较薄弱的农村为目标②公开打出了“工农革命军”的旗帜③是中国共产党独立领导的革命战争④不仅是军队的行动，而且有数量众多的工农武装参加\nA.①②\nB.①③\nC.②④\nD.③④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_s_6",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "史纲·第五章 单选 第6题",
+    "content": "1927年9月9日，毛泽东等领导的湘赣边界秋收起义爆发。起义军公开打出了“工农革命军”的旗帜，在攻打中心城市长沙受挫后，毛泽东果断改变计划，决定向敌人控制比较薄弱的农村转移。9月29日，毛泽东领导起义军在江西永新县三湾村进行了著名的三湾改编，确立了\nA.土地革命的方针\nB.支部建在连上的原则\nC.民主集中制原则\nD.思想建党、政治建军原则",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_s_7",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "史纲·第五章 单选 第7题",
+    "content": "1929年12月、红四军党的第九次代表大会在福建上杭县古田村召开(史称古田会议)。大会通过了毛泽东起草的古田会议决议。古田会议决议是中国共产党和红军建设的纲领性文献，是党和人民军队建设史上的重要里程碑。古田会议创造性地解决了在农村环境中、在党组织和军队以农民为主要成分的条件下①如何保持党的无产阶级先锋队性质的重大问题②如何建设党领导的新型人民军队的重大问题③如何建设革命根据地的重大问题④如何找到新的革命道路的重大问题\nA.②③\nB.①②④\nC.①②\nD.②③④",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_s_8",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "史纲·第五章 单选 第8题",
+    "content": "在大革命失败、白色恐怖极其严重的条件下，中国革命之所以能够得到坚持和发展，根本原因就在于中国共产党\nA.紧紧地依靠农民，领导农民进行了土地制度的革命\nB.吸取了大革命失败的教训，进行了武装起义\nC.建立了国民革命联合战线，扩大了革命队伍\nD.确立了思想建党、政治建军原则",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_s_14",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_s",
+    "sectionName": "第五章·单选",
+    "title": "史纲·第五章 单选 第14题",
+    "content": "红军长征到达陕北后，毛泽东、党中央用很大精力总结历史经验，加强共产党自身的思想理论建设。以毛泽东为主要代表的中共中央所进行的理论工作，对党的政治路线、军事路线和思想路线作了系统阐述，在理论上武装了全党，为即将到来的全民族抗日战争从思想上、政治和组织上奠定了坚实基础。毛泽东系统地说明党的政治策略上的诸问题的著作是\nA.《中国革命战争的战略问题》\nB.《论反对日本帝国主义的策略》\nC.《论持久战》\nD.《中国革命和中国共产党》",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_m_2",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "史纲·第五章 多选 第2题",
+    "content": "在革命的危急关头，1927年7月中旬，中共中央政治局临时常委会决定\nA.将党所掌握和影响的部队向南昌集中，准备起义\nB.组织湘、鄂、赣、粤四省的农民发动秋收起义\nC.召开中央紧急会议，讨论和决定大革命失败后的新方针\nD.确定了土地革命和武装起义的方针",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_m_3",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "史纲·第五章 多选 第3题",
+    "content": "1927年9月9日，毛泽东等领导的湘赣边界秋收起义爆发。起义军公开打出了“工农革命军”的旗帜，在攻打中心城市长沙受挫后，毛泽东果断改变计划，决定向敌人控制比较薄弱的农村转移。10月7日，起义部队抵达江西省宁冈县茅坪，开始了创建井冈山农村革命根据地的斗争。井冈山革命根据地的建立\nA.集中体现中国革命的正确方向\nB.点燃了工农武装割据的星星之火\nC.为中国革命开辟出了农村包围城市、武装夺取政权这样一条前人没有走过的道路\nD.是由大革命失败到土地革命战争兴起的历史性转变",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_m_4",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "史纲·第五章 多选 第4题",
+    "content": "1930年5月毛泽东在《反对本本主义》一文中提出和阐述的重要思想有\nA.没有调查，没有发言权\nB.中国革命斗争的胜利要靠中国同志了解中国情况\nC.不做正确的调查同样没有发言权\nD.关心群众生活，注意工作方法",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_5_m_8",
+    "chapterId": "sg_ch5",
+    "chapterName": "史纲·第五章",
+    "sectionId": "sg_ch5_m",
+    "sectionName": "第五章·多选",
+    "title": "史纲·第五章 多选 第8题",
+    "content": "1934年9月上旬，国民党军队加紧对中央革命根据地腹地发动进攻，红军已无在原地扭转战局的可能。10月，中共中央、中革军委率中央红军主力等8.6万余人踏上战略转移的漫漫征程，开始了世界历史上前所未有的壮举。中国工农红军长征是一次理想信念的伟大远征，是一次检验真理的伟大远征，是一次唤醒民众的伟大远征，是一次开创新局的伟大远征。长征的胜利\nA.极大地促进了党在政治上和思想上的成熟\nB.是中国革命转危为安的关键\nC.标志着党在政治上、思想上、组织上走向成熟\nD.是中华民族从近代以来陷入深重危机走向伟大复兴的历史转折点",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：BD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_1",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第1题",
+    "content": "1931年9月18日，日本发动九一八事变，武装侵占中国东北。中国人民在九一八事变后开始的局部抗日战争\nA.揭开了世界反法西斯战争的序幕\nB.宣告了抗日民族统一战线的形成\nC.开始了中国抗战的战略防御阶段\nD.标志着全民族抗战的开始",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_3",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第3题",
+    "content": "1935年，电影《风云儿女》一上映，主题歌《义勇军进行曲》便成为时代的最强音。歌曲发出了中华民族不甘沦亡的怒吼，吹响了中华儿女万众一心、血战到底的战斗号角。《义勇军进行曲》之所以发出“中华民族到了最危险的时候”的呐喊，最重要的原因是\nA.国民党政府长期奉行“攘外必先安内”方针，对日本的大举侵略一再退让\nB.国际联盟和英美等国政府采取对日姑息、纵容的政策\nC.日本大举侵华，妄图把中国变为其独占的殖民地\nD.中国长期缺乏有力的国际援助",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_6",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第6题",
+    "content": "1937年8月22日至25日，中共中央在陕北洛川召开政治局扩大会议(洛川会议),通过了《中国共产党抗日救国十大纲领》和《中共中央关于目前形势与党的任务的决定》,这标志着\nA.党的“逼蒋抗日”总方针的明确提出\nB.党确立了建立广泛的抗日民族统一战线的策略\nC.党制定了关于根据地建设的基本方针\nD.党的全面抗战路线的正式形成",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_8",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第8题",
+    "content": "中国抗日战争进入全民族抗战阶段是在\nA.九一八事变后\nB.一二八事变后\nC.华北事变后\nD.卢沟桥事变后",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_10",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第10题",
+    "content": "抗日战争时期，中国共产党的土地政策是\nA.没收地主阶级土地\nB.消灭富农\nC.征收富农多余财产\nD.减租减息",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_11",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第11题",
+    "content": "“三三制”民主政权是共产党领导的抗日民族统一战线性质的政权，是一切赞成抗日又赞成民主的人们的政权，是几个革命阶级联合起来对于汉奸和反动派的民主专政。“三三制”是指抗日民主政府在工作人员分配上实行“三三制”原则，即共产党员、党外进步人士和中间派各占1/3。以下属于“三三制”原则中所说的中间派的是\nA.小资产阶级\nB.农民阶级\nC.开明绅士\nD.地方实力派",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_13",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第13题",
+    "content": "1941年5月，毛泽东作了《改造我们的学习》的报告，整风运动首先在党的高级干部中进行。1942年2月，毛泽东先后作了《整顿党的作风》和《反对党八股》的讲演，整风运动在全党范围普遍展开。整风运动最主要的任务是\nA.反对“左”倾机会主义，端正党的政治路线\nB.反对宗派主义以整顿党风\nC.反对主观主义以整顿学风\nD.反对党八股以整顿文风",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_14",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第14题",
+    "content": "党的七大在党的历史上具有重要里程碑意义，标志着我们党在政治上、思想上、组织上走向了成熟。“在政治上”的成熟是指\nA.党形成了一支高举毛泽东旗帜的久经考验的政治家集团\nB.党确立了毛泽东思想在全党的指导地位，把毛泽东思想写入了党章\nC.为党后来不断从胜利走向胜利指明了正确方向、开辟了正确道路\nD.全党团结在毛泽东的旗帜下，实现了党的空前统一和团结",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_15",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第15题",
+    "content": "中国人民的抗日战争从1931年开始，到1945年结束，前后经历了14年的浴血奋战。在世界反法西斯战争的进程中，中国人民的抗日战争被称为“最早的抗争，最后的胜利”。成为抗日战争取得完全胜利的重要标志的是\nA.中国参加联合国制宪会议，成为联合国的创始国和五个常任理事国之一\nB.日本天皇裕仁发布《终战诏书》，日本无条件投降\nC.日本代表在东京湾美军军舰密苏里号上签署向同盟国的投降书\nD.台湾以及澎湖列岛重归中国主权管辖",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_16",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第16题",
+    "content": "1945年10月25日，中国政府宣告“恢复对台湾行使主权”，并在台北举行“中国战区台湾省受降仪式”。此前，国际上已经有了一系列具有国际法律效力的文件，从法律上确认台湾是中国领土的一部分。这些具有国际法律效力的文件有①《开罗宣言》②《波茨坦公告》③《日本投降书》④《雅尔塔协定》\nA.①②③\nB.①②④\nC.①③④\nD.②③",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_s_17",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_s",
+    "sectionName": "第六章·单选",
+    "title": "史纲·第六章 单选 第17题",
+    "content": "中国人民抗日战争的胜利，是近代以来中国人民反抗外敌入侵第一次取得完全胜利的民族解放斗争。抗日战争取得胜利的决定因素是\nA.中国共产党的中流砥柱作用\nB.以爱国主义为核心的民族精神\nC.全民族抗战\nD.坚持持久战方针",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：A",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_2",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第2题",
+    "content": "1935年12月，中共中央在陕北瓦窑堡召开政治局扩大会议，讨论全国政治形势和党的策略路线问题、军事战略问题。会议批评并克服了党内长期存在的“左”倾冒险主义、关门主义错误倾向，明确提出党的基本策略任务是建立广泛的抗日民族统一战线。瓦窑堡会议是从第五次反“围剿”失败到全民族抗战兴起过程中召开的一次重要会议，它表明\nA.党在新的历史时期将要到来时掌握了政治上的主动权\nB.党开始努力解决政治路线问题\nC.党正在从中国的实际情况出发，创造性地开展工作\nD.实事求是的思想路线在全党范围确立起来",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_4",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第4题",
+    "content": "以国共两党合作为基础的抗日民族统一战线正式形成的标志是\nA.西安事变的和平解决\nB.国民党中央通讯社发表《中共中央为公布国共合作宣言》\nC.蒋介石发表实际上承认中国共产党合法地位的谈话\nD.国民党五届三中全会",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_5",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第5题",
+    "content": "日本发动全面侵华战争后，中华民族面临空前危机，全国人民最关心的问题是：这场战争能不能胜利?怎样争取胜利?毛泽东同志科学地回答了这个问题，他在1938年发表的《论持久战》一文，使全国人民对抗战的进程和前途有了清晰的认识，极大坚定了全国军民坚持抗战的信心。《论持久战》一文\nA.分析了中日双方存在着互相矛盾的四个基本特点\nB.批驳了“亡国论”“速胜论”,明确指出抗日战争是持久的，最后胜利属于中国\nC.科学预见了抗日战争由防御到相持、最后到反攻的三个阶段\nD.强调“兵民是胜利之本”,战胜日本的侵略，必须进行人民战争",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_7",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第7题",
+    "content": "为了实现全面抗战路线和持久战战略总方针，毛泽东首次将游击战提到战略地位。在极为艰苦的反“扫荡”、反“清乡”斗争中，敌后军民创造了很多极为有效、灵活多样的歼敌方法，如伏击战、破袭战、地雷战、地道战、麻雀战等，使日军犹如困兽，陷入人民战争的汪洋大海。独立自主的游击战争\nA.实质上是抗日战争中时间最长、战斗战役持续不断的一场特殊战略大会战\nB.是人民军队发挥政治优势和军事优势最好的作战形式\nC.是坚持持久抗战、最终彻底战胜日本侵略者的唯一正确的政治军事方针\nD.始终是国民党正面战场正规战的重要辅助力量",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：AB",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_8",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第8题",
+    "content": "抗日民族统一战线是以国共合作为基础的。中国共产党在统一战线中要坚持独立自主原则，既统一，又独立。为此，共产党必须\nA.保持在思想上、政治上和组织上的独立性，放手发动群众\nB.坚持对人民军队的绝对领导，努力发展人民武装和抗日根据地\nC.对国民党采取又团结又斗争、以斗争求团结的方针\nD.对中间势力进行有理、有利、有节的斗争",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_9",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第9题",
+    "content": "抗日战争相持阶段到来以后，由于以蒋介石为代表的国民党亲英美派开始推行消极抗日、积极反共的政策，团结抗战的局面逐步发生严重危机，出现了中途妥协和内部分裂两大危险。针对这种情况，为了坚决揭露打击汪精卫集团的叛国投降活动，继续争取同蒋介石集团合作抗日，1939年7月，中国共产党明确提出的口号有\nA.“坚持抗战到底，反对中途妥协”\nB.“巩固国内团结，反对内部分裂”\nC.“坚持全面抗战，反对限共溶共”\nD.“力求全国进步，反对向后倒退”",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_10",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第10题",
+    "content": "中国共产党在抗日民族统一战线中坚持的策略总方针是\nA.发展进步势力\nB.争取中间势力\nC.消灭反动势力\nD.孤立顽固势力",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_11",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第11题",
+    "content": "抗日民族统一战线中的中间势力包括\nA.民族资产阶级\nB.城市小资产阶级\nC.地方实力派\nD.开明绅士",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：AD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_12",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第12题",
+    "content": "为了抗日民族统一战线的坚持、扩大和巩固，中国共产党制定了“发展进步势力，争取中间势力，孤立顽固势力”的策略总方针。同顽固派作斗争必须坚持\nA.有节\nB.有理\nC.有利\nD.有力",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_15",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第15题",
+    "content": "1942年2月，毛泽东先后作了《整顿党的作风》和《反对党八股》的讲演，整风运动在全党范围普遍展开。在全党开展整风运动，原因在于\nA.由于条件的限制，遵义会议以来对曾经给党的事业造成严重危害的主观主义、教条主义，没有来得及从思想上进行认真的清理\nB.随着党的队伍的扩大，一大批出身农民和其他小资产阶级的新党员身上存在着各种非无产阶级思想\nC.共产国际解散给党带来的不利影响也需要应对\nD.老党员要适应新形势，也需要进一步提高自己",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_16",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第16题",
+    "content": "1941年5月，毛泽东作了《改造我们的学习》的报告。整风运动首先在党的高级干部中进行。1942年2月，毛泽东先后作了《整顿党的作风》和《反对党八股》的讲演，整风运动在全党范围普遍展开。任弼时在《学习毛泽东整顿三风报告的笔记》中记录了参加整风运动的体会：“毛泽东同志整顿三风报告中，关于反对主观主义的主要精神，是正确地对待马列主义态度问题。告诉我们学习马列主义，不是学它的字句，而是要学会用它的立场、观点和方法去解决革命中的实际问题，找出革命的发展规律，来便于我们具体决定政策。”整风运动\nA.使实事求是的思想路线在全党范围确立起来\nB.以党的六届七中全会原则通过《关于若干历史问题的决议》而胜利结束\nC.开始了马克思主义与中国实际的“第一次结合”\nD.是一次深刻的马克思主义思想教育运动和思想解放运动",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_17",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第17题",
+    "content": "在深入总结历史经验的基础上，1944年5月21日至1945年4月20日，中共扩大的六届七中全会在延安召开。会议原则通过了《关于若干历史问题的决议》，对建党以后特别是党的六届四中全会至遵义会议前这一段党的历史及其经验教训进行了总结，对党的若干重大历史问题作出结论。《关于若干历史问题的决议》\nA.使全党特别是党的高级干部对中国革命基本问题的认识达到了一致，增强了全党团结\nB.充分肯定了确立毛泽东在全党领导地位的重大意义\nC.为党的七大胜利召开创造了充分条件，有力促进了中国革命事业发展\nD.开启了党独立自主解决中国革命实际问题的新阶段",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_18",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第18题",
+    "content": "1945年4月23日至6月11日，中国共产党第七次全国代表大会在延安举行。这次大会以“团结的大会，胜利的大会”载入党的史册。中共七大\nA.制定了党的政治路线和新民主主义国家在政治、经济、文化方面的纲领\nB.标志着我们党在政治上、思想上、组织上走向了成熟\nC.把党成立以来的历史经验概括为三大法宝\nD.把毛泽东思想确立为党的指导思想并写入党章",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_19",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第19题",
+    "content": "1945年4月23日至6月11日，中国共产党第七次全国代表大会在延安举行。毛泽东在会上作了题为《论联合政府》的书面报告和《愚公移山》的闭幕词。中共七大制定了“放手发动群众，壮大人民力量，在我党的领导下，打败日本侵略者，解放全国人民，建立一个新民主主义的中国”的政治路线，总结党的建设的历史经验，把党在长期奋斗中形成的优良作风概括为\nA.艰苦奋斗的作风\nB.理论和实践相结合的作风\nC.和人民群众紧密地联系在一起的作风\nD.自我批评的作风",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_6_m_21",
+    "chapterId": "sg_ch6",
+    "chapterName": "史纲·第六章",
+    "sectionId": "sg_ch6_m",
+    "sectionName": "第六章·多选",
+    "title": "史纲·第六章 多选 第21题",
+    "content": "中国人民的抗日战争从1931年开始，到1945年结束，前后经历了14年的浴血奋战。在世界反法西斯战争的进程中，中国人民的抗日战争被称为“最早的抗争，最后的胜利”。中国人民抗日战争的伟大胜利，是\nA.近代以来中国人民反抗外敌入侵第一次取得完全胜利的民族解放斗争\nB.中华民族从近代以来陷入深重危机走向伟大复兴的历史转折点\nC.世界反法西斯战争胜利的重要组成部分\nD.中国人民的胜利、世界人民的胜利",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_s_4",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_s",
+    "sectionName": "第七章·单选",
+    "title": "史纲·第七章 单选 第4题",
+    "content": "1947年12月，中共中央在陕北米脂县杨家沟召开会议，制定了夺取全国胜利的行动纲领。毛泽东指出，中国革命已经发展到了一个历史的转折点，这是\nA.中国革命重心从农村转向城市的标志\nB.中国共产党和中国革命事业从挫折走向胜利的伟大转折\nC.中华民族从近代以来陷入深重危机走向伟大复兴的历史转折点\nD.100多年来帝国主义在中国的统治由发展到消灭的转折点",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_s_7",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_s",
+    "sectionName": "第七章·单选",
+    "title": "史纲·第七章 单选 第7题",
+    "content": "1949年1月22日，李济深、沈钧儒等民主党派的领导人和著名的无党派民主人士55人联合发表《对时局的意见》，一致认定中共提出的关于召开政治协商会议、成立联合政府的主张\"符合于全国人民大众的要求\"，恳切表示\"愿在中共领导下，献其绵薄，共策进行，以期中国人民民主革命之迅速成功，独立、自由、和平、幸福的新中国之早日实现\"。1949年春，毛泽东在同有关人士谈话时提出，民主党派应\"积极参政，共同建设新中国\",这\nA.揭开了中国共产党同各党派、各团体、各族各界人士协商建国的序幕\nB.奠定了中国共产党领导的多党合作和政治协商制度的基础\nC.标志着民主党派地位的根本变化\nD.表明中国各民主党派和无党派民主人士公开自愿接受中国共产党的领导",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_s_8",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_s",
+    "sectionName": "第七章·单选",
+    "title": "史纲·第七章 单选 第8题",
+    "content": "1949年9月21日，中国人民政治协商会议第一届全体会议在北平(北京)隆重开幕。这次会议与1946年1月在重庆召开的政治协商会议的不同在于\nA.中国共产党居于领导地位\nB.多党派参加\nC.民主党派是执政党\nD.通过的《共同纲领》属于社会主义性质",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_s_9",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_s",
+    "sectionName": "第七章·单选",
+    "title": "史纲·第七章 单选 第9题",
+    "content": "中国革命的发生和胜利不是偶然的，而是有着深刻的社会根源和雄厚的群众基础。由于帝国主义、封建主义、官僚资本主义的残酷压迫，中国人民走上了反帝、反封建、反官僚资本主义斗争的伟大道路。在中国革命过程中，曾经被人称作\"开万国未有之奇\"的一种现象是\nA.工人阶级成为革命的领导力量\nB.农民、城市小资产阶级群众是革命的主要力量\nC.封建势力同外国侵略势力相勾结\nD.随着斗争的发展，民族资产阶级也逐步向共产党靠拢",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_s_11",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_s",
+    "sectionName": "第七章·单选",
+    "title": "史纲·第七章 单选 第11题",
+    "content": "\"作风建设永远在路上\"。在波澜壮阔的历史进程中，中国共产党始终十分重视党的作风建设。在中共七届二中全会上，毛泽东强调必须保持的党的作风是\nA.理论和实践相结合的作风\nB.谦虚、谨慎、不骄、不躁和艰苦奋斗的作风\nC.和人民群众紧密地联系在一起的作风\nD.自我批评的作风",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_1",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第1题",
+    "content": "抗日战争胜利后，蒋介石集团的既定方针是以武力消灭共产党及其领导的人民军队和解放区政权。但是，1945年8月，蒋介石还是连发三电，邀请毛泽东赴重庆谈判。这是因为\nA.全国人民强烈要求和平、反对内战\nB.国民党的军队大部分远在西南、西北后方\nC.国民党完成内战部署需要相当的时间\nD.国际上苏联、美国等都表示希望中国能够实行和平建国",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_2",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第2题",
+    "content": "1945年8月，蒋介石连发三电，邀请毛泽东赴重庆谈判。其目的在于\nA.满足全国人民强烈要求和平的愿望，建立和平、民主的新中国\nB.以此敷衍国内外舆论，掩盖其正在进行的内战准备\nC.诱使中共交出人民军队和解放区政权，以期不战而控制全中国\nD.如果谈判不成，即放手发动内战，并把战争责任转嫁给中国共产党",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_4",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第4题",
+    "content": "1946年6月26日，国民党军以进攻中原解放区为起点，挑起了全面内战。为打退国民党对解放区的军事进攻，中共中央指出，必须\nA.在国际上奉行\"一边倒\"的外交方针以争取社会主义阵营的广泛支持\nB.争取一切可以争取的人，在党的领导下建立最广泛的人民民主统一战线\nC.采取集中优势兵力、各个歼灭敌人的作战原则\nD.立即以主力打到外线去，将战争引向国民党统治区域",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_5",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第5题",
+    "content": "全面内战爆发时，中国共产党清醒估计国内外形势，坚决认定，我们必须打败蒋介石，而且能够打败他。我们能够打败蒋介石，是因为\nA.蒋介石军事力量的优势和美国的援助，只是临时起作用的因素\nB.蒋介石发动的战争的反人民性质，人心的向背，是经常起作用的因素\nC.各民主党派和无党派民主人士公开自愿接受中国共产党的领导，决心走人民革命的道路\nD.人民解放军的战争所具有的爱国的、正义的、革命的性质，必然要获得全国人民的拥护",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_6",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第6题",
+    "content": "毛泽东指出：\"如果我们能够普遍地彻底地解决土地问题，我们就获得了足以战胜一切敌人的最基本的条件\"。解放战争时期，为推动解放区土改运动进一步发展，1947年7月至9月，中国共产党在西柏坡召开全国土地会议，制定和通过了《中国土地法大纲》。土地制度改革\nA.是中国共产党领导广大农民从根本上摧毁中国封建制度根基的社会大变革\nB.使人民解放战争获得源源不断的人力、物力支援\nC.为打败蒋介石、建立新中国奠定了深厚的群众基础\nD.为当代中国的一切发展进步提供了根本政治保障",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：BC",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_7_m_9",
+    "chapterId": "sg_ch7",
+    "chapterName": "史纲·第七章",
+    "sectionId": "sg_ch7_m",
+    "sectionName": "第七章·多选",
+    "title": "史纲·第七章 多选 第9题",
+    "content": "1949年9月21日，中国人民政治协商会议第一届全体会议在北平(北京)隆重开幕。毛泽东在开幕词中向全世界豪迈地宣告：\"我们的工作将写在人类的历史上，它将表明：占人类总数四分之一的中国人从此站立起来了。\"这次会议\nA.完成了创建新中国的任务\nB.通过了社会主义类型的临时宪法《中国人民政治协商会议共同纲领》\nC.开启了中国共产党领导各党派团体和各族各界人士协商建国、共创伟业的新纪元\nD.标志着中国共产党领导的多党合作和政治协商制度正式确立",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_3",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第3题",
+    "content": "新中国成立后的最初三年，在着重完成民主革命遗留任务的同时，社会主义革命的任务实际上也已经开始实行了。以下属于完成民主革命遗留任务的是\nA.在新解放区进行土改\nB.没收官僚资本，确立社会主义国营经济的领导地位\nC.开始将资本主义纳入国家资本主义轨道\nD.引导个体农民在土地改革后逐步走上互助合作的道路",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_4",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第4题",
+    "content": "新中国成立初期，以毛泽东为主要代表的中国共产党人提出了三大外交方针，为独立自主的新中国外交关系奠定了基础。三大外交方针是指①\"另起炉灶\"②\"一边倒\"③\"真正不结盟\"④\"打扫干净屋子再请客\"\nA.①②\nB.②③④\nC.①②④\nD.①③",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_7",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第7题",
+    "content": "在进行社会主义改造、向社会主义过渡的进程中，中国共产党积累了丰富的历史经验，包括坚持社会主义工业化建设与社会主义改造同时并举，采取积极引导、逐步过渡的方式及用和平方法进行改造。在以下逐步过渡的方式中，在性质上属于社会主义性质的形式是\nA.农业互助组\nB.手工业供销合作社\nC.初级农业生产合作社\nD.全行业公私合营",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_8",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第8题",
+    "content": "20世纪50年代，我国在对资本主义工商业进行社会主义改造的过程中，创造了一系列国家资本主义具体形式，包括①加工订货②统购包销③经销代销④统购统销\nA.①②④\nB.②③④\nC.①④\nD.①②③",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_9",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第9题",
+    "content": "对资本主义工商业的社会主义改造经历了三个步骤。第一步，主要实行初级形式的国家资本主义，国家在私营工业中实行委托加工、计划订货、统购包销，企业利润的分配方式为\"四马分肥\",这\nA.是社会主义成分同资本主义成分在企业内部的合作\nB.使得企业的生产和经营开始纳入国家计划的轨道\nC.改变了工人在企业中的地位，使企业具有了半社会主义性质\nD.限制了资本主义的剥削，企业的生产关系已经发生了根本的变化",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_10",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第10题",
+    "content": "我国对资本主义工商业的社会主义改造，采取了从低级到高级的国家资本主义的过渡形式。其中第二步主要实行个别企业的公私合营，这些企业\nA.仍然是资本主义性质的企业\nB.是具有了社会主义因素的企业\nC.是半社会主义性质的企业\nD.是社会主义国营性质的企业",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：C\n您的答案：B",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_14",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第14题",
+    "content": "以毛泽东为主要代表的中国共产党人开始探索适合中国国情的社会主义建设道路的标志是\nA.《论十大关系》的报告\nB.中共八大路线的制定\nC.《关于正确处理人民内部矛盾的问题》的发表\nD.国民经济第一个五年计划的实施",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_15",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第15题",
+    "content": "1957年2月，毛泽东作了《关于正确处理人民内部矛盾的问题》的报告，阐明社会主义社会的重大理论问题。毛泽东提出，必须区分社会主义社会两类不同性质的社会矛盾，把正确处理人民内部矛盾作为国家政治生活的主题。解决人民内部矛盾用民主的方法，说服教育的方法。对于物质利益、分配方面的人民内部矛盾，毛泽东提出的方针是\nA.统筹兼顾、适当安排\nB.\"惩前毖后、治病救人\"\nC.\"长期共存、互相监督\"\nD.\"团结—批评—团结\"",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_16",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第16题",
+    "content": "1956年社会主义改造基本完成以后，中国进入社会主义初级阶段。社会主义初级阶段在发展过程中会呈现不同的阶段性特征。1956年召开的中共八大指出，社会主义基本制度在我国已经基本上建立起来了，我国国内的主要矛盾是\nA.无产阶级和资产阶级的矛盾\nB.人民对于经济文化迅速发展的需要同当前经济文化不能满足人民需要的状况之间的矛盾\nC.人民日益增长的物质文化需要同落后的社会生产之间的矛盾\nD.人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_17",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第17题",
+    "content": "1956年9月15日至27日，中国共产党第八次全国代表大会在北京举行。中共八大正确分析了国内形势和主要矛盾的变化，明确提出新形势下党和人民的主要任务。大会宣布，社会主义制度在我国已经基本上建立起来，国内主要矛盾已经是人民对于经济文化迅速发展的需要同当前经济文化不能满足人民需要的状况之间的矛盾；还有阶级斗争，还要加强人民民主专政，但根本任务已经是\nA.实现马克思主义同中国具体实际的\"第二次结合\"\nB.在新的生产关系下保护和发展生产力\nC.正确处理人民内部矛盾\nD.探索什么是社会主义，怎样建设社会主义",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：B\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_s_18",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_s",
+    "sectionName": "第八章·单选",
+    "title": "史纲·第八章 单选 第18题",
+    "content": "中共八大确定的我国社会主义经济建设的方针是\nA.在综合平衡中稳步前进\nB.统筹兼顾、适当安排\nC.调整、巩固、充实、提高\nD.以农业为基础、以工业为主导",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_1",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第1题",
+    "content": "社会主义革命和建设时期，党面临的主要任务是\nA.实现从新民主主义到社会主义的转变\nB.进行社会主义革命\nC.推进社会主义建设\nD.为实现中华民族伟大复兴奠定根本政治前提和制度基础",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_6",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第6题",
+    "content": "新中国成立后的最初三年，在着重完成民主革命的遗留任务的同时，社会主义革命的任务实际上也已经开始实行了。以下属于开始实行社会主义革命任务表现的有\nA.在全国开展镇压反革命的运动\nB.没收官僚资本，确立社会主义国营经济的领导地位\nC.开始将资本主义纳入国家资本主义轨道\nD.在新解放区进行土改",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BC\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_7",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第7题",
+    "content": "从1953年开始，在过渡时期总路线的指引下，中国共产党领导人民开始进行有计划的社会主义建设和有系统的社会主义改造。当时中国之所以要着力进行和可能进行社会主义改造，主要是因为\nA.社会主义工业化是国家独立富强的首要条件\nB.资本主义经济力量弱小，发展困难，不可能成为中国工业起飞的基础\nC.对个体农业进行社会主义改造，是保证工业发展、实现国家工业化的一个必要条件\nD.当时的国际环境也促使中国选择社会主义",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.825Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_8",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第8题",
+    "content": "在进行社会主义改造、向社会主义过渡的进程中，中国共产党积累了丰富的历史经验，包括坚持社会主义工业化建设与社会主义改造同时并举，采取积极引导、逐步过渡的方式及用和平方法进行改造。在以下逐步过渡的方式中，在性质上属于半社会主义性质的形式是\nA.手工业供销合作社\nB.全行业的公私合营\nC.初级农业生产合作社\nD.个别企业的公私合营",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ACD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_13",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第13题",
+    "content": "毛泽东提出，处理中国共产党与民主党派的关系，应坚持的方针是\nA.长期共存\nB.互相监督\nC.肝胆相照\nD.荣辱与共",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AB\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_14",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第14题",
+    "content": "1956年9月15日至27日，中国共产党第八次全国代表大会在北京举行。这次会议对中国建设社会主义道路的探索，站在比较高的历史起点上，取得了初步成果，对于党和国家事业发展具有长远的重要意义。中共八大的初步成果包括\nA.正确分析了国内形势和主要矛盾的变化，明确提出新形势下党和人民的主要任务\nB.坚持党中央提出的既反保守又反冒进，即在综合平衡中稳步前进的经济建设方针\nC.肯定“三个主体，三个补充”思想，突破了苏联计划经济模式，开始经济体制改革\nD.通过中国共产党在全国执政以后制定的第一部党章",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_8_m_16",
+    "chapterId": "sg_ch8",
+    "chapterName": "史纲·第八章",
+    "sectionId": "sg_ch8_m",
+    "sectionName": "第八章·多选",
+    "title": "史纲·第八章 多选 第16题",
+    "content": "1964年底，周恩来在三届全国人大一次会议上郑重提出实现“四个现代化”的历史任务。中央还确定分两步走实现现代化的战略构想，即从第三个五年计划开始，第一步，经过三个五年计划时期，建立一个独立的、比较完整的工业体系和国民经济体系；第二步，全面实现农业、工业、国防和科学技术的现代化，使中国经济走在世界前列。到1978年，我国建立起了独立的、比较完整的工业体系和国民经济体系。独立的、比较完整的工业体系和国民经济体系的建立\nA.从根本上解决了工业化中“从无到有”的问题\nB.使中国在赢得政治上的独立后赢得了经济上的独立\nC.为中国以后的发展奠定了牢固的物质技术基础\nD.为中国同世界各国在平等互利的原则下发展对外贸易和经济往来创建了前提",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABCD\n您的答案：BCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_9_s_3",
+    "chapterId": "sg_ch9",
+    "chapterName": "史纲·第九章",
+    "sectionId": "sg_ch9_s",
+    "sectionName": "第九章·单选",
+    "title": "史纲·第九章 单选 第3题",
+    "content": "1979年3月30日，邓小平在党的理论工作务虚会上发表《坚持四项基本原则》的讲话。他指出：坚持社会主义道路，坚持人民民主专政，坚持共产党的领导，坚持马克思列宁主义、毛泽东思想这四项基本原则，“是实现四个现代化的根本前提”。“如果动摇了这四项基本原则中的任何一项，那就动摇了整个社会主义事业，整个现代化建设事业。”他还提出一个重要思想：“现在搞建设，也要适合中国情况，走出一条中国式的现代化道路。”这表明\nA.中国共产党所领导的改革开放从一开始就具有明确的社会主义方向\nB.中国式现代化只能基于自身国情，不能借鉴他国经验\nC.“中国特色社会主义”从此成为我们党的全部理论和实践创新的主题\nD.马克思主义同中国实际“第二次结合”任务的正式提出",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：A\n您的答案：D",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_9_m_5",
+    "chapterId": "sg_ch9",
+    "chapterName": "史纲·第九章",
+    "sectionId": "sg_ch9_m",
+    "sectionName": "第九章·多选",
+    "title": "史纲·第九章 多选 第5题",
+    "content": "1992年，邓小平在视察南方的谈话中阐述了一系列重要思想，其中最主要的有\nA.关于社会主义初级阶段基本经济制度的思想\nB.关于发展才是硬道理的思想\nC.关于社会主义本质的思想\nD.关于计划和市场都是经济手段的思想",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：BCD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_9_m_6",
+    "chapterId": "sg_ch9",
+    "chapterName": "史纲·第九章",
+    "sectionId": "sg_ch9_m",
+    "sectionName": "第九章·多选",
+    "title": "史纲·第九章 多选 第6题",
+    "content": "1992年1月18日至2月21日，邓小平先后到武昌、深圳、珠海、上海等地视察，发表了一系列重要谈话，即南方谈话。邓小平的南方谈话\nA.从理论上深刻回答了长期困扰和束缚人们思想的许多重大问题\nB.是把改革开放和现代化建设推向新阶段的又一个解放思想、实事求是的宣言书\nC.对之后召开的党的十四大具有十分重要的指导作用\nD.开启了我国改革开放和社会主义现代化建设新时期",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABC\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_10_s_1",
+    "chapterId": "sg_ch10",
+    "chapterName": "史纲·第十章",
+    "sectionId": "sg_ch10_s",
+    "sectionName": "第十章·单选",
+    "title": "史纲·第十章 单选 第1题",
+    "content": "为了实现中华民族伟大复兴，中国共产党团结带领中国人民，创造了新民主主义革命的伟大成就、社会主义革命和建设的伟大成就、改革开放和社会主义现代化建设的伟大成就、新时代中国特色社会主义的伟大成就。其中，为实现中华民族伟大复兴提供了更为完善的制度保证、更为坚实的物质基础、更为主动的精神力量的是\nA.新民主主义革命的伟大成就\nB.社会主义革命和建设的伟大成就\nC.改革开放和社会主义现代化建设的伟大成就\nD.新时代中国特色社会主义的伟大成就",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_10_s_3",
+    "chapterId": "sg_ch10",
+    "chapterName": "史纲·第十章",
+    "sectionId": "sg_ch10_s",
+    "sectionName": "第十章·单选",
+    "title": "史纲·第十章 单选 第3题",
+    "content": "2025年是“十四五”规划收官之年。科学制定和接续实施五年规划，是我们党治国理政一条重要经验，也是中国特色社会主义一个重要政治优势。从“一五”到“十四五”，一以贯之的主题是\nA.不断提高人民生活水平\nB.不断壮大我国综合国力\nC.不断推进中华民族伟大复兴\nD.把我国建设成为社会主义现代化国家",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：D\n您的答案：C",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_10_m_1",
+    "chapterId": "sg_ch10",
+    "chapterName": "史纲·第十章",
+    "sectionId": "sg_ch10_m",
+    "sectionName": "第十章·多选",
+    "title": "史纲·第十章 多选 第1题",
+    "content": "党的十八大以来，中国特色社会主义进入新时代。党面临的主要任务是\nA.实现第一个百年奋斗目标\nB.开启实现第二个百年奋斗目标新征程\nC.为实现中华民族伟大复兴提供充满新的活力的体制保证和快速发展的物质条件\nD.朝着实现中华民族伟大复兴的宏伟目标继续前进",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：ABD\n您的答案：ACD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  },
+  {
+    "id": "sg_10_m_3",
+    "chapterId": "sg_ch10",
+    "chapterName": "史纲·第十章",
+    "sectionId": "sg_ch10_m",
+    "sectionName": "第十章·多选",
+    "title": "史纲·第十章 多选 第3题",
+    "content": "党的二十大报告指出，从现在起，中国共产党的中心任务是\nA.团结带领全国各族人民全面建成社会主义现代化强国、实现第二个百年奋斗目标\nB.促进世界和平与发展\nC.推动构建人类命运共同体\nD.以中国式现代化全面推进中华民族伟大复兴",
+    "mistakeType": "概念不清",
+    "importance": 4,
+    "correction": "正确答案：AD\n您的答案：ABCD",
+    "createdAt": "2026-10-19T00:52:27.826Z",
+    "reviewCount": 0,
+    "lastReviewAt": "",
+    "mastered": false
+  }
+])
+const activeTab = ref('list')
+const showAddDialog = ref(false)
+const selectedProblem = ref<WrongProblem | null>(null)
+
+// 图片录入相关状态
+const imageUploadMode = ref(false) // 是否启用图片录入模式
+const uploadedImages = ref<string[]>([]) // 上传的图片列表（base64）
+const imagePreviewUrl = ref('') // 当前预览的图片URL
+const ocrTipVisible = ref(true) // 是否显示OCR提示
+
+// 错题展开状态管理（记录每道题的订正笔记是否展开）
+const expandedCorrections = ref<Set<string>>(new Set())
+
+const newProblem = ref({
+  chapterId: '',
+  chapterName: '',
+  sectionId: '',
+  sectionName: '',
+  title: '',
+  content: '',
+  mistakeType: '',
+  importance: 3,
+  correction: ''
+})
+
+const mistakeTypes = [
+  { value: '概念不清', label: '概念理解不清' },
+  { value: '计算错误', label: '计算错误' },
+  { value: '思路错误', label: '解题思路错误' },
+  { value: '粗心大意', label: '粗心/审题不清' },
+  { value: '不会做', label: '完全不会做' }
+]
+
+const chapterFilter = ref('all')
+const typeFilter = ref('all')
+const masteredFilter = ref('all')
+
+// 计算属性
+const filteredProblems = computed(() => {
+  return problems.value.filter(p => {
+    if (chapterFilter.value !== 'all' && p.chapterId !== chapterFilter.value) return false
+    if (typeFilter.value !== 'all' && p.mistakeType !== typeFilter.value) return false
+    if (masteredFilter.value === 'mastered' && !p.mastered) return false
+    if (masteredFilter.value === 'unmastered' && p.mastered) return false
+    return true
+  })
+})
+
+const chapters = computed(() => {
+  const unique = new Map()
+  problems.value.forEach(p => {
+    if (!unique.has(p.chapterId)) {
+      unique.set(p.chapterId, { id: p.chapterId, name: p.chapterName })
+    }
+  })
+  return Array.from(unique.values())
+})
+
+const stats = computed(() => {
+  const total = problems.value.length
+  const mastered = problems.value.filter(p => p.mastered).length
+  const unmastered = total - mastered
+  
+  const typeStats: Record<string, number> = {}
+  problems.value.forEach(p => {
+    typeStats[p.mistakeType] = (typeStats[p.mistakeType] || 0) + 1
+  })
+  
+  return { total, mastered, unmastered, typeStats }
+})
+
+// 方法
+const openAddDialog = () => {
+  newProblem.value = {
+    chapterId: '',
+    chapterName: '',
+    sectionId: '',
+    sectionName: '',
+    title: '',
+    content: '',
+    mistakeType: '',
+    importance: 3,
+    correction: ''
+  }
+  showAddDialog.value = true
+}
+
+const addProblem = () => {
+  if (!newProblem.value.title || !newProblem.value.mistakeType) {
+    ElMessage.warning('请填写题目和错误类型')
+    return
+  }
+  
+  const problem: WrongProblem = {
+    id: `wrong_${Date.now()}`,
+    chapterId: newProblem.value.chapterId || 'unknown',
+    chapterName: newProblem.value.chapterName || '未分类',
+    sectionId: newProblem.value.sectionId || '',
+    sectionName: newProblem.value.sectionName || '',
+    title: newProblem.value.title,
+    content: newProblem.value.content,
+    mistakeType: newProblem.value.mistakeType,
+    importance: newProblem.value.importance,
+    correction: newProblem.value.correction,
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
+  }
+  
+  problems.value.unshift(problem)
+  saveToLocalStorage()
+  showAddDialog.value = false
+  ElMessage.success('错题添加成功')
+}
+
+const toggleMastered = (problem: WrongProblem) => {
+  problem.mastered = !problem.mastered
+  if (problem.mastered) {
+    problem.reviewCount++
+    problem.lastReviewAt = new Date().toISOString()
+  }
+  saveToLocalStorage()
+  ElMessage.success(problem.mastered ? '已标记为掌握' : '已取消掌握')
+}
+
+const deleteProblem = (id: string) => {
+  problems.value = problems.value.filter(p => p.id !== id)
+  saveToLocalStorage()
+  ElMessage.success('已删除')
+}
+
+const saveToLocalStorage = () => {
+  wp.persist()
+}
+
+const loadFromLocalStorage = () => { /* 统一 store 托管载入与持久化 */ }
+
+// ==================== 图片录入相关函数 ====================
+
+// 处理图片上传
+const handleImageUpload = (file: File) => {
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const base64 = e.target?.result as string
+    uploadedImages.value.push(base64)
+    imagePreviewUrl.value = base64
+    ElMessage.success('图片上传成功！请手动提取题目内容并填写到下方表单')
+  }
+  reader.readAsDataURL(file)
+  return false // 阻止自动上传
+}
+
+// 删除已上传的图片
+const removeImage = (index: number) => {
+  uploadedImages.value.splice(index, 1)
+  if (uploadedImages.value.length === 0) {
+    imagePreviewUrl.value = ''
+  } else {
+    imagePreviewUrl.value = uploadedImages.value[uploadedImages.value.length - 1]
+  }
+}
+
+// 切换图片预览模式
+const toggleImageMode = () => {
+  imageUploadMode.value = !imageUploadMode.value
+  if (!imageUploadMode.value) {
+    uploadedImages.value = []
+    imagePreviewUrl.value = ''
+  }
+}
+
+// 复制OCR提示文本（方便用户粘贴）
+const copyOcrTemplate = () => {
+  const template = `【题目标题】
+【题目内容】
+A. 
+B. 
+C. 
+D. 
+【正确答案】
+【错误原因/解析】`
+  navigator.clipboard.writeText(template).then(() => {
+    ElMessage.success('模板已复制到剪贴板，请根据图片内容填写')
+  })
+}
+
+// 快速填充示例（用于测试）
+const fillExampleData = () => {
+  newProblem.value = {
+    chapterId: 'ch2',
+    chapterName: '第二章 线性表',
+    sectionId: '2.1',
+    sectionName: '2.1 线性表的定义和基本操作',
+    title: '顺序表的基本操作',
+    content: '在长度为n的顺序表中，插入一个元素的时间复杂度是（）。\nA. O(1)\nB. O(n)\nC. O(logn)\nD. O(n²)',
+    mistakeType: '计算错误',
+    importance: 4,
+    correction: '正确答案：B\n解析：顺序表插入需要移动元素，平均移动n/2个元素，时间复杂度为O(n)。'
+  }
+  ElMessage.success('已填充示例数据，您可以根据实际图片内容修改')
+}
+
+// ==================== 错题展开/折叠功能 ====================
+
+// 切换订正笔记的展开/折叠状态
+const toggleCorrection = (problemId: string) => {
+  if (expandedCorrections.value.has(problemId)) {
+    expandedCorrections.value.delete(problemId)
+  } else {
+    expandedCorrections.value.add(problemId)
+  }
+}
+
+// 检查某道题的订正笔记是否展开
+const isCorrectionExpanded = (problemId: string) => {
+  return expandedCorrections.value.has(problemId)
+}
+
+const getMistakeTypeTag = (type: string) => {
+  const map: Record<string, string> = {
+    '概念不清': 'danger',
+    '计算错误': 'warning',
+    '思路错误': 'info',
+    '粗心大意': 'success',
+    '不会做': 'danger'
+  }
+  return map[type] || 'default'
+}
+
+const getImportanceStars = (level: number) => {
+  return '⭐'.repeat(level)
+}
+
+// 格式化题目内容，按行分割
+const formatContent = (content: string): string[] => {
+  if (!content) return []
+  // 按换行符分割，过滤空行
+  return content.split('\n').filter(line => line.trim() !== '')
+}
+
+onMounted(() => {
+  loadFromLocalStorage()
+})
+
+// 暴露方法供外部调用
+defineExpose({
+  openAddDialog,
+  problems
+})
 </script>
 
 <template>
-  <div class="politics-wrong-problems">
-    <div class="empty-state">
-      <el-icon size="48" color="#909399"><DocumentChecked /></el-icon>
-      <p>暂无政治错题</p>
-      <p class="hint">做题时遇到错题，拍照/截图发给 QoderWork 录入</p>
+  <div class="wrong-problems-container">
+    <!-- 顶部统计 -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">{{ stats.total }}</div>
+        <div class="stat-label">总错题数</div>
+      </div>
+      <div class="stat-item mastered">
+        <div class="stat-value">{{ stats.mastered }}</div>
+        <div class="stat-label">已掌握</div>
+      </div>
+      <div class="stat-item unmastered">
+        <div class="stat-value">{{ stats.unmastered }}</div>
+        <div class="stat-label">未掌握</div>
+      </div>
     </div>
+
+    <!-- 功能标签页 -->
+    <el-tabs v-model="activeTab" class="wrong-tabs">
+      <el-tab-pane label="错题列表" name="list">
+        <!-- 筛选栏 -->
+        <div class="filter-bar">
+          <el-button type="primary" @click="openAddDialog">
+            <el-icon><Plus /></el-icon>
+            添加错题
+          </el-button>
+          
+          <el-space>
+            <el-select v-model="chapterFilter" placeholder="按章节筛选" clearable style="width: 150px">
+              <el-option label="全部章节" value="all" />
+              <el-option 
+                v-for="ch in chapters" 
+                :key="ch.id" 
+                :label="ch.name" 
+                :value="ch.id" 
+              />
+            </el-select>
+            
+            <el-select v-model="typeFilter" placeholder="按类型筛选" clearable style="width: 150px">
+              <el-option label="全部类型" value="all" />
+              <el-option 
+                v-for="type in mistakeTypes" 
+                :key="type.value" 
+                :label="type.label" 
+                :value="type.value" 
+              />
+            </el-select>
+            
+            <el-select v-model="masteredFilter" placeholder="掌握状态" clearable style="width: 130px">
+              <el-option label="全部" value="all" />
+              <el-option label="已掌握" value="mastered" />
+              <el-option label="未掌握" value="unmastered" />
+            </el-select>
+          </el-space>
+        </div>
+
+        <!-- 错题列表 -->
+        <div class="problems-list">
+          <el-card 
+            v-for="problem in filteredProblems" 
+            :key="problem.id"
+            class="problem-card"
+            :class="{ mastered: problem.mastered }"
+          >
+            <div class="problem-header">
+              <div class="problem-title">
+                <h4>{{ problem.title }}</h4>
+                <div class="problem-tags">
+                  <el-tag :type="getMistakeTypeTag(problem.mistakeType)" size="small">
+                    {{ problem.mistakeType }}
+                  </el-tag>
+                  <span class="importance">{{ getImportanceStars(problem.importance) }}</span>
+                </div>
+              </div>
+              <div class="problem-actions">
+                <el-button 
+                  :type="problem.mastered ? 'success' : 'default'"
+                  size="small"
+                  @click="toggleMastered(problem)"
+                >
+                  {{ problem.mastered ? '已掌握 ✓' : '标记掌握' }}
+                </el-button>
+                <el-button 
+                  type="danger" 
+                  size="small"
+                  @click="deleteProblem(problem.id)"
+                >
+                  删除
+                </el-button>
+              </div>
+            </div>
+            
+            <div class="problem-meta">
+              <span>📚 {{ problem.chapterName }}</span>
+              <span v-if="problem.sectionName">| {{ problem.sectionName }}</span>
+              <span>| 📅 {{ new Date(problem.createdAt).toLocaleDateString() }}</span>
+              <span v-if="problem.reviewCount > 0">| 复习 {{ problem.reviewCount }} 次</span>
+            </div>
+            
+            <div v-if="problem.content" class="problem-content">
+              <strong>题目内容：</strong>
+              <div class="content-text">
+                <div v-for="(line, index) in formatContent(problem.content)" :key="index" class="content-line">
+                  {{ line }}
+                </div>
+              </div>
+            </div>
+            
+            <div v-if="problem.correction" class="problem-correction">
+              <div class="correction-header" @click="toggleCorrection(problem.id)">
+                <strong>订正笔记</strong>
+                <el-icon 
+                  class="expand-icon" 
+                  :class="{ expanded: isCorrectionExpanded(problem.id) }"
+                >
+                  <ArrowDown />
+                </el-icon>
+              </div>
+              <transition name="expand">
+                <div v-show="isCorrectionExpanded(problem.id)" class="correction-text">
+                  {{ problem.correction }}
+                </div>
+              </transition>
+            </div>
+          </el-card>
+          
+          <div v-if="filteredProblems.length === 0" class="empty-state">
+            <el-icon size="80" color="#c0c4cc"><DocumentChecked /></el-icon>
+            <p>暂无错题记录</p>
+            <el-button type="primary" @click="openAddDialog">添加第一道错题</el-button>
+          </div>
+        </div>
+      </el-tab-pane>
+
+      <el-tab-pane label="统计分析" name="stats">
+        <div class="stats-content">
+          <el-card>
+            <template #header>
+              <h3>错误类型分布</h3>
+            </template>
+            <div class="type-stats">
+              <div 
+                v-for="(count, type) in stats.typeStats" 
+                :key="type"
+                class="type-stat-item"
+              >
+                <div class="type-label">
+                  <el-tag :type="getMistakeTypeTag(type)">{{ type }}</el-tag>
+                </div>
+                <el-progress 
+                  :percentage="Math.round((count / stats.total) * 100)" 
+                  :stroke-width="20"
+                />
+                <div class="type-count">{{ count }} 题</div>
+              </div>
+            </div>
+          </el-card>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+
+    <!-- 添加错题对话框 -->
+    <el-dialog 
+      v-model="showAddDialog" 
+      title="添加错题"
+      width="800px"
+      :close-on-click-modal="false"
+    >
+      <!-- 图片录入模式切换按钮 -->
+      <div style="margin-bottom: 16px; display: flex; gap: 12px; align-items: center;">
+        <el-button 
+          :type="imageUploadMode ? 'primary' : 'default'" 
+          @click="toggleImageMode"
+          :icon="Picture"
+        >
+          {{ imageUploadMode ? '关闭图片预览' : '启用图片录入模式' }}
+        </el-button>
+        <el-button 
+          v-if="imageUploadMode" 
+          @click="copyOcrTemplate"
+          :icon="CopyDocument"
+          size="small"
+        >
+          复制填写模板
+        </el-button>
+        <el-button 
+          v-if="imageUploadMode && uploadedImages.length === 0" 
+          @click="fillExampleData"
+          :icon="MagicStick"
+          size="small"
+        >
+          填充示例数据
+        </el-button>
+      </div>
+
+      <!-- 图片上传和预览区域 -->
+      <div v-if="imageUploadMode" style="margin-bottom: 20px; padding: 16px; background: #f5f7fa; border-radius: 8px;">
+        <el-alert
+          v-if="ocrTipVisible"
+          title="💡 使用提示"
+          type="info"
+          :closable="true"
+          @close="ocrTipVisible = false"
+          style="margin-bottom: 12px"
+        >
+          <p style="margin: 4px 0;">1. 点击下方上传按钮或拖拽图片到此处</p>
+          <p style="margin: 4px 0;">2. 查看右侧图片，手动提取题目内容</p>
+          <p style="margin: 4px 0;">3. 将提取的内容填写到下方表单中</p>
+          <p style="margin: 4px 0; color: #e6a23c;">⚠️ 目前需要手动录入，未来可集成OCR自动识别</p>
+        </el-alert>
+
+        <el-upload
+          class="image-uploader"
+          action="#"
+          :auto-upload="false"
+          :on-change="(file: any) => handleImageUpload(file.raw)"
+          :show-file-list="false"
+          accept="image/*"
+          drag
+          multiple
+        >
+          <el-icon class="el-icon--upload"><Upload /></el-icon>
+          <div class="el-upload__text">
+            拖拽图片到此处或 <em>点击上传</em>
+          </div>
+          <template #tip>
+            <div class="el-upload__tip">支持 JPG/PNG 格式，可同时上传多张图片</div>
+          </template>
+        </el-upload>
+
+        <!-- 图片预览区 -->
+        <div v-if="uploadedImages.length > 0" style="margin-top: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-weight: bold; color: #606266;">已上传 {{ uploadedImages.length }} 张图片</span>
+            <el-button size="small" @click="uploadedImages = []; imagePreviewUrl = ''">清空全部</el-button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px;">
+            <div 
+              v-for="(img, index) in uploadedImages" 
+              :key="index"
+              style="position: relative; border: 2px solid #dcdfe6; border-radius: 8px; overflow: hidden; cursor: pointer;"
+              :style="{ borderColor: imagePreviewUrl === img ? '#409eff' : '#dcdfe6' }"
+              @click="imagePreviewUrl = img"
+            >
+              <img :src="img" style="width: 100%; height: 150px; object-fit: cover;" />
+              <div 
+                style="position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.6); color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                @click.stop="removeImage(index)"
+              >
+                ×
+              </div>
+              <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); color: white; text-align: center; font-size: 12px; padding: 2px;">
+                {{ index + 1 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 20px;">
+        <!-- 左侧：图片预览（大图） -->
+        <div v-if="imageUploadMode && imagePreviewUrl" style="flex: 1; max-width: 400px;">
+          <div style="border: 2px solid #409eff; border-radius: 8px; overflow: hidden; background: #fff;">
+            <img :src="imagePreviewUrl" style="width: 100%; max-height: 600px; object-fit: contain;" />
+          </div>
+          <p style="text-align: center; color: #909399; font-size: 12px; margin-top: 8px;">
+            👆 点击图片放大查看细节
+          </p>
+        </div>
+
+        <!-- 右侧：表单填写区 -->
+        <el-form :model="newProblem" label-position="top" :style="{ flex: imageUploadMode ? 1 : 1 }">
+        <el-form-item label="所属章节">
+          <el-input v-model="newProblem.chapterName" placeholder="例如：第一章 计算机系统概述" />
+        </el-form-item>
+        
+        <el-form-item label="所属小节">
+          <el-input v-model="newProblem.sectionName" placeholder="例如：1.1 计算机发展历程（可选）" />
+        </el-form-item>
+        
+        <el-form-item label="题目标题">
+          <el-input v-model="newProblem.title" placeholder="简要描述题目" />
+        </el-form-item>
+        
+        <el-form-item label="题目内容">
+          <el-input 
+            v-model="newProblem.content" 
+            type="textarea" 
+            :rows="4"
+            placeholder="详细的题目内容..."
+          />
+        </el-form-item>
+        
+        <el-form-item label="错误类型">
+          <el-select v-model="newProblem.mistakeType" placeholder="选择错误类型" style="width: 100%">
+            <el-option 
+              v-for="type in mistakeTypes" 
+              :key="type.value" 
+              :label="type.label" 
+              :value="type.value" 
+            />
+          </el-select>
+        </el-form-item>
+        
+        <el-form-item label="重要程度">
+          <el-rate v-model="newProblem.importance" :max="5" />
+        </el-form-item>
+        
+        <el-form-item label="订正笔记">
+          <el-input 
+            v-model="newProblem.correction" 
+            type="textarea" 
+            :rows="4"
+            placeholder="正确的解题思路和答案（可选）"
+          />
+        </el-form-item>
+      </el-form>
+      </div>
+      
+      <template #footer>
+        <el-button @click="showAddDialog = false">取消</el-button>
+        <el-button type="primary" @click="addProblem">添加</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
-<style scoped>
-.politics-wrong-problems {
-  padding: 20px 0;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: #909399;
-}
-
-.empty-state p {
-  margin: 12px 0 0;
-  font-size: 1.05em;
-}
-
-.empty-state .hint {
-  font-size: 0.9em;
-  color: #c0c4cc;
+<style scoped lang="scss">
+.wrong-problems-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  
+  .stats-bar {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, #16345c 0%, #1e4576 100%);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      color: white;
+      
+      &.mastered {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 8px;
+      }
+      
+      &.unmastered {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 8px;
+      }
+      
+      .stat-value {
+        font-size: 2em;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      
+      .stat-label {
+        font-size: 0.9em;
+        opacity: 0.9;
+      }
+    }
+  }
+  
+  .wrong-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    :deep(.el-tabs__content) {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+    }
+  }
+  
+  .filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #f5f7fa;
+    border-radius: 8px;
+  }
+  
+  .problems-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+    .problem-card {
+      transition: all 0.3s;
+      border-left: 4px solid #ffc53d;
+      
+      &.mastered {
+        border-left-color: #67c23a;
+        opacity: 0.7;
+        
+        .problem-title h4 {
+          text-decoration: line-through;
+          color: #909399;
+        }
+      }
+      
+      &:hover {
+        transform: translateX(4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .problem-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        
+        .problem-title {
+          flex: 1;
+          
+          h4 {
+            margin: 0 0 8px 0;
+            color: #303133;
+            font-size: 1.1em;
+          }
+          
+          .problem-tags {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            
+            .importance {
+              font-size: 0.9em;
+            }
+          }
+        }
+        
+        .problem-actions {
+          display: flex;
+          gap: 8px;
+        }
+      }
+      
+      .problem-meta {
+        font-size: 0.85em;
+        color: #909399;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #ebeef5;
+        
+        span {
+          margin-right: 8px;
+        }
+      }
+      
+      .problem-content,
+      .problem-correction {
+        margin-bottom: 12px;
+        
+        strong {
+          display: block;
+          margin-bottom: 8px;
+          color: #606266;
+          font-size: 0.95em;
+        }
+        
+        // 订正笔记头部（可点击）
+        .correction-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 12px;
+          background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s;
+          user-select: none;
+          
+          &:hover {
+            background: linear-gradient(135deg, #ffe0b2 0%, #ffcc80 100%);
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+          }
+          
+          strong {
+            margin: 0;
+            color: #e65100;
+            font-weight: 600;
+          }
+          
+          .expand-icon {
+            transition: transform 0.3s;
+            color: #ff9800;
+            font-size: 18px;
+            
+            &.expanded {
+              transform: rotate(180deg);
+            }
+          }
+        }
+        
+        .content-text,
+        .correction-text {
+          padding: 16px;
+          background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+          border-radius: 8px;
+          line-height: 1.8;
+          color: #303133;
+          font-size: 0.95em;
+        }
+        
+        .content-text {
+          .content-line {
+            padding: 6px 0;
+            min-height: 24px;
+            
+            // 题目前缀（非选项行）
+            &:first-child:not(:only-child) {
+              font-weight: 600;
+              color: #303133;
+              padding-bottom: 10px;
+              border-bottom: 1px dashed #dcdfe6;
+              margin-bottom: 8px;
+            }
+            
+            // 选项行样式
+            &:not(:first-child) {
+              padding-left: 16px;
+              position: relative;
+              transition: all 0.2s;
+              
+              &:hover {
+                background: rgba(13, 33, 55, 0.08);
+                border-radius: 4px;
+                padding-left: 20px;
+              }
+              
+              // 选项标识符（A. B. C. D.）加粗
+              &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 4px;
+                background: #16345c;
+                border-radius: 50%;
+              }
+            }
+          }
+        }
+        
+        .correction-text {
+          white-space: pre-wrap;
+          background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+          border-left: 3px solid #ff9800;
+          margin-top: 8px;
+        }
+      }
+    }
+    
+    // 展开/折叠动画
+    .expand-enter-active,
+    .expand-leave-active {
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .expand-enter-from,
+    .expand-leave-to {
+      opacity: 0;
+      max-height: 0;
+      padding: 0 16px;
+    }
+    
+    .expand-enter-to,
+    .expand-leave-from {
+      opacity: 1;
+      max-height: 500px;
+      padding: 16px;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #909399;
+      
+      p {
+        margin: 16px 0;
+        font-size: 1.1em;
+      }
+    }
+  }
+  
+  .stats-content {
+    .type-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      
+      .type-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        
+        .type-label {
+          min-width: 100px;
+        }
+        
+        :deep(.el-progress) {
+          flex: 1;
+        }
+        
+        .type-count {
+          min-width: 60px;
+          text-align: right;
+          font-weight: 600;
+          color: #606266;
+        }
+      }
+    }
+  }
 }
 </style>
