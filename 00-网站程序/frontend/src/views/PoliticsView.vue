@@ -8,6 +8,7 @@ import {
 } from '@/stores/todayStatus'
 
 const PoliticsKnowledge = defineAsyncComponent(() => import('@/components/PoliticsKnowledge.vue'))
+const PoliticsMindMap = defineAsyncComponent(() => import('@/components/PoliticsMindMap.vue'))
 const PoliticsReciteCards = defineAsyncComponent(() => import('@/components/PoliticsReciteCards.vue'))
 const PoliticsDiagnosis = defineAsyncComponent(() => import('@/components/PoliticsDiagnosis.vue'))
 
@@ -88,7 +89,7 @@ const stages = [
       <div class="hero-inner">
         <span class="hero-kicker">POLITICS · 政治 · 目标70+</span>
         <h1 class="hero-title">政治<span class="gold">作战室</span></h1>
-        <p class="hero-sub">路线图 · 知识框架 · 背诵卡片 · 真题演练 —— 一站到位</p>
+        <p class="hero-sub">路线图 · 知识框架 · 记忆图谱 · 背诵卡片 · 真题演练 —— 一站到位</p>
       </div>
     </header>
 
@@ -181,6 +182,11 @@ const stages = [
         <!-- ══ 页签2：知识框架 ══ -->
         <el-tab-pane label="🧱 知识框架" name="knowledge" lazy>
           <PoliticsKnowledge />
+        </el-tab-pane>
+
+        <!-- ══ 页签2.5：记忆图谱 ══ -->
+        <el-tab-pane label="🧠 记忆图谱" name="mindmap" lazy>
+          <PoliticsMindMap />
         </el-tab-pane>
 
         <!-- ══ 页签3：背诵卡片 ══ -->
