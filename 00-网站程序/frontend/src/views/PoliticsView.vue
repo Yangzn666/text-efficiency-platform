@@ -9,6 +9,7 @@ import {
 
 const PoliticsKnowledge = defineAsyncComponent(() => import('@/components/PoliticsKnowledge.vue'))
 const PoliticsReciteCards = defineAsyncComponent(() => import('@/components/PoliticsReciteCards.vue'))
+const PoliticsDiagnosis = defineAsyncComponent(() => import('@/components/PoliticsDiagnosis.vue'))
 
 const activeTab = ref('roadmap')
 
@@ -239,6 +240,11 @@ const stages = [
               </ul>
             </section>
           </div>
+        </el-tab-pane>
+
+        <!-- ══ 页签5：错因诊断 ══ -->
+        <el-tab-pane label="🩺 错因诊断" name="diagnosis" lazy>
+          <PoliticsDiagnosis />
         </el-tab-pane>
       </el-tabs>
     </div>
