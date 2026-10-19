@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, defineAsyncComponent } from 'vue'
 import { ElMessage } from 'element-plus'
+
+const BageMethodMap = defineAsyncComponent(() => import('@/components/BageMethodMap.vue'))
 
 const activeTab = ref('bage')
 
@@ -441,6 +443,14 @@ const jumpToPlugin = (pid: string) => {
   setTimeout(() => { bageFlashPlugin.value = '' }, 1300)
 }
 
+// 把模板英文里的【槽位】高亮成金色填空块，突出记忆重点
+const hlSlot = (s: string) => {
+  if (!s) return ''
+  const t = String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return t.replace(/【([^】]*)】/g, '<span class="sc">【$1】</span>')
+}
+
 onMounted(() => {
   loadEssays()
   loadEssayHistory()
@@ -486,10 +496,18 @@ const goWrite = (e: EssayItem) => {
 
           <!-- 区块锚点导航 -->
           <div class="bage-anchors">
+            <button @click="scrollSec('bage-sec-map')">🧭 写作路线图</button>
             <button @click="scrollSec('bage-sec-big')">🖼️ 大作文</button>
             <button @click="scrollSec('bage-sec-small')">✉️ 小作文</button>
             <button @click="scrollSec('bage-sec-plugin')">🔌 九大插件</button>
           </div>
+
+          <!-- 综合写作路线图（思维路线 + 逻辑流程图） -->
+          <BageMethodMap
+            :data="bage"
+            @pick-plugin="jumpToPlugin"
+            @goto="scrollSec"
+          />
 
           <!-- 大作文 -->
           <section id="bage-sec-big" class="bage-sec">
@@ -513,7 +531,7 @@ const goWrite = (e: EssayItem) => {
                     @click="bageRecite && reveal('b' + pi + '-' + gi + '-' + ii)"
                   >
                     <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-                    <div class="bage-en" v-show="!bageRecite || isRevealed('b' + pi + '-' + gi + '-' + ii)">{{ it.en }}</div>
+                    <div class="bage-en" v-show="!bageRecite || isRevealed('b' + pi + '-' + gi + '-' + ii)" v-html="hlSlot(it.en)"></div>
                     <div class="bage-cn">{{ it.cn }}</div>
                     <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
                     <div v-if="!bageRecite" class="bage-acts">
@@ -549,7 +567,7 @@ const goWrite = (e: EssayItem) => {
                   @click="bageRecite && reveal('s' + gi + '-' + ii)"
                 >
                   <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-                  <div class="bage-en" v-show="!bageRecite || isRevealed('s' + gi + '-' + ii)">{{ it.en }}</div>
+                  <div class="bage-en" v-show="!bageRecite || isRevealed('s' + gi + '-' + ii)" v-html="hlSlot(it.en)"></div>
                   <div class="bage-cn">{{ it.cn }}</div>
                   <div v-if="!bageRecite" class="bage-acts">
                     <button class="bage-copy" @click.stop="copyEn(it.en)">📋 复制</button>
@@ -598,7 +616,7 @@ const goWrite = (e: EssayItem) => {
                 @click="bageRecite && reveal('p' + ii)"
               >
                 <div v-if="it.label" class="bage-label">{{ it.label }}</div>
-                <div class="bage-en" v-show="!bageRecite || isRevealed('p' + ii)">{{ it.en }}</div>
+                <div class="bage-en" v-show="!bageRecite || isRevealed('p' + ii)" v-html="hlSlot(it.en)"></div>
                 <div class="bage-cn">{{ it.cn }}</div>
                 <div v-if="it.note" class="bage-note2">📌 {{ it.note }}</div>
                 <div v-if="!bageRecite" class="bage-acts">
@@ -1767,6 +1785,12 @@ const goWrite = (e: EssayItem) => {
 .bage-en {
   font-family: 'Georgia', 'Times New Roman', serif; font-weight: 600;
   font-size: 1.12rem; line-height: 1.6; color: var(--navy-deep); letter-spacing: .005em; word-break: break-word;
+}
+.bage-en :deep(.sc) {
+  display: inline-block; font-family: inherit; font-weight: 800; font-style: normal;
+  color: #8a5a12; background: linear-gradient(180deg, #fff3d0, #ffe6a8);
+  border: 1px solid #f0d488; border-bottom-width: 2px; border-radius: 6px;
+  padding: 0 6px; margin: 0 1px; box-shadow: 0 1px 0 rgba(200,150,20,.25);
 }
 .bage-cn { font-size: .9rem; line-height: 1.65; color: #5c6b7a; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e6ebf1; }
 .bage-note2 { font-size: .8rem; line-height: 1.55; color: #8a5a12; background: #fff7e6; border-radius: 7px; padding: 7px 11px; margin-top: 9px; }
