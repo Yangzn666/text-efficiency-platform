@@ -7,27 +7,51 @@ import { ref, computed } from 'vue'
    错因结构由「我的答案 vs 正确答案」客观推导，非主观臆断
    ══════════════════════════════════════════════════════════════ */
 
+// 重点字词标红加粗：把「」/“”里的关键术语 + 绝对化陷阱词渲染成红色粗体
+const HL_WORDS = ['唯一', '完全', '彻底', '永远', '任何', '取决于', '不再是', '只要']
+function hl(s?: string): string {
+  if (!s) return ''
+  let t = String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const pool: string[] = []
+  // 1) 先抽出「」与“”里的术语，用占位符保护，避免被后面的陷阱词二次切割
+  t = t.replace(/「([^」]+)」|“([^”]+)”/g, (_m, a, b) => {
+    pool.push(a ?? b)
+    return `\u0000${pool.length - 1}\u0000`
+  })
+  // 2) 绝对化 / 帽子陷阱词单独标红
+  for (const w of HL_WORDS) t = t.split(w).join(`\u0001${w}\u0002`)
+  t = t.replace(/\u0001([^\u0002]*)\u0002/g, '<b class="hl">$1</b>')
+  // 3) 回填术语（保留「」样式）
+  t = t.replace(/\u0000(\d+)\u0000/g, (_m, i) => `<b class="hl">「${pool[+i]}」</b>`)
+  return t
+}
+
 const TOTAL = 317
 const SUBJECT = { my: 192, sg: 125 }
 const TYPE = { single: 127, multi: 190 }
 
-// 五大错因桶（按占比降序）
+// 五大错因桶（按占比降序，附真实错题示例）
 const buckets = [
   { key: 'over', label: '多选 · 没认出干扰项', count: 90, pct: 28.4, color: 'coral',
     diag: '多选题里那个「看着对、实则绝对化 / 偷换概念 / 张冠李戴」的错项没揪出来，全选了。',
-    cure: '做完先问「有没有一个选项话说太满 / 换了主语」，宁可回读题干圈关键词。' },
+    cure: '做完先问「有没有一个选项话说太满 / 换了主语」，宁可回读题干圈关键词。',
+    eg: '例：马克思主义当代价值题，你把「现成方案」也选了（导论多选 #1）。' },
   { key: 'pair', label: '单选 · 概念对偶混淆', count: 70, pct: 22.1, color: 'gold',
     diag: '马原政经 & 哲学的成对概念分不清：具体↔抽象劳动、绝对↔相对超额剩余价值、不变可变资本…',
-    cure: '给每对概念写「一句话判据」，靠判据而非语感作答（见下方补丁卡）。' },
+    cure: '给每对概念写「一句话判据」，靠判据而非语感作答（见下方补丁卡）。',
+    eg: '例：量的考察与质的区分，谁是谁的前提，说反了（一章多选 #31）。' },
   { key: 'under', label: '多选 · 漏选（记不全）', count: 61, pct: 19.2, color: 'blue',
     diag: '知识点掌握不完整，正确的选项不敢选，导致少选丢分。',
-    cure: '把「四大 / 三全 / 三个有利于」这类成套结论做成清单，先补全再判断。' },
+    cure: '把「四大 / 三全 / 三个有利于」这类成套结论做成清单，先补全再判断。',
+    eg: '例：中共三大政治口号「抗战、团结、进步」只记住两个（六章多选 #9）。' },
   { key: 'mem', label: '单选 · 史纲记忆不精确', count: 57, pct: 18.0, color: 'navy',
     diag: '史纲的时间、会议、人物、著作「差不多」就选，被相近项带偏。',
-    cure: '用时间轴 + 会议速查表钉死「谁 / 何时 / 提了什么」，见下方混淆速查。' },
+    cure: '用时间轴 + 会议速查表钉死「谁 / 何时 / 提了什么」，见下方混淆速查。',
+    eg: '例：九一八=局部抗战序幕 / 卢沟桥=全民族抗战，反复错（六章单选）。' },
   { key: 'both', label: '多选 · 又多又漏（边界模糊）', count: 39, pct: 12.3, color: 'grey',
     diag: '该考点整体框架没建立起来，选多也选漏。',
-    cure: '回炉该节视频/思维导图，先搭框架再刷题，别急着纠错选项。' },
+    cure: '回炉该节视频/思维导图，先搭框架再刷题，别急着纠错选项。',
+    eg: '例：辛亥革命"成功面/失败面"两面，既漏选又多选（三章多选）。' },
 ]
 
 // 章节错题热力（降序）
@@ -204,6 +228,139 @@ const multiTactics = [
     ] },
 ]
 
+/* ── 多选「找茬」演练（由你 76 道纯多选错题里挑出的高频陷阱项）── */
+interface Drill {
+  id: string; topic: string; subject: 'my' | 'sg'
+  stem: string; opts: { k: string; t: string }[]
+  ans: string; trap: string; why: string
+}
+const drills: Drill[] = [
+  { id: 'd1', topic: '导论 · 马克思主义当代价值', subject: 'my', ans: 'ABC', trap: 'D',
+    stem: '马克思主义的当代价值在于，它是',
+    opts: [
+      { k: 'A', t: '观察当代世界变化的认识工具' },
+      { k: 'B', t: '指引当代中国发展的行动指南' },
+      { k: 'C', t: '引领人类社会进步的科学真理' },
+      { k: 'D', t: '指导革命、建设、改革的现成方案' },
+    ],
+    why: '「现成方案」帽子扣太大——马克思主义给的是立场、观点、方法，不提供现成答案。典型"看似对实则夸大"。' },
+  { id: 'd2', topic: '一章 · 主观唯心主义', subject: 'my', ans: 'ABD', trap: 'C',
+    stem: '下列命题中，属于主观唯心主义观点的有',
+    opts: [
+      { k: 'A', t: '心外无物' },
+      { k: 'B', t: '存在就是被感知' },
+      { k: 'C', t: '物是绝对观念的外化' },
+      { k: 'D', t: '万物皆备于我' },
+    ],
+    why: '「绝对观念」是黑格尔的客观精神，C 属客观唯心，被张冠李戴塞进主观唯心。判据：本原带不带"我"。' },
+  { id: 'd3', topic: '一章 · 量与质的关系', subject: 'my', ans: 'AB', trap: 'D',
+    stem: '恩格斯说，任何一门科学的真正完善在于数学工具的广泛应用。这说明',
+    opts: [
+      { k: 'A', t: '只有精确地认识量，才能更深刻地把握质' },
+      { k: 'B', t: '认识事物的量是认识的深化和精确化' },
+      { k: 'C', t: '量和事物的存在是直接同一的' },
+      { k: 'D', t: '考察量是认识质的前提，区分质是认识量的深化' },
+    ],
+    why: 'D 把关系说反——应是「区分质是认识量的前提、考察量才是深化精确化」，前提与深化颠倒。' },
+  { id: 'd4', topic: '二章 · 设施农业突破自然条件', subject: 'my', ans: 'ABC', trap: 'D',
+    stem: '"向设施农业要食物"逐步成为现实表明',
+    opts: [
+      { k: 'A', t: '人类智慧和能力的发展决定着对物质资源开发的深度和广度' },
+      { k: 'B', t: '实践的发展是范围扩大、程度加深、效果提升的过程' },
+      { k: 'C', t: '实践的需要推动人类的科学发现和技术发明' },
+      { k: 'D', t: '自然地理环境不再是人类社会生存和发展的必要条件' },
+    ],
+    why: '「不再是必要条件」绝对化。地理环境始终是社会存在发展的必要条件，只是非"决定"力量。' },
+  { id: 'd5', topic: '二章 · 真理的绝对性与相对性', subject: 'my', ans: 'ABC', trap: 'D',
+    stem: '毛泽东把真理的绝对性与相对性比作"长河"与"水滴"。以下说法正确的有',
+    opts: [
+      { k: 'A', t: '任何真理都是相对性向绝对性转化过程中的一个环节' },
+      { k: 'B', t: '绝对性与相对性根源于认识能力无限与有限的矛盾' },
+      { k: 'C', t: '真理的绝对性通过真理的相对性表现出来' },
+      { k: 'D', t: '绝对真理和相对真理是对同一真理的不同表述方式' },
+    ],
+    why: 'D 偷换概念——二者是同一真理的两重属性、辩证统一，不是"两种不同表述方式"。' },
+  { id: 'd6', topic: '三章 · 南水北调与自由', subject: 'my', ans: 'ABD', trap: 'C',
+    stem: '通过南水北调工程解决华北水资源问题，这说明',
+    opts: [
+      { k: 'A', t: '实践能改变自然事物的形态，使之成为人化的自然' },
+      { k: 'B', t: '人在自然面前不是被动的、无能为力的' },
+      { k: 'C', t: '摆脱必然性的制约，是获得自由的前提' },
+      { k: 'D', t: '人与自然的和谐是在不断解决矛盾中实现的' },
+    ],
+    why: '「摆脱必然性制约」错——自由 = 对必然的认识 + 对世界的改造，须以尊重规律为前提，不能"摆脱"。' },
+  { id: 'd7', topic: '三章 · "投资于人"的依据', subject: 'my', ans: 'AB', trap: 'D',
+    stem: '"投资于人"这一政策导向的深刻现实与理论依据在于',
+    opts: [
+      { k: 'A', t: '人民群众是历史的创造者，投资于人是坚持以人民为中心' },
+      { k: 'B', t: '劳动者是生产力中最活跃的因素，投资于人就是投资未来生产力' },
+      { k: 'C', t: '人的物质欲望是社会发展的根本动力' },
+      { k: 'D', t: '人口因素是社会存在和发展的基础及决定力量' },
+    ],
+    why: 'D「决定力量」帽子错——人口只是重要条件，生产力才是最终决定力量。（C 也错，你没选，是对的。）' },
+  { id: 'd8', topic: '四章 · 价值与财富的源泉', subject: 'my', ans: 'AB', trap: 'D',
+    stem: '商品的价值是凝结在商品中的无差别的一般人类劳动。由此可见',
+    opts: [
+      { k: 'A', t: '商品交换实际上是生产者之间相互交换劳动的关系' },
+      { k: 'B', t: '商品的价值本质上体现了生产者之间的社会关系' },
+      { k: 'C', t: '使用价值寓于价值之中并通过价值表现出来' },
+      { k: 'D', t: '劳动是一切社会财富的唯一源泉' },
+    ],
+    why: 'D「唯一源泉」绝对化——劳动是"价值"的唯一源泉，"使用价值（财富）"的源泉还有自然界。' },
+  { id: 'd9', topic: '史纲 · 辛亥革命失败（主观）', subject: 'sg', ans: 'ABC', trap: 'D',
+    stem: '辛亥革命之所以失败，从主观方面说，在于资产阶级革命派的弱点和错误，主要是',
+    opts: [
+      { k: 'A', t: '没有提出彻底的反帝反封建的革命纲领' },
+      { k: 'B', t: '不能充分发动和依靠人民群众' },
+      { k: 'C', t: '不能建立坚强的革命政党' },
+      { k: 'D', t: '资本主义的建国方案行不通' },
+    ],
+    why: '题干问「主观」，D 是客观根源（半社半封条件下建国方案行不通），帽子错位、张冠李戴。' },
+  { id: 'd10', topic: '史纲 · 为何叫"大革命"', subject: 'sg', ans: 'ABC', trap: 'D',
+    stem: '1924—1927 年的革命被称作"大革命"，是因为与以往任何一次革命相比，它有很',
+    opts: [
+      { k: 'A', t: '群众的动员程度更为广泛' },
+      { k: 'B', t: '斗争的规模更加宏伟' },
+      { k: 'C', t: '革命的社会内涵更为深刻' },
+      { k: 'D', t: '革命的背景更加复杂' },
+    ],
+    why: 'D 不是教材定论特征（标准三项：动员、规模、内涵）。看似合理的"第四项"常是凑数干扰。' },
+  { id: 'd11', topic: '史纲 · 相持阶段三大政治口号', subject: 'sg', ans: 'ABD', trap: 'C',
+    stem: '针对国民党消极抗日、积极反共，中国共产党坚持的三大政治口号是',
+    opts: [
+      { k: 'A', t: '坚持抗战到底，反对中途妥协' },
+      { k: 'B', t: '巩固国内团结，反对内部分裂' },
+      { k: 'C', t: '坚持全面抗战，反对限共溶共' },
+      { k: 'D', t: '力求全国进步，反对向后倒退' },
+    ],
+    why: '三口号对应"抗战、团结、进步"，反对"妥协、分裂、倒退"。C 措辞是编造的近义干扰项。' },
+  { id: 'd12', topic: '史纲 · 中共八大', subject: 'sg', ans: 'ABD', trap: 'C',
+    stem: '1956 年中共八大对建设社会主义道路的探索站得比较高，因为八大',
+    opts: [
+      { k: 'A', t: '正确分析国内形势和主要矛盾变化，提出主要任务' },
+      { k: 'B', t: '坚持既反保守又反冒进、在综合平衡中稳步前进的方针' },
+      { k: 'C', t: '肯定"三个主体三个补充"，突破苏联模式开始经济体制改革' },
+      { k: 'D', t: '通过了党在全国执政后制定的第一部党章' },
+    ],
+    why: '「开始经济体制改革」时间错置（那是 1978 年以后）——C 把改革开放的成就安到了八大头上。' },
+]
+
+const drillRevealed = ref<string[]>([])
+const drillSolved = ref<string[]>([])
+const drillScore = computed(() => drillSolved.value.length)
+function pickDrill(d: Drill, k: string) {
+  if (drillRevealed.value.includes(d.id)) return
+  drillRevealed.value.push(d.id)
+  if (k === d.trap && !drillSolved.value.includes(d.id)) drillSolved.value.push(d.id)
+}
+function resetDrill() { drillRevealed.value = []; drillSolved.value = [] }
+function optClass(d: Drill, k: string) {
+  if (!drillRevealed.value.includes(d.id)) return ''
+  if (k === d.trap) return 'is-trap'
+  if (d.ans.includes(k)) return 'is-right'
+  return 'is-off'
+}
+
 // 混淆速查表
 const meetingTable = [
   { m: '中共一大 · 1921', c: '定名、中心任务组织工人阶级', g: '未提民主革命纲领' },
@@ -237,6 +394,16 @@ const bookTable = [
   { t: '《论持久战》1938', w: '毛泽东', k: '批亡国论/速胜论，预见三阶段' },
   { t: '《改造我们的学习》1941', w: '毛泽东', k: '整风开篇、反对主观主义' },
 ]
+
+// 速查表自测遮挡
+const maskMode = ref(false)
+const revealed = ref<string[]>([])
+function toggleMask() { maskMode.value = !maskMode.value; revealed.value = [] }
+function reveal(key: string) {
+  if (!maskMode.value) return
+  if (!revealed.value.includes(key)) revealed.value.push(key)
+}
+const isMasked = (key: string) => maskMode.value && !revealed.value.includes(key)
 
 const activeSection = ref('overview')
 const subjectFilter = ref<'all' | 'my' | 'sg'>('all')
@@ -283,7 +450,8 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
     <div class="dg-nav">
       <button :class="{ on: activeSection==='overview' }" @click="activeSection='overview'">🩺 诊断总览</button>
       <button :class="{ on: activeSection==='patch' }" @click="activeSection='patch'">🧩 漏洞补丁卡</button>
-      <button :class="{ on: activeSection==='multi' }" @click="activeSection='multi'">☑️ 多选题专项</button>
+      <button :class="{ on: activeSection==='multi' }" @click="activeSection='multi'">📐 多选判断法</button>
+      <button :class="{ on: activeSection==='drill' }" @click="activeSection='drill'">🎯 找茬演练</button>
       <button :class="{ on: activeSection==='table' }" @click="activeSection='table'">📊 混淆速查表</button>
     </div>
 
@@ -297,8 +465,9 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
             <span class="bk-count">{{ b.count }} 题 · {{ b.pct }}%</span>
           </div>
           <div class="bk-bar"><i :style="{ width: b.pct + '%' }"></i></div>
-          <p class="bk-diag"><b>病因：</b>{{ b.diag }}</p>
-          <p class="bk-cure"><b>对策：</b>{{ b.cure }}</p>
+          <p class="bk-diag"><b>病因：</b><span v-html="hl(b.diag)"></span></p>
+          <p class="bk-cure"><b>对策：</b><span v-html="hl(b.cure)"></span></p>
+          <p class="bk-eg"><span v-html="hl(b.eg)"></span></p>
         </div>
       </div>
 
@@ -330,42 +499,89 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 
           <div class="cd-block wrong">
             <span class="cd-bk">你反复错</span>
-            <ul><li v-for="(w,j) in p.wrong" :key="j">{{ w }}</li></ul>
+            <ul><li v-for="(w,j) in p.wrong" :key="j" v-html="hl(w)"></li></ul>
           </div>
           <div class="cd-block fuzzy">
             <span class="cd-bk">模糊 / 遗忘</span>
-            <p>{{ p.fuzzy }}</p>
+            <p v-html="hl(p.fuzzy)"></p>
           </div>
           <div class="cd-block patch">
             <span class="cd-bk">✅ 补丁 · 记这几句</span>
-            <ul><li v-for="(pt,j) in p.patch" :key="j">{{ pt }}</li></ul>
+            <ul><li v-for="(pt,j) in p.patch" :key="j" v-html="hl(pt)"></li></ul>
           </div>
           <div v-if="p.traps" class="cd-traps">
-            <span v-for="(t,j) in p.traps" :key="j" class="trap">{{ t }}</span>
+            <span v-for="(t,j) in p.traps" :key="j" class="trap" v-html="hl(t)"></span>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ══════════ 3 多选专项 ══════════ -->
+    <!-- ══════════ 3 多选判断法 ══════════ -->
     <section v-show="activeSection==='multi'" class="dg-panel">
-      <p class="dg-lead">多选题错 1 个就少分，是你与 70+ 之间最大的那道坎。三套判断法，对应上面三种失分结构。</p>
+      <p class="dg-lead">多选题错 1 个就少分，是你与 70+ 之间最大的那道坎。三套判断法，对应上面三种失分结构。练完直接去 <b>🎯 找茬演练</b> 实战。</p>
       <div class="tactics">
         <div v-for="t in multiTactics" :key="t.name" class="tactic" :class="t.color">
           <h4>{{ t.name }}</h4>
-          <ul><li v-for="(p,j) in t.points" :key="j">{{ p }}</li></ul>
+          <ul><li v-for="(p,j) in t.points" :key="j" v-html="hl(p)"></li></ul>
         </div>
       </div>
     </section>
 
-    <!-- ══════════ 4 混淆速查表 ══════════ -->
+    <!-- ══════════ 4 多选找茬演练 ══════════ -->
+    <section v-show="activeSection==='drill'" class="dg-panel">
+      <div class="dr-bar">
+        <div class="dr-bar-txt">
+          <h3 class="dg-h" style="margin:0">从你 76 道「多选选多了」的错题里，还原出的高频陷阱</h3>
+          <p class="dg-note" style="margin:6px 0 0">每题的正确答案里都藏着你上次<b>多选了、其实却是错的</b>那一个干扰项——把它揪出来。</p>
+        </div>
+        <div class="dr-score">
+          <strong>{{ drillScore }}<em>/{{ drills.length }}</em></strong>
+          <span>已揪出</span>
+          <button class="dr-reset" @click="resetDrill">↺ 重练</button>
+        </div>
+      </div>
+
+      <div class="drills">
+        <article v-for="d in drills" :key="d.id" class="drill" :class="[d.subject, { done: drillRevealed.includes(d.id), ok: drillSolved.includes(d.id) }]">
+          <header class="dr-head">
+            <span class="dr-tag">{{ d.subject==='my' ? '马原' : '史纲' }}</span>
+            <h4 class="dr-topic">{{ d.topic }}</h4>
+            <span v-if="drillSolved.includes(d.id)" class="dr-badge">✓ 揪对了</span>
+          </header>
+          <p class="dr-stem">{{ d.stem }}</p>
+          <div class="dr-opts">
+            <button v-for="o in d.opts" :key="o.k" class="dr-opt" :class="optClass(d,o.k)" :disabled="drillRevealed.includes(d.id)" @click="pickDrill(d,o.k)">
+              <span class="dr-key">{{ o.k }}</span>
+              <span class="dr-txt" v-html="hl(o.t)"></span>
+            </button>
+          </div>
+          <div v-if="drillRevealed.includes(d.id)" class="dr-why">
+            <span class="dr-ans">正解 {{ d.ans }} · 陷阱项 <b>{{ d.trap }}</b></span>
+            <p v-html="hl(d.why)"></p>
+          </div>
+          <p v-else class="dr-hint">👆 点你认为"上次多选了但其实错"的那一项</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════ 5 混淆速查表 ══════════ -->
     <section v-show="activeSection==='table'" class="dg-panel">
+      <div class="tbl-tools">
+        <button class="tt-btn" :class="{on:maskMode}" @click="toggleMask">🙈 自测遮挡：{{ maskMode ? '开' : '关' }}</button>
+        <span v-if="maskMode" class="tt-hint">答案已遮罩，先自己在心里回忆，点一下格子核对</span>
+        <button v-if="maskMode" class="tt-reset" @click="revealed=[]">全部重置</button>
+      </div>
+
       <h3 class="dg-h">党史重要会议 · 谁提了什么</h3>
       <div class="tbl-wrap">
         <table class="tbl">
           <thead><tr><th>会议 · 时间</th><th>核心内容</th><th>易混点 / 口诀</th></tr></thead>
           <tbody>
-            <tr v-for="r in meetingTable" :key="r.m"><td class="t-strong">{{ r.m }}</td><td>{{ r.c }}</td><td class="t-warn">{{ r.g }}</td></tr>
+            <tr v-for="(r,i) in meetingTable" :key="r.m">
+              <td class="t-strong">{{ r.m }}</td>
+              <td><span class="mk" :class="{on:isMasked('mt'+i)}" @click="reveal('mt'+i)" v-html="hl(r.c)"></span></td>
+              <td class="t-warn"><span class="mk" :class="{on:isMasked('mt'+i+'g')}" @click="reveal('mt'+i+'g')" v-html="hl(r.g)"></span></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -375,7 +591,11 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
         <table class="tbl">
           <thead><tr><th>A</th><th>B</th><th>怎么分</th></tr></thead>
           <tbody>
-            <tr v-for="r in pairTable" :key="r.a"><td class="t-strong">{{ r.a }}</td><td class="t-strong">{{ r.b }}</td><td>{{ r.note }}</td></tr>
+            <tr v-for="(r,i) in pairTable" :key="r.a">
+              <td class="t-strong">{{ r.a }}</td>
+              <td class="t-strong">{{ r.b }}</td>
+              <td><span class="mk" :class="{on:isMasked('pr'+i)}" @click="reveal('pr'+i)" v-html="hl(r.note)"></span></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -385,7 +605,11 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
         <table class="tbl">
           <thead><tr><th>著作 · 年份</th><th>作者</th><th>记住这句</th></tr></thead>
           <tbody>
-            <tr v-for="r in bookTable" :key="r.t"><td class="t-strong">{{ r.t }}</td><td>{{ r.w }}</td><td>{{ r.k }}</td></tr>
+            <tr v-for="(r,i) in bookTable" :key="r.t">
+              <td class="t-strong">{{ r.t }}</td>
+              <td>{{ r.w }}</td>
+              <td><span class="mk" :class="{on:isMasked('bk'+i)}" @click="reveal('bk'+i)" v-html="hl(r.k)"></span></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -405,6 +629,8 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
   --font-mono: 'JetBrains Mono', monospace;
   color: var(--dg-body);
 }
+/* 重点字词标红加粗（v-html 内容不受 scoped 约束，用 :deep） */
+.dg :deep(.hl) { color: var(--dg-coral); font-weight: 800; }
 
 /* 结论横幅 */
 .dg-verdict {
@@ -471,6 +697,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .bucket.gold .bk-bar i { background: linear-gradient(90deg,#e0a92e,var(--dg-gold)); }
 .bk-diag, .bk-cure { font-size: .84rem; line-height: 1.65; margin: 6px 0 0; color: var(--dg-body); }
 .bk-diag b { color: var(--dg-coral); } .bk-cure b { color: var(--dg-green); }
+.bk-eg { font-size: .8rem; line-height: 1.55; margin: 8px 0 0; padding: 7px 10px; background: var(--dg-soft); border-radius: 7px; border-left: 3px solid var(--dg-blue); color: var(--dg-navy); }
 
 /* 热力 */
 .heat { display: flex; flex-direction: column; gap: 8px; }
@@ -509,8 +736,9 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .cd-block.patch li { font-size: .85rem; line-height: 1.65; color: #1f4d38; margin: 4px 0; }
 .cd-traps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .trap { font-size: .76rem; color: var(--dg-coral); background: #fff; border: 1px dashed var(--dg-coral); border-radius: 6px; padding: 3px 9px; }
+.trap :deep(.hl) { color: inherit; }
 
-/* 多选专项 */
+/* 多选判断法 */
 .tactics { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 16px; }
 .tactic { border-radius: 14px; padding: 20px 22px; color: #fff; }
 .tactic.coral { background: linear-gradient(150deg,#d9503c,#e8604c); }
@@ -519,8 +747,53 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .tactic h4 { margin: 0 0 12px; font-size: 1.05rem; }
 .tactic ul { margin: 0; padding-left: 18px; }
 .tactic li { font-size: .88rem; line-height: 1.7; margin: 6px 0; }
+.tactic li :deep(.hl) { color: #ffe08a; }
+
+/* 找茬演练 */
+.dr-bar { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; margin-bottom: 16px; }
+.dr-score { display: flex; align-items: center; gap: 10px; background: var(--dg-navy); color: #fff; border-radius: 12px; padding: 10px 16px; }
+.dr-score strong { font-family: var(--font-display); font-size: 1.7rem; color: var(--dg-gold); line-height: 1; }
+.dr-score strong em { font-style: normal; font-size: .95rem; color: #b9cbe0; }
+.dr-score span { font-size: .78rem; color: #b9cbe0; }
+.dr-reset { border: 1px solid rgba(255,255,255,.4); background: transparent; color: #fff; border-radius: 8px; padding: 5px 12px; cursor: pointer; font-size: .82rem; }
+.dr-reset:hover { background: rgba(255,255,255,.12); }
+.drills { display: grid; grid-template-columns: repeat(auto-fill,minmax(360px,1fr)); gap: 16px; }
+.drill { border: 1px solid var(--dg-line); border-radius: 14px; background: #fff; padding: 16px 18px; border-left: 4px solid var(--dg-blue); }
+.drill.my { border-left-color: var(--dg-gold); }
+.drill.sg { border-left-color: var(--dg-navy); }
+.drill.done.ok { border-color: rgba(46,158,107,.5); }
+.dr-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.dr-tag { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
+.drill.my .dr-tag { background: #fdf1d6; color: #8a6100; }
+.drill.sg .dr-tag { background: #e7eef6; color: var(--dg-navy); }
+.dr-topic { font-size: .95rem; margin: 0; flex: 1; color: var(--dg-ink); font-weight: 700; }
+.dr-badge { font-size: .76rem; color: var(--dg-green); font-weight: 700; }
+.dr-stem { font-size: .88rem; line-height: 1.6; color: var(--dg-body); margin: 0 0 12px; padding: 10px 12px; background: var(--dg-soft); border-radius: 8px; }
+.dr-opts { display: flex; flex-direction: column; gap: 8px; }
+.dr-opt { display: flex; align-items: flex-start; gap: 10px; text-align: left; border: 1.5px solid var(--dg-line); background: #fff; border-radius: 9px; padding: 9px 12px; cursor: pointer; transition: all .15s; font-size: .85rem; line-height: 1.5; color: var(--dg-body); }
+.dr-opt:hover:not(:disabled) { border-color: var(--dg-navy); background: #f8fbff; }
+.dr-opt:disabled { cursor: default; }
+.dr-key { font-family: var(--font-mono); font-weight: 700; color: var(--dg-navy); flex-shrink: 0; }
+.dr-txt { flex: 1; }
+.dr-opt.is-right { border-color: var(--dg-green); background: #eef8f2; }
+.dr-opt.is-right .dr-key { color: var(--dg-green); }
+.dr-opt.is-trap { border-color: var(--dg-coral); background: #fff1ee; box-shadow: 0 0 0 2px rgba(232,96,76,.15); }
+.dr-opt.is-trap .dr-key { color: var(--dg-coral); }
+.dr-opt.is-trap::after { content: '⚠ 你多选的错项'; margin-left: auto; font-size: .72rem; color: var(--dg-coral); font-weight: 700; white-space: nowrap; }
+.dr-opt.is-off { opacity: .5; }
+.dr-why { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: #fff8ec; border-left: 3px solid var(--dg-gold); }
+.dr-ans { font-size: .78rem; font-family: var(--font-mono); color: var(--dg-navy); }
+.dr-ans b { color: var(--dg-coral); }
+.dr-why p { margin: 5px 0 0; font-size: .84rem; line-height: 1.6; color: var(--dg-body); }
+.dr-why p :deep(.hl) { color: var(--dg-coral); }
+.dr-hint { margin: 8px 0 0; font-size: .78rem; color: var(--dg-grey); }
 
 /* 表格 */
+.tbl-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.tt-btn { border: 1px solid var(--dg-line); background: #fff; color: var(--dg-muted); padding: 7px 16px; border-radius: 8px; cursor: pointer; font-size: .88rem; font-weight: 600; }
+.tt-btn.on { background: var(--dg-coral); color: #fff; border-color: var(--dg-coral); }
+.tt-hint { font-size: .82rem; color: var(--dg-muted); }
+.tt-reset { border: none; background: transparent; color: var(--dg-blue); cursor: pointer; font-size: .82rem; text-decoration: underline; }
 .tbl-wrap { border: 1px solid var(--dg-line); border-radius: 12px; overflow: hidden; }
 .tbl { width: 100%; border-collapse: collapse; font-size: .86rem; }
 .tbl thead th { background: var(--dg-navy); color: #fff; text-align: left; padding: 11px 14px; font-weight: 600; }
@@ -528,6 +801,9 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .tbl tbody tr:nth-child(even) { background: var(--dg-soft); }
 .t-strong { font-weight: 700; color: var(--dg-ink); white-space: nowrap; }
 .t-warn { color: var(--dg-coral); }
+.mk { transition: filter .2s; border-radius: 4px; }
+.mk.on { filter: blur(6px); cursor: pointer; user-select: none; }
+.mk.on:hover { filter: blur(3px); }
 
 .dg-foot { margin-top: 26px; font-size: .84rem; color: var(--dg-muted); }
 .dg-link { color: var(--dg-navy); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--dg-gold); }
@@ -539,7 +815,8 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
   .dg-kpis { grid-template-columns: repeat(2,1fr); }
   .heat-row { grid-template-columns: 128px 1fr 34px; gap: 8px; }
   .heat-name { font-size: .78rem; }
-  .cards { grid-template-columns: 1fr; }
+  .cards, .drills { grid-template-columns: 1fr; }
   .t-strong { white-space: normal; }
+  .dr-opt.is-trap::after { font-size: .66rem; }
 }
 </style>

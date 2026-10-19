@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 
-const activeTab = ref('small')
+const activeTab = ref('bage')
 
 // ══════════════ 页签1：小作文模板 ══════════════
 interface LetterTemplate {
@@ -469,71 +469,6 @@ const goWrite = (e: EssayItem) => {
 <template>
   <div class="wl-wrap">
     <el-tabs v-model="activeTab" class="wl-tabs">
-      <!-- ══ 小作文模板 ══ -->
-      <el-tab-pane label="✉️ 小作文模板" name="small">
-        <div class="letter-layout">
-          <aside class="letter-nav">
-            <button
-              v-for="l in letterTemplates"
-              :key="l.id"
-              class="letter-nav-item"
-              :class="{ active: l.id === activeLetter }"
-              @click="activeLetter = l.id"
-            >
-              <span>{{ l.icon }} {{ l.name }}</span>
-              <em>{{ l.scene }}</em>
-            </button>
-          </aside>
-          <div class="letter-body">
-            <h3>{{ currentLetter.icon }} {{ currentLetter.name }} · 格式骨架</h3>
-            <div class="skeleton">
-              <div v-for="(line, i) in currentLetter.skeleton" :key="i" class="skeleton-line">{{ line }}</div>
-            </div>
-            <div class="sentence-groups">
-              <div class="sg">
-                <h4>开头句（表明目的）</h4>
-                <p v-for="(s, i) in currentLetter.openers" :key="i">{{ s }}</p>
-              </div>
-              <div class="sg">
-                <h4>正文句（展开细节）</h4>
-                <p v-for="(s, i) in currentLetter.body" :key="i">{{ s }}</p>
-              </div>
-              <div class="sg">
-                <h4>结尾句（收束致意）</h4>
-                <p v-for="(s, i) in currentLetter.closers" :key="i">{{ s }}</p>
-              </div>
-            </div>
-            <div class="letter-tips">
-              <span v-for="(t, i) in currentLetter.tips" :key="i">⚠️ {{ t }}</span>
-            </div>
-          </div>
-        </div>
-      </el-tab-pane>
-
-      <!-- ══ 大作文模板 ══ -->
-      <el-tab-pane label="🖼️ 大作文模板" name="big">
-        <div class="big-intro">
-          <strong>英一大作文 = 图画作文三段式</strong>
-          <p>160-200 词：第一段描图（约40词）→ 第二段阐释寓意（约90词）→ 第三段建议升华（约50词）。背诵句库后按框架组句，考场上 35 分钟内完成。</p>
-        </div>
-        <div class="big-para-grid">
-          <section v-for="(p, i) in bigParagraphs" :key="i" class="big-para-card" :class="p.color">
-            <h4>{{ p.name }}</h4>
-            <div class="bp-role">{{ p.role }}</div>
-            <ul>
-              <li v-for="(s, j) in p.sentences" :key="j">{{ s }}</li>
-            </ul>
-          </section>
-        </div>
-        <section class="model-essay">
-          <h3>📄 完整范文结构拆解 · {{ modelEssay.theme }}</h3>
-          <div v-for="(p, i) in modelEssay.paragraphs" :key="i" class="me-para">
-            <div class="me-label">{{ p.label }}<em>{{ p.note }}</em></div>
-            <p>{{ p.text }}</p>
-          </div>
-        </section>
-      </el-tab-pane>
-
       <!-- ══ 八哥模板（个人版专用）══ -->
       <el-tab-pane label="🎯 八哥模板" name="bage">
         <div v-if="bage" class="bage-wrap">
