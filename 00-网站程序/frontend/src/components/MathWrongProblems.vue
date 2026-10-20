@@ -4144,6 +4144,24 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_2022a13_krange',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'multivar',
+    sectionName: '多元函数微分学·闭区域最值',
+    title: '2022数一·x²+y²≤ke^{x+y}恒成立求k范围(闭区域最值)',
+    content: '当$x\\geqslant 0,\\ y\\geqslant 0$时，$x^2+y^2\\leqslant k\\,e^{x+y}$恒成立，则$k$的取值范围是____',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '正解$[4e^{-2},+\\infty)$，即$k\\geqslant 4/e^2$。分离参数$k\\geqslant f(x,y)=(x^2+y^2)e^{-(x+y)}$，求$f$在第一象限闭区域上的最大值。①内部驻点$f_x=e^{-(x+y)}(2x-x^2-y^2)=0,f_y=0\\Rightarrow x=y=1$，$f(1,1)=2/e^2$；但$A=f_{xx}=0,B=f_{xy}=-2/e^2,C=0$，$AC-B^2<0$是鞍点，内部无极大。②边界$x=0$:$f=y^2e^{-y}$，$y=2$取最大$4/e^2$；$y=0$对称。③无穷远$f\\to0$。全局最大$4/e^2$，故$k\\geqslant 4/e^2$。错因：(a)把$\\ln(x^2+y^2)$拆成$2\\ln x+2\\ln y$(和的对数≠对数的和)，等于换错题，跑出$(2,2)$、$8/e^4$；(b)把闭区域最值当无条件极值做、漏查边界，且$\\ln x$要求$x>0$把边界$x=0$踢出定义域。同类提醒：带边界的区域求最值必须内部驻点+边界都查再取大；找到驻点先用$AC-B^2$判是否鞍点；$\\ln$不能拆加减。',
+    createdAt: '2026-10-20',
+    reviewCount: 0,
+    correctStreak: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
