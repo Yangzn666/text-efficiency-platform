@@ -19940,18 +19940,18 @@
         },
         {
           "label": "B",
-          "text": "Towards"
-        },
-        {
-          "label": "C",
           "text": "On"
         },
         {
-          "label": "D",
+          "label": "C",
           "text": "Till"
+        },
+        {
+          "label": "D",
+          "text": "Towards"
         }
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "B",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察介词词义辨析。On a cold winter's day意思是在一个寒冷冬日。介词on后加具体的某一天;in后加一段时间，例如in winter，in 2002;toward表方向，不与时间搭配;till意思是直到，例如till tomorrow，till next week，与句意不符。故正确答案为on。</span></p>",
       "errorAnalysis": {},
@@ -20008,7 +20008,7 @@
         },
         {
           "label": "B",
-          "text": "enjoyment"
+          "text": "concern"
         },
         {
           "label": "C",
@@ -20016,10 +20016,10 @@
         },
         {
           "label": "D",
-          "text": "concern"
+          "text": "enjoyment"
         }
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "D",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察上下文逻辑关系。上文说到星期日烤肉是一项开心的活动。后文Yet进行语义转折：然而正如现在报道的那样，食品卫生部门认为这种 3 会导致另一种有罪的快乐 4 损害我们的健康。enjoyment乐趣与上文pleasures和下文another pleasures互为关联信息。patience耐心，耐性。surprise惊喜。concern关心。</span></p>",
       "errorAnalysis": {},
@@ -20042,7 +20042,7 @@
         },
         {
           "label": "B",
-          "text": "privileged"
+          "text": "guaranteed"
         },
         {
           "label": "C",
@@ -20050,10 +20050,10 @@
         },
         {
           "label": "D",
-          "text": "guaranteed"
+          "text": "privileged"
         }
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "B",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】 此处考察非谓语动词做后置定语的用法。空格所在句指出：这种快乐会导致另一种有罪的快乐 4 损害我们的健康。 guaranteed有保证的，一定的，填入空格处意为：这种快乐会导致另一种有罪的快乐，肯定会损害我们的健康。 intensified增强，加剧; privileged享有特权，专用，特许;compelled强迫。</span></p>",
       "errorAnalysis": {},
@@ -20072,7 +20072,7 @@
       "options": [
         {
           "label": "A",
-          "text": "issued"
+          "text": "ignored"
         },
         {
           "label": "B",
@@ -20080,14 +20080,14 @@
         },
         {
           "label": "C",
-          "text": "ignored"
+          "text": "issued"
         },
         {
           "label": "D",
-          "text": "canceled"
+          "text": "cancelled"
         }
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "C",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察词义辨析。The Food Standards Authority (FSA) has __5__ a public warning... 食品标准管理局 一项公开的警告... issued发表，发布，发出;received接收，接到; ignored忽视，忽略;canceled取消。issued a public warning发出一项公开的警告符合文意。</span></p>",
       "errorAnalysis": {},
@@ -20110,7 +20110,7 @@
         },
         {
           "label": "B",
-          "text": "at"
+          "text": "by"
         },
         {
           "label": "C",
@@ -20118,10 +20118,10 @@
         },
         {
           "label": "D",
-          "text": "by"
+          "text": "at"
         }
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "D",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】此处考察介词辨析。in some foods cooked __6__ high temperatures. under在...下面;for为了;因为;对于; by在…旁边; 通过; 由于; 经过。</span></p>",
       "errorAnalysis": {},
@@ -20144,7 +20144,7 @@
         },
         {
           "label": "B",
-          "text": "regret"
+          "text": "avoid"
         },
         {
           "label": "C",
@@ -20152,10 +20152,10 @@
         },
         {
           "label": "D",
-          "text": "avoid"
+          "text": "regret"
         }
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "B",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】此处考察上下文逻辑关系。7空句首this mean代词this指代上文高温炙烤的食物里会有化学复合物有害人体身体健康。所以下文提出建议人们应该 7 炸土豆，不吃薄皮披萨并且...7空同时也与reject构成语义并列的关系，故avoid正确。forget忘记;regret 后悔;finish完成。</span></p>",
       "errorAnalysis": {},
@@ -20174,7 +20174,7 @@
       "options": [
         {
           "label": "A",
-          "text": "partially"
+          "text": "easily"
         },
         {
           "label": "B",
@@ -20182,14 +20182,14 @@
         },
         {
           "label": "C",
-          "text": "easily"
+          "text": "partially"
         },
         {
           "label": "D",
           "text": "initially"
         }
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "C",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】此处考察词义辨析+上下文语境。...and only__8__ toast their bread. 8空前文说到建议人们不吃炸土豆，薄皮披萨或者只是 8 烤面包。partially部分地，偶尔地;regularly有规律地; easily 容易地;initially最初地。故A选项正确。</span></p>",
       "errorAnalysis": {},
@@ -20208,7 +20208,7 @@
       "options": [
         {
           "label": "A",
-          "text": "Unless"
+          "text": "If"
         },
         {
           "label": "B",
@@ -20216,14 +20216,14 @@
         },
         {
           "label": "C",
-          "text": "If"
+          "text": "while"
         },
         {
           "label": "D",
-          "text": "while"
+          "text": "Unless"
         }
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "C",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察上下文逻辑关系+逻辑连接词辨析。 __9__ studies have shown that acrylamide can cause neurological damage in mice, there is no __10__ evidence that it causes cancer in humans. 9 研究表明丙烯酰胺可引起小鼠神经损伤，但是没有 10 证据表明它会导致人类患癌症。前后句为转折/对比/让步的逻辑关系，故选择while表示虽然，尽管。Unless除非，表条件的逻辑关系;Since因为，表因果逻辑;If如果，表条件的逻辑关系。</span></p>",
       "errorAnalysis": {},
@@ -20242,7 +20242,7 @@
       "options": [
         {
           "label": "A",
-          "text": "secondary"
+          "text": "conclusive"
         },
         {
           "label": "B",
@@ -20250,14 +20250,14 @@
         },
         {
           "label": "C",
-          "text": "conclusive"
+          "text": "secondary"
         },
         {
           "label": "D",
           "text": "negative"
         }
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "A",
       "userAnswer": null,
       "analysis": "<p>【解析】此处考察词义辨析+上下文语境。 9 研究表明丙烯酰胺可引起小鼠神经损伤，但是没有 10 证据表明它会导致人类患癌症。conclusive决定性的; 令人信服的; 确凿的；secondary第二的，中等的;间接的; external外面的，外部的; 表面上的; 外用的; 外国的; negative消极的，否认的。</p><p><br></p>",
       "errorAnalysis": {},
@@ -20276,7 +20276,7 @@
       "options": [
         {
           "label": "A",
-          "text": "insufficient "
+          "text": "likely"
         },
         {
           "label": "B",
@@ -20284,14 +20284,14 @@
         },
         {
           "label": "C",
-          "text": "likely"
+          "text": "insufficient "
         },
         {
           "label": "D",
           "text": "slow"
         }
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "A",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】此处考察固定搭配。be likely to 可能。insufficient 不足的，不够的;bound捆绑的，束缚的，有义务的;slow缓慢的。</span></p>",
       "errorAnalysis": {},
@@ -20310,7 +20310,7 @@
       "options": [
         {
           "label": "A",
-          "text": "On the basis of"
+          "text": "In addition to"
         },
         {
           "label": "B",
@@ -20318,14 +20318,14 @@
         },
         {
           "label": "C",
-          "text": "In addition to"
+          "text": "On the basis of"
         },
         {
           "label": "D",
           "text": "In contrast to "
         }
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "C",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】此处考察短语辨析+上下文逻辑。__12__ the precautionary principle, it could be argued that it is __13__ to follow the FSA advice. 12 预防性原则，可以说遵循FSA的建议是 13 。 On the basis of以...为基础，根据，按照;At the cost of以...为代价;In addition to除...之外; In contrast to与之相对，相反。</span></p>",
       "errorAnalysis": {},
@@ -20348,7 +20348,7 @@
         },
         {
           "label": "B",
-          "text": "advisable"
+          "text": "fortunate"
         },
         {
           "label": "C",
@@ -20356,10 +20356,10 @@
         },
         {
           "label": "D",
-          "text": "fortunate"
+          "text": "advisable"
         }
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "D",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察形容词词义辨析。 根据预防性原则，可以说遵循FSA的建议是 13 。interesting有趣的; advisable明智的，可取的; urgent急迫的; fortunate侥幸的，幸运的。</span></p>",
       "errorAnalysis": {},
@@ -20382,7 +20382,7 @@
         },
         {
           "label": "B",
-          "text": "In particular"
+          "text": "After all"
         },
         {
           "label": "C",
@@ -20390,10 +20390,10 @@
         },
         {
           "label": "D",
-          "text": "After all"
+          "text": "In particular"
         }
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "B",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】考察逻辑关系。原文中上一句说“基于“预防原则”，可以认为最好遵循FSA的建议”。本句说“在有证据证明吸烟与癌症之间的联系之前，吸烟导致癌症的传言就已经流传多年了。结合选项分析，As usual像往常一样，In particular尤其，特别，By definition根据定义，After all 毕竟，只有After all符合文意。</span></p>",
       "errorAnalysis": {},
@@ -20412,7 +20412,7 @@
       "options": [
         {
           "label": "A",
-          "text": "resemblance"
+          "text": "connection"
         },
         {
           "label": "B",
@@ -20420,14 +20420,14 @@
         },
         {
           "label": "C",
-          "text": "connection"
+          "text": "resemblance"
         },
         {
           "label": "D",
           "text": "pattern"
         }
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "A",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】本题考察动宾搭配，结合语境和句子成分理解，这里的名词放在prove“证明”后面，整体处在不定式中做主语补足语说明主语evidence，这里“证据”应该是证明出来(吸烟和肺癌)有联系的，故选择connection。Resemblance相似，combination结合，pattern模式，均不符合。</span></p>",
       "errorAnalysis": {},
@@ -20450,7 +20450,7 @@
         },
         {
           "label": "B",
-          "text": "served"
+          "text": "used"
         },
         {
           "label": "C",
@@ -20458,10 +20458,10 @@
         },
         {
           "label": "D",
-          "text": "used"
+          "text": "served"
         }
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "D",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】本题考察主谓搭配，此处为被动语态，和主语a piece of boiled beef 构成实际上的“动宾关系”，句意“毫无疑问，一片煮熟的牛肉总能在周日和一些蒸蔬菜一起__16__”。这里served up 表示“上菜，端上”正和文意。而其他选项made制作，saved节省，used使用，均不符合。</span></p>",
       "errorAnalysis": {},
@@ -20480,7 +20480,7 @@
       "options": [
         {
           "label": "A",
-          "text": "To be fair"
+          "text": "To be brief"
         },
         {
           "label": "B",
@@ -20488,14 +20488,14 @@
         },
         {
           "label": "C",
-          "text": "To be brief"
+          "text": "To be fair"
         },
         {
           "label": "D",
           "text": "In general"
         }
       ],
-      "correctAnswer": "A",
+      "correctAnswer": "C",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】本题考察主谓搭配，上一句说“但是生命值得过下去吗?”本句话说，“英FSA表示，它并没有告诉人们....不吃烘焙食品”，可见后文并没有对上文进行举例(for instance)或总结(To be brief)或表示经常发生的事情(in general)，故，应该选择顺承关系的To be fair。</span></p>",
       "errorAnalysis": {},
@@ -20514,22 +20514,22 @@
       "options": [
         {
           "label": "A",
-          "text": "reluctantly"
-        },
-        {
-          "label": "B",
           "text": "entirely"
         },
         {
-          "label": "C",
+          "label": "B",
           "text": "gradually"
+        },
+        {
+          "label": "C",
+          "text": "reluctantly"
         },
         {
           "label": "D",
           "text": "carefully"
         }
       ],
-      "correctAnswer": "B",
+      "correctAnswer": "A",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】此处考察副词的修饰关系。本句话句意为“英FSA表示，它并没有告诉人们不吃烘焙食品__18__”。结合各选项分析：reluctantly不情愿地，entirely完全地，gradually逐渐地，carefully小心谨慎地，能跟前面的否定词not呼应使用表示一种部分否定的，只能是entirely才合适，not ...entirely表示“并未完全...”。</span></p>",
       "errorAnalysis": {},
@@ -20552,18 +20552,18 @@
         },
         {
           "label": "B",
-          "text": "experience"
+          "text": "competition"
         },
         {
           "label": "C",
-          "text": "campaign"
+          "text": "experience"
         },
         {
           "label": "D",
-          "text": "competition"
+          "text": "campaign"
         }
       ],
-      "correctAnswer": "C",
+      "correctAnswer": "D",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51);\">【解析】本题考察主谓搭配。根据原文语境“然而，他们(FSA)的...有风险给人一种‘劝诱式’保姆的感觉” ，答案campaign表示“(开展的)运动，活动”放在这里最合适。promise承诺，experience经历或经验，competition竞争，均不能体现本文中FSA所做行为的代称。</span></p>",
       "errorAnalysis": {},
@@ -20586,7 +20586,7 @@
         },
         {
           "label": "B",
-          "text": "pick up"
+          "text": "end up"
         },
         {
           "label": "C",
@@ -20594,10 +20594,10 @@
         },
         {
           "label": "D",
-          "text": "end up"
+          "text": "pick up"
         }
       ],
-      "correctAnswer": "D",
+      "correctAnswer": "B",
       "userAnswer": null,
       "analysis": "<p><span style=\"color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); font-size: 14px;\">【解析】考察动宾搭配，这里的句义是“持续不断的健康威胁__20__却没有人在听。”这里想强调太多的的对健康的恐慌的最终结果，只有“结束，以...告终”这个含义最符合，所以选择end up， 而follow up跟踪，坚持完成，pick up捡起，拾起，偶然学到，open up打开，开发，均不符合文义。</span></p>",
       "errorAnalysis": {},
