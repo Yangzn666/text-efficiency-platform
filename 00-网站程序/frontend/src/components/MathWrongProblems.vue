@@ -4086,7 +4086,7 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     content: '$X\\sim U(0,3)$，$Y$服从参数为2的泊松分布，$\\mathrm{Cov}(X,Y)=-1$，则$D(2X-Y+1)=$（）\nA. $1$\nB. $5$\nC. $9$\nD. $12$',
     mistakeType: '公式不清',
     importance: 3,
-    correction: '正解C=9。公式$D(aX+bY+c)=a^2DX+b^2DY+2ab\\,\\mathrm{Cov}$，常数不影响方差。$a=2,b=-1,c=1$：$=4\\cdot\\tfrac34+1\\cdot2+2\\cdot2\\cdot(-1)\\cdot(-1)=3+2+4=9$。$DX=(3-0)^2/12=3/4$，泊松$DY=\\lambda=2$，$Cov=-1$。错因：漏掉$2ab\\,Cov$交叉项(算成3+2=5选B)。同类提醒：$D(X\\pm Y)=DX+DY\\pm2Cov$，交叉项别丢。',
+    correction: '正解C=9。本题真正的坑是均匀分布方差公式：$D(U(a,b))=\\dfrac{(b-a)^2}{12}$，分子是区间长度**要先平方**，$X\\sim U(0,3)$ 故 $DX=\\dfrac{(3-0)^2}{12}=\\dfrac{9}{12}=\\dfrac34$（别写成 $3/12=1/4$，这就是漏平方的错）。再套方差线性组合 $D(aX+bY+c)=a^2DX+b^2DY+2ab\\,\\mathrm{Cov}$，$a=2,b=-1,c=1$：$=4\\cdot\\tfrac34+1\\cdot2+2\\cdot2\\cdot(-1)\\cdot(-1)=3+2+4=9$。泊松 $DY=\\lambda=2$，$\\mathrm{Cov}=-1$，交叉项 $2ab\\,Cov=+4$ 也别丢。同类提醒：期望 $(a+b)/2$ 不平方、方差 $(b-a)^2/12$ 要平方，两个公式别记串。',
     createdAt: '2026-10-20',
     reviewCount: 0,
     lastReviewAt: '',
