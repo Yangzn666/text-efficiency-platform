@@ -39,15 +39,37 @@ function readJSON<T>(key: string): T | null {
 
 interface StoredDoc extends Partial<Record<WrongSubject, WrongProblem[]>> {
   __seeded?: WrongSubject[]
+  // 每个科目"上一次见过的种子条目 id 全集"，用于在已播种的老浏览器上增量补种新增条目
+  __seedIds?: Partial<Record<WrongSubject, string[]>>
 }
 
 const tag = (subject: WrongSubject, p: WrongProblem): WrongProblem => ({ ...p, subject: p.subject || subject })
+
+// ===== 毕业机制：连续做对 GRADUATE_STREAK 次即自动"毕业"（mastered=true），答错清零回炉 =====
+export const GRADUATE_STREAK = 2
+
+function todayStr(): string {
+  const d = new Date()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
+
+function withinDays(dateStr: string, days: number): boolean {
+  if (!dateStr) return false
+  const t = Date.parse(dateStr)
+  if (Number.isNaN(t)) return false
+  return Date.now() - t <= days * 86400000
+}
 
 export const useWrongProblemsStore = defineStore('wrongProblems', () => {
   const db = reactive<Record<WrongSubject, WrongProblem[]>>(
     SUBJECTS.reduce((acc, s) => { acc[s] = []; return acc }, {} as Record<WrongSubject, WrongProblem[]>)
   )
   const seeded = reactive<Set<WrongSubject>>(new Set())
+  const seedIds = reactive<Record<WrongSubject, Set<string>>>(
+    SUBJECTS.reduce((acc, s) => { acc[s] = new Set(); return acc }, {} as Record<WrongSubject, Set<string>>)
+  )
   let inited = false
 
   function init() {
@@ -55,6 +77,8 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
     inited = true
     const canon = readJSON<StoredDoc>(CANON) || {}
     ;(canon.__seeded || []).forEach((s) => seeded.add(s))
+    const sid = canon.__seedIds || {}
+    SUBJECTS.forEach((s) => { (sid[s] || []).forEach((id) => seedIds[s].add(id)) })
     SUBJECTS.forEach((s) => {
       const fromCanon = canon[s]
       if (fromCanon && fromCanon.length) {
@@ -75,6 +99,9 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
   function persist() {
     init()
     const doc: StoredDoc = { __seeded: Array.from(seeded) }
+    const sidOut: Partial<Record<WrongSubject, string[]>> = {}
+    SUBJECTS.forEach((s) => { sidOut[s] = Array.from(seedIds[s]) })
+    doc.__seedIds = sidOut
     SUBJECTS.forEach((s) => { doc[s] = db[s] })
     try {
       localStorage.setItem(CANON, JSON.stringify(doc))
@@ -92,11 +119,32 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
    */
   function bind(subject: WrongSubject, seed: WrongProblem[]): ComputedRef<WrongProblem[]> {
     init()
+    let changed = false
     if (!seeded.has(subject) && db[subject].length === 0) {
       db[subject] = seed.map((p) => tag(subject, p))
       seeded.add(subject)
-      persist()
+      seedIds[subject] = new Set(seed.map((p) => p.id))
+      changed = true
+    } else {
+      // 增量补种：把种子里"新增的、且此前从未播种过、本地也还没有"的条目并入
+      const known = seedIds[subject]
+      const existing = new Set(db[subject].map((p) => p.id))
+      const nextKnown = new Set<string>()
+      for (const p of seed) {
+        nextKnown.add(p.id)
+        if (!known.has(p.id) && !existing.has(p.id)) {
+          db[subject].push(tag(subject, p))
+          existing.add(p.id)
+          changed = true
+        }
+      }
+      // 记录本次种子 id 全集，下一轮据此判断"新增"
+      if (nextKnown.size !== known.size || [...nextKnown].some((id) => !known.has(id))) {
+        seedIds[subject] = nextKnown
+        changed = true
+      }
     }
+    if (changed) persist()
     return computed({
       get: () => db[subject],
       set: (v: WrongProblem[]) => {
@@ -149,10 +197,35 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
     return Object.values(m).sort((a, b) => b.count - a.count)
   })
 
+  // ===== 毕业机制：记录一次复习结果 =====
+  // 传入的 problem 是 db 里的响应式对象，直接 mutate，deep watch 会自动落盘。
+  function recordReview(problem: WrongProblem, correct: boolean) {
+    problem.reviewCount = (problem.reviewCount || 0) + 1
+    problem.lastReviewAt = todayStr()
+    if (correct) {
+      problem.correctStreak = (problem.correctStreak || 0) + 1
+      if (problem.correctStreak >= GRADUATE_STREAK) problem.mastered = true
+    } else {
+      problem.correctStreak = 0
+      problem.mastered = false
+    }
+  }
+
+  // 某科目的"进步仪表盘"：总数 / 已毕业 / 待复习 / 本周新毕业
+  function progressOf(subject: WrongSubject) {
+    init()
+    const list = db[subject]
+    const total = list.length
+    const mastered = list.filter((p) => p.mastered).length
+    const weeklyGraduated = list.filter((p) => p.mastered && withinDays(p.lastReviewAt, 7)).length
+    return { total, mastered, pending: total - mastered, weeklyGraduated }
+  }
+
   return {
     db, init, persist, bind,
     all, total, masteredCount, unmasteredCount, masteredRate,
     bySubject, countOf, masteredOf, recent, mistakeDistribution, weakChapters,
+    recordReview, progressOf,
     SUBJECTS,
   }
 })

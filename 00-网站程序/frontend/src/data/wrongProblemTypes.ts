@@ -14,6 +14,8 @@ export interface WrongProblem {
   correction: string
   createdAt: string
   reviewCount: number
+  // 连续做对次数：达到 GRADUATE_STREAK 自动毕业（mastered=true）；答错则清零回炉。可选，兼容旧数据。
+  correctStreak?: number
   lastReviewAt: string
   mastered: boolean
   subject?: string

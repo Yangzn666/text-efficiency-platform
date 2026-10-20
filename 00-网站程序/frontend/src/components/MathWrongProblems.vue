@@ -18,6 +18,7 @@ interface WrongProblem {
   correction: string
   createdAt: string
   reviewCount: number
+  correctStreak?: number
   lastReviewAt: string
   mastered: boolean
 }
@@ -4129,10 +4130,15 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
 ])
 
 const activeTab = ref('gaoshu')
+// 默认隐藏已毕业的题，让"待复习清单"随毕业逐条变薄——这就是能看见进步的仪表盘
+const showGraduated = ref(false)
 
-const gaoshuProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_gaoshu'))
-const xiandaiProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_xiandai'))
-const gailvProblems = computed(() => problems.value.filter(p => p.chapterId === 'ch_gailv'))
+const visible = (list: WrongProblem[]) => list.filter(p => showGraduated.value || !p.mastered)
+const gaoshuProblems = computed(() => visible(problems.value.filter(p => p.chapterId === 'ch_gaoshu')))
+const xiandaiProblems = computed(() => visible(problems.value.filter(p => p.chapterId === 'ch_xiandai')))
+const gailvProblems = computed(() => visible(problems.value.filter(p => p.chapterId === 'ch_gailv')))
+
+const mathStats = computed(() => wp.progressOf('math'))
 
 const openCorrections = ref<Set<string>>(new Set())
 
@@ -4149,9 +4155,27 @@ function toggleCorrection(id: string) {
   }
 }
 
-function toggleMastered(problem: WrongProblem) {
-  problem.mastered = !problem.mastered
-  ElMessage.success(problem.mastered ? '已标记为掌握' : '已取消掌握')
+const GRADUATE_TARGET = 2
+
+function streakText(p: WrongProblem): string {
+  if (p.mastered) return '已毕业'
+  const s = p.correctStreak || 0
+  return s > 0 ? `连续做对 ${s}/${GRADUATE_TARGET}` : '待复习'
+}
+
+function onCorrect(p: WrongProblem) {
+  const before = p.mastered
+  wp.recordReview(p, true)
+  if (!before && p.mastered) {
+    ElMessage.success('连续做对两次，这道题已毕业 🎉 清单又薄了一点')
+  } else {
+    ElMessage.success(`记一次做对（${p.correctStreak}/${GRADUATE_TARGET}）`)
+  }
+}
+
+function onWrong(p: WrongProblem) {
+  wp.recordReview(p, false)
+  ElMessage.warning('没关系，清零回炉，下次再战')
 }
 
 function deleteProblem(problem: WrongProblem) {
@@ -4176,6 +4200,17 @@ function getMistakeTypeColor(type: string): string {
 
 <template>
   <div class="math-wrong-problems">
+    <div class="progress-bar">
+      <div class="progress-stats">
+        <span class="stat stat-good">本周毕业 {{ mathStats.weeklyGraduated }}</span>
+        <span class="stat">待复习 {{ mathStats.pending }}</span>
+        <span class="stat stat-done">已毕业 {{ mathStats.mastered }}</span>
+        <span class="stat stat-total">共 {{ mathStats.total }}</span>
+      </div>
+      <el-button size="small" text @click="showGraduated = !showGraduated">
+        {{ showGraduated ? '隐藏已毕业' : '显示已毕业' }}
+      </el-button>
+    </div>
     <el-tabs v-model="activeTab" class="sub-tabs">
       <el-tab-pane label="高数" name="gaoshu">
         <div v-if="gaoshuProblems.length === 0" class="empty-state">
@@ -4186,6 +4221,7 @@ function getMistakeTypeColor(type: string): string {
           <div v-for="p in gaoshuProblems" :key="p.id" class="problem-card">
             <div class="problem-header">
               <span class="problem-title">{{ p.title }}</span>
+              <span class="streak-badge" :class="{ 'is-grad': p.mastered, 'is-progress': (p.correctStreak || 0) > 0 && !p.mastered }">{{ streakText(p) }}</span>
               <el-tag :color="getMistakeTypeColor(p.mistakeType)" size="small" effect="dark">
                 {{ p.mistakeType }}
               </el-tag>
@@ -4199,10 +4235,15 @@ function getMistakeTypeColor(type: string): string {
               <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
             </div>
             <div class="problem-actions">
-              <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
-                {{ p.mastered ? '已掌握' : '标记掌握' }}
-              </el-button>
-              <el-button size="small" type="danger" @click="deleteProblem(p)">删除</el-button>
+              <template v-if="p.mastered">
+                <el-button size="small" type="success" plain disabled>已毕业</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了·回炉</el-button>
+              </template>
+              <template v-else>
+                <el-button size="small" type="success" @click="onCorrect(p)">做对了</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了</el-button>
+              </template>
+              <el-button size="small" text @click="deleteProblem(p)">删除</el-button>
             </div>
           </div>
         </div>
@@ -4217,6 +4258,7 @@ function getMistakeTypeColor(type: string): string {
           <div v-for="p in xiandaiProblems" :key="p.id" class="problem-card">
             <div class="problem-header">
               <span class="problem-title">{{ p.title }}</span>
+              <span class="streak-badge" :class="{ 'is-grad': p.mastered, 'is-progress': (p.correctStreak || 0) > 0 && !p.mastered }">{{ streakText(p) }}</span>
               <el-tag :color="getMistakeTypeColor(p.mistakeType)" size="small" effect="dark">
                 {{ p.mistakeType }}
               </el-tag>
@@ -4230,10 +4272,15 @@ function getMistakeTypeColor(type: string): string {
               <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
             </div>
             <div class="problem-actions">
-              <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
-                {{ p.mastered ? '已掌握' : '标记掌握' }}
-              </el-button>
-              <el-button size="small" type="danger" @click="deleteProblem(p)">删除</el-button>
+              <template v-if="p.mastered">
+                <el-button size="small" type="success" plain disabled>已毕业</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了·回炉</el-button>
+              </template>
+              <template v-else>
+                <el-button size="small" type="success" @click="onCorrect(p)">做对了</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了</el-button>
+              </template>
+              <el-button size="small" text @click="deleteProblem(p)">删除</el-button>
             </div>
           </div>
         </div>
@@ -4248,6 +4295,7 @@ function getMistakeTypeColor(type: string): string {
           <div v-for="p in gailvProblems" :key="p.id" class="problem-card">
             <div class="problem-header">
               <span class="problem-title">{{ p.title }}</span>
+              <span class="streak-badge" :class="{ 'is-grad': p.mastered, 'is-progress': (p.correctStreak || 0) > 0 && !p.mastered }">{{ streakText(p) }}</span>
               <el-tag :color="getMistakeTypeColor(p.mistakeType)" size="small" effect="dark">
                 {{ p.mistakeType }}
               </el-tag>
@@ -4261,10 +4309,15 @@ function getMistakeTypeColor(type: string): string {
               <div class="problem-correction" v-show="isCorrectionOpen(p.id)" v-html="renderMath(p.correction)"></div>
             </div>
             <div class="problem-actions">
-              <el-button size="small" :type="p.mastered ? 'success' : 'default'" @click="toggleMastered(p)">
-                {{ p.mastered ? '已掌握' : '标记掌握' }}
-              </el-button>
-              <el-button size="small" type="danger" @click="deleteProblem(p)">删除</el-button>
+              <template v-if="p.mastered">
+                <el-button size="small" type="success" plain disabled>已毕业</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了·回炉</el-button>
+              </template>
+              <template v-else>
+                <el-button size="small" type="success" @click="onCorrect(p)">做对了</el-button>
+                <el-button size="small" type="warning" plain @click="onWrong(p)">又错了</el-button>
+              </template>
+              <el-button size="small" text @click="deleteProblem(p)">删除</el-button>
             </div>
           </div>
         </div>
@@ -4276,6 +4329,65 @@ function getMistakeTypeColor(type: string): string {
 <style scoped>
 .math-wrong-problems {
   padding: 20px 0;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, rgba(212, 160, 18, 0.10), rgba(138, 180, 160, 0.08));
+  border: 1px solid #2a3a4a;
+  border-radius: 8px;
+}
+
+.progress-stats {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 0.9em;
+  color: #b0b8c4;
+}
+
+.stat-good {
+  color: #8ab4a0;
+  font-weight: 600;
+}
+
+.stat-done {
+  color: #d4a012;
+}
+
+.stat-total {
+  color: #909399;
+}
+
+.streak-badge {
+  flex-shrink: 0;
+  font-size: 0.75em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid #3a4a5a;
+  color: #909399;
+  white-space: nowrap;
+}
+
+.streak-badge.is-progress {
+  border-color: #d4a012;
+  color: #d4a012;
+}
+
+.streak-badge.is-grad {
+  border-color: #8ab4a0;
+  color: #8ab4a0;
+  background: rgba(138, 180, 160, 0.12);
 }
 
 .sub-tabs :deep(.el-tabs__header) {
