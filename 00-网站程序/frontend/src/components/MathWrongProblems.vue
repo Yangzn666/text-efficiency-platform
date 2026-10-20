@@ -4126,6 +4126,24 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_2022a14_series',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'series',
+    sectionName: '无穷级数·幂级数收敛域',
+    title: '2022数一·含e^{-nx}级数求收敛域端点',
+    content: '已知级数$\\sum_{n=1}^{\\infty}\\dfrac{n!}{n^{n}}e^{-nx}$的收敛域为$(a,+\\infty)$，则$a=$____',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '正解a=-1。令t=e^{-x}>0化幂级数$\\sum\\dfrac{n!}{n^n}t^n$，比值$a_n/a_{n+1}=(1+1/n)^n\\to e$，$R=e$，$0<t<e$收敛；端点$t=e$通项$\\approx\\sqrt{2\\pi n}$发散(不含)。回代$e^{-x}<e\\Rightarrow x>-1$（注意$e^{-x}$递减、取ln不等号翻），端点$x=-1$发散，故$a=-1$。错因：把R=e当x端点没回代，或回代时不等号方向反。同类提醒：含e^{-nx}先换元t=e^{-x}，求t范围再回代，端点单独判敛。',
+    createdAt: '2026-10-20',
+    reviewCount: 0,
+    correctStreak: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
