@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16",
+  "updatedAt": "2026-10-18",
   "note": "408 真题大题作答记录。records 以 questions.json 的 slug 为键；result ∈ correct|partial|wrong；date 为最近一次作答日 YYYY-MM-DD；attempts 累计作答次数。此文件为持久真相源；网站端 localStorage(exam408-big-v2) 的标记会叠加显示，助手会话再读回 localStorage 合并写本文件并重建，使记录跨设备持久。",
   "records": {
     "co-2010-44": {
@@ -159,6 +159,71 @@
       "attempts": 1,
       "result": "partial",
       "date": "2026-10-16"
+    },
+    "cn-2014-43": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-17"
+    },
+    "cn-2018-47": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-18"
+    },
+    "cn-2019-47": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-18"
+    },
+    "cn-2020-47": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-18"
+    },
+    "co-2009-44": {
+      "result": "taught",
+      "date": "2026-10-18",
+      "attempts": 0,
+      "note": "此前AI带做讲透、用户未独立作答，补记待重做"
+    },
+    "co-2012-44": {
+      "attempts": 0,
+      "result": "taught",
+      "date": "2026-10-18",
+      "note": "AI带做讲透、用户未独立作答，待重做"
+    },
+    "co-2015-44": {
+      "attempts": 0,
+      "result": "taught",
+      "date": "2026-10-18",
+      "note": "AI带做讲透、用户未独立作答，待重做"
+    },
+    "co-2014-44": {
+      "attempts": 0,
+      "result": "taught",
+      "date": "2026-10-18",
+      "note": "用户无从下手、AI带做讲透，未独立作答，待重做"
+    },
+    "os-2020-46": {
+      "attempts": 0,
+      "result": "taught",
+      "date": "2026-10-18",
+      "note": "发了题+切-乘-加方法，未独立作答（当日暂停转强化课），待重做"
+    },
+    "co-2022-43": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-21"
+    },
+    "co-2010-43": {
+      "attempts": 1,
+      "result": "taught",
+      "date": "2026-10-21"
+    },
+    "co-2013-44": {
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-21"
     }
   }
 }

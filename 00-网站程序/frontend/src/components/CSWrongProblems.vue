@@ -135,6 +135,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('cs', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'cs_co2013_44',
+    chapterId: 'ch-instr',
+    chapterName: '指令系统',
+    sectionId: '4.3',
+    sectionName: '4.3 寻址方式与条件转移指令',
+    title: '【2013统考真题44】条件转移指令·相对寻址·标志检测位',
+    content: '16位定长指令，标志寄存器含CF/ZF/NF。条件转移指令格式：OP[15-11]、C[10]、Z[9]、N[8]、OFFSET[7-0]。C/Z/N分别是CF/ZF/NF的检测位：某检测位=1则检测对应标志，被检测的标志中只要有一个为1就转移，否则不转移。OFFSET为相对偏移量、补码表示。转移执行时目标地址=(PC)+2+2×OFFSET；顺序执行时下条地址=(PC)+2。\n(1)该计算机按字节还是按字编址？该条件转移指令向后最多可跳转多少条指令？\n(2)某转移指令地址为200CH，指令内容为 C=0,Z=1,N=1、OFFSET=11100011B。若执行时CF=0,ZF=0,NF=1，执行后PC是多少？若CF=1,ZF=0,NF=0，PC又是多少？\n(3)实现"无符号数比较小于等于时转移"的指令中，C、Z、N各应是什么？\n(4)给出该指令数据通路示意图中部件①~③的名称或功能。',
+    mistakeType: '审题不清',
+    importance: 5,
+    correction: '正确答案：\n(1)按字节编址——下条地址是(PC)+2而指令为2字节，说明每个地址只管1字节。OFFSET是8位补码∈[-128,127]，向后取-128，位移=2×(-128)=-256字节=-128条指令，故向后最多跳128条（按"距下条"口径；按"距本条"为127条，均可）。\n(2)先读图：C=0,Z=1,N=1 → 只检测ZF、NF（CF未启用）。OFFSET=11100011B是补码=-29，2×OFFSET=-58=-3AH。情形A(CF=0,ZF=0,NF=1)：NF=1命中→转移→PC=200CH+2-3AH=200EH-3AH=1FD4H。情形B(CF=1,ZF=0,NF=0)：被检测的ZF=0且NF=0→不转移→PC=200CH+2=200EH（CF=1是干扰项，C=0根本没让它参与）。\n(3)无符号比较只看CF(借位)和ZF(相等)，与NF无关。a≤b ⟺ a=b(ZF=1) 或 a<b(CF=1)，需同时检测CF和ZF → C=1, Z=1, N=0。\n(4)①指令寄存器IR（存放当前指令，向判定逻辑供C/Z/N字段、向地址计算供OFFSET字段）；②左移器（左移1位，实现2×OFFSET）；③加法器（完成(PC)+2+(2×OFFSET)，算出转移目标地址）。\n\n错因：OFFSET位读反（误当成00001100）、整段跳过"检测位"语义、(3)答成三个标志的名字而非取值、(4)背通用CPU部件名而非顺着数据流连线读图。核心病根=条件没读满就动手，与数学错题同源。\n\n同类提醒：相对转移题固定三步——读检测位定"看哪些标志"→判转不转→套(PC)+2+2×OFFSET(OFFSET先化补码)；编址方式看PC自增量(+1按字、+2且指令2字节按字节)；无符号比较用CF/ZF，带符号才用NF/OF。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 const activeTab = ref('list')
