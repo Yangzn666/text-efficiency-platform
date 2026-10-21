@@ -2162,7 +2162,10 @@ const vocabSeedNotes = [
   { id: 9087, type: 'word', content: 'feasibility 可行性 —— 2020T3Q35 主旨题眼。钩：feas（做）+ibility→能不能做得起来。作者通篇论证性别配额政策不可行（unconstitutional/没必要/有坏处）→推论=制定政策要首先考虑可行性。别把靶子挂到“女权该怎么提升”上。', tags: ['真题生词', '2020阅读'] },
   { id: 9088, type: 'confusable', content: 'criticism 批评 ≠ crisis 危机 —— 2020T4Q37 你把 criticism 看成了危机。根在 critical 两张脸：批评的/危急的。名词分工：criticize·criticism·critic=批评系；crisis=危机系，只在 critical 短暂交叉。且本题 B 用 criticism 偷换原文 controversy（争议）——争议≠批评。', tags: ['形近词', '2020阅读'] },
   { id: 9089, type: 'phrase', content: 'lead the charge 带头冲锋→牵头、打头阵 —— 2020T4Q40 标题 France leads the charge on Digital Tax 你没读懂。钩：charge 军事本义=冲锋，一股往前冲的劲（充电=往里灌能量/指控=猛扣罪名/收费=主动要价，同此一根）。lead the charge=冲在最前面带头。', tags: ['真题短语', '2020阅读'] },
-  { id: 9090, type: 'phrase', content: '同义替换：unqualified（不够格）↔ less experienced（资历浅）—— 2020T3Q34 没看出来。铁律：细节题别拿选项关键词回原文找一模一样的词，要找语义与方向一致的那句。定位词 Norway 锁到 less experienced private sector boards 即=unqualified candidates into the board。', tags: ['同义替换', '2020阅读'] }
+  { id: 9090, type: 'phrase', content: '同义替换：unqualified（不够格）↔ less experienced（资历浅）—— 2020T3Q34 没看出来。铁律：细节题别拿选项关键词回原文找一模一样的词，要找语义与方向一致的那句。定位词 Norway 锁到 less experienced private sector boards 即=unqualified candidates into the board。', tags: ['同义替换', '2020阅读'] },
+  { id: 9091, type: 'word', content: 'intensify 加剧、使增强 —— 2020完型生词。钩：in-（向内）+tens（拉紧，同 tense）+-(i)fy（使）→越拉越紧→加剧。同族 tense 紧绷/intensity 强度。-(i)fy 使动后缀串记：simplify 简化/clarify 澄清/identify 确认。', tags: ['真题生词', '2020完型'] },
+  { id: 9092, type: 'word', content: 'compelled 被迫的、不得不的 —— 2020完型生词。钩：com-+pel=pellere「推」→被从背后推着走→被迫。feel compelled to do 觉得不得不做。同族 propel 推进/expel 驱逐/repel 排斥/compel 强迫。', tags: ['真题生词', '2020完型'] },
+  { id: 9093, type: 'word', content: 'campaign 有组织的活动、运动；战役 —— 2020完型Q19。区分：campaign=带目标、成系列的一波行动（广告/选举/公益 campaign）；activity 泛指活动；movement 社会/政治运动；measure 政府措施。钩：camp 营地→军队扎营出征→一连串有计划的行动。', tags: ['熟词僻义', '2020完型'] }
 ]
 
 onMounted(() => {
