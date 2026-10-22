@@ -44,6 +44,34 @@ function addDays(base: string, n: number): string {
 }
 const nowISO = () => new Date().toISOString()
 
+// ===== 408 复习闭环（间隔重复）辅助 =====
+// 408 科目代码 → 全称（progress.json slug 前缀 / questions.json subject 字段）
+const CS408_SUBJECT_LABEL: Record<string, string> = {
+  ds: '数据结构', co: '计算机组成原理', os: '操作系统', cn: '计算机网络',
+}
+// 重做队列：讲过(taught)、做错(wrong)、部分对(partial) 的大题需要进入记忆卡循环
+const CS408_REDO_RESULTS = ['taught', 'wrong', 'partial']
+
+function stripMd(text: string): string {
+  return String(text || '')
+    .replace(/\*\*/g, '')
+    .replace(/`/g, '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // 去图片语法
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // 链接保留文字
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+// 从解析里抽取"解题钥匙"：优先整句考点概述，否则截断，避免卡片背面过长
+function extractKey(explanation: string): string {
+  const clean = stripMd(explanation)
+  if (!clean) return '回题目原解析确认解题钥匙'
+  // 取到第一个句号/换行为止（多为"本题考查……"的考点句）
+  const m = clean.match(/^[^。！？.!?]*[。！？.!?]/)
+  const first = (m ? m[0] : clean).trim()
+  return first.length > 160 ? first.slice(0, 160) + '…' : first
+}
+
 export const useSrsStore = defineStore('srs', () => {
   const cards = reactive<Record<string, SrsCard>>({})
   let inited = false
@@ -128,6 +156,54 @@ export const useSrsStore = defineStore('srs', () => {
     return added
   }
 
+  // ===== 408 复习闭环：把「讲过/做错/半懂」的真题大题灌成间隔重复记忆卡 =====
+  // 单一来源：public/data/408-exam/{questions.json,progress.json}
+  //  - 正面：科目+年份+题号+章节 → 回忆解题钥匙/第一步抓什么（主动回忆）
+  //  - 背面：progress.note（若有，往往是我给该题定的错因补丁）否则解析首句考点概述
+  // 幂等：按 id `cs408-bigq:${slug}` 去重，重跑只补新增，用户删过的不复活（与 seedMath 同策略）
+  let cs408Promise: Promise<number> | null = null
+  function seedCS408(force = false): Promise<number> {
+    if (cs408Promise && !force) return cs408Promise
+    const job = (async () => {
+      try {
+        const base = (import.meta as any).env?.BASE_URL || '/'
+        const dir = `${base}data/408-exam/`
+        const [qRes, pRes] = await Promise.all([
+          fetch(`${dir}questions.json`).then(r => r.ok ? r.json() : null),
+          fetch(`${dir}progress.json`).then(r => r.ok ? r.json() : null),
+        ])
+        if (!qRes || !pRes) return 0
+        const bySlug: Record<string, any> = {}
+        ;(qRes.items || []).forEach((it: any) => { bySlug[it.slug] = it })
+        const records = pRes.records || {}
+        const cards: Array<Partial<SrsCard> & { id: string; front: string; back: string }> = []
+        Object.entries(records).forEach(([slug, rec]: [string, any]) => {
+          if (!CS408_REDO_RESULTS.includes(rec.result)) return
+          const it = bySlug[slug]
+          if (!it) return
+          const subj = CS408_SUBJECT_LABEL[it.subject] || it.subject
+          const front = `【${subj}】${it.year} 年第 ${it.index} 题 · ${it.chapterName || ''} —— 回忆：这道大题的解题钥匙 / 第一步该抓什么？`
+          const back = (rec.note && stripMd(rec.note)) || extractKey(it.explanation)
+          cards.push({
+            id: `cs408-bigq:${slug}`,
+            pool: 'cs408-bigq',
+            poolLabel: '408 真题重做',
+            subject: 'cs408',
+            front,
+            back,
+            chapter: it.chapterName || undefined,
+          })
+        })
+        return cards.length ? addCards(cards) : 0
+      } catch (e) {
+        console.warn('[srs] 408 真题卡种子失败', e)
+        return 0
+      }
+    })()
+    cs408Promise = job
+    return job
+  }
+
   // 复习评分
   function grade(id: string, g: SrsGrade) {
     init()
@@ -162,6 +238,10 @@ export const useSrsStore = defineStore('srs', () => {
   const totalCount = computed(() => all.value.length)
   const sessionQueue = computed(() => [...dueCards.value, ...newCards.value])
 
+  // 408 复习闭环：今日到点(到期 or 新卡未学)的 408 记忆卡数，供 408 页"今日复习"角标
+  const cs408TotalCount = computed(() => all.value.filter(c => c.subject === 'cs408').length)
+  const cs408DueCount = computed(() => all.value.filter(c => c.subject === 'cs408' && (c.box === 0 || (c.box >= 1 && c.due <= t))).length)
+
   // 分池统计
   const pools = computed(() => {
     const m: Record<string, { pool: string; poolLabel: string; subject: string; total: number; due: number; neu: number; mature: number }> = {}
@@ -189,8 +269,9 @@ export const useSrsStore = defineStore('srs', () => {
 
   return {
     cards, init, persist,
-    seedMath, addCards, grade, suspend,
+    seedMath, seedCS408, addCards, grade, suspend,
     all, newCards, dueCards, dueCount, newCount, matureCount, totalCount, sessionQueue, pools, statsByPool,
+    cs408TotalCount, cs408DueCount,
     INTERVALS, MAX_BOX
   }
 })

@@ -4,9 +4,13 @@ import { ref, computed, onMounted } from 'vue'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
 import { useSrsStore, type SrsGrade } from '@/stores/srs'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const store = useSrsStore()
 store.init()
+// 408 真题重做队列：异步灌入记忆卡（幂等、失败静默），让 cs408-bigq 卡池出现在筛选 chip
+store.seedCS408()
 
 // LaTeX 渲染（复用速查卡 texify 方案）
 function texify(text: string): string {
@@ -17,7 +21,7 @@ function texify(text: string): string {
 }
 
 // ---------- 会话状态 ----------
-const poolFilter = ref<string>('all')
+const poolFilter = ref<string>(typeof route.query.pool === 'string' ? route.query.pool : 'all')
 const queue = ref<string[]>([])
 const pos = ref(0)
 const done = ref(0)
@@ -72,7 +76,7 @@ const statCards = computed(() => ([
   { key: 'total', label: '卡片总数', value: store.totalCount, color: '#8a6d1f' }
 ]))
 
-onMounted(() => { beginSession() })
+onMounted(async () => { try { await store.seedCS408() } catch {} ; beginSession() })
 </script>
 
 <template>

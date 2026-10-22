@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 // 使用同步导入避免GitHub Pages动态加载问题
 import CodeTraining from '@/components/PlaceholderComponent.vue'
 import MindMap from '@/components/PlaceholderComponent.vue'
@@ -10,8 +11,22 @@ import ReinforcementTracker from '@/components/ReinforcementTracker.vue'
 import FeynmanLearning from '@/components/FeynmanLearning.vue'
 import ExamFrequencyMap from '@/components/ExamFrequencyMap.vue'
 import CS408TopicGuide from '@/components/CS408TopicGuide.vue'
+import RealExamBigQuestions from '@/components/RealExamBigQuestions.vue'
+import { useSrsStore } from '@/stores/srs'
 
-const activeTab = ref('progress')
+const activeTab = ref((new URLSearchParams(typeof location !== 'undefined' ? location.search : '').get('tab')) || 'progress')
+
+// ===== 408 复习闭环：真题重做队列转间隔重复记忆卡 =====
+const router = useRouter()
+const srs = useSrsStore()
+srs.init()
+const cs408Due = computed(() => srs.cs408DueCount)
+const cs408Total = computed(() => srs.cs408TotalCount)
+// 进入 408 页即后台灌卡，让"今日复习"角标第一时间准确
+onMounted(() => { srs.seedCS408() })
+function goReview() {
+  srs.seedCS408().finally(() => router.push({ path: '/srs', query: { pool: 'cs408-bigq' } }))
+}
 </script>
 
 <template>
@@ -25,6 +40,21 @@ const activeTab = ref('progress')
         <p class="hero-sub">数据结构 · 计算机组成原理 · 操作系统 · 计算机网络</p>
       </div>
     </header>
+
+    <!-- 复习闭环 · 治"记不住/太多"：真题重做队列自动排进间隔重复卡池 -->
+    <section class="review-loop">
+      <div class="rl-icon">🔁</div>
+      <div class="rl-text">
+        <h3 class="rl-title">复习闭环 · 讲过 / 做错的 408 大题，按记忆曲线再推给你</h3>
+        <p class="rl-sub">
+          把「讲过、做错、半懂」的真题大题灌成间隔重复记忆卡，手机碎片时间刷一轮主动回忆，到期自动回炉——不再"学过就忘"。
+          <strong>今日待复习 {{ cs408Due }}</strong> 张 · 已入池 {{ cs408Total }} 张。
+        </p>
+      </div>
+      <button class="rl-btn" @click="goReview">
+        {{ cs408Due > 0 ? `今日复习 ${cs408Due} 张` : '去复习卡池' }}
+      </button>
+    </section>
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="cs408-tabs">
@@ -42,6 +72,9 @@ const activeTab = ref('progress')
 
         <el-tab-pane label="📊 考频地图" name="frequency">
           <ExamFrequencyMap />
+        </el-tab-pane>
+        <el-tab-pane label="📝 真题大题" name="exam">
+          <RealExamBigQuestions />
         </el-tab-pane>
         
         <el-tab-pane label="知识点梳理" name="knowledge">
@@ -151,6 +184,62 @@ const activeTab = ref('progress')
   box-shadow: 0 4px 20px rgba(13, 33, 55, 0.06);
 }
 
+/* 复习闭环 banner */
+.review-loop {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, #f4f8fd 0%, #eef3fb 100%);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--gold);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px rgba(13, 33, 55, 0.05);
+}
+.review-loop .rl-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.review-loop .rl-text {
+  flex: 1;
+  min-width: 0;
+}
+.review-loop .rl-title {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.review-loop .rl-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.review-loop .rl-sub strong {
+  color: var(--navy);
+}
+.review-loop .rl-btn {
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--navy-deep);
+  background: linear-gradient(90deg, var(--gold), #f0a820);
+  padding: 12px 22px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(240, 168, 32, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+.review-loop .rl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(240, 168, 32, 0.45);
+}
+
 /* 页签重制 */
 .cs408-tabs :deep(.el-tabs__header) {
   margin-bottom: 22px;
@@ -257,6 +346,15 @@ const activeTab = ref('progress')
     padding: 26px 20px 22px;
     border-radius: 10px;
   }
+  .review-loop {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+  .review-loop .rl-icon { font-size: 1.8rem; }
+  .review-loop .rl-btn { width: 100%; }
   .tab-navigation {
     padding: 14px;
   }
