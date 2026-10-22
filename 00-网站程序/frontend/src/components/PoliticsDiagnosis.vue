@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 
 /* ══════════════════════════════════════════════════════════════
    政治错因诊断 · 数据层
-   来源：肖1000 马原+史纲 选择题错题 317 题（单选127 / 多选190）
+   来源：肖1000 马原+史纲+思修 选择题错题 392 题（单选154 / 多选238）
    错因结构由「我的答案 vs 正确答案」客观推导，非主观臆断
    ══════════════════════════════════════════════════════════════ */
 
@@ -26,32 +26,32 @@ function hl(s?: string): string {
   return t
 }
 
-const TOTAL = 317
-const SUBJECT = { my: 192, sg: 125 }
-const TYPE = { single: 127, multi: 190 }
+const TOTAL = 392
+const SUBJECT = { my: 192, sg: 125, sx: 75 }
+const TYPE = { single: 154, multi: 238 }
 
 // 五大错因桶（按占比降序，附真实错题示例）
 const buckets = [
-  { key: 'over', label: '多选 · 没认出干扰项', count: 90, pct: 28.4, color: 'coral',
-    diag: '多选题里那个「看着对、实则绝对化 / 偷换概念 / 张冠李戴」的错项没揪出来，全选了。',
-    cure: '做完先问「有没有一个选项话说太满 / 换了主语」，宁可回读题干圈关键词。',
-    eg: '例：马克思主义当代价值题，你把「现成方案」也选了（导论多选 #1）。' },
-  { key: 'pair', label: '单选 · 概念对偶混淆', count: 70, pct: 22.1, color: 'gold',
-    diag: '马原政经 & 哲学的成对概念分不清：具体↔抽象劳动、绝对↔相对超额剩余价值、不变可变资本…',
+  { key: 'over', label: '多选 · 没认出干扰项', count: 115, pct: 29.3, color: 'coral',
+    diag: '多选题里那个「看着对、实则绝对化 / 偷换概念 / 张冠李戴」的错项没揪出来，全选了。思修法治部分尤其明显：把「关键 / 基础 / 重点 / 前提」的帽子扣错对象。',
+    cure: '做完先问「有没有一个选项话说太满 / 换了主语 / 张冠李戴」，宁可回读题干圈关键词。',
+    eg: '例：法治体系重点题，把「完备的法律规范体系」当重点（应选高效的法治实施体系，思修六章单选 #10）；党的领导题多选了「全面依法治国的关键」（思修六章多选 #8）。' },
+  { key: 'pair', label: '单选 · 概念对偶混淆', count: 97, pct: 24.7, color: 'gold',
+    diag: '马原政经 & 哲学、思修法治的成对 / 定位概念分不清：具体↔抽象劳动、绝对↔相对超额剩余价值、不变可变资本；立法=龙头环节 / 司法=生命线 / 守法=基本途径…',
     cure: '给每对概念写「一句话判据」，靠判据而非语感作答（见下方补丁卡）。',
-    eg: '例：量的考察与质的区分，谁是谁的前提，说反了（一章多选 #31）。' },
-  { key: 'under', label: '多选 · 漏选（记不全）', count: 61, pct: 19.2, color: 'blue',
-    diag: '知识点掌握不完整，正确的选项不敢选，导致少选丢分。',
-    cure: '把「四大 / 三全 / 三个有利于」这类成套结论做成清单，先补全再判断。',
-    eg: '例：中共三大政治口号「抗战、团结、进步」只记住两个（六章多选 #9）。' },
-  { key: 'mem', label: '单选 · 史纲记忆不精确', count: 57, pct: 18.0, color: 'navy',
+    eg: '例：法律运行四环节中「实施和实现的基本途径」说成法律制定（思修六章单选 #3）；「100-1=0」考的是公正司法=最后一道防线，错选决定因素（#14）。' },
+  { key: 'under', label: '多选 · 漏选（记不全）', count: 76, pct: 19.4, color: 'blue',
+    diag: '知识点掌握不完整，正确的选项不敢选，导致少选丢分。思修成套结论（宪法四性、权利公平三义、社会经济权利）常漏一项。',
+    cure: '把「四大 / 三全 / 三个有利于 / 宪法根本性全局性稳定性长期性」这类成套结论做成清单，先补全再判断。',
+    eg: '例：宪法特征「根本性·全局性·稳定性·长期性」漏选长期性（思修六章多选 #18）；权利公平漏选「权利保护和救济平等」（#24）。' },
+  { key: 'mem', label: '单选 · 史纲记忆不精确', count: 57, pct: 14.5, color: 'navy',
     diag: '史纲的时间、会议、人物、著作「差不多」就选，被相近项带偏。',
     cure: '用时间轴 + 会议速查表钉死「谁 / 何时 / 提了什么」，见下方混淆速查。',
     eg: '例：九一八=局部抗战序幕 / 卢沟桥=全民族抗战，反复错（六章单选）。' },
-  { key: 'both', label: '多选 · 又多又漏（边界模糊）', count: 39, pct: 12.3, color: 'grey',
-    diag: '该考点整体框架没建立起来，选多也选漏。',
+  { key: 'both', label: '多选 · 又多又漏（边界模糊）', count: 47, pct: 12.0, color: 'grey',
+    diag: '该考点整体框架没建立起来，选多也选漏。思修人身自由、社会经济权利这类「一组权利里哪几项属于本类」边界最模糊。',
     cure: '回炉该节视频/思维导图，先搭框架再刷题，别急着纠错选项。',
-    eg: '例：辛亥革命"成功面/失败面"两面，既漏选又多选（三章多选）。' },
+    eg: '例：人身自由只选了「住宅不受侵犯」两项，漏了前三项（思修六章多选 #31）；辛亥革命"成功面/失败面"两面既漏又多（三章多选）。' },
 ]
 
 // 章节错题热力（降序）
@@ -59,9 +59,11 @@ const heat = [
   { label: '马原·第四章 政治经济学', n: 73, s: 'my' },
   { label: '马原·第五章 垄断资本主义', n: 29, s: 'my' },
   { label: '马原·第二章 认识论真理价值', n: 27, s: 'my' },
+  { label: '思修·第六章 法治思想素养', n: 27, s: 'sx' },
   { label: '史纲·第六章 抗日战争', n: 26, s: 'sg' },
   { label: '马原·第三章 唯物史观', n: 25, s: 'my' },
   { label: '马原·第一章 唯物论辩证法', n: 22, s: 'my' },
+  { label: '思修·第五章 道德规范品格', n: 21, s: 'sx' },
   { label: '史纲·第四章 建党与大革命', n: 18, s: 'sg' },
   { label: '史纲·第八章 新中国成立·社革', n: 18, s: 'sg' },
   { label: '史纲·第一章 近代开端·侵略', n: 14, s: 'sg' },
@@ -69,18 +71,23 @@ const heat = [
   { label: '史纲·第三章 辛亥革命', n: 11, s: 'sg' },
   { label: '史纲·第七章 解放战争', n: 11, s: 'sg' },
   { label: '马原·第六章 社会主义发展史', n: 10, s: 'my' },
+  { label: '思修·第三章 中国精神传统', n: 10, s: 'sx' },
   { label: '史纲·第五章 土地革命', n: 9, s: 'sg' },
-  { label: '马原·导论 + 第七章', n: 7, s: 'my' },
-  { label: '史纲·第九章 改革开放', n: 3, s: 'sg' },
+  { label: '思修·第四章 价值要求准则', n: 7, s: 'sx' },
+  { label: '思修·第一章 人生青春之问', n: 5, s: 'sx' },
   { label: '史纲·第十章 新时代', n: 4, s: 'sg' },
+  { label: '思修·第二章 理想信念', n: 4, s: 'sx' },
+  { label: '马原·导论 + 第七章', n: 6, s: 'my' },
+  { label: '史纲·第九章 改革开放', n: 3, s: 'sg' },
+  { label: '思修·绪论 担当复兴', n: 1, s: 'sx' },
 ]
 const heatMax = computed(() => Math.max(...heat.map(h => h.n)))
 
 // 多选失分结构（用于 conic 甜甜圈）
 const multiStruct = [
-  { label: '没认出干扰项(多选)', n: 90, color: 'var(--dg-coral)' },
-  { label: '漏选(记不全)', n: 61, color: 'var(--dg-blue)' },
-  { label: '又多又漏', n: 39, color: 'var(--dg-grey)' },
+  { label: '没认出干扰项(多选)', n: 115, color: 'var(--dg-coral)' },
+  { label: '漏选(记不全)', n: 76, color: 'var(--dg-blue)' },
+  { label: '又多又漏', n: 47, color: 'var(--dg-grey)' },
 ]
 const multiTotal = multiStruct.reduce((s, x) => s + x.n, 0)
 const donut = computed(() => {
@@ -96,7 +103,7 @@ const donut = computed(() => {
 
 /* ── 漏洞补丁卡（按考点聚类）── */
 interface Patch {
-  subject: 'my' | 'sg'
+  subject: 'my' | 'sg' | 'sx'
   title: string
   hot?: boolean
   wrong: string[]      // 你反复错的具体表现（含关联题号）
@@ -203,18 +210,46 @@ const patches: Patch[] = [
     patch: ['真理标准问题大讨论(1978) + 十一届三中全会 = 重新确立实事求是、改革开放开端。南方谈话(1992) 最主要 = 计划和市场都是经济手段、社会主义本质解放发展生产力。', '党的十八大以来 = 中国特色社会主义进入新时代；党的中心任务 = 团结带领全国各族人民全面建成社会主义现代化强国、实现第二个百年奋斗目标，以中国式现代化全面推进中华民族伟大复兴。', '从"一五"到"十四五"一以贯之的主题 = 把我国建设成为社会主义现代化国家。'],
     traps: ['「提供更为完善的制度保证…精神力量」= 改革开放和社会主义现代化建设时期？答：新时代中国特色社会主义的伟大成就'],
   },
+  {
+    subject: 'sx', title: '思修法治 · 法律运行四环节的「帽子」定位', hot: true,
+    wrong: ['立法 / 执法 / 司法 / 守法四个"最"字帽子互相顶替：龙头环节、生命线、最后一道防线、基本途径分不清（六章单选 Q3、Q13、Q14）', '"法律适用"与"法律执行""法律遵守"概念混（Q5）', '把"实施和实现的基本途径"错答成法律制定（Q3）'],
+    fuzzy: '法律运行各环节 + 法治工作布局各环节的地位固定表述。',
+    patch: ['法律制定(立法) = 法治的「龙头环节」；法律实施和实现的「基本途径」= 法律遵守(守法)。', '法律适用(司法) = 国家司法机关依照法定职权和程序处理案件的「专门活动」；公正司法 = 维护社会公平正义的「最后一道防线」（"100-1=0"）。', '法治 = 治国理政的基本方式；法律的生命线 = 公正（法治的生命线）。', '口诀：立法是龙头、守法是途径、司法是防线、公正即生命。'],
+    traps: ['「基本途径」≠ 立法（是守法）', '「最后一道防线」≠ 决定因素'],
+  },
+  {
+    subject: 'sx', title: '思修法治 · 全面依法治国 & 习近平法治思想', hot: true,
+    wrong: ['总抓手 / 重点 / 根本目的 / 基础 反复错（六章单选 Q9、Q10、Q11、Q12）', '党的领导定位题多选了"全面依法治国的关键"（六章多选 Q8）', '习近平法治思想漏选"指导思想根本遵循"（多选 Q5）、前进方向多选了"依宪治国"（多选 Q6）'],
+    fuzzy: '全面依法治国总目标、总抓手、各环节"最"字定位 + 习近平法治思想"十个坚持"。',
+    patch: ['总目标 = 建设中国特色社会主义法治体系、建设社会主义法治国家；总抓手 = 建设中国特色社会主义法治体系。', '法治体系的「重点」= 高效的法治实施体系（不是"完备的法律规范体系"）。', '根本目的 = 依法保障人民权益；构筑法治国家的「基础」= 法治社会。', '党的领导 = 社会主义法治「最根本的保证」、中国特色社会主义「法治之魂」、与西方法治「最大区别」；"全面依法治国的关键"是干扰项。', '科学指明前进方向 = 坚持党的领导 + 以人民为中心 + 中国特色社会主义法治道路（不含"依宪治国"）。'],
+    traps: ['「重点」≠「前提 / 基础」', '党的领导别选「关键」'],
+  },
+  {
+    subject: 'sx', title: '思修法治 · 宪法特征 & 公民基本权利', hot: true,
+    wrong: ['宪法"四性"漏选长期性（六章多选 Q18）', '公民权利分类混：人身自由、社会经济权利各含哪几项判不清（多选 Q31、Q32）', '权利保障关键环节、参加政治生活基础、享有其他权利前提三顶帽子错（单选 Q19、Q25、Q27）', '法律至上表现多选了"权利保障"（多选 Q22）'],
+    fuzzy: '宪法根本法地位 + 公民基本权利体系（政治/人身/社会经济文化）+ 权利保障环节。',
+    patch: ['宪法是国家意志最高表现形式，具有根本性、全局性、稳定性、长期性（四性齐全）。', '权利保障的「关键环节」= 司法保障；参加国家政治经济社会生活的「基础」= 人身权利；享有其他一切权利的「前提」= 生命权（生命健康权）。', '人身自由 = 身体不受拘束 + 行动自由 + 不受非法限制和剥夺（"住宅不受侵犯"另属住宅安全权，不在"人身自由是指"内）。', '社会经济权利 = 劳动权休息权 + 社会保障权 + 物质帮助权（"私有财产权"单列，不在此类）。', '法律至上 = 普遍适用 + 优先适用 + 不可违反（无"权利保障"）。'],
+    traps: ['私有财产权 ≠ 社会经济权利', '宪法"四性"别漏长期性'],
+  },
+  {
+    subject: 'sx', title: '思修 · 道德 & 中国精神（成套结论漏选）',
+    wrong: ['第五章道德规范多选成套结论漏选一项（五章多选 13 错，多为漏选 / 边界模糊）', '第三章中国精神 / 爱国主义内涵多选"又多又漏"（三章多选 9 错）'],
+    fuzzy: '道德的功能、社会主义核心价值观、中华传统美德、爱国主义科学内涵等成套表述。',
+    patch: ['成套结论先背全再判断：爱国主义 = 爱祖国的大好河山、自己的骨肉同胞、祖国的灿烂文化、自己的国家（四爱）。', '社会主义核心价值观 24 字分国家 / 社会 / 个人三层，选项按层归类，别跨层乱选。', '道德的功能 = 认识功能、规范功能、调节功能（最主要 = 调节功能）。', '错因主型是"漏选"：拿不准且不含绝对化词的正确项，倾向选上。'],
+    traps: ['「最主要 / 根本」类帽子先回读题干限定'],
+  },
 ]
 
 // 多选专项 · 判断法
 const multiTactics = [
-  { name: '「多选」陷阱识别（对应 90 题失分）', color: 'coral',
+  { name: '「多选」陷阱识别（对应 115 题失分）', color: 'coral',
     points: [
       '绝对化词：唯一 / 完全 / 彻底 / 永远 / 任何 / 都 / 取决于 / 消除 / 决定 —— 见到先扣分。',
       '偷换主语：把 A 会议的意义安到 B 会议头上（史纲高发）。',
       '因果颠倒 / 条件缺失：去掉限定词后命题才成立 → 原命题错。',
       '操作：先通读四个选项，把「最可疑」的那个单独回读题干，宁可漏不可滥。',
     ] },
-  { name: '「漏选」补全（对应 61 题失分）', color: 'blue',
+  { name: '「漏选」补全（对应 76 题失分）', color: 'blue',
     points: [
       '成套结论先背全：三大法宝、三大作风、三大经济纲领、四个全面、两个务必…',
       '「四个特征 / 三性 / 两重性」这类数量词，选项数与题干数量对不上就是漏。',
@@ -228,9 +263,9 @@ const multiTactics = [
     ] },
 ]
 
-/* ── 多选「找茬」演练（由你 76 道纯多选错题里挑出的高频陷阱项）── */
+/* ── 多选「找茬」演练（由你 238 道多选错题里挑出的高频陷阱项，含马原/史纲/思修）── */
 interface Drill {
-  id: string; topic: string; subject: 'my' | 'sg'
+  id: string; topic: string; subject: 'my' | 'sg' | 'sx'
   stem: string; opts: { k: string; t: string }[]
   ans: string; trap: string; why: string
 }
@@ -343,6 +378,42 @@ const drills: Drill[] = [
       { k: 'D', t: '通过了党在全国执政后制定的第一部党章' },
     ],
     why: '「开始经济体制改革」时间错置（那是 1978 年以后）——C 把改革开放的成就安到了八大头上。' },
+  { id: 'd13', topic: '思修 · 法律运行的帽子定位', subject: 'sx', ans: 'ABC', trap: 'D',
+    stem: '法律制定是法治的龙头环节。关于法律运行各环节，下列说法正确的有',
+    opts: [
+      { k: 'A', t: '法律遵守是法律实施和实现的基本途径' },
+      { k: 'B', t: '公正司法是维护社会公平正义的最后一道防线' },
+      { k: 'C', t: '法律适用是国家司法机关依照法定职权和程序处理案件的专门活动' },
+      { k: 'D', t: '法律制定是法律实施和实现的基本途径' },
+    ],
+    why: 'D 把"基本途径"的帽子从守法挪到立法——立法是"龙头环节"，守法才是实施实现的"基本途径"。典型帽子张冠李戴。' },
+  { id: 'd14', topic: '思修 · 宪法的根本法特征（漏选）', subject: 'sx', ans: 'ABCD', trap: 'D',
+    stem: '宪法是国家的根本法，具有最高的法律地位。作为国家意志的最高表现形式，宪法具有',
+    opts: [
+      { k: 'A', t: '根本性' },
+      { k: 'B', t: '全局性' },
+      { k: 'C', t: '稳定性' },
+      { k: 'D', t: '长期性' },
+    ],
+    why: '这是"四性齐全"的成套结论，你常漏掉 D 长期性。数量词"四性"对不上四项就是漏选——四项全选。' },
+  { id: 'd15', topic: '思修 · 社会经济权利的范围', subject: 'sx', ans: 'ABC', trap: 'D',
+    stem: '公民的社会经济权利是享有其他权利的重要保障。下列属于社会经济权利的有',
+    opts: [
+      { k: 'A', t: '劳动权、休息权' },
+      { k: 'B', t: '社会保障权' },
+      { k: 'C', t: '物质帮助权' },
+      { k: 'D', t: '私有财产权' },
+    ],
+    why: 'D"私有财产权"单列一类，不归入社会经济权利。别把它当成第四项多选上——是"又多"型陷阱。' },
+  { id: 'd16', topic: '思修 · 法律至上的表现', subject: 'sx', ans: 'ABC', trap: 'D',
+    stem: '法律至上是指在国家或社会的所有规范中，法律是地位最高、效力最广、强制力最大的规范。法律至上具体表现为',
+    opts: [
+      { k: 'A', t: '普遍适用性' },
+      { k: 'B', t: '优先适用性' },
+      { k: 'C', t: '不可违反性' },
+      { k: 'D', t: '权利保障性' },
+    ],
+    why: '"法律至上"三表现 = 普遍适用 + 优先适用 + 不可违反。D"权利保障"是另一维度的表述，被塞进来充当干扰，属多选项。' },
 ]
 
 const drillRevealed = ref<string[]>([])
@@ -406,11 +477,11 @@ function reveal(key: string) {
 const isMasked = (key: string) => maskMode.value && !revealed.value.includes(key)
 
 const activeSection = ref('overview')
-const subjectFilter = ref<'all' | 'my' | 'sg'>('all')
+const subjectFilter = ref<'all' | 'my' | 'sg' | 'sx'>('all')
 const filteredPatches = computed(() =>
   subjectFilter.value === 'all' ? patches : patches.filter(p => p.subject === subjectFilter.value)
 )
-const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: patches.filter(p => p.subject === 'sg').length }
+const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: patches.filter(p => p.subject === 'sg').length, sx: patches.filter(p => p.subject === 'sx').length }
 </script>
 
 <template>
@@ -420,7 +491,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
       <div class="dv-left">
         <span class="dv-kicker">DIAGNOSIS · 错因诊断</span>
         <h2 class="dv-title">你的政治失分，<span class="coral">六成卡在多选题</span></h2>
-        <p class="dv-sub">基于肖1000 马原 + 史纲 <b>{{ TOTAL }}</b> 道错题的客观比对（我的答案 vs 正确答案）。先看病灶，再补漏洞。</p>
+        <p class="dv-sub">基于肖1000 马原 + 史纲 + 思修 <b>{{ TOTAL }}</b> 道错题的客观比对（我的答案 vs 正确答案）。先看病灶，再补漏洞。</p>
       </div>
       <div class="dv-right">
         <div class="dv-ring" :style="{ background: donut }">
@@ -442,8 +513,9 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
     <div class="dg-kpis">
       <div class="kpi"><strong>{{ SUBJECT.my }}</strong><span>马原错题</span></div>
       <div class="kpi"><strong>{{ SUBJECT.sg }}</strong><span>史纲错题</span></div>
+      <div class="kpi"><strong>{{ SUBJECT.sx }}</strong><span>思修错题</span></div>
       <div class="kpi"><strong>{{ TYPE.multi }}</strong><span>多选 · 占 {{ Math.round(TYPE.multi/TOTAL*100) }}%</span></div>
-      <div class="kpi hot"><strong>28.4%</strong><span>头号病灶 · 没认出干扰项</span></div>
+      <div class="kpi hot"><strong>29.3%</strong><span>头号病灶 · 没认出干扰项</span></div>
     </div>
 
     <!-- 内层导航 -->
@@ -472,7 +544,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
       </div>
 
       <h3 class="dg-h" style="margin-top:34px">章节错题热力 · 从哪补最划算</h3>
-      <p class="dg-note">条越长 = 该章错题越多，优先回炉。马原第四章政治经济学是<b>超级重灾区（73 题，占全部 23%）</b>。</p>
+      <p class="dg-note">条越长 = 该章错题越多，优先回炉。马原第四章政治经济学是<b>超级重灾区（73 题，占全部 19%）</b>，思修第六章法治（27 题）、第五章道德（21 题）紧随其后。</p>
       <div class="heat">
         <div v-for="h in heat" :key="h.label" class="heat-row" :class="h.s">
           <span class="heat-name">{{ h.label }}</span>
@@ -488,11 +560,12 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
         <button :class="{on:subjectFilter==='all'}" @click="subjectFilter='all'">全部 {{ patches.length }}</button>
         <button :class="{on:subjectFilter==='my'}" @click="subjectFilter='my'">马原 {{ patchCount.my }}</button>
         <button :class="{on:subjectFilter==='sg'}" @click="subjectFilter='sg'">史纲 {{ patchCount.sg }}</button>
+        <button :class="{on:subjectFilter==='sx'}" @click="subjectFilter='sx'">思修 {{ patchCount.sx }}</button>
       </div>
       <div class="cards">
         <article v-for="(p,i) in filteredPatches" :key="p.title" class="card" :class="[p.subject, { hotp: p.hot }]">
           <header class="cd-head">
-            <span class="cd-tag">{{ p.subject==='my' ? '马原' : '史纲' }}</span>
+            <span class="cd-tag">{{ p.subject==='my' ? '马原' : (p.subject==='sx' ? '思修' : '史纲') }}</span>
             <h4 class="cd-title">{{ p.title }}</h4>
             <span v-if="p.hot" class="cd-hot">🔥重灾</span>
           </header>
@@ -531,8 +604,8 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
     <section v-show="activeSection==='drill'" class="dg-panel">
       <div class="dr-bar">
         <div class="dr-bar-txt">
-          <h3 class="dg-h" style="margin:0">从你 76 道「多选选多了」的错题里，还原出的高频陷阱</h3>
-          <p class="dg-note" style="margin:6px 0 0">每题的正确答案里都藏着你上次<b>多选了、其实却是错的</b>那一个干扰项——把它揪出来。</p>
+          <h3 class="dg-h" style="margin:0">从你多选错题（选多了 115 / 漏选 76）里，还原出的高频陷阱</h3>
+          <p class="dg-note" style="margin:6px 0 0">每题都藏着一个你上次<b>多选上的干扰项，或该选却漏掉的那一项</b>——把它揪出来。</p>
         </div>
         <div class="dr-score">
           <strong>{{ drillScore }}<em>/{{ drills.length }}</em></strong>
@@ -544,7 +617,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
       <div class="drills">
         <article v-for="d in drills" :key="d.id" class="drill" :class="[d.subject, { done: drillRevealed.includes(d.id), ok: drillSolved.includes(d.id) }]">
           <header class="dr-head">
-            <span class="dr-tag">{{ d.subject==='my' ? '马原' : '史纲' }}</span>
+            <span class="dr-tag">{{ d.subject==='my' ? '马原' : (d.subject==='sx' ? '思修' : '史纲') }}</span>
             <h4 class="dr-topic">{{ d.topic }}</h4>
             <span v-if="drillSolved.includes(d.id)" class="dr-badge">✓ 揪对了</span>
           </header>
@@ -707,6 +780,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .heat-track i { display: block; height: 100%; border-radius: 5px; }
 .heat-row.my .heat-track i { background: linear-gradient(90deg,#c98a1e,var(--dg-gold)); }
 .heat-row.sg .heat-track i { background: linear-gradient(90deg,var(--dg-navy),var(--dg-blue)); }
+.heat-row.sx .heat-track i { background: linear-gradient(90deg,#1f8a6d,var(--dg-green)); }
 .heat-n { font-family: var(--font-mono); font-size: .86rem; color: var(--dg-muted); text-align: right; }
 
 /* 补丁卡 */
@@ -721,6 +795,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .cd-tag { font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; color: #fff; }
 .card.my .cd-tag { background: linear-gradient(135deg,#c98a1e,var(--dg-gold)); color:#5a4300; }
 .card.sg .cd-tag { background: linear-gradient(135deg,var(--dg-navy),var(--dg-blue)); }
+.card.sx .cd-tag { background: linear-gradient(135deg,#1f8a6d,var(--dg-green)); }
 .cd-title { font-size: 1.02rem; color: var(--dg-ink); margin: 0; font-weight: 700; flex: 1; }
 .cd-hot { font-size: .74rem; color: var(--dg-coral); font-weight: 700; white-space: nowrap; }
 .cd-block { margin-top: 10px; }
@@ -761,11 +836,13 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .drill { border: 1px solid var(--dg-line); border-radius: 14px; background: #fff; padding: 16px 18px; border-left: 4px solid var(--dg-blue); }
 .drill.my { border-left-color: var(--dg-gold); }
 .drill.sg { border-left-color: var(--dg-navy); }
+.drill.sx { border-left-color: var(--dg-green); }
 .drill.done.ok { border-color: rgba(46,158,107,.5); }
 .dr-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .dr-tag { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 5px; }
 .drill.my .dr-tag { background: #fdf1d6; color: #8a6100; }
 .drill.sg .dr-tag { background: #e7eef6; color: var(--dg-navy); }
+.drill.sx .dr-tag { background: #e6f5ee; color: #1f7a55; }
 .dr-topic { font-size: .95rem; margin: 0; flex: 1; color: var(--dg-ink); font-weight: 700; }
 .dr-badge { font-size: .76rem; color: var(--dg-green); font-weight: 700; }
 .dr-stem { font-size: .88rem; line-height: 1.6; color: var(--dg-body); margin: 0 0 12px; padding: 10px 12px; background: var(--dg-soft); border-radius: 8px; }
