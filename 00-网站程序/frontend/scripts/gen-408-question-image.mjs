@@ -95,11 +95,11 @@ const bodyHtml =
   marked(fixImgs(expandBits(it.stem || ''))) +
   (mode === 'a' ? `<hr class="sep"/><div class="ans"><h3>答案与解析</h3>${marked(fixImgs(expandBits(it.explanation || '')))}</div>` : '');
 
-const katex = mode === 'a' ? `<link rel="stylesheet" href="vendor/katex/katex.min.css">` : '';
-const katexJs = mode === 'a' ? `
+const katex = `<link rel="stylesheet" href="vendor/katex/katex.min.css">`;
+const katexJs = `
 <script src="vendor/katex/katex.min.js"></script>
 <script src="vendor/katex/contrib/auto-render.min.js"
-  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>` : '';
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>`;
 
 const html = `<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">${katex}
