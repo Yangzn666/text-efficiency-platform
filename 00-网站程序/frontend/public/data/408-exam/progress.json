@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18",
+  "updatedAt": "2026-10-22",
   "note": "408 真题大题作答记录。records 以 questions.json 的 slug 为键；result ∈ correct|partial|wrong；date 为最近一次作答日 YYYY-MM-DD；attempts 累计作答次数。此文件为持久真相源；网站端 localStorage(exam408-big-v2) 的标记会叠加显示，助手会话再读回 localStorage 合并写本文件并重建，使记录跨设备持久。",
   "records": {
     "co-2010-44": {
@@ -224,6 +224,17 @@
       "attempts": 1,
       "result": "wrong",
       "date": "2026-10-21"
+    },
+    "co-2021-43": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-22"
+    },
+    "co-2023-44": {
+      "attempts": 0,
+      "result": "taught",
+      "date": "2026-10-22",
+      "note": "AI出题干+四问完整精讲卡讲透(地址=累加机器码字节数/相对寻址/基址变址/大小端/取指不缺页),用户未独立作答,大题二刷时独立重做"
     }
   }
 }
