@@ -91,9 +91,30 @@ function expandBits(md) {
   return String(md).replace(/```bits-layout\s*\n([\s\S]*?)```/g, (m, body) => '\n' + renderBitsLayout(body) + '\n');
 }
 
+// 保护 LaTeX：marked 会把公式里的 \& 反斜杠吃掉变成裸 &，导致 KaTeX 报错(渲染成红色源码)。
+// 先把 $$..$$ / $..$ 换成占位符交给 marked，事后再还原并对 & < > 做 HTML 转义，
+// 这样 DOM textContent 会原样回到 KaTeX 需要的 LaTeX(含 \&)。
+function protectMath(md) {
+  const store = [];
+  const s = String(md)
+    .replace(/\$\$[\s\S]+?\$\$/g, m => { store.push(m); return '@@QMX' + (store.length - 1) + '@@'; })
+    .replace(/\$([^$\n]+?)\$/g, (m, g) => { store.push('$' + g + '$'); return '@@QMX' + (store.length - 1) + '@@'; });
+  return { s, store };
+}
+function restoreMath(html, store) {
+  return html.replace(/@@QMX(\d+)@@/g, (m, i) => {
+    const raw = store[+i] || m;
+    return raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  });
+}
+function renderMd(md) {
+  const { s, store } = protectMath(md);
+  return restoreMath(marked(s), store);
+}
+
 const bodyHtml =
-  marked(fixImgs(expandBits(it.stem || ''))) +
-  (mode === 'a' ? `<hr class="sep"/><div class="ans"><h3>答案与解析</h3>${marked(fixImgs(expandBits(it.explanation || '')))}</div>` : '');
+  renderMd(fixImgs(expandBits(it.stem || ''))) +
+  (mode === 'a' ? `<hr class="sep"/><div class="ans"><h3>答案与解析</h3>${renderMd(fixImgs(expandBits(it.explanation || '')))}</div>` : '');
 
 const katex = `<link rel="stylesheet" href="vendor/katex/katex.min.css">`;
 const katexJs = `
