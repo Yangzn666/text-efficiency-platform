@@ -4371,6 +4371,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_chaoyue4_16_bivar_normal_same_sign',
+    chapterId: 'ch_gailv',
+    chapterName: '概率论',
+    sectionId: 'multidim_normal',
+    sectionName: '二维正态分布',
+    title: '【25超越卷四16】二维正态下 P{X^2>Y^2}（拆同号+独立性）',
+    content: '设随机变量 $(X,Y)\\sim N\\left(0,0;1,1;\\tfrac12\\right)$，则 $P\\{X^2>Y^2\\}=$ ______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '正确答案：$\\dfrac12$\n解析（拆同号 + 二维正态独立性）：\n- 因式分解：$X^2>Y^2\\iff (X-Y)(X+Y)>0$，记 $U=X-Y,\\ V=X+Y$，即判 $U,V$ 同号\n- $(U,V)$ 是 $(X,Y)$ 的线性变换 → 仍联合正态；$\\text{Cov}(U,V)=\\text{Var}(X)-\\text{Var}(Y)=1-1=0$\n- 联合正态 + 不相关 $\\Rightarrow$ $U,V$ 相互独立\n- $U,V$ 均值为 0 的正态，各自关于 0 对称：$P(U>0)=P(U<0)=\\tfrac12$；由独立 $P(\\text{同号})=\\tfrac14+\\tfrac14=\\tfrac12$\n\n错因：见平方比大小本能想代二重积分硬算，没做代数变形拆同号、没想到用独立性。\n同类提醒：见 $X^2>Y^2$（或 $|X|>|Y|$）→ 拆 $(X-Y)(X+Y)>0$ 判同号；二维正态里只要 $X,Y$ 等方差，$X-Y$ 与 $X+Y$ 必独立（$\\text{Cov}=\\text{Var}X-\\text{Var}Y=0$），对称性直接给 $\\tfrac12$，与 $\\rho$ 无关。对应方法库 M056。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
