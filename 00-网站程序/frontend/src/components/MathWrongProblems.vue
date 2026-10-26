@@ -4339,6 +4339,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_chaoyue4_13_integral_series_telescope',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'series',
+    sectionName: '数项级数求和',
+    title: '【25超越卷四13】积分定义的级数求和（区间可加性）',
+    content: '设 $a_n=\\displaystyle\\int_n^{n+1}\\Big[x^{-\\frac32}-(x+1)^{-\\frac32}\\Big]dx$，$n=1,2,\\cdots$，则级数 $\\displaystyle\\sum_{n=1}^{\\infty}a_n=$ ______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '正确答案：$2-\\sqrt2$\n解析（秒杀·区间可加性）：\n- $a_n=\\int_n^{n+1}g(x)dx$，$g(x)=x^{-3/2}-(x+1)^{-3/2}$，被积函数不含 $n$ → 相邻区间可拼：$\\displaystyle\\sum_{n=1}^{\\infty}a_n=\\int_1^{+\\infty}g(x)dx$\n- 原函数 $F(x)=-\\dfrac{2}{\\sqrt x}+\\dfrac{2}{\\sqrt{x+1}}$；$\\int_1^{+\\infty}g=F(+\\infty)-F(1)=0-\\left(-2+\\sqrt2\\right)=2-\\sqrt2$\n\n验证（常规·先算 $a_n$ 再裂项）：$a_n=\\dfrac{2}{\\sqrt n}-\\dfrac{4}{\\sqrt{n+1}}+\\dfrac{2}{\\sqrt{n+2}}=2(b_n-b_{n+1})$，$b_n=\\dfrac1{\\sqrt n}-\\dfrac1{\\sqrt{n+1}}$，$\\sum a_n=2b_1=2\\left(1-\\dfrac1{\\sqrt2}\\right)=2-\\sqrt2$ ✓\n\n错因：此类题型没见过固定套路，看到"积分套级数"就发懵，本能去先算 $a_n$。\n同类提醒：见 $\\sum_{n}\\int_n^{n+1}g(x)dx$（被积函数不含 $n$）条件反射拼成 $\\int_1^{+\\infty}g(x)dx$；若被积函数含 $n$（$\\int_n^{n+1}f(x,n)dx$）拼不动，才退回算 $a_n$ 裂项。对应方法库 M052。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
