@@ -4355,6 +4355,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_chaoyue4_15_determinant_inversion',
+    chapterId: 'ch_xiandai',
+    chapterName: '线性代数',
+    sectionId: 'determinant',
+    sectionName: 'n阶行列式定义',
+    title: '【25超越卷四15】每行仅一个非零元的n阶行列式（逆序数定号）',
+    content: '设 $a_i\\ne 0$（$i=1,\\cdots,n$），$n$ 阶行列式 $|A|$ 中每行每列仅一个非零元：第 $i$ 行的 $a_i$ 在第 $i+2$ 列（$i=1,\\cdots,n-2$），第 $n-1$ 行的 $a_{n-1}$ 在第 1 列，第 $n$ 行的 $a_n$ 在第 2 列，其余全为 0，则 $|A|=$ ______。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '正确答案：$|A|=a_1a_2\\cdots a_n$（符号恒正）\n解析（行列式定义 + 逆序数）：\n- 每行每列仅一个非零元 → 定义 $|A|=\\sum_{\\tau}(-1)^{N(\\tau)}\\prod_i a_{i\\,\\tau(i)}$ 中，只有唯一一个排列 $\\tau$ 能取到非零乘积\n- 读出该排列：$\\tau=(3,4,\\cdots,n,1,2)$\n- 数逆序数：前面 $n-2$ 个数都比尾部的 $1,2$ 大，各贡献 2 个逆序 → $N(\\tau)=2(n-2)$，恒为偶数 → $(-1)^{N(\\tau)}=+1$\n- 故 $|A|=+\\prod_{i=1}^{n}a_i$（sympy 已验 $n=3\\sim 8$ 均成立）\n\n错因：逆序数没怎么学过，不会用定义给行列式定号。\n同类提醒：每行每列仅一个非零元的行列式 → 用定义读出唯一排列 → 数逆序数定号；别条件反射套副对角线公式 $(-1)^{\\frac{n(n-1)}{2}}$（那是非零元沿副对角线的情况）。对应方法库 M055。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
