@@ -1,0 +1,1698 @@
+{
+ "version": 1,
+ "updatedAt": "2026-10-23T03:45:00Z",
+ "mode": "冲刺",
+ "params": {
+  "dailyMinutes": 420,
+  "alloc": {
+   "套卷新题": 210,
+   "回炉变式": 150,
+   "记忆锚点": 30,
+   "机动": 30
+  },
+  "newRatio": 0.3,
+  "intervalLadder": [
+   1,
+   2,
+   4,
+   7
+  ],
+  "focusClusters": [
+   "一维随机变量及其分布",
+   "特征值·相似对角化·实对称",
+   "中值定理与证明"
+  ],
+  "difficulty": "真题+模拟",
+  "examDate": "2026-12-19",
+  "amnesty": {
+   "date": "2026-12-05",
+   "threshold": 1,
+   "ladder": [
+    1,
+    2,
+    4
+   ],
+   "_说明": "12-05后连对1次即毕业,且不再派7天后重测,防考前到期量爆炸"
+  },
+  "tierGraduation": {
+   "A": "连对满簇阈值(2~3次)才毕业",
+   "B": "连对1次+认得结构即放行",
+   "C": "考前扫一遍,不进毕业队列(已在preExamReminders)",
+   "_说明": "只有74道A档硬题要求真毕业,B/C不再雪上加债"
+  },
+  "_calibratedAt": "2026-10-22",
+  "reReviewPolicy": {
+   "formulaOrMnemonic": "回锅走【默写】:徒手写出公式/口诀/对照表,不重做原题(考的是能否复现,不是认得讲解)",
+   "concreteProblem": "回锅走【换皮变式】:同考点换数字/换函数/换问法(如X<Y→X>Y),严禁隔天重发原题,防工作记忆污染",
+   "neverRefireSameProblemNextDay": "next=今天+1 的题目,明天只出变式,不出原题",
+   "graduationNotSingleHit": "毕业靠阶梯后段(4/7天)答案淡化后的连对,明天一次✓不算毕业",
+   "_说明": "2026-10-22用户提出『明天原题答案还记得』→固化此策略"
+  }
+ },
+ "clusters": [
+  {
+   "id": "一维随机变量及其分布",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_09_8",
+    "math_10_14",
+    "math_13_22",
+    "math_15_22",
+    "math_11_22",
+    "math_12_7",
+    "math_1000_gl2_11",
+    "math_1000_gl3_1",
+    "math_1000_gl3_8",
+    "math_1000_gl3_11",
+    "math_18_22",
+    "math_18_23",
+    "math_19_14",
+    "math_19_22",
+    "math_20_14",
+    "math_20_22",
+    "math_lilin1_08",
+    "math_lilin1_10",
+    "math_lilin2_zdist_gauss",
+    "math_lilin6_twodim_prob",
+    "j1_16"
+   ],
+   "nextReview": "2026-10-22",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 9,
+   "tierB": 12,
+   "reviewed": 1,
+   "lastResult": "10-22回炉:math_13_22 (I)✓(II)半对(条件概率误用),重排10-23",
+   "itemLog": [
+    {
+     "id": "math_09_8",
+     "r": "✓",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "math_10_14",
+     "r": "✗",
+     "next": "2026-10-24",
+     "note": "(10-22用户主动暂停概率回炉,改做李林卷二,顺延)"
+    },
+    {
+     "id": "math_12_7",
+     "r": "✓✓✓ 毕业(10-26)",
+     "next": "graduated",
+     "streak": 3,
+     "graduated": true,
+     "note": "指数比大小公式第3次干净拿下:P{X<Y}=λX/(λX+λY)=2/5✓,P{X>Y}=3/5✓,分子放谁的λ不翻车→该点毕业,移出回炉队列"
+    },
+    {
+     "id": "var_exp_tail",
+     "r": "✗ 新洞:尾概率当密度",
+     "next": "2026-10-28",
+     "streak": 0,
+     "note": "10-26变式(3)P{min(X,Y)>1}:写成2e^{-2}·3e^{-3}=6e^{-5}✗,正解e^{-5}.病根=把密度f(1)=λe^{-λt}代进去,实际要尾概率P{X>1}=∫₁^∞λe^{-λx}dx=e^{-λ}(无λ系数).锚点:尾概率e^{-λt}无系数/密度λe^{-λt}有系数.10-28变式重砸【P{X>t}=?】与【f(t)=?】二选一辨析"
+    },
+    {
+     "id": "math_19_14",
+     "r": "✓ 独立做对(2/3),没再犯把常数塞回F的错;但用反解X的长法",
+     "next": "2026-10-24",
+     "note": "已教概率积分变换捷径 F(X)~U(0,1)→P{F(X)>a}=1-a;下次抽这招",
+     "streak": 1
+    },
+    {
+     "id": "math_18_22",
+     "r": "(I)✓=λ (II)列了分布律+已核对解析",
+     "next": "2026-10-25",
+     "note": "离散开关先列取值集合;密度vs分布律已辨清;明日重测(II)独立写",
+     "streak": 1
+    },
+    {
+     "id": "math_13_22",
+     "r": "(I)✓ (II)半对:段概率对,把条件概率P(A|B)当概率又乘一遍",
+     "next": "2026-10-23",
+     "note": "混合型不能画二维区域二重积分(Y=g(X)退化);{X≤Y}⇔{X<2}=F_X(2)=8/27"
+    },
+    {
+     "id": "math_15_22",
+     "r": "✓",
+     "next": "2026-10-24",
+     "note": "(I)分布律已懂(末次钉死→C(k-1,1),跳写) (II)E(Y)=r/p=16秒对;负二项识别过关",
+     "streak": 1
+    },
+    {
+     "id": "math_20_22",
+     "r": "✓✓ 多遍已掌握→跳过回炉",
+     "next": "2026-11-05",
+     "note": "用户自陈做了好几遍;二维全概率分段结构已固化;下月抽查防遗忘",
+     "streak": 3
+    },
+    {
+     "id": "math_lilin6_twodim_prob",
+     "r": "✗ 不识别Y/X含义→已深攻",
+     "next": "2026-10-24",
+     "note": "(10-22用户主动暂停概率回炉,改做李林卷二,顺延)"
+    },
+    {
+     "id": "math_20_14",
+     "r": "✗",
+     "note": "Cov拆E(XY)-E(X)E(Y)+对称判E(X)=0都对,栽在奇偶:xsinx是奇×奇=偶(非奇),积分不为0,正解2/π;需默写奇偶乘积表",
+     "next": "2026-10-23"
+    }
+   ]
+  },
+  {
+   "id": "特征值·相似对角化·实对称",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_16_5",
+    "math_11_21",
+    "math_12_6",
+    "math_1000_xd4_11",
+    "math_1000_xd5_4",
+    "math_1000_xd5_5",
+    "math_1000_xd5_24",
+    "math_1000_xd6_5",
+    "math_1000_xd6_11",
+    "math_17_6",
+    "math_18_5",
+    "math_19_21",
+    "math_20_21",
+    "math_lilin1_06",
+    "math_lilin2_posdef_eigval_form",
+    "math_2026_m3_21",
+    "chaoyue1-7-relation",
+    "math_2022a5_diag",
+    "chaoyue3-6",
+    "chaoyue3-7",
+    "chaoyue3-15",
+    "math_18_13"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 7,
+   "tierB": 14,
+   "itemLog": [
+    {
+     "id": "chaoyue3-6",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "实对称:合同看正负惯性/正交=另一特征向量"
+    },
+    {
+     "id": "chaoyue3-7",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "正交阵PP^T=E:方阵前提才有P^TP=E"
+    },
+    {
+     "id": "chaoyue3-15",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "幂等M^2=M⇒特征值{0,1},r=1的个数"
+    },
+    {
+     "id": "math_16_5",
+     "r": "✗ 清仓一轮:选D(正解C)→判据已复述对",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "相似保f(A)型不保转置;判据到手,明日再确认"
+    },
+    {
+     "id": "math_18_13",
+     "r": "△ 答案-1对,但过程错:把A²(α₁+α₂)=(α₁+α₂)约成A²=E(不能约,只对一向量成立)",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "已纠正:用α₁α₂分别是特征向量拆A²→λi²=1+不同→±1→|A|=-1;明日重抽考过程"
+    },
+    {
+     "id": "math_18_5",
+     "r": "✓",
+     "note": "清仓R3:比r(A−E)=2区分,选A正确;口诀特征值平时比秩序列",
+     "next": "2026-10-24",
+     "streak": 1
+    },
+    {
+     "id": "math_12_6",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "选C正解B;忘相似不变量(特征值须1,1,2);未用同特征值子空间组合仍是该λ"
+    },
+    {
+     "id": "math_17_6",
+     "r": "△",
+     "next": "2026-10-23",
+     "note": "方法满分(各自-2E数秩比几何重数=标准解法);仅把r(2E-B)与r(2E-C)看反(应B=2,C=1)致选A;正解C;r(2E-A)=1本已算对;定性为读题串行非概念洞"
+    },
+    {
+     "id": "var_eigval",
+     "r": "①✓②✓③部分错",
+     "next": "2026-10-27",
+     "note": "10-26三题:①相似不变量(a)(b)(d)(e)成立+(c)不一定 全对✓(特征向量不保识别到位);②幂等A²=A→特征值0/1、r(A)=1→1,0,0 全对✓;③栽两处:(i)判α1+α2非特征向量结论对但理由错——写'不同特征值的特征向量正交',正交是实对称专属,一般矩阵只保证线性无关(新洞!);(iii)又答'可以由A²(α1+α2)=α1+α2得A²=E'=math_18_13约分病复发(单向量定不了E,须一组基A²αi=αi才行).明日(+1)专攻'一般矩阵vs实对称:无关≠正交'+'E要对全空间成立'两点,再出一变式."
+    }
+   ],
+   "lastResult": "✗"
+  },
+  {
+   "id": "中值定理与证明",
+   "subject": "高数",
+   "tier": "A",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_gaoshu_proof",
+    "math_14_2",
+    "math_14_19",
+    "math_1000_b15_10",
+    "math_11_1",
+    "math_12_15",
+    "math_17_18",
+    "math_20_19",
+    "math_lilin1_20",
+    "math_lilin2_convex_proof",
+    "math_2026_m3_20",
+    "chaoyue1-3-series"
+   ],
+   "nextReview": "2026-10-24",
+   "streak": 0,
+   "graduateThreshold": 3,
+   "graduated": false,
+   "tierA": 11,
+   "tierB": 1,
+   "itemLog": [
+    {
+     "id": "math_14_2",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "选C正解D;认出琴生不等式(强!)但方向写反;用f判单调错方向先排AB;几何:f二阶≥0碗形弦在上f≤g"
+    },
+    {
+     "id": "var_zhongzhi",
+     "next": "2026-10-27",
+     "result": "partial",
+     "note": "辅助函数构造法框架已建立(会反造F+罗尔). 10-26变式两题:② ξf'-f 正确反造 f/x(商型,用对照表f'g-fg'→f/g),判别器'f'前挂x→商/幂'已通✓;① f'+2f 却答成 e^{x^2}f(工作记忆污染,没读新题系数P=2,把上题e^{x^2}背过来).已讲透唯一铁律 F=e^{∫P}f,P=f前系数,动手先圈P.明日(10-27)只测【指数型e^{∫P}】换一个新P(如f'+3f 或 f'+(1/x)f)确认审题读系数到位,不出原题."
+    }
+   ]
+  },
+  {
+   "id": "无穷级数·幂级数·傅里叶",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_09_4",
+    "math_gaoshu_power_series",
+    "math_10_18",
+    "math_1000_b16_1",
+    "math_1000_b16_3",
+    "math_1000_b16_4",
+    "math_1000_b16_6",
+    "math_11_2",
+    "math_12_17",
+    "math_1000_b15_9",
+    "math_1000_b16_14",
+    "math_19_3",
+    "math_19_11",
+    "math_lilin1_04",
+    "math_series_condconv_p",
+    "math_lilin6_fourier",
+    "math_2022a14_series"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 1,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 2,
+   "tierB": 15,
+   "itemLog": [
+    {
+     "id": "math_11_2",
+     "r": "✗",
+     "note": "清仓R4:幂级数收敛域-不会;令t=x-1定R=1,端点t=1发散/t=-1莱布尼茨收敛→x∈[0,2)选C",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var_powerseries",
+     "r": "✗ 半径取反+丢中心",
+     "next": "2026-10-28",
+     "streak": 0,
+     "note": "10-26变式Σ(x-1)^n/(n·3^n):根值法列式√[n]{|u_n|}=|x-1|/(3·n^{1/n})→|x-1|/3✓(n^{1/n}→1用对),但从ρ<1解区间崩:写成(-1/3,1/3)✗,正解|x-1|<3→R=3中心x0=1→开区间(-2,4).两坑:(a)把|x-1|当|x|丢中心1;(b)半径取反(把比值极限1/3当半径,实际R=3是倒数).端点也错:代到自己算错的±1/3上且判'通项→∞不收敛'(实际(-4/9)^n/n底<1→0收敛,判反).正解端点x=4调和发散/x=-2交错调和收敛→收敛域[-2,4).锚点:ρ=|x-x0|/R,令ρ<1直接解|x-x0|<R,别绕倒数丢中心.与math_11_2同族第2次栽,10-28换皮重砸'从ρ<1直接解区间'+'端点代回常数项级数判'"
+    },
+    {
+     "id": "math_09_4",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "选A正解C;把必要当充分(一般项→0推收敛);已给反例a_n=b_n=(-1)^n/√n"
+    },
+    {
+     "id": "math_19_3",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "选B正解D;把莱布尼茨套Σ(-1)^n/u_n但u_n→u>0通项不趋0,前提不满足→发散;同6轮①/反例①②:套判别法前先看通项趋不趋0;D裂项u_{n+1}^2-u_1^2→u^2-u_1^2"
+    },
+    {
+     "id": "var8_alt",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "Σ(-1)^n·n/(n+1)选B正解C;把\"数列n/(n+1)→1\"当成\"级数收敛\";通项在±1振荡不趋0→发散,莱布尼茨前提(a_n→0)不满足;第5次同一洞"
+    },
+    {
+     "id": "var8_ratio",
+     "r": "✓",
+     "next": "2026-10-23",
+     "note": "ρ=1判别法失效→敛散不定C;举1/n发散+1/n²收敛,查边界姿势正确"
+    },
+    {
+     "id": "var9_fix",
+     "r": "✓",
+     "next": "2026-10-25",
+     "note": "通项趋0复测三张皮全过(交错±2跳/幂指1e/必要非充分);连续5轮的洞今日焊死,反射建立;cluster3该弱点标已修复,间隔拉长"
+    },
+    {
+     "id": "math_19_11",
+     "r": "✗",
+     "note": "和函数口诀未锚(屡错屡忘),正解cos√x;锚点(2n)!配(-1)^n→cos,x^n凑(√x)^2n别忘开根号;默写口诀",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "var19_fourier",
+     "r": "✗",
+     "note": "记不住奇偶→展开式;讲透口诀奇配奇(奇函数只剩sin/所有an=0)偶配偶(只剩cos/bn=0);需默写正弦余弦级数对照表",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "var_series_term",
+     "r": "✗()/✓(③④)",
+     "next": "2026-10-27",
+     "note": "10-26四题变式:②③④对(通项→1发散/调和发散/1/n²收敛),但①Σ(-1)^n·(2n+1)/(n+3)判错——亲手算出通项→2≠0却仍套莱布尼茨说'收敛'.这是'看到(-1)^n就莱布尼茨、不先验a_n→0'的第6次同族错(var8_alt/math_19_3).铁律:任何级数第一步看a_n→? 不→0直接发散收工;莱布尼茨是a_n→0之后才轮到的事.明日(+1)再出一张交错级数陷阱变式确认反射建立.必要不充分总结题空着没写,已口头补."
+    }
+   ],
+   "lastResult": "✗"
+  },
+  {
+   "id": "极限·连续·渐近线",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_16_4",
+    "math_16_19",
+    "math_1000_curvature",
+    "math_1000_b14_3",
+    "math_1000_b15_5",
+    "math_11_18",
+    "math_12_3",
+    "math_17_16",
+    "math_20_2",
+    "math_lilin1_11",
+    "math_fmax_varlimit_deriv",
+    "math_lilin2_expdiff_limit_a",
+    "math_lilin6_asymptote",
+    "chaoyue1-4-integral",
+    "j2_1_discont",
+    "chaoyue3-1"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 4,
+   "tierB": 12,
+   "itemLog": [
+    {
+     "id": "chaoyue3-1",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "等价无穷小:~一律作比→1,别背"
+    },
+    {
+     "id": "math_12_3",
+     "r": "✗ 清仓一轮:选D(正解B)→已精讲",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "可微看分母是否比ρ高阶;未复述判据,明日重抽"
+    },
+    {
+     "id": "math_16_4",
+     "r": "✓ 变式过(10-26)",
+     "streak": 1,
+     "next": "2026-10-28",
+     "note": "10-26换皮变式x²sin(1/x)判可导:用定义算f'(0)=lim x·sin(1/x)=0(夹逼)✓,不再凭图选间断,核心反射已建立✓.小瑕:x≠0处f'(x)写成sin(1/x)漏项(正=2xsin(1/x)−cos(1/x)),但'振荡无极限→f'不连续→选D'判断对.连错2次的洞今日焊住,间隔推到10-28."
+    },
+    {
+     "id": "math_20_2",
+     "r": "△",
+     "note": "清仓R5②:选C答案对;但用洛必达不合法(只知f(0)可导非f连续可导),正解=泰勒f=Lx+o(x)凑导数定义×√|x|→0;明日重砸过程",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var18_asymptote",
+     "r": "✓✓ 两端分开做全对(10-26)→放行升级",
+     "note": "+∞端对(y=x+π/2),漏-∞端(arctan→-π/2,y=x-π/2);arctan/e^{1x}/|x|x型渐近线两端必须分开求",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var_asymptote2",
+     "r": "✓✓✓ 全对+主动验无斜渐近线",
+     "next": "2026-10-30",
+     "streak": 1,
+     "note": "10-26变式(y=arctan x+1/(x-1)):①垂直x=1(x→1⁻ y→-∞)✓;②x→+∞ y=π/2✓;③x→-∞ y=-π/2✓(两端分开,正是var18_asymptote漏的那端,这次补上);④主动验k=lim y/x=0→无斜渐近线✓闭环完整.三条一条没漏+加分检查.该点放行,间隔拉到10-30(防遗忘抽查)"
+    }
+   ]
+  },
+  {
+   "id": "微分方程",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_09_10",
+    "math_14_11",
+    "math_1000_b15_4",
+    "math_1000_b15_6",
+    "math_1000_b15_8",
+    "math_1000_b15_16",
+    "math_1000_b15_21",
+    "math_17_10",
+    "math_18_18",
+    "math_20_17",
+    "math_lilin1_19",
+    "math_2026_m3_18",
+    "j1_14",
+    "j2_14_disguised_ode",
+    "chaoyue3-14"
+   ],
+   "nextReview": "2026-10-22",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 4,
+   "tierB": 11,
+   "itemLog": [
+    {
+     "id": "chaoyue3-14",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "定特解:曲率圆心(1,1)=变相送y二阶导(0)"
+    },
+    {
+     "id": "math_14_11",
+     "r": "✓",
+     "next": "2026-10-24",
+     "note": "一阶齐次u=y/x换元+分离变量;用户澄清:照片里漏x实为誊写抄错数字,方法全对、概念零洞,判✓过关(会而誊错,非漏洞)"
+    },
+    {
+     "id": "math_09_10",
+     "r": "✗",
+     "next": "2026-10-24",
+     "note": "非齐次通解结构(A,B由方程定/C由初值定)一时短路混淆;用户自判为临时短路、非真洞,不强制变式;仍留间隔next=10-24自然复现.正解y=-xe^x+x+2"
+    },
+    {
+     "id": "var_ode_struct",
+     "r": "△ 结构识别半通,两处真错",
+     "next": "2026-10-28",
+     "streak": 0,
+     "note": "10-26回炉变式(通解y=(C1+C2x)e^x+xe^{2x}):①(i)齐次解e^x,xe^x✓但特征根写-1,-1✗(正解1二重;病根=把'重根补xe^x'误记成'根为负',看到e^{+x}该λ=+1);①(ii)特解xe^{2x}+右端e^{2x}✓;①(iii)漏答(C由初值定);②通解Y+y*✓但理由说'构成向量解空间'用词错(非齐次解集不含0非向量空间,正解:任一解-特解=齐次解);③陷阱整块崩:答'不能'✗(正解能,y*=x代入0+x=x成立)+漏齐次通解C1cosx+C2sinx+漏b=0.明日10-28变式重砸【特征根符号↔指数符号】+【③特解验证/待定系数b=0】两点"
+    }
+   ]
+  },
+  {
+   "id": "导数与微分计算",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_10_2",
+    "math_15_18",
+    "math_16_12",
+    "math_1000_derivative",
+    "math_1000_b13_7",
+    "math_1000_b13_8",
+    "math_1000_b13_9",
+    "math_1000_b13_16",
+    "math_11_19",
+    "math_1000_b18_5",
+    "math_17_15",
+    "math_19_2",
+    "math_19_4"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 4,
+   "tierB": 9,
+   "itemLog": [
+    {
+     "id": "math_10_2",
+     "r": "✗ 清仓一轮:猜C(正解B)",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "商求导把z/x当积;链式管外层F商管内层z/x;明日重做①"
+    },
+    {
+     "id": "math_18_1",
+     "r": "✓",
+     "streak": 1,
+     "next": "2026-10-24",
+     "note": "清仓R5①:可导判定选D正确,回定义对4项逐个算差商+拆左右,方法规范"
+    },
+    {
+     "id": "math_19_2",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "选D正解B;可导判对;极值误把xlnx在(0,1)算成正→判非极值,实两侧都负=极大值"
+    },
+    {
+     "id": "var18_curvature",
+     "r": "✓",
+     "note": "曲率公式K=|y|/(1+y²)^{3/2}默写满分,y=x²原点K=2对,锚点练进去了",
+     "next": "2026-10-23"
+    }
+   ],
+   "lastResult": "✗"
+  },
+  {
+   "id": "矩阵运算·秩·矩阵方程",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_13_20",
+    "math_1000_xd2_14",
+    "math_1000_xd2_17",
+    "math_1000_xd4_6",
+    "math_1000_xd4_9",
+    "math_1000_xd5_22",
+    "math_1000_xd6_18",
+    "math_18_6",
+    "math_18_21",
+    "j1_15",
+    "j1_21",
+    "math_2022a15_mateq"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 5,
+   "tierB": 7,
+   "itemLog": [
+    {
+     "id": "math_18_6",
+     "r": "✗",
+     "note": "清仓R4:分块秩选B正解A;误把(BA)行变换套到块(A,BA)列秩;同左/右乘根因",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var_rankblock",
+     "r": "△ 换皮:②对①③崩(10-26)",
+     "note": "10-26换皮(A是3×4,r=2,P4阶可逆,Q3阶可逆):①r(QAP)答'不确定'✗(正解=r(A)=2,左右都乘可逆→保秩);②r(AP)答r(A)✓;③r(A,AP)没写完✗(正解=r(A)=2,AP各列是A列的线性组合→并入不增列空间).命门诊断:②会用'右乘可逆保秩'但①同一规则却不敢用→规则在手但不敢横向迁移;③'并线性相关块不增秩'完全没概念.已讲透三条根因:可逆左右乘保秩/不可逆才可能降秩/并上可被已有列线性表示的块秩不变.要求先复述①r(QAP)为何=r(A)再发下一题.下次再换皮砸'左乘可逆'+'拼接不增秩'两点",
+     "next": "2026-10-28",
+     "streak": 0
+    }
+   ]
+  },
+  {
+   "id": "二次型·正定·合同",
+   "subject": "线代",
+   "tier": "A",
+   "severity": "high",
+   "mastery": "unknown",
+   "qIds": [
+    "math_10_21",
+    "math_13_21",
+    "math_16_6",
+    "math_1000_xd6_6",
+    "math_1000_xd6_12",
+    "math_1000_xd6_17",
+    "math_1000_xd6_19",
+    "math_1000_xd6_21",
+    "math_20_20",
+    "math_lilin6_trace_invert"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 3,
+   "graduated": false,
+   "tierA": 6,
+   "tierB": 4,
+   "itemLog": [
+    {
+     "id": "math_16_6",
+     "r": "✗",
+     "note": "清仓R5③:二次曲面识别卡住(忘特征值符号↔曲面型对应);正解λ=5,-1,-1→一正两负→双叶双曲面B;明日重砸",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var8_posdef",
+     "r": "✓",
+     "next": "2026-10-23",
+     "note": "|A|>0是正定必要非充分B;乘积正可两负一正(diag(1,-1,-1))"
+    },
+    {
+     "id": "var_quadric",
+     "r": "✗ 负号↔叶数记反(系统性)",
+     "next": "2026-10-28",
+     "streak": 0,
+     "note": "10-26变式(给标准形认曲面):①3x²+2y²-z²=1(1负→单叶)答'双叶'✗;②-x²-2y²+5z²=1(2负→双叶)答'单叶'✗;③椭球面✓.①②正好对调=把'负号个数↔叶数'记反.根治口诀已教:数负号,几个负号就是几叶(0负椭球/1负单叶/2负双叶)+几何WHY(双叶:正项≥1被劈成两块;单叶:截面椭圆连成一片).math_16_6同族(特征值符号↔曲面型)第2次栽,10-28换皮重砸这一格"
+    }
+   ]
+  },
+  {
+   "id": "多元函数微分学·方向导数·旋度",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_15_17",
+    "math_16_17",
+    "math_16_10",
+    "math_1000_b17_1",
+    "math_1000_b17_8",
+    "math_17_3",
+    "math_18_11",
+    "math_19_16",
+    "math_20_3",
+    "math_lilin1_17",
+    "math_lilin6_multivar_diff",
+    "chaoyue1-12-differential",
+    "math_2022a13_krange",
+    "chaoyue3-12"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 3,
+   "tierB": 11,
+   "itemLog": [
+    {
+     "id": "chaoyue3-12",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "偏导换元:展开证3z_ξξ+z_ηη=z_xx+z_xy+z_yy=2x,回代x=(ξ+η)/2=3/2⇒答案3;别把x当ξ"
+    },
+    {
+     "id": "math_20_3",
+     "r": "△",
+     "next": "2026-10-23",
+     "note": "正解A;起手全对(自动写可微定义+线性主部f=xfx+yfy),只差n·v=xfx+yfy-f=o(ρ)一步没算;几何直觉待补"
+    },
+    {
+     "id": "math_16_10",
+     "r": "✗",
+     "note": "行列式列对(上次全忘→结构回来,大进步),但j分量符号翻(应+1写成-1)、k分量减号做成加号(y+1应y-1);正解(0,1,y-1);差一次默写,非不会",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "math_17_3",
+     "r": "✓ 变式过(10-26)",
+     "note": "梯度(2,4)对,单位化错对象(单位化了梯度而非方向l=(1,1))+漏点乘(结果应是标量),正解3√2;公式=梯度·单位方向",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var_dirderv",
+     "r": "✓✓ 两个老坑全绕开→升级",
+     "next": "2026-10-29",
+     "streak": 1,
+     "note": "10-26变式(f=x²y+3y在(1,2)沿l=(1,1)):∇f=(2xy,x²+3)→(4,4)✓;单位化的是【方向】(√2/2,√2/2)✓(上次错把梯度单位化,这次对象对);点乘得4√2标量✓(上次漏点乘).math_17_3两个坑(单位化错对象+漏点乘)首次全绕开→判过关,间隔拉到10-29.顺带钉牢彩蛋:l∥梯度时方向导数取最大值|∇f|=4√2"
+    }
+   ]
+  },
+  {
+   "id": "曲线积分·格林·Stokes",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_10_19",
+    "math_14_12",
+    "math_14_18",
+    "math_15_19",
+    "math_11_12",
+    "math_1000_b15_7",
+    "math_1000_b18_9",
+    "math_1000_b18_12",
+    "math_19_12",
+    "math_20_16",
+    "math_20_18",
+    "j1_20"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 3,
+   "tierB": 9,
+   "itemLog": [
+    {
+     "id": "math_19_4",
+     "r": "△",
+     "note": "清仓R4订正:正解D非C;交叉求导P_y=Q_x=1/y²让C,D都过→定义域杀C(1/x在x=0不连续,上半平面含x=0);用户主动查出,明日重砸域判断",
+     "next": "2026-10-23",
+     "streak": 0
+    },
+    {
+     "id": "var_pathfree",
+     "r": "✓✓ 判据前提主动说对(大进步)",
+     "next": "2026-10-29",
+     "streak": 1,
+     "note": "10-26变式(P=-y/(x²+y²),Q=x/(x²+y²),挖原点):①P_y=Q_x=(y²-x²)/(x²+y²)²算对✓(小笔误第二行写成∂P/∂x应为∂Q/∂x);②关键:用户自己答'不可以,要先检查是否含奇点'→正中判据前提=单连通/无奇点,math_19_4那个'定义域杀结论'的老洞首次主动补上✓✓;③'没看懂'→讲透:绕原点单位圆∮P dx+Q dy=∫₀^{2π}dθ=2π≠0坐实'与路径有关',与②一致不矛盾(判据完整版:单连通D内P,Q一阶连续偏导且P_y=Q_x⇒无关;挖点→不单连通→判据作废).间隔拉长到10-29(前提已通,防遗忘抽查)"
+    },
+    {
+     "id": "math_14_12",
+     "r": "✗",
+     "note": "抓错工具(格林/合一投影都用不上),正解=直接参数化交线x=cost,y=sint,z=-sint→π;需记住交线→参数化路由",
+     "next": "2026-10-23"
+    }
+   ]
+  },
+  {
+   "id": "不定积分·定积分计算",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "high",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_definite_def",
+    "math_1000_trig_integral",
+    "math_1000_integration_tech",
+    "math_1000_b13_5",
+    "math_1000_b14_5",
+    "math_11_9",
+    "math_19_17",
+    "math_lilin6_xsin_area",
+    "math_2026_m3_17",
+    "j2_4_param_integral",
+    "j2_13_fourier_a2"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 3,
+   "tierB": 8,
+   "itemLog": [
+    {
+     "id": "math_11_9",
+     "r": "△",
+     "note": "setup全对(y=tanx,√(1+tan²)=sec=1/cos),卡在∫sec公式;正解ln(1+√2);默写sec/csc/tan三冷门积分",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "var18_polararea",
+     "r": "✗",
+     "note": "被不会画图吓住没做,实为盲算S=½∫₀^{2π}r²dθ=3π/2;记牢极坐标面积不用画图+∫cos=0/∫cos²=π",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "math_12_10",
+     "r": "✗",
+     "note": "不会√(2x-x²)套路;讲透:配方成半圆→平移t=x-1让区间对称→奇函数项砍0+单位半圆面积π/2;正解π/2;背两常用面积公式",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "var_semicircle",
+     "r": "✗ 配方符号反了+根号提负号",
+     "note": "10-26换皮(∫₀⁴√(4x-x²)dx 与 ∫₀⁴x√(4x-x²)dx):①配方错—把4x-x²写成(x-2)²-4(丢最外层负号,应为4-(x-2)²),再非法提负号√(4x-x²)=-√(x²-4x),得-2π;②(2)未完成同错.正解(1)=½π·2²=2π(半径2上半圆),(2)=4π(拆x=(x-2)+2,t=x-2,奇函数项→0+2·面积2π=4π).免费验错器:√≥0积分必≥0,-2π一眼假.与math_12_10同源(半圆套路),这次栽在配方负号而非不会套路",
+     "next": "2026-10-28"
+    }
+   ]
+  },
+  {
+   "id": "数字特征·期望方差协方差",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_10_23",
+    "math_11_23",
+    "math_1000_gl4_1",
+    "math_lilin1_16",
+    "math_lilin2_cov_indep",
+    "math_lilin6_var_extreme",
+    "chaoyue1-9-chebyshev",
+    "j2_10_poisson",
+    "j2_16_xbar_s2_corr",
+    "math_2022a8_var",
+    "math_2022a10_corr",
+    "chaoyue3-16"
+   ],
+   "nextReview": "2026-10-24",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 2,
+   "tierB": 10,
+   "itemLog": [
+    {
+     "id": "chaoyue3-16",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "顺序统计量:对称中心秒杀,E=(n+1)/2"
+    },
+    {
+     "id": "var_cov",
+     "r": "△ (1)(2)对,(3)交叉项符号错",
+     "next": "2026-10-28",
+     "streak": 0,
+     "note": "10-26变式(D X=2,D Y=8,ρ=1/4):①Cov=ρ√DX√DY=1/4·√2·√8=1✓;②D(X-Y)=DX+DY-2Cov=8✓(减号对);③D(2X+Y)写成4DX+DY-4Cov=12✗,正解+4Cov=8+8+4=20.病根=方差交叉项2abCov的符号没跟着a,b走(2X+Y里b=+1应+4Cov,他把②的减号抄过来).锚点:D(aX+bY)=a²DX+b²DY+2abCov,交叉项符号=X、Y之间的加减号.要求先复述锚点再发下一题;10-28换皮重砸'带系数的方差展开式符号'"
+    }
+   ]
+  },
+  {
+   "id": "三重积分与形心",
+   "subject": "高数",
+   "tier": "A",
+   "severity": "high",
+   "mastery": "unknown",
+   "qIds": [
+    "math_10_12",
+    "math_13_19",
+    "math_15_12",
+    "math_1000_b18_2",
+    "math_19_19",
+    "math_lilin2_surface_sphere"
+   ],
+   "nextReview": "2026-10-24",
+   "streak": 0,
+   "graduateThreshold": 3,
+   "graduated": false,
+   "tierA": 3,
+   "tierB": 3,
+   "itemLog": [
+    {
+     "id": "math_15_12",
+     "r": "✓",
+     "next": "2026-10-25",
+     "note": "用户澄清:2/9是看错/算错,此题会做且之前算对过;判✓(会而错非概念洞).正解1/4(轮换对称→6∭z=6·1/24)"
+    },
+    {
+     "id": "math_10_12",
+     "r": "✓",
+     "note": "切片法z̄=∫z·πz dz/∫πz dz=2/3对,方法干净",
+     "next": "2026-10-24"
+    }
+   ]
+  },
+  {
+   "id": "二重积分",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_b10_7",
+    "math_1000_b14_12",
+    "math_1000_b14_14",
+    "math_1000_b14_17",
+    "math_1000_b14_20",
+    "math_lilin2_polar_arclength",
+    "chaoyue3-13"
+   ],
+   "nextReview": "2026-10-24",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 6,
+   "itemLog": [
+    {
+     "id": "chaoyue3-13",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "极坐标:式子对只差算完,内层r幂函数2步"
+    }
+   ]
+  },
+  {
+   "id": "反常积分敛散性",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_10_3",
+    "math_16_1",
+    "math_1000_improper",
+    "math_20_11",
+    "math_improper_sinqcos_pq"
+   ],
+   "nextReview": "2026-10-24",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 2,
+   "tierB": 3,
+   "itemLog": [
+    {
+     "id": "math_16_1",
+     "r": "△ 方法主干对:∞段a+b>1推出对;0段误成a<0(应a<1);选项曾录入错已订正C",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "订正后正解C;明日重抽确认0段a<1"
+    },
+    {
+     "id": "math_10_3",
+     "r": "△",
+     "next": "2026-10-23",
+     "note": "选D字母对但理由是\"必发散\"→实际必收敛;x→1对数瑕点判成发散(错);x→0指数写成2/m-n/2(应2/m-1/n);D只说无关故蒙对,判敛本身错"
+    }
+   ]
+  },
+  {
+   "id": "参数估计·矩·MLE",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_gailv_estimation",
+    "math_13_23",
+    "math_14_23",
+    "math_15_23",
+    "math_17_23",
+    "math_lilin2_mle_unbiased"
+   ],
+   "nextReview": "2026-10-25",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 6
+  },
+  {
+   "id": "线性方程组·解的结构",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_xiandai_systems",
+    "math_1000_xd_rank_sol",
+    "math_1000_xd4_13",
+    "j2_6_nonhomo_count"
+   ],
+   "nextReview": "2026-10-25",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 3
+  },
+  {
+   "id": "二维随机变量分布",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_10_22",
+    "math_14_22",
+    "math_16_22",
+    "math_lilin1_09"
+   ],
+   "nextReview": "2026-10-25",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 3
+  },
+  {
+   "id": "导数几何应用·面积体积·曲率",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_gaoshu_rotation",
+    "math_1000_b10_13",
+    "math_1000_b10_17",
+    "math_lilin2_curvature_circle"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 4,
+   "itemLog": [
+    {
+     "id": "math_11_1",
+     "r": "✗",
+     "note": "清仓R3:拐点穿针引线,答B/D摇摆,正解C(仅奇重数≥3的根x=3变号)",
+     "next": "2026-10-23",
+     "streak": 0
+    }
+   ]
+  },
+  {
+   "id": "空间解析几何",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_b17_7",
+    "math_1000_b18_1",
+    "math_lilin1_03",
+    "j2_12_tangent_angle"
+   ],
+   "nextReview": "2026-10-26",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 4
+  },
+  {
+   "id": "条件概率·全概率·独立性",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_gl1_4",
+    "math_1000_gl1_11",
+    "chaoyue1-8-cond"
+   ],
+   "nextReview": "2026-10-26",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 2
+  },
+  {
+   "id": "数理统计·抽样分布",
+   "subject": "概率",
+   "tier": "A",
+   "severity": "med",
+   "mastery": "learning",
+   "qIds": [
+    "math_12_23",
+    "math_17_8",
+    "chaoyue3-9"
+   ],
+   "nextReview": "2026-10-28",
+   "streak": 0,
+   "graduateThreshold": 3,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 2,
+   "itemLog": [
+    {
+     "id": "chaoyue3-9",
+     "r": "✗ 超越卷三",
+     "next": "2026-10-23",
+     "note": "构造χ²:先算那个变量的方差再标准化"
+    },
+    {
+     "id": "math_17_8",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "未答总做不出来;缺χ²三步判据(化标准正态/数独立项/系数恰除方差);B是χ²(1)的4倍非χ²;需专项"
+    },
+    {
+     "id": "var11_std",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "X_i~N(0,4)ΣX²?选C正解B;标准化除以σ=2不是方差4;Σ(Xi/2)²=ΣX²/4~χ²(n)→ΣX²~4χ²(n);方向也反"
+    },
+    {
+     "id": "var11_t",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "σ未知哪个~t(n-1)选C正解B;四大分布长相全认错:A=N(0,1),B=t(S换σ),C=χ²(n),D=χ²倍数;t唯一标志=分母出现样本S"
+    },
+    {
+     "id": "var11_F",
+     "r": "✓",
+     "next": "2026-10-23",
+     "note": "(U/m)/(V/n)~F(m,n)选A对;F=两独立χ²各除自由度再相除,分子自由度在前"
+    },
+    {
+     "id": "var12_coef",
+     "r": "✗",
+     "next": "2026-10-23",
+     "note": "cΣX²~χ²(10)求c,答1/3正解1/9;X_i/3~N(0,1)对了,但平方时把分母也平方(3→9)漏了;与var11_std同族=σ/σ²/平方混淆,连续2轮栽系数"
+    },
+    {
+     "id": "var12_t",
+     "r": "✓",
+     "next": "2026-10-24",
+     "note": "选B对;②答疑(分母差根号)当场起效"
+    },
+    {
+     "id": "var12_F",
+     "r": "✓",
+     "next": "2026-10-24",
+     "note": "F(m,n)+对调F(n,m)两空全对,自由度跟分子走已焊死"
+    },
+    {
+     "id": "math_18_8",
+     "r": "✗",
+     "note": "α与拒绝域方向反(答A正解D):α越小拒绝域越小越难拒绝;需画包含关系图,口诀门槛抬高难拒绝",
+     "next": "2026-10-23"
+    },
+    {
+     "id": "var_sampling4",
+     "r": "认分布✓(讲透后)/系数✗",
+     "next": "2026-10-28",
+     "note": "10-26变式:②四大分布长相初答(a)(b)(c)全串(把标准化分式误当χ²),经'S vs σ'讲解+四大金刚默写卡→重做abcd全对,认分布洞已焊✓;但①系数题仍错(σ²=4→σ=2对,但平方(Xi/2)²写成Xi²/2得c=1/2,正解c=1/4=1/σ²),与var12_coef同族=平方时漏平方分母,第3次.锚点:c=1/σ².10-28再抽一道系数题确认."
+    }
+   ]
+  },
+  {
+   "id": "假设检验·置信区间",
+   "subject": "概率",
+   "tier": "A",
+   "severity": "med",
+   "mastery": "unknown",
+   "qIds": [
+    "math_18_8",
+    "chaoyue1-10-ci-test"
+   ],
+   "nextReview": "2026-10-26",
+   "streak": 0,
+   "graduateThreshold": 3,
+   "graduated": false,
+   "tierA": 1,
+   "tierB": 1
+  },
+  {
+   "id": "基·过渡矩阵·施密特正交化",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_15_20",
+    "math_1000_xd3_13",
+    "math_1000_xd6_7"
+   ],
+   "nextReview": "2026-10-23",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 3,
+   "itemLog": [
+    {
+     "id": "math_09_5",
+     "r": "✗",
+     "streak": 0,
+     "next": "2026-10-23",
+     "note": "清仓R3:过渡矩阵,方法对但末步D^-1右乘应左乘→得转置B(正解A);已自诊根因"
+    }
+   ]
+  },
+  {
+   "id": "行列式",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_xd2_6",
+    "math_1000_xd2_7",
+    "math_quadratic_form_posdef_ablock"
+   ],
+   "nextReview": "2026-10-27",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 3,
+   "itemLog": [
+    {
+     "id": "var19_det",
+     "r": "✓",
+     "note": "三条口诀全对:|2A⁻¹|=2³·|A|⁻¹=8×1/2=4,|A*|=|A|^{n-1}=2²=4;k^n里n没忘,锚点稳",
+     "next": "2026-10-26"
+    },
+    {
+     "id": "var_det2",
+     "r": "✓✓✓ 毕业(10-26)",
+     "next": "graduated",
+     "streak": 2,
+     "graduated": true,
+     "note": "10-26变式(A三阶|A|=3):|2A|=2³·3=24✓/|A⁻¹|=1/3✓/|A*|=|A|²=9✓/|A²|=|A|²=9✓,四个一次过,kⁿ的n=3没忘.行列式运算律连对2次(上次三条口诀+今天四问)→该点毕业移出队列"
+    }
+   ]
+  },
+  {
+   "id": "曲面积分·高斯",
+   "subject": "高数",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_b18_13",
+    "math_1000_b18_15",
+    "math_18_17"
+   ],
+   "nextReview": "2026-10-27",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 3,
+   "itemLog": [
+    {
+     "id": "math_19_12",
+     "r": "△",
+     "note": "口诀用对(第二类投影不乘根号+换成y²),栽在|y|绝对值,只算1象限没×4,正解32/3",
+     "next": "2026-10-23"
+    }
+   ]
+  },
+  {
+   "id": "随机变量函数的分布",
+   "subject": "概率",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_16_23",
+    "math_lilin1_22"
+   ],
+   "nextReview": "2026-10-27",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 2
+  },
+  {
+   "id": "向量组相关性",
+   "subject": "线代",
+   "tier": "B",
+   "severity": "low",
+   "mastery": "learning",
+   "qIds": [
+    "math_1000_xd3_1"
+   ],
+   "nextReview": "2026-10-28",
+   "streak": 0,
+   "graduateThreshold": 2,
+   "graduated": false,
+   "tierA": 0,
+   "tierB": 1
+  }
+ ],
+ "spacedQueue": [
+  {
+   "clusterId": "一维随机变量及其分布",
+   "nextReview": "2026-10-22",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "特征值·相似对角化·实对称",
+   "nextReview": "2026-10-21",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "中值定理与证明",
+   "nextReview": "2026-10-21",
+   "tier": "A",
+   "severity": "high"
+  },
+  {
+   "clusterId": "无穷级数·幂级数·傅里叶",
+   "nextReview": "2026-10-21",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "极限·连续·渐近线",
+   "nextReview": "2026-10-22",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "微分方程",
+   "nextReview": "2026-10-22",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "导数与微分计算",
+   "nextReview": "2026-10-22",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "矩阵运算·秩·矩阵方程",
+   "nextReview": "2026-10-22",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "二次型·正定·合同",
+   "nextReview": "2026-10-23",
+   "tier": "A",
+   "severity": "high"
+  },
+  {
+   "clusterId": "多元函数微分学·方向导数·旋度",
+   "nextReview": "2026-10-23",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "曲线积分·格林·Stokes",
+   "nextReview": "2026-10-23",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "不定积分·定积分计算",
+   "nextReview": "2026-10-23",
+   "tier": "B",
+   "severity": "high"
+  },
+  {
+   "clusterId": "数字特征·期望方差协方差",
+   "nextReview": "2026-10-24",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "三重积分与形心",
+   "nextReview": "2026-10-24",
+   "tier": "A",
+   "severity": "high"
+  },
+  {
+   "clusterId": "二重积分",
+   "nextReview": "2026-10-24",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "反常积分敛散性",
+   "nextReview": "2026-10-24",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "参数估计·矩·MLE",
+   "nextReview": "2026-10-25",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "线性方程组·解的结构",
+   "nextReview": "2026-10-25",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "二维随机变量分布",
+   "nextReview": "2026-10-25",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "导数几何应用·面积体积·曲率",
+   "nextReview": "2026-10-25",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "空间解析几何",
+   "nextReview": "2026-10-26",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "条件概率·全概率·独立性",
+   "nextReview": "2026-10-26",
+   "tier": "B",
+   "severity": "med"
+  },
+  {
+   "clusterId": "数理统计·抽样分布",
+   "nextReview": "2026-10-26",
+   "tier": "A",
+   "severity": "med"
+  },
+  {
+   "clusterId": "假设检验·置信区间",
+   "nextReview": "2026-10-26",
+   "tier": "A",
+   "severity": "med"
+  },
+  {
+   "clusterId": "基·过渡矩阵·施密特正交化",
+   "nextReview": "2026-10-27",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "行列式",
+   "nextReview": "2026-10-27",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "曲面积分·高斯",
+   "nextReview": "2026-10-27",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "随机变量函数的分布",
+   "nextReview": "2026-10-27",
+   "tier": "B",
+   "severity": "low"
+  },
+  {
+   "clusterId": "向量组相关性",
+   "nextReview": "2026-10-28",
+   "tier": "B",
+   "severity": "low"
+  }
+ ],
+ "graduationList": [],
+ "preExamReminders": [
+  {
+   "from": "math_09_5",
+   "错因": "计算错误",
+   "提醒": "【2009数一真题5】基变换的过渡矩阵"
+  },
+  {
+   "from": "math_14_17",
+   "错因": "计算错误",
+   "提醒": "【2014数一真题17】复合函数二阶偏导数求f(u)（10分大题）"
+  },
+  {
+   "from": "math_14_20",
+   "错因": "计算错误",
+   "提醒": "【2014数一真题20】矩阵方程 AB = E（11分大题）"
+  },
+  {
+   "from": "math_16_21",
+   "错因": "计算错误",
+   "提醒": "【2016数一真题21】矩阵A^99与递推矩阵方程（11分大题）"
+  },
+  {
+   "from": "math_12_10",
+   "错因": "计算错误",
+   "提醒": "【2012数一真题10】利用对称性算定积分"
+  },
+  {
+   "from": "math_12_18",
+   "错因": "计算错误",
+   "提醒": "【2012数一真题18】由切线距离条件求 f(t) 及面积（10分）"
+  },
+  {
+   "from": "math_12_22",
+   "错因": "计算错误",
+   "提醒": "【2012数一真题22】二维离散分布求概率与协方差（11分）"
+  },
+  {
+   "from": "math_1000_xd6_16",
+   "错因": "审题失误",
+   "提醒": "基础6-16 算完特征值后题目后半句在问什么"
+  },
+  {
+   "from": "math_1000_gl2_9",
+   "错因": "条件遗漏",
+   "提醒": "基础2-9 必须分类讨论的四个触发点"
+  },
+  {
+   "from": "math_1000_gl3_10",
+   "错因": "条件遗漏",
+   "提醒": "基础3-10 二维综合题漏解的三个来源"
+  },
+  {
+   "from": "math_17_17",
+   "错因": "审题失误",
+   "提醒": "2017数一真题17 一元隐函数极值（误当多元极值做）"
+  },
+  {
+   "from": "math_17_22",
+   "错因": "条件遗漏",
+   "提醒": "2017数一真题22 离散×连续求 Z=X+Y 密度的分段讨论"
+  },
+  {
+   "from": "math_18_1",
+   "错因": "计算错误",
+   "提醒": "18数一1 可导判定：左右导数定义优先"
+  },
+  {
+   "from": "math_18_12",
+   "错因": "计算错误",
+   "提醒": "18数一12 $\\oint ds$ 就是弧长，别漏乘 $2\\pi$"
+  },
+  {
+   "from": "math_18_13",
+   "错因": "审题失误",
+   "提醒": "18数一13 平方都是 1 且互异 ⇒ 一正一负"
+  },
+  {
+   "from": "math_18_15",
+   "错因": "计算错误",
+   "提醒": "18数一15 换元清根号，$\\arctan$ 求导别忘内层"
+  },
+  {
+   "from": "math_lilin1_12",
+   "错因": "计算错误",
+   "提醒": "【26李林卷一12】∮_L (4x²+y²)·y|x| dx + x dy，椭圆 L: x²+y²/4=1"
+  },
+  {
+   "from": "math_2026_m3_19",
+   "错因": "条件没读全",
+   "提醒": "格林公式极坐标算二重积分"
+  },
+  {
+   "from": "j1_18",
+   "错因": "计算错误",
+   "提醒": "分段函数二重积分·换序定限+系数规范(超越2025一套18)"
+  },
+  {
+   "from": "chaoyue3-1",
+   "错因": "没先落动作",
+   "提醒": "超越3-1:判\"~\"一律写比值→1,不靠感觉"
+  },
+  {
+   "from": "chaoyue3-7",
+   "错因": "概念前提漏判",
+   "提醒": "超越3-7:PP^T=E推P^TP=E 仅方阵成立,先问方阵吗"
+  },
+  {
+   "from": "chaoyue3-9",
+   "错因": "没先算方差",
+   "提醒": "超越3-9:选常数凑χ²/t/F,第一动作=算该变量方差再标准化"
+  },
+  {
+   "from": "chaoyue3-12",
+   "错因": "模板不熟",
+   "提醒": "偏导换元:展开证3z_ξξ+z_ηη=z_xx+z_xy+z_yy=2x,回代x=(ξ+η)/2=3/2⇒答案3;别把x当ξ"
+  },
+  {
+   "from": "chaoyue3-13",
+   "错因": "计算量怕长",
+   "提醒": "超越3-13:极坐标式子已列对,内层r积分必幂函数,硬算到底别跳"
+  },
+  {
+   "from": "chaoyue3-14",
+   "错因": "几何条件没翻译",
+   "提醒": "超越3-14:曲率圆圆心=变相报y二阶导(0);圆心(1,1)⇒y二阶导(0)=2"
+  },
+  {
+   "from": "chaoyue3-15",
+   "错因": "结论没记",
+   "提醒": "超越3-15:M^2=M⇒特征值{0,1};M^2=E⇒±1;M幂零⇒全0;r定1的个数"
+  },
+  {
+   "from": "chaoyue3-16",
+   "错因": "硬列分布",
+   "提醒": "超越3-16:顺序统计量中间值期望=全体均值(对称),E=(n+1)/2"
+  }
+ ],
+ "stats": {
+  "totalClusters": 29,
+  "graduated": 0,
+  "closedThisWeek": 0,
+  "backlogLeft": 246,
+  "backlogAll": 265,
+  "tierA": 74,
+  "tierB": 172,
+  "tierC": 19
+ },
+ "_note": "阶段一清仓分级已完成(2026-10-21)。256题→ABCD(A74/B163/C19)；A+B=237题聚为29簇进spacedQueue；C19题移入preExamReminders(不占回炉)。nextReview按优先级每4簇/天铺开。每日循环调 kaoyan-math-drill-system 阶段二。",
+ "sessionLog": [
+  {
+   "date": "2026-10-21",
+   "cluster": "一维随机变量及其分布",
+   "done": 9,
+   "graduated": 0,
+   "deepCards": [
+    "math_12_7",
+    "math_18_22(II)",
+    "math_13_22",
+    "math_15_22",
+    "math_20_22",
+    "math_lilin6_twodim_prob"
+   ],
+   "keyInsight": "总病根:没先认结构就动手;二维概率=密度下体积,独立只拆被积函数不免积分",
+   "nextDue": "2026-10-22"
+  },
+  {
+   "date": "2026-10-21",
+   "cluster": "25超越卷三限时(选填)",
+   "done": 9,
+   "graduated": 0,
+   "deepCards": [
+    "chaoyue3-1",
+    "chaoyue3-6",
+    "chaoyue3-7",
+    "chaoyue3-9",
+    "chaoyue3-12",
+    "chaoyue3-13",
+    "chaoyue3-14",
+    "chaoyue3-15",
+    "chaoyue3-16"
+   ],
+   "keyInsight": "60min限时:选对6/填空仅1对.病根仍是\"没先认结构就动手\"+\"列对式子怕长不敢算到底\"(13).真不会集中在:换元二重偏导/幂等特征值/顺序统计量/构造χ²——全是可归模板的固定第一动作",
+   "nextDue": "2026-10-23"
+  },
+  {
+   "date": "2026-10-22",
+   "action": "机制校准",
+   "detail": "应用三杠杆:考前特赦线12-05(连对1次即毕业+砍7天档)+后期阶梯[1,2,4]+分档毕业(A档严毕业/B档1次放行/C档不进队列)。真实欠毕业债=24道,非246。"
+  },
+  {
+   "date": "2026-10-22",
+   "action": "回锅策略固化",
+   "detail": "公式类→默写;具体题→换皮变式不隔天重发原题;毕业看4/7天档。写入params.reReviewPolicy。"
+  }
+ ]
+}
