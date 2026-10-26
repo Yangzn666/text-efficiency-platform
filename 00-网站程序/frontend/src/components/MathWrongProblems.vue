@@ -4323,6 +4323,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_chaoyue4_11_abstract_fn_integral',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'definite_integral',
+    sectionName: '定积分计算',
+    title: '【25超越卷四11】抽象函数定积分（换元反解 f）',
+    content: '设 $f(\\sin^2 x)=\\dfrac{x}{\\sin x}$，$x\\in\\left(0,\\dfrac{\\pi}{2}\\right]$，则 $\\displaystyle\\int_0^1 \\dfrac{\\sqrt{x}}{\\sqrt{1-x}}\\,f(x)\\,dx=$ ______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '正确答案：2\n解析：\n- 第一步（命门）：换元反解 $f$。令 $t=\\sin^2x$，则 $\\sin x=\\sqrt t,\\ x=\\arcsin\\sqrt t$，故 $f(t)=\\dfrac{\\arcsin\\sqrt t}{\\sqrt t}$，即 $f(x)=\\dfrac{\\arcsin\\sqrt x}{\\sqrt x}$\n- 代入约分：$\\dfrac{\\sqrt x}{\\sqrt{1-x}}\\cdot\\dfrac{\\arcsin\\sqrt x}{\\sqrt x}=\\dfrac{\\arcsin\\sqrt x}{\\sqrt{1-x}}$，原式 $=\\displaystyle\\int_0^1\\dfrac{\\arcsin\\sqrt x}{\\sqrt{1-x}}dx$\n- 二次换元：令 $u=\\arcsin\\sqrt x$，$x=\\sin^2u,\\ dx=2\\sin u\\cos u\\,du,\\ \\sqrt{1-x}=\\cos u$，限 $0\\to\\frac{\\pi}{2}$；$\\cos u$ 抵消 $\\Rightarrow 2\\displaystyle\\int_0^{\\pi/2}u\\sin u\\,du$\n- 分部：$\\int u\\sin u\\,du=-u\\cos u+\\sin u$，$2[(0+1)-(0+0)]=2$\n\n错因：卡在"第一步"——觉得 $f$ 都不知道是什么就没法下手，想跳过 $f$ 直接对被积函数动手，结果 $f$ 始终是未知。\n同类提醒：凡 $f(g(x))=H(x)$ 型抽象函数，起手式固定为"令 $t=g(x)$、反解 $x=g^{-1}(t)$ 代回"，先把 $f$ 扒成普通函数再谈积分。验算：把 $x=\\sin^2x_0$ 回代 $f$ 应还原成 $\\dfrac{x_0}{\\sin x_0}$。',
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
