@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-22",
+  "updatedAt": "2026-10-27",
   "note": "408 真题大题作答记录。records 以 questions.json 的 slug 为键；result ∈ correct|partial|wrong；date 为最近一次作答日 YYYY-MM-DD；attempts 累计作答次数。此文件为持久真相源；网站端 localStorage(exam408-big-v2) 的标记会叠加显示，助手会话再读回 localStorage 合并写本文件并重建，使记录跨设备持久。",
   "records": {
     "co-2010-44": {
@@ -205,9 +205,9 @@
       "note": "用户无从下手、AI带做讲透，未独立作答，待重做"
     },
     "os-2020-46": {
-      "attempts": 0,
-      "result": "taught",
-      "date": "2026-10-18",
+      "attempts": 1,
+      "result": "wrong",
+      "date": "2026-10-27",
       "note": "发了题+切-乘-加方法，未独立作答（当日暂停转强化课），待重做"
     },
     "co-2022-43": {
@@ -247,6 +247,46 @@
       "result": "taught",
       "date": "2026-10-22",
       "note": "内存管理一级/二级页表地址转换,用户首次做分级页表题型,直接出题干+完整解析精讲卡讲透(页大小=2^偏移位数/页表最大=2^页号位数×项字节/五步链:逻辑地址→页号→页表项物理地址→页框号→物理地址),未独立作答,大题二刷独立重做"
+    },
+    "co-2009-43": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 0
+    },
+    "co-2017-43": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 2
+    },
+    "co-2017-44": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
+    },
+    "co-2018-43": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
+    },
+    "co-2019-45": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
+    },
+    "co-2020-43": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
+    },
+    "co-2016-44": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
+    },
+    "co-2022-44": {
+      "result": "taught",
+      "date": "2026-10-26",
+      "attempts": 1
     }
   }
 }

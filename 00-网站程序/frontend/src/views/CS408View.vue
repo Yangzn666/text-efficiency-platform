@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 // 使用同步导入避免GitHub Pages动态加载问题
 import CodeTraining from '@/components/PlaceholderComponent.vue'
-import MindMap from '@/components/PlaceholderComponent.vue'
+import CS408SpineMap from '@/components/CS408SpineMap.vue'
 import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
 import CS408ProgressTracker from '@/components/CS408ProgressTracker.vue'
 import CS408QuickEntry from '@/components/CS408QuickEntry.vue'
@@ -62,6 +62,10 @@ function goReview() {
           <CS408ProgressTracker />
         </el-tab-pane>
 
+        <el-tab-pane label="🧭 主线地图" name="spine">
+          <CS408SpineMap />
+        </el-tab-pane>
+
         <el-tab-pane label="🎯 强化进度" name="reinforcement">
           <ReinforcementTracker />
         </el-tab-pane>
@@ -89,10 +93,6 @@ function goReview() {
         
         <el-tab-pane label="代码实战" name="code">
           <CodeTraining />
-        </el-tab-pane>
-        
-        <el-tab-pane label="思维导图" name="mindmap">
-          <MindMap />
         </el-tab-pane>
 
         <el-tab-pane label="🧭 专题指南" name="guide">
