@@ -19,6 +19,7 @@ const MethodLibraryView = () => import('@/views/MethodLibraryView.vue')
 const MathView = () => import('@/views/MathView.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
+const MathDrillPlanView = () => import('@/views/MathDrillPlanView.vue')
 const MathMethodIndexView = () => import('@/views/MethodIndexView.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
@@ -161,6 +162,12 @@ const routes: RouteRecordRaw[] = [
     name: 'math-methods',
     component: MathMethodIndexView,
     meta: { requiresAuth: true, title: '方法索引' }
+  },
+  {
+    path: '/math/drill-plan',
+    name: 'math-drill-plan',
+    component: MathDrillPlanView,
+    meta: { requiresAuth: true, title: '刷题清单' }
   },
   {
     path: '/english',

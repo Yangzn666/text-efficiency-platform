@@ -26,6 +26,11 @@
         <el-icon><Connection /></el-icon>
         <span>🔗 方法索引</span>
       </el-menu-item>
+
+      <el-menu-item index="/math/drill-plan">
+        <el-icon><Flag /></el-icon>
+        <span>🎯 刷题清单</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -33,7 +38,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { Document, Collection, Guide, Connection } from '@element-plus/icons-vue'
+import { Document, Collection, Guide, Connection, Flag } from '@element-plus/icons-vue'
 
 const route = useRoute()
 
@@ -48,6 +53,9 @@ const activeMenu = computed(() => {
   }
   if (path.includes('/guide')) {
     return '/math/guide'
+  }
+  if (path.includes('/drill-plan')) {
+    return '/math/drill-plan'
   }
 
   // 默认（含 /math 与 /math/detail 兼容路径）高亮知识点

@@ -18,6 +18,7 @@ const MathView = () => import('@/views/MathView.vue')
 const MathQuickCardsView = () => import('@/views/MathQuickCardsView.vue')
 const UniversitiesView = () => import('@/views/UniversitiesView.vue')
 const MathTopicGuideView = () => import('@/views/MathTopicGuideView.vue')
+const MathDrillPlanView = () => import('@/views/MathDrillPlanView.vue')
 const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 const PoliticsView = () => import('@/views/PoliticsView.vue')
 const EnglishView = () => import('@/views/EnglishView.vue')
@@ -117,6 +118,12 @@ const routes: RouteRecordRaw[] = [
     name: 'math-guide',
     component: MathTopicGuideView,
     meta: { title: '专题指南' }
+  },
+  {
+    path: '/math/drill-plan',
+    name: 'math-drill-plan',
+    component: MathDrillPlanView,
+    meta: { title: '刷题清单' }
   },
   {
     path: '/universities',
