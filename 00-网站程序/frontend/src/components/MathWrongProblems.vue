@@ -4387,6 +4387,22 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: "math_23_21",
+    chapterId: "ch_xiandai",
+    chapterName: "线性代数",
+    sectionId: "quadratic_form",
+    sectionName: "二次型与正交变换",
+    title: "2023数一·二次型的可逆变换与正交变换",
+    content: "题干：设二次型 $f(x_1,x_2,x_3)=x_1^2+2x_2^2+2x_3^2+2x_1x_2-2x_1x_3$，$g(y_1,y_2,y_3)=y_1^2+y_2^2+y_3^2+2y_2y_3$。\n(I) 求可逆变换 $x=Py$ 将 $f$ 化为 $g$；\n(II) 是否存在正交变换 $x=Qy$ 将 $f$ 化为 $g$。\n\n关键正解：矩阵 $A=\\begin{pmatrix}1&1&-1\\\\1&2&0\\\\-1&0&2\\end{pmatrix}$，$B=\\begin{pmatrix}1&0&0\\\\0&1&1\\\\0&1&1\\end{pmatrix}$。\n(I) 配方法：$f=(x_1+x_2-x_3)^2+(x_2+x_3)^2$，$g=y_1^2+(y_2+y_3)^2$，规范形同为 $u_1^2+u_2^2$（秩2、正惯性2）→ 合同 → 可逆 $P$ 存在；复合 $x=M^{-1}Ny$ 得 $P=\\begin{pmatrix}1&-1&1\\\\0&1&0\\\\0&0&1\\end{pmatrix}$（不唯一），即 $x_1=y_1-y_2+y_3,\\ x_2=y_2,\\ x_3=y_3$，可验证 $P^TAP=B$。\n(II) 不存在。正交变换 $x=Qy$ 使 $Q^TAQ=Q^{-1}AQ=B$ 是相似，须特征值相同；$\\lambda(A)=\\{0,2,3\\}\\ne\\lambda(B)=\\{0,1,2\\}$。",
+    mistakeType: "概念不清",
+    importance: 5,
+    correction: "正解见上；错因=第一问没走'规范形中转'硬算到死、且把正交变换当普通可逆变换；同类提醒：合同只比正负惯性个数，正交相似必须特征值完全相同，做题先分清要 P 还是要 Q。",
+    createdAt: new Date().toISOString(),
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false
   }
 ])
 
