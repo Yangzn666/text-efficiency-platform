@@ -498,6 +498,7 @@ const goWrite = (e: EssayItem) => {
           <div class="bage-anchors">
             <button @click="scrollSec('bage-sec-map')">🧭 写作路线图</button>
             <button @click="scrollSec('bage-sec-big')">🖼️ 大作文</button>
+            <button @click="scrollSec('bage-sec-smilebar')">🔑 smilebar密码</button>
             <button @click="scrollSec('bage-sec-small')">✉️ 小作文</button>
             <button @click="scrollSec('bage-sec-plugin')">🔌 九大插件</button>
           </div>
@@ -545,6 +546,45 @@ const goWrite = (e: EssayItem) => {
                   </details>
                 </div>
               </section>
+            </div>
+          </section>
+
+          <!-- smilebar 记忆密码 -->
+          <section v-if="bage.smilebar" id="bage-sec-smilebar" class="bage-sec">
+            <h3 class="bage-h">🔑 smilebar 记忆密码（获益词库）</h3>
+            <p class="bage-intro">{{ bage.smilebar.intro }}</p>
+            <div v-if="bage.smilebar.usage" class="bage-note2">📌 {{ bage.smilebar.usage }}</div>
+
+            <div v-for="(set, si) in bage.smilebar.sets" :key="si" class="bage-sb-set">
+              <div class="bage-sb-sethead">
+                <span class="bage-sb-label">{{ set.label }}</span>
+                <span class="bage-sb-code">{{ set.code }}</span>
+                <span class="bage-sb-order">{{ set.order }}</span>
+              </div>
+              <div v-if="set.letterNote" class="bage-sb-letternote">{{ set.letterNote }}</div>
+              <div class="bage-sb-grid">
+                <div v-for="g in set.groups" :key="g.no" class="bage-sb-group">
+                  <div class="bage-sb-no">{{ g.no }}</div>
+                  <div class="bage-sb-phrase" v-for="(v, vi) in g.phrases" :key="vi">
+                    <span class="bage-en">{{ v.en }}</span>
+                    <span class="bage-cn">{{ v.cn }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="bage.smilebar.combine" class="bage-sb-combine">
+              <div class="bage-group-name">{{ bage.smilebar.combine.title }}</div>
+              <div v-for="(ex, ei) in bage.smilebar.combine.examples" :key="ei" class="bage-sb-ex">
+                <div class="bage-label">{{ ex.topic }} · {{ ex.codes }}</div>
+                <div class="bage-en" v-html="hlSlot(ex.en)"></div>
+                <div class="bage-cn">{{ ex.cn }}</div>
+              </div>
+            </div>
+
+            <div v-if="bage.smilebar.checks" class="bage-sb-checks">
+              <div class="bage-group-name">填完后自检</div>
+              <div v-for="(c, ci) in bage.smilebar.checks" :key="ci" class="bage-slot-line">{{ c }}</div>
             </div>
           </section>
 
@@ -1818,6 +1858,23 @@ const goWrite = (e: EssayItem) => {
 }
 .bage-slot-line:last-child { border-bottom: none; }
 .bage-slot-line::before { content: '›'; position: absolute; left: 2px; color: var(--gold); font-weight: 900; }
+
+/* ── smilebar 记忆密码 ── */
+.bage-sb-set { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: #fbfaf4; }
+.bage-sb-sethead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.bage-sb-label { font-size: 1.08rem; font-weight: 800; color: var(--navy); }
+.bage-sb-code { font-size: .8rem; font-weight: 700; color: #fff; background: var(--gold); padding: 2px 10px; border-radius: 999px; }
+.bage-sb-order { font-size: .82rem; color: #7a8a9b; }
+.bage-sb-letternote { font-size: .82rem; line-height: 1.6; color: #5c6b7a; margin: 4px 0 12px; }
+.bage-sb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.bage-sb-group { border: 1px solid #e6ebf1; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; background: #fff; padding: 10px 13px; }
+.bage-sb-no { font-size: .95rem; font-weight: 900; color: #c0453f; letter-spacing: .5px; margin-bottom: 6px; }
+.bage-sb-phrase { padding: 5px 0; border-bottom: 1px dashed #eef2f6; }
+.bage-sb-phrase:last-child { border-bottom: none; }
+.bage-sb-phrase .bage-cn { margin-top: 2px; padding-top: 0; border-top: none; }
+.bage-sb-combine { margin-top: 20px; }
+.bage-sb-ex { margin-top: 10px; padding: 12px 15px; border: 1px solid var(--line); border-radius: 11px; background: #f4f8fc; }
+.bage-sb-checks { margin-top: 20px; padding: 12px 15px; border: 1px dashed var(--gold); border-radius: 11px; background: #fffdf3; }
 
 /* ── 题干信号 ── */
 .bage-trigger {
