@@ -87,8 +87,69 @@ function renderBitsLayout(block) {
     `</table></div>`;
 }
 
+// 把 ```file-system-tree``` 代码块渲染成目录树图 + 簇号表
+function renderFileSystemTree(block) {
+  const lines = block.split('\n');
+  let section = null;
+  const nodes = {};      // name -> {type, children[]}
+  const order = [];
+  let columns = [];
+  const rows = [];
+  const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line) continue;
+    let m;
+    if (/^tree\s*[:：]/.test(line)) { section = 'tree'; continue; }
+    if ((m = line.match(/^columns?\s*[:：]\s*(.*)$/))) {
+      section = 'columns';
+      columns = m[1].split(/[,，]/).map(s => s.trim()).filter(Boolean);
+      continue;
+    }
+    if (/^rows?\s*[:：]/.test(line)) { section = 'rows'; continue; }
+    if (section === 'tree') {
+      const g = line.match(/^([A-Za-z0-9_\-\u4e00-\u9fa5]+)\s*(?:\[(\w+)\])?\s*(?::\s*(.*))?$/);
+      if (g) {
+        const name = g[1];
+        const type = (g[2] || '').toLowerCase();
+        const kids = (g[3] || '').split(/[,，、]/).map(s => s.trim()).filter(Boolean);
+        if (!nodes[name]) { nodes[name] = { type, children: [] }; order.push(name); }
+        if (type) nodes[name].type = type;
+        nodes[name].children.push(...kids.filter(k => !nodes[name].children.includes(k)));
+      }
+    } else if (section === 'rows') {
+      rows.push(line.split('|').map(s => s.trim()));
+    }
+  }
+  // 根节点 = 从没当过别人孩子的节点
+  const childSet = new Set();
+  order.forEach(n => nodes[n].children.forEach(c => childSet.add(c)));
+  const roots = order.filter(n => !childSet.has(n));
+  function nodeHtml(name) {
+    const nd = nodes[name] || { type: '', children: [] };
+    const cls = nd.type === 'dir' ? 'ftdir' : 'ftfile';
+    const badge = nd.type ? `<span class="ftbadge">${esc(nd.type)}</span>` : '';
+    let html = `<li><span class="ftnode ${cls}">${esc(name)}</span>${badge}`;
+    if (nd.children.length) html += '<ul>' + nd.children.map(nodeHtml).join('') + '</ul>';
+    return html + '</li>';
+  }
+  const treeHtml = `<ul class="fstree">` + roots.map(nodeHtml).join('') + `</ul>`;
+  let tableHtml = '';
+  if (columns.length && rows.length) {
+    tableHtml = `<table class="fstab"><thead><tr>` +
+      columns.map(c => `<th>${esc(c)}</th>`).join('') + `</tr></thead><tbody>` +
+      rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('') +
+      `</tbody></table>`;
+  }
+  return `<div class="fswrap"><div class="fslabel">目录树结构</div>${treeHtml}` +
+    (tableHtml ? `<div class="fslabel" style="margin-top:14px">各文件占用的簇号</div>${tableHtml}` : '') +
+    `</div>`;
+}
+
 function expandBits(md) {
-  return String(md).replace(/```bits-layout\s*\n([\s\S]*?)```/g, (m, body) => '\n' + renderBitsLayout(body) + '\n');
+  return String(md)
+    .replace(/```bits-layout\s*\n([\s\S]*?)```/g, (m, body) => '\n' + renderBitsLayout(body) + '\n')
+    .replace(/```file-system-tree\s*\n([\s\S]*?)```/g, (m, body) => '\n' + renderFileSystemTree(body) + '\n');
 }
 
 // 保护 LaTeX：marked 会把公式里的 \& 反斜杠吃掉变成裸 &，导致 KaTeX 报错(渲染成红色源码)。
@@ -114,7 +175,7 @@ function renderMd(md) {
 
 const bodyHtml =
   renderMd(fixImgs(expandBits(it.stem || ''))) +
-  (mode === 'a' ? `<hr class="sep"/><div class="ans"><h3>答案与解析</h3>${renderMd(fixImgs(expandBits(it.explanation || '')))}</div>` : '');
+  (mode === 'a' ? `<div class="gap"></div><hr class="sep"/><div class="ans"><h3>答案与解析</h3>${renderMd(fixImgs(expandBits(it.explanation || '')))}</div>` : '');
 
 const katex = `<link rel="stylesheet" href="vendor/katex/katex.min.css">`;
 const katexJs = `
@@ -142,6 +203,7 @@ const html = `<!doctype html><html lang="zh"><head><meta charset="utf-8">
   p>code,li>code{background:#f0e9db;color:#b03a2e;padding:1px 6px;border-radius:5px;font-size:17px;}
   ol,ul{padding-left:26px;} li{margin:9px 0;}
   hr.sep{border:none;border-top:2px dashed #d9cbb0;margin:26px 0;}
+  .gap{height:1050px;}
   .ans h3{color:#1e6b52;border-left:6px solid #1e6b52;padding-left:10px;font-size:22px;}
   img{max-width:100%;border-radius:6px;display:block;margin:16px auto;}
   table{border-collapse:collapse;width:100%;margin:16px 0;font-size:16.5px;table-layout:fixed;}
@@ -155,6 +217,16 @@ const html = `<!doctype html><html lang="zh"><head><meta charset="utf-8">
   .bitfield .bf-a{background:#fdf3e7;}
   .bitfield .bf-b{background:#eaf1ec;}
   .bitgroup td{background:#f3ecdd;color:#8a6414;font-size:14px;padding:6px 0;font-weight:700;}
+  .fswrap{background:#f3ecdd;border:1px solid #d9cbb0;border-radius:10px;padding:16px 18px;margin:18px 0;}
+  .fslabel{font-weight:800;color:#8a6d3b;font-size:16px;margin-bottom:8px;}
+  .fstree,.fstree ul{list-style:none;margin:0;padding-left:0;}
+  .fstree ul{margin:4px 0 4px 9px;padding-left:20px;border-left:2px solid #cbb98f;}
+  .fstree li{margin:7px 0;}
+  .ftnode{display:inline-block;padding:4px 13px;border-radius:8px;font-weight:800;font-size:16px;}
+  .ftdir{background:#e7efe7;color:#3f6b45;border:1.5px solid #a9c7a9;}
+  .ftfile{background:#f6e3d8;color:#a4472f;border:1.5px solid #d9a488;}
+  .ftbadge{font-size:12px;color:#8a6d3b;background:#fff;border:1px solid #d9cbb0;border-radius:6px;padding:1px 7px;margin-left:7px;}
+  .fstab{margin-top:4px;}
 </style></head><body>
 <div class="card" id="card">
   <div class="hd">

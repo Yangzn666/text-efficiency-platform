@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-27",
+  "updatedAt": "2026-10-28",
   "note": "408 真题大题作答记录。records 以 questions.json 的 slug 为键；result ∈ correct|partial|wrong；date 为最近一次作答日 YYYY-MM-DD；attempts 累计作答次数。此文件为持久真相源；网站端 localStorage(exam408-big-v2) 的标记会叠加显示，助手会话再读回 localStorage 合并写本文件并重建，使记录跨设备持久。",
   "records": {
     "co-2010-44": {
@@ -287,6 +287,41 @@
       "result": "taught",
       "date": "2026-10-26",
       "attempts": 1
+    },
+    "os-2015-46": {
+      "attempts": 1,
+      "result": "partial",
+      "date": "2026-10-28"
+    },
+    "os-2017-45": {
+      "result": "partial",
+      "date": "2026-10-28",
+      "attempts": 1
+    },
+    "os-2018-45": {
+      "result": "partial",
+      "date": "2026-10-28",
+      "attempts": 1
+    },
+    "os-2012-46": {
+      "result": "wrong",
+      "date": "2026-10-28",
+      "attempts": 1
+    },
+    "os-2014-46": {
+      "result": "taught",
+      "date": "2026-10-28",
+      "attempts": 0
+    },
+    "os-2016-47": {
+      "result": "wrong",
+      "date": "2026-10-28",
+      "attempts": 1
+    },
+    "os-2011-46": {
+      "result": "taught",
+      "date": "2026-10-28",
+      "attempts": 0
     }
   }
 }
