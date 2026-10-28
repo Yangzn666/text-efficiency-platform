@@ -417,3 +417,78 @@ body {
 .p-md { padding: 16px; }
 .p-lg { padding: 24px; }
 .p-xl { padding: 32px; }
+
+/* ===== 知识点长文「记忆卡」折叠手风琴 ===== */
+/* 408 各科目学习页（数据结构/计组/操作系统/网络）的 markdown-body 内，
+   由 utils/markdownFold.ts 把每个 ### 分块包成可折叠卡片，避免整节大段文字堆在一起。 */
+.markdown-body .md-fold {
+  margin: 10px 0;
+  border: 1px solid #e2ecff;
+  border-left: 4px solid #4f7cff;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.markdown-body .md-fold:hover { box-shadow: 0 4px 14px rgba(13, 33, 55, 0.08); }
+.markdown-body .md-fold[open] { border-color: #cfe0ff; }
+.markdown-body .md-fold-sum {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 15px;
+  background: #f8fbff;
+  font-size: 1.04em;
+  font-weight: 700;
+  color: #2f5aa8;
+  line-height: 1.35;
+}
+.markdown-body .md-fold-sum::-webkit-details-marker { display: none; }
+.markdown-body .md-fold-sum:hover { background: #eef4ff; }
+.markdown-body .md-fold[open] .md-fold-sum { background: #eef4ff; }
+.markdown-body .md-fold-chev {
+  font-size: 0.8em;
+  color: #4f7cff;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.markdown-body .md-fold[open] .md-fold-chev { transform: rotate(90deg); }
+.markdown-body .md-fold-tt { flex: 1; }
+.markdown-body .md-fold-body {
+  padding: 8px 18px 16px;
+  border-top: 1px dashed #e2ecff;
+}
+.markdown-body .md-fold-body > h4:first-child,
+.markdown-body .md-fold-body > p:first-child { margin-top: 4px; }
+
+/* 薄弱点关键词：红色波浪线标注（悬停显示"错在哪/正解"） */
+.markdown-body .weak-term {
+  text-decoration: underline wavy #e53935;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  cursor: help;
+  padding: 0 1px;
+  border-radius: 3px;
+  transition: background 0.15s ease;
+}
+.markdown-body .weak-term:hover { background: rgba(229, 57, 53, 0.12); }
+
+/* 图例提示条 */
+.weak-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #8a94a6;
+  line-height: 1.4;
+}
+.weak-legend .wl-sample {
+  text-decoration: underline wavy #e53935;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  color: #c62828;
+  font-weight: 600;
+}

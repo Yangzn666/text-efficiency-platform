@@ -43,21 +43,23 @@
         <CompositionChapterNav />
       </div>
       
-      <!-- 中间：思维导图 -->
-      <div class="mindmap-panel">
-        <MindMapView subject="composition" />
+      <!-- 中间：思维导图（默认折叠，点击展开；页面留给知识点） -->
+      <div class="mindmap-panel" :class="{ collapsed: !mindmapOpen }">
+        <button
+          class="mindmap-toggle"
+          @click="mindmapOpen = !mindmapOpen"
+          :title="mindmapOpen ? '收起思维导图' : '展开思维导图'"
+        >
+          <span class="mt-icon">{{ mindmapOpen ? '✕' : '🗺️' }}</span>
+          <span class="mt-label">思维导图</span>
+        </button>
+        <div v-show="mindmapOpen" class="mindmap-body">
+          <MindMapView subject="composition" />
+        </div>
       </div>
       
       <!-- 右侧:知识点文档 -->
-      <div class="knowledge-panel" :class="{ 'expanded': isKnowledgePanelExpanded }">
-        <!-- 展开/收起按钮 -->
-        <div class="panel-toggle-btn" @click="toggleKnowledgePanel" :title="isKnowledgePanelExpanded ? '收起面板' : '展开面板'">
-          <el-icon :size="18">
-            <DArrowLeft v-if="isKnowledgePanelExpanded" />
-            <DArrowRight v-else />
-          </el-icon>
-        </div>
-              
+      <div class="knowledge-panel" :class="{ expanded: !mindmapOpen }">
         <!-- 标签页切换 -->
         <el-tabs v-model="activePanel" class="knowledge-tabs">
           <el-tab-pane label="知识点" name="knowledge">
@@ -76,6 +78,7 @@
               </el-space>
             </div>
             
+            <div class="weak-legend"><span class="wl-sample">关键词</span>红色波浪线 = 你的高频错点，鼠标悬停看错因/正解</div>
             <div class="knowledge-content markdown-body" v-html="renderedMarkdown"></div>
           </el-tab-pane>
           
@@ -99,6 +102,9 @@ import MindMapView from '@/components/MindMapView.vue'
 import KnowledgeCard from '@/components/KnowledgeCard.vue'
 import CSWrongProblems from '@/components/CSWrongProblems.vue'
 import MarkdownIt from 'markdown-it'
+import { foldMarkdownHtml } from '@/utils/markdownFold'
+import { highlightWeakTerms } from '@/utils/highlightWeak'
+import { WEAK_TERMS } from '@/data/weakTerms'
 import { ElMessage } from 'element-plus'
 import { ArrowLeft, ArrowRight, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 
@@ -112,13 +118,8 @@ const overallProgress = computed(() => compositionStore.overallProgress)
 const activePanel = ref('knowledge')
 const wrongProblemsRef = ref()
 
-// 右侧面板展开/收起状态
-const isKnowledgePanelExpanded = ref(false)
-
-// 切换右侧面板展开/收起
-const toggleKnowledgePanel = () => {
-  isKnowledgePanelExpanded.value = !isKnowledgePanelExpanded.value
-}
+// 思维导图面板：默认折叠，页面留给知识点
+const mindmapOpen = ref(false)
 
 // 监听当前小节变化
 watch(currentSection, (newSection) => {
@@ -217,7 +218,8 @@ const renderedMarkdown = computed(() => {
     content = content.replace(regex, `<span class="knowledge-link" onclick="window.showKnowledgeCard('compiler')">${keyword}</span>`)
   })
   
-  return content
+  // 把整节的 ### 分块折叠成「记忆卡」手风琴，避免大段文字堆在一起
+  return highlightWeakTerms(foldMarkdownHtml(content), WEAK_TERMS.composition)
 })
 
 // 在window对象上注册方法，供Markdown中的onclick调用
@@ -289,59 +291,69 @@ const openVisualIndex = () => {
       flex: 1;
       min-width: 400px;
       overflow: hidden;
-      transition: flex 0.3s ease;
-      
-      .cs-learning-page .knowledge-panel.expanded & {
-        flex: 0.3;
-        min-width: 200px;
+      display: flex;
+      align-items: stretch;
+      background: #fff;
+      border-left: 1px solid #e8e8e8;
+      transition: flex-basis 0.2s ease, min-width 0.2s ease;
+
+      .mindmap-toggle {
+        flex: 0 0 auto;
+        width: 34px;
+        border: none;
+        background: #f2f6ff;
+        color: #16345c;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 0;
+        font-size: 13px;
+        transition: background 0.15s ease;
+
+        &:hover { background: #e2ecff; }
+
+        .mt-icon { font-size: 14px; line-height: 1; }
+        .mt-label {
+          writing-mode: vertical-rl;
+          letter-spacing: 3px;
+          font-weight: 600;
+        }
+      }
+
+      .mindmap-body {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      &.collapsed {
+        flex: 0 0 34px;
+        min-width: 34px;
+
+        .mindmap-toggle {
+          background: #16345c;
+          color: #fff;
+          &:hover { background: #0f2742; }
+        }
       }
     }
     
     .knowledge-panel {
       width: 45%;
       min-width: 400px;
-      max-width: 600px;
       display: flex;
       flex-direction: column;
       background: #fff;
       border-left: 1px solid #e8e8e8;
       position: relative;
-      transition: all 0.3s ease;
+      transition: width 0.2s ease;
       
       &.expanded {
-        width: 65%;
-        max-width: 900px;
-        min-width: 600px;
-      }
-      
-      .panel-toggle-btn {
-        position: absolute;
-        left: -16px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px;
-        height: 48px;
-        background: linear-gradient(to right, #f0f5ff, #fff);
-        border: 1px solid #d9d9d9;
-        border-right: none;
-        border-radius: 6px 0 0 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: #16345c;
-        transition: all 0.3s;
-        z-index: 10;
-        box-shadow: -2px 0 6px rgba(0, 0, 0, 0.08);
-        
-        &:hover {
-          background: linear-gradient(to right, #ffc53d, #f0a820);
-          color: #fff;
-          border-color: #f0a820;
-          width: 20px;
-          left: -20px;
-          box-shadow: -3px 0 8px rgba(255, 197, 61, 0.3);
-        }
+        flex: 1;
+        width: auto;
+        min-width: 0;
       }
       
       .knowledge-tabs {

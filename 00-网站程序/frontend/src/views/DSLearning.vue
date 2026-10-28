@@ -32,13 +32,23 @@
         <DSChapterNav />
       </div>
       
-      <!-- 中间：思维导图 -->
-      <div class="mindmap-panel">
-        <MindMapView subject="datastructure" />
+      <!-- 中间：思维导图（默认折叠，点击展开；页面留给知识点） -->
+      <div class="mindmap-panel" :class="{ collapsed: !mindmapOpen }">
+        <button
+          class="mindmap-toggle"
+          @click="mindmapOpen = !mindmapOpen"
+          :title="mindmapOpen ? '收起思维导图' : '展开思维导图'"
+        >
+          <span class="mt-icon">{{ mindmapOpen ? '✕' : '🗺️' }}</span>
+          <span class="mt-label">思维导图</span>
+        </button>
+        <div v-show="mindmapOpen" class="mindmap-body">
+          <MindMapView subject="datastructure" />
+        </div>
       </div>
       
       <!-- 右侧：知识点文档 -->
-      <div class="knowledge-panel">
+      <div class="knowledge-panel" :class="{ expanded: !mindmapOpen }">
         <!-- 标签页切换 -->
         <el-tabs v-model="activePanel" class="knowledge-tabs">
           <el-tab-pane label="知识点" name="knowledge">
@@ -57,6 +67,7 @@
               </el-space>
             </div>
             
+            <div class="weak-legend"><span class="wl-sample">关键词</span>红色波浪线 = 你的高频错点，鼠标悬停看错因/正解</div>
             <div class="knowledge-content markdown-body" v-html="renderedMarkdown"></div>
           </el-tab-pane>
           
@@ -289,6 +300,9 @@ import MindMapView from '@/components/MindMapView.vue'
 import KnowledgeCard from '@/components/KnowledgeCard.vue'
 import DSWrongProblems from '@/components/DSWrongProblems.vue'
 import MarkdownIt from 'markdown-it'
+import { foldMarkdownHtml } from '@/utils/markdownFold'
+import { highlightWeakTerms } from '@/utils/highlightWeak'
+import { WEAK_TERMS } from '@/data/weakTerms'
 import { ElMessage } from 'element-plus'
 
 const dsStore = useDataStructureStore()
@@ -300,6 +314,9 @@ const overallProgress = computed(() => dsStore.overallProgress)
 // 激活的面板：知识点 / 错题本
 const activePanel = ref('knowledge')
 const wrongProblemsRef = ref()
+
+// 思维导图面板：默认折叠，页面留给知识点
+const mindmapOpen = ref(false)
 
 // 监听当前小节变化
 watch(currentSection, (newSection) => {
@@ -365,7 +382,8 @@ const renderedMarkdown = computed(() => {
     content = content.replace(regex, `<span class="knowledge-link" onclick="window.showKnowledgeCard('sort')">${keyword}</span>`)
   })
   
-  return content
+  // 把整节的 ### 分块折叠成「记忆卡」手风琴，避免大段文字堆在一起
+  return highlightWeakTerms(foldMarkdownHtml(content), WEAK_TERMS.datastructure)
 })
 
 // 在window对象上注册方法，供Markdown中的onclick调用
@@ -432,6 +450,53 @@ function toggleCurrentSection() {
       flex: 1;
       min-width: 400px;
       overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      background: #fff;
+      border-left: 1px solid #e8e8e8;
+      transition: flex-basis 0.2s ease, min-width 0.2s ease;
+
+      .mindmap-toggle {
+        flex: 0 0 auto;
+        width: 34px;
+        border: none;
+        background: #f2f6ff;
+        color: #16345c;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 0;
+        font-size: 13px;
+        transition: background 0.15s ease;
+
+        &:hover { background: #e2ecff; }
+
+        .mt-icon { font-size: 14px; line-height: 1; }
+        .mt-label {
+          writing-mode: vertical-rl;
+          letter-spacing: 3px;
+          font-weight: 600;
+        }
+      }
+
+      .mindmap-body {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      &.collapsed {
+        flex: 0 0 34px;
+        min-width: 34px;
+
+        .mindmap-toggle {
+          background: #16345c;
+          color: #fff;
+          &:hover { background: #0f2742; }
+        }
+      }
     }
     
     .knowledge-panel {
@@ -441,6 +506,13 @@ function toggleCurrentSection() {
       flex-direction: column;
       background: #fff;
       border-left: 1px solid #e8e8e8;
+      transition: width 0.2s ease;
+
+      &.expanded {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+      }
       
       .knowledge-tabs {
         height: 100%;

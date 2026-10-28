@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import MathReinforcementNav from '@/components/MathReinforcementNav.vue'
+import IntegralDecisionTree from '@/components/IntegralDecisionTree.vue'
 import { MATH_TOPIC_GUIDES } from '@/data/mathTopicGuides'
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
@@ -10,7 +11,7 @@ const router = useRouter()
 const guides = MATH_TOPIC_GUIDES
 
 const activeCategory = ref<string | null>(null)
-const expandedCards = ref<Set<string>>(new Set())
+const expandedCards = ref<Set<string>>(new Set(['gaoshu-18']))
 
 const categories = [
   { key: null, label: '全部', icon: '📚' },
@@ -164,6 +165,7 @@ function texify(text: string): string {
 
         <Transition name="expand">
           <div v-show="isExpanded(g.id)" class="guide-list">
+            <IntegralDecisionTree :rows="g.tree" v-if="g.tree" />
             <div v-for="(item, gi) in g.items" :key="gi" class="guide-item">
               <div class="gi-head">
                 <span class="gi-icon">{{ item.icon }}</span>

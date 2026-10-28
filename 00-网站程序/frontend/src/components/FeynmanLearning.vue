@@ -226,6 +226,25 @@ const fsrsStats = computed(() => {
     dueToday
   }
 })
+
+/** 复习收尾总结数据 */
+const rs = computed(() => store.reviewSummary)
+const ms = computed(() => store.masteryStats)
+
+/** 最近结果角标映射 */
+const resultMap: Record<string, { icon: string; label: string; cls: string }> = {
+  correct: { icon: '✓', label: '答对', cls: 'r-correct' },
+  partial: { icon: '△', label: '半对', cls: 'r-partial' },
+  incorrect: { icon: '✗', label: '答错', cls: 'r-incorrect' },
+  mastered: { icon: '★', label: '已掌握', cls: 'r-mastered' },
+  none: { icon: '·', label: '未测', cls: 'r-none' }
+}
+function resultBadge(wp: WeakPoint) {
+  return resultMap[wp.lastResult || 'none'] || resultMap.none
+}
+function pct(a: number, b: number) {
+  return b ? Math.round((a / b) * 100) : 0
+}
 </script>
 
 <template>
@@ -280,6 +299,12 @@ const fsrsStats = computed(() => {
       >
         🔁 间隔复习
         <el-badge v-if="store.dueWeakPoints.length" :value="store.dueWeakPoints.length" class="nav-badge" />
+      </button>
+      <button
+        :class="{ active: innerTab === 'summary' }"
+        @click="innerTab = 'summary'"
+      >
+        📊 复习总结
       </button>
       <button
         :class="{ active: innerTab === 'history' }"
@@ -518,6 +543,7 @@ const fsrsStats = computed(() => {
               {{ severityMap[wp.severity].label }}
             </el-tag>
             <span class="wp-topic">{{ wp.topic }}</span>
+            <span v-if="wp.lastResult" class="wp-result-badge" :class="resultBadge(wp).cls">{{ resultBadge(wp).icon }} {{ resultBadge(wp).label }}</span>
             <span class="wp-date">{{ wp.createdAt }}</span>
           </div>
           <h4 class="wp-concept">{{ wp.concept }}</h4>
@@ -601,6 +627,7 @@ const fsrsStats = computed(() => {
               {{ severityMap[wp.severity].label }}
             </el-tag>
             <span class="review-card-topic">{{ wp.topic }}</span>
+            <span v-if="wp.lastResult && wp.lastResult !== 'none'" class="wp-result-badge" :class="resultBadge(wp).cls">{{ resultBadge(wp).icon }} {{ resultBadge(wp).label }}</span>
             <el-tag
               v-if="getFsrsInfo(wp)"
               size="small"
@@ -675,6 +702,83 @@ const fsrsStats = computed(() => {
       </div>
     </div>
 
+    <!-- ==================== 复习总结（收尾） ==================== -->
+    <div v-show="innerTab === 'summary'" class="section-summary">
+      <div class="sum-header">
+        <h2>📊 复习总结 <span class="sum-sub">收尾阶段 · 一眼看清掌握情况</span></h2>
+        <span class="sum-date" v-if="rs.date">最近一轮：{{ rs.date }}</span>
+      </div>
+
+      <!-- 本轮复习结果 -->
+      <div class="sum-block">
+        <h3 class="sum-block-title">🗓️ 本轮复习结果（共 {{ rs.total }} 题）</h3>
+        <div class="sum-counters">
+          <div class="sc sc-correct"><span class="sc-num">{{ rs.correct.length }}</span><span class="sc-lbl">答对</span></div>
+          <div class="sc sc-partial"><span class="sc-num">{{ rs.partial.length }}</span><span class="sc-lbl">半对</span></div>
+          <div class="sc sc-incorrect"><span class="sc-num">{{ rs.incorrect.length }}</span><span class="sc-lbl">答错</span></div>
+          <div class="sc sc-mastered"><span class="sc-num">{{ rs.mastered.length }}</span><span class="sc-lbl">已掌握</span></div>
+        </div>
+
+        <div class="sum-group sum-group-bad" v-if="rs.incorrect.length">
+          <div class="sum-group-head">✗ 没掌握 · 明天重点重钉（{{ rs.incorrect.length }}）</div>
+          <ul class="sum-list">
+            <li v-for="it in rs.incorrect" :key="it.id"><b>{{ it.concept }}</b><span class="sum-note" v-if="it.note">{{ it.note }}</span></li>
+          </ul>
+        </div>
+        <div class="sum-group sum-group-warn" v-if="rs.partial.length">
+          <div class="sum-group-head">△ 半对 · 有小坑，明日补验（{{ rs.partial.length }}）</div>
+          <ul class="sum-list">
+            <li v-for="it in rs.partial" :key="it.id"><b>{{ it.concept }}</b><span class="sum-note" v-if="it.note">{{ it.note }}</span></li>
+          </ul>
+        </div>
+        <div class="sum-group sum-group-ok" v-if="rs.correct.length">
+          <div class="sum-group-head">✓ 已答对（{{ rs.correct.length }}）</div>
+          <div class="sum-tags">
+            <el-tag v-for="it in rs.correct" :key="it.id" size="small" type="success" effect="plain">{{ it.concept }}</el-tag>
+          </div>
+        </div>
+        <div class="sum-group sum-group-star" v-if="rs.mastered.length">
+          <div class="sum-group-head">★ 已掌握 · 移出轮换（{{ rs.mastered.length }}）</div>
+          <div class="sum-tags">
+            <el-tag v-for="it in rs.mastered" :key="it.id" size="small" effect="dark" color="#8a6d00" style="border:none">{{ it.concept }}</el-tag>
+          </div>
+        </div>
+      </div>
+
+      <!-- 总体掌握状态 -->
+      <div class="sum-block">
+        <h3 class="sum-block-title">📈 总体掌握状态（全 {{ ms.total }} 卡）</h3>
+        <div class="sum-meter">
+          <div class="meter-bar">
+            <div class="meter-fill-mastered" :style="{ width: pct(ms.mastered, ms.total) + '%' }"></div>
+            <div class="meter-fill-reviewed" :style="{ width: pct(ms.reviewed - ms.mastered, ms.total) + '%' }"></div>
+          </div>
+          <div class="meter-legend">
+            <span><i class="dot dot-mastered"></i>已掌握 {{ ms.mastered }}</span>
+            <span><i class="dot dot-reviewed"></i>复习过未掌握 {{ ms.reviewed - ms.mastered }}</span>
+            <span><i class="dot dot-never"></i>从未复习 {{ ms.neverReviewed }}</span>
+          </div>
+        </div>
+        <div class="sum-counters">
+          <div class="sc sc-reviewed"><span class="sc-num">{{ ms.reviewed }}</span><span class="sc-lbl">复习过</span></div>
+          <div class="sc sc-weak"><span class="sc-num">{{ ms.needReview }}</span><span class="sc-lbl">待掌握</span></div>
+          <div class="sc sc-never"><span class="sc-num">{{ ms.neverReviewed }}</span><span class="sc-lbl">没碰过</span></div>
+          <div class="sc sc-correct"><span class="sc-num">{{ ms.lastCorrect }}</span><span class="sc-lbl">当前答对</span></div>
+        </div>
+        <div class="sum-group sum-group-warn" v-if="rs.stillWeak && rs.stillWeak.length">
+          <div class="sum-group-head">⚠ 仍未掌握（近期答错/半对，{{ rs.stillWeak.length }}）</div>
+          <div class="sum-tags">
+            <el-tag v-for="it in rs.stillWeak" :key="it.id" size="small" type="danger" effect="plain">{{ it.concept }}</el-tag>
+          </div>
+        </div>
+        <div class="sum-group sum-group-never" v-if="rs.neverTested && rs.neverTested.length">
+          <div class="sum-group-head">🆕 从未复习（新积压，{{ rs.neverTested.length }}）</div>
+          <div class="sum-tags">
+            <el-tag v-for="it in rs.neverTested" :key="it.id" size="small" type="info" effect="plain">{{ it.concept }}</el-tag>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ==================== 会话历史 ==================== -->
     <div v-show="innerTab === 'history'" class="section-history">
       <h2>📋 费曼会话历史</h2>
@@ -1610,4 +1714,57 @@ const fsrsStats = computed(() => {
     padding: 12px 14px;
   }
 }
+
+/* ===== 复习总结 ===== */
+.section-summary { display:flex; flex-direction:column; gap:18px; }
+.sum-header { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.sum-header h2 { margin:0; font-size:1.4rem; color:#16345c; }
+.sum-sub { font-size:0.85rem; font-weight:400; color:#8a99ad; margin-left:8px; }
+.sum-date { font-size:0.85rem; color:#5b6b7f; background:#eef3f9; padding:4px 12px; border-radius:20px; }
+.sum-block { background:#fff; border:1px solid #e4ebf3; border-radius:14px; padding:20px 22px; box-shadow:0 2px 10px rgba(22,52,92,0.05); }
+.sum-block-title { margin:0 0 14px; font-size:1.05rem; color:#0d2137; }
+.sum-counters { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+.sc { flex:1 1 0; min-width:88px; display:flex; flex-direction:column; align-items:center; padding:14px 8px; border-radius:12px; background:#f6f9fc; }
+.sc-num { font-size:1.7rem; font-weight:800; font-family:'JetBrains Mono',monospace; line-height:1; }
+.sc-lbl { font-size:0.78rem; color:#7a889b; margin-top:6px; }
+.sc-correct .sc-num { color:#67c23a; }
+.sc-partial .sc-num { color:#e6a23c; }
+.sc-incorrect .sc-num { color:#f56c6c; }
+.sc-mastered .sc-num { color:#ffc53d; }
+.sc-reviewed .sc-num { color:#409eff; }
+.sc-weak .sc-num { color:#f56c6c; }
+.sc-never .sc-num { color:#909399; }
+.sum-group { margin-top:12px; padding:12px 14px; border-radius:10px; border-left:4px solid #ccc; background:#fafcfe; }
+.sum-group-head { font-weight:700; font-size:0.92rem; margin-bottom:8px; }
+.sum-group-bad { border-left-color:#f56c6c; background:#fff5f5; }
+.sum-group-bad .sum-group-head { color:#d14343; }
+.sum-group-warn { border-left-color:#e6a23c; background:#fdf8ef; }
+.sum-group-warn .sum-group-head { color:#b9791f; }
+.sum-group-ok { border-left-color:#67c23a; background:#f3f9ee; }
+.sum-group-ok .sum-group-head { color:#4e9a2a; }
+.sum-group-star { border-left-color:#ffc53d; background:#fffaf0; }
+.sum-group-star .sum-group-head { color:#a97e00; }
+.sum-group-never { border-left-color:#909399; background:#f5f6f8; }
+.sum-group-never .sum-group-head { color:#6b7280; }
+.sum-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.sum-list li { font-size:0.9rem; color:#33445a; }
+.sum-list li b { color:#0d2137; }
+.sum-note { display:block; font-size:0.8rem; color:#8a99ad; margin-top:2px; }
+.sum-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.sum-meter { margin-bottom:14px; }
+.meter-bar { display:flex; height:14px; border-radius:8px; background:#e7edf3; overflow:hidden; }
+.meter-fill-mastered { background:linear-gradient(90deg,#ffd77a,#ffc53d); height:100%; }
+.meter-fill-reviewed { background:linear-gradient(90deg,#7db4ea,#409eff); height:100%; }
+.meter-legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; font-size:0.8rem; color:#5b6b7f; }
+.meter-legend .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+.dot-mastered { background:#ffc53d; }
+.dot-reviewed { background:#409eff; }
+.dot-never { background:#cfd6de; }
+.wp-result-badge { font-size:0.72rem; padding:1px 8px; border-radius:10px; font-weight:600; white-space:nowrap; }
+.r-correct { color:#4e9a2a; background:#eaf6e2; }
+.r-partial { color:#b9791f; background:#fbf1de; }
+.r-incorrect { color:#d14343; background:#fbe6e6; }
+.r-mastered { color:#a97e00; background:#fff3d6; }
+.r-none { color:#909399; background:#eef0f2; }
+
 </style>

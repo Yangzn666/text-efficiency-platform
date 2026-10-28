@@ -90,9 +90,9 @@ const OLD_DEFAULT_EXAM_DATE = '2026-12-26'
 
 const STORAGE_KEY = 'today-status-v2'
 /** 计划配置版本：调高后强制使用新默认计划（进度模型重建时升级） */
-const PLAN_VERSION = 24
+const PLAN_VERSION = 25
 /** 里程碑配置版本：调高后强制使用新默认里程碑（存档里的旧 done/date 不再覆盖默认值） */
-const MILESTONE_VERSION = 15
+const MILESTONE_VERSION = 16
 
 // ==================== 政治串讲课结构（2026-09-16 按网盘目录逐课对账） ====================
 /**
@@ -345,7 +345,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         // 完成时进度条不动，挫伤反馈。改为计入线性进度：已完成的完型 2011-2017 七篇与
         // 翻译 2016/2017 两篇按「已完成排在前」惯例插入 n=38~46，completedUnits 61 -> 70，
         // 指针落点 n=71 = 阅读第 45 篇（2017 T1），下一任务未变。此后完型/翻译完成即动指针。
-        completedUnits: 86, // 10-14：2019 全套收官（完型16/20 + 阅读T1-T4 + 新题型 + 翻译），83→86，指针 n=87（2020 T1 起）
+        completedUnits: 89, // 10-15：2018 小作文（作文首次启动）+ 2016/2017 新题型两篇，86→89；阅读指针仍停在 2020 T1 前（题型先行，阅读 backlog 未动）
         startDate: '2026-06-15',
         targetDate: '2026-12-15',
         active: true,
@@ -380,7 +380,7 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
         totalUnits: POLITICS_TOTAL_UNITS,
         dailyQuota: 1,
         estMinutes: 50,
-        completedUnits: 21, // 10-11：马原系统课 8 看完 + 肖1000 一刷马原部分约 13 单元 = 21/100 = 21%
+        completedUnits: 25, // 10-15：肖1000 一刷·史纲部分刷完约一半（+约 4 单元），21→25/100=25%（走后置锚点，已反超应达）
         startDate: '2026-09-09',
         targetDate: '2026-12-15',
         active: true,
@@ -442,7 +442,11 @@ export const useTodayStatusStore = defineStore('todayStatus', () => {
       { id: 'm-pol-xiao1000-mayuan', title: '政治·肖1000 马原部分一刷完成', date: '2026-10-14', subject: 'politics', done: true, note: '马原系统课 8 讲全部看完 + 肖1000 马原部分（约 396 题）一刷收官，折算 8+13=21/100=21%。政治是后置发力科目，10 月刻意少投；其余四模块（思修/史纲/毛中特/新思想）用思维导图带过、不逐一听课，主力留给 11 月肖八、12 月肖四。距 10-20 政治串讲硬截止线仍按红线预案走' },
       { id: 'm-eng-2019-full', title: '英语·2019 全套收官', date: '2026-10-14', subject: 'english', done: true, note: '2019 完型 16/20 + 阅读 T1(5/5)T2(2/5)T3(3/5)T4(4/5) + 新题型(段落排序·如何赢得争论) + 翻译全部完成，2019 全套封档。completedUnits 83→86，指针 n=87=2020 T1。真题精读已推进到 2020 年；作文（0 基础）仍是最大缺口，10 月内必须启动' },
       { id: 'm-math-mock-start', title: '数学·26李林6+4 启动（6套卷已做2套）', date: '2026-10-14', subject: 'math', done: true, note: '进入模拟卷阶段：26 李林 6+4 已做 6 套卷前 2 套（卷一 13 题已入错题本）。手上另有 25 超越 5+5、26 张宇 8+4。模拟卷纪律：不海刷，当体检不当吃饭——李林最接近真题做主力保持手感，超越练计算量（对症"会而不对"），张宇最难偏技巧选做 1-2 套抗压即可。真题剩余 2022-2025 与模拟卷穿插限时' },
-      { id: 'm-cs408-os-bigq', title: '408·OS 真题大题带刷推进（PV/调度）', date: '2026-10-14', subject: 'cs408', done: true, note: 'OS·进程与线程大题带刷：2013-45 博物馆PV(半对)、2014-47 生产者消费者(对)、2015-45 信箱辩论PV(错，初值丢x/y+取放方向反)、2016-46 动态优先数调度(错，审题把"选最小者运行"记反)。累计 408 真题大题已刷 17/126。PV 套路已建立（四步流水线+答题两大块），漏洞集中在"审题定方向/初值"。计组存储器大题已基本刷通(2018-2021四连对)。completedUnits 保持 51（os-04/05 整单元未全过）' }
+      { id: 'm-cs408-os-bigq', title: '408·OS 真题大题带刷推进（PV/调度）', date: '2026-10-14', subject: 'cs408', done: true, note: 'OS·进程与线程大题带刷：2013-45 博物馆PV(半对)、2014-47 生产者消费者(对)、2015-45 信箱辩论PV(错，初值丢x/y+取放方向反)、2016-46 动态优先数调度(错，审题把"选最小者运行"记反)。累计 408 真题大题已刷 17/126。PV 套路已建立（四步流水线+答题两大块），漏洞集中在"审题定方向/初值"。计组存储器大题已基本刷通(2018-2021四连对)。completedUnits 保持 51（os-04/05 整单元未全过）' },
+      { id: 'm-eng-writing-start', title: '英语·作文启动 + 2016/2017 新题型', date: '2026-10-15', subject: 'english', done: true, note: '最大缺口「作文（0 基础）」今天正式启动：完成 2018 年小作文一篇；另刷完 2016、2017 两年新题型。completedUnits 86→89（题型先行，阅读 backlog 未动）。八哥老师模板路线，改后作文不再是纯欠账' },
+      { id: 'm-pol-xueshi-shigang-half', title: '政治·肖1000 史纲一刷过半', date: '2026-10-15', subject: 'politics', done: true, note: '肖1000 一刷·史纲部分刷完约一半（约 +4 单元）。completedUnits 21→25/100=25%，走后置锚点曲线，应达 10-15 约 22%，政治由贴线转为反超、正式脱离欠账区' },
+      { id: 'm-math-lilin-v2-review', title: '数学·26 李林卷二全面复盘', date: '2026-10-15', subject: 'math', done: true, note: '对昨天限时做的 26 李林六套卷卷二做全面复盘（错因归类 + 补丁），模拟卷当体检不当吃饭。真题套卷 completedUnits 保持 134（模拟卷走里程碑不计入 142 单元线性模型）' },
+      { id: 'm-cs408-co-cpu-bigq', title: '408·计组 CPU 数据通路大题 + 计网三连', date: '2026-10-15', subject: 'cs408', done: true, note: '计组 CPU 单总线数据通路大题带刷：co-2015-43 判 partial（数据通路填微操作、SRout 三态门、MUX 选操作数等概念已讲透并入错题本）。同场补计网 cn 三连（cn-2009-47/cn-2011-47/cn-2013-47）。408 真题大题累计 17→24/126（co 12 / os 9 / cn 3 / ds 0）' }
     ]
   }
 

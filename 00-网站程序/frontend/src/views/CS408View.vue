@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 // 使用同步导入避免GitHub Pages动态加载问题
 import CodeTraining from '@/components/PlaceholderComponent.vue'
+import CS408Home from '@/components/CS408Home.vue'
 import CS408SpineMap from '@/components/CS408SpineMap.vue'
 import KnowledgeStructure from '@/components/KnowledgeStructure.vue'
 import CS408ProgressTracker from '@/components/CS408ProgressTracker.vue'
@@ -12,9 +13,17 @@ import FeynmanLearning from '@/components/FeynmanLearning.vue'
 import ExamFrequencyMap from '@/components/ExamFrequencyMap.vue'
 import CS408TopicGuide from '@/components/CS408TopicGuide.vue'
 import RealExamBigQuestions from '@/components/RealExamBigQuestions.vue'
+import TriggerDrill from '@/components/TriggerDrill.vue'
+import DSDrill from '@/components/DSDrill.vue'
 import { useSrsStore } from '@/stores/srs'
 
-const activeTab = ref((new URLSearchParams(typeof location !== 'undefined' ? location.search : '').get('tab')) || 'progress')
+const route = useRoute()
+const activeTab = ref((new URLSearchParams(typeof location !== 'undefined' ? location.search : '').get('tab')) || 'home')
+watch(() => route.query.tab, (t) => { if (typeof t === 'string' && t) activeTab.value = t })
+
+// 合并后的「进度」页签内部切换：基础轮 / 强化矩阵；query.mode 可预选
+const progressMode = ref(route.query.mode === 'reinforce' ? 'reinforce' : 'base')
+watch(() => route.query.mode, (m) => { if (m === 'reinforce' || m === 'base') progressMode.value = m })
 
 // ===== 408 复习闭环：真题重做队列转间隔重复记忆卡 =====
 const router = useRouter()
@@ -58,16 +67,23 @@ function goReview() {
 
     <div class="tab-navigation">
       <el-tabs v-model="activeTab" class="cs408-tabs">
-        <el-tab-pane label="学习进度" name="progress">
-          <CS408ProgressTracker />
+        <el-tab-pane label="🏠 主页" name="home">
+          <CS408Home />
+        </el-tab-pane>
+
+        <el-tab-pane label="📈 进度" name="progress">
+          <div class="progress-merge">
+            <div class="pm-seg">
+              <button :class="{ on: progressMode === 'base' }" @click="progressMode = 'base'">🎓 基础轮进度</button>
+              <button :class="{ on: progressMode === 'reinforce' }" @click="progressMode = 'reinforce'">🎯 强化进度矩阵</button>
+            </div>
+            <CS408ProgressTracker v-show="progressMode === 'base'" />
+            <ReinforcementTracker v-show="progressMode === 'reinforce'" />
+          </div>
         </el-tab-pane>
 
         <el-tab-pane label="🧭 主线地图" name="spine">
           <CS408SpineMap />
-        </el-tab-pane>
-
-        <el-tab-pane label="🎯 强化进度" name="reinforcement">
-          <ReinforcementTracker />
         </el-tab-pane>
 
         <el-tab-pane label="🧠 费曼学习法" name="feynman">
@@ -79,6 +95,12 @@ function goReview() {
         </el-tab-pane>
         <el-tab-pane label="📝 真题大题" name="exam">
           <RealExamBigQuestions />
+        </el-tab-pane>
+        <el-tab-pane label="⚡ 判据速答" name="trigger">
+          <TriggerDrill />
+        </el-tab-pane>
+        <el-tab-pane label="🧗 DS破零" name="dsdrill">
+          <DSDrill />
         </el-tab-pane>
         
         <el-tab-pane label="知识点梳理" name="knowledge">
@@ -182,6 +204,40 @@ function goReview() {
   padding: 24px 28px;
   border: 1px solid var(--line);
   box-shadow: 0 4px 20px rgba(13, 33, 55, 0.06);
+}
+
+/* 进度页签内部分段切换（基础轮 / 强化矩阵合并） */
+.progress-merge {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pm-seg {
+  display: inline-flex;
+  gap: 6px;
+  background: #f5f8fc;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px;
+  align-self: flex-start;
+}
+.pm-seg button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.pm-seg button:hover { color: var(--navy); }
+.pm-seg button.on {
+  background: linear-gradient(90deg, var(--navy), #1e4576);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(22, 52, 92, 0.22);
 }
 
 /* 复习闭环 banner */

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 // 八哥作文「综合写作路线图」：审题思维路线 + 大/小作文逻辑流程图 + 组句矩阵
 // data 直接吃父级 bage JSON，图从真实模板结构派生，改 JSON 会自动同步
 const props = defineProps<{ data: any }>()
 const emit = defineEmits<{ (e: 'pickPlugin', id: string): void; (e: 'goto', sec: string): void }>()
 
-const collapsed = ref(false)
+// 路线图默认收起（首屏更聚焦），并记住用户上次的展开/收起选择
+const collapsed = ref(localStorage.getItem('bage-map-collapsed') !== '0')
+watch(collapsed, (v) => localStorage.setItem('bage-map-collapsed', v ? '1' : '0'))
 
 // —— 阶段一：任何一篇作文的通用思维路线（静态，八哥方法论）——
 const phases = [
@@ -40,7 +42,12 @@ const bigFlows = computed(() => (props.data?.big || []).map((b: any) => ({
 })))
 
 // —— 小作文：格式壳流程 + 插件池矩阵 ——
-const smallShell = ['称呼', '首段 · 表明身份 / 目的', '正文 ← 插件拼装', '尾段 · 期待 / 致谢', '落款']
+const smallShell = computed<string[]>(() => {
+  const s = props.data?.small?.shell
+  return Array.isArray(s) && s.length
+    ? s
+    : ['称呼', '首段 · 表明身份 / 目的', '正文 ← 插件拼装', '尾段 · 期待 / 致谢', '落款']
+})
 const smallTypes = computed(() => props.data?.small?.types || [])
 const plugins = computed(() => props.data?.small?.plugins || [])
 

@@ -1,7 +1,34 @@
 <script setup lang="ts">
+import { ref, onMounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { CS408_TOPIC_GUIDES, type Cs408TopicGuide } from '@/data/cs408TopicGuides'
 
+const route = useRoute()
 const guides = CS408_TOPIC_GUIDES
+
+// ===== 折叠卡：默认全收起，一次展开一张，避免一整章堆在一起 =====
+const open = ref<Record<string, boolean>>({})
+const cardKey = (g: Cs408TopicGuide, title: string) => `${g.id}__${title}`
+const toggle = (k: string) => { open.value = { ...open.value, [k]: !open.value[k] } }
+
+// 主线地图「在专题指南中查看」跳转过来时，自动展开并滚动到对应卡
+onMounted(async () => {
+  const focus = String(route.query.focus || '').trim()
+  if (!focus) return
+  const f = focus.toLowerCase()
+  outer: for (const g of guides) {
+    for (const it of g.items) {
+      const t = it.title.toLowerCase()
+      if (t.includes(f) || f.includes(t.replace(/（.*）/, '').trim())) {
+        open.value[cardKey(g, it.title)] = true
+        await nextTick()
+        const el = document.getElementById(`card-${g.id}-${encodeURIComponent(it.title)}`)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        break outer
+      }
+    }
+  }
+})
 
 // ===== 码砖（codebrick）真题跳转 =====
 const BRICK_BASE = 'https://www.codebrick.tech/practice/browse'
@@ -54,16 +81,21 @@ const subjectName = (g: Cs408TopicGuide) => SUBJECT_NAMES[g.subject] || '408'
         <p class="guide-intro">{{ g.intro }}</p>
       </div>
       <div class="guide-list">
-        <div v-for="(item, gi) in g.items" :key="gi" class="guide-item">
-          <div class="gi-head">
+        <div v-for="(item, gi) in g.items" :key="gi" class="guide-item"
+             :class="{ open: open[cardKey(g, item.title)] }"
+             :id="'card-' + g.id + '-' + encodeURIComponent(item.title)">
+          <div class="gi-head" @click="toggle(cardKey(g, item.title))">
             <span class="gi-icon">{{ item.icon }}</span>
             <strong>{{ item.title }}</strong>
             <span class="gi-tag">{{ item.tag }}</span>
+            <span class="gi-chev">▸</span>
           </div>
-          <ul class="gi-points">
-            <li v-for="(p, pi) in item.points" :key="pi" v-html="renderPoint(p, g.subject)"></li>
-          </ul>
-          <div v-if="item.tip" class="gi-tip">⚠️ {{ item.tip }}</div>
+          <div v-show="open[cardKey(g, item.title)]" class="gi-body">
+            <ul class="gi-points">
+              <li v-for="(p, pi) in item.points" :key="pi" v-html="renderPoint(p, g.subject)"></li>
+            </ul>
+            <div v-if="item.tip" class="gi-tip">⚠️ {{ item.tip }}</div>
+          </div>
         </div>
       </div>
     </section>
@@ -209,14 +241,17 @@ const subjectName = (g: Cs408TopicGuide) => SUBJECT_NAMES[g.subject] || '408'
   border-left: 4px solid var(--navy);
   border-radius: 12px;
   background: #fff;
-  padding: 18px 20px;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0;
+  overflow: hidden;
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s;
 }
 
 .guide-item:hover {
-  transform: translateX(6px);
+  box-shadow: 0 6px 20px rgba(22, 52, 92, 0.09);
+}
+
+.guide-item.open {
   border-left-color: var(--gold);
-  box-shadow: 0 4px 18px rgba(22, 52, 92, 0.08);
 }
 
 .gi-head {
@@ -224,8 +259,30 @@ const subjectName = (g: Cs408TopicGuide) => SUBJECT_NAMES[g.subject] || '408'
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
 }
+
+.gi-head:hover { background: #f7fafd; }
+.guide-item.open .gi-head { background: #fbf7ec; }
+
+.gi-chev {
+  font-size: 0.9rem;
+  color: var(--gold);
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.guide-item.open .gi-chev { transform: rotate(90deg); }
+
+.gi-body {
+  padding: 0 20px 16px;
+  border-top: 1px dashed var(--line);
+}
+.gi-body .gi-points { padding-top: 12px; }
 
 .gi-icon {
   font-size: 1.35rem;
@@ -246,7 +303,7 @@ const subjectName = (g: Cs408TopicGuide) => SUBJECT_NAMES[g.subject] || '408'
   background: rgba(22, 52, 92, 0.06);
   padding: 3px 12px;
   border-radius: 999px;
-  margin-left: auto;
+  margin-left: 8px;
   letter-spacing: 0.04em;
   white-space: nowrap;
 }

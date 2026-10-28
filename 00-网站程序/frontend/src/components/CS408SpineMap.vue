@@ -32,7 +32,16 @@ const records = computed<Record<string, Rec>>(() => ({ ...diskRecords.value, ...
 const activeSub = ref<string>('all')
 const selectedCode = ref<string>('')
 
-const SUBJECT_COLORS: Record<string, string> = { ds: '#409EFF', co: '#67C23A', os: '#E6A23C', cn: '#F56C6C' }
+// 详情面板「记忆卡」折叠状态：默认全收起，一次只展开要背的那张，避免一整章堆在一起
+const openCards = ref<Record<string, boolean>>({})
+function toggleCard(k: string) { openCards.value = { ...openCards.value, [k]: !openCards.value[k] } }
+function splitPoint(s: string): { lead: string; rest: string } {
+  const i = s.search(/[：:]/)
+  if (i < 0) return { lead: '', rest: s }
+  return { lead: s.slice(0, i), rest: s.slice(i + 1).trim() }
+}
+
+const SUBJECT_COLORS: Record<string, string> = { ds: '#4f7cff', co: '#12b886', os: '#f59f00', cn: '#e64980' }
 const SUBJECT_NAMES: Record<string, string> = { ds: '数据结构', co: '计算机组成原理', os: '操作系统', cn: '计算机网络' }
 const SUB_ORDER = ['co', 'os', 'ds', 'cn']
 
@@ -46,7 +55,7 @@ interface ChapterAgg {
   points: ExamFreqPoint[]; highScore: number; highCount: number
   bigqTotal: number; bigqDone: number; bigqCorrect: number; bigqPartial: number; bigqWrong: number
   wrongList: BigQ[]; coverage: number
-  templates: { title: string; tag: string; tip?: string }[]
+  templates: { title: string; tag: string; tip?: string; points: string[] }[]
 }
 
 function matchTemplates(subKey: string, chapterTitle: string, points: ExamFreqPoint[]) {
@@ -65,12 +74,12 @@ function matchTemplates(subKey: string, chapterTitle: string, points: ExamFreqPo
     '排序与查找': ['排序', '查找', '散列', '哈希', '折半', 'b树'],
     '数据结构设计题': ['设计'],
   }
-  const out: { title: string; tag: string; tip?: string }[] = []
+  const out: { title: string; tag: string; tip?: string; points: string[] }[] = []
   for (const it of guide.items) {
     const key = Object.keys(kwTable).find(k => k.toLowerCase() === it.title.toLowerCase().replace(/（.*）/, '').trim())
     const kws = key ? kwTable[key] : []
     const localKws = kws.length ? kws : it.title.split(/[（(·\s]/).filter(Boolean)
-    if (localKws.some(w => hay.includes(w.toLowerCase()))) out.push({ title: it.title, tag: it.tag, tip: it.tip })
+    if (localKws.some(w => hay.includes(w.toLowerCase()))) out.push({ title: it.title, tag: it.tag, tip: it.tip, points: it.points })
   }
   return out
 }
@@ -144,19 +153,28 @@ function buildTree() {
   const subs = activeSub.value === 'all' ? SUB_ORDER : [activeSub.value]
   const subjectNodes = subs.map(sk => {
     const chs = bySubject.value[sk] || []
+    const col = SUBJECT_COLORS[sk]
     return {
       name: mob ? SHORT_SUB[sk] : SUBJECT_NAMES[sk],
-      itemStyle: { color: SUBJECT_COLORS[sk], borderColor: '#fff', borderWidth: 1 },
-      lineStyle: { color: SUBJECT_COLORS[sk], width: 2 },
-      label: { fontWeight: 'bold' as const, fontSize: 14, color: SUBJECT_COLORS[sk] },
+      itemStyle: { color: col, borderColor: '#fff', borderWidth: 2, shadowBlur: 6, shadowColor: 'rgba(22,52,92,.18)' },
+      lineStyle: { color: col, width: 2.4, curveness: 0.5 },
+      label: {
+        fontWeight: 'bold', fontSize: mob ? 12.5 : 14, color: col,
+        backgroundColor: '#fff', borderColor: col, borderWidth: 1.4, borderRadius: 20,
+        padding: [5, 12], shadowBlur: 4, shadowColor: 'rgba(22,52,92,.08)',
+      },
       tip: `${SUBJECT_NAMES[sk]}<br/>${chs.length} 个考点章节 · 大题 ${chs.reduce((s, c) => s + c.bigqTotal, 0)} 道`,
       children: chs.map(c => ({
         name: c.chapterTitle,
         chapterCode: c.code,
         symbolSize: 16 + Math.min(26, Math.round(c.highScore / 12)),
-        itemStyle: { color: chapterColor(c), borderColor: '#fff', borderWidth: 1.5 },
-        lineStyle: { color: chapterColor(c), width: 1.6 },
-        label: { fontSize: 12.5, color: '#1f2d3d' },
+        itemStyle: { color: chapterColor(c), borderColor: '#fff', borderWidth: 2, shadowBlur: 5, shadowColor: 'rgba(22,52,92,.15)' },
+        lineStyle: { color: chapterColor(c), width: 1.8, curveness: 0.5 },
+        label: {
+          fontSize: mob ? 11.5 : 12.5, color: chapterColor(c), fontWeight: 600,
+          backgroundColor: 'rgba(255,255,255,.92)', borderColor: chapterColor(c), borderWidth: 1,
+          borderRadius: 8, padding: [3, 9],
+        },
         tip: `<b>${SUBJECT_NAMES[c.subKey]} · 第${c.chapter}章 ${c.chapterTitle}</b><br/>`
           + `考频 ${c.highScore} 分 · 高频考点 ${c.highCount} 个<br/>`
           + `大题：已刷 ${c.bigqDone}/${c.bigqTotal}（对${c.bigqCorrect} 半${c.bigqPartial} 错${c.bigqWrong}）<br/>`
@@ -166,15 +184,23 @@ function buildTree() {
           chapterCode: c.code,
           symbolSize: 8 + Math.min(14, Math.round(p.score / 8)),
           itemStyle: { color: levelColor(p.lv) },
-          lineStyle: { color: levelColor(p.lv), width: 1, opacity: 0.55 },
-          label: { fontSize: 11.5, color: '#5b6b7f' },
+          lineStyle: { color: levelColor(p.lv), width: 1.2, opacity: 0.5, curveness: 0.5 },
+          label: { fontSize: mob ? 11 : 11.5, color: '#5b6b7f' },
           tip: `<b>${p.name}</b><br/>${levelLabel(p.lv)} · ${p.score} 分 · ${p.q} 题 · 近 ${p.yrs} 年`,
         })),
       })),
     }
   })
   if (activeSub.value !== 'all') return subjectNodes[0] || { name: '408', children: [] }
-  return { name: '408', itemStyle: { color: '#16345c' }, label: { fontWeight: 'bold' as const, fontSize: 15, color: '#16345c' }, children: subjectNodes }
+  return {
+    name: '408',
+    itemStyle: { color: '#16345c', borderColor: '#fff', borderWidth: 2, shadowBlur: 8, shadowColor: 'rgba(22,52,92,.25)' },
+    label: {
+      fontWeight: 'bold', fontSize: 15, color: '#fff',
+      backgroundColor: '#16345c', borderRadius: 22, padding: [7, 16],
+    },
+    children: subjectNodes,
+  }
 }
 
 // ---- 图表实例 ----
@@ -193,14 +219,14 @@ function renderChart() {
     },
     series: [{
       type: 'tree', data: [buildTree()],
-      orient: 'LR', edgeShape: 'polyline', edgeForkPosition: '38%',
+      orient: 'LR', edgeShape: 'curve',
       initialTreeDepth: isMobile ? 1 : 2,
       top: '4%', left: isMobile ? '10%' : '12%', bottom: '4%', right: isMobile ? '34%' : '22%',
       symbol: 'circle', roam: true, expandAndCollapse: true, animationDuration: 550, animationDurationUpdate: 550,
-      lineStyle: { color: '#c7d2e0', width: 1.4, curveness: 0 },
+      lineStyle: { color: '#c7d2e0', width: 1.4, curveness: 0.5 },
       label: { position: 'left', verticalAlign: 'middle', align: 'right', fontSize: 12 },
       leaves: { label: { position: 'right', verticalAlign: 'middle', align: 'left' } },
-      emphasis: { focus: 'descendant', itemStyle: { shadowBlur: 10, shadowColor: 'rgba(22,52,92,.3)' } },
+      emphasis: { focus: 'descendant', lineStyle: { width: 2.6, opacity: 1 }, itemStyle: { shadowBlur: 12, shadowColor: 'rgba(22,52,92,.35)' } },
     }],
   }, true)
 }
@@ -224,6 +250,7 @@ onMounted(async () => {
 onBeforeUnmount(() => { ro?.disconnect(); chart?.dispose(); chart = null })
 
 watch([() => items.value.length, () => records.value, activeSub], () => nextTick(renderChart), { deep: false })
+watch(selectedCode, () => { openCards.value = {} })
 
 async function load() {
   loading.value = true
@@ -242,6 +269,7 @@ async function load() {
 
 function pickSub(k: string) { activeSub.value = k; nextTick(renderChart) }
 function goExam(subject?: string) { router.push({ path: '/cs408', query: subject ? { tab: 'exam', subj: subject } : { tab: 'exam' } }) }
+function goGuide() { router.push({ path: '/cs408', query: { tab: 'guide', focus: selectedChapter.value?.chapterTitle || '' } }) }
 function focusChapter(code: string) { selectedCode.value = code }
 </script>
 
@@ -325,14 +353,24 @@ function focusChapter(code: string) { selectedCode.value = code }
           </div>
         </div>
         <div class="dt-col">
-          <div class="cb-h">🧩 解题模板 / 套路</div>
-          <div v-if="selectedChapter.templates.length" class="tpl-wrap">
-            <div v-for="t in selectedChapter.templates" :key="t.title" class="tpl">
-              <div class="tpl-t">{{ t.title }} <em>{{ t.tag }}</em></div>
-              <div v-if="t.tip" class="tpl-tip">💡 {{ t.tip }}</div>
+          <div class="cb-h">🧠 记忆卡 <span class="cb-hint">（点开一张背一张，别一口气全展开）</span></div>
+          <div v-if="selectedChapter.templates.length" class="mc-wrap">
+            <div v-for="t in selectedChapter.templates" :key="t.title" class="mc" :class="{ open: openCards[t.title] }">
+              <div class="mc-hd" @click="toggleCard(t.title)">
+                <span class="mc-tt">{{ t.title }}</span>
+                <span class="mc-tag">{{ t.tag }}</span>
+                <span class="mc-chev">▸</span>
+              </div>
+              <div v-show="openCards[t.title]" class="mc-bd">
+                <div v-for="(p, pi) in t.points" :key="pi" class="mc-pt">
+                  <b v-if="splitPoint(p).lead">{{ splitPoint(p).lead }}</b><span>{{ splitPoint(p).lead ? '　' + splitPoint(p).rest : p }}</span>
+                </div>
+                <div v-if="t.tip" class="mc-tip">💡 {{ t.tip }}</div>
+              </div>
             </div>
+            <button class="mc-go" @click="goGuide">🧭 在专题指南中查看整章 →</button>
           </div>
-          <div v-else class="tpl-none">该科目暂无模板卡，见「🧭 专题指南」。</div>
+          <div v-else class="tpl-none">该科目暂无记忆卡，见「🧭 专题指南」。</div>
         </div>
       </div>
     </div>
@@ -363,12 +401,14 @@ function focusChapter(code: string) { selectedCode.value = code }
 .sf { border: 1px solid var(--line); background: #fff; color: var(--muted); border-radius: 16px; padding: 5px 16px; font-size: .9rem; cursor: pointer; transition: all .2s; }
 .sf.on { color: #fff; background: var(--navy); border-color: var(--navy); }
 
-.legend { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: .8rem; color: var(--muted); padding: 6px 0 10px; }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
-.lg-note { margin-left: auto; color: #97a6ba; }
+.legend { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: .78rem; color: var(--muted); padding: 6px 0 12px; }
+.legend > span { display: inline-flex; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.lg-note { margin-left: auto; color: #97a6ba; background: none !important; border-color: transparent !important; padding-left: 0 !important; }
 
-.chart-wrap { background: linear-gradient(180deg,#fbfdff,#f4f8fd); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.chart { width: 100%; height: 560px; }
+.chart-wrap { position: relative; background: radial-gradient(circle at 12% 20%, #ffffff 0%, #f5f9ff 55%, #eef4fd 100%); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; padding: 8px; box-shadow: inset 0 2px 14px rgba(13,33,55,.05); }
+.chart-wrap::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(22,52,92,.05) 1px, transparent 1px); background-size: 22px 22px; pointer-events: none; }
+.chart { width: 100%; height: 600px; position: relative; }
 .spine-loading { padding: 40px; text-align: center; color: var(--muted); }
 
 .detail { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; box-shadow: 0 4px 18px rgba(13,33,55,.06); }
@@ -386,11 +426,24 @@ function focusChapter(code: string) { selectedCode.value = code }
 .pc-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 .pt-n { color: var(--ink); font-weight: 600; }
 .pt-m { color: #97a6ba; font-size: .76rem; margin-left: auto; white-space: nowrap; }
-.tpl-wrap { display: flex; flex-direction: column; gap: 8px; }
-.tpl { background: #f6f9ff; border: 1px solid #e2ecff; border-radius: 8px; padding: 8px 12px; }
-.tpl-t { font-size: .87rem; font-weight: 700; color: #2f5aa8; }
-.tpl-t em { font-style: normal; font-weight: 400; font-size: .75rem; color: #8aa0c0; margin-left: 6px; }
-.tpl-tip { font-size: .8rem; color: #5b6b7f; margin-top: 4px; line-height: 1.5; }
+.cb-hint { font-size: .72rem; font-weight: 400; color: #97a6ba; margin-left: 4px; }
+.mc-wrap { display: flex; flex-direction: column; gap: 8px; }
+.mc { border: 1px solid #e2ecff; border-left: 4px solid #4f7cff; border-radius: 10px; background: #fff; overflow: hidden; transition: box-shadow .2s, border-color .2s; }
+.mc:hover { box-shadow: 0 4px 14px rgba(13,33,55,.08); }
+.mc.open { border-color: #cfe0ff; }
+.mc-hd { display: flex; align-items: center; gap: 8px; padding: 10px 12px; cursor: pointer; user-select: none; background: #f8fbff; }
+.mc.open .mc-hd { background: #eef4ff; }
+.mc-tt { font-size: .88rem; font-weight: 700; color: #2f5aa8; }
+.mc-tag { font-size: .7rem; font-weight: 700; color: #8aa0c0; background: rgba(22,52,92,.06); border-radius: 999px; padding: 2px 9px; margin-left: auto; white-space: nowrap; }
+.mc-chev { font-size: .8rem; color: #4f7cff; transition: transform .2s; flex-shrink: 0; }
+.mc.open .mc-chev { transform: rotate(90deg); }
+.mc-bd { padding: 10px 12px; border-top: 1px dashed #e2ecff; }
+.mc-pt { font-size: .84rem; line-height: 1.6; color: #3a4a5e; padding: 3px 0 3px 12px; position: relative; }
+.mc-pt::before { content: ''; position: absolute; left: 0; top: 11px; width: 5px; height: 5px; border-radius: 50%; background: #b9cbe8; }
+.mc-pt b { color: #16345c; }
+.mc-tip { margin-top: 8px; font-size: .8rem; line-height: 1.55; color: #9a7216; background: linear-gradient(135deg,#fffbf0,#fff6e0); border: 1px solid rgba(212,160,18,.18); border-radius: 8px; padding: 8px 11px; }
+.mc-go { margin-top: 4px; width: 100%; border: 1px dashed #b9cbe8; background: #fff; color: #2f5aa8; border-radius: 9px; padding: 8px; font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .2s; }
+.mc-go:hover { background: #eef4ff; border-style: solid; }
 .tpl-none { font-size: .82rem; color: #97a6ba; }
 .wrong-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
 .wrong-it { background: #fde2e2; color: #b02e26; border-radius: 6px; padding: 2px 10px; font-size: .8rem; cursor: pointer; font-weight: 600; }

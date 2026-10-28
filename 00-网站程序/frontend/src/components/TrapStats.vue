@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { countTraps } from '@/utils/trapTaxonomy'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { countTraps, TRAP_LIST, TRAP_META } from '@/utils/trapTaxonomy'
+import { selfTaggedTrapCounts, reviewStartCount } from '@/utils/reviewStore'
 
 // 错因套路统计面板（个人版专属，依赖 userAnswer 个人作答数据）
-// 两块：① 错题命中的干扰套路分布 ② 答案位置偏好审计
+// 三块：① 错题命中的干扰套路分布（解析侧自动） ② 你自标的坑（复盘卡） ③ 答案位置偏好审计
 const props = defineProps<{ questions: any[] }>()
 const expanded = ref(true)
 
 const list = computed(() => props.questions || [])
 
-// ===== ① 错因套路分布 =====
+// ===== ① 错因套路分布（解析侧自动）=====
 const wrongQuestions = computed(() =>
   list.value.filter(q => q.userAnswer && q.userAnswer !== q.correctAnswer)
 )
@@ -18,7 +19,26 @@ const maxTrap = computed(() => trapStats.value.reduce((m, s) => Math.max(m, s.co
 const wrongTotal = computed(() => wrongQuestions.value.length)
 const topTrap = computed(() => trapStats.value[0] || null)
 
-// ===== ② 答案位置偏好审计 =====
+// ===== ② 你自标的坑（逐题复盘卡，个人版真实趋势）=====
+// localStorage 变更无法被 computed 追踪，靠 'reading-review-updated' 事件驱动 tick 重算。
+const reviewTick = ref(0)
+const bump = () => { reviewTick.value++ }
+onMounted(() => window.addEventListener('reading-review-updated', bump))
+onUnmounted(() => window.removeEventListener('reading-review-updated', bump))
+const selfStats = computed(() => {
+  void reviewTick.value // 建立依赖，事件触发时重算
+  const counts = selfTaggedTrapCounts()
+  return TRAP_LIST
+    .map(meta => ({ meta, count: counts[meta.id] || 0 }))
+    .filter(s => s.count > 0)
+    .sort((a, b) => b.count - a.count)
+})
+const selfTagTotal = computed(() => selfStats.value.reduce((m, s) => m + s.count, 0))
+const selfMax = computed(() => selfStats.value.reduce((m, s) => Math.max(m, s.count), 0))
+const topSelf = computed(() => selfStats.value[0] || null)
+const reviewedCount = computed(() => { void reviewTick.value; return reviewStartCount() })
+
+// ===== ③ 答案位置偏好审计 =====
 const answered = computed(() => list.value.filter(q => q.userAnswer))
 const LETTERS = ['A', 'B', 'C', 'D'] as const
 const letterDist = computed(() => {
@@ -36,14 +56,14 @@ const biasLetter = computed(() => {
   return ratio >= 0.35 ? { letter: top, count: letterDist.value[top], ratio: Math.round(ratio * 100) } : null
 })
 
-const hasData = computed(() => wrongTotal.value > 0 || letterTotal.value > 0)
+const hasData = computed(() => wrongTotal.value > 0 || letterTotal.value > 0 || selfTagTotal.value > 0)
 </script>
 
 <template>
   <div v-if="hasData" class="trap-stats">
     <div class="ts-head" @click="expanded = !expanded">
       <span class="ts-title">🎯 错因深度分析</span>
-      <span class="ts-sub">套路命中 {{ wrongTotal }} 道错题 · 位置偏好审计 {{ letterTotal }} 次作答</span>
+      <span class="ts-sub">套路命中 {{ wrongTotal }} 道错题 · 你自标 {{ selfTagTotal }} 次 · 位置审计 {{ letterTotal }} 次作答</span>
       <span class="ts-toggle">{{ expanded ? '收起 ▴' : '展开 ▾' }}</span>
     </div>
 
@@ -69,7 +89,33 @@ const hasData = computed(() => wrongTotal.value > 0 || letterTotal.value > 0)
         </div>
       </div>
 
-      <!-- ② 答案位置偏好审计 -->
+      <!-- ② 你自标的坑（逐题复盘卡，个人真实趋势）-->
+      <div class="ts-block">
+        <div class="ts-block-head">
+          <span class="ts-block-title">你自标的坑</span>
+          <span class="ts-block-note">来自你在每题「🔬 逐题复盘」里亲手选的套路 —— 这才是你自己的踩法</span>
+        </div>
+        <div v-if="topSelf" class="ts-alert self" :style="{ borderColor: topSelf.meta.color, background: topSelf.meta.color + '14' }">
+          你自己的头号陷阱是 <b :style="{ color: topSelf.meta.color }">{{ topSelf.meta.name }}</b>
+          （自标 {{ topSelf.count }}/{{ selfTagTotal }} 次）。下笔前先自查这一类：{{ topSelf.meta.sign }}
+        </div>
+        <div v-else class="ts-alert hint">
+          还没有你亲手标注的记录。做完阅读后在错题里点开「🔬 逐题复盘」，选一个"我踩的是哪类坑"，
+          攒够 3 题这里就会长出<b>你自己的</b>踩坑趋势——比通用套路分布更能照出你的固定思维。
+          <span v-if="reviewedCount > 0" class="ts-reviewing">（已复盘 {{ reviewedCount }} 题，继续标注套路即可点亮）</span>
+        </div>
+        <div v-if="topSelf" class="ts-bars">
+          <div v-for="s in selfStats" :key="'self-' + s.meta.id" class="ts-row" :title="s.meta.sign">
+            <span class="ts-name">{{ s.meta.name }}</span>
+            <span class="ts-track">
+              <span class="ts-fill self" :style="{ width: (s.count / selfMax * 100) + '%', background: s.meta.color }"></span>
+            </span>
+            <span class="ts-count" :style="{ color: s.meta.color }">{{ s.count }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ 答案位置偏好审计 -->
       <div v-if="letterTotal > 0" class="ts-block">
         <div class="ts-block-head">
           <span class="ts-block-title">答案位置偏好审计</span>
@@ -161,6 +207,9 @@ const hasData = computed(() => wrongTotal.value > 0 || letterTotal.value > 0)
 .ts-alert b { font-weight: 700; }
 .ts-alert.warn { border-left-color: #e5484d; background: rgba(229, 72, 77, 0.1); }
 .ts-alert.ok { border-left-color: #30a46c; background: rgba(48, 164, 108, 0.1); }
+.ts-alert.hint { border-left-color: #6e9bff; background: rgba(110, 155, 255, 0.08); color: #b9cbec; }
+.ts-alert.hint b { color: #ffe08a; }
+.ts-reviewing { display: block; margin-top: 3px; font-size: 0.72rem; color: #7f96b0; }
 
 /* 套路条形 */
 .ts-bars { display: flex; flex-direction: column; gap: 8px; }
@@ -190,6 +239,7 @@ const hasData = computed(() => wrongTotal.value > 0 || letterTotal.value > 0)
   border-radius: 7px;
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.ts-fill.self { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); }
 .ts-count {
   width: 28px;
   flex-shrink: 0;

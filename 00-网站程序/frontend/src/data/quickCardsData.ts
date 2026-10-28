@@ -140,6 +140,24 @@ const higherChapters: QuickChapter[] = [
       { id: 'gaoshu-09-5', front: '斯托克斯公式？', back: '$\\oint_L Pdx+Qdy+Rdz=\\iint_\\Sigma\\left(\\dfrac{\\partial R}{\\partial y}-\\dfrac{\\partial Q}{\\partial z}\\right)dydz+\\left(\\dfrac{\\partial P}{\\partial z}-\\dfrac{\\partial R}{\\partial x}\\right)dzdx+\\left(\\dfrac{\\partial Q}{\\partial x}-\\dfrac{\\partial P}{\\partial y}\\right)dxdy$\n空间闭曲线与以它为边界的曲面之间的转化。' },
       { id: 'gaoshu-09-6', star: 2, tag: '方法', front: '第一类曲线/曲面积分怎么算 + 轮换对称？', back: '第一类曲线 $\\int_L f\\,ds$：$ds=\\sqrt{1+y\'^2}\\,dx$（直角）、$ds=\\sqrt{x\'^2+y\'^2}\\,dt$（参数）。对弧长、与方向无关。\n第一类曲面 $\\iint_\\Sigma f\\,dS$：$dS=\\sqrt{1+z_x^2+z_y^2}\\,dxdy$。\n轮换对称（球面最常考）：$\\iint_\\Sigma x^2dS=\\iint_\\Sigma y^2dS=\\iint_\\Sigma z^2dS=\\dfrac{1}{3}\\iint_\\Sigma(x^2+y^2+z^2)dS$。\n2018 数一 $\\oint xy\\,ds=-\\dfrac{\\pi}{3}$ 即靠对称性化简。' }
     ]
+  },
+  {
+    id: 'gaoshu-10',
+    title: '反例库 · 概念判据（想不到就翻这）',
+    cards: [
+      { id: 'fl-01', star: 3, tag: '易错', front: '推翻「通项 $\\to0$ 则级数收敛」', back: '$$\\sum_{n=1}^{\\infty}\\frac1n\\ \\text{发散，但}\\ \\frac1n\\to0$$\n一般项趋于 $0$ 只是收敛的**必要**条件，不是充分。判敛一律回到比较/比值/莱布尼茨，别拿通项极限当充分用。' },
+      { id: 'fl-02', star: 3, tag: '易错', front: '推翻「$\\sum b_n$ 收敛 $\\Rightarrow\\sum a_nb_n$ 收敛」（已知 $a_n\\to0$）', back: '取 $a_n=b_n=\\dfrac{(-1)^n}{\\sqrt n}$：$\\sum b_n$ 收敛（莱布尼茨），但 $a_nb_n=\\dfrac1n$ 发散。\n要保收敛得升级条件：$\\sum|b_n|$ 绝对收敛 + $a_n$ 有界，才能推 $\\sum a_n^2b_n^2$ 收敛。' },
+      { id: 'fl-03', star: 2, tag: '易错', front: '条件收敛 vs 绝对收敛的样板', back: '$\\sum\\dfrac{(-1)^n}{n}$ 收敛但非绝对（因 $\\sum\\frac1n$ 发散）。\n规律：偶次方 $\\sum a_n^2$ 若收敛必是绝对收敛（项非负）；奇次方 $\\sum a_n^3$ 符号可正可负，可能只条件收敛。' },
+      { id: 'fl-04', star: 2, tag: '易错', front: '「有界」推不出「收敛」', back: '$a_n=(-1)^n$ 有界但发散（振荡）。\n反过来成立：收敛数列必**有界**。要「单调 + 有界」才收敛（单调有界准则）。' },
+      { id: 'fl-05', star: 3, tag: '易错', front: '连续 / 可导 / 极值 三者互推全反', back: '连续但不可导：$f=|x|$ 在 $0$。\n极值点但非驻点（导数不存在）：$|x|$ 在 $0$ 取极小。\n驻点但非极值：$f=x^3$ 在 $0$，$f\'(0)=0$ 却单调增。\n只有「可导 $\\Rightarrow$ 连续」成立，其余方向都要反例。' },
+      { id: 'fl-06', star: 3, tag: '易错', front: '路径无关：$P_y=Q_x$ 还不够（区域须单连通）', back: '$P=\\dfrac{-y}{x^2+y^2},\\ Q=\\dfrac{x}{x^2+y^2}$，在原点外处处 $P_y=Q_x$，但绕原点一圈 $\\oint Pdx+Qdy=2\\pi\\ne0$。\n挖掉原点的区域不满足前提——交叉相等只是入场券，还得 $P,Q$ 在整块区域都有定义。' },
+      { id: 'fl-07', star: 2, tag: '易错', front: '二元：偏导存在 $\\neq$ 可微 $\\neq$ 连续', back: '$f=\\dfrac{xy}{x^2+y^2}$（原点补 $0$）：两个偏导在原点都存在，但沿 $y=x$ 极限 $=\\frac12\\ne f(0,0)$，不连续更不可微。\n可微 $\\Rightarrow$ 偏导存在且连续；反过来全不成立。' },
+      { id: 'fl-08', star: 2, tag: '易错', front: '线代「无零因子」是假的：$AB=O$ 但 $A,B$ 都非零', back: '$A=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\\ B=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix}$，$AB=O$ 而 $A\\ne O,\\ B\\ne O$。\n所以 $AB=O\\Rightarrow r(A)+r(B)\\le n$，绝不能像数那样约掉。' },
+      { id: 'fl-09', star: 2, tag: '易错', front: '特征值全相同 $\\neq$ 可对角化', back: '$A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 特征值全是 $1$，但只有一个线性无关特征向量，不可对角化（若尔当块）。\n实对称才必可对角化；一般矩阵要「几何重数 $=$ 代数重数」。' },
+      { id: 'fl-10', star: 2, tag: '易错', front: '正定阵相乘未必正定', back: '$A,B$ 都正定，但 $AB$ 一般不对称，谈不上正定。\n例 $A=\\begin{pmatrix}2&1\\\\1&1\\end{pmatrix},B=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$，$AB$ 非对称。\n真正成立的是 $A+B$ 正定、$A^{-1}$ 正定。' },
+      { id: 'fl-11', star: 2, tag: '易错', front: '换基/相似不改特征值（秒杀排除）', back: '$Q^{-1}AQ$ 与 $A$ 相似 $\\Rightarrow$ 特征值多重集必须完全相同。\n$P^{-1}AP=\\mathrm{diag}(1,1,2)$ 时，凡对角元集合不是 $\\{1,1,2\\}$ 的选项（如 $\\mathrm{diag}(2,1,2)$）直接排除。' },
+      { id: 'fl-12', star: 2, tag: '易错', front: '半正定不能用顺序主子式 $\\ge0$ 判', back: '$\\mathrm{diag}(0,-1)$ 的顺序主子式为 $0,0$，却含负特征值 $-1$，并不半正定。\n半正定要用「所有主子式 $\\ge0$」或直接看特征值 $\\ge0$；只有正定才能用顺序主子式全 $>0$。' }
+    ]
   }
 ]
 

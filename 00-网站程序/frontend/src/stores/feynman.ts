@@ -45,6 +45,45 @@ export interface WeakPoint {
   sessionId: string | null
   /** FSRS 间隔复习状态（可选，首次复习时自动创建） */
   fsrs?: FSRSState
+  /** 最近一次复习结果：correct=✓ / partial=△ / incorrect=✗ / mastered=已掌握 / none=从未测 */
+  lastResult?: 'correct' | 'partial' | 'incorrect' | 'mastered' | 'none'
+  /** 最近一次复习日期 */
+  lastResultDate?: string
+  /** 最近一次复习的判分备注（如 "09-25 ✓ 性能公式判断全对..."） */
+  resultNote?: string
+  /** 是否真正被复习测试过（有真实判分结果） */
+  reviewed?: boolean
+  /** 是否已掌握（可移出轮换） */
+  mastered?: boolean
+}
+
+/** 复习收尾总结：本轮按对错分组 */
+export interface ReviewSummaryItem {
+  id: string
+  concept: string
+  note: string
+}
+export interface ReviewSummary {
+  date: string
+  total: number
+  correct: ReviewSummaryItem[]
+  partial: ReviewSummaryItem[]
+  incorrect: ReviewSummaryItem[]
+  mastered: ReviewSummaryItem[]
+  stillWeak: ReviewSummaryItem[]
+  neverTested: ReviewSummaryItem[]
+}
+/** 总体掌握状态汇总 */
+export interface MasteryStats {
+  total: number
+  reviewed: number
+  neverReviewed: number
+  mastered: number
+  needReview: number
+  lastCorrect: number
+  lastPartial: number
+  lastIncorrect: number
+  lastMastered: number
 }
 
 export interface FeynmanSession {
@@ -76,6 +115,10 @@ export interface FeynmanData {
     resolvedCount: number
     streakDays: number
   }
+  /** 复习收尾总结（本轮按对错分组），由数据层写入 */
+  reviewSummary?: ReviewSummary
+  /** 总体掌握状态汇总，由数据层写入 */
+  masteryStats?: MasteryStats
 }
 
 // ==================== 常量 ====================
@@ -105,6 +148,19 @@ export const useFeynmanStore = defineStore('feynman', () => {
   }
 
   // ---------- 数据加载 ----------
+  /** 非破坏性补齐 stats：数据文件用 totalGaps 且缺 totalWeakPoints/streakDays，会让顶部 resolveRate 变 NaN */
+  function normalizeStats() {
+    const st = data.value.stats as Record<string, number> | undefined
+    if (!st) {
+      data.value.stats = { totalSessions: 0, totalWeakPoints: 0, resolvedCount: 0, streakDays: 0 }
+    }
+    const s = data.value.stats as Record<string, number>
+    if (s.totalWeakPoints == null) s.totalWeakPoints = data.value.weakPoints.length
+    if (s.resolvedCount == null) s.resolvedCount = data.value.weakPoints.filter(w => w.status === 'resolved').length
+    if (s.streakDays == null) s.streakDays = calcStreak()
+    if (s.totalSessions == null) s.totalSessions = data.value.sessions.length
+  }
+
   async function loadFromJson(subject: FeynmanSubject) {
     loading.value = true
     try {
@@ -113,6 +169,7 @@ export const useFeynmanStore = defineStore('feynman', () => {
       if (resp.ok) {
         const json = await resp.json() as FeynmanData
         data.value = json
+        normalizeStats()
         // 同步到 localStorage
         localStorage.setItem(STORAGE_PREFIX + subject, JSON.stringify(json))
         return
@@ -128,6 +185,7 @@ export const useFeynmanStore = defineStore('feynman', () => {
       const saved = localStorage.getItem(STORAGE_PREFIX + subject)
       if (saved) {
         data.value = JSON.parse(saved) as FeynmanData
+        normalizeStats()
         return
       }
     } catch { /* ignore */ }
@@ -309,6 +367,44 @@ export const useFeynmanStore = defineStore('feynman', () => {
 
   const subjectMeta = computed(() => SUBJECT_META[currentSubject.value])
 
+  /** 复习收尾总结：优先用数据层写入的 reviewSummary；缺失时从 weakPoints 现场推导（兜底 math 等未打标记的科目） */
+  const reviewSummary = computed<ReviewSummary>(() => {
+    const injected = data.value.reviewSummary
+    if (injected) return injected
+    const wp = data.value.weakPoints
+    const mk = (w: WeakPoint): ReviewSummaryItem => ({
+      id: w.id, concept: w.concept, note: (w.resultNote || '').replace(/^\d{2}-\d{2}\s*/, '')
+    })
+    const by = (r: string) => wp.filter(w => w.lastResult === r).map(mk)
+    return {
+      date: new Date().toISOString().slice(0, 10),
+      total: wp.filter(w => w.reviewed).length,
+      correct: by('correct'),
+      partial: by('partial'),
+      incorrect: by('incorrect'),
+      mastered: by('mastered'),
+      stillWeak: wp.filter(w => w.lastResult === 'incorrect' || w.lastResult === 'partial').map(mk),
+      neverTested: wp.filter(w => !w.reviewed).map(mk)
+    }
+  })
+
+  /** 总体掌握状态：优先用数据层写入的 masteryStats；缺失时从 weakPoints 现场推导 */
+  const masteryStats = computed<MasteryStats>(() => {
+    const injected = data.value.masteryStats
+    if (injected) return injected
+    const wp = data.value.weakPoints
+    const total = wp.length
+    const reviewed = wp.filter(w => w.reviewed).length
+    const mastered = wp.filter(w => w.mastered).length
+    const rc = (r: string) => wp.filter(w => w.lastResult === r).length
+    return {
+      total, reviewed, neverReviewed: total - reviewed,
+      mastered, needReview: total - mastered,
+      lastCorrect: rc('correct'), lastPartial: rc('partial'),
+      lastIncorrect: rc('incorrect'), lastMastered: rc('mastered')
+    }
+  })
+
   // 初始化加载
   loadFromJson('cs408')
 
@@ -322,6 +418,8 @@ export const useFeynmanStore = defineStore('feynman', () => {
     weakPointsByTopic,
     dueWeakPoints,
     upcomingReviews,
+    reviewSummary,
+    masteryStats,
     switchSubject,
     loadFromJson,
     addWeakPoint,

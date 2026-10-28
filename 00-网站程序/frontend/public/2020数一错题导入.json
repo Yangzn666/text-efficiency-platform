@@ -1,0 +1,180 @@
+[
+  {
+    "questionType": "选择题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第二章 导数与微分",
+    "title": "第2题 - 极限为0与可导的关系",
+    "content": "设函数 $f(x)$ 在区间 $(-1,1)$ 内有定义，且 $\\lim\\limits_{x\\to 0}f(x)=0$，则（　）\n(A) 当 $\\lim\\limits_{x\\to 0}\\dfrac{f(x)}{\\sqrt{|x|}}=0$ 时，$f(x)$ 在 $x=0$ 处可导\n(B) 当 $\\lim\\limits_{x\\to 0}\\dfrac{f(x)}{\\sqrt{x^2}}=0$ 时，$f(x)$ 在 $x=0$ 处可导\n(C) 当 $f(x)$ 在 $x=0$ 处可导时，$\\lim\\limits_{x\\to 0}\\dfrac{f(x)}{\\sqrt{|x|}}=0$\n(D) 当 $f(x)$ 在 $x=0$ 处可导时，$\\lim\\limits_{x\\to 0}\\dfrac{f(x)}{\\sqrt{x^2}}=0$",
+    "mistakeType": [
+      "概念不清"
+    ],
+    "mistakeAnalysis": "漏了本题命门——只给 $\\lim_{x\\to0}f(x)=0$，并未给 $f(0)=0$。可导必先连续，而连续要 $f(0)=\\lim f(x)$；$f(0)$ 未知时 (A)(B) 连可导的前提都推不出。选 B 是没抓住“连续/可导必须先把函数值钉在极限上”。",
+    "correctSolution": "答案 C。\n关键：题设只有 $\\lim_{x\\to0}f(x)=0$，$f(0)$ 未必为 0。\n(A)(B) 错：即便 $\\lim f(x)/\\sqrt{|x|}=0$，$f(0)$ 可能 $\\ne0$，不连续必不可导；即使补 $f(0)=0$，取 $f(x)=|x|^{3/4}$ 有 $f/\\sqrt{|x|}=|x|^{1/4}\\to0$ 但 $f/x=|x|^{-1/4}\\to\\infty$ 仍不可导。\n(C) 对：可导 $\\Rightarrow$ 连续 $\\Rightarrow f(0)=0$，且 $f'(0)=\\lim f(x)/x=L$ 存在。则 $\\dfrac{f(x)}{\\sqrt{|x|}}=\\dfrac{f(x)}{x}\\cdot\\dfrac{x}{\\sqrt{|x|}}\\to L\\cdot 0=0$。\n(D) 错：$\\dfrac{f(x)}{\\sqrt{x^2}}=\\dfrac{f(x)}{|x|}=\\dfrac{f(x)}{x}\\cdot\\dfrac{x}{|x|}\\to L\\cdot(\\pm1)$，左右极限为 $\\mp L,\\pm L$，仅当 $L=f'(0)=0$ 才存在。",
+    "keyTechnique": "见到“极限=0”先问 $f(0)$ 是否也 $=0$：可导 ⟹ 连续 $f(0)=\\lim f(x)$ 是单向箭头，逆向要额外条件。分母 $\\sqrt{|x|},\\sqrt{x^2}=|x|$ 与 $x$ 是同阶小量，用 $\\frac{f(x)}{x}$ 凑导数定义再乘一个趋于 0 的因子。",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "选择题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第八章 多元函数微分学",
+    "title": "第3题 - 可微定义与向量点乘叉乘",
+    "content": "设函数 $f(x,y)$ 在点 $(0,0)$ 处可微，$f(0,0)=0$，$\\boldsymbol{n}=\\left(\\dfrac{\\partial f}{\\partial x},\\dfrac{\\partial f}{\\partial y},-1\\right)\\Big|_{(0,0)}$，非零向量 $\\boldsymbol{\\alpha}$ 与 $\\boldsymbol{n}$ 垂直，则（　）\n(A) $\\lim\\limits_{(x,y)\\to(0,0)}\\dfrac{|\\boldsymbol{n}\\cdot(x,y,f(x,y))|}{\\sqrt{x^2+y^2}}$ 存在\n(B) $\\lim\\limits_{(x,y)\\to(0,0)}\\dfrac{|\\boldsymbol{n}\\times(x,y,f(x,y))|}{\\sqrt{x^2+y^2}}$ 存在\n(C) $\\lim\\limits_{(x,y)\\to(0,0)}\\dfrac{|\\boldsymbol{\\alpha}\\cdot(x,y,f(x,y))|}{\\sqrt{x^2+y^2}}$ 存在\n(D) $\\lim\\limits_{(x,y)\\to(0,0)}\\dfrac{|\\boldsymbol{\\alpha}\\times(x,y,f(x,y))|}{\\sqrt{x^2+y^2}}$ 存在",
+    "mistakeType": [
+      "概念不清"
+    ],
+    "mistakeAnalysis": "点乘、叉乘的几何意义不清楚，且没把“二元函数在一点可微”翻译成 $f=f_x x+f_y y+o(\\rho)$ 的线性主部形式，看不出 $\\boldsymbol{n}\\cdot(x,y,f)$ 恰好把线性主部抵消只剩高阶项。",
+    "correctSolution": "答案 A。\n记 $A=f_x(0,0),\\,B=f_y(0,0),\\,\\rho=\\sqrt{x^2+y^2}$。可微且 $f(0,0)=0$ 给出 $f(x,y)=Ax+By+o(\\rho)$。\n令 $\\boldsymbol{v}=(x,y,f)$，$\\boldsymbol{n}=(A,B,-1)$。\n(A)：$\\boldsymbol{n}\\cdot\\boldsymbol{v}=Ax+By-f(x,y)=-o(\\rho)$，故 $\\dfrac{|\\boldsymbol{n}\\cdot\\boldsymbol{v}|}{\\rho}\\to0$，极限存在。\n(B)(D)：$\\boldsymbol{n}\\times\\boldsymbol{v}$ 的分量含 $Af-By$ 等，除以 $\\rho$ 一般不趋于确定值。\n(C)：$\\boldsymbol{\\alpha}\\perp\\boldsymbol{n}$ 只保证 $\\boldsymbol{\\alpha}$ 在切平面内，$\\boldsymbol{\\alpha}\\cdot\\boldsymbol{v}$ 与 $\\rho$ 同阶但比值随方向变，极限未必存在。",
+    "keyTechnique": "把“可微”写成 $f=f_xx+f_yy+o(\\rho)$，法向量 $\\boldsymbol{n}=(f_x,f_y,-1)$ 与曲面元 $(x,y,f)$ 点乘正好抵消线性主部只剩 $o(\\rho)$。点乘=投影(法向)，叉乘=面积(平行)，几何意义要能秒反应。",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "填空题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第七章 微分方程",
+    "title": "第11题 - 反常积分与微分方程结合",
+    "content": "设 $f(x)$ 满足 $f''(x)+af'(x)+f(x)=0\\ (a>0)$，$f(0)=m$，$f'(0)=n$，则 $\\displaystyle\\int_0^{+\\infty}f(x)\\,dx=$ ______。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "难题，思路太巧妙想不到：把微分方程两端从 0 到 $+\\infty$ 直接积分，用 $f,f'$ 在 $+\\infty$ 处趋于 0 把反常积分和初值联系起来，而不是先解出 $f(x)$ 再积分。",
+    "correctSolution": "答案 $am+n$。\n对方程两端在 $[0,+\\infty)$ 积分：$\\int_0^{+\\infty}f''\\,dx+a\\int_0^{+\\infty}f'\\,dx+\\int_0^{+\\infty}f\\,dx=0$。\n特征方程 $r^2+ar+1=0$，$a>0\\Rightarrow$ 两根实部均为 $-a/2<0$，故 $x\\to+\\infty$ 时 $f(x)\\to0,\\ f'(x)\\to0$。\n于是 $\\int_0^{+\\infty}f''\\,dx=f'(\\infty)-f'(0)=-n$，$\\int_0^{+\\infty}f'\\,dx=f(\\infty)-f(0)=-m$。\n代入：$-n+a(-m)+\\int_0^{+\\infty}f\\,dx=0\\Rightarrow\\int_0^{+\\infty}f(x)\\,dx=am+n$。",
+    "keyTechnique": "反常积分 + 微分方程：不急着解 $f$，先对整条方程积分，用“稳定系统 $f,f'\\to0$”把边界项变成初值。判 $f\\to0$ 看特征根实部是否为负。",
+    "difficulty": "难",
+    "priority": "high"
+  },
+  {
+    "questionType": "填空题",
+    "problemSource": "2020数一真题",
+    "subject": "概率论",
+    "chapter": "第四章 随机变量的数字特征",
+    "title": "第14题 - 均匀分布求协方差",
+    "content": "设 $X$ 服从 $\\left(-\\dfrac{\\pi}{2},\\dfrac{\\pi}{2}\\right)$ 上的均匀分布，$Y=\\sin X$，则 $\\mathrm{Cov}(X,Y)=$ ______。",
+    "mistakeType": [
+      "概念不清",
+      "公式记忆不牢"
+    ],
+    "mistakeAnalysis": "协方差公式与“连续型随机变量函数的期望”积分公式记不牢：$\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)$，而 $E[g(X)]=\\int g(x)f(x)dx$ 是必须能默写的底层工具。",
+    "correctSolution": "答案 $\\dfrac{2}{\\pi}$。\n$X\\sim U(-\\pi/2,\\pi/2)$，密度 $f(x)=\\dfrac1\\pi$。由对称性 $E(X)=0$。\n$\\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)=E(X\\sin X)-0=E(X\\sin X)$。\n$E(X\\sin X)=\\dfrac1\\pi\\int_{-\\pi/2}^{\\pi/2}x\\sin x\\,dx$，被积函数为偶函数 $=\\dfrac{2}{\\pi}\\int_0^{\\pi/2}x\\sin x\\,dx$。\n$\\int x\\sin x\\,dx=-x\\cos x+\\sin x$，代 $0\\to\\pi/2$ 得 $1$。故 $\\mathrm{Cov}=\\dfrac{2}{\\pi}$。",
+    "keyTechnique": "协方差先化 $E(XY)-E(X)E(Y)$，遇对称区间先判奇偶把 $E(X)$ 归零；$x\\sin x$ 是偶函数，分部积分 $-x\\cos x+\\sin x$ 要熟。",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第十章 曲线积分与曲面积分",
+    "title": "第16题 - 含奇点闭曲线积分(挖洞法)",
+    "content": "（本题满分 10 分）计算曲线积分 $I=\\oint_L\\dfrac{4x-y}{4x^2+y^2}\\,dx+\\dfrac{x+y}{4x^2+y^2}\\,dy$，其中 $L$ 是 $x^2+y^2=2$，方向为逆时针方向。",
+    "mistakeType": [
+      "概念不清",
+      "方法不当"
+    ],
+    "mistakeAnalysis": "挖洞的形状有问题：奇点在原点，分母是 $4x^2+y^2$，应挖与分母同族的椭圆 $4x^2+y^2=\\varepsilon^2$，而不是随手挖小圆 $x^2+y^2=\\varepsilon^2$；挖错形状后面积因子对不上，算不出干净的 $\\pi$。",
+    "correctSolution": "答案 $I=\\pi$。\n记 $P=\\frac{4x-y}{D},\\,Q=\\frac{x+y}{D},\\,D=4x^2+y^2$。原点外可验证 $\\frac{\\partial Q}{\\partial x}=\\frac{\\partial P}{\\partial y}=\\frac{-4x^2+y^2-8xy}{D^2}$，故在奇点外为闭形式，用同伦(挖洞)把 $L$ 换成椭圆 $E:4x^2+y^2=\\varepsilon^2$（逆时针）。\n拆分子：$(4x-y)dx+(x+y)dy=(4x\\,dx+y\\,dy)+(x\\,dy-y\\,dx)$。\n因 $dD=8x\\,dx+2y\\,dy=2(4x\\,dx+y\\,dy)$，故 $\\oint_E\\frac{4x\\,dx+y\\,dy}{D}=\\oint_E\\frac{dD}{2D}=0$。\n剩下 $I=\\oint_E\\frac{x\\,dy-y\\,dx}{D}=\\frac{1}{\\varepsilon^2}\\oint_E(x\\,dy-y\\,dx)=\\frac{1}{\\varepsilon^2}\\cdot 2S_E$。\n椭圆 $E$ 半轴 $a=\\varepsilon/2,\\,b=\\varepsilon$，面积 $S_E=\\pi a b=\\pi\\varepsilon^2/2$，故 $I=\\frac{1}{\\varepsilon^2}\\cdot\\pi\\varepsilon^2=\\pi$。",
+    "keyTechnique": "格林公式失效(有奇点)时挖洞：洞的曲线要选与分母二次型同族(此处椭圆 $4x^2+y^2=\\varepsilon^2$)才能把分母提成常数。$\\oint(x\\,dy-y\\,dx)=2S$ 是把线积分转成面积的固定桥梁。",
+    "difficulty": "难",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第十二章 无穷级数",
+    "title": "第17题 - 幂级数求和函数(结合微分方程)",
+    "content": "（本题满分 10 分）设数列 $\\{a_n\\}$ 满足 $a_1=1$，$(n+1)a_{n+1}=\\left(n+\\dfrac12\\right)a_n$，证明：当 $|x|<1$ 时幂级数 $\\displaystyle\\sum_{n=1}^{\\infty}a_nx^n$ 收敛，并求其和函数。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "没见过“求和函数”能和微分方程结合：把递推式两边乘 $x^n$ 求和，会把 $S(x)$ 与 $S'(x)$ 拼成一阶线性 ODE，初值 $S(0)=0$ 定常数，这一步想不到。",
+    "correctSolution": "答案 $S(x)=\\dfrac{2}{\\sqrt{1-x}}-2\\ (|x|<1)$。\n收敛性：$\\dfrac{a_{n+1}}{a_n}=\\dfrac{n+1/2}{n+1}\\to1$，故 $R=1$，$|x|<1$ 收敛。\n设 $S(x)=\\sum_{n=1}^{\\infty}a_nx^n$，$S(0)=0$。递推式两边乘 $x^n$ 从 $n=1$ 求和：\n左 $=\\sum(n+1)a_{n+1}x^n=\\dfrac{d}{dx}\\sum a_{n+1}x^{n+1}=\\dfrac{d}{dx}(S-a_1x)=S'-1$；\n右 $=\\sum(n+\\tfrac12)a_nx^n=xS'+\\tfrac12 S$。\n得 $S'-1=xS'+\\tfrac12S\\Rightarrow(1-x)S'=1+\\tfrac12S\\Rightarrow\\dfrac{dS}{S+2}=\\dfrac{dx}{2(1-x)}$。\n积分 $\\ln(S+2)=-\\tfrac12\\ln(1-x)+C$，代 $S(0)=0$ 得 $C=\\ln2$，故 $S+2=2(1-x)^{-1/2}$，$S=\\dfrac{2}{\\sqrt{1-x}}-2$。\n验证：展开 $=x+\\tfrac34x^2+\\cdots$，$a_1=1,\\,a_2=3/4$ 与递推吻合。",
+    "keyTechnique": "求和函数遇到系数递推：两边乘 $x^n$ 求和，$\\sum(n+1)a_{n+1}x^n$ 凑成 $S'$，得到关于 $S,S'$ 的一阶线性 ODE，用 $S(0)$ 定常数。",
+    "difficulty": "难",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第十章 曲线积分与曲面积分",
+    "title": "第18题 - 第二类曲面积分(合一投影法)",
+    "content": "（本题满分 10 分）设 $\\Sigma$ 为曲面 $z=\\sqrt{x^2+y^2}\\ (1\\le x^2+y^2\\le4)$ 的下侧，$f(x)$ 是连续函数，计算\n$I=\\displaystyle\\iint_{\\Sigma}\\left[xf(xy)+2x-y\\right]dydz+\\left[yf(xy)+2y+x\\right]dzdx+\\left[zf(xy)+z\\right]dxdy$。",
+    "mistakeType": [
+      "方法不当"
+    ],
+    "mistakeAnalysis": "合一投影法标准例题：$\\Sigma$ 是开曲面(圆台侧面)，高斯公式条件不满足(不封闭，补盖会引入难算项)，正解是用 $z=z(x,y)$ 把三类投影合成一个二重积分(合一投影法)，而不是硬套高斯公式。",
+    "correctSolution": "答案 $I=\\dfrac{14\\pi}{3}$。\n合一投影法：$\\Sigma:z=\\sqrt{x^2+y^2}$ 取下侧，$z_x=\\frac{x}{z},\\,z_y=\\frac{y}{z}$，投影域 $D:1\\le x^2+y^2\\le4$。\n下侧公式 $I=\\iint_D\\left[P z_x+Q z_y-R\\right]dxdy$，其中 $P=xf+2x-y,\\,Q=yf+2y+x,\\,R=zf+z$，$f=f(xy)$。\n含 $f$ 项：$f\\left(x\\cdot\\frac{x}{z}+y\\cdot\\frac{y}{z}-z\\right)=f\\cdot\\frac{x^2+y^2}{z}-fz=fz-fz=0$，与任意 $f$ 无关，全部抵消。\n剩余：$(2x-y)\\frac{x}{z}+(2y+x)\\frac{y}{z}-z=\\frac{2x^2+2y^2}{z}-z=\\frac{2z^2}{z}-z=z=\\sqrt{x^2+y^2}$。\n故 $I=\\iint_D\\sqrt{x^2+y^2}\\,dxdy=\\int_0^{2\\pi}\\!\\!\\int_1^2 r\\cdot r\\,dr\\,d\\theta=2\\pi\\cdot\\frac{7}{3}=\\frac{14\\pi}{3}$。",
+    "keyTechnique": "合一投影法：开曲面 + 含任意函数时用 $z=z(x,y)$ 统一投到 $xOy$，$\\iint_\\Sigma P\\,dydz+Q\\,dzdx+R\\,dxdy=\\pm\\iint_D(-Pz_x-Qz_y+R)\\,dxdy$(上侧取正，下侧变号)。题里塞一个任意连续函数 $f$ 是提示“含 $f$ 的项会抵消”。",
+    "difficulty": "难",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "高等数学",
+    "chapter": "第三章 微分中值定理",
+    "title": "第19题 - 中值定理与最大模估计",
+    "content": "（数1数3，本题满分 10 分）设函数 $f(x)$ 在区间 $[0,2]$ 具有连续导数，$f(0)=f(2)=0$，$M=\\max\\limits_{x\\in[0,2]}\\{|f(x)|\\}$，证明：\n(I) 存在 $\\xi\\in(0,2)$ 使得 $|f'(\\xi)|\\ge M$；\n(II) 若对任意的 $x\\in(0,2)$，$|f'(x)|\\le M$，则 $M=0$。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "过难，暂时不看：(I) 在最大值点分两段用拉格朗日中值定理，靠 $c$ 与 $2-c$ 至少一个 $\\le1$ 取到 $\\ge M$；(II) 用 $f'$ 连续 + 积分取等的夹逼逼出 $f'(1)$ 同时等于 $M$ 和 $-M$。思路链条长，先标待复习。",
+    "correctSolution": "(I) 设 $|f(c)|=M$（$M=0$ 时平凡成立；$M>0$ 时由 $f(0)=f(2)=0$ 知 $c\\in(0,2)$）。不妨 $f(c)=M>0$。\n在 $[0,c]$ 用拉格朗日中值定理：$\\exists\\xi_1,\\ f'(\\xi_1)=\\frac{M-0}{c}=\\frac{M}{c}$；在 $[c,2]$：$\\exists\\xi_2,\\ f'(\\xi_2)=\\frac{0-M}{2-c}=-\\frac{M}{2-c}$。\n$c$ 与 $2-c$ 中必有一个 $\\le1$，故 $\\max(|f'(\\xi_1)|,|f'(\\xi_2)|)=M\\max(1/c,1/(2-c))\\ge M$，取该点即 $\\xi$。\n(II) 若处处 $|f'|\\le M$，由(I)分析须 $c\\ge1$ 且 $2-c\\ge1$，得 $c=1$，$f(1)=M$。\n$\\int_0^1 f'\\,dx=f(1)-f(0)=M$，而 $f'\\le|f'|\\le M$，$\\int_0^1 f'\\le M$，取等且 $f'$ 连续 $\\Rightarrow f'\\equiv M$ 于 $[0,1]$，故 $f'(1^-)=M$。\n$\\int_1^2 f'\\,dx=f(2)-f(1)=-M$，而 $f'\\ge-|f'|\\ge-M$，取等 $\\Rightarrow f'\\equiv-M$ 于 $[1,2]$，故 $f'(1^+)=-M$。\n$f'$ 连续 $\\Rightarrow f'(1^-)=f'(1^+)\\Rightarrow M=-M\\Rightarrow M=0$。",
+    "keyTechnique": "最大值点分段套拉格朗日中值定理是处理 $M=\\max|f|$ 的固定起手；(II) 用“积分取到上/下界 + 被积函数连续 ⟹ 恒等于该界”把导数钉成常数，再用连续性在拼接点逼出矛盾。",
+    "difficulty": "难",
+    "priority": "low"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "线性代数",
+    "chapter": "第五章 二次型",
+    "title": "第20题 - 正交变换下二次型反求参数与Q",
+    "content": "（数1数3，本题满分 11 分）设二次型 $f(x_1,x_2)=x_1^2-4x_1x_2+4x_2^2$ 经正交变换 $\\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}=Q\\begin{pmatrix}y_1\\\\y_2\\end{pmatrix}$ 化为二次型 $g(y_1,y_2)=ay_1^2+4y_1y_2+by_2^2$，其中 $a\\ge b$。\n(I) 求 $a,b$ 的值；\n(II) 求正交矩阵 $Q$。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "看不懂第二小问是什么思路，这类题总是没有思路：正交变换 $x=Qy$ 意味着两矩阵既合同又相似($Q^TAQ=B,\\ Q$ 正交)，故特征值相同；(I) 靠特征值不变定 $a,b$，(II) 靠“把两组特征向量按同一特征值配对”拼出 $Q$。",
+    "correctSolution": "$f$ 的矩阵 $A=\\begin{pmatrix}1&-2\\\\-2&4\\end{pmatrix}$，$g$ 的矩阵 $B=\\begin{pmatrix}a&2\\\\2&b\\end{pmatrix}$。\n(I) 正交变换保特征值。$\\mathrm{tr}A=5,\\ \\det A=0\\Rightarrow$ 特征值 $5,0$。由 $\\mathrm{tr}B=a+b=5,\\ \\det B=ab-4=0\\Rightarrow ab=4$，解得 $\\{a,b\\}=\\{1,4\\}$，$a\\ge b\\Rightarrow a=4,\\ b=1$。\n(II) $A$：$\\lambda=5\\to(1,-2)^T$，$\\lambda=0\\to(2,1)^T$；单位化按 $5,0$ 排 $P_1=\\frac1{\\sqrt5}\\begin{pmatrix}1&2\\\\-2&1\\end{pmatrix}$。\n$B=\\begin{pmatrix}4&2\\\\2&1\\end{pmatrix}$：$\\lambda=5\\to(2,1)^T$，$\\lambda=0\\to(1,-2)^T$；$P_2=\\frac1{\\sqrt5}\\begin{pmatrix}2&1\\\\1&-2\\end{pmatrix}$。\n取 $Q=P_1P_2^T=\\dfrac15\\begin{pmatrix}4&-3\\\\-3&-4\\end{pmatrix}$，可验证 $Q^TAQ=B$。\n（$Q$ 不唯一，各特征向量可反号，只要按同一特征值配对即可。）",
+    "keyTechnique": "“经正交变换化为”五字诀：正交变换 = 既合同又相似 → 特征值不变，先用迹与行列式定参数；求 $Q$ 就是 $A,B$ 分别求正交特征向量、按相同特征值对齐列，$Q=P_1P_2^T$。",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "线性代数",
+    "chapter": "第五章 矩阵的特征值与相似对角化",
+    "title": "第21题 - 由(A,Aα)构造过渡矩阵求P⁻¹AP",
+    "content": "（数1数3第21题 / 数2第23题，本题满分 11 分）设 $A$ 为 2 阶矩阵，$P=(\\alpha, A\\alpha)$，其中 $\\alpha$ 是非零向量且不是 $A$ 的特征向量。\n(I) 证明 $P$ 为可逆矩阵；\n(II) 若 $A^2\\alpha+A\\alpha-6\\alpha=0$，求 $P^{-1}AP$，并判断 $A$ 是否相似于对角矩阵。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "巧妙，我需要多练：(I) 用“若线性相关则 $\\alpha$ 反成特征向量”的逆否；(II) 不要求出 $A$，而是直接算 $AP=(A\\alpha,A^2\\alpha)$ 并把两列用 $P$ 的列 $(\\alpha,A\\alpha)$ 线性表出，系数矩阵即 $P^{-1}AP$。",
+    "correctSolution": "(I) 设 $k_1\\alpha+k_2A\\alpha=0$。若 $k_2\\ne0$，则 $A\\alpha=-\\frac{k_1}{k_2}\\alpha$，$\\alpha$ 成特征向量，矛盾；故 $k_2=0$，进而 $k_1\\alpha=0\\Rightarrow k_1=0$。$\\alpha,A\\alpha$ 线性无关，$P$ 可逆。\n(II) 由条件 $A^2\\alpha=-A\\alpha+6\\alpha$。\n$AP=A(\\alpha,A\\alpha)=(A\\alpha,A^2\\alpha)=(A\\alpha,\\ 6\\alpha-A\\alpha)$。\n用 $P=(\\alpha,A\\alpha)$ 的列表示：第 1 列 $A\\alpha=0\\cdot\\alpha+1\\cdot A\\alpha$，第 2 列 $6\\alpha-A\\alpha=6\\cdot\\alpha+(-1)\\cdot A\\alpha$。\n故 $AP=P\\begin{pmatrix}0&6\\\\1&-1\\end{pmatrix}$，即 $P^{-1}AP=\\begin{pmatrix}0&6\\\\1&-1\\end{pmatrix}=B$。\n$B$ 的特征多项式 $\\lambda^2+\\lambda-6=(\\lambda+3)(\\lambda-2)$，特征值 $-3,2$ 互异 $\\Rightarrow B$ 可对角化 $\\Rightarrow A$ 相似于对角矩阵。",
+    "keyTechnique": "“$P=(\\alpha,A\\alpha)$ 型”求 $P^{-1}AP$ 的通用招：算 $AP$，把 $AP$ 的每一列按 $P$ 的列线性表出，系数按列排成矩阵即所求，全程不必知道 $A$。判对角化看这个块矩阵特征值是否互异。",
+    "difficulty": "中等",
+    "priority": "high"
+  },
+  {
+    "questionType": "解答题",
+    "problemSource": "2020数一真题",
+    "subject": "概率论",
+    "chapter": "第二章 多维随机变量及其分布",
+    "title": "第22题 - 全概率求二维分布函数",
+    "content": "（数1，本题满分 11 分）设随机变量 $X_1,X_2,X_3$ 相互独立，其中 $X_1$ 与 $X_2$ 均服从标准正态分布，$X_3$ 的概率分布为 $P\\{X_3=0\\}=P\\{X_3=1\\}=\\dfrac12$，$Y=X_3X_1+(1-X_3)X_2$。\n(I) 求二维随机变量 $(X_1,Y)$ 的分布函数，结果用标准正态分布函数 $\\Phi(x)$ 表示；\n(II) 证明随机变量 $Y$ 服从标准正态分布。",
+    "mistakeType": [
+      "思路错误"
+    ],
+    "mistakeAnalysis": "好题，要多练：$Y$ 是“由离散 $X_3$ 在 $X_1,X_2$ 之间二选一”的分段结构，求分布函数要先对 $X_3$ 用全概率公式分情形，再各自利用独立性化简。",
+    "correctSolution": "(I) $F(x,y)=P(X_1\\le x,\\ Y\\le y)$，对 $X_3$ 全概率分解。\n$X_3=1$ 时 $Y=X_1$：$P(X_1\\le x,X_1\\le y)=P(X_1\\le\\min(x,y))=\\Phi(\\min(x,y))$。\n$X_3=0$ 时 $Y=X_2$，与 $X_1$ 独立：$P(X_1\\le x)P(X_2\\le y)=\\Phi(x)\\Phi(y)$。\n故 $F(x,y)=\\dfrac12\\Phi(\\min(x,y))+\\dfrac12\\Phi(x)\\Phi(y)$。\n(II) $P(Y\\le y)=\\dfrac12P(Y\\le y\\mid X_3=1)+\\dfrac12P(Y\\le y\\mid X_3=0)=\\dfrac12P(X_1\\le y)+\\dfrac12P(X_2\\le y)=\\dfrac12\\Phi(y)+\\dfrac12\\Phi(y)=\\Phi(y)$。\n故 $Y$ 的分布函数即 $\\Phi(y)$，$Y\\sim N(0,1)$。",
+    "keyTechnique": "混合/分段型随机变量($X_3$ 挑 $X_1$ 还是 $X_2$)一律先对离散量全概率分解；条件里善用独立性把联合概率拆成边缘乘积，$\\min(x,y)$ 来自两个同变量事件取交。",
+    "difficulty": "难",
+    "priority": "high"
+  }
+]

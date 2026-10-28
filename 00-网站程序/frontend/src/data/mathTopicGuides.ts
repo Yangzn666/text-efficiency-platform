@@ -10,12 +10,26 @@ export interface TopicGuideItem {
   tip?: string
 }
 
+// 决策树节点：q=问题 · cat=分类(继续往下) · leaf=结论叶子(该用的公式)
+// depth 控制缩进层级；leaf 的 color 取 blue/green/gold/red/purple
+export interface TreeRow {
+  kind: 'q' | 'cat' | 'leaf'
+  depth: number
+  text?: string   // q 节点的问题文字
+  cond?: string   // cat/leaf 节点左侧的条件标签(可含 $..$ 公式)
+  hint?: string   // cat 节点的向下提示
+  title?: string  // leaf 结论标题
+  note?: string   // leaf 补充说明(可含公式)
+  color?: string  // leaf 配色
+}
+
 export interface TopicGuide {
   id: string
   head: string
   note: string
   intro: string
   items: TopicGuideItem[]
+  tree?: TreeRow[]   // 若提供，则在该指南顶部渲染可视化决策树
 }
 
 export const MATH_TOPIC_GUIDES: TopicGuide[] = [
@@ -24,6 +38,25 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '高数第18讲 · 题型识别决策树',
     note: '多元函数积分学 · 数一专属',
     intro: '曲线曲面积分是数一专属难点，核心心法是"先识别、再选公式、最后算"。看到题先问三件事：①平面还是空间？②曲线闭合吗、曲面封闭吗？③是对弧长/面积(第一型，无方向)还是对坐标(第二型，有方向)？三个问题答完，用哪个公式基本就定了。',
+    tree: [
+      { kind: 'q', depth: 0, text: '第一步 · 积分对象是什么？' },
+      { kind: 'leaf', depth: 1, cond: '区域 Ω', title: '三重积分 $\\iiint_\\Omega f\\,dV$', note: '投影法/截面法；先想对称性+奇偶', color: 'blue' },
+      { kind: 'cat', depth: 1, cond: '曲线 L', hint: '往下走' },
+      { kind: 'q', depth: 2, text: '第二步 · 带 $ds$ 还是 $Pdx+Qdy$？' },
+      { kind: 'leaf', depth: 3, cond: '$ds$ 对弧长', title: '第一型曲线积分', note: '无方向；参数化代 $ds=\\sqrt{x\'^2+y\'^2}\\,dt$', color: 'green' },
+      { kind: 'cat', depth: 3, cond: '对坐标', hint: '有方向 · 往下走' },
+      { kind: 'q', depth: 4, text: '第三步 · 平面还是空间？闭合吗？' },
+      { kind: 'leaf', depth: 5, cond: '平面·闭合', title: '格林公式', note: '$\\oint_L=\\iint_D(Q_x-P_y)\\,dσ$，正向逆时针', color: 'gold' },
+      { kind: 'leaf', depth: 5, cond: '平面·不闭合', title: '补线 / 路径无关', note: '补成闭合用格林；或 $Q_x=P_y$ 换简单路径', color: 'gold' },
+      { kind: 'leaf', depth: 5, cond: '空间·闭合', title: '斯托克斯公式', note: '$\\oint_\\Gamma=\\iint_\\Sigma(\\mathrm{curl})\\cdot dS$，右手定侧', color: 'purple' },
+      { kind: 'cat', depth: 1, cond: '曲面 Σ', hint: '往下走' },
+      { kind: 'q', depth: 2, text: '第二步 · 带 $dS$ 还是 $dxdy$？' },
+      { kind: 'leaf', depth: 3, cond: '$dS$ 对面积', title: '第一型曲面积分', note: '无侧；投影代 $dS=\\sqrt{1+z_x^2+z_y^2}\\,dxdy$', color: 'green' },
+      { kind: 'cat', depth: 3, cond: '对坐标', hint: '有侧 · 往下走' },
+      { kind: 'q', depth: 4, text: '第三步 · 曲面封闭吗？' },
+      { kind: 'leaf', depth: 5, cond: '封闭曲面', title: '高斯公式', note: '$\\oiint_\\Sigma=\\iiint_\\Omega(P_x+Q_y+R_z)\\,dV$，外侧为正', color: 'red' },
+      { kind: 'leaf', depth: 5, cond: '不封闭', title: '补面法', note: '补一面成封闭用高斯，再减去补的面', color: 'red' },
+    ],
     items: [
       {
         icon: '🧊', title: '三重积分 $\\iiint_\\Omega f\\,dV$', tag: '空间区域上的体积分',
@@ -115,6 +148,93 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '概率论第三章 · 随机变量函数的分布',
     note: '二维连续型 · Z=g(X,Y) 题型决策树',
     intro: '已知 $(X,Y)$ 联合密度 $f(x,y)$，求 $Z=g(X,Y)$ 的分布。通法是分布函数法：$F_Z(z)=P(g(X,Y)\\leq z)=\\iint_{g(x,y)\\leq z}f(x,y)dxdy$，先画积分区域，再做二重积分，最后对 $z$ 求导得 $f_Z(z)$。不同 $g$ 形式有各自的简化公式和区域划分技巧。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "第一步 · $Z=g(X,Y)$ 是什么形式？"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "$Z=\\max(X,Y)$ 或 $Z=\\min(X,Y)$",
+        "hint": "分布函数法最快"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "$\\max$ · 独立同分布",
+        "title": "$F_Z(z)=[F(z)]^n$，$f_Z=n[F]^{n-1}f$",
+        "note": "$\\max\\le z$ 即每一个都 $\\le z$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "$\\min$ · 独立同分布",
+        "title": "$F_Z(z)=1-[1-F(z)]^n$，$f_Z=n[1-F]^{n-1}f$",
+        "note": "对立事件：$\\min>z$ 即全 $>z$；指数 $\\min$ 仍为指数"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "不独立 / 二维",
+        "title": "$F_{\\max}=F_{X,Y}(z,z)$，$F_{\\min}=F_X+F_Y-F_{X,Y}(z,z)$",
+        "note": "回到联合分布函数在角点求值"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "$Z=X+Y$",
+        "hint": "往下看是否独立"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "$X,Y$ 独立吗？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "独立",
+        "title": "卷积 $f_Z(z)=\\int f_X(x)f_Y(z-x)dx$",
+        "note": "积分限是两支撑集交集，最易错"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "独立 · 常见组合",
+        "title": "均匀+均匀=三角，正态+正态=正态",
+        "note": "和的均值、方差直接相加"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "不独立",
+        "title": "分布函数法 $F_Z=\\iint_{x+y\\le z}f(x,y)dxdy$",
+        "note": "画 $x+y=z$ 直线下侧区域再对 $z$ 求导"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "$Z=XY$",
+        "title": "按 $x$ 正负分段：$f_Z=\\int f(x,z/x)\\dfrac{1}{|x|}dx$",
+        "note": "$x<0$ 不等号翻转；$1/|x|$ 来自雅可比"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "$Z=X/Y$",
+        "title": "按 $y$ 正负分段：$f_Z=\\int |y|f(zy,y)dy$",
+        "note": "$y=0$ 是奇点；$Y$ 恒正可去绝对值"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "其它 / 拿不准",
+        "title": "通法：画区域 → 二重积分 → 求导",
+        "note": "$F_Z(z)=P(g\\le z)=\\iint_{g\\le z}f\\,dxdy$，$f_Z=F_Z'$"
+      }
+    ],
     items: [
       {
         icon: '📋', title: '分布函数法 · 通法框架', tag: '所有 $Z=g(X,Y)$ 通用',
@@ -183,6 +303,83 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '级数收敛性判定 · 反例积累与决策树',
     note: '数一高频 · 选择填空大题均考',
     intro: '级数收敛性判定是数一必考点，核心是"先判绝对收敛→再判条件收敛→最后判发散"。关键不是背判别法，而是积累反例：知道什么情况下哪个判别法失效，才能快速选对工具。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "第一步 · 通项趋于 $0$ 吗？看 $\\lim a_n$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "不趋于 $0$（$\\lim a_n\\neq 0$）",
+        "title": "发散（必要条件）",
+        "note": "通项不趋于 $0$，级数必发散。例 $\\sum(-1)^n\\frac{n}{n+1}$",
+        "color": "red"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "趋于 $0$（$\\lim a_n=0$）",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "第二步 · 是否正项级数？（$a_n>0$）"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "正项（$a_n>0$）",
+        "title": "比值 / 根值 / 比较 / 积分 / Raabe",
+        "note": "比值 $\\rho=\\lim\\frac{a_{n+1}}{a_n}$，根值 $\\rho=\\lim\\sqrt[n]{a_n}$，$\\rho<1$ 收敛。含 $n!$、$a^n$ 优先比值",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$\\rho=1$ 判别法失效",
+        "title": "换比较法或 Raabe",
+        "note": "以 $p$ 级数 $\\sum\\frac{1}{n^p}$ 作基准（$p>1$ 收敛）；Raabe $\\lim n(1-\\frac{a_{n+1}}{a_n})=r$，$r>1$ 收敛",
+        "color": "blue"
+      },
+      {
+        "kind": "cat",
+        "depth": 3,
+        "cond": "有正有负（交错 / 一般项）",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 4,
+        "text": "第三步 · 是否绝对收敛？先判 $\\sum|a_n|$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 5,
+        "cond": "$\\sum|a_n|$ 收敛",
+        "title": "绝对收敛",
+        "note": "绝对收敛必收敛且可任意重排。例 $\\sum\\frac{\\sin n}{n^2}$，由 $|\\frac{\\sin n}{n^2}|\\le\\frac{1}{n^2}$ 比较法",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 5,
+        "cond": "$\\sum|a_n|$ 发散 但 $\\sum a_n$ 收敛",
+        "title": "条件收敛（Leibniz）",
+        "note": "$a_n$ 单调递减趋于 $0$ 则 $\\sum(-1)^n a_n$ 收敛。例 $\\sum\\frac{(-1)^n}{\\sqrt{n}}$、$\\sum\\frac{(-1)^n}{n}$",
+        "color": "gold"
+      },
+      {
+        "kind": "leaf",
+        "depth": 5,
+        "cond": "一般项（非正项、非标准交错）",
+        "title": "拆实虚部 / Dirichlet·Abel",
+        "note": "$\\sum a_n b_n$，若 $a_n$ 单调趋于 $0$、$\\sum b_n$ 部分和有界，则收敛（Dirichlet）",
+        "color": "purple"
+      }
+    ],
     items: [
       {
         icon: '📊', title: '正项级数判别法选择', tag: '第一步：是否正项',
@@ -234,6 +431,93 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '二阶常系数线性微分方程 · 通法与公式',
     note: '高数核心 · 大题高频',
     intro: '二阶常系数线性微分方程 $y\'\'+py\'+qy=f(x)$ 的求解分两步：先求齐次通解(特征方程)，再求非齐次特解(待定系数法)。你的问题是步骤不清晰、公式记不清——把下面这个流程背熟，所有题都走这个框架。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "解 $y''+py'+qy=f(x)$ 第一步：齐次还是非齐次？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "齐次：$f(x)=0$",
+        "title": "特征方程求根写通解",
+        "note": "写 $r^2+pr+q=0$，求根 $r_1,r_2$，按根的类型直接写齐次通解 $Y$。",
+        "color": "blue"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "非齐次：$f(x)\\neq 0$",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "先定特征根类型，写出齐次通解 $Y$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "两不等实根 $r_1\\neq r_2$",
+        "title": "指数型通解",
+        "note": "$Y=C_1e^{r_1x}+C_2e^{r_2x}$。",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "重根 $r_1=r_2=r$",
+        "title": "乘 $x$ 型通解",
+        "note": "$Y=(C_1+C_2x)e^{rx}$。",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "共轭复根 $r=\\alpha\\pm\\beta i$",
+        "title": "指数×三角通解",
+        "note": "$Y=e^{\\alpha x}(C_1\\cos\\beta x+C_2\\sin\\beta x)$，$\\alpha$ 是指数部分，$\\beta$ 是三角频率别搞反。",
+        "color": "gold"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "再看 $f(x)$ 是什么型，用待定系数法设特解 $y^*$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$f(x)=P_m(x)e^{\\lambda x}$ 多项式×指数",
+        "title": "设 $x^kQ_m(x)e^{\\lambda x}$",
+        "note": "设 $y^*=x^kQ_m(x)e^{\\lambda x}$，$Q_m$ 是与 $P_m$ 同次的待定多项式。",
+        "color": "purple"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$f(x)=e^{\\alpha x}[P_m\\cos\\beta x+P_n\\sin\\beta x]$ 三角型",
+        "title": "设含 $\\cos,\\sin$ 的特解",
+        "note": "设 $y^*=x^ke^{\\alpha x}[R_l\\cos\\beta x+S_l\\sin\\beta x]$，$l=\\max(m,n)$，$\\cos,\\sin$ 两项都要写。",
+        "color": "red"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "关键提醒：$k$ 的取值",
+        "title": "$k$ = 特征根重数",
+        "note": "$k$ 是 $\\lambda$（或 $\\alpha\\pm\\beta i$）作为特征方程根的重数：不是根 $k=0$，单根 $k=1$，重根 $k=2$。",
+        "color": "gold"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "收尾：代入比较系数",
+        "title": "合并得完整解",
+        "note": "把 $y^*$ 代入原方程比较系数定出待定项，最终 $y=Y+y^*$，最后再代初始条件求 $C_1,C_2$。",
+        "color": "blue"
+      }
+    ],
     items: [
       {
         icon: '🔑', title: '齐次方程通解 · 特征方程法', tag: '第一步：求齐次通解 $Y$',
@@ -334,6 +618,64 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '旋转体体积 · 公式与题型',
     note: '高数 · 数一数二均考',
     intro: '旋转体体积的核心是两个公式：圆盘法(切片法)和柱壳法。你的问题是公式记忆不清晰——把下面这两个公式的适用场景和推导逻辑搞清楚，所有旋转体体积题都能解。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "第一步 · 绕什么轴旋转？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "绕坐标轴 ($x$ 或 $y$ 轴)",
+        "title": "优先圆盘法 $V=\\pi\\int r^2\\,dx$",
+        "note": "旋转轴是坐标轴时最直接，半径 $r=f(x)$",
+        "color": "blue"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "绕平行于坐标轴的直线 / 曲线难解反函数",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "第二步 · 微元方向？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "垂直旋转轴",
+        "title": "圆盘法 (切片 $\\pi r^2\\,dx$)",
+        "note": "绕 $x$ 轴：$V=\\pi\\int_a^b[f(x)]^2dx$，切片厚 $dx$",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "平行旋转轴",
+        "title": "柱壳法 ($2\\pi r h\\,dx$)",
+        "note": "绕 $y$ 轴用 $x$ 积分：$V=2\\pi\\int_a^b x\\cdot f(x)dx$，免解反函数",
+        "color": "gold"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "两曲线围成",
+        "title": "外半径²−内半径² / 高度差",
+        "note": "圆盘：$V=\\pi\\int[f(x)^2-g(x)^2]dx$；柱壳取高度差 $h$",
+        "color": "purple"
+      },
+      {
+        "kind": "leaf",
+        "depth": 0,
+        "cond": "通用提醒",
+        "title": "先画草图 · 定积分限",
+        "note": "标出区域与旋转轴，积分限取交点坐标",
+        "color": "red"
+      }
+    ],
     items: [
       {
         icon: '', title: '圆盘法(切片法)', tag: '绕坐标轴旋转',
@@ -481,6 +823,96 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '线性方程组求解 · 通法与题型',
     note: '线性代数 · 核心方法 · 大题高频',
     intro: '线性方程组 $Ax=b$ 的求解是线性代数的核心方法，贯穿整个学科。核心流程是"初等行变换化行最简形→读解"。你的问题是解的结构容易混淆——齐次/非齐次、有解/无解、唯一解/无穷多解，先把判定条件背熟，再掌握通解写法，所有题都走这个框架。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "第一步 · 齐次 $Ax=0$ 还是非齐次 $Ax=b$？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "齐次 $Ax=0$",
+        "title": "永远有零解",
+        "note": "$r(A)=n$ 仅零解；$r(A)<n$ 有非零解，自由变量 $n-r(A)$ 个",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 2,
+        "cond": "求基础解系",
+        "title": "行最简形 + 自由变量取单位向量",
+        "note": "得线性无关的 $\\xi_1,\\cdots,\\xi_{n-r}$，通解 $x=k_1\\xi_1+\\cdots+k_{n-r}\\xi_{n-r}$",
+        "color": "green"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "非齐次 $Ax=b$",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "第二步 · 比较 $r(A)$ 与 $r(A,b)$"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$r(A)\\neq r(A,b)$",
+        "title": "无解",
+        "note": "增广矩阵秩更大，方程组矛盾",
+        "color": "red"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$r(A)=r(A,b)=n$",
+        "title": "唯一解",
+        "note": "无自由变量，恰有一组解",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$r(A)=r(A,b)<n$",
+        "title": "无穷多解",
+        "note": "自由变量 $n-r(A)$ 个",
+        "color": "gold"
+      },
+      {
+        "kind": "leaf",
+        "depth": 4,
+        "cond": "无穷多解写法",
+        "title": "特解 $\\eta^*$ + 齐次通解",
+        "note": "$x=\\eta^*+k_1\\xi_1+\\cdots+k_{n-r}\\xi_{n-r}$",
+        "color": "purple"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "方阵特例 $m=n$",
+        "title": "$|A|\\neq 0\\Leftrightarrow$ 唯一解",
+        "note": "$|A|\\neq 0\\Leftrightarrow r(A)=n$；$|A|=0\\Leftrightarrow r(A)<n$",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "含参数讨论",
+        "title": "先化阶梯形再按参数分类",
+        "note": "遇含参行勿除以 $a-1$，分 $a=1$ 与 $a\\neq 1$ 讨论",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "解的性质",
+        "title": "$\\eta_1-\\eta_2$ 是 $Ax=0$ 的解",
+        "note": "$\\eta^*$ 为 $Ax=b$ 解、$\\xi$ 为 $Ax=0$ 解 $\\Rightarrow$ $\\eta^*+\\xi$ 仍是 $Ax=b$ 的解",
+        "color": "purple"
+      }
+    ],
     items: [
       {
         icon: '🔍', title: '解的存在性判定 · 秩的条件', tag: '第一步：算秩判解',
@@ -861,6 +1293,72 @@ export const MATH_TOPIC_GUIDES: TopicGuide[] = [
     head: '极限 · 求和型极限三岔路',
     note: '数列极限 · 选择与解答高频入口',
     intro: '遇到 $\\lim\\limits_{n\\to\\infty}\\sum_{i=1}^{n}(\\cdots)$ 先别急着算，走"三岔路"判断走哪条道：① 能拆成 $n$ 项和、每项含 $\\frac{1}{n}$ 与 $\\frac{i}{n}$ → 凑定积分定义；② 夹在两个易求极限之间、或单调有界 → 夹逼／单调有界准则；③ 分母是最高次幂 $n^k$、分子是 $i$ 的多项和 → 用求和公式后"抓大头"。路认对了，动笔就快。',
+    tree: [
+      {
+        "kind": "q",
+        "depth": 0,
+        "text": "遇到 $\\lim\\limits_{n\\to\\infty}\\sum_{i=1}^{n}(\\cdots)$，先别动笔——这个和式极限走哪条路？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "能拆成 $\\frac{1}{n}\\sum f\\!\\left(\\frac{i}{n}\\right)$ 的形状",
+        "title": "凑定积分定义（首选通法）",
+        "note": "四步走：造 $\\frac{1}{n}$ → 认 $f$ 与区间（令 $\\frac{i}{n}\\to x\\in[0,1]$、$\\frac{1}{n}\\to dx$）→ 求和变积分。例 $\\sum\\frac{1}{n+i}=\\frac{1}{n}\\sum\\frac{1}{1+i/n}\\to\\int_0^1\\frac{dx}{1+x}=\\ln 2$",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "凑得出 $f$，但区间不是 $[0,1]$：$\\frac{1}{n}\\sum f\\!\\left(\\frac{ki}{n}\\right)$",
+        "title": "换元 $t=\\frac{ki}{n}$，补上系数 $\\frac{1}{k}$",
+        "note": "$\\frac{1}{n}\\sum f\\!\\left(\\frac{ki}{n}\\right)\\to\\frac{1}{k}\\int_0^k f(x)\\,dx$，最容易丢的就是前面的 $\\frac{1}{k}$",
+        "color": "blue"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "每项同结构，但写不出 $f\\!\\left(\\frac{i}{n}\\right)$",
+        "title": "夹逼准则：放大最大项、缩小最小项",
+        "note": "如 $\\sum\\frac{1}{\\sqrt{n^2+i}}$：$n\\cdot$(最小项)$\\le\\sum\\le n\\cdot$(最大项)，分母把 $i$ 换成 $1$ 或 $n$ 放缩，放掉的量必须是 $o(1)$，两端要收敛到同一个数",
+        "color": "green"
+      },
+      {
+        "kind": "leaf",
+        "depth": 1,
+        "cond": "分母是最高次幂 $n^k$，分子是 $i$ 的多项和",
+        "title": "求和公式 + 抓大头（同阶比系数）",
+        "note": "背熟 $\\sum i=\\frac{n(n+1)}{2}$、$\\sum i^2=\\frac{n(n+1)(2n+1)}{6}$、$\\sum i^3=\\left[\\frac{n(n+1)}{2}\\right]^2$；展开只留最高次项，$\\lim\\frac{\\sum i^2}{n^3}=\\lim\\frac{n^3/3}{n^3}=\\frac{1}{3}$。先定阶，别急着洛必达",
+        "color": "gold"
+      },
+      {
+        "kind": "cat",
+        "depth": 1,
+        "cond": "三条都对不上：递推 $x_{n+1}=f(x_n)$，或式中含 $n$ 次幂",
+        "hint": "往下走"
+      },
+      {
+        "kind": "q",
+        "depth": 2,
+        "text": "是递推数列，还是 $\\left(1+\\frac{k}{n}\\right)^{n}$ 这一族 $e$ 型？"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "递推 $x_{n+1}=f(x_n)$",
+        "title": "单调有界证存在，再解 $L=f(L)$",
+        "note": "单调性用作差 $x_{n+1}-x_n$ 或作比判定，必要时数学归纳法兜底；先确认极限存在，再对两边取极限解 $L=f(L)$，最后用初值定在哪一支——直接解可能出增根",
+        "color": "purple"
+      },
+      {
+        "kind": "leaf",
+        "depth": 3,
+        "cond": "$\\left(1+\\frac{k}{n}\\right)^{n}$ 族",
+        "title": "不用算，直接记 $e^k$",
+        "note": "$\\left(1+\\frac{1}{n}\\right)^n\\to e$、$\\left(1+\\frac{k}{n}\\right)^n\\to e^k$、$\\left(1+\\frac{1}{n}\\right)^{n^2}e^{-n}\\to e^{-1/2}$",
+        "color": "red"
+      }
+    ],
     items: [
       {
         icon: '🎯', title: '凑定积分定义四步（万能套路）', tag: '首选通法',
