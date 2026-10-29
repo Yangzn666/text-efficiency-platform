@@ -72,7 +72,7 @@ async function load() {
   const base = import.meta.env.BASE_URL || '/'
   try {
     const [rq, pq] = await Promise.all([
-      fetch(`${base}data/408-exam/questions.json?t=${Date.now()}`).then(r => (r.ok ? r.json() : null)).catch(() => null),
+      fetch(`${base}data/408-exam/questions.json`).then(r => (r.ok ? r.json() : null)).catch(() => null),
       fetch(`${base}data/408-exam/progress.json?t=${Date.now()}`).then(r => (r.ok ? r.json() : null)).catch(() => null),
     ])
     if (rq) items.value = rq.items || []

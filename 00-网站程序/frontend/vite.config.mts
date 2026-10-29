@@ -137,6 +137,34 @@ export default defineConfig(({ mode }) => {
             // 不预缓存，避免安装时后台下载用不到的年份数据拖慢手机端。
             '**/data/english/reading/index.json',
             '**/data/english/reading/by-year/*.json',
+            // —— 预缓存瘦身（2026-10-29 移动端提速）——
+            // 以下都是「进入某个页签才需要」的大文件，预缓存会让首装后台下载近 13MB，
+            // 手机端明显变慢。排除后交给下方 runtimeCaching(StaleWhileRevalidate)：
+            // 首次访问走网络拿一次，之后从 SW 缓存秒开，离线仍可用，功能不受影响。
+            // 入口 chunk 一律不动，只排除懒加载的子 chunk。
+            // 重数据
+            '**/data/english/intensive-reading.json',
+            '**/data/english/intensive-reading-analysis.json',
+            '**/data/english/translation-exams.json',
+            '**/data/english/translation-progress.json',
+            '**/data/408-exam/questions.json',
+            '**/data/408-exam/progress.json',
+            '**/data/408-exam/images/**',
+            // 大 chunk：画布渲染器 / 错题本 / 择校 / 判据种子词表 / 各科子页 / 思维导图视图
+            '**/installCanvasRenderer-*.js',
+            '**/WeakTermsView-*.js',
+            '**/weakTerms-*.js',
+            '**/politicsWrongSeed-*.js',
+            '**/UniversitiesView-*.js',
+            '**/WrongProblemsView-*.js',
+            '**/DSWrongProblems-*.js',
+            '**/OSWrongProblems-*.js',
+            '**/OSLearning-*.js',
+            '**/CS408View-*.js',
+            '**/StudyMethodsView-*.js',
+            // 静态资源目录：PDF / 讲义 HTML（下载型，按需拿）
+            '**/english-resources/**',
+            '**/methods/**',
             // share 模式追加：私有静态资源不预缓存（与构建后 dist 删除一致）
             ...shareGlobIgnores
           ],
@@ -165,7 +193,10 @@ export default defineConfig(({ mode }) => {
               handler: 'StaleWhileRevalidate',
               options: {
                 cacheName: 'static-resources',
-                expiration: { maxEntries: 120, maxAgeSeconds: 60 * 60 * 24 * 30 }
+                // 条目上限：预缓存瘦身后，原先 precache 的三十多个大 chunk / 题库 JSON
+                // 都改由本规则缓存。120 条在多页签来回浏览时会把刚存的大文件挤掉，
+                // 手机上变成反复重新下载 → 提到 400 条，保证「拿过一次就不再走网络」。
+                expiration: { maxEntries: 400, maxAgeSeconds: 60 * 60 * 24 * 30 }
               }
             }
           ]

@@ -2,7 +2,7 @@
 // 政治逻辑图谱 · mermaid 粗线大字关系图（辅助记忆：把"帽子—正解—干扰"的从属/并列关系画出来）
 // 所有映射均来自错题本订正（politicsWrongCause.TERM_CARDS / 新思想错题），不臆造考点。
 // 下钻：顶部总览图点板块名 → 钻到该板块详图。自测模式：模糊遮住正解帽子做主动回忆。
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, computed, reactive, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import type Mermaid from 'mermaid'
 
 interface Diagram { key: string; title: string; hook: string; def: string }
@@ -211,27 +211,118 @@ const getMermaid = async () => {
 const elMap = new Map<string, HTMLElement>()
 const setRef = (id: string) => (el: any) => { if (el) elMap.set(id, el as HTMLElement) }
 
+/* ===== 图形查看器（移动端适配核心）=====
+ * 痛点：mermaid 出图自然宽度常有 1200~1700px，手机上会横向溢出 → 图被"裁断"只剩左半。
+ * 方案：内联默认「适配屏宽」全览（scale=1 即容器 100% 宽，绝不溢出），
+ *       －/＋ 按倍数放大后可横向拖动；「1:1」恢复原始像素（字号最清晰）；
+ *       「⛶ 全屏」在浮层里以 1:1 显示，支持双指捏合缩放 + 拖动，横屏看整图最舒服。 */
+const svgHtml = reactive<Record<string, string>>({})
+const naturalW = reactive<Record<string, number>>({})
+const scale = reactive<Record<string, number>>({})
+const MIN_S = 1
+const MAX_S = 6
+
+// 1:1 所需的倍数 = 自然宽度 / 容器宽度
+const fitScaleOf = (key: string) => {
+  const w = elMap.get(key)?.clientWidth || 0
+  const nat = naturalW[key] || 0
+  return w && nat ? Math.max(1, nat / w) : 1
+}
+// 首次渲染的默认倍数：桌面全览即可看清；手机上全览会把 23px 字缩到 6px，
+// 所以默认直接给「能读清字」的档位（约 1:1 的 0.7 倍），想看全图点「适配屏宽」
+const defaultScaleFor = (key: string) => {
+  const fit = fitScaleOf(key)
+  if (window.innerWidth > 768) return 1
+  return Math.min(MAX_S, Math.max(1, Math.round(fit * 0.7 * 100) / 100))
+}
+const setScale = (key: string, v: number) => {
+  scale[key] = Math.min(MAX_S, Math.max(MIN_S, Math.round(v * 100) / 100))
+}
+const zoomBy = (key: string, step: number) => setScale(key, (scale[key] || 1) + step)
+const resetScale = (key: string) => setScale(key, 1)
+const actualScale = (key: string) => setScale(key, fitScaleOf(key))
+
+// 全屏浮层
+const fsKey = ref('')
+const fsScale = ref(1)
+const fsHost = ref<HTMLElement | null>(null)
+const fsTitle = computed(() => {
+  const d = [OVERVIEW, ...diagrams].find(x => x.key === fsKey.value)
+  return d ? d.title : ''
+})
+const openFs = (key: string) => {
+  fsKey.value = key
+  fsScale.value = fitScaleOf(key)
+  nextTick(bindDrill)
+}
+const closeFs = () => { fsKey.value = '' }
+const fsZoom = (step: number) => {
+  fsScale.value = Math.min(6, Math.max(0.4, Math.round((fsScale.value + step) * 100) / 100))
+}
+const fsActual = () => { fsScale.value = fitScaleOf(fsKey.value) }
+
+// 双指捏合缩放（浮层内）
+let pinchBase = 0
+let pinchScale0 = 1
+const onTouchStart = (e: TouchEvent) => {
+  if (e.touches.length === 2) {
+    pinchBase = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    )
+    pinchScale0 = fsScale.value
+  }
+}
+const onTouchMove = (e: TouchEvent) => {
+  if (e.touches.length === 2 && pinchBase > 0) {
+    const d = Math.hypot(
+      e.touches[0].clientX - e.touches[1].clientX,
+      e.touches[0].clientY - e.touches[1].clientY
+    )
+    fsScale.value = Math.min(6, Math.max(0.4, Math.round(pinchScale0 * (d / pinchBase) * 100) / 100))
+    e.preventDefault()
+  }
+}
+const onTouchEnd = () => { pinchBase = 0 }
+
+// 总览图下钻：mermaid `call` 回调在本版本不触发，渲染后手动绑定（内联 + 浮层两套 DOM 都绑）
+const bindDrill = () => {
+  const hosts: HTMLElement[] = []
+  const inline = elMap.get(OVERVIEW.key)
+  if (inline) hosts.push(inline)
+  if (fsHost.value) hosts.push(fsHost.value)
+  hosts.forEach(h => {
+    h.querySelectorAll<HTMLElement>('.node').forEach(n => {
+      const id = n.id || ''
+      const hub = Object.keys(HUB_TO_KEY).find(k => id.includes(`flowchart-${k}-`))
+      if (!hub) return
+      n.style.cursor = 'pointer'
+      n.onclick = () => {
+        closeFs()
+        drillTo(HUB_TO_KEY[hub])
+      }
+    })
+  })
+}
+
 const renderOne = async (d: Diagram) => {
   const el = elMap.get(d.key)
   if (!el) return
   try {
     const m = await getMermaid()
-    el.innerHTML = ''
     const { svg } = await m.render(`logic-${d.key}-${Date.now()}`, d.def)
-    el.innerHTML = svg
-    // 总览图：给板块节点绑定手动下钻（mermaid `call` 回调在本版本不触发）
-    if (d.key === OVERVIEW.key) {
-      el.querySelectorAll('.node').forEach(n => {
-        const id = n.id || ''
-        const hub = Object.keys(HUB_TO_KEY).find(k => id.includes(`flowchart-${k}-`))
-        if (hub) {
-          ;(n as HTMLElement).style.cursor = 'pointer'
-          n.addEventListener('click', () => drillTo(HUB_TO_KEY[hub]))
-        }
-      })
+    const first = scale[d.key] === undefined
+    svgHtml[d.key] = svg
+    await nextTick()
+    const svgEl = el.querySelector('svg')
+    if (svgEl) {
+      const vb = typeof svgEl.viewBox !== 'undefined' ? svgEl.viewBox?.baseVal : null
+      naturalW[d.key] = Math.round(vb && vb.width ? vb.width : svgEl.getBoundingClientRect().width)
     }
+    if (first) scale[d.key] = defaultScaleFor(d.key)
+    bindDrill()
   } catch (e) {
-    el.innerHTML = `<div class="lg-err">图渲染失败：${(e as Error).message}</div>`
+    svgHtml[d.key] = `<div class="lg-err">图渲染失败：${(e as Error).message}</div>`
   }
 }
 
@@ -247,7 +338,28 @@ async function onFilter(k: string) {
   await renderAll()
 }
 
-onMounted(renderAll)
+const onKeydown = (e: KeyboardEvent) => { if (e.key === 'Escape') closeFs() }
+watch(fsKey, async (k) => {
+  document.body.style.overflow = k ? 'hidden' : ''
+  if (!k) return
+  await nextTick()
+  bindDrill()
+  // mermaid 图水平居中，浮层默认停在最左会先看到一片空白 → 自动滚到中间
+  const box = fsHost.value
+  if (box) {
+    box.scrollTop = 0
+    box.scrollLeft = Math.max(0, (box.scrollWidth - box.clientWidth) / 2)
+  }
+})
+
+onMounted(() => {
+  renderAll()
+  window.addEventListener('keydown', onKeydown)
+})
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 </script>
 
 <template>
@@ -297,9 +409,49 @@ onMounted(renderAll)
           <span v-if="isHidden(d.key)" class="lg-reveal-hint">点卡片揭晓</span>
         </div>
         <p class="lg-hook">🧠 {{ d.hook }}</p>
-        <div class="lg-svg" :ref="setRef(d.key)"></div>
+
+        <!-- 图形查看器工具条：手机上靠它把 1200px+ 的图看全 / 看大 -->
+        <div class="lg-tools" @click.stop>
+          <button class="lg-tool" :disabled="(scale[d.key] || 1) <= MIN_S" @click.stop="zoomBy(d.key, -0.5)" title="缩小">－</button>
+          <span class="lg-zoom-num">{{ Math.round((scale[d.key] || 1) * 100) }}%</span>
+          <button class="lg-tool" :disabled="(scale[d.key] || 1) >= MAX_S" @click.stop="zoomBy(d.key, 0.5)" title="放大">＋</button>
+          <button class="lg-tool txt" @click.stop="resetScale(d.key)">适配屏宽</button>
+          <button class="lg-tool txt" @click.stop="actualScale(d.key)">1:1 原尺寸</button>
+          <button class="lg-tool fs" @click.stop="openFs(d.key)">⛶ 全屏放大</button>
+        </div>
+
+        <div class="lg-svg" :ref="setRef(d.key)">
+          <div class="lg-canvas" :style="{ width: (scale[d.key] || 1) * 100 + '%' }" v-html="svgHtml[d.key]"></div>
+        </div>
+        <p class="lg-svg-hint">放大后左右拖动看局部；手机上点「⛶ 全屏放大」再双指捏合，转横屏看整张最舒服</p>
       </section>
     </div>
+
+    <!-- 全屏查看器：1:1 原始像素出图（字号最清晰），双指缩放 + 拖动 -->
+    <Teleport to="body">
+      <div v-if="fsKey" class="lg-fs" @click.self="closeFs">
+        <div class="lg-fs-bar" @click.stop>
+          <strong class="lg-fs-title">{{ fsTitle }}</strong>
+          <div class="lg-fs-ctrl">
+            <button class="lg-tool" @click="fsZoom(-0.5)">－</button>
+            <span class="lg-zoom-num">{{ Math.round(fsScale * 100) }}%</span>
+            <button class="lg-tool" @click="fsZoom(0.5)">＋</button>
+            <button class="lg-tool txt" @click="fsActual">1:1</button>
+            <button class="lg-tool fs" @click="closeFs">✕ 关闭</button>
+          </div>
+        </div>
+        <div
+          ref="fsHost"
+          class="lg-fs-body"
+          @touchstart="onTouchStart"
+          @touchmove="onTouchMove"
+          @touchend="onTouchEnd"
+        >
+          <div class="lg-canvas" :style="{ width: fsScale * 100 + '%' }" v-html="svgHtml[fsKey]"></div>
+        </div>
+        <p class="lg-fs-hint">双指捏合缩放 · 单指拖动看局部 · 点空白处或按 Esc 关闭</p>
+      </div>
+    </Teleport>
 
     <p class="lg-foot">💡 看完图仍拿不准，去 <router-link to="/politics?tab=terms" class="lg-link">定位词速答</router-link> 翻牌自测，或到 <router-link to="/politics?tab=practice" class="lg-link">错题再练</router-link> 按错因回炉。</p>
   </div>
@@ -357,15 +509,56 @@ onMounted(renderAll)
 .lg-drill-hint { margin-left: auto; font-size: .8rem; font-weight: 700; color: #8a6100; background: #fdf1d6; border-radius: 6px; padding: 3px 10px; }
 .lg-reveal-hint { margin-left: auto; font-size: .8rem; font-weight: 700; color: var(--lg-coral); background: #fff1ee; border-radius: 6px; padding: 3px 10px; }
 .lg-hook { font-size: .92rem; line-height: 1.7; color: var(--lg-muted); margin: 10px 0 16px; background: var(--lg-soft); border-radius: 8px; padding: 10px 14px; }
-.lg-svg { overflow-x: auto; padding: 6px 2px; min-height: 60px; }
+/* ── 查看器容器：宽度锁死在卡片内，图在内部缩放/滚动，绝不把整页撑破 ── */
+.lg-list { min-width: 0; }
+.lg-card { min-width: 0; max-width: 100%; }
+.lg-svg {
+  overflow: auto;
+  max-width: 100%;
+  padding: 6px 2px;
+  min-height: 60px;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  overscroll-behavior: contain;
+  background: #fbfcfe;
+  border: 1px solid var(--lg-line);
+  border-radius: 10px;
+}
+.lg-canvas { min-width: 100%; }
 
-/* mermaid 标准：大字号 + 粗线条 + 居中消空白（注入 SVG 用 :deep 命中） */
-.lg-svg :deep(.edgePaths path.path) { stroke-width: 4.6px !important; }
-.lg-svg :deep(.edgePath path) { stroke-width: 4.6px !important; }
-.lg-svg :deep(.node rect), .lg-svg :deep(.node polygon), .lg-svg :deep(.node circle), .lg-svg :deep(.node path) { stroke-width: 3.4px !important; }
-.lg-svg :deep(.nodeLabel), .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 23px !important; font-weight: 800; line-height: 1.35; }
-.lg-svg :deep(.edgeLabel), .lg-svg :deep(.edgeLabel foreignObject div), .lg-svg :deep(.edgeLabel text) { font-size: 17px !important; font-weight: 700; color: var(--lg-coral); }
-.lg-svg :deep(svg) { max-width: none; display: block; margin: 0 auto; }
+/* 工具条 */
+.lg-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 4px 0 10px; }
+.lg-tool { min-width: 34px; height: 30px; padding: 0 10px; border: 1px solid var(--lg-line); background: #fff; color: var(--lg-navy); border-radius: 8px; font-size: .95rem; font-weight: 800; line-height: 1; cursor: pointer; }
+.lg-tool.txt { font-size: .8rem; font-weight: 700; color: var(--lg-muted); }
+.lg-tool.fs { font-size: .8rem; background: var(--lg-navy); color: #fff; border-color: var(--lg-navy); }
+.lg-tool:disabled { opacity: .38; cursor: not-allowed; }
+.lg-zoom-num { font-family: var(--font-mono); font-size: .8rem; color: var(--lg-muted); min-width: 44px; text-align: center; }
+.lg-svg-hint { margin: 8px 0 0; font-size: .76rem; color: #8fa3ba; line-height: 1.6; }
+
+/* mermaid 标准：大字号 + 粗线条（内联与全屏浮层都用 .lg-canvas 命中） */
+.lg-canvas :deep(svg) { width: 100%; height: auto; max-width: none; display: block; }
+/* mermaid v11 的连线实际是 <g class="edgePaths"><path class="…flowchart-link">，
+   没有 .path 类、也不是 .edgePath —— 旧选择器一条都不命中，线一直是默认 1px。 */
+.lg-canvas :deep(.edgePaths path),
+.lg-canvas :deep(path.flowchart-link),
+.lg-canvas :deep(path.link),
+.lg-canvas :deep(.edgePath path) { stroke-width: 4.6px !important; }
+.lg-canvas :deep(.node rect), .lg-canvas :deep(.node polygon), .lg-canvas :deep(.node circle), .lg-canvas :deep(.node path) { stroke-width: 3.4px !important; }
+/* 关键：SVG 被等比缩放时描边不跟着变细 —— 手机上「线太细」的主因 */
+.lg-canvas :deep(svg *) { vector-effect: non-scaling-stroke; }
+.lg-canvas :deep(.nodeLabel), .lg-canvas :deep(.node foreignObject div), .lg-canvas :deep(.node text) { font-size: 23px !important; font-weight: 800; line-height: 1.35; }
+.lg-canvas :deep(.edgeLabel), .lg-canvas :deep(.edgeLabel foreignObject div), .lg-canvas :deep(.edgeLabel text) { font-size: 17px !important; font-weight: 700; color: var(--lg-coral); }
+
+/* 全屏查看器 */
+.lg-fs { position: fixed; inset: 0; z-index: 3000; background: rgba(8, 17, 30, .95); display: flex; flex-direction: column; }
+.lg-fs-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+.lg-fs-title { color: #fff; font-size: 1rem; letter-spacing: .02em; }
+.lg-fs-ctrl { display: flex; align-items: center; gap: 8px; }
+.lg-fs-ctrl .lg-tool { background: rgba(255, 255, 255, .08); color: #fff; border-color: rgba(255, 255, 255, .2); }
+.lg-fs-ctrl .lg-tool.fs { background: var(--lg-coral); border-color: var(--lg-coral); }
+.lg-fs-ctrl .lg-zoom-num { color: #c6d6ec; }
+.lg-fs-body { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y pinch-zoom; padding: 16px; }
+.lg-fs-hint { margin: 0; padding: 10px 16px 16px; text-align: center; font-size: .78rem; color: #8fa3ba; }
 
 .lg-card.ans-hidden :deep(.node.ans) { filter: blur(12px); transition: filter .25s ease; }
 .lg-card:not(.ans-hidden) :deep(.node.ans) { filter: none; transition: filter .25s ease; }
@@ -375,7 +568,12 @@ onMounted(renderAll)
 .lg-foot { margin-top: 24px; font-size: .84rem; color: var(--lg-muted); }
 .lg-link { color: var(--lg-navy); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--lg-gold); }
 
+/* 移动端：字号不再降级（原来降到 18px 正是"字太小"的原因），只收紧留白 + 放大触控热区 */
 @media (max-width: 768px) {
-  .lg-svg :deep(.nodeLabel), .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 18px !important; }
+  .lg-hero { padding: 20px 18px; }
+  .lg-card { padding: 16px 14px; }
+  .lg-tool { height: 34px; min-width: 38px; }
+  .lg-svg-hint { font-size: .72rem; }
+  .lg-fs-body { padding: 10px; }
 }
 </style>

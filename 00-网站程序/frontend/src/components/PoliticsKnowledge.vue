@@ -36,7 +36,9 @@ const loadSection = async (id: string) => {
   }
   loading.value = true
   try {
-    const res = await fetch(`/data/politics/${section.file}.md`)
+    // 站点部署在 GitHub Pages 子路径（/text-efficiency-platform/）下，
+    // 绝对路径 /data/... 会打到域名根目录 → 线上必 404，必须拼 BASE_URL
+    const res = await fetch(`${import.meta.env.BASE_URL}data/politics/${section.file}.md`)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const text = await res.text()
     const html = md.render(text)

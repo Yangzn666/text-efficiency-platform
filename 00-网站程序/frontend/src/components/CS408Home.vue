@@ -142,7 +142,8 @@ async function load() {
   const dir = `${base}data/408-exam/`
   try {
     const [rq, pq] = await Promise.all([
-      fetch(`${dir}questions.json?t=${Date.now()}`).then(r => (r.ok ? r.json() : null)).catch(() => null),
+      // questions.json 是静态题库 → 不加 cache-buster，交给 SW 缓存（手机上省掉 700KB 重复下载）
+      fetch(`${dir}questions.json`).then(r => (r.ok ? r.json() : null)).catch(() => null),
       fetch(`${dir}progress.json?t=${Date.now()}`).then(r => (r.ok ? r.json() : null)).catch(() => null)
     ])
     if (rq?.items) items.value = rq.items

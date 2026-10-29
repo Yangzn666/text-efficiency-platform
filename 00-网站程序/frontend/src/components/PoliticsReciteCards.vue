@@ -34,7 +34,7 @@ const saveMastery = () => {
 onMounted(async () => {
   loadMastery()
   try {
-    const res = await fetch('/data/politics/recite-cards.json')
+    const res = await fetch(`${import.meta.env.BASE_URL}data/politics/recite-cards.json`)
     const data = await res.json()
     categories.value = data.categories
     cards.value = data.cards
