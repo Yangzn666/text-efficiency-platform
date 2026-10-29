@@ -1,18 +1,35 @@
 <script setup lang="ts">
 // 政治逻辑图谱 · mermaid 粗线大字关系图（辅助记忆：把"帽子—正解—干扰"的从属/并列关系画出来）
 // 所有映射均来自错题本订正（politicsWrongCause.TERM_CARDS / 新思想错题），不臆造考点。
-// 自测模式：把答案叶子节点(:::ans)模糊遮住，看着信号词主动回忆，点卡片揭晓。
+// 下钻：顶部总览图点板块名 → 钻到该板块详图。自测模式：模糊遮住正解帽子做主动回忆。
 import { ref, onMounted, nextTick } from 'vue'
 import type Mermaid from 'mermaid'
 
 interface Diagram { key: string; title: string; hook: string; def: string }
 
 const CLASSDEFS = [
-  "classDef root fill:#16345c,stroke:#0d2137,stroke-width:3px,color:#ffffff,font-weight:bold;",
-  "classDef right fill:#eef8f2,stroke:#2e9e6b,stroke-width:3px,color:#1f4d38;",
-  "classDef ans fill:#eef8f2,stroke:#2e9e6b,stroke-width:3px,color:#1f4d38;",
-  "classDef trap fill:#fff1ee,stroke:#e8604c,stroke-width:3px,color:#8a2b1c,stroke-dasharray:6 4;"
+  "classDef root fill:#16345c,stroke:#0d2137,stroke-width:3.4px,color:#ffffff,font-weight:bold;",
+  "classDef right fill:#eef8f2,stroke:#2e9e6b,stroke-width:3.4px,color:#1f4d38;",
+  "classDef ans fill:#eef8f2,stroke:#2e9e6b,stroke-width:3.4px,color:#1f4d38;",
+  "classDef trap fill:#fff1ee,stroke:#e8604c,stroke-width:3.4px,color:#8a2b1c,stroke-dasharray:6 4;",
+  "classDef hub fill:#fff8ec,stroke:#c98a1e,stroke-width:3.4px,color:#5a4300,font-weight:bold;"
 ].join("\n")
+
+// 总览下钻图：新思想帽子地图 → 5 板块（节点 id = 板块 key，点击钻入）
+const OVERVIEW: Diagram = {
+  key: '__overview__', title: '🧭 总览 · 点板块名钻进去',
+  hook: '新思想 4 大板块的定位词帽子地图。点任意板块节点，下方会下钻到该板块的完整关系图。',
+  def: `graph TD\n${CLASSDEFS}\n
+R["新思想 · 定位词帽子地图<br/>（单选选反 / 多选贪多 高发区）"]:::root
+R --> QJ["⚔️ 强军<br/>4 顶帽子"]:::hub
+R --> YG["🇭 一国两制<br/>4 顶帽子"]:::hub
+R --> WJ["🌍 大国外交<br/>2 组帽子"]:::hub
+R --> CL["🔥 全面从严治党<br/>7 顶帽子"]:::hub
+R --> DL["🌱 导论<br/>两个结合 + 六个必须坚持"]:::hub`
+}
+
+// 总览图板块节点 id → 下钻目标 key（mermaid `call` 回调在本版本不触发，改为渲染后手动绑定）
+const HUB_TO_KEY: Record<string, string> = { QJ: 'qj', YG: 'yglz', WJ: 'wj', CL: 'cl', DL: 'dl' }
 
 const diagrams: Diagram[] = [
   {
@@ -71,11 +88,11 @@ G-->G1`
     def: `graph TD\n${CLASSDEFS}\n
 R["中国特色大国外交"]:::root
 M["主线"]:::right
-M1["服务民族复兴 · 促进人类进步"]:::ans
-M2["维护世界和平、促进共同发展（是宗旨）"]:::trap
-S["对外工作的出发点 · 落脚点"]:::right
-S1["维护国家主权、安全、发展利益"]:::ans
-S2["推动构建人类命运共同体（是目标）"]:::trap
+M1["服务民族复兴<br/>促进人类进步"]:::ans
+M2["维护世界和平、促进共同发展<br/>（是宗旨）"]:::trap
+S["对外工作的<br/>出发点 · 落脚点"]:::right
+S1["维护国家主权<br/>安全、发展利益"]:::ans
+S2["推动构建人类命运共同体<br/>（是目标）"]:::trap
 R-->M
 M-->M1
 M-. 别选 .->M2
@@ -87,7 +104,13 @@ S-. 别选 .->S2`
     key: 'cl', title: '🔥 全面从严治党 · "最X"帽子矩阵',
     hook: '统领是政治建设；两个"首要任务"分家——政治建设要"服从中央"、党内政治生活要"思想教育"；最彻底自我革命＝反腐败，第一行动＝八项规定，根本目的＝引领社会革命。',
     def: `graph TD\n${CLASSDEFS}\n
-R["全面从严治党 · 帽子矩阵"]:::root
+R["全面从严治党<br/>帽子矩阵"]:::root
+G1A["政治建设簇"]:::hub
+G1B["自我革命簇"]:::hub
+G1C["定位 · 多选簇"]:::hub
+R-->G1A
+R-->G1B
+R-->G1C
 A["党的建设的统领"]:::right
 A1["政治建设"]:::ans
 B["政治建设的'首要任务'"]:::right
@@ -95,31 +118,31 @@ B1["保证全党服从中央<br/>维护党中央权威和集中统一领导"]:::
 C["党内政治生活的'首要任务'"]:::right
 C1["加强思想教育和理论武装"]:::ans
 C2["保证全党服从中央<br/>（那是政治建设的）"]:::trap
+G1A-->A
+A-->A1
+G1A-->B
+B-->B1
+G1A-->C
+C-->C1
+C-. 别选 .->C2
 D["最彻底的自我革命"]:::right
 D1["反腐败"]:::ans
 E["再塑党的形象的'第一行动'"]:::right
 E1["中央八项规定"]:::ans
 F["自我革命的'根本目的'"]:::right
 F1["引领伟大社会革命"]:::ans
-F2["跳出历史周期率（是意义，非目的）"]:::trap
-G["全面从严治党的定位（多选全选）"]:::right
-G1["必由之路 ＋ 鲜明主题 ＋ 伟大实践"]:::ans
-G2["党的政治建设的首要任务（干扰项）"]:::trap
-R-->A
-A-->A1
-R-->B
-B-->B1
-R-->C
-C-->C1
-C-. 别选 .->C2
-R-->D
+F2["跳出历史周期率<br/>（是意义，非目的）"]:::trap
+G1B-->D
 D-->D1
-R-->E
+G1B-->E
 E-->E1
-R-->F
+G1B-->F
 F-->F1
 F-. 别选 .->F2
-R-->G
+G["全面从严治党的定位<br/>（多选全选）"]:::right
+G1["必由之路 ＋ 鲜明主题<br/>＋ 伟大实践"]:::ans
+G2["党的政治建设的首要任务<br/>（干扰项）"]:::trap
+G1C-->G
 G-->G1
 G-. 别选 .->G2`
   },
@@ -128,12 +151,12 @@ G-. 别选 .->G2`
     hook: '"两个结合"三顶帽子（必由之路 / 根本途径 / 最大法宝）全对，"根本所在"是来蹭的（你上次多选贪多就栽这）；六个必须坚持先把名字记全。',
     def: `graph TD\n${CLASSDEFS}\n
 R["新思想 · 导论"]:::root
-L["'两个结合' 是（多选 ABC）"]:::right
-L1["开辟发展中国特色社会主义的必由之路"]:::ans
-L2["推进马克思主义中国化时代化的根本途径"]:::ans
-L3["我们取得成功的最大法宝"]:::ans
-L4["坚定信仰信念、把握历史主动的'根本所在'"]:::trap
-S["'六个必须坚持'（世界观方法论）"]:::right
+L["'两个结合' 是<br/>（多选 ABC）"]:::right
+L1["开辟发展中国特色社会主义的<br/>必由之路"]:::ans
+L2["推进马克思主义中国化时代化的<br/>根本途径"]:::ans
+L3["我们取得成功的<br/>最大法宝"]:::ans
+L4["坚定信仰信念、把握历史主动的<br/>'根本所在'"]:::trap
+S["'六个必须坚持'<br/>（世界观方法论）"]:::right
 S1["人民至上 · 自信自立 · 守正创新<br/>问题导向 · 系统观念 · 胸怀天下"]:::ans
 S2["自信自立 ＝ 内在精神特质"]:::ans
 R-->L
@@ -148,7 +171,8 @@ S-->S2`
 ]
 
 const filter = ref('all')
-const visible = ref<Diagram[]>(diagrams)
+const visible = ref<Diagram[]>([OVERVIEW, ...diagrams])
+const drillTo = async (key: string) => { await onFilter(key) }
 
 // 自测模式
 const quizOn = ref(false)
@@ -156,10 +180,7 @@ try {
   if (new URLSearchParams(window.location.search).get('quiz') === '1') quizOn.value = true
 } catch { /* noop */ }
 const revealed = ref<Set<string>>(new Set())
-const toggleQuiz = () => {
-  quizOn.value = !quizOn.value
-  revealed.value = new Set()
-}
+const toggleQuiz = () => { quizOn.value = !quizOn.value; revealed.value = new Set() }
 const revealCard = (key: string) => {
   if (!quizOn.value) return
   const s = new Set(revealed.value)
@@ -168,7 +189,7 @@ const revealCard = (key: string) => {
 }
 const revealAll = () => { revealed.value = new Set(visible.value.map(d => d.key)) }
 const hideAll = () => { revealed.value = new Set() }
-const isHidden = (key: string) => quizOn.value && !revealed.value.has(key)
+const isHidden = (key: string) => quizOn.value && !revealed.value.has(key) && key !== OVERVIEW.key
 
 let mermaidLib: typeof Mermaid | null = null
 const getMermaid = async () => {
@@ -181,8 +202,8 @@ const getMermaid = async () => {
     theme: 'base',
     securityLevel: 'loose',
     fontFamily: "'PingFang SC','Microsoft YaHei',sans-serif",
-    themeVariables: { fontSize: '20px', lineColor: '#5b6b7f', primaryTextColor: '#1f2d3d' },
-    flowchart: { useMaxWidth: false, htmlLabels: true, padding: 14, nodeSpacing: 46, rankSpacing: 62, curve: 'basis' }
+    themeVariables: { fontSize: '24px', lineColor: '#c98a1e', edgeLabelBackground: '#fff8ec', primaryTextColor: '#1f2d3d' },
+    flowchart: { useMaxWidth: false, htmlLabels: true, padding: 6, nodeSpacing: 38, rankSpacing: 56, curve: 'basis' }
   })
   return mermaidLib!
 }
@@ -198,6 +219,17 @@ const renderOne = async (d: Diagram) => {
     el.innerHTML = ''
     const { svg } = await m.render(`logic-${d.key}-${Date.now()}`, d.def)
     el.innerHTML = svg
+    // 总览图：给板块节点绑定手动下钻（mermaid `call` 回调在本版本不触发）
+    if (d.key === OVERVIEW.key) {
+      el.querySelectorAll('.node').forEach(n => {
+        const id = n.id || ''
+        const hub = Object.keys(HUB_TO_KEY).find(k => id.includes(`flowchart-${k}-`))
+        if (hub) {
+          ;(n as HTMLElement).style.cursor = 'pointer'
+          n.addEventListener('click', () => drillTo(HUB_TO_KEY[hub]))
+        }
+      })
+    }
   } catch (e) {
     el.innerHTML = `<div class="lg-err">图渲染失败：${(e as Error).message}</div>`
   }
@@ -208,13 +240,14 @@ const renderAll = async () => {
   for (const d of visible.value) await renderOne(d)
 }
 
-onMounted(renderAll)
-const onFilter = async (k: string) => {
+async function onFilter(k: string) {
   filter.value = k
-  visible.value = k === 'all' ? diagrams : diagrams.filter(d => d.key === k)
+  visible.value = k === 'all' ? [OVERVIEW, ...diagrams] : diagrams.filter(d => d.key === k)
   revealed.value = new Set()
   await renderAll()
 }
+
+onMounted(renderAll)
 </script>
 
 <template>
@@ -224,11 +257,13 @@ const onFilter = async (k: string) => {
       <h2 class="lg-title">粗线大字，把"帽子"之间的关系一次画清</h2>
       <p class="lg-sub">
         你新思想最大的两个失分点是<b>单选定位词张冠李戴</b>和<b>多选贪多</b>。
-        下面每张图把「提问信号 → 正解帽子」用<b>绿色实线</b>连好，把最容易顺手多选的
-        <b>干扰项</b>用<span class="lg-trap-word">红色虚线</span>标出来——看图回忆，比背条目更牢。
+        经验贴独立指出"多选里'帽子题（…的根本/核心/本质）约占九成"——和诊断完全吻合。
+        每张图把「提问信号 → 正解帽子」用<b>绿色实线</b>连好，把最容易顺手多选的<b>干扰项</b>
+        用<span class="lg-trap-word">红色虚线</span>标出来。
       </p>
       <div class="lg-legend">
         <span><i class="dot root"></i>主题</span>
+        <span><i class="dot hub"></i>板块 / 簇</span>
         <span><i class="dot right"></i>正解帽子</span>
         <span><i class="dot trap"></i>高频干扰（别选）</span>
       </div>
@@ -236,7 +271,7 @@ const onFilter = async (k: string) => {
 
     <div class="lg-bar">
       <div class="lg-chips">
-        <button :class="{ on: filter === 'all' }" @click="onFilter('all')">全部</button>
+        <button :class="{ on: filter === 'all' }" @click="onFilter('all')">🧭 总览</button>
         <button v-for="d in diagrams" :key="d.key" :class="{ on: filter === d.key }" @click="onFilter(d.key)">{{ d.title.replace(/^[^\u4e00-\u9fa5A-Za-z]+/, '') }}</button>
       </div>
       <div class="lg-quiz">
@@ -252,13 +287,14 @@ const onFilter = async (k: string) => {
     <div class="lg-list">
       <section
         v-for="d in visible" :key="d.key"
-        class="lg-card" :class="{ 'ans-hidden': isHidden(d.key), clickable: quizOn }"
-        @click="revealCard(d.key)"
+        class="lg-card" :class="{ 'ans-hidden': isHidden(d.key), clickable: quizOn && d.key !== OVERVIEW.key, overview: d.key === OVERVIEW.key }"
+        @click="d.key === OVERVIEW.key ? null : revealCard(d.key)"
       >
         <div class="lg-card-head">
           <h3 class="lg-h">{{ d.title }}</h3>
-          <span v-if="isHidden(d.key)" class="lg-reveal-hint">👆 点卡片揭晓</span>
-          <span v-else-if="quizOn" class="lg-revealed">已揭晓 · 再点遮回</span>
+          <button v-if="filter !== 'all'" class="lg-back" @click="onFilter('all')">← 返回总览</button>
+          <span v-else-if="d.key === OVERVIEW.key" class="lg-drill-hint">👆 点板块节点下钻</span>
+          <span v-if="isHidden(d.key)" class="lg-reveal-hint">点卡片揭晓</span>
         </div>
         <p class="lg-hook">🧠 {{ d.hook }}</p>
         <div class="lg-svg" :ref="setRef(d.key)"></div>
@@ -289,12 +325,13 @@ const onFilter = async (k: string) => {
 }
 .lg-kicker { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .2em; color: var(--lg-gold); position: relative; z-index: 1; }
 .lg-title { font-size: clamp(1.3rem,2.4vw,1.8rem); margin: 8px 0 10px; font-weight: 800; position: relative; z-index: 1; }
-.lg-sub { color: #b9cbe0; font-size: .92rem; line-height: 1.8; margin: 0; max-width: 820px; position: relative; z-index: 1; }
+.lg-sub { color: #b9cbe0; font-size: .92rem; line-height: 1.8; margin: 0; max-width: 860px; position: relative; z-index: 1; }
 .lg-sub b { color: var(--lg-gold); }
 .lg-trap-word { color: #ff8a76; font-weight: 700; }
-.lg-legend { display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; font-size: .82rem; color: #d5e2f0; }
+.lg-legend { display: flex; gap: 18px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; font-size: .82rem; color: #d5e2f0; }
 .lg-legend .dot { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 6px; vertical-align: -1px; }
 .dot.root { background: var(--lg-navy); border: 2px solid #fff; }
+.dot.hub { background: #fff8ec; border: 2px solid var(--lg-gold); }
 .dot.right { background: #eef8f2; border: 2px solid var(--lg-green); }
 .dot.trap { background: #fff1ee; border: 2px dashed var(--lg-coral); }
 
@@ -310,26 +347,27 @@ const onFilter = async (k: string) => {
 
 .lg-list { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
 .lg-card { border: 1px solid var(--lg-line); border-radius: 14px; background: #fff; padding: 20px 22px; transition: box-shadow .2s, border-color .2s; }
+.lg-card.overview { border-color: rgba(201,138,30,.4); background: linear-gradient(180deg,#fffdf7,#fff); }
 .lg-card.clickable { cursor: pointer; }
 .lg-card.clickable:hover { box-shadow: 0 8px 22px rgba(13,33,55,.08); }
 .lg-card.ans-hidden { border-color: rgba(232,96,76,.4); background: linear-gradient(180deg,#fffaf9,#fff); }
 .lg-card-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .lg-h { font-size: 1.15rem; color: var(--lg-ink); margin: 0; padding-left: 12px; border-left: 4px solid var(--lg-gold); }
+.lg-back { border: 1px solid var(--lg-line); background: #fff; color: var(--lg-navy); border-radius: 8px; padding: 4px 12px; font-size: .8rem; cursor: pointer; }
+.lg-drill-hint { margin-left: auto; font-size: .8rem; font-weight: 700; color: #8a6100; background: #fdf1d6; border-radius: 6px; padding: 3px 10px; }
 .lg-reveal-hint { margin-left: auto; font-size: .8rem; font-weight: 700; color: var(--lg-coral); background: #fff1ee; border-radius: 6px; padding: 3px 10px; }
-.lg-revealed { margin-left: auto; font-size: .78rem; color: var(--lg-green); }
 .lg-hook { font-size: .92rem; line-height: 1.7; color: var(--lg-muted); margin: 10px 0 16px; background: var(--lg-soft); border-radius: 8px; padding: 10px 14px; }
 .lg-svg { overflow-x: auto; padding: 6px 2px; min-height: 60px; }
 
-/* 粗线大字：加粗所有连线与节点边框、放大文字（mermaid 注入的 SVG 用 :deep 命中） */
-.lg-svg :deep(.edgePaths path) { stroke-width: 3px !important; }
-.lg-svg :deep(.edgePath path) { stroke-width: 3px !important; }
-.lg-svg :deep(.node rect), .lg-svg :deep(.node polygon), .lg-svg :deep(.node circle), .lg-svg :deep(.node path) { stroke-width: 3px !important; }
-.lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 20px !important; font-weight: 700; line-height: 1.4; }
-.lg-svg :deep(.edgeLabel foreignObject div), .lg-svg :deep(.edgeLabel text) { font-size: 15px !important; color: var(--lg-coral); font-weight: 700; }
-.lg-svg :deep(svg) { max-width: none; }
+/* mermaid 标准：大字号 + 粗线条 + 居中消空白（注入 SVG 用 :deep 命中） */
+.lg-svg :deep(.edgePaths path.path) { stroke-width: 4.6px !important; }
+.lg-svg :deep(.edgePath path) { stroke-width: 4.6px !important; }
+.lg-svg :deep(.node rect), .lg-svg :deep(.node polygon), .lg-svg :deep(.node circle), .lg-svg :deep(.node path) { stroke-width: 3.4px !important; }
+.lg-svg :deep(.nodeLabel), .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 23px !important; font-weight: 800; line-height: 1.35; }
+.lg-svg :deep(.edgeLabel), .lg-svg :deep(.edgeLabel foreignObject div), .lg-svg :deep(.edgeLabel text) { font-size: 17px !important; font-weight: 700; color: var(--lg-coral); }
+.lg-svg :deep(svg) { max-width: none; display: block; margin: 0 auto; }
 
-/* 自测模式：模糊遮住答案叶子节点 */
-.lg-card.ans-hidden :deep(.node.ans) { filter: blur(11px); transition: filter .25s ease; }
+.lg-card.ans-hidden :deep(.node.ans) { filter: blur(12px); transition: filter .25s ease; }
 .lg-card:not(.ans-hidden) :deep(.node.ans) { filter: none; transition: filter .25s ease; }
 
 .lg-err { color: var(--lg-coral); font-size: .9rem; padding: 12px; }
@@ -338,6 +376,6 @@ const onFilter = async (k: string) => {
 .lg-link { color: var(--lg-navy); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--lg-gold); }
 
 @media (max-width: 768px) {
-  .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 17px !important; }
+  .lg-svg :deep(.nodeLabel), .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 18px !important; }
 }
 </style>
