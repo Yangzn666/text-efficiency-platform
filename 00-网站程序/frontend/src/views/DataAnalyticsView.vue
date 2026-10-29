@@ -5,7 +5,7 @@ import { useTodayStatusStore } from '@/stores/todayStatus'
 import { useMaterialsStore, materialStatus } from '@/stores/materials'
 import { exportAllData, importAllData } from '@/utils/dataBackup'
 import { useWrongProblemsStore, type WrongSubject } from '@/stores/wrongProblems'
-import { QUOTES_RESILIENCE, QUOTES_EFFORT, SLOGANS } from '@/data/quotes'
+import { QUOTES_RESILIENCE, QUOTES_EFFORT, SLOGANS, alternateWithChinese } from '@/data/quotes'
 
 
 const store = useTodayStatusStore()
@@ -13,7 +13,7 @@ const matStore = useMaterialsStore()
 const wp = useWrongProblemsStore()
 
 // ---------- 励志标语 ----------
-const quotes = [...QUOTES_RESILIENCE, ...QUOTES_EFFORT]
+const quotes = alternateWithChinese([...QUOTES_RESILIENCE, ...QUOTES_EFFORT])
 const slogans = SLOGANS
 
 const quoteIdx = ref(0)

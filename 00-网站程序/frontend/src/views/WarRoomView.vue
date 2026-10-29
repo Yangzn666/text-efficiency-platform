@@ -2,7 +2,7 @@
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import { useWarroomStore } from '@/stores/warroom'
-import { QUOTES_EFFORT, QUOTES_RESILIENCE, QUOTES_CONFIDENCE } from '@/data/quotes'
+import { QUOTES_EFFORT, QUOTES_RESILIENCE, QUOTES_CONFIDENCE, alternateWithChinese } from '@/data/quotes'
 
 const today = useTodayStatusStore()
 const wr = useWarroomStore()
@@ -220,7 +220,7 @@ const trendChart = computed(() => {
 })
 
 /* ===== 今日战训语录 ===== */
-const QUOTES = [...QUOTES_EFFORT, ...QUOTES_RESILIENCE, ...QUOTES_CONFIDENCE]
+const QUOTES = alternateWithChinese([...QUOTES_EFFORT, ...QUOTES_RESILIENCE, ...QUOTES_CONFIDENCE])
 const qi = ref(0)
 const quoteFade = ref(false)
 

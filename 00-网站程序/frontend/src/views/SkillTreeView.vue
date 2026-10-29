@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
-import { QUOTES_EFFORT, QUOTES_RESILIENCE } from '@/data/quotes'
+import { QUOTES_EFFORT, QUOTES_RESILIENCE, alternateWithChinese } from '@/data/quotes'
 
 // ===== 数据类型 =====
 interface SkillItem {
@@ -30,7 +30,7 @@ const progressPct = ref(0)
 const progressText = ref('0 / 0 掌握')
 
 // ===== 励志语录轮播 =====
-const quotes = [...QUOTES_EFFORT, ...QUOTES_RESILIENCE]
+const quotes = alternateWithChinese([...QUOTES_EFFORT, ...QUOTES_RESILIENCE])
 const quoteIdx = ref(0)
 const quoteVisible = ref(true)
 let quoteTimer: ReturnType<typeof setInterval> | null = null

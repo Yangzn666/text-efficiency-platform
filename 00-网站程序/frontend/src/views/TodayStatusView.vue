@@ -287,7 +287,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import MaterialsWall from '@/components/MaterialsWall.vue'
-import { QUOTES_CONFIDENCE, QUOTES_FOCUS, SLOGANS } from '@/data/quotes'
+import { QUOTES_CONFIDENCE, QUOTES_FOCUS, SLOGANS, alternateWithChinese } from '@/data/quotes'
 
 const store = useTodayStatusStore()
 
@@ -323,7 +323,7 @@ const warTiles = computed(() => [
 ])
 
 // ---------- 励志语录（6秒轮换） ----------
-const quotes = [...QUOTES_CONFIDENCE, ...QUOTES_FOCUS]
+const quotes = alternateWithChinese([...QUOTES_CONFIDENCE, ...QUOTES_FOCUS])
 const slogans = SLOGANS
 const quoteIdx = ref(0)
 let quoteTimer = null

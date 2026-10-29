@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { renderMath } from '@/utils/mathRender'
 import methodsData from '@/data/methods.json'
+import { ALL_QUOTES, QUOTES_CHINESE, QUOTE_GROUPS, quoteOfToday } from '@/data/quotes'
 
 // 方法条目结构（与 src/data/methods.json 对齐）
 interface MethodItem {
@@ -62,6 +63,21 @@ const reviewStatus = (dateStr: string) => {
   if (Number.isNaN(d)) return ''
   return d <= Date.now() ? 'overdue' : ''
 }
+
+/* ─────────── 今日一句 ─────────── */
+// 按当天日期确定性取样：同一天刷新不换句，隔天自动轮到下一句；也可手动前后翻。
+const qIdx = ref(Math.max(0, ALL_QUOTES.indexOf(quoteOfToday())))
+const todayQuote = computed(() => ALL_QUOTES[qIdx.value] ?? ALL_QUOTES[0])
+const shiftQuote = (step: number) => {
+  qIdx.value = (qIdx.value + step + ALL_QUOTES.length) % ALL_QUOTES.length
+}
+const isChinese = computed(() => QUOTES_CHINESE.includes(todayQuote.value))
+const dateLabel = computed(() =>
+  new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' })
+)
+
+// 全库导航（点开看每句的完整出处 + 适用场景）
+const quotesOpen = ref(false)
 </script>
 
 <template>
@@ -73,6 +89,50 @@ const reviewStatus = (dateStr: string) => {
     </div>
 
     <div class="page-content">
+      <!-- ───────── 今日一句 ───────── -->
+      <section class="quote-card">
+        <div class="qc-top">
+          <span class="qc-tag">今日一句</span>
+          <span class="qc-src-chip" :class="isChinese ? 'cn' : 'fg'">{{ isChinese ? '中 · 古文／近代' : '外 · 心理／哲／体育' }}</span>
+          <span class="qc-date">{{ dateLabel }}</span>
+        </div>
+
+        <div class="qc-body">
+          <span class="qc-mark">“</span>
+          <p class="qc-text">{{ todayQuote.text }}</p>
+          <p class="qc-by">
+            —— {{ todayQuote.author }}<template v-if="todayQuote.src"> · {{ todayQuote.src }}</template>
+          </p>
+          <p v-if="todayQuote.scene" class="qc-scene">
+            <span class="qc-scene-label">适合此刻</span>{{ todayQuote.scene }}
+          </p>
+        </div>
+
+        <div class="qc-foot">
+          <div class="qc-nav">
+            <button class="qc-btn" type="button" @click="shiftQuote(-1)">‹ 上一句</button>
+            <button class="qc-btn" type="button" @click="shiftQuote(1)">下一句 ›</button>
+          </div>
+          <span class="qc-count">{{ qIdx + 1 }} / {{ ALL_QUOTES.length }} · 每天自动轮一句</span>
+          <button class="qc-link" type="button" @click="quotesOpen = !quotesOpen">
+            {{ quotesOpen ? '收起全部语录 ▴' : '全部语录 · 按主题 ▾' }}
+          </button>
+        </div>
+
+        <div v-show="quotesOpen" class="qc-library">
+          <div v-for="g in QUOTE_GROUPS" :key="g.key" class="qc-group">
+            <div class="qcg-title">{{ g.icon }} {{ g.name }}<em>{{ g.items.length }} 条</em></div>
+            <div class="qcg-list">
+              <div v-for="q in g.items" :key="q.text" class="qcg-item">
+                <p class="qcg-text">{{ q.text }}</p>
+                <p class="qcg-by">—— {{ q.author }}<template v-if="q.src"> · {{ q.src }}</template></p>
+                <p v-if="q.scene" class="qcg-scene">{{ q.scene }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <el-tabs v-model="activeSubject" class="subject-tabs">
         <el-tab-pane v-for="tab in SUBJECT_TABS" :key="tab.key" :name="tab.key">
           <template #label>
@@ -224,6 +284,163 @@ const reviewStatus = (dateStr: string) => {
 
   .page-content {
     padding: 24px 24px 40px;
+  }
+
+  /* ── 今日一句 ── */
+  .quote-card {
+    position: relative;
+    margin-bottom: 22px;
+    padding: 20px 22px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 160, 18, 0.42);
+    background:
+      radial-gradient(120% 140% at 12% 0%, rgba(212, 160, 18, 0.16) 0%, transparent 58%),
+      linear-gradient(135deg, #101c30 0%, #16345c 100%);
+    overflow: hidden;
+
+    .qc-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .qc-tag {
+      font-size: 0.86em;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #0a1628;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+    .qc-src-chip {
+      font-size: 0.8em;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      &.cn { color: #ffd9a0; border: 1px solid rgba(255, 159, 69, 0.6); background: rgba(255, 159, 69, 0.12); }
+      &.fg { color: #9fd2ff; border: 1px solid rgba(74, 168, 255, 0.6); background: rgba(74, 168, 255, 0.12); }
+    }
+    .qc-date { margin-left: auto; font-size: 0.82em; color: #8595a8; letter-spacing: 0.05em; }
+
+    .qc-body {
+      position: relative;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+    .qc-mark {
+      position: absolute;
+      left: 26px;
+      top: -14px;
+      font-size: 3.2em;
+      line-height: 1;
+      color: rgba(240, 192, 64, 0.24);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .qc-text {
+      position: relative;
+      margin: 0;
+      font-size: 1.5em;
+      line-height: 1.65;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: #f7f3e6;
+      font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+    .qc-by { margin: 10px 0 0; font-size: 0.98em; color: var(--gold-light); letter-spacing: 0.06em; }
+    .qc-scene {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0 0;
+      font-size: 0.94em;
+      color: #c8d3e0;
+      .qc-scene-label {
+        flex-shrink: 0;
+        font-size: 0.86em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #0a1628;
+        background: #8ab4a0;
+        border-radius: 4px;
+        padding: 1px 7px;
+      }
+    }
+
+    .qc-foot {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(212, 160, 18, 0.28);
+      font-size: 0.85em;
+      color: #8595a8;
+    }
+    .qc-nav { display: inline-flex; gap: 8px; }
+    .qc-btn {
+      cursor: pointer;
+      font: inherit;
+      color: #e8eaed;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 4px 14px;
+      transition: all 0.2s;
+      &:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(212, 160, 18, 0.14); }
+    }
+    .qc-link {
+      cursor: pointer;
+      font: inherit;
+      margin-left: auto;
+      white-space: nowrap;
+      color: #9fb4d0;
+      background: none;
+      border: none;
+      text-decoration: underline dotted;
+      &:hover { color: var(--gold-light); }
+    }
+
+    .qc-library {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+    }
+    .qc-group {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+      .qcg-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--gold-light);
+        font-weight: 600;
+        font-size: 0.98em;
+        margin-bottom: 8px;
+        em {
+          font-style: normal;
+          font-size: 0.8em;
+          color: #8595a8;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          border-radius: 10px;
+          padding: 0 8px;
+        }
+      }
+      .qcg-list { display: flex; flex-direction: column; gap: 10px; }
+      .qcg-text { margin: 0; color: #e6e9ef; font-size: 0.98em; line-height: 1.6; }
+      .qcg-by { margin: 3px 0 0; color: #9fb4d0; font-size: 0.86em; }
+      .qcg-scene { margin: 3px 0 0; color: #a8d4be; font-size: 0.84em; }
+    }
   }
 
   .subject-tabs {
@@ -407,6 +624,17 @@ const reviewStatus = (dateStr: string) => {
 
     .page-header { padding: 26px 16px 20px; .page-title { font-size: 1.7em; } .page-subtitle { font-size: 0.95em; } }
     .page-content { padding: 16px 12px 32px; }
+
+    .quote-card {
+      padding: 16px 14px 12px;
+      .qc-date { margin-left: 0; }
+      .qc-body { padding-left: 12px; }
+      .qc-mark { left: 20px; top: -10px; font-size: 2.4em; }
+      .qc-text { font-size: 1.24em; line-height: 1.7; }
+      .qc-foot { gap: 10px; }
+      .qc-link { margin-left: 0; }
+      .qc-library { grid-template-columns: 1fr; }
+    }
 
     .subject-tabs :deep(.el-tabs__header) { margin-bottom: 14px; }
 
