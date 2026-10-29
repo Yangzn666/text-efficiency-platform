@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // 政治逻辑图谱 · mermaid 粗线大字关系图（辅助记忆：把"帽子—正解—干扰"的从属/并列关系画出来）
 // 所有映射均来自错题本订正（politicsWrongCause.TERM_CARDS / 新思想错题），不臆造考点。
+// 自测模式：把答案叶子节点(:::ans)模糊遮住，看着信号词主动回忆，点卡片揭晓。
 import { ref, onMounted, nextTick } from 'vue'
 import type Mermaid from 'mermaid'
 
@@ -9,6 +10,7 @@ interface Diagram { key: string; title: string; hook: string; def: string }
 const CLASSDEFS = [
   "classDef root fill:#16345c,stroke:#0d2137,stroke-width:3px,color:#ffffff,font-weight:bold;",
   "classDef right fill:#eef8f2,stroke:#2e9e6b,stroke-width:3px,color:#1f4d38;",
+  "classDef ans fill:#eef8f2,stroke:#2e9e6b,stroke-width:3px,color:#1f4d38;",
   "classDef trap fill:#fff1ee,stroke:#e8604c,stroke-width:3px,color:#8a2b1c,stroke-dasharray:6 4;"
 ].join("\n")
 
@@ -19,13 +21,13 @@ const diagrams: Diagram[] = [
     def: `graph TD\n${CLASSDEFS}\n
 R["强军目标 · 帽子体系"]:::root
 A["听党指挥"]:::right
-A1["灵魂 · 命脉 · 建设首要"]:::right
+A1["灵魂 · 命脉 · 建设首要"]:::ans
 B["能打胜仗"]:::right
-B1["强军兴军的核心"]:::right
+B1["强军兴军的核心"]:::ans
 C["作风优良"]:::right
-C1["人民军队的保证"]:::right
+C1["人民军队的保证"]:::ans
 D["党对军队绝对领导的<br/>根本制度 / 根本实现形式"]:::right
-D1["军委主席负责制"]:::right
+D1["军委主席负责制"]:::ans
 D2["支部建在连上 / 政治委员制<br/>＝实现形式之一，非根本"]:::trap
 R-->A
 A-->A1
@@ -38,20 +40,20 @@ D-->D1
 D-. 别选 .->D2`
   },
   {
-    key: 'yglz', title: '🇭🇰 一国两制 · 谁是根、谁是本',
+    key: 'yglz', title: '🇭 一国两制 · 谁是根、谁是本',
     hook: '"一国"是前提·根·本；最高原则与根本宗旨都落在"维护国家主权、安全、发展利益"，"和平统一"只是目标。',
     def: `graph TD\n${CLASSDEFS}\n
 R["一国两制"]:::root
 P["一国"]:::right
-P1["前提 · 基础 · 根 · 本"]:::right
+P1["前提 · 基础 · 根 · 本"]:::ans
 Z["两制"]:::right
-Z1["从属、派生于'一国'"]:::right
+Z1["从属、派生于'一国'"]:::ans
 T0["二者等量齐观 / 比肩并列 ✗"]:::trap
 H["方针的'最高原则'"]:::right
-H1["维护国家主权、安全、发展利益"]:::right
+H1["维护国家主权、安全、发展利益"]:::ans
 H2["实现祖国和平统一（是目标）"]:::trap
 G["根本宗旨"]:::right
-G1["维护国家主权安全发展利益<br/>＋ 保持港澳长期繁荣稳定"]:::right
+G1["维护国家主权安全发展利益<br/>＋ 保持港澳长期繁荣稳定"]:::ans
 R-->P
 P-->P1
 R-->Z
@@ -69,10 +71,10 @@ G-->G1`
     def: `graph TD\n${CLASSDEFS}\n
 R["中国特色大国外交"]:::root
 M["主线"]:::right
-M1["服务民族复兴 · 促进人类进步"]:::right
+M1["服务民族复兴 · 促进人类进步"]:::ans
 M2["维护世界和平、促进共同发展（是宗旨）"]:::trap
 S["对外工作的出发点 · 落脚点"]:::right
-S1["维护国家主权、安全、发展利益"]:::right
+S1["维护国家主权、安全、发展利益"]:::ans
 S2["推动构建人类命运共同体（是目标）"]:::trap
 R-->M
 M-->M1
@@ -87,21 +89,21 @@ S-. 别选 .->S2`
     def: `graph TD\n${CLASSDEFS}\n
 R["全面从严治党 · 帽子矩阵"]:::root
 A["党的建设的统领"]:::right
-A1["政治建设"]:::right
+A1["政治建设"]:::ans
 B["政治建设的'首要任务'"]:::right
-B1["保证全党服从中央<br/>维护党中央权威和集中统一领导"]:::right
+B1["保证全党服从中央<br/>维护党中央权威和集中统一领导"]:::ans
 C["党内政治生活的'首要任务'"]:::right
-C1["加强思想教育和理论武装"]:::right
+C1["加强思想教育和理论武装"]:::ans
 C2["保证全党服从中央<br/>（那是政治建设的）"]:::trap
 D["最彻底的自我革命"]:::right
-D1["反腐败"]:::right
+D1["反腐败"]:::ans
 E["再塑党的形象的'第一行动'"]:::right
-E1["中央八项规定"]:::right
+E1["中央八项规定"]:::ans
 F["自我革命的'根本目的'"]:::right
-F1["引领伟大社会革命"]:::right
+F1["引领伟大社会革命"]:::ans
 F2["跳出历史周期率（是意义，非目的）"]:::trap
 G["全面从严治党的定位（多选全选）"]:::right
-G1["必由之路 ＋ 鲜明主题 ＋ 伟大实践"]:::right
+G1["必由之路 ＋ 鲜明主题 ＋ 伟大实践"]:::ans
 G2["党的政治建设的首要任务（干扰项）"]:::trap
 R-->A
 A-->A1
@@ -127,13 +129,13 @@ G-. 别选 .->G2`
     def: `graph TD\n${CLASSDEFS}\n
 R["新思想 · 导论"]:::root
 L["'两个结合' 是（多选 ABC）"]:::right
-L1["开辟发展中国特色社会主义的必由之路"]:::right
-L2["推进马克思主义中国化时代化的根本途径"]:::right
-L3["我们取得成功的最大法宝"]:::right
+L1["开辟发展中国特色社会主义的必由之路"]:::ans
+L2["推进马克思主义中国化时代化的根本途径"]:::ans
+L3["我们取得成功的最大法宝"]:::ans
 L4["坚定信仰信念、把握历史主动的'根本所在'"]:::trap
 S["'六个必须坚持'（世界观方法论）"]:::right
-S1["人民至上 · 自信自立 · 守正创新<br/>问题导向 · 系统观念 · 胸怀天下"]:::right
-S2["自信自立 ＝ 内在精神特质"]:::right
+S1["人民至上 · 自信自立 · 守正创新<br/>问题导向 · 系统观念 · 胸怀天下"]:::ans
+S2["自信自立 ＝ 内在精神特质"]:::ans
 R-->L
 L-->L1
 L-->L2
@@ -147,10 +149,26 @@ S-->S2`
 
 const filter = ref('all')
 const visible = ref<Diagram[]>(diagrams)
-const setFilter = (k: string) => {
-  filter.value = k
-  visible.value = k === 'all' ? diagrams : diagrams.filter(d => d.key === k)
+
+// 自测模式
+const quizOn = ref(false)
+try {
+  if (new URLSearchParams(window.location.search).get('quiz') === '1') quizOn.value = true
+} catch { /* noop */ }
+const revealed = ref<Set<string>>(new Set())
+const toggleQuiz = () => {
+  quizOn.value = !quizOn.value
+  revealed.value = new Set()
 }
+const revealCard = (key: string) => {
+  if (!quizOn.value) return
+  const s = new Set(revealed.value)
+  s.has(key) ? s.delete(key) : s.add(key)
+  revealed.value = s
+}
+const revealAll = () => { revealed.value = new Set(visible.value.map(d => d.key)) }
+const hideAll = () => { revealed.value = new Set() }
+const isHidden = (key: string) => quizOn.value && !revealed.value.has(key)
 
 let mermaidLib: typeof Mermaid | null = null
 const getMermaid = async () => {
@@ -191,8 +209,12 @@ const renderAll = async () => {
 }
 
 onMounted(renderAll)
-// 切换筛选后重渲染当前可见图
-const onFilter = async (k: string) => { setFilter(k); await renderAll() }
+const onFilter = async (k: string) => {
+  filter.value = k
+  visible.value = k === 'all' ? diagrams : diagrams.filter(d => d.key === k)
+  revealed.value = new Set()
+  await renderAll()
+}
 </script>
 
 <template>
@@ -212,14 +234,32 @@ const onFilter = async (k: string) => { setFilter(k); await renderAll() }
       </div>
     </div>
 
-    <div class="lg-chips">
-      <button :class="{ on: filter === 'all' }" @click="onFilter('all')">全部</button>
-      <button v-for="d in diagrams" :key="d.key" :class="{ on: filter === d.key }" @click="onFilter(d.key)">{{ d.title.replace(/^[^\u4e00-\u9fa5A-Za-z]+/, '') }}</button>
+    <div class="lg-bar">
+      <div class="lg-chips">
+        <button :class="{ on: filter === 'all' }" @click="onFilter('all')">全部</button>
+        <button v-for="d in diagrams" :key="d.key" :class="{ on: filter === d.key }" @click="onFilter(d.key)">{{ d.title.replace(/^[^\u4e00-\u9fa5A-Za-z]+/, '') }}</button>
+      </div>
+      <div class="lg-quiz">
+        <button class="qz-toggle" :class="{ on: quizOn }" @click="toggleQuiz">🙈 自测模式</button>
+        <template v-if="quizOn">
+          <button class="qz-mini" @click="revealAll">全部揭晓</button>
+          <button class="qz-mini" @click="hideAll">重新遮住</button>
+        </template>
+      </div>
     </div>
+    <p v-if="quizOn" class="lg-quiz-tip">自测中：绿色"正解帽子"已模糊遮住——先在心里报出答案，再点卡片核对。</p>
 
     <div class="lg-list">
-      <section v-for="d in visible" :key="d.key" class="lg-card">
-        <h3 class="lg-h">{{ d.title }}</h3>
+      <section
+        v-for="d in visible" :key="d.key"
+        class="lg-card" :class="{ 'ans-hidden': isHidden(d.key), clickable: quizOn }"
+        @click="revealCard(d.key)"
+      >
+        <div class="lg-card-head">
+          <h3 class="lg-h">{{ d.title }}</h3>
+          <span v-if="isHidden(d.key)" class="lg-reveal-hint">👆 点卡片揭晓</span>
+          <span v-else-if="quizOn" class="lg-revealed">已揭晓 · 再点遮回</span>
+        </div>
         <p class="lg-hook">🧠 {{ d.hook }}</p>
         <div class="lg-svg" :ref="setRef(d.key)"></div>
       </section>
@@ -258,15 +298,26 @@ const onFilter = async (k: string) => { setFilter(k); await renderAll() }
 .dot.right { background: #eef8f2; border: 2px solid var(--lg-green); }
 .dot.trap { background: #fff1ee; border: 2px dashed var(--lg-coral); }
 
-.lg-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-.lg-chips button { border: 1px solid var(--lg-line); background: #fff; color: var(--lg-muted); padding: 8px 16px; border-radius: 999px; font-size: .9rem; font-weight: 600; cursor: pointer; transition: all .18s; }
+.lg-bar { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; }
+.lg-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.lg-chips button, .lg-quiz button { border: 1px solid var(--lg-line); background: #fff; color: var(--lg-muted); padding: 8px 16px; border-radius: 999px; font-size: .9rem; font-weight: 600; cursor: pointer; transition: all .18s; }
 .lg-chips button:hover { border-color: var(--lg-navy); color: var(--lg-navy); }
 .lg-chips button.on { background: var(--lg-navy); color: #fff; border-color: var(--lg-navy); }
+.lg-quiz { display: flex; gap: 8px; align-items: center; }
+.qz-toggle.on { background: var(--lg-coral); color: #fff; border-color: var(--lg-coral); box-shadow: 0 4px 14px rgba(232,96,76,.28); }
+.qz-mini { padding: 7px 13px !important; font-size: .82rem !important; }
+.lg-quiz-tip { font-size: .84rem; color: var(--lg-coral); margin: 4px 0 14px; font-weight: 600; }
 
-.lg-list { display: flex; flex-direction: column; gap: 18px; }
-.lg-card { border: 1px solid var(--lg-line); border-radius: 14px; background: #fff; padding: 20px 22px; }
-.lg-h { font-size: 1.15rem; color: var(--lg-ink); margin: 0 0 8px; padding-left: 12px; border-left: 4px solid var(--lg-gold); }
-.lg-hook { font-size: .92rem; line-height: 1.7; color: var(--lg-muted); margin: 0 0 16px; background: var(--lg-soft); border-radius: 8px; padding: 10px 14px; }
+.lg-list { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
+.lg-card { border: 1px solid var(--lg-line); border-radius: 14px; background: #fff; padding: 20px 22px; transition: box-shadow .2s, border-color .2s; }
+.lg-card.clickable { cursor: pointer; }
+.lg-card.clickable:hover { box-shadow: 0 8px 22px rgba(13,33,55,.08); }
+.lg-card.ans-hidden { border-color: rgba(232,96,76,.4); background: linear-gradient(180deg,#fffaf9,#fff); }
+.lg-card-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.lg-h { font-size: 1.15rem; color: var(--lg-ink); margin: 0; padding-left: 12px; border-left: 4px solid var(--lg-gold); }
+.lg-reveal-hint { margin-left: auto; font-size: .8rem; font-weight: 700; color: var(--lg-coral); background: #fff1ee; border-radius: 6px; padding: 3px 10px; }
+.lg-revealed { margin-left: auto; font-size: .78rem; color: var(--lg-green); }
+.lg-hook { font-size: .92rem; line-height: 1.7; color: var(--lg-muted); margin: 10px 0 16px; background: var(--lg-soft); border-radius: 8px; padding: 10px 14px; }
 .lg-svg { overflow-x: auto; padding: 6px 2px; min-height: 60px; }
 
 /* 粗线大字：加粗所有连线与节点边框、放大文字（mermaid 注入的 SVG 用 :deep 命中） */
@@ -276,6 +327,10 @@ const onFilter = async (k: string) => { setFilter(k); await renderAll() }
 .lg-svg :deep(.node foreignObject div), .lg-svg :deep(.node text) { font-size: 20px !important; font-weight: 700; line-height: 1.4; }
 .lg-svg :deep(.edgeLabel foreignObject div), .lg-svg :deep(.edgeLabel text) { font-size: 15px !important; color: var(--lg-coral); font-weight: 700; }
 .lg-svg :deep(svg) { max-width: none; }
+
+/* 自测模式：模糊遮住答案叶子节点 */
+.lg-card.ans-hidden :deep(.node.ans) { filter: blur(11px); transition: filter .25s ease; }
+.lg-card:not(.ans-hidden) :deep(.node.ans) { filter: none; transition: filter .25s ease; }
 
 .lg-err { color: var(--lg-coral); font-size: .9rem; padding: 12px; }
 
