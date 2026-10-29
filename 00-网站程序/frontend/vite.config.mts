@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
+import { existsSync, copyFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { execFileSync } from 'child_process'
 
@@ -201,7 +202,19 @@ export default defineConfig(({ mode }) => {
             }
           ]
         }
-      })
+      }),
+      // GitHub Pages 没有 SPA 回退：直接访问 / 刷新子路由（如 /politics?tab=logic）会命中
+      // Pages 的 404 页 —— 手机上「刷新当前页 / 打开分享链接」就打不开。
+      // 构建后把 index.html 复制一份为 404.html，Pages 用它兜底未知路径，
+      // Vue Router 再按真实 URL 渲染对应页面（资源都是 /base/ 绝对路径，不受影响）。
+      {
+        name: 'spa-404-fallback',
+        closeBundle() {
+          const dir = resolve(root, 'dist')
+          const src = resolve(dir, 'index.html')
+          if (existsSync(src)) copyFileSync(src, resolve(dir, '404.html'))
+        }
+      }
     ],
     // 根据环境动态设置base路径（与 PWA scope/start_url 保持一致）
     base,
