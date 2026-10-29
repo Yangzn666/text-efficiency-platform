@@ -17,7 +17,8 @@ const PoliticsWrongDrill = defineAsyncComponent(() => import('@/components/Polit
 const PoliticsLogicMap = defineAsyncComponent(() => import('@/components/PoliticsLogicMap.vue'))
 const PoliticsPlaybook = defineAsyncComponent(() => import('@/components/PoliticsPlaybook.vue'))
 
-const activeTab = ref('roadmap')
+// 默认落地到「我的打法」：直接呈现个性化病灶与当天动作；?tab= 仍可覆盖
+const activeTab = ref('playbook')
 
 // 支持 ?tab= 直达页签（可分享链接 / 无头验证）
 const route = useRoute()
