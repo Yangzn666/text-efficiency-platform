@@ -13,7 +13,8 @@
 /* FZCuHei Font Declaration */
 @font-face {
   font-family: 'FZCuHei';
-  src: url('/fonts/FZCuHei.ttf') format('truetype');
+  src: url('/fonts/FZCuHei.woff2') format('woff2'),
+       url('/fonts/FZCuHei.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
