@@ -15,12 +15,13 @@ const PoliticsDiagnosis = defineAsyncComponent(() => import('@/components/Politi
 const PoliticsTermDrill = defineAsyncComponent(() => import('@/components/PoliticsTermDrill.vue'))
 const PoliticsWrongDrill = defineAsyncComponent(() => import('@/components/PoliticsWrongDrill.vue'))
 const PoliticsLogicMap = defineAsyncComponent(() => import('@/components/PoliticsLogicMap.vue'))
+const PoliticsPlaybook = defineAsyncComponent(() => import('@/components/PoliticsPlaybook.vue'))
 
 const activeTab = ref('roadmap')
 
 // 支持 ?tab= 直达页签（可分享链接 / 无头验证）
 const route = useRoute()
-const TAB_NAMES = ['roadmap', 'knowledge', 'mindmap', 'recite', 'terms', 'logic', 'practice', 'diagnosis']
+const TAB_NAMES = ['roadmap', 'playbook', 'knowledge', 'mindmap', 'recite', 'terms', 'logic', 'practice', 'diagnosis']
 const qTab = route.query.tab as string | undefined
 if (qTab && TAB_NAMES.includes(qTab)) activeTab.value = qTab
 watch(() => route.query.tab, (v) => { if (v && TAB_NAMES.includes(v as string)) activeTab.value = v as string })
@@ -188,6 +189,11 @@ const stages = [
               </div>
             </div>
           </div>
+        </el-tab-pane>
+
+        <!-- ══ 页签1.5：我的打法（个性化 playbook）══ -->
+        <el-tab-pane label="🎯 我的打法" name="playbook" lazy>
+          <PoliticsPlaybook />
         </el-tab-pane>
 
         <!-- ══ 页签2：知识框架 ══ -->
