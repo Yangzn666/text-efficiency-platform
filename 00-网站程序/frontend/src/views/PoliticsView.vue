@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, defineAsyncComponent } from 'vue'
+import { ref, computed, onMounted, defineAsyncComponent, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import {
   useTodayStatusStore,
   POLITICS_COURSE_LESSONS,
@@ -11,8 +12,17 @@ const PoliticsKnowledge = defineAsyncComponent(() => import('@/components/Politi
 const PoliticsMindMap = defineAsyncComponent(() => import('@/components/PoliticsMindMap.vue'))
 const PoliticsReciteCards = defineAsyncComponent(() => import('@/components/PoliticsReciteCards.vue'))
 const PoliticsDiagnosis = defineAsyncComponent(() => import('@/components/PoliticsDiagnosis.vue'))
+const PoliticsTermDrill = defineAsyncComponent(() => import('@/components/PoliticsTermDrill.vue'))
+const PoliticsWrongDrill = defineAsyncComponent(() => import('@/components/PoliticsWrongDrill.vue'))
 
 const activeTab = ref('roadmap')
+
+// 支持 ?tab= 直达页签（可分享链接 / 无头验证）
+const route = useRoute()
+const TAB_NAMES = ['roadmap', 'knowledge', 'mindmap', 'recite', 'terms', 'practice', 'diagnosis']
+const qTab = route.query.tab as string | undefined
+if (qTab && TAB_NAMES.includes(qTab)) activeTab.value = qTab
+watch(() => route.query.tab, (v) => { if (v && TAB_NAMES.includes(v as string)) activeTab.value = v as string })
 
 // 课程盘点对账：数据源统一取 todayStatus 里的串讲课程结构，避免两处数字说两套话
 const todayStore = useTodayStatusStore()
@@ -194,8 +204,17 @@ const stages = [
           <PoliticsReciteCards />
         </el-tab-pane>
 
+        <!-- ══ 页签3.5：定位词速答 ══ -->
+        <el-tab-pane label="🎯 定位词速答" name="terms" lazy>
+          <PoliticsTermDrill />
+        </el-tab-pane>
+
         <!-- ══ 页签4：真题演练室 ══ -->
         <el-tab-pane label="⚔️ 真题演练室" name="practice" lazy>
+          <div class="drill-wrap">
+            <PoliticsWrongDrill />
+          </div>
+          <h3 class="practice-sub">📌 刷题平台与资料使用指引</h3>
           <div class="practice-grid">
             <section class="practice-card brick">
               <div class="pc-head">
@@ -605,10 +624,24 @@ const stages = [
 }
 
 /* ══ 页签4：真题演练室 ══ */
+.drill-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
 .practice-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 18px;
+}
+.practice-sub {
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin: 6px 0 14px;
+  padding-left: 10px;
+  border-left: 4px solid var(--gold);
 }
 
 .practice-card {

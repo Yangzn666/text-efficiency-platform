@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useWrongProblemsStore } from '@/stores/wrongProblems'
+import { deriveCause, CAUSE_META, CAUSE_ORDER, TERM_CARDS, isXxs, type CauseKey } from '@/data/politicsWrongCause'
+import { POLITICS_WRONG_SEED } from '@/data/politicsWrongSeed'
 
 /* ══════════════════════════════════════════════════════════════
    政治错因诊断 · 数据层
@@ -476,7 +479,34 @@ function reveal(key: string) {
 }
 const isMasked = (key: string) => maskMode.value && !revealed.value.includes(key)
 
+/* ───────── 新思想 · 实时从错题本 store 推导 ───────── */
+const wp = useWrongProblemsStore()
+wp.bind('politics', POLITICS_WRONG_SEED)
+const xxsAll = computed(() => wp.db.politics.filter(isXxs))
+const xxsUnmastered = computed(() => xxsAll.value.filter(p => !p.mastered))
+const xxsTotal = computed(() => xxsAll.value.length)
+const xxsMastered = computed(() => xxsAll.value.length - xxsUnmastered.value.length)
+
+const xxsBuckets = computed(() => {
+  const m: Record<CauseKey, number> = { 'single-confuse': 0, 'multi-over': 0, 'multi-under': 0, 'multi-both': 0 }
+  xxsUnmastered.value.forEach(p => { m[deriveCause(p)]++ })
+  const total = xxsUnmastered.value.length || 1
+  return CAUSE_ORDER.map(k => ({ ...CAUSE_META[k], count: m[k], pct: Math.round((m[k] / total) * 100) }))
+})
+
+const xxsHeat = computed(() => {
+  const m: Record<string, number> = {}
+  xxsUnmastered.value.forEach(p => { const k = p.chapterName || '未分类'; m[k] = (m[k] || 0) + 1 })
+  return Object.entries(m).map(([label, n]) => ({ label, n })).sort((a, b) => b.n - a.n)
+})
+const xxsHeatMax = computed(() => Math.max(1, ...xxsHeat.value.map(h => h.n)))
+
 const activeSection = ref('overview')
+// 支持 ?sec= 直达子板块（如 ?tab=diagnosis&sec=xxs）
+try {
+  const rq = (new URLSearchParams(window.location.search)).get('sec')
+  if (rq) activeSection.value = rq
+} catch { /* noop */ }
 const subjectFilter = ref<'all' | 'my' | 'sg' | 'sx'>('all')
 const filteredPatches = computed(() =>
   subjectFilter.value === 'all' ? patches : patches.filter(p => p.subject === subjectFilter.value)
@@ -525,6 +555,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
       <button :class="{ on: activeSection==='multi' }" @click="activeSection='multi'">📐 多选判断法</button>
       <button :class="{ on: activeSection==='drill' }" @click="activeSection='drill'">🎯 找茬演练</button>
       <button :class="{ on: activeSection==='table' }" @click="activeSection='table'">📊 混淆速查表</button>
+      <button :class="{ on: activeSection==='xxs' }" @click="activeSection='xxs'">🌱 新思想诊断</button>
     </div>
 
     <!-- ══════════ 1 诊断总览 ══════════ -->
@@ -682,6 +713,62 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
               <td class="t-strong">{{ r.t }}</td>
               <td>{{ r.w }}</td>
               <td><span class="mk" :class="{on:isMasked('bk'+i)}" @click="reveal('bk'+i)" v-html="hl(r.k)"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══════════ 6 新思想诊断（实时） ══════════ -->
+    <section v-show="activeSection==='xxs'" class="dg-panel">
+      <h3 class="dg-h">🌱 新思想 · 错因诊断</h3>
+      <p class="dg-note">
+        本板块<b>实时读取错题本</b>里的新思想错题（共 <b>{{ xxsTotal }}</b> 题，未掌握 <b>{{ xxsUnmastered.length }}</b>、已毕业 <b>{{ xxsMastered }}</b>）。
+        错因由「正确答案 vs 您的答案」客观推导，你在错题本里把题标记掌握后，这里会<b>自动更新</b>。
+      </p>
+
+      <div class="xxs-strip">
+        <div class="xs-kpi"><strong>{{ xxsUnmastered.length }}</strong><span>待攻克</span></div>
+        <div class="xs-kpi coral"><strong>{{ xxsBuckets.find(b=>b.key==='multi-over')?.count ?? 0 }}</strong><span>头号病灶 · 多选贪多</span></div>
+        <div class="xs-kpi"><strong>{{ xxsBuckets.find(b=>b.key==='single-confuse')?.count ?? 0 }}</strong><span>单选定位混淆</span></div>
+        <div class="xs-kpi"><strong>{{ xxsHeat.length }}</strong><span>涉及章节</span></div>
+      </div>
+
+      <h3 class="dg-h" style="margin-top:26px">错因结构 · 按占比排序</h3>
+      <div class="buckets">
+        <div v-for="b in xxsBuckets" :key="b.key" class="bucket" :style="{ borderColor: b.hex }">
+          <div class="bk-head">
+            <span class="bk-label" :style="{ color: b.hex }">{{ b.label }}</span>
+            <span class="bk-count">{{ b.count }} 题 · {{ b.pct }}%</span>
+          </div>
+          <div class="bk-bar"><i :style="{ width: b.pct + '%', background: b.hex }"></i></div>
+          <p class="bk-diag"><b>病因：</b>{{ b.diag }}</p>
+          <p class="bk-cure"><b>对策：</b>{{ b.cure }}</p>
+        </div>
+      </div>
+
+      <h3 class="dg-h" style="margin-top:34px">章节错题热力 · 从哪补最划算</h3>
+      <div class="heat">
+        <div v-for="h in xxsHeat" :key="h.label" class="heat-row xxs">
+          <span class="heat-name">{{ h.label }}</span>
+          <div class="heat-track"><i :style="{ width: (h.n/xxsHeatMax*100) + '%' }"></i></div>
+          <span class="heat-n">{{ h.n }}</span>
+        </div>
+      </div>
+
+      <h3 class="dg-h" style="margin-top:34px">定位词辨析 · 新思想最高频的"张冠李戴"</h3>
+      <p class="dg-note">这些"最X原则 / 根本 / 首要 / 统领 / 落脚点"的帽子，正是你单选选反、多选贪多的根源。去「<b>定位词速答</b>」页签翻牌自测。</p>
+      <div class="xxs-term-wrap">
+        <table class="xxs-term">
+          <thead>
+            <tr><th>提问信号词</th><th>正确的那顶帽子</th><th>高频干扰（别选）</th><th>出处</th></tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in TERM_CARDS" :key="t.id">
+              <td class="tt-signal">{{ t.signal }}</td>
+              <td class="tt-ans">{{ t.answer }}</td>
+              <td class="tt-trap">{{ t.trap }}</td>
+              <td class="tt-src">{{ t.src }}</td>
             </tr>
           </tbody>
         </table>
@@ -885,6 +972,25 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
 .dg-foot { margin-top: 26px; font-size: .84rem; color: var(--dg-muted); }
 .dg-link { color: var(--dg-navy); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--dg-gold); }
 
+/* ===== 新思想诊断板块 ===== */
+.xxs-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 4px 0 6px; }
+.xs-kpi { background: #fff; border: 1px solid var(--dg-line); border-left: 4px solid var(--dg-green); border-radius: 12px; padding: 14px 16px; text-align: center; }
+.xs-kpi strong { display: block; font-family: var(--font-display); font-size: 1.9rem; color: var(--dg-navy); line-height: 1.1; }
+.xs-kpi span { font-size: .76rem; color: var(--dg-muted); }
+.xs-kpi.coral { border-left-color: var(--dg-coral); background: linear-gradient(135deg,#fff2ef,#fff); }
+.xs-kpi.coral strong { color: var(--dg-coral); }
+.heat-row.xxs .heat-track i { background: linear-gradient(90deg,#1f8a6d,var(--dg-green)); }
+
+.xxs-term-wrap { border: 1px solid var(--dg-line); border-radius: 12px; overflow: hidden; }
+table.xxs-term { width: 100%; border-collapse: collapse; font-size: .86rem; }
+table.xxs-term thead th { background: linear-gradient(135deg,#1f8a6d,var(--dg-green)); color: #fff; text-align: left; padding: 11px 14px; font-weight: 600; }
+table.xxs-term tbody td { padding: 10px 14px; border-top: 1px solid var(--dg-line); vertical-align: top; line-height: 1.55; }
+table.xxs-term tbody tr:nth-child(even) { background: var(--dg-soft); }
+.tt-signal { font-weight: 700; color: var(--dg-navy); }
+.tt-ans { color: #1f7a55; font-weight: 700; }
+.tt-trap { color: var(--dg-coral); }
+.tt-src { font-family: var(--font-mono); font-size: .76rem; color: var(--dg-muted); white-space: nowrap; }
+
 /* 响应式 */
 @media (max-width: 768px) {
   .dg-verdict { padding: 20px; }
@@ -892,6 +998,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
   .dg-kpis { grid-template-columns: repeat(2,1fr); }
   .heat-row { grid-template-columns: 128px 1fr 34px; gap: 8px; }
   .heat-name { font-size: .78rem; }
+  .xxs-strip { grid-template-columns: repeat(2,1fr); }
   .cards, .drills { grid-template-columns: 1fr; }
   .t-strong { white-space: normal; }
   .dr-opt.is-trap::after { font-size: .66rem; }
