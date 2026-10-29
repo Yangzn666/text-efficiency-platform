@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+import { QUOTES_EFFORT, QUOTES_RESILIENCE } from '@/data/quotes'
 
 // ===== 数据类型 =====
 interface SkillItem {
@@ -29,16 +30,7 @@ const progressPct = ref(0)
 const progressText = ref('0 / 0 掌握')
 
 // ===== 励志语录轮播 =====
-const quotes = [
-  '你不需要很厉害才能开始，但你需要开始才能很厉害。',
-  '关关难过关关过，前路漫漫亦灿灿。',
-  '把会做的做对，把不会的学会，你就赢过了昨天的自己。',
-  '进度条从不说谎——每点亮一个节点，都是实打实的进步。',
-  '别急着和别人比，这棵树是你自己一题一题点亮的。',
-  '今天多掌握一个题型，考场上就少慌一分钟。',
-  '所谓运气，是你刷过的每一道题在关键时刻站出来。',
-  '慢就是快，稳就是强；把眼前的这一题啃透，就够了。'
-]
+const quotes = [...QUOTES_EFFORT, ...QUOTES_RESILIENCE]
 const quoteIdx = ref(0)
 const quoteVisible = ref(true)
 let quoteTimer: ReturnType<typeof setInterval> | null = null
@@ -418,7 +410,8 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="st-quote" :class="{ 'quote-hide': !quoteVisible }">
-        <span class="st-quote-mark">“</span>{{ quotes[quoteIdx] }}<span class="st-quote-mark">”</span>
+        <span class="st-quote-line"><span class="st-quote-mark">“</span>{{ quotes[quoteIdx].text }}<span class="st-quote-mark">”</span></span>
+        <span class="st-quote-by">—— {{ quotes[quoteIdx].author }}<template v-if="quotes[quoteIdx].src"> · {{ quotes[quoteIdx].src }}</template></span>
       </div>
 
       <div v-if="loading" class="st-state">正在加载技能树…</div>
@@ -557,8 +550,8 @@ onBeforeUnmount(() => {
 .st-ring-label { font-size: 12px; color: #CBD5E1; letter-spacing: 0.5px; }
 
 .st-quote {
-  display: flex; align-items: center; justify-content: center; gap: 4px;
-  padding: 10px 24px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  padding: 10px 24px 12px;
   font-size: 14px; font-style: italic; letter-spacing: 0.5px;
   color: #E0E7FF;
   background: linear-gradient(90deg, rgba(79, 70, 229, 0.18), rgba(15, 23, 42, 0.35), rgba(79, 70, 229, 0.18));
@@ -568,6 +561,8 @@ onBeforeUnmount(() => {
   &.quote-hide { opacity: 0; transform: translateY(-4px); }
 }
 .st-quote-mark { color: #FDE047; font-size: 18px; font-style: normal; line-height: 1; }
+.st-quote-line { display: inline; }
+.st-quote-by { font-size: 12px; font-style: normal; color: #FDE047; opacity: .85; letter-spacing: .04em; }
 
 .st-state {
   padding: 60px 20px;

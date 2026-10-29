@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
+import { ALL_QUOTES } from '@/data/quotes'
 
 const router = useRouter()
 
-// ===== 每日一句 · 励志语录轮播 =====
-const quotes = [
-  '你不需要很厉害才能开始，但你需要开始才能很厉害。',
-  '关关难过关关过，前路漫漫亦灿灿。',
-  '把书读薄，把题做透，把心稳住。',
-  '所谓运气，不过是你的努力刚好碰上了准备。',
-  '当坚冰还盖着北海，你要做怒放的梅花。',
-  '慢慢来，比较快；稳住，就是最大的效率。',
-  '你走的每一步都算数，今天的坚持是明天的底气。',
-  '考研这场黑屋子里的洗衣服，穿上身的那一刻，你会感谢现在没放弃的自己。'
-]
+// ===== 每日一句 · 励志语录轮播（可署名名言）=====
+const quotes = ALL_QUOTES
 const qIdx = ref(0)
 const qVisible = ref(true)
 let qTimer: ReturnType<typeof setInterval> | null = null
@@ -125,9 +117,14 @@ function go(route: string) {
 
     <section class="daily-quote" :class="{ 'quote-hide': !qVisible }">
       <span class="dq-label">每日一句</span>
-      <span class="dq-mark">“</span>
-      <span class="dq-text">{{ quotes[qIdx] }}</span>
-      <span class="dq-mark dq-mark-end">”</span>
+      <div class="dq-body">
+        <div class="dq-line">
+          <span class="dq-mark">“</span>
+          <span class="dq-text">{{ quotes[qIdx].text }}</span>
+          <span class="dq-mark dq-mark-end">”</span>
+        </div>
+        <div class="dq-by">—— {{ quotes[qIdx].author }}<template v-if="quotes[qIdx].src"> · {{ quotes[qIdx].src }}</template></div>
+      </div>
     </section>
 
     <section class="module-grid">
@@ -261,6 +258,9 @@ function go(route: string) {
   line-height: 1;
 }
 .dq-mark-end { transform: translateY(0.35rem); }
+.dq-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.dq-line { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.dq-by { font-size: .8rem; color: #a06a00; letter-spacing: .04em; font-weight: 600; }
 .dq-text {
   font-size: 1.02rem;
   font-weight: 600;

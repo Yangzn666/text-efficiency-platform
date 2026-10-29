@@ -36,9 +36,13 @@
         <div class="hero-divider" aria-hidden="true"></div>
 
         <div class="hero-quote">
-          <div class="quote-mark" aria-hidden="true">「</div>
           <transition name="quote-fade" mode="out-in">
-            <div class="quote-text" :key="quoteIdx">{{ currentQuote }}</div>
+            <div class="quote-line" :key="quoteIdx">
+              <span class="quote-mark" aria-hidden="true">「</span>
+              <span class="quote-text">{{ currentQuote.text }}</span>
+              <span class="quote-mark" aria-hidden="true">」</span>
+              <span class="quote-author">—— {{ currentQuote.author }}<template v-if="currentQuote.src"> · {{ currentQuote.src }}</template></span>
+            </div>
           </transition>
         </div>
       </div>
@@ -283,6 +287,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import MaterialsWall from '@/components/MaterialsWall.vue'
+import { QUOTES_CONFIDENCE, QUOTES_FOCUS, SLOGANS } from '@/data/quotes'
 
 const store = useTodayStatusStore()
 
@@ -318,28 +323,8 @@ const warTiles = computed(() => [
 ])
 
 // ---------- 励志语录（6秒轮换） ----------
-const quotes = [
-  '你现在的努力，是为了让未来的自己不后悔。',
-  '把每一天当作冲刺，但用马拉松的节奏呼吸。',
-  '完成比完美更重要，先做完再做好。',
-  '链断了不可怕，可怕的是不再接上。',
-  '今天的你，是昨天所有选择的总和。',
-  '别和别人比进度，只和昨天的自己比。',
-  '专注25分钟，胜过走神2小时。',
-  '考研不是青春的终点，是自律的勋章。',
-  '难点章节多花时间是值得的，那才是提分点。',
-  '休息也是计划的一部分，别透支明天的精力。'
-]
-const slogans = [
-  '浙大海宁 · 等我上岸',
-  '360分 · 势在必得',
-  '越努力 越幸运',
-  '自律给我自由',
-  '坚持到无能为力',
-  '拼搏到感动自己',
-  '今天的你 比昨天更强',
-  '每天进步一点点'
-]
+const quotes = [...QUOTES_CONFIDENCE, ...QUOTES_FOCUS]
+const slogans = SLOGANS
 const quoteIdx = ref(0)
 let quoteTimer = null
 const currentQuote = computed(() => quotes[quoteIdx.value % quotes.length])
@@ -724,6 +709,15 @@ onUnmounted(() => {
   line-height: 1.7;
   color: #e8eef7;
   padding-top: 8px;
+}
+.quote-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px; }
+.quote-author {
+  flex-basis: 100%;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--gold);
+  opacity: .85;
+  margin-top: 4px;
 }
 .brief-today {
   display: flex;

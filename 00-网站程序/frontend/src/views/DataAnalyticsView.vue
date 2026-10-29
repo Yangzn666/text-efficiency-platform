@@ -5,6 +5,7 @@ import { useTodayStatusStore } from '@/stores/todayStatus'
 import { useMaterialsStore, materialStatus } from '@/stores/materials'
 import { exportAllData, importAllData } from '@/utils/dataBackup'
 import { useWrongProblemsStore, type WrongSubject } from '@/stores/wrongProblems'
+import { QUOTES_RESILIENCE, QUOTES_EFFORT, SLOGANS } from '@/data/quotes'
 
 
 const store = useTodayStatusStore()
@@ -12,26 +13,8 @@ const matStore = useMaterialsStore()
 const wp = useWrongProblemsStore()
 
 // ---------- 励志标语 ----------
-const quotes = [
-  '你背的每一个单词、做的每一道题，都在铺就上岸的路',
-  '乾坤未定，你我皆是黑马',
-  '星光不问赶路人，时光不负有心人',
-  '既然选择了远方，便只顾风雨兼程',
-  '耐得住寂寞，才守得住繁华',
-  '关关难过关关过，前路漫漫亦灿灿',
-  '你现在的努力，是为了让未来的自己不后悔',
-  '种一棵树最好的时间是十年前，其次是现在'
-]
-const slogans = [
-  '浙大海宁 · 等我上岸',
-  '360分 · 势在必得',
-  '越努力 越幸运',
-  '自律给我自由',
-  '坚持到无能为力',
-  '拼搏到感动自己',
-  '今天的你 比昨天更强',
-  '每天进步一点点'
-]
+const quotes = [...QUOTES_RESILIENCE, ...QUOTES_EFFORT]
+const slogans = SLOGANS
 
 const quoteIdx = ref(0)
 let quoteTimer: ReturnType<typeof setInterval> | null = null
@@ -255,9 +238,13 @@ onUnmounted(() => {
         <div class="hero-divider" aria-hidden="true"></div>
 
         <div class="hero-quote">
-          <div class="quote-mark" aria-hidden="true">「</div>
           <transition name="quote-fade" mode="out-in">
-            <div class="quote-text" :key="quoteIdx">{{ currentQuote }}</div>
+            <div class="quote-line" :key="quoteIdx">
+              <span class="quote-mark" aria-hidden="true">「</span>
+              <span class="quote-text">{{ currentQuote.text }}</span>
+              <span class="quote-mark" aria-hidden="true">」</span>
+              <span class="quote-author">—— {{ currentQuote.author }}<template v-if="currentQuote.src"> · {{ currentQuote.src }}</template></span>
+            </div>
           </transition>
         </div>
       </div>
@@ -582,6 +569,7 @@ onUnmounted(() => {
 .prep-delta.lag { background: rgba(245, 108, 108, 0.2); color: #ffb3ad; border: 1px solid rgba(245, 108, 108, 0.4); }
 
 .hero-quote { flex: 1; min-width: 240px; display: flex; gap: 10px; align-items: flex-start; }
+.quote-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px; }
 .quote-mark {
   font-family: var(--font-display);
   font-size: 2.6rem;
@@ -593,6 +581,14 @@ onUnmounted(() => {
   line-height: 1.7;
   color: #e8eef7;
   padding-top: 8px;
+}
+.quote-author {
+  flex-basis: 100%;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--gold);
+  opacity: .85;
+  margin-top: 4px;
 }
 .quote-fade-enter-active, .quote-fade-leave-active { transition: opacity 0.5s ease, transform 0.5s ease; }
 .quote-fade-enter-from { opacity: 0; transform: translateY(8px); }

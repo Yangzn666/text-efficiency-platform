@@ -2,6 +2,7 @@
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import { useWarroomStore } from '@/stores/warroom'
+import { QUOTES_EFFORT, QUOTES_RESILIENCE, QUOTES_CONFIDENCE } from '@/data/quotes'
 
 const today = useTodayStatusStore()
 const wr = useWarroomStore()
@@ -219,13 +220,7 @@ const trendChart = computed(() => {
 })
 
 /* ===== 今日战训语录 ===== */
-const QUOTES = [
-  '把已会的稳定兑现，比刷新题更值钱。', '你欠的账全在可逆区——现在动，正好来得及。',
-  '慢不是退步，是在扎根；看得见的都是后劲。', '错题是路标，不是判决书。栽过 = 下次会赢的地方。',
-  '今天只跟昨天比：多守住一分，就是净胜。', '别数还剩多少，数今天焊死了哪几颗钉子。',
-  '兑现率提上去，130 是被"不丢分"堆出来的。', '焦虑的反义词是具体——打开清单，勾掉第一条。',
-  '作文政治大题都在等你 11、12 月收割，现在打地基。', '你不是来不及，是正在把努力变成分数。'
-]
+const QUOTES = [...QUOTES_EFFORT, ...QUOTES_RESILIENCE, ...QUOTES_CONFIDENCE]
 const qi = ref(0)
 const quoteFade = ref(false)
 
@@ -416,7 +411,7 @@ const quote = computed(() => QUOTES[qi.value])
             </div>
           </div>
         </div>
-        <div class="hud quote"><span class="qi">今日战训 //</span><span class="qt" :class="{ fade: quoteFade }">{{ quote }}</span></div>
+        <div class="hud quote"><span class="qi">今日战训 //</span><span class="qt" :class="{ fade: quoteFade }">{{ quote.text }}</span><span class="qa" :class="{ fade: quoteFade }">—— {{ quote.author }}<template v-if="quote.src"> · {{ quote.src }}</template></span></div>
       </section>
 
       <!-- 01 GAUGES -->
@@ -792,10 +787,12 @@ section { margin-top: 52px; position: relative }
 .log-add button:hover { background: var(--math); color: #04101f }
 .log-empty { font-size: 12.5px; color: var(--ink3); font-style: italic; padding: 14px 4px; text-align: center; border: 1px dashed var(--line); border-radius: 4px }
 
-.quote { margin-top: 16px; padding: 18px 24px; display: flex; align-items: center; gap: 16px; border-left: 3px solid var(--gold) }
+.quote { margin-top: 16px; padding: 18px 24px; display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; border-left: 3px solid var(--gold) }
 .quote .qi { font-size: 12px; letter-spacing: 2px; color: var(--gold); flex: none; font-family: var(--mono) }
 .quote .qt { font-size: 17px; font-weight: 700; line-height: 1.5; transition: opacity .5s }
 .quote .qt.fade { opacity: 0 }
+.quote .qa { font-size: 13px; color: var(--gold); opacity: .82; letter-spacing: 1px; transition: opacity .5s }
+.quote .qa.fade { opacity: 0 }
 
 .gauges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px }
 .gauge { padding: 22px 18px 18px; text-align: center }
