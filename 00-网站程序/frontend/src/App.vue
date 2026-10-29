@@ -58,20 +58,26 @@
             <span class="fv-build">构建 {{ builtAt }}</span>
           </p>
         </div>
-        <p v-else>© 2026 考研效率平台 · 浙大海宁 · 27考研必胜</p>
+        <p v-else>
+          © 2026 考研效率平台 · 浙大海宁 · 27考研必胜
+          <button class="footer-ver" :class="{ checking: swChecking }" type="button" @click="checkForUpdate(true)">
+            🕒 版本 {{ lastUpdated || builtAt }}{{ swChecking ? ' · 检查中…' : ' · 点我检查更新' }}
+          </button>
+        </p>
       </footer>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 
 // P5 方案 B：构建模式（个人版默认 / 共享版 --mode share）；import.meta.env 在构建期静态替换
 const isShare = import.meta.env.VITE_APP_MODE === 'share'
 const appTitle = isShare ? '📚 考研知识库' : '🎓 考研效率平台'
-// 版本时间戳由 vite.config define 注入（个人版页脚不渲染，但一并声明）
+// 版本时间戳由 vite.config define 注入（共享版页脚显示"最近更新/构建"，个人版显示可点击的版本戳用于检查更新）
 const lastUpdated = __LAST_UPDATED__
 const builtAt = __BUILD_TIME__
 
@@ -123,6 +129,76 @@ const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
+/* ===== PWA 版本自检（防止手机上一直停在旧版） =====
+   背景：站点是 PWA，页面资源由 Service Worker precache 提供。手机从桌面图标打开时
+   浏览器不一定会去检查 sw.js 更新，于是一天发好几版，手机上看着就"旧了好几个版本"。
+   做法：①页脚显示版本戳，一眼看出是不是旧版；②每 3 分钟 + 每次回到前台，主动
+   registration.update() 要一次 sw.js；③新版 SW 接管后自动重载一次，立刻用上新资源。 */
+const SW_BASE = import.meta.env.BASE_URL
+const SW_CHECK_MS = 3 * 60 * 1000
+const swChecking = ref(false)
+let swTimer = null
+let sawNewSw = false      // 只有"本机制查出来的新 SW"才允许触发重载，避免首次 claim 误刷
+let swReloaded = false
+let reloadWhenVisible = false
+
+const swSupported = () => import.meta.env.PROD && 'serviceWorker' in navigator
+
+async function checkForUpdate(manual = false) {
+  if (!swSupported()) {
+    if (manual) ElMessage.info('开发环境不检查版本')
+    return
+  }
+  if (swChecking.value) return
+  swChecking.value = true
+  try {
+    const reg = await navigator.serviceWorker.getRegistration(SW_BASE)
+    if (!reg) {
+      if (manual) ElMessage.warning('离线服务尚未就绪，先用浏览器打开一次网站')
+      return
+    }
+    await reg.update()          // 绕过浏览器 24h 节流，强制向服务器要一次 sw.js
+    // 有新版 → 会进入 installing（预缓存期间可见）；没有 → 3 秒内毫无动静
+    const found = await new Promise(resolve => {
+      const t0 = Date.now()
+      const tick = () => {
+        if (reg.installing) return resolve(true)
+        if (Date.now() - t0 > 3000) return resolve(false)
+        setTimeout(tick, 250)
+      }
+      tick()
+    })
+    if (found) {
+      sawNewSw = true
+      if (manual) ElMessage.success('发现新版本，正在更新并重新载入…')
+    } else if (manual) {
+      ElMessage.success(`已是最新版本 · 构建 ${builtAt}`)
+    }
+  } catch (e) {
+    if (manual) ElMessage.error('检查更新失败：' + (e?.message || e))
+  } finally {
+    swChecking.value = false
+  }
+}
+
+function onSwControllerChange() {
+  if (!sawNewSw || swReloaded) return
+  swReloaded = true
+  // 正在后台就别硬刷，等回到前台再刷，避免打断做题
+  if (document.visibilityState === 'visible') location.reload()
+  else reloadWhenVisible = true
+}
+
+function onSwVisibility() {
+  if (document.visibilityState !== 'visible') return
+  if (reloadWhenVisible) {
+    reloadWhenVisible = false
+    location.reload()
+    return
+  }
+  checkForUpdate()
+}
+
 // 页面加载完成后隐藏加载指示器
 onMounted(() => {
   router.isReady().then(() => {
@@ -132,6 +208,21 @@ onMounted(() => {
   }).catch(() => {
     isLoading.value = false
   })
+
+  if (swSupported()) {
+    navigator.serviceWorker.addEventListener('controllerchange', onSwControllerChange)
+    document.addEventListener('visibilitychange', onSwVisibility)
+    swTimer = setInterval(() => {
+      if (document.visibilityState === 'visible') checkForUpdate()
+    }, SW_CHECK_MS)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (!swSupported()) return
+  navigator.serviceWorker.removeEventListener('controllerchange', onSwControllerChange)
+  document.removeEventListener('visibilitychange', onSwVisibility)
+  if (swTimer) clearInterval(swTimer)
 })
 </script>
 
@@ -460,6 +551,30 @@ button, a, .tab-pill, .module-card {
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   border-top: 2px solid rgba(255, 197, 61, 0.25);
+}
+
+.footer-ver {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  font: inherit;
+  color: #ffc53d;
+  background: rgba(255, 197, 61, 0.08);
+  border: 1px solid rgba(255, 197, 61, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.footer-ver:hover {
+  background: rgba(255, 197, 61, 0.18);
+  border-color: rgba(255, 197, 61, 0.6);
+}
+
+.footer-ver.checking {
+  opacity: 0.55;
+  cursor: progress;
 }
 
 /* ===== 全局加载指示器 ===== */
