@@ -11,6 +11,8 @@ const store = useSrsStore()
 store.init()
 // 408 真题重做队列：异步灌入记忆卡（幂等、失败静默），让 cs408-bigq 卡池出现在筛选 chip
 store.seedCS408()
+// 政治漏洞卡（顽固考点簇 + 成套结论默写）：同上，池名 politics-vuln / politics-set
+store.seedPolitics()
 
 // LaTeX 渲染（复用速查卡 texify 方案）
 function texify(text: string): string {
@@ -76,7 +78,10 @@ const statCards = computed(() => ([
   { key: 'total', label: '卡片总数', value: store.totalCount, color: '#8a6d1f' }
 ]))
 
-onMounted(async () => { try { await store.seedCS408() } catch {} ; beginSession() })
+onMounted(async () => {
+  try { await Promise.all([store.seedCS408(), store.seedPolitics()]) } catch {}
+  beginSession()
+})
 </script>
 
 <template>

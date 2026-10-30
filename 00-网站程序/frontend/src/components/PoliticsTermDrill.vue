@@ -95,7 +95,7 @@ const resetMarks = () => { marks.value = {}; flipped.value = new Set() }
       </div>
     </div>
 
-    <p class="td-foot">💡 这套帽子题记不牢时，回 <router-link to="/wrong-problems" class="td-link">全科错题本 → 新思想</router-link> 逐题重做，或在「错题再练」里按错因回炉。</p>
+    <p class="td-foot">💡 这套帽子题记不牢时，回 <router-link to="/wrong-problems?subject=politics" class="td-link">全科错题本 → 新思想</router-link> 逐题重做，或在「错题再练」里按错因回炉。</p>
   </div>
 </template>
 

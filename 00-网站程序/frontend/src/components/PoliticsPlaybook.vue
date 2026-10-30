@@ -7,26 +7,30 @@ import { ref, computed, onMounted } from 'vue'
 import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import { POLITICS_WRONG_SEED } from '@/data/politicsWrongSeed'
 import { deriveCause, isXxs, CAUSE_META, CAUSE_ORDER, type CauseKey } from '@/data/politicsWrongCause'
+import { realCauseKey, loadPoliticsVuln } from '@/data/politicsVuln'
 
 const wp = useWrongProblemsStore()
 const problems = wp.bind('politics', POLITICS_WRONG_SEED)
+loadPoliticsVuln().catch(() => { /* 数据缺失时回退订正文本推导 */ })
 
 // ── 病灶实时统计（只看未掌握的题）──
 const unmastered = computed(() => problems.value.filter(p => !p.mastered))
 const causeCount = computed(() => {
   const m: Record<CauseKey, number> = { 'single-confuse': 0, 'multi-over': 0, 'multi-under': 0, 'multi-both': 0 }
-  unmastered.value.forEach(p => { m[deriveCause(p)]++ })
+  // 优先按一刷真实作答字母判定，明细没有的题才用订正文本推导
+  unmastered.value.forEach(p => { m[realCauseKey(p.id) ?? deriveCause(p)]++ })
   return m
 })
 const xxsUnmastered = computed(() => unmastered.value.filter(isXxs).length)
 const causeMax = computed(() => Math.max(1, ...CAUSE_ORDER.map(k => causeCount.value[k])))
 
-// 每条病灶 → 处方 + 直达页签
-const RX: Record<CauseKey, { to: string; label: string; act: string }> = {
-  'single-confuse': { to: 'logic', label: '逻辑图谱下钻', act: '点板块 hub 看「提问信号→正解帽子」实线；再去定位词速答翻牌' },
-  'multi-over':     { to: 'practice', label: '错题再练·按错因回炉', act: '交卷前逐条反问「这选项题干问的那个定位吗？话说绝没绝？」宁缺毋滥' },
-  'multi-under':    { to: 'terms', label: '定位词速答补清单', act: '把「四大/五个/四个战略支撑」这类成套结论做成清单先补全再判断' },
-  'multi-both':     { to: 'mindmap', label: '记忆图谱搭框架', act: '回炉该节思维导图，先搭框架再刷题，别急着逐个纠错选项' },
+// 每条病灶 → 处方 + 直达页签（带 query，演练室支持 ?cause= 按错因只回炉这一类）
+type RxTo = { path: string; query: Record<string, string> }
+const RX: Record<CauseKey, { to: RxTo; label: string; act: string }> = {
+  'single-confuse': { to: { path: '/politics', query: { tab: 'atlas' } }, label: '图谱下钻', act: '进「图谱 → 逻辑图谱」看板块 hub 的「提问信号→正解帽子」实线；再去定位词速答翻牌' },
+  'multi-over':     { to: { path: '/politics', query: { tab: 'practice', cause: 'multi-over' } }, label: '只回炉贪多题', act: '交卷前逐条反问「这选项题干问的那个定位吗？话说绝没绝？」宁缺毋滥' },
+  'multi-under':    { to: { path: '/politics', query: { tab: 'terms' } }, label: '定位词速答补清单', act: '把「四大/五个/四个战略支撑」这类成套结论做成清单先补全再判断' },
+  'multi-both':     { to: { path: '/politics', query: { tab: 'atlas' } }, label: '图谱搭框架', act: '进「图谱 → 记忆图谱」回炉该节思维导图，先搭框架再刷题，别逐个纠错选项' },
 }
 
 // ── 阶段打法（按今天日期高亮当前阶段）──
@@ -95,7 +99,7 @@ function resetPasses() { passes.value = 0; passLog.value = []; save() }
             <div class="rx-bar"><i :style="{ width: (causeCount[k] / causeMax * 100) + '%', background: CAUSE_META[k].hex }"></i></div>
             <p class="rx-act">→ {{ RX[k].act }}</p>
           </div>
-          <router-link class="rx-btn" :to="`/politics?tab=${RX[k].to}`">{{ RX[k].label }} ↗</router-link>
+          <router-link class="rx-btn" :to="RX[k].to">{{ RX[k].label }} ↗</router-link>
         </div>
       </div>
     </section>
@@ -124,10 +128,12 @@ function resetPasses() { passes.value = 0; passLog.value = []; save() }
     <section class="pb-card">
       <h3 class="pb-h">🔁 每天 1 小时的固定动作（照做即可）</h3>
       <ol class="routine">
+        <li><b>10 min 记忆卡到期</b>：碎片时间刷「政治·顽固考点簇 + 成套结论默写」，忘记的自动回盒 1 第二天再来。<router-link class="inl" :to="{ path: '/srs', query: { pool: 'politics-vuln' } }"> 去刷卡 ↗</router-link></li>
         <li><b>10 min 定位词速答</b>：翻牌自测新思想"帽子"，答错的当场标记。<router-link class="inl" to="/politics?tab=terms"> 去翻牌 ↗</router-link></li>
         <li><b>20 min 错题再练</b>：按"贪多 / 定位混淆"错因回炉 3-5 题，做对 2 次自动毕业。<router-link class="inl" to="/politics?tab=practice"> 去回炉 ↗</router-link></li>
+        <li><b>10 min 照抄手册标注</b>：把当天回炉题对应的手册节点短语抄进思维导图，勾掉一条少一条。<router-link class="inl" :to="{ path: '/politics', query: { tab: 'vuln', view: 'handbook' } }"> 去抄 ↗</router-link></li>
         <li><b>20 min 主线</b>：现阶段=肖1000二刷/真题选择题；11月=肖八选择题；12月=肖四大题背诵。</li>
-        <li><b>睡前 10 min</b>：翻 2-3 张背诵卡片 + 瞄一眼逻辑图谱。<router-link class="inl" to="/politics?tab=logic"> 看图谱 ↗</router-link></li>
+        <li><b>睡前 10 min</b>：翻 2-3 张背诵卡片 + 瞄一眼图谱。<router-link class="inl" to="/politics?tab=atlas"> 看图谱 ↗</router-link></li>
       </ol>
     </section>
 

@@ -1,26 +1,56 @@
 <script setup lang="ts">
 // 错题再练闭环 · 演练室
 // 从错题本 store 取"未掌握"的政治错题（默认新思想），逐题重做 → 实时判分 → 错因提示 → recordReview 毕业闭环
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useWrongProblemsStore } from '@/stores/wrongProblems'
 import {
   parseChoice, parseStem, isMulti, isXxs,
-  deriveCauseFromSelection, CAUSE_META, type CauseKey
+  deriveCause, deriveCauseFromSelection, CAUSE_META, type CauseKey
 } from '@/data/politicsWrongCause'
+import { realCauseKey } from '@/data/politicsVuln'
 import { POLITICS_WRONG_SEED } from '@/data/politicsWrongSeed'
 import type { WrongProblem } from '@/data/wrongProblemTypes'
 
 const wp = useWrongProblemsStore()
 wp.bind('politics', POLITICS_WRONG_SEED)
+const route = useRoute()
 
 const scope = ref<'xxs' | 'all'>('xxs')
+const causeOnly = ref<CauseKey | ''>('')     // 只看某一类错因（来自「我的打法」处方）
+const focusId = ref('')                       // 来自考点漏洞地图的指定题
+// 该题的真实错因（明细没有就回退订正文本推导）
+const causeFor = (p: WrongProblem): CauseKey => realCauseKey(p.id) ?? deriveCause(p)
+
 const pool = computed<WrongProblem[]>(() => {
-  const base = wp.db.politics.filter(p => !p.mastered)
+  let base = wp.db.politics.filter(p => !p.mastered)
+  if (causeOnly.value) base = base.filter(p => causeFor(p) === causeOnly.value)
   return scope.value === 'xxs' ? base.filter(isXxs) : base
 })
 
 const idx = ref(0)
 const current = computed<WrongProblem | null>(() => pool.value[idx.value] ?? null)
+
+/** ?kw=题目id&cause=错因 —— 从漏洞地图/打法一键送到演练室对应位置 */
+function applyQuery() {
+  const kw = typeof route.query.kw === 'string' ? route.query.kw : ''
+  const cs = typeof route.query.cause === 'string' ? route.query.cause : ''
+  let touched = false
+  if (cs && (cs in CAUSE_META)) { causeOnly.value = cs as CauseKey; scope.value = 'all'; touched = true }
+  if (kw) {
+    focusId.value = kw
+    scope.value = 'all'
+    const i = pool.value.findIndex(p => p.id === kw)
+    if (i >= 0) { idx.value = i; touched = true }
+  }
+  if (touched) { judged.value = false; picked.value = []; causeKey.value = null }
+}
+function clearFocus() {
+  focusId.value = ''; causeOnly.value = ''; idx.value = 0
+  judged.value = false; picked.value = []; causeKey.value = null
+}
+onMounted(applyQuery)
+watch(() => [route.query.kw, route.query.cause], applyQuery)
 
 // 题面解析
 const parsed = computed(() => {
@@ -116,6 +146,14 @@ const optClass = (key: string) => {
       <div class="dr-stat coral"><strong>GRAD=2</strong><span>连对 2 次即毕业</span></div>
     </div>
 
+    <!-- 来自考点漏洞地图 / 我的打法的聚焦状态 -->
+    <div v-if="focusId || causeOnly" class="dr-focus">
+      <span>🎯 聚焦中：</span>
+      <b v-if="causeOnly">{{ CAUSE_META[causeOnly].label }}（{{ pool.length }} 题）</b>
+      <b v-if="focusId">已定位 {{ focusId }}</b>
+      <button class="drf-clear" @click="clearFocus">取消聚焦，回到完整队列</button>
+    </div>
+
     <!-- 全部刷完 -->
     <div v-if="done" class="dr-clear">
       <div class="dc-emoji">🎉</div>
@@ -173,7 +211,7 @@ const optClass = (key: string) => {
       </div>
     </div>
 
-    <p class="dr-foot">💡 需要看整题清单或改标记，去 <router-link to="/wrong-problems" class="dr-link">全科错题本</router-link>。</p>
+    <p class="dr-foot">💡 需要看整题清单或改标记，去 <router-link to="/wrong-problems?subject=politics" class="dr-link">全科错题本</router-link>。</p>
   </div>
 </template>
 
@@ -200,6 +238,19 @@ const optClass = (key: string) => {
 .dr-stat span { font-size: .74rem; color: var(--dr-muted); }
 .dr-stat.coral { border-left-color: var(--dr-coral); }
 .dr-stat.coral strong { font-size: 1.15rem; color: var(--dr-coral); }
+
+.dr-focus {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: #fffdf4; border: 1px solid rgba(255,197,61,.55); border-left: 4px solid var(--dr-gold);
+  border-radius: 10px; padding: 10px 14px; margin: -8px 0 18px;
+  font-size: .84rem; color: var(--dr-body);
+}
+.dr-focus b { color: var(--dr-navy); }
+.drf-clear {
+  margin-left: auto; cursor: pointer; font-size: .78rem; font-weight: 700;
+  color: var(--dr-navy); background: #fff; border: 1px solid var(--dr-line); border-radius: 8px; padding: 5px 12px;
+}
+.drf-clear:hover { border-color: var(--dr-navy); }
 
 .dr-clear { background: #eef8f2; border: 1px solid rgba(46,158,107,.35); border-radius: 14px; padding: 40px 24px; text-align: center; }
 .dc-emoji { font-size: 2.4rem; }

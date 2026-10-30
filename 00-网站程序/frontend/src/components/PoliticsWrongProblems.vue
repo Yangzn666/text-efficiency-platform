@@ -8,6 +8,9 @@ import {
   type CauseKey,
 } from '@/data/politicsWrongCause'
 import { POLITICS_WRONG_SEED } from '@/data/politicsWrongSeed'
+// 一刷 483 题逐题细读的真实字母明细（漏选/错选 + 为什么）：
+// 有数据时错因一律以真实作答为准，不再用订正文本正则猜；没有的题（新录入）自动回退 deriveCause。
+import { loadPoliticsVuln, letters, realCauseKey, groupOfQuestion } from '@/data/politicsVuln'
 
 interface WrongProblem {
   id: string
@@ -71,7 +74,7 @@ const filteredProblems = computed(() => {
   return problems.value.filter(p => {
     if (subjectFilter.value !== 'all' && subjectPrefix(p) !== subjectFilter.value) return false
     if (chapterFilter.value !== 'all' && p.chapterId !== chapterFilter.value) return false
-    if (causeFilter.value !== 'all' && deriveCause(p) !== causeFilter.value) return false
+    if (causeFilter.value !== 'all' && causeOf(p) !== causeFilter.value) return false
     if (typeFilter.value !== 'all' && p.mistakeType !== typeFilter.value) return false
     if (masteredFilter.value === 'mastered' && !p.mastered) return false
     if (masteredFilter.value === 'unmastered' && p.mastered) return false
@@ -107,13 +110,26 @@ const unmasteredProblems = computed(() => problems.value.filter(p => !p.mastered
 
 const causeStats = computed(() => {
   const m: Record<CauseKey, number> = { 'single-confuse': 0, 'multi-over': 0, 'multi-under': 0, 'multi-both': 0 }
-  unmasteredProblems.value.forEach(p => { m[deriveCause(p)]++ })
+  unmasteredProblems.value.forEach(p => { m[causeOf(p)]++ })
   const total = unmasteredProblems.value.length || 1
   return CAUSE_ORDER.map(k => ({
     ...CAUSE_META[k],
     count: m[k],
     pct: Math.round((m[k] / total) * 100),
   }))
+})
+
+// 漏选 / 错选 真实人次（未掌握题范围）——判断瓶颈到底是"记不全"还是"认不出干扰项"
+const letterFlow = computed(() => {
+  let miss = 0, extra = 0
+  unmasteredProblems.value.forEach(p => {
+    const r = letters.value[p.id]
+    if (!r) return
+    miss += (r.miss || []).length
+    extra += (r.extra || []).length
+  })
+  const sum = miss + extra || 1
+  return { miss, extra, missPct: Math.round(miss / sum * 100), extraPct: Math.round(extra / sum * 100) }
 })
 
 const subjectStats = computed(() => {
@@ -127,10 +143,40 @@ const subjectStats = computed(() => {
   ]
 })
 
-const causeOf = (p: WrongProblem): CauseKey => deriveCause(p)
-const causeMeta = (p: WrongProblem) => CAUSE_META[deriveCause(p)]
+/* ── 错因判定：真实字母优先，明细缺失才回退订正文本推导 ──
+   （realCauseKey 读的是 wrong-letters.json 里一刷实际作答的漏选/错选集合，
+     deriveCause 是从 correction 字符串正则猜，精度差一档）*/
+const causeOf = (p: WrongProblem): CauseKey => realCauseKey(p.id) ?? deriveCause(p)
+const causeMeta = (p: WrongProblem) => CAUSE_META[causeOf(p)]
 const toggleCause = (k: CauseKey) => { causeFilter.value = causeFilter.value === k ? 'all' : k }
 const setSubject = (k: string) => { subjectFilter.value = subjectFilter.value === k ? 'all' : k }
+
+/* ── 选项字母级明细（红=漏选/应选，蓝=错选/你选）── */
+interface LetterRow { l: string; t: string; why: string }
+const letterRec = (p: WrongProblem) => letters.value[p.id] || null
+const isSingle = (p: WrongProblem) => letterRec(p)?.qtype === '单选'
+const hasLetters = (p: WrongProblem) => !!letters.value[p.id]
+const rowsOf = (arr: { l: string; t: string }[] | undefined, why: Record<string, string>): LetterRow[] =>
+  (arr || []).map(x => ({ l: x.l, t: x.t, why: why[x.l] || '' }))
+const missRows = (p: WrongProblem): LetterRow[] => {
+  const r = letterRec(p); return r ? rowsOf(r.miss, r.why) : []
+}
+const answerLine = (p: WrongProblem) => {
+  const r = letterRec(p)
+  return r ? `正确 ${r.correct || '—'} ｜ 你选 ${r.mine || '—'}` : ''
+}
+const extraRows = (p: WrongProblem): LetterRow[] => {
+  const r = letterRec(p); return r ? rowsOf(r.extra, r.why) : []
+}
+/** 该题命中的考点簇 → 供「看它在哪个漏洞簇」直达 */
+const vulnOf = (p: WrongProblem) => groupOfQuestion(p.id)
+const vulnQuery = (p: WrongProblem) => {
+  const g = vulnOf(p)
+  return g ? { tab: 'vuln' as const, sub: g.subject, chap: g.chapter, kw: g.group } : { tab: 'vuln' as const, kw: p.id }
+}
+/** 真实明细覆盖了多少题（数据加载完后角标会从「推导」变「真实」）*/
+const realCoveredCount = computed(() => problems.value.filter(p => !!letters.value[p.id]).length)
+const realCauseReady = computed(() => realCoveredCount.value > 0)
 
 // 方法
 const openAddDialog = () => {
@@ -293,6 +339,8 @@ const formatContent = (content: string): string[] => {
 
 onMounted(() => {
   loadFromLocalStorage()
+  // 真实漏选/错选明细（幂等；离线或数据缺失时静默回退到订正文本推导）
+  loadPoliticsVuln().catch(() => { /* noop */ })
 })
 
 // 暴露方法供外部调用
@@ -328,6 +376,11 @@ defineExpose({
           <div class="cause-board-title">
             <span>🩺 错因分布</span>
             <em>点击色块即可筛选，仅统计未掌握题</em>
+            <span class="cbt-right">
+              <span v-if="realCauseReady" class="src-pill real">真实判定 · 已覆盖 {{ realCoveredCount }} 题</span>
+              <span v-else class="src-pill est">订正文本推导</span>
+              <router-link class="src-vuln" :to="{ path: '/politics', query: { tab: 'vuln' } }">🕳 考点漏洞地图 ↗</router-link>
+            </span>
           </div>
           <div class="cause-chips">
             <button
@@ -406,6 +459,8 @@ defineExpose({
                 <div class="problem-tags">
                   <span class="cause-badge" :style="{ '--cc': causeMeta(problem).hex }">
                     {{ causeMeta(problem).short }}
+                    <i v-if="hasLetters(problem)" class="cb-src real" title="由一刷真实作答字母判定">真实</i>
+                    <i v-else class="cb-src est" title="订正文本推导（未收录进 483 题明细）">推导</i>
                   </span>
                   <span class="importance">{{ getImportanceStars(problem.importance) }}</span>
                 </div>
@@ -443,7 +498,42 @@ defineExpose({
                 </div>
               </div>
             </div>
-            
+
+            <!-- 选项字母级解剖（真实一刷作答）：红=漏选/应选，蓝=错选/你选 -->
+            <div v-if="hasLetters(problem)" class="letter-anatomy">
+              <div class="la-head">
+                <span class="la-tag">{{ isSingle(problem) ? '单选 · 两个"看着都对"的选反了' : '多选 · 逐项解剖' }}</span>
+                <span class="la-answer">{{ answerLine(problem) }}</span>
+                <router-link
+                  v-if="vulnOf(problem)"
+                  class="la-vuln"
+                  :to="{ path: '/politics', query: vulnQuery(problem) }"
+                  :title="'跳到考点漏洞地图：' + (vulnOf(problem)?.group || '')"
+                >🕳 {{ vulnOf(problem)?.group }} · 同簇一刷错 {{ vulnOf(problem)?.count }} 题 ↗</router-link>
+              </div>
+
+              <div class="la-rows">
+                <div v-for="r in missRows(problem)" :key="'m-' + problem.id + r.l" class="la-row miss">
+                  <span class="la-badge">{{ isSingle(problem) ? '◆ 应选' : '● 漏选' }} {{ r.l }}</span>
+                  <div class="la-body">
+                    <p class="la-text">{{ r.t }}</p>
+                    <p v-if="r.why" class="la-why">{{ r.why }}</p>
+                  </div>
+                </div>
+                <div v-for="r in extraRows(problem)" :key="'e-' + problem.id + r.l" class="la-row extra">
+                  <span class="la-badge">{{ isSingle(problem) ? '◇ 你选' : '▲ 错选' }} {{ r.l }}</span>
+                  <div class="la-body">
+                    <p class="la-text">{{ r.t }}</p>
+                    <p v-if="r.why" class="la-why">{{ r.why }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <p v-if="vulnOf(problem)" class="la-cure">
+                <b>抄进手册：</b>{{ vulnOf(problem)?.questions.find(q => q.id === problem.id)?.mark || '回到该簇卡片照抄标注短语' }}
+              </p>
+            </div>
+
             <div v-if="problem.correction" class="problem-correction">
               <div class="correction-header" @click="toggleCorrection(problem.id)">
                 <strong>订正笔记</strong>
@@ -474,8 +564,30 @@ defineExpose({
         <div class="stats-content">
           <el-card class="ca-card">
             <template #header>
-              <h3>错因结构 · 由「正确答案 vs 您的答案」实时推导（仅未掌握题）</h3>
+              <h3>错因结构 · 优先按一刷真实作答字母判定（仅未掌握题）</h3>
             </template>
+            <p class="ca-sub">
+              真实明细已覆盖 <b>{{ realCoveredCount }}</b> / {{ problems.length }} 题；
+              其余为新增错题，暂用订正文本推导。
+            </p>
+            <div v-if="letterFlow.miss + letterFlow.extra > 0" class="flow-block">
+              <div class="flow-title">漏选 vs 错选（真实人次）</div>
+              <div class="flow-row">
+                <span class="flow-k miss">● 漏选</span>
+                <div class="flow-bar"><i class="miss" :style="{ width: letterFlow.missPct + '%' }"></i></div>
+                <span class="flow-v">{{ letterFlow.miss }} 次 · {{ letterFlow.missPct }}%</span>
+              </div>
+              <div class="flow-row">
+                <span class="flow-k extra">▲ 错选</span>
+                <div class="flow-bar"><i class="extra" :style="{ width: letterFlow.extraPct + '%' }"></i></div>
+                <span class="flow-v">{{ letterFlow.extra }} 次 · {{ letterFlow.extraPct }}%</span>
+              </div>
+              <p class="flow-note">
+                {{ letterFlow.extra >= letterFlow.miss
+                    ? '错选多于漏选 → 瓶颈是「认不出干扰项」：交卷前逐条反问「这选项话说绝没绝 / 是不是张冠李戴」。'
+                    : '漏选多于错选 → 瓶颈是「成套结论记不全」：先把「四大 / 五个 / 四个战略支撑」这类清单补全再判断。' }}
+              </p>
+            </div>
             <div class="cause-analysis">
               <div v-for="c in causeStats" :key="c.key" class="ca-row" :style="{ '--cc': c.hex }">
                 <div class="ca-head">
@@ -709,9 +821,84 @@ defineExpose({
   }
 }
 .cause-badge {
-  display: inline-block; font-size: 12px; font-weight: 600; color: #fff;
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #fff;
   background: var(--cc, #909399); border-radius: 6px; padding: 1px 8px;
 }
+.cb-src {
+  font-style: normal; font-size: 10px; font-weight: 700; line-height: 1;
+  padding: 2px 5px; border-radius: 4px; background: rgba(255,255,255,.24); color: #fff;
+  &.est { background: rgba(0,0,0,.16); }
+}
+.cbt-right { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; }
+.src-pill {
+  font-style: normal; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 3px 10px;
+  &.real { color: #1f4d38; background: #e7f4ec; border: 1px solid rgba(46,158,107,.35); }
+  &.est { color: #8a6100; background: #fdf1d6; border: 1px solid rgba(255,197,61,.5); }
+}
+.src-vuln {
+  font-size: 12px; font-weight: 700; color: #16345c; text-decoration: none;
+  border-bottom: 1px solid #ffc53d;
+  &:hover { color: #e8604c; }
+}
+
+/* ══ 选项字母级解剖（真实一刷作答）══ */
+.letter-anatomy {
+  margin: 12px 0 0; padding: 12px 14px;
+  border: 1px solid #e4ebf3; border-left: 4px solid #16345c;
+  border-radius: 10px; background: linear-gradient(180deg, #f7faff, #fff);
+}
+.la-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-bottom: 8px;
+}
+.la-tag { font-size: 12px; font-weight: 800; color: #16345c; letter-spacing: .02em; }
+.la-answer { font-size: 12px; color: #5b6b7f; font-family: 'JetBrains Mono', monospace; }
+.la-vuln {
+  margin-left: auto; font-size: 12px; font-weight: 700; text-decoration: none;
+  color: #8a6100; background: #fdf1d6; border: 1px solid rgba(255,197,61,.5);
+  border-radius: 999px; padding: 3px 10px;
+  &:hover { background: #ffe9b3; }
+}
+.la-rows { display: flex; flex-direction: column; gap: 8px; }
+.la-row {
+  display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: start;
+  &.miss .la-badge { color: #fff; background: #e8604c; }
+  &.extra .la-badge { color: #fff; background: #409eff; }
+  &.miss .la-text { border-left: 3px solid rgba(232,96,76,.45); }
+  &.extra .la-text { border-left: 3px solid rgba(64,158,255,.45); }
+}
+.la-badge {
+  justify-self: start; font-size: 12px; font-weight: 800; border-radius: 6px; padding: 2px 8px; white-space: nowrap;
+}
+.la-text {
+  margin: 0; font-size: 13.5px; line-height: 1.65; color: #303133;
+  padding: 2px 0 2px 10px; word-break: break-word;
+}
+.la-why { margin: 4px 0 0 10px; font-size: 12.5px; line-height: 1.6; color: #5b6b7f; }
+.la-cure {
+  margin: 10px 0 0; padding-top: 8px; border-top: 1px dashed #dfe7f0;
+  font-size: 12.5px; color: #1f4d38; line-height: 1.6;
+  b { color: #16345c; }
+}
+
+/* ══ 统计分析：真实明细区 ══ */
+.ca-sub { font-size: 12.5px; color: #8a97a8; margin: 0 0 12px; b { color: #16345c; } }
+.flow-block {
+  border: 1px solid #eef1f6; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; background: #fbfcfe;
+}
+.flow-title { font-size: 13px; font-weight: 700; color: #16345c; margin-bottom: 8px; }
+.flow-row { display: grid; grid-template-columns: 72px 1fr 110px; gap: 10px; align-items: center; margin-bottom: 6px; }
+.flow-k { font-size: 12.5px; font-weight: 700;
+  &.miss { color: #e8604c; }
+  &.extra { color: #409eff; }
+}
+.flow-bar { height: 10px; border-radius: 5px; background: #eef1f6; overflow: hidden;
+  i { display: block; height: 100%; border-radius: 5px; transition: width .4s;
+    &.miss { background: #e8604c; }
+    &.extra { background: #409eff; }
+  }
+}
+.flow-v { font-size: 12.5px; color: #5b6b7f; text-align: right; font-family: 'JetBrains Mono', monospace; }
+.flow-note { margin: 6px 0 0; font-size: 12.5px; line-height: 1.65; color: #303133; }
 
 /* ══ 统计分析页 ══ */
 .stats-content { display: flex; flex-direction: column; gap: 16px; }

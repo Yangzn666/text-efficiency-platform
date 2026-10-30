@@ -204,6 +204,69 @@ export const useSrsStore = defineStore('srs', () => {
     return job
   }
 
+  // ===== 政治复习闭环：把「考点漏洞地图」里的顽固簇 + 成套结论漏洞灌成记忆卡 =====
+  // 单一来源：public/data/politics/vuln-map.json（肖1000 一刷 483 题逐题细读产出）
+  //  - 顽固簇卡（politics-vuln）：同一考点一刷错 ≥2 题，正面问"该扣哪顶帽子/正确说法"，背面给可照抄的标注短语+处方
+  //  - 成套结论卡（politics-set）：多选漏选 ≥2 个字母（成套结论没背全），背面列出"应选/你漏的"原话
+  // 幂等：按 id 去重，重跑只补新增；用户删过的不复活（与 seedMath / seedCS408 同策略）
+  let politicsPromise: Promise<number> | null = null
+  function seedPolitics(force = false): Promise<number> {
+    if (politicsPromise && !force) return politicsPromise
+    const job = (async () => {
+      try {
+        const base = (import.meta as any).env?.BASE_URL || '/'
+        const res = await fetch(`${base}data/politics/vuln-map.json`)
+        if (!res.ok) return 0
+        const m: any = await res.json()
+        if (!m || !Array.isArray(m.groups)) return 0
+        const cards: Array<Partial<SrsCard> & { id: string; front: string; back: string }> = []
+
+        m.groups.forEach((g: any) => {
+          if (!(g.count >= 2)) return
+          const qs: any[] = g.questions || []
+          const marks = [...new Set(qs.map(q => q.mark).filter(Boolean))].slice(0, 3).join('；')
+          const fixes = [...new Set(qs.map(q => q.fix).filter(Boolean))].slice(0, 2).join('；')
+          const letters = qs
+            .flatMap(q => [...(q.miss || []), ...(q.extra || [])].map(l => `${l.l}「${l.t}」`))
+            .slice(0, 4).join(' / ')
+          cards.push({
+            id: `politics-vuln:${g.key}`,
+            pool: 'politics-vuln',
+            poolLabel: '政治·顽固考点簇',
+            subject: 'politics',
+            chapter: g.chapter,
+            front: `【${g.chapter}】考点「${g.group}」一刷错 ${g.count} 次（顽固）—— 回忆：这个考点的正确说法 / 该扣哪顶帽子？`,
+            back: `${marks || '回漏洞地图看标注短语'}${fixes ? '<br>处方：' + fixes : ''}${letters ? '<br>涉及选项：' + letters : ''}`
+          })
+        })
+
+        m.groups.forEach((g: any) => {
+          (g.questions || []).forEach((q: any) => {
+            if (q.singlePair) return
+            if (!((q.miss || []).length >= 2)) return
+            const missTxt = q.miss.map((l: any) => `${l.l}「${l.t}」`).join('；')
+            cards.push({
+              id: `politics-set:${q.id}`,
+              pool: 'politics-set',
+              poolLabel: '政治·成套结论默写',
+              subject: 'politics',
+              chapter: g.chapter,
+              front: `【${g.chapter}】成套结论｜${q.kp || g.group} —— 回忆：一共几条？你当时漏了哪几条？`,
+              back: `一刷漏选：${missTxt}${q.mark ? '<br>抄手册：' + q.mark : ''}`
+            })
+          })
+        })
+
+        return cards.length ? addCards(cards) : 0
+      } catch (e) {
+        console.warn('[srs] 政治漏洞卡种子失败', e)
+        return 0
+      }
+    })()
+    politicsPromise = job
+    return job
+  }
+
   // 复习评分
   function grade(id: string, g: SrsGrade) {
     init()
@@ -242,6 +305,11 @@ export const useSrsStore = defineStore('srs', () => {
   const cs408TotalCount = computed(() => all.value.filter(c => c.subject === 'cs408').length)
   const cs408DueCount = computed(() => all.value.filter(c => c.subject === 'cs408' && (c.box === 0 || (c.box >= 1 && c.due <= t))).length)
 
+  // 政治复习闭环：同上，subject='politics'（顽固考点簇 + 成套结论默写两个池）
+  const politicsTotalCount = computed(() => all.value.filter(c => c.subject === 'politics').length)
+  const politicsDueCount = computed(() => all.value.filter(c => c.subject === 'politics' && (c.box === 0 || (c.box >= 1 && c.due <= t))).length)
+  const politicsMatureCount = computed(() => all.value.filter(c => c.subject === 'politics' && c.box >= 4).length)
+
   // 分池统计
   const pools = computed(() => {
     const m: Record<string, { pool: string; poolLabel: string; subject: string; total: number; due: number; neu: number; mature: number }> = {}
@@ -269,9 +337,10 @@ export const useSrsStore = defineStore('srs', () => {
 
   return {
     cards, init, persist,
-    seedMath, seedCS408, addCards, grade, suspend,
+    seedMath, seedCS408, seedPolitics, addCards, grade, suspend,
     all, newCards, dueCards, dueCount, newCount, matureCount, totalCount, sessionQueue, pools, statsByPool,
     cs408TotalCount, cs408DueCount,
+    politicsTotalCount, politicsDueCount, politicsMatureCount,
     INTERVALS, MAX_BOX
   }
 })

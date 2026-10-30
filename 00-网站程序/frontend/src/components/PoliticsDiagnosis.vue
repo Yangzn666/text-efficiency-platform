@@ -775,7 +775,7 @@ const patchCount = { my: patches.filter(p => p.subject === 'my').length, sg: pat
       </div>
     </section>
 
-    <p class="dg-foot">💡 每张补丁卡里的「Q×」对应错题本同章题目，可回 <router-link to="/wrong-problems" class="dg-link">全科错题本</router-link> 逐题重做。</p>
+    <p class="dg-foot">💡 每张补丁卡里的「Q×」对应错题本同章题目，可回 <router-link to="/wrong-problems?subject=politics" class="dg-link">全科错题本</router-link> 逐题重做。</p>
   </div>
 </template>
 

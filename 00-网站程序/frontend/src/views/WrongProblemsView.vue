@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import WrongProblemsDashboard from '@/components/WrongProblemsDashboard.vue'
 import MathWrongProblems from '@/components/MathWrongProblems.vue'
 import EnglishWrongProblems from '@/components/EnglishWrongProblems.vue'
@@ -9,8 +10,16 @@ import DSWrongProblems from '@/components/DSWrongProblems.vue'
 import OSWrongProblems from '@/components/OSWrongProblems.vue'
 import NetworkWrongProblems from '@/components/NetworkWrongProblems.vue'
 
-const activeSubject = ref('math')
+// ?subject=politics 可直达对应科目（政治漏洞地图、今日动作里的「错题本 →」都靠它）
+const route = useRoute()
+const SUBJECTS = ['math', 'english', 'politics', 'cs408']
+const initSubject = () => {
+  const q = route.query.subject
+  return typeof q === 'string' && SUBJECTS.includes(q) ? q : 'math'
+}
+const activeSubject = ref(initSubject())
 const active408 = ref('ds')
+watch(() => route.query.subject, () => { activeSubject.value = initSubject() })
 </script>
 
 <template>
