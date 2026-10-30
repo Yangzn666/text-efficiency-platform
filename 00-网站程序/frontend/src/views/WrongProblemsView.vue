@@ -11,15 +11,26 @@ import OSWrongProblems from '@/components/OSWrongProblems.vue'
 import NetworkWrongProblems from '@/components/NetworkWrongProblems.vue'
 
 // ?subject=politics 可直达对应科目（政治漏洞地图、今日动作里的「错题本 →」都靠它）
+// ?book=os 直达 408 四门里的某一门（subject 自动落到 cs408）
 const route = useRoute()
 const SUBJECTS = ['math', 'english', 'politics', 'cs408']
+const BOOKS = ['ds', 'cs', 'os', 'network']
+const initBook = () => {
+  const q = route.query.book
+  return typeof q === 'string' && BOOKS.includes(q) ? q : 'ds'
+}
 const initSubject = () => {
   const q = route.query.subject
+  if (typeof q === 'string' && BOOKS.includes(q)) return 'cs408'
   return typeof q === 'string' && SUBJECTS.includes(q) ? q : 'math'
 }
 const activeSubject = ref(initSubject())
-const active408 = ref('ds')
+const active408 = ref(initBook())
 watch(() => route.query.subject, () => { activeSubject.value = initSubject() })
+watch(() => route.query.book, () => {
+  active408.value = initBook()
+  if (route.query.subject && BOOKS.includes(String(route.query.subject))) activeSubject.value = 'cs408'
+})
 </script>
 
 <template>

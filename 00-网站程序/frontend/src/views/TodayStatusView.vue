@@ -85,6 +85,34 @@
       <div class="wr-entry-go">进入 →</div>
     </section>
 
+    <!-- 今日到期回炉横幅：磁盘上 8 套复习队列的真实欠账（此前首页完全看不见） -->
+    <section
+      v-if="rqLoaded"
+      class="rq-entry"
+      :class="{ clear: rqDue === 0 }"
+      @click="$router.push('/review-queue')"
+      role="button"
+      tabindex="0"
+      @keydown.enter="$router.push('/review-queue')"
+    >
+      <div class="rq-icon">{{ rqDue === 0 ? '✅' : '🔥' }}</div>
+      <div class="rq-main">
+        <div class="rq-title">
+          <template v-if="rqDue > 0">
+            今日到期回炉 <b>{{ rqDue }}</b> 条
+            <span class="rq-tag" v-if="rqWorst > 0">最长已拖 {{ rqWorst }} 天</span>
+            <span class="rq-tag red" v-if="rqHigh > 0">高危 {{ rqHigh }}</span>
+          </template>
+          <template v-else>复习账已清 · 无到期项</template>
+        </div>
+        <div class="rq-sub">
+          <span class="rq-chip" v-for="(n, k) in rqBySubject" :key="k">{{ k }} {{ n }}</span>
+          <span class="rq-hint">来自刷题调度 / X光诊断 / 费曼缺口 / 长难句 / 睡前口答 / 作文背诵 · 手机可直接销账</span>
+        </div>
+      </div>
+      <div class="rq-go">去销账 →</div>
+    </section>
+
     <!-- ①.5 战果墙（只增不减 · 与倒计时对照的第二根轴） -->
     <section class="card wall-card">
       <div class="wall-head">
@@ -288,8 +316,21 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useTodayStatusStore } from '@/stores/todayStatus'
 import MaterialsWall from '@/components/MaterialsWall.vue'
 import { QUOTES_CONFIDENCE, QUOTES_FOCUS, SLOGANS, alternateWithChinese } from '@/data/quotes'
+import { loadReviewQueues, payload as rqPayload, undoneDueItems, undoneDueCount } from '@/data/reviewQueues'
 
 const store = useTodayStatusStore()
+
+// ---------- 今日到期回炉横幅（数据来自 npm run sync:queues 合并的 8 套磁盘队列） ----------
+loadReviewQueues().catch(() => { /* 读不到就隐藏横幅，不打扰首页 */ })
+const rqLoaded = computed(() => !!rqPayload.value)
+const rqDue = undoneDueCount
+const rqWorst = computed(() => undoneDueItems.value.reduce((m, i) => Math.max(m, i.overdue ?? 0), 0))
+const rqHigh = computed(() => undoneDueItems.value.filter(i => i.severity === 'high').length)
+const rqBySubject = computed(() => {
+  const m = {}
+  undoneDueItems.value.forEach(i => { m[i.subject] = (m[i.subject] || 0) + 1 })
+  return Object.fromEntries(Object.entries(m).sort((a, b) => b[1] - a[1]))
+})
 
 // 资料进度墙折叠状态
 const materialsOpen = ref(false)
@@ -465,6 +506,78 @@ onUnmounted(() => {
   .wr-entry-mid { width: 100%; justify-content: space-between }
   .wr-mini { min-width: 0; flex: 1 }
   .wr-entry-go { margin-left: auto }
+}
+
+/* ===== 今日到期回炉横幅（磁盘 8 套队列的真实欠账） ===== */
+.rq-entry {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+  padding: 13px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(100deg, #fff7ef 0%, #fdeee4 100%);
+  border: 1px solid #f2c9a8;
+  border-left: 4px solid #e8604c;
+  box-shadow: 0 3px 14px rgba(180, 90, 40, .10);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.rq-entry:hover, .rq-entry:focus-visible {
+  transform: translateY(-2px);
+  border-color: #e8a17c;
+  box-shadow: 0 10px 24px rgba(180, 90, 40, .18);
+}
+.rq-entry.clear {
+  background: #eff8f2;
+  border-color: #bfe3cd;
+  border-left-color: #2e9e6b;
+  box-shadow: 0 3px 12px rgba(46, 158, 107, .10);
+}
+.rq-icon { flex: none; font-size: 22px; line-height: 1 }
+.rq-main { flex: 1 1 auto; min-width: 0 }
+.rq-title { font-size: 15.5px; font-weight: 800; color: #2b2118; letter-spacing: .3px }
+.rq-title b { font-size: 21px; color: #d4491f; margin: 0 2px; font-variant-numeric: tabular-nums }
+.rq-tag {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8a5a2b;
+  background: #fff;
+  border: 1px solid #f0cfae;
+  border-radius: 999px;
+  padding: 1px 8px;
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+.rq-tag.red { color: #b6402f; border-color: #f0b7ad; background: #fff1ee }
+.rq-sub { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 5px }
+.rq-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6b4a2a;
+  background: rgba(255, 255, 255, .78);
+  border: 1px solid #eed3b8;
+  border-radius: 6px;
+  padding: 1px 7px;
+}
+.rq-hint { font-size: 11.5px; color: #a8825f }
+.rq-go {
+  flex: none;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  background: #e8604c;
+  padding: 8px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.rq-entry.clear .rq-go { background: #2e9e6b }
+@media (max-width: 900px) {
+  .rq-entry { flex-wrap: wrap; gap: 10px }
+  .rq-go { margin-left: auto }
+  .rq-hint { display: none }
 }
 /* ============================================================
    设计体系（本页锁定）

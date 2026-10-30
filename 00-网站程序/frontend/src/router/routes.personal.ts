@@ -30,6 +30,7 @@ const TranslationView = () => import('@/views/TranslationView.vue')
 const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 const SrsView = () => import('@/views/SrsView.vue')
 const WarRoomView = () => import('@/views/WarRoomView.vue')
+const ReviewQueueView = () => import('@/views/ReviewQueueView.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -226,6 +227,14 @@ const routes: RouteRecordRaw[] = [
     name: 'warroom',
     component: WarRoomView,
     meta: { requiresAuth: true, title: '战术作战室' }
+  },
+  // 今日回炉总账：把磁盘上 8 套复习队列（刷题系统/X光/费曼/长难句/睡前/作文背诵/作文教练/政治）
+  // 合并成一份可销账的到期清单。数据个人性质，仅个人版路由，share 版不装载。
+  {
+    path: '/review-queue',
+    name: 'review-queue',
+    component: ReviewQueueView,
+    meta: { requiresAuth: true, title: '今日回炉' }
   }
 ]
 

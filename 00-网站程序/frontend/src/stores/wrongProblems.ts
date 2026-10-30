@@ -45,6 +45,14 @@ interface StoredDoc extends Partial<Record<WrongSubject, WrongProblem[]>> {
 
 const tag = (subject: WrongSubject, p: WrongProblem): WrongProblem => ({ ...p, subject: p.subject || subject })
 
+/**
+ * 条目合法性校验：localStorage / 导入 JSON 里可能混进 null、非对象或没有 id 的脏数据，
+ * 一旦进入 db，tag() 会抛 "Cannot read properties of null (reading 'subject')"、
+ * bind() 会抛 "reading 'id' of undefined"，导致整个科目错题本白屏。读入与补种时统一过滤。
+ */
+const isValidProblem = (p: unknown): p is WrongProblem =>
+  !!p && typeof p === 'object' && !Array.isArray(p) && typeof (p as WrongProblem).id === 'string' && (p as WrongProblem).id.length > 0
+
 // ===== 毕业机制：连续做对 GRADUATE_STREAK 次即自动"毕业"（mastered=true），答错清零回炉 =====
 export const GRADUATE_STREAK = 2
 
@@ -82,14 +90,14 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
     SUBJECTS.forEach((s) => {
       const fromCanon = canon[s]
       if (fromCanon && fromCanon.length) {
-        db[s] = fromCanon.map((p) => tag(s, p))
+        db[s] = fromCanon.filter(isValidProblem).map((p) => tag(s, p))
         return
       }
       const legacyKey = LEGACY[s]
       if (legacyKey) {
         const legacy = readJSON<WrongProblem[]>(legacyKey)
         if (legacy && legacy.length) {
-          db[s] = legacy.map((p) => tag(s, p))
+          db[s] = legacy.filter(isValidProblem).map((p) => tag(s, p))
           seeded.add(s) // 已有迁移数据视作已播种，避免再叠加种子
         }
       }
@@ -119,6 +127,7 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
    */
   function bind(subject: WrongSubject, seed: WrongProblem[]): ComputedRef<WrongProblem[]> {
     init()
+    seed = (seed || []).filter(isValidProblem)
     let changed = false
     if (!seeded.has(subject) && db[subject].length === 0) {
       db[subject] = seed.map((p) => tag(subject, p))
@@ -148,7 +157,7 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
     return computed({
       get: () => db[subject],
       set: (v: WrongProblem[]) => {
-        db[subject] = (v || []).map((p) => tag(subject, p))
+        db[subject] = (v || []).filter(isValidProblem).map((p) => tag(subject, p))
       },
     })
   }

@@ -544,12 +544,15 @@ defineExpose({
                 </div>
               </div>
               <div class="problem-actions">
-                <el-button 
-                  :type="problem.mastered ? 'success' : 'default'"
+                <WrongRetestActions :problem="problem" />
+                <el-button
+                  link
                   size="small"
+                  :type="problem.mastered ? 'success' : 'default'"
+                  :title="problem.mastered ? '手动撤销毕业，重新回到回炉清单' : '不想重做，直接判定毕业（不推荐，跳过连对机制）'"
                   @click="toggleMastered(problem)"
                 >
-                  {{ problem.mastered ? '已掌握 ✓' : '标记掌握' }}
+                  {{ problem.mastered ? '撤销毕业' : '强制毕业' }}
                 </el-button>
                 <el-button 
                   type="danger" 

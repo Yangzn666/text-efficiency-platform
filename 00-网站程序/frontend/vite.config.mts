@@ -59,7 +59,8 @@ export default defineConfig(({ mode }) => {
         '**/english-resources/**',
         '**/data/english/intensive-reading-analysis.json',
         '**/data/english/translation-exams.json',
-        '**/data/english/translation-progress.json'
+        '**/data/english/translation-progress.json',
+        '**/data/queues/**'
       ]
     : []
 
@@ -162,6 +163,8 @@ export default defineConfig(({ mode }) => {
             '**/politicsWrongSeed-*.js',
             '**/UniversitiesView-*.js',
             '**/WrongProblemsView-*.js',
+            '**/EnglishWrongProblems-*.js',
+            '**/ReviewQueueView-*.js',
             '**/DSWrongProblems-*.js',
             '**/OSWrongProblems-*.js',
             '**/OSLearning-*.js',

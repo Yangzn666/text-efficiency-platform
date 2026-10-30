@@ -19,7 +19,9 @@ const PRIVATE = [
   'english-resources',
   'data/english/intensive-reading-analysis.json',
   'data/english/translation-exams.json',
-  'data/english/translation-progress.json'
+  'data/english/translation-progress.json',
+  // 今日回炉总账：合并了个人 8 套复习队列（到期日/错因/答案锚点），属私人数据，公开版必须裁掉
+  'data/queues'
 ]
 
 let removed = 0

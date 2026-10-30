@@ -493,3 +493,78 @@ body {
   color: #c62828;
   font-weight: 600;
 }
+
+/* —— 手机端：错题本筛选栏溢出修复（2026-10-30）——
+   四门 408 错题本的筛选栏是 el-space 里三个固定宽下拉（150+150+120≈440px），
+   390px 屏上被父容器裁掉，最后一个「掌握状态」点不到。
+   这里统一让筛选栏换行、下拉等分收缩；组件内样式是 scoped 的，
+   而行内 width 优先级最高，故必须 !important。 */
+@media (max-width: 640px) {
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .filter-bar .el-space,
+  .filter-bar .el-space__item {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .filter-bar .el-space__item { width: auto; }
+  .filter-bar .el-select {
+    width: auto !important;
+    flex: 1 1 112px;
+    min-width: 112px;
+  }
+
+  /* 错题卡片头部：窄屏下把「左标题 + 右操作」改成上下两行，
+     否则会把标题挤成单字一行、操作按钮超出卡片被裁。
+     组件内 scoped 规则是 .problem-card .problem-header .problem-actions，
+     权重高于这里的单类选择器，故必须 !important。 */
+  .problem-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    flex-wrap: wrap !important;
+  }
+  .problem-title-section {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+  .problem-actions {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+  }
+  .wr-retest {
+    flex-wrap: wrap !important;
+  }
+
+  /* 兜底：错题卡里的题干是长中文串 + 换行符，flex/grid 子项默认 min-width:auto
+     会被内容撑宽，把卡片顶出屏幕右侧（截图上表现为右侧整块被切）。
+     统一允许收缩 + 强制断行。 */
+  .wrong-problems-container,
+  .problems-list,
+  .el-tabs__content,
+  .el-tab-pane,
+  .problem-card,
+  .problem-title-section,
+  .problem-content,
+  .content-section,
+  .correction-section {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .problem-content,
+  .problem-title,
+  .problem-meta,
+  .problem-actions {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}

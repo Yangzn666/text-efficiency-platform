@@ -132,5 +132,6 @@ declare module 'vue' {
     WeaknessAnalysis: typeof import('./src/components/WeaknessAnalysis.vue')['default']
     WritingLearning: typeof import('./src/components/WritingLearning.vue')['default']
     WrongProblemsDashboard: typeof import('./src/components/WrongProblemsDashboard.vue')['default']
+    WrongRetestActions: typeof import('./src/components/WrongRetestActions.vue')['default']
   }
 }
