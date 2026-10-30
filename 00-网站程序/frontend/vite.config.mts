@@ -151,6 +151,10 @@ export default defineConfig(({ mode }) => {
             '**/data/408-exam/questions.json',
             '**/data/408-exam/progress.json',
             '**/data/408-exam/images/**',
+            // 政治一刷错题聚合数据（合计约 760KB）：只有进漏洞地图/政治错题本才需要，
+            // 同样不预缓存，交给 runtimeCaching 首次访问拿一次、之后离线秒开。
+            '**/data/politics/vuln-map.json',
+            '**/data/politics/wrong-letters.json',
             // 大 chunk：画布渲染器 / 错题本 / 择校 / 判据种子词表 / 各科子页 / 思维导图视图
             '**/installCanvasRenderer-*.js',
             '**/WeakTermsView-*.js',
