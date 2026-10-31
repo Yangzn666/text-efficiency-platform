@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:share": "vite build --mode share && node scripts/prune-share-dist.mjs",
+    "build:share": "vite build --mode share && node scripts/prune-share-dist.mjs && node scripts/privacy-audit.mjs dist --share",
     "sync:queues": "node scripts/sync-review-queues.mjs",
     "build:check": "vue-tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "audit:privacy": "node scripts/privacy-audit.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.7",

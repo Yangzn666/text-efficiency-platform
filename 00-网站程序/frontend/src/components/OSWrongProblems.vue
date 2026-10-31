@@ -612,10 +612,13 @@ defineExpose({
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px 16px;
         margin-bottom: 12px;
         
         .problem-title-section {
           flex: 1;
+          min-width: 0;
           
           .problem-title {
             margin: 0 0 8px 0;
@@ -662,9 +665,11 @@ defineExpose({
             padding: 12px;
             border-radius: 6px;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
             white-space: pre-wrap;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 70ch;
             margin: 0;
           }
         }

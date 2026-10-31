@@ -89,25 +89,28 @@
     <section
       v-if="rqLoaded"
       class="rq-entry"
-      :class="{ clear: rqDue === 0 }"
+      :class="{ clear: owedMinutes === 0 }"
       @click="$router.push('/review-queue')"
       role="button"
       tabindex="0"
       @keydown.enter="$router.push('/review-queue')"
     >
-      <div class="rq-icon">{{ rqDue === 0 ? '✅' : '🔥' }}</div>
+      <div class="rq-icon">{{ owedMinutes === 0 ? '✅' : '🔥' }}</div>
       <div class="rq-main">
         <div class="rq-title">
-          <template v-if="rqDue > 0">
-            今日到期回炉 <b>{{ rqDue }}</b> 条
+          <template v-if="owedMinutes > 0">
+            今天还欠 <b>{{ owedMinutes }}</b> 分钟
+            <span class="rq-tag">回炉 {{ queueLeft }} 条</span>
+            <span class="rq-tag">记忆卡 {{ srsLeft }} 张</span>
+            <span class="rq-tag">复测 {{ redoLeft }} 道</span>
             <span class="rq-tag" v-if="rqWorst > 0">最长已拖 {{ rqWorst }} 天</span>
             <span class="rq-tag red" v-if="rqHigh > 0">高危 {{ rqHigh }}</span>
           </template>
-          <template v-else>复习账已清 · 无到期项</template>
+          <template v-else>今天的复习账已清 · 无到期项</template>
         </div>
         <div class="rq-sub">
           <span class="rq-chip" v-for="(n, k) in rqBySubject" :key="k">{{ k }} {{ n }}</span>
-          <span class="rq-hint">来自刷题调度 / X光诊断 / 费曼缺口 / 长难句 / 睡前口答 / 作文背诵 · 手机可直接销账</span>
+          <span class="rq-hint">回炉 3′/条 · 记忆卡 1.5′/张 · 复测 3′/道 · 手机可直接销账</span>
         </div>
       </div>
       <div class="rq-go">去销账 →</div>
@@ -317,11 +320,15 @@ import { useTodayStatusStore } from '@/stores/todayStatus'
 import MaterialsWall from '@/components/MaterialsWall.vue'
 import { QUOTES_CONFIDENCE, QUOTES_FOCUS, SLOGANS, alternateWithChinese } from '@/data/quotes'
 import { loadReviewQueues, payload as rqPayload, undoneDueItems, undoneDueCount } from '@/data/reviewQueues'
+import { useDailyLoad } from '@/data/dailyLoad'
 
 const store = useTodayStatusStore()
 
 // ---------- 今日到期回炉横幅（数据来自 npm run sync:queues 合并的 8 套磁盘队列） ----------
 loadReviewQueues().catch(() => { /* 读不到就隐藏横幅，不打扰首页 */ })
+// 今日负荷（#5 两套预算合一）：回炉 + 记忆卡 + 错题复测 → 一个「还欠多少分钟」
+const { owedMinutes, srsLeft, queueLeft, redoLeft } = useDailyLoad()
+
 const rqLoaded = computed(() => !!rqPayload.value)
 const rqDue = undoneDueCount
 const rqWorst = computed(() => undoneDueItems.value.reduce((m, i) => Math.max(m, i.overdue ?? 0), 0))

@@ -554,27 +554,34 @@ defineExpose({
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px 16px;
         margin-bottom: 12px;
         padding-bottom: 12px;
         border-bottom: 1px dashed #e4e7ed;
         
         .problem-title {
           flex: 1;
+          min-width: 0;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: baseline;
+          gap: 6px 8px;
           
           .el-tag {
-            margin-right: 8px;
+            margin: 0;
           }
           
           .title-text {
             font-size: 16px;
             font-weight: 600;
             color: #303133;
-            margin-left: 8px;
           }
         }
         
         .problem-actions {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           gap: 12px;
         }
@@ -597,6 +604,8 @@ defineExpose({
             padding: 12px;
             border-radius: 6px;
             border-left: 3px solid $primary-color;
+            max-width: 70ch;
+            overflow-wrap: break-word;
             
             .content-line {
               padding: 6px 0;
@@ -643,7 +652,9 @@ defineExpose({
             padding: 12px;
             border-radius: 6px;
             border-left: 3px solid #f56c6c;
-            line-height: 1.8;
+            line-height: 1.7;
+            max-width: 70ch;
+            overflow-wrap: break-word;
             color: #606266;
           }
         }

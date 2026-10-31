@@ -4,6 +4,8 @@ import { useTodayStatusStore } from '@/stores/todayStatus'
 import { subjectTabs, studyMethods, mottos } from '@/data/studyMethods'
 
 const store = useTodayStatusStore()
+// 共享版不显示个人目标院校
+const isShare = import.meta.env.VITE_APP_MODE === 'share'
 
 // ---------- 当前科目 ----------
 const activeSubject = ref('math')
@@ -66,7 +68,7 @@ onUnmounted(() => { if (mottoTimer) clearInterval(mottoTimer) })
       <div class="hero-glow"></div>
       <div class="hero-top">
         <div class="hero-title-block">
-          <span class="hero-kicker">STUDY PLAYBOOK · 27考研 · 浙大海宁</span>
+          <span class="hero-kicker">{{ isShare ? 'STUDY PLAYBOOK · 27考研' : 'STUDY PLAYBOOK · 27考研 · 浙大海宁' }}</span>
           <h1 class="hero-title">学习方法<span class="gold">作战手册</span></h1>
           <div class="hero-phase">
             <span class="phase-pulse"></span>

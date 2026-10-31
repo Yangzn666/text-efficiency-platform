@@ -13,6 +13,8 @@ import {
 } from '@/data/reviewQueues'
 import { useSrsStore } from '@/stores/srs'
 import { useWrongProblemsStore } from '@/stores/wrongProblems'
+import { useDailyLoad } from '@/data/dailyLoad'
+import GraduationTrend from '@/components/GraduationTrend.vue'
 
 const subjectFilter = ref('全部')
 const srcFilter = ref('all')
@@ -23,6 +25,11 @@ const showPreExam = ref(false)
 
 const srs = useSrsStore()
 const wp = useWrongProblemsStore()
+// 今日负荷：回炉 + 记忆卡 + 错题复测折算成分钟，与首页横幅同一口径
+const {
+  owedMinutes, newTaskMinutes, steps: loadSteps, DAILY_MINUTES,
+  queueLeft, srsLeft, redoLeft
+} = useDailyLoad()
 
 onMounted(() => {
   loadReviewQueues()
@@ -78,9 +85,11 @@ const overdueText = (n?: number | null) =>
 // 注意：srs.cards 是 id→卡片 的字典（不是数组），这里直接用 store 的 dueCount/totalCount，
 // 保证与「🧠 记忆卡」页面的到期口径一致（同一套 todayStr + box>=1 判定）。
 const siteDue = computed(() => {
-  const due = srs.dueCount
+  // 口径统一（#14）：这里与 SRS 页「待复习 + 新卡」一致，用 dueAllCount；
+  // 旧写法只算 dueCount，会少掉全部新卡，和记忆卡页对不上。
+  const due = srs.dueAllCount
   const pending = wp.unmasteredCount
-  return { due, total: srs.totalCount, pending }
+  return { due, total: srs.totalCount, pending, dueOld: srs.dueCount, neu: srs.newCount }
 })
 
 const planStatus = (s?: string) =>
@@ -117,9 +126,35 @@ const planStatus = (s?: string) =>
         <div class="rq-stat coral"><strong>{{ worstOverdue }}</strong><span>最长逾期(天)</span></div>
         <div class="rq-stat"><strong>{{ highSeverityCount }}</strong><span>高危项</span></div>
         <div class="rq-stat" v-for="(n, s) in dueBySubject" :key="s"><strong>{{ n }}</strong><span>{{ s }}</span></div>
-        <div class="rq-stat gold"><strong>{{ siteDue.due }}</strong><span>记忆卡到期</span></div>
+        <div class="rq-stat gold"><strong>{{ siteDue.due }}</strong><span>记忆卡待刷(含新卡)</span></div>
         <div class="rq-stat gold"><strong>{{ siteDue.pending }}</strong><span>站内未掌握</span></div>
       </div>
+
+      <!-- 今日还欠多少分钟（#5：把 40 条 / 40 张 / 420 分钟合成一个口径） -->
+      <section class="rq-card load-card">
+        <h3 class="rq-h3">⏳ 今天还要还多少 <small>按刷题调度日预算 {{ DAILY_MINUTES }} 分钟折算</small></h3>
+        <div class="load-hero">
+          <div class="lh-num">{{ owedMinutes }}<i>分钟</i></div>
+          <div class="lh-side">
+            <div class="lh-line">回炉 {{ queueLeft }} 条 · 记忆卡 {{ srsLeft }} 张 · 错题复测 {{ redoLeft }} 道</div>
+            <div class="lh-line dim">还完欠账后，剩余约 {{ newTaskMinutes }} 分钟用于新题/新章节</div>
+          </div>
+        </div>
+        <div class="load-steps">
+          <router-link v-for="st in loadSteps" :key="st.key" class="load-step" :class="[st.key, { done: !st.left }]" :to="st.href">
+            <span class="ls-icon">{{ st.icon }}</span>
+            <div class="ls-main">
+              <div class="ls-label">{{ st.label }}</div>
+              <div class="ls-detail">{{ st.detail }}</div>
+              <div class="ls-note">{{ st.note }}</div>
+            </div>
+            <span class="ls-min">{{ st.minutes }}′</span>
+          </router-link>
+        </div>
+      </section>
+
+      <!-- 掌握度趋势（#7）：毕业数 / 复测数 / 销账数，7 天 / 30 天切换 -->
+      <GraduationTrend />
 
       <!-- 今日排程（数一刷题调度已排好的顺序） -->
       <section v-if="todayPlan" class="rq-card">
@@ -308,6 +343,23 @@ const planStatus = (s?: string) =>
 .rq-tip.good { background: #e9f7ef; color: #1f7a4d; }
 .rq-foot-note { margin: 10px 0 0; font-size: .8em; color: #7a848f; line-height: 1.6; }
 .rq-foot-note.bad { color: #b6402f; }
+
+/* 今日负荷（#5） */
+.load-card { border-left: 4px solid #b6402f; }
+.load-hero { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.lh-num { font-size: 2.3em; font-weight: 800; color: #b6402f; line-height: 1; font-variant-numeric: tabular-nums; }
+.lh-num i { font-size: .34em; font-style: normal; font-weight: 600; color: #8a94a3; margin-left: 4px; }
+.lh-line { font-size: .84em; color: #3b4757; }
+.lh-line.dim { color: #8a94a3; margin-top: 3px; }
+.load-steps { display: grid; gap: 7px; }
+.load-step { display: flex; align-items: center; gap: 10px; text-decoration: none; background: #f8fafc; border: 1px solid #e8edf4; border-radius: 10px; padding: 9px 11px; color: inherit; }
+.load-step.done { opacity: .55; }
+.ls-icon { font-size: 1.1em; flex: none; }
+.ls-main { flex: 1; min-width: 0; }
+.ls-label { font-size: .9em; font-weight: 700; color: #22314a; }
+.ls-detail { font-size: .76em; color: #5a6472; margin-top: 1px; }
+.ls-note { font-size: .72em; color: #9aa5b3; margin-top: 1px; }
+.ls-min { font-size: .95em; font-weight: 800; color: #16345c; font-variant-numeric: tabular-nums; flex: none; }
 .rq-how { font-size: .78em; color: #8a94a3; line-height: 1.7; padding: 0 4px; }
 .rq-how code, .rq-tip code { background: #f1f4f9; padding: 1px 5px; border-radius: 5px; color: #b6402f; }
 

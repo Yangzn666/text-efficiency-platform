@@ -11,11 +11,16 @@ const TranslationView = defineAsyncComponent(() => import('@/views/TranslationVi
 const ClozeMethodView = defineAsyncComponent(() => import('@/views/ClozeMethodView.vue'))
 const WritingLearning = defineAsyncComponent(() => import('@/components/WritingLearning.vue'))
 const EnglishReadingLog = defineAsyncComponent(() => import('@/components/EnglishReadingLog.vue'))
+// 审计落地：真题错题二刷（只刷做错过的）+ 作文/长难句背诵台
+const EnglishWrongRedo = defineAsyncComponent(() => import('@/components/EnglishWrongRedo.vue'))
+const EnglishReciteView = defineAsyncComponent(() => import('@/views/EnglishReciteView.vue'))
 
 const route = useRoute()
 const activeTab = ref('reading')
 const readingLog = useReadingLogStore()
 const todayStore = useTodayStatusStore()
+// 共享版不显示个人目标院校
+const isShare = import.meta.env.VITE_APP_MODE === 'share'
 
 // 实时数据（倒计时统一读取 store，与今日进度/数据分析页保持同一数据源和算法）
 const daysLeft = computed(() => todayStore.daysToExam)
@@ -32,6 +37,8 @@ const tabItems = [
   { name: 'reading', label: '真题阅读', icon: '📖' },
   { name: 'method', label: '阅读方法论', icon: '🧭' },
   { name: 'readingLog', label: '阅读记录', icon: '📊' },
+  { name: 'redo', label: '错题二刷', icon: '🔁' },
+  { name: 'recite', label: '背诵台', icon: '🗣️' },
   { name: 'vocabulary', label: '词汇系统', icon: '🧠' },
   { name: 'writing', label: '写作训练', icon: '✍️' },
   { name: 'translation', label: '翻译', icon: '🔄' },
@@ -57,7 +64,7 @@ onMounted(() => {
       <div class="hero-noise"></div>
       <div class="hero-inner">
         <div class="hero-left">
-          <span class="hero-kicker">ENGLISH ONE · 目标75+ · 浙大海宁</span>
+          <span class="hero-kicker">{{ isShare ? 'ENGLISH ONE · 真题精读' : 'ENGLISH ONE · 目标75+ · 浙大海宁' }}</span>
           <h1 class="hero-title">英语一<span class="gold">作战室</span></h1>
           <p class="hero-sub">真题精读 · 词汇突破 · 写作输出 · 翻译实战</p>
         </div>
@@ -106,6 +113,8 @@ onMounted(() => {
         <iframe class="method-frame" :src="methodUrl" title="英语阅读方法论手册" loading="lazy"></iframe>
       </div>
       <div v-show="activeTab === 'readingLog'"><EnglishReadingLog /></div>
+      <div v-show="activeTab === 'redo'"><EnglishWrongRedo /></div>
+      <div v-show="activeTab === 'recite'"><EnglishReciteView /></div>
       <div v-show="activeTab === 'vocabulary'"><VocabularySystem /></div>
       <div v-show="activeTab === 'writing'"><WritingLearning /></div>
       <div v-show="activeTab === 'translation'"><TranslationView :embedded="true" /></div>
@@ -423,8 +432,17 @@ onMounted(() => {
     font-size: 0.85rem;
   }
   .content-deck {
-    padding: 10px 6px;
+    padding: 8px 2px;
     border-radius: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-stats {
+    width: 100%;
+  }
+  .stat-chip {
+    flex: 1 1 40%;
+    min-width: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {

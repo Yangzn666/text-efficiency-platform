@@ -12,6 +12,7 @@
 import { defineStore } from 'pinia'
 import { reactive, computed, watch, type ComputedRef } from 'vue'
 import type { WrongProblem } from '@/data/wrongProblemTypes'
+import { logReview } from '@/data/reviewLog'
 
 export type WrongSubject =
   | 'math' | 'cs' | 'ds' | 'os' | 'network' | 'english' | 'politics'
@@ -209,6 +210,7 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
   // ===== 毕业机制：记录一次复习结果 =====
   // 传入的 problem 是 db 里的响应式对象，直接 mutate，deep watch 会自动落盘。
   function recordReview(problem: WrongProblem, correct: boolean) {
+    const wasMastered = !!problem.mastered
     problem.reviewCount = (problem.reviewCount || 0) + 1
     problem.lastReviewAt = todayStr()
     if (correct) {
@@ -218,6 +220,9 @@ export const useWrongProblemsStore = defineStore('wrongProblems', () => {
       problem.correctStreak = 0
       problem.mastered = false
     }
+    // 复习流水：复测 1 次；本次刚好跨过毕业线再单独记一笔（供趋势图分科统计）
+    logReview('wrong', 1)
+    if (!wasMastered && problem.mastered) logReview('graduate', 1, problem.subject)
   }
 
   // 某科目的"进步仪表盘"：总数 / 已毕业 / 待复习 / 本周新毕业

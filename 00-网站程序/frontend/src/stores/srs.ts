@@ -8,6 +8,7 @@ import { defineStore } from 'pinia'
 import { reactive, computed, watch } from 'vue'
 import { QUICK_CARDS, type QuickSubjectKey } from '@/data/quickCardsData'
 import { pushToCloudDebounced } from '@/utils/cloudSync'
+import { logReview, todayCount } from '@/data/reviewLog'
 
 export type SrsGrade = 'again' | 'good' | 'easy'
 
@@ -288,6 +289,8 @@ export const useSrsStore = defineStore('srs', () => {
     }
     c.lastReviewedAt = nowISO()
     persist()
+    // 复习流水：趋势图与今日看板共用的唯一底表（答错也算一次复习）
+    logReview('srs', 1)
   }
 
   // 答"again"的卡当日回炉：放到本次会话队尾（不真正改 due，前端会话内管理）
@@ -300,6 +303,10 @@ export const useSrsStore = defineStore('srs', () => {
   const matureCount = computed(() => all.value.filter(c => c.box >= 4).length)
   const totalCount = computed(() => all.value.length)
   const sessionQueue = computed(() => [...dueCards.value, ...newCards.value])
+  // 今日「要刷」= 到期旧卡 + 从未学过的新卡（SRS 页会话队列就是这两类，
+  // 首页/总账凡说「记忆卡今天多少张」一律用这个口径，避免一处含新卡一处不含对不上账）
+  const dueAllCount = computed(() => dueCount.value + newCount.value)
+  const reviewedToday = computed(() => todayCount('srs'))
 
   // 408 复习闭环：今日到点(到期 or 新卡未学)的 408 记忆卡数，供 408 页"今日复习"角标
   const cs408TotalCount = computed(() => all.value.filter(c => c.subject === 'cs408').length)
@@ -338,7 +345,7 @@ export const useSrsStore = defineStore('srs', () => {
   return {
     cards, init, persist,
     seedMath, seedCS408, seedPolitics, addCards, grade, suspend,
-    all, newCards, dueCards, dueCount, newCount, matureCount, totalCount, sessionQueue, pools, statsByPool,
+    all, newCards, dueCards, dueCount, newCount, matureCount, totalCount, sessionQueue, dueAllCount, reviewedToday, pools, statsByPool,
     cs408TotalCount, cs408DueCount,
     politicsTotalCount, politicsDueCount, politicsMatureCount,
     INTERVALS, MAX_BOX

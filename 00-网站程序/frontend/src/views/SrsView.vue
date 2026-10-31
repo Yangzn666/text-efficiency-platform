@@ -99,6 +99,11 @@ onMounted(async () => {
       </div>
     </div>
 
+    <p class="srs-note">
+      口径说明（#14）：本页「待复习」只算到期旧卡（{{ store.dueCount }} 张），「新卡」另计 {{ store.newCount }} 张；
+      首页横幅与「今日回炉」总账按「到期 + 新卡」＝ <b>{{ store.dueAllCount }}</b> 张折算今日负荷，两处已统一。
+    </p>
+
     <!-- 池筛选 -->
     <div class="chips">
       <button v-for="c in poolChips" :key="c.key" class="chip" :class="{ active: poolFilter === c.key }"
@@ -162,6 +167,8 @@ onMounted(async () => {
 .stat-box { background: #f7f8fa; border: 1px solid #eee; border-radius: 12px; padding: 14px 8px; text-align: center; }
 .stat-num { font-size: 1.7em; font-weight: 800; line-height: 1; }
 .stat-label { font-size: .95em; color: #5b6b7f; margin-top: 6px; }
+.srs-note { font-size: .8em; color: #8a94a3; line-height: 1.65; background: #f7f9fc; border: 1px solid #eef1f5; border-radius: 10px; padding: 8px 11px; margin: 0 0 14px; }
+.srs-note b { color: #16345c; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 .chip { border: 1px solid #d7deea; background: #fff; color: #3a4a5f; border-radius: 999px; padding: 7px 14px; font-size: .98em; cursor: pointer; transition: .15s; }
 .chip.active { background: #16345c; color: #fff; border-color: transparent; }

@@ -196,3 +196,12 @@ export const doneTodayCount = computed(() => {
   loadQueueDone()
   return Object.keys(doneMap.value[localToday()] || {}).length
 })
+/** 逐日销账条数（趋势图用；销账记录本身就是按日期分桶的，天然有历史） */
+export function doneHistory(): Record<string, number> {
+  loadQueueDone()
+  const out: Record<string, number> = {}
+  Object.entries(doneMap.value).forEach(([date, ids]) => {
+    out[date] = Object.keys(ids || {}).length
+  })
+  return out
+}

@@ -4,7 +4,6 @@
 // 会把两表都打进包，故用构建期别名做代码级裁剪。
 import type { RouteRecordRaw } from 'vue-router'
 
-const HomeView = () => import('@/views/HomeView.vue')
 const TodayStatusView = () => import('@/views/TodayStatusView.vue')
 const StudyMethodsView = () => import('@/views/StudyMethodsView.vue')
 const CS408View = () => import('@/views/CS408View.vue')
@@ -31,6 +30,10 @@ const SkillTreeView = () => import('@/views/SkillTreeView.vue')
 const SrsView = () => import('@/views/SrsView.vue')
 const WarRoomView = () => import('@/views/WarRoomView.vue')
 const ReviewQueueView = () => import('@/views/ReviewQueueView.vue')
+// 2026-10-31 审计落地：公式默写 / 限时模考 / 英语背诵台
+const FormulaClozeView = () => import('@/views/FormulaClozeView.vue')
+const MockExamView = () => import('@/views/MockExamView.vue')
+const EnglishReciteView = () => import('@/views/EnglishReciteView.vue')
 
 const routes: RouteRecordRaw[] = [
   {
@@ -39,9 +42,10 @@ const routes: RouteRecordRaw[] = [
     component: TodayStatusView
   },
   {
+    // 旧版 /home 与今日状态页内容重复且全是 0 数据（易误判系统坏了），已删除页面；
+    // 保留重定向，旧书签/历史记录不 404。
     path: '/home',
-    name: 'home',
-    component: HomeView
+    redirect: '/'
   },
   {
     path: '/study-methods',
@@ -235,6 +239,27 @@ const routes: RouteRecordRaw[] = [
     name: 'review-queue',
     component: ReviewQueueView,
     meta: { requiresAuth: true, title: '今日回炉' }
+  },
+  // 数学公式挖空默写：每日公式背诵清单 → 613 张默写卡，连对 2 次毕业
+  {
+    path: '/formula-cloze',
+    name: 'formula-cloze',
+    component: FormulaClozeView,
+    meta: { requiresAuth: true, title: '公式默写' }
+  },
+  // 限时模考：英语阅读 18′/篇（自动判分）+ 408 选择 45′ + 数学选填 50′（答题卡自评）
+  {
+    path: '/mock-exam',
+    name: 'mock-exam',
+    component: MockExamView,
+    meta: { requiresAuth: true, title: '限时模考' }
+  },
+  // 英语背诵台（也从 /english?tab=recite 进入，保留独立路由便于手机直接打开）
+  {
+    path: '/english/recite',
+    name: 'english-recite',
+    component: EnglishReciteView,
+    meta: { requiresAuth: true, title: '英语背诵台' }
   }
 ]
 

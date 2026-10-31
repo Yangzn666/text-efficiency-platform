@@ -9,11 +9,13 @@ import CSWrongProblems from '@/components/CSWrongProblems.vue'
 import DSWrongProblems from '@/components/DSWrongProblems.vue'
 import OSWrongProblems from '@/components/OSWrongProblems.vue'
 import NetworkWrongProblems from '@/components/NetworkWrongProblems.vue'
+// 审计落地：跨科目「考点簇」聚合视图（同一章反复错 = 一个漏洞）
+import WrongClusters from '@/components/WrongClusters.vue'
 
 // ?subject=politics 可直达对应科目（政治漏洞地图、今日动作里的「错题本 →」都靠它）
 // ?book=os 直达 408 四门里的某一门（subject 自动落到 cs408）
 const route = useRoute()
-const SUBJECTS = ['math', 'english', 'politics', 'cs408']
+const SUBJECTS = ['math', 'english', 'politics', 'cs408', 'clusters']
 const BOOKS = ['ds', 'cs', 'os', 'network']
 const initBook = () => {
   const q = route.query.book
@@ -47,28 +49,31 @@ watch(() => route.query.book, () => {
 
       <!-- 一级：考研科目 -->
       <el-tabs v-model="activeSubject" class="subject-tabs">
-        <el-tab-pane label="数学一" name="math">
+        <el-tab-pane label="数学一" name="math" lazy>
           <MathWrongProblems />
         </el-tab-pane>
-        <el-tab-pane label="英语一" name="english">
+        <el-tab-pane label="英语一" name="english" lazy>
           <EnglishWrongProblems />
         </el-tab-pane>
-        <el-tab-pane label="政治" name="politics">
+        <el-tab-pane label="政治" name="politics" lazy>
           <PoliticsWrongProblems />
         </el-tab-pane>
-        <el-tab-pane label="408计算机" name="cs408">
+        <el-tab-pane label="考点簇" name="clusters" lazy>
+          <WrongClusters />
+        </el-tab-pane>
+        <el-tab-pane label="408计算机" name="cs408" lazy>
           <!-- 二级：408四门 -->
           <el-tabs v-model="active408" class="sub-tabs">
-            <el-tab-pane label="数据结构" name="ds">
+            <el-tab-pane label="数据结构" name="ds" lazy>
               <DSWrongProblems />
             </el-tab-pane>
-            <el-tab-pane label="计组" name="cs">
+            <el-tab-pane label="计组" name="cs" lazy>
               <CSWrongProblems />
             </el-tab-pane>
-            <el-tab-pane label="操作系统" name="os">
+            <el-tab-pane label="操作系统" name="os" lazy>
               <OSWrongProblems />
             </el-tab-pane>
-            <el-tab-pane label="计算机网络" name="network">
+            <el-tab-pane label="计算机网络" name="network" lazy>
               <NetworkWrongProblems />
             </el-tab-pane>
           </el-tabs>

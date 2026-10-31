@@ -70,14 +70,33 @@ const currentConfig = computed(() => {
 })
 
 // 将store中的chapters转换为KnowledgePoint格式（单一映射，供列表与自动选中复用）
+// 元数据里的难度是四档（基础 / 核心 / 进阶 / 难点），旧代码只认「基础/进阶/难点」，
+// 导致 8 个「核心」章节取色落到灰色兜底、看不出轻重。这里补齐四档映射，
+// 并把 importance（2–5 数字）真正映射成高/中/低，而不是一律标 high。
+const DIFFICULTY_MAP: Record<string, KnowledgePoint['difficulty']> = {
+  基础: '基础',
+  核心: '中等',
+  进阶: '中等',
+  难点: '困难',
+  简单: '基础',
+  较难: '困难',
+  困难: '困难',
+  中等: '中等'
+}
+function mapImportance(raw: unknown): KnowledgePoint['importance'] {
+  const n = typeof raw === 'number' ? raw : Number(raw)
+  if (Number.isFinite(n) && n > 0) return n >= 5 ? 'high' : n >= 4 ? 'medium' : 'low'
+  return 'medium'
+}
+
 const allPoints = computed<KnowledgePoint[]>(() => {
   return mathStore.chapters.map(chapter => ({
     id: chapter.id,
     title: chapter.title,
     content: '', // 初始为空，点击后加载
     category: chapter.subject || '高等数学',
-    difficulty: (chapter.difficulty === '进阶' ? '中等' : chapter.difficulty === '难点' ? '困难' : chapter.difficulty) as '基础' | '中等' | '困难',
-    importance: 'high' as 'high' | 'medium' | 'low',
+    difficulty: DIFFICULTY_MAP[chapter.difficulty as string] || '基础',
+    importance: mapImportance((chapter as any).importance),
     progress: chapter.masteryLevel || 0,
     keyPoints: chapter.keyPoints || []
   }))

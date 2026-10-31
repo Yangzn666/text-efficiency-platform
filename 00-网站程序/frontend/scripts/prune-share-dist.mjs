@@ -21,7 +21,16 @@ const PRIVATE = [
   'data/english/translation-exams.json',
   'data/english/translation-progress.json',
   // 今日回炉总账：合并了个人 8 套复习队列（到期日/错因/答案锚点），属私人数据，公开版必须裁掉
-  'data/queues'
+  'data/queues',
+  // 2026-10-31 隐私裁剪补充（#16）：个人做题进度 / 漏洞地图 / 公式背诵卡 / 费曼 / 技能树 / 刷题清单
+  'data/formulas',
+  'data/408-exam/progress.json',
+  'data/408-exam/choice-progress.json',
+  'data/politics/vuln-map.json',
+  'data/politics/wrong-letters.json',
+  'data/feynman',
+  'data/skilltree',
+  'data/math/drill-plan.json'
 ]
 
 let removed = 0

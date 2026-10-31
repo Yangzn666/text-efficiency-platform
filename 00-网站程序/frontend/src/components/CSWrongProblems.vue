@@ -565,10 +565,10 @@ defineExpose({
             </div>
             
             <div class="problem-meta">
-              <span>📚 {{ problem.chapterName }}</span>
-              <span v-if="problem.sectionName">| {{ problem.sectionName }}</span>
-              <span>| 📅 {{ new Date(problem.createdAt).toLocaleDateString() }}</span>
-              <span v-if="problem.reviewCount > 0">| 复习 {{ problem.reviewCount }} 次</span>
+              <span class="pm-item">📚 {{ problem.chapterName }}</span>
+              <span class="pm-item" v-if="problem.sectionName">{{ problem.sectionName }}</span>
+              <span class="pm-item">📅 {{ new Date(problem.createdAt).toLocaleDateString() }}</span>
+              <span class="pm-item" v-if="problem.reviewCount > 0">复习 {{ problem.reviewCount }} 次</span>
             </div>
             
             <div v-if="problem.content" class="problem-content">
@@ -905,10 +905,13 @@ defineExpose({
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px 16px;
         margin-bottom: 12px;
         
         .problem-title {
           flex: 1;
+          min-width: 0;
           
           h4 {
             margin: 0 0 8px 0;
@@ -929,20 +932,23 @@ defineExpose({
         
         .problem-actions {
           display: flex;
+          flex-wrap: wrap;
+          align-items: center;
           gap: 8px;
         }
       }
       
       .problem-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 16px;
         font-size: 0.85em;
+        line-height: 1.6;
         color: #909399;
         margin-bottom: 12px;
         padding-bottom: 12px;
         border-bottom: 1px solid #ebeef5;
-        
-        span {
-          margin-right: 8px;
-        }
       }
       
       .problem-content,
@@ -995,9 +1001,11 @@ defineExpose({
           padding: 16px;
           background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
           border-radius: 8px;
-          line-height: 1.8;
+          line-height: 1.7;
           color: #303133;
           font-size: 0.95em;
+          max-width: 70ch;
+          overflow-wrap: break-word;
         }
         
         .content-text {

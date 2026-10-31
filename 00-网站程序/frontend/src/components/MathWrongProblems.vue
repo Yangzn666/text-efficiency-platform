@@ -4705,6 +4705,7 @@ function getMistakeTypeColor(type: string): string {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
   margin-bottom: 12px;
   gap: 12px;
 }
@@ -4714,26 +4715,32 @@ function getMistakeTypeColor(type: string): string {
   font-weight: 600;
   color: #e8eaed;
   flex: 1;
+  min-width: 0;
+  line-height: 1.5;
 }
 
 .problem-content {
   font-size: 0.95em;
   color: #b0b8c4;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 12px;
   white-space: pre-wrap;
+  max-width: 70ch;
+  overflow-wrap: break-word;
 }
 
 .problem-correction {
   font-size: 0.9em;
   color: #8ab4a0;
-  line-height: 1.6;
+  line-height: 1.7;
   padding: 12px;
   background: rgba(138, 180, 160, 0.08);
   border-left: 3px solid #8ab4a0;
   border-radius: 4px;
   margin-bottom: 12px;
   white-space: pre-wrap;
+  max-width: 70ch;
+  overflow-wrap: break-word;
 }
 
 .correction-collapse {

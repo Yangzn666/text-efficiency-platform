@@ -6,7 +6,7 @@
       <p class="loading-text">加载中...</p>
     </div>
 
-    <div class="container">
+    <div class="container" :class="{ 'share-mode': isShare }">
       <header class="header">
         <div class="header-content">
           <h1>{{ appTitle }}</h1>
@@ -88,6 +88,8 @@ const personalRoutes = [
   { path: '/', name: '今日状态' },
   { path: '/warroom', name: '🎯 战术作战室' },
   { path: '/review-queue', name: '🔥 今日回炉' },
+  { path: '/mock-exam', name: '⏱️ 限时模考' },
+  { path: '/formula-cloze', name: '✍️ 公式默写' },
   { path: '/math', name: '数学一' },
   { path: '/english', name: '英语一' },
   { path: '/politics', name: '政治' },
@@ -332,6 +334,11 @@ button, a, .tab-pill, .module-card {
   transform: translateY(1px);
 }
 
+/* 共享版不暴露个人目标院校 */
+.container.share-mode .header h1::after {
+  content: '27考研';
+}
+
 /* 移动端汉堡菜单按钮 */
 .mobile-menu-toggle {
   display: none;
@@ -382,7 +389,8 @@ button, a, .tab-pill, .module-card {
 }
 
 .desktop-nav {
-  flex-wrap: nowrap;
+  /* 16 个导航项在 1400px 内排不下：换行比横向裁掉两侧更稳（2026-10-31 新增模考/默写后出现） */
+  flex-wrap: wrap;
   overflow-x: visible;
 }
 
