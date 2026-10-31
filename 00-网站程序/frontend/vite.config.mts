@@ -101,7 +101,7 @@ export default defineConfig(({ mode }) => {
       // PWA：可安装到手机主屏幕 + 离线查看（base 路径通过下方 base 常量统一处理）
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'icons/*.svg'],
+        includeAssets: ['icons/*.svg'],
         manifest: {
           name: SHARE ? '考研知识库' : '考研效率平台',
           short_name: '考研',
