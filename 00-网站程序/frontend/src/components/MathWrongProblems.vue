@@ -4437,6 +4437,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q3',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'integral_ineq',
+    sectionName: '一元积分学·定积分性质与积分不等式',
+    title: '积分不等式比较大小·变上限积分构造法',
+    content: '题干：设 $f(x)$ 在 $[a,b]$ 上可导，$f\'(x)\\gt 0$ 且 $f\'(x)$ 在 $[a,b]$ 上单调递增，则下列关系正确的是。\n三量：$P=\\int_a^b x f(x)\\,dx$；$Q=\\dfrac{a+b}{2}\\int_a^b f(x)\\,dx$；$R=\\dfrac{b^2-a^2}{2}\\,f\\!\\left(\\dfrac{a+b}{2}\\right)$。\n选项 (A)$P\\ge Q\\ge R$ (B)$Q\\ge P\\ge R$ (C)$P\\ge R\\ge Q$ (D)$Q\\ge R\\ge P$。',
+    mistakeType: '思路错误',
+    importance: 5,
+    correction: '我的错因：不知积分不等式可用变上限积分来做，拿到题没思路——问题不在算，在于没有"起手式"。\n正解：①比 P、Q（变上限构造）：固定 $a$、上限设 $t$，构造 $\\Phi(t)=\\int_a^t xf\\,dx-\\dfrac{a+t}{2}\\int_a^t f\\,dx$，$\\Phi(a)=0$；求导 $\\Phi\'(t)=\\tfrac12\\big[(t-a)f(t)-\\int_a^t f\\,dx\\big]\\ge 0$（因 $f\'\\gt 0\\Rightarrow f$ 递增，$(t-a)f(t)\\ge\\int_a^t f$），故 $\\Phi\\ge 0$，取 $t=b$ 得 $P\\ge Q$。②比 Q、R（凸性）：$m=\\tfrac{a+b}{2}$，$Q-R=m\\big[\\int_a^b f\\,dx-(b-a)f(m)\\big]$，$f\'$ 递增 $\\Rightarrow f$ 凸，由 Hermite–Hadamard 中点不等式 $f(m)\\le\\tfrac{1}{b-a}\\int_a^b f$，又 $m\\gt 0$ 得 $Q\\ge R$。③选 A。\n记忆钩：积分不等式=先构造变上限 $\\Phi$ 再求导定号；$f\'\\gt 0$ 管单调(比 P、Q)，$f\'$ 递增管凸性(比 Q、R)，别混用。对应方法库 M062。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
