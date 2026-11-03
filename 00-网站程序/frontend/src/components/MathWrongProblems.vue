@@ -4488,6 +4488,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q8',
+    chapterId: 'ch_gailv',
+    chapterName: '概率论',
+    sectionId: 'event_prob',
+    sectionName: '随机事件与概率·概率不等式',
+    title: '概率不等式判定·交并补互化+设a,b,p作差',
+    content: '题干：下列结论正确的个数为（　）。\n① 任意事件 $A,B,C$，均有 $P(ABC)\\geq P(A)+P(B)+P(C)-2$。\n② 若 $0<P(A)<1,\\ 0<P(B)<1$，则 $P(B|A)>P(B|\\bar{A})$ 的充要条件为 $P(A|B)>P(A|\\bar{B})$。\n③ $P(A-B)P(B-A)\\geq P(A)P(B)-P(AB)$。\n④ $P(A\\cup B)P(AB)\\leq P(A)P(B)$。\n选项 (A)1 (B)2 (C)3 (D)4。\n统一记号 $a=P(A),\\ b=P(B),\\ p=P(AB)$。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '我的错因：①④ 想不到如何判断——① 缺"交→$1-P(\\bar{A}\\cup\\bar{B}\\cup\\bar{C})$→Boole"的转化，④ 缺"设 $a,b,p$ 作差因式分解"的套路。\n正解：① 对（Bonferroni）：$P(ABC)=1-P(\\bar{A}\\cup\\bar{B}\\cup\\bar{C})$，由 Boole $P(\\bar{A}\\cup\\bar{B}\\cup\\bar{C})\\le P(\\bar{A})+P(\\bar{B})+P(\\bar{C})=3-P(A)-P(B)-P(C)$，故 $P(ABC)\\ge P(A)+P(B)+P(C)-2$。④ 对：作差 $P(A)P(B)-P(A\\cup B)P(AB)=ab-(a+b-p)p=(a-p)(b-p)=P(A-B)P(B-A)\\ge 0$。② 对：两边都 $\\Leftrightarrow p>ab$（条件概率交叉相乘）。③ 对：作差 $=(a-p)(b-p)-(ab-p)=p(1-a-b+p)\\ge 0$（Bonferroni 给 $1-a-b+p\\ge 0$）。选 D（4 个全对）。\n记忆钩：概率比大小"三板斧"——①交并补互化（交算不动写 $1-P(补的并)$）②基本界 Boole $P(\\cup)\\le\\sum P$、Bonferroni $P(AB)\\ge P(A)+P(B)-1$（三事件 $\\ge\\sum P-2$）③设 $a,b,p$ 作差因式分解成事件概率非负组合。对应方法库 M065。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
