@@ -4403,6 +4403,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     reviewCount: 0,
     lastReviewAt: '',
     mastered: false
+  },
+  {
+    id: 'math_cy6q1',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'taylor',
+    sectionName: '一元微分学·泰勒公式应用',
+    title: '隐函数高阶展开·待定系数求a+b',
+    content: '题干：设 $y=y(x)$ 在 $x=0$ 附近由方程 $y+2y^2+y^3=e^{-x}+x-1$ 确定，且 $x\\to 0$ 时 $y=ax^2+bx^3+o(x^3)$，求 $a+b$。选项 A.$1$　B.$\\dfrac12$　C.$\\dfrac13$　D.$\\dfrac16$。\n关键数据：右端 $e^{-x}+x-1=\\dfrac{x^2}{2}-\\dfrac{x^3}{6}+O(x^4)$；左端 $y+2y^2+y^3=ax^2+bx^3+O(x^4)$。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '我的错因：待定系数展开法不熟——习惯把 $2y^2$、$y^3$ 也逐项展开到 $x^3$ 白算，且把 $e^{-x}$ 的 $x^3$ 项 $-\\dfrac{x^3}{6}$ 符号记反。\n正解：①代 $x=0$ 定 $y(0)=0$；②右端 $e^{-x}=1-x+\\dfrac{x^2}{2}-\\dfrac{x^3}{6}+O(x^4)$，故 $e^{-x}+x-1=\\dfrac{x^2}{2}-\\dfrac{x^3}{6}+O(x^4)$；③设 $y=ax^2+bx^3+o(x^3)$，则 $y^2=O(x^4)$、$y^3$ 更高，左端 $=ax^2+bx^3+O(x^4)$；④比系数 $a=\\dfrac12$、$b=-\\dfrac16$；⑤$a+b=\\dfrac12-\\dfrac16=\\dfrac13$，选 C。\n记忆钩：$y$ 从最低非零次($x^2$)起设，高次幂 $y^2,y^3$ 自动出局；$e^{-x}$ 交错符号 $1,-x,+\\dfrac{x^2}{2},-\\dfrac{x^3}{6}$ 别记反。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
