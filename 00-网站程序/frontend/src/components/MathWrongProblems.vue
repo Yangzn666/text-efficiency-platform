@@ -4420,6 +4420,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q2',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高数',
+    sectionId: 'multivar_diff',
+    sectionName: '多元函数微分学·四性质判定',
+    title: '多元函数一点四性质判定(连续/可偏导/可微/偏导连续)',
+    content: '题干：设 $f(x,y)=\\sqrt[3]{x^4+y^4}=(x^4+y^4)^{1/3}$，在点 $(0,0)$ 处：①连续 ②可偏导 ③可微 ④偏导数连续，正确的个数为？选项 (A)1 (B)2 (C)3 (D)4。\n关键数据：上极坐标 $x=r\\cos\\theta,\\ y=r\\sin\\theta$，$x^4+y^4=r^4(\\cos^4\\theta+\\sin^4\\theta)$，$\\cos^4\\theta+\\sin^4\\theta\\in[\\tfrac12,1]$ 有界远离 0，故 $f=r^{4/3}\\cdot(\\text{有界})\\sim r^{4/3}$，齐次阶 $\\alpha=\\tfrac43$。',
+    mistakeType: '思路错误',
+    importance: 5,
+    correction: '我的错因：考定义的题恐惧感很强、大脑直接空白——面对"判断 连续/可偏导/可微/偏导连续"四性质，脑子里没有"第一步该干嘛"的固定判据流程，一慌就断片（不是某个计算不会）。\n正解（四件套固定流程 + 齐次阶 $\\alpha=\\tfrac43$ → 选 D）：①连续→算 $\\lim f=\\lim r^{4/3}(\\text{有界})=0=f(0,0)$；②可偏导→只能用定义逐轴 $f_x(0,0)=\\lim_{x\\to0}\\frac{|x|^{4/3}}{x}=\\lim \\text{sign}(x)|x|^{1/3}=0$，$f_y(0,0)=0$；③可微→取 $A=B=0$ 验 $\\lim\\frac{f-f(0,0)-A\\Delta x-B\\Delta y}{\\rho}=\\lim r^{1/3}(\\text{有界})=0$，$df=0$；④偏导连续→非原点 $f_x=\\frac{4x^3}{3(x^4+y^4)^{2/3}}$，夹逼 $|f_x|\\le\\frac43|x|^{1/3}\\to0=f_x(0,0)$。四条全对→选 D。\n记忆钩：遇四性质判断题闭眼先默写四步判据；$\\sqrt[3]{}$/$\\sqrt{}$ 型 $(x^n+y^n)$ 统一化齐次阶 $\\alpha$（$f\\sim r^\\alpha$）：$\\alpha\\gt0$ 保连续、$\\alpha\\gt1$ 保可微与偏导连续；关系链 偏导连续$\\Rightarrow$可微$\\Rightarrow$(可偏导,连续) 反之全不成立。对应方法库 M061。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
