@@ -4454,6 +4454,40 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q5',
+    chapterId: 'ch_xiandai',
+    chapterName: '线性代数',
+    sectionId: 'eigen',
+    sectionName: '特征值与特征向量',
+    title: '伴随矩阵特征值与A特征值关系·求tr[(A−E)*]',
+    content: '题干：设 $A,B$ 为 3 阶矩阵，$|A+E|=0$，$AB-2B=O$，$r(B)=2$，$A^{*}$ 为 $A$ 的伴随矩阵，则 $\\operatorname{tr}[(A-E)^{*}]=$ (　)。\n选项 (A)$-3$ (B)$0$ (C)$3$ (D)$-1$。\n关键条件：$(A-2E)B=O$ 且 $r(B)=2$ 定 $2$ 为二重特征值；$|A+E|=0$ 定 $-1$ 为特征值。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '我的错因：算对了 $A$ 的特征值 $2,2,-1$，也对了 $A-E$ 的 $1,1,-2$，但最后一步误以为"$A^{*}$ 的特征值和 $A$ 一样"，直接对 $1,1,-2$ 求和得 $0$，误选 B。\n正解：$\\lambda(A)=2,2,-1$（秩条件锁二重 $+\\ |A+E|=0$ 给 $-1$）$\\Rightarrow\\lambda(A-E)=1,1,-2$（$|A-E|=-2\\ne0$ 可逆）$\\Rightarrow$ 伴随换特征值 $\\lambda[(A-E)^{*}]=|A-E|/\\mu=$ 其余之积 $=-2,-2,1$ $\\Rightarrow\\operatorname{tr}=-2-2+1=-3$，选 A。\n记忆钩：$A^{*}$ 特征值 $=|A|/\\lambda=$ 其余 $n-1$ 个特征值之积（3 阶即另两个相乘），伴随/逆是"取倒数级"变换，绝不等于原特征值；只有相似与多项式代入才保持。对应方法库 M063。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
+  },
+  {
+    id: 'math_cy6q6',
+    chapterId: 'ch_xiandai',
+    chapterName: '线性代数',
+    sectionId: 'diag',
+    sectionName: '矩阵相似对角化·最小多项式',
+    title: '由矩阵多项式判可对角化与反例废选项',
+    content: '题干：设 $A$ 为 $n$ 阶矩阵，且满足 $A^2+2A-3E=O$，则必有(　)。选项 (A)$A$ 有特征值 $-1$ (B)$A=-3E$ (C)$A$ 为实对称阵 (D)$A$ 可相似对角化。\n关键：记 $f(x)=x^2+2x-3=(x+3)(x-1)$，题设即 $f(A)=O$。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '我的错因：没看懂 C、D 怎么判——D 不知"可相似对角化"怎么从 $A^2+2A-3E=O$ 推出，C 不知"实对称"为什么不一定成立。\n正解：(D) 对——最小多项式 $m(x)\\mid f(x)=(x+3)(x-1)$，$f$ 无重根 $\\Rightarrow m(x)$ 也无重根 $\\Rightarrow A$ 可相似对角化（考研判据：$A$ 满足能拆成互异一次因式之积的多项式 $g(A)=O$，则必可对角化）。(C) 错——条件只锁特征值 $\\in\\{1,-3\\}$ 不约束对称性，反例 $A=\\begin{pmatrix}1&2\\\\0&-3\\end{pmatrix}$ 满足 $f(A)=O$ 却 $a_{12}=2\\neq a_{21}=0$ 不对称。(A) 错——特征值只能取 $f$ 的根 $1,-3$，$-1$ 非根。(B) 错——取 $A=E$ 或 $\\mathrm{diag}(1,-3)$ 即满足，不必然 $=-3E$。\n记忆钩：无重根 $\\Rightarrow$ 可对角化；推不出就造反例。对应方法库 M064。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
