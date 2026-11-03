@@ -4556,6 +4556,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q13',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'directional_derivative',
+    sectionName: '方向导数·空间直线投影',
+    title: '空间直线在平面上的投影方向+方向导数',
+    content: '题干：设 $l$ 是直线 $L_0:\\begin{cases}x-2z-1=0\\\\y-2z+4=0\\end{cases}$ 在平面 $\\pi:x+y-z=5$ 上的投影，$\\vec{l}$ 是 $l$ 的方向向量且与 $z$ 轴夹角为锐角，则函数 $u=e^{xy}+\\dfrac{y}{z^2}$ 在点 $P(0,0,1)$ 沿 $l$ 方向的方向导数为 ______。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '我的错因：直线束/空间直线投影方法完全遗忘，不会求投影直线方向（把原直线方向 s 直接当成投影方向）。\n正解：①原直线方向 $\\vec{s}=\\vec{n_1}\\times\\vec{n_2}=(1,0,-2)\\times(0,1,-2)=(2,2,1)$。②投影=沿平面法线压影子，$l$ 既在 $\\pi$ 内、又在过 $L_0$ 且垂直 $\\pi$ 的投影面内，故 $\\vec{l}\\parallel\\vec{n}\\times(\\vec{s}\\times\\vec{n})=\\vec{s}(\\vec{n}\\cdot\\vec{n})-\\vec{n}(\\vec{n}\\cdot\\vec{s})$；$\\vec{n}=(1,1,-1)$，$\\vec{n}\\cdot\\vec{n}=3,\\ \\vec{n}\\cdot\\vec{s}=2+2-1=3$，得 $3\\vec{s}-3\\vec{n}=3(1,1,2)\\Rightarrow\\vec{l}\\parallel(1,1,2)$。③与 $z$ 轴成锐角→$z$ 分量 $2\\gt0$ ✓，取 $\\vec{l}=(1,1,2)$，$\\hat{l}=(1,1,2)/\\sqrt6$。④梯度 $\\nabla u|_P=(y e^{xy},\\ x e^{xy}+1/z^2,\\ -2y/z^3)|_{(0,0,1)}=(0,1,0)$。⑤方向导数 $=\\nabla u\\cdot\\hat{l}=(0,1,0)\\cdot(1,1,2)/\\sqrt6=1/\\sqrt6=\\sqrt6/6$。\n记忆钩：投影方向 $=\\vec{n}\\times(\\vec{s}\\times\\vec{n})$（把 $s$ 削掉法向分量、落回平面里）；方向导数 $=\\nabla u\\cdot$ 单位 $\\hat{l}$；"与坐标轴成锐角"用来定符号（该轴分量须 $\\gt0$）。对应方法库 M069。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
