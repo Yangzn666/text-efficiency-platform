@@ -4539,6 +4539,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q12',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'line_integral',
+    sectionName: '曲线积分·格林公式与对称性',
+    title: '格林公式+奇偶对称砍项·∮|x|dy−ydx',
+    content: '题干：设 $L$ 为椭圆周 $4x^2+(y-2)^2=4$，取逆时针方向，则 $\\oint_L |x|\\,dy-y\\,dx=$ ______。',
+    mistakeType: '思路错误',
+    importance: 4,
+    correction: '我的错因：会用格林公式、区域也画对了，但没判断出被积函数拆出的 $\\operatorname{sign}(x)$ 那一项在关于 $y$ 轴对称的椭圆区域上 $=0$（奇函数×对称区域$=0$），于是要硬分块算 $|x|$。\n正解：记 $P=-y,\\;Q=|x|$，格林 $\\oint_L P\\,dx+Q\\,dy=\\iint_D(\\frac{\\partial Q}{\\partial x}-\\frac{\\partial P}{\\partial y})\\,dA$（逆时针取正号）。$\\frac{\\partial Q}{\\partial x}=\\operatorname{sign}(x)$、$\\frac{\\partial P}{\\partial y}=-1$，被积 $=\\operatorname{sign}(x)+1$。拆两项 $\\iint_D\\operatorname{sign}(x)\\,dA+\\iint_D 1\\,dA$：$\\operatorname{sign}(x)$ 是关于 $x$ 的奇函数、椭圆 $D$ 关于 $y$ 轴对称 $\\Rightarrow$ 前半项 $=0$；后半项 $=D$ 面积 $=\\pi a b=\\pi\\cdot1\\cdot2=2\\pi$。合计 $=0+2\\pi=2\\pi$。（$|x|$ 在 $x=0$ 不可导，严格应把 $D$ 分成 $x\\gt0$、$x\\lt0$ 两块分别用格林、中间缝来回抵消，因奇偶对称结果仍 $2\\pi$。）\n记忆钩：格林/二重积分算完先扫奇偶——奇函数项配对称区域 $=0$，只留偶/常数项（常数项$=$面积）。对应方法库 M068。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
