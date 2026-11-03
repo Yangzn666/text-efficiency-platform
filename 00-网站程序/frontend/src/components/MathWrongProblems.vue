@@ -4505,6 +4505,40 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q10',
+    chapterId: 'ch_gailv',
+    chapterName: '概率论',
+    sectionId: 'joint_dist',
+    sectionName: '二维随机变量函数的分布·独立性判定',
+    title: '二维随机变量函数·雅可比变换判独立+条件概率',
+    content: '题干：设二维随机变量 $(X,Y)\\sim N(0,0;2,2;0)$（记号 $N(\\mu_1,\\mu_2;\\sigma_1^2,\\sigma_2^2;\\rho)$：$EX=EY=0$，$DX=DY=2$，$\\rho=0$，故 $X,Y$ 相互独立），$\\Phi(x)$ 为标准正态分布函数，则 $p=P\\{0<X-Y<2\\mid X+Y=1\\}=$（　）。选项 (A)$\\Phi(1)$ (B)$\\Phi(2)$ (C)$\\Phi(1)-\\Phi(0)$ (D)$\\Phi(2)-\\Phi(0)$。',
+    mistakeType: '概念不清',
+    importance: 4,
+    correction: '我的错因：没想到用雅可比行列式变换判独立——不知道"对二维随机变量换元、用雅可比行列式求新联合密度、再靠联合密度可分离成 $g(u)h(v)$ 判定独立"这套通用方法。\n正解：换元 $U=X+Y,\\ V=X-Y$，反解 $x=\\frac{u+v}{2},\\ y=\\frac{u-v}{2}$，雅可比 $J=\\begin{vmatrix}\\frac{1}{2}&\\frac{1}{2}\\\\\\frac{1}{2}&-\\frac{1}{2}\\end{vmatrix}=-\\frac{1}{2}$，$|J|=\\frac{1}{2}$。由 $X,Y$ 独立且各 $N(0,2)$：$f_{X,Y}=\\frac{1}{4\\pi}e^{-\\frac{x^2+y^2}{4}}$，代 $x^2+y^2=\\frac{u^2+v^2}{2}$ 得 $f_{U,V}=\\frac{1}{8\\pi}e^{-\\frac{u^2}{8}}e^{-\\frac{v^2}{8}}=g(u)h(v)$ 可分离 $\\Rightarrow U,V$ 独立，且 $U,V\\sim N(0,4)$。独立 $\\Rightarrow$ 去掉条件：$p=P\\{0<V<2\\mid U=1\\}=P\\{0<V<2\\}$，$V\\sim N(0,4)$ 除 $\\sigma=2$ 标准化 $=P\\{0<Z<1\\}=\\Phi(1)-\\Phi(0)$。选 C。快路：二维正态线性组合仍联合正态，$\\mathrm{Cov}(X+Y,X-Y)=DX-DY=2-2=0$，联合正态+协方差0 $\\Rightarrow$ 独立（免算雅可比）。\n记忆钩：换元求联合密度 $f_{U,V}=f_{X,Y}\\cdot|J|$，能拆成 $g(u)h(v)$ 就独立；标准化别忘除 $\\sigma$（否则误选 D）。对应方法库 M066。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
+  },
+  {
+    id: 'math_cy6q11',
+    chapterId: 'ch_gaoshu',
+    chapterName: '高等数学',
+    sectionId: 'definite_integral',
+    sectionName: '定积分计算·对称区间奇偶性+华里士公式',
+    title: '对称区间定积分·偶次开方必带绝对值+华里士',
+    content: '题干：$\\int_{-\\pi}^{\\pi}\\big[(1+\\cos 2x)^{3/2}+\\sin^4 x\\,(\\ln(2\\pi+x)-\\ln(2\\pi-x))\\big]dx=$ ______。',
+    mistakeType: '计算错误',
+    importance: 4,
+    correction: '我的错因：$(\\cos^2 x)^{3/2}$ 直接写成 $\\cos^3 x$ 漏了绝对值——$\\cos x$ 在 $[\\pi/2,\\pi]$ 上是负的，去绝对值后这一段符号反了，积分整块算错。\n正解：对称区间 $[-\\pi,\\pi]$ 先拆奇偶。第二项 $\\sin^4 x$ 是偶函数，$\\ln\\frac{2\\pi+x}{2\\pi-x}$ 是奇函数，偶×奇=奇，奇函数在对称区间积分 $=0$。第一项 $1+\\cos 2x=2\\cos^2 x$，$(2\\cos^2 x)^{3/2}=2\\sqrt{2}\\,|\\cos x|^{3}$（开方必带绝对值）；$|\\cos x|^{3}$ 是偶函数，$\\int_{-\\pi}^{\\pi}|\\cos x|^{3}dx=4\\int_{0}^{\\pi/2}\\cos^3 x\\,dx=4\\cdot\\frac{2}{3}=\\frac{8}{3}$（华里士公式）。故第一项 $=2\\sqrt{2}\\cdot\\frac{8}{3}=\\frac{16\\sqrt{2}}{3}$，合计 $I=\\frac{16\\sqrt{2}}{3}+0=\\frac{16\\sqrt{2}}{3}$。\n记忆钩：偶次开方还原带绝对值 $\\sqrt{u^2}=|u|$、$(u^2)^{3/2}=|u|^{3}$；底会变号先补 $|\\cdot|$，再按变号点分段去绝对值。对应方法库 M067。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
