@@ -4573,6 +4573,23 @@ const wp = useWrongProblemsStore(); const problems = wp.bind('math', [
     lastReviewAt: '',
     mastered: false,
     subject: 'math'
+  },
+  {
+    id: 'math_cy6q16',
+    chapterId: 'ch_gailv',
+    chapterName: '概率论与数理统计',
+    sectionId: 'stat_moments',
+    sectionName: '统计量数字特征',
+    title: '统计量数字特征·二阶中心矩求期望定a',
+    content: '题干：设总体 $X$ 的期望 $EX=0$、方差 $DX=\\sigma^2$，$X_1,X_2,\\dots,X_n$ 为来自总体的简单随机样本，$\\bar X$ 为样本均值，$S_2^2=\\dfrac{1}{n}\\sum\\limits_{i=1}^{n}(X_i-\\bar X)^2$ 为二阶中心矩。若 $E\\left[a\\,(n\\bar X^2+S_2^2)\\right]=\\sigma^2$，则 $a=$ ____。（正确答案 $a=\\dfrac{n}{2n-1}$）',
+    mistakeType: '概念不清',
+    importance: 5,
+    correction: '我的错因：数统统计量数字特征完全没入门，看不懂题面符号($\\bar X$/$S_2^2$/二阶中心矩)——用户原话"看不懂、这种题是我的大软肋"，属概念没到，不是计算滑步。\n逐符号翻译：$EX=0,\\ DX=\\sigma^2$ 是总体一/二阶矩；$\\bar X=\\frac1n\\sum X_i$ 样本均值；$S_2^2=\\frac1n\\sum(X_i-\\bar X)^2$ 二阶中心矩(除 $n$，不是 $n-1$)；题目要选 $a$ 使统计量 $a(n\\bar X^2+S_2^2)$ 的期望恰为 $\\sigma^2$。\n两条结论：① $E(\\bar X^2)=D\\bar X+(E\\bar X)^2=\\frac{\\sigma^2}{n}+0=\\frac{\\sigma^2}{n}\\Rightarrow E(n\\bar X^2)=\\sigma^2$。② 恒等式 $\\sum(X_i-\\bar X)^2=\\sum X_i^2-n\\bar X^2$，$E\\sum X_i^2=n\\sigma^2$、$E(n\\bar X^2)=\\sigma^2\\Rightarrow E[\\sum(X_i-\\bar X)^2]=(n-1)\\sigma^2\\Rightarrow E(S_2^2)=\\frac{n-1}{n}\\sigma^2$(即 $S_2^2=\\frac{n-1}{n}S^2$，$E(S^2)=\\sigma^2$)。\n合并：$E(n\\bar X^2+S_2^2)=\\sigma^2+\\frac{n-1}{n}\\sigma^2=\\frac{2n-1}{n}\\sigma^2$，令 $a\\cdot\\frac{2n-1}{n}\\sigma^2=\\sigma^2\\Rightarrow a=\\frac{n}{2n-1}$。\n记忆钩：数统统计量求期望=拆成 $\\bar X$ 与 $S^2$(或 $S_2^2$)的线性组合，套四条现成结论 $E\\bar X=\\mu,\\ D\\bar X=\\sigma^2/n,\\ E(S^2)=\\sigma^2,\\ E(\\bar X^2)=\\sigma^2/n+\\mu^2$；分清 $S_2^2$ 除 $n$ 与 $S^2$ 除 $n-1$(差 $(n-1)/n$ 因子)。对应方法库 M070。',
+    createdAt: '2026-11-03',
+    reviewCount: 0,
+    lastReviewAt: '',
+    mastered: false,
+    subject: 'math'
   }
 ])
 
